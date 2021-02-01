@@ -70,16 +70,20 @@ namespace Nuke.Unreal
                         f.Name.StartsWith(".git", StringComparison.InvariantCultureIgnoreCase)
                         || f.Name.EndsWith(".md", StringComparison.InvariantCultureIgnoreCase)
                 );
-                CopyDirectoryRecursively(
-                    ToPlugin.Parent / "Resources",
-                    targetDir / "Resources",
-                    DirectoryExistsPolicy.Merge
-                );
-                CopyDirectoryRecursively(
-                    ToPlugin.Parent / "Config",
-                    targetDir / "Config",
-                    DirectoryExistsPolicy.Merge
-                );
+
+                if(Directory.Exists(ToPlugin.Parent / "Resources"))
+                    CopyDirectoryRecursively(
+                        ToPlugin.Parent / "Resources",
+                        targetDir / "Resources",
+                        DirectoryExistsPolicy.Merge
+                    );
+                
+                if(Directory.Exists(ToPlugin.Parent / "Config"))
+                    CopyDirectoryRecursively(
+                        ToPlugin.Parent / "Config",
+                        targetDir / "Config",
+                        DirectoryExistsPolicy.Merge
+                    );
 
                 Info($"Archiving release: {packageName}");
                 ZipFile.CreateFromDirectory(targetDir, targetDir.Parent / $"{packageName}.zip");
