@@ -1,6 +1,7 @@
 
 using System;
 using System.IO;
+using System.IO.Compression;
 using Nuke.Common.IO;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -43,7 +44,7 @@ namespace Nuke.Unreal
                 File.WriteAllText(ToProject, result);
             });
 
-        public virtual Target GatherMarketplace => _ => _
+        public virtual Target MakeMarketplaceRelease => _ => _
             .DependsOn(Checkout)
             .Executes(() =>
             {
@@ -79,6 +80,9 @@ namespace Nuke.Unreal
                     targetDir / "Config",
                     DirectoryExistsPolicy.Merge
                 );
+
+                Info($"Archiving release: {packageName}");
+                ZipFile.CreateFromDirectory(targetDir, targetDir.Parent / $"{packageName}.zip");
             });
     }
 }
