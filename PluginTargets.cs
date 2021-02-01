@@ -32,6 +32,8 @@ namespace Nuke.Unreal
                 Info($"Checking out targeting UE {UnrealVersion} on platform {TargetPlatform}");
 
                 PluginObject["EngineVersion"] = TargetEngineVersion.FullVersionName;
+                PluginObject["VersionName"] = PluginVersion;
+                
                 foreach (var module in PluginObject["Modules"])
                 {
                     module["WhitelistPlatforms"] = new JArray(TargetPlatform);
@@ -49,8 +51,9 @@ namespace Nuke.Unreal
             .Executes(() =>
             {
                 var pluginName = Path.GetFileNameWithoutExtension(ToPlugin);
-                var packageName = $"{pluginName}_{TargetPlatform}_{PluginVersion}.{TargetEngineVersion.FullVersionName}";
+                var packageName = $"{pluginName}-{TargetPlatform}-{PluginVersion}.{TargetEngineVersion.FullVersionName}-Source";
                 var targetDir = RootDirectory / OutPath / packageName;
+                var archiveFileName = $"{packageName}.zip";
 
                 Info($"Gathering Marketplace release: {packageName}");
 
@@ -59,6 +62,11 @@ namespace Nuke.Unreal
                     Directory.Delete(targetDir, true);
                 }
                 Directory.CreateDirectory(targetDir);
+
+                if(File.Exists(targetDir.Parent / archiveFileName))
+                {
+                    File.Delete(targetDir.Parent / archiveFileName);
+                }
 
                 File.Copy(ToPlugin, targetDir / Path.GetFileName(ToPlugin), true);
                 CopyDirectoryRecursively(
@@ -86,7 +94,7 @@ namespace Nuke.Unreal
                     );
 
                 Info($"Archiving release: {packageName}");
-                ZipFile.CreateFromDirectory(targetDir, targetDir.Parent / $"{packageName}.zip");
+                ZipFile.CreateFromDirectory(targetDir, targetDir.Parent / archiveFileName);
             });
     }
 }
