@@ -15,8 +15,13 @@ namespace Nuke.Unreal
 {
     public abstract class PluginTargets : CommonTargets
     {
+        [Parameter("Make marketplace complient archives")]
+        public bool ForMarketplace = false;
+
         public abstract string PluginVersion { get; }
         public abstract AbsolutePath ToPlugin { get; }
+
+        public string PluginName => Path.GetFileNameWithoutExtension(ToPlugin);
 
         private JObject _pluginObject;
         protected JObject PluginObject =>
@@ -43,27 +48,57 @@ namespace Nuke.Unreal
                 File.WriteAllText(ToProject, result);
             });
 
-        public virtual Target MakeMarketplaceRelease => _ => _
+        public virtual Target MakeRelease => _ => _
+            .Triggers(MakeMarketplaceRelease)
+            .Triggers(PackPlugin);
+
+        public virtual Target PackPlugin => _ => _
             .DependsOn(Checkout)
             .Executes(() =>
             {
-                var pluginName = Path.GetFileNameWithoutExtension(ToPlugin);
-                var packageName = $"{pluginName}-{TargetPlatform}-{PluginVersion}.{TargetEngineVersion.FullVersionName}-Source";
+                var packageName = $"{PluginName}-{TargetPlatform}-{PluginVersion}.{TargetEngineVersion.FullVersionName}-PreBuilt";
+                var targetDir = RootDirectory / OutPath / packageName;
+                var archiveFileName = $"{packageName}.zip";
+
+                Info($"Packaging plugin: {packageName}");
+
+                if(Directory.Exists(targetDir))
+                    DeleteDirectory(targetDir);
+                Directory.CreateDirectory(targetDir);
+
+                if(File.Exists(targetDir.Parent / archiveFileName))
+                    DeleteFile(targetDir.Parent / archiveFileName);
+
+                Unreal.AutomationTool(
+                    TargetEngineVersion,
+                    "BuildPlugin"
+                    + $" -Plugin=\"{ToPlugin}\""
+                    + $" -Package=\"{targetDir}\""
+                    + " -CreateSubFolder",
+                    true
+                ).Run();
+
+                Info($"Archiving release: {packageName}");
+                ZipFile.CreateFromDirectory(targetDir, targetDir.Parent / archiveFileName);
+            });
+
+        public virtual Target MakeMarketplaceRelease => _ => _
+            .DependsOn(Checkout)
+            .OnlyWhenStatic(() => ForMarketplace)
+            .Executes(() =>
+            {
+                var packageName = $"{PluginName}-{TargetPlatform}-{PluginVersion}.{TargetEngineVersion.FullVersionName}-Source";
                 var targetDir = RootDirectory / OutPath / packageName;
                 var archiveFileName = $"{packageName}.zip";
 
                 Info($"Gathering Marketplace release: {packageName}");
 
                 if(Directory.Exists(targetDir))
-                {
                     DeleteDirectory(targetDir);
-                }
                 Directory.CreateDirectory(targetDir);
 
                 if(File.Exists(targetDir.Parent / archiveFileName))
-                {
                     DeleteFile(targetDir.Parent / archiveFileName);
-                }
 
                 CopyFileToDirectory(
                     ToPlugin, targetDir,
