@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using Nuke.Common.IO;
 using static Nuke.Common.Logger;
 using static Nuke.Common.ControlFlow;
+using static Nuke.Common.IO.FileSystemTasks;
 
 namespace Nuke.Unreal
 {
@@ -64,20 +65,33 @@ namespace Nuke.Unreal
             );
         }
 
+        public static void AutomationToolBatch(EngineVersion ofVersion, string arguments, bool compactOutput = false, AbsolutePath workingDir = null)
+        {
+            var uatbat = new UnrealToolOutput(
+                GetEnginePath(ofVersion) / "Engine" / "Build" / "BatchFiles" / "RunUAT.bat",
+                arguments, compactOutput, workingDir
+            );
+        }
+
+        public static void AutomationTool(EngineVersion ofVersion, string arguments, bool compactOutput = false, AbsolutePath workingDir = null)
+        {
+            var uatbat = new UnrealToolOutput(
+                GetEnginePath(ofVersion) / "Engine" / "Binaries" / "DotNET" / "AutomationTool.exe",
+                arguments, compactOutput, workingDir
+            );
+        }
+
         public static void ClearFolder(AbsolutePath folder)
         {
             var targetName = Path.GetFileName(folder);
-            Info($"Clearing {targetName} Intermediate");
             if(Directory.Exists(folder / "Intermediate"))
-                Directory.Delete(folder / "Intermediate", true);
+                DeleteDirectory(folder / "Intermediate");
 
-            Info($"Clearing {targetName} Binaries");
             if(Directory.Exists(folder / "Binaries"))
-                Directory.Delete(folder / "Binaries", true);
+                DeleteDirectory(folder / "Binaries");
 
-            Info($"Clearing {targetName} DerivedDataCache");
             if(Directory.Exists(folder / "DerivedDataCache"))
-                Directory.Delete(folder / "DerivedDataCache", true);
+                DeleteDirectory(folder / "DerivedDataCache");
         }
     }
 }
