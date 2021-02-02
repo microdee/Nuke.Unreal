@@ -18,9 +18,6 @@ namespace Nuke.Unreal
         public abstract string PluginVersion { get; }
         public abstract AbsolutePath ToPlugin { get; }
 
-        [Parameter("Which platform should the Checkout target")]
-        public string TargetPlatform { get; set; } = "Win64";
-
         private JObject _pluginObject;
         protected JObject PluginObject =>
             _pluginObject ?? (_pluginObject = JObject.Parse(File.ReadAllText(ToPlugin)));
@@ -33,7 +30,7 @@ namespace Nuke.Unreal
 
                 PluginObject["EngineVersion"] = TargetEngineVersion.FullVersionName;
                 PluginObject["VersionName"] = PluginVersion;
-                
+
                 foreach (var module in PluginObject["Modules"])
                 {
                     module["WhitelistPlatforms"] = new JArray(TargetPlatform);
@@ -59,16 +56,19 @@ namespace Nuke.Unreal
 
                 if(Directory.Exists(targetDir))
                 {
-                    Directory.Delete(targetDir, true);
+                    DeleteDirectory(targetDir);
                 }
                 Directory.CreateDirectory(targetDir);
 
                 if(File.Exists(targetDir.Parent / archiveFileName))
                 {
-                    File.Delete(targetDir.Parent / archiveFileName);
+                    DeleteFile(targetDir.Parent / archiveFileName);
                 }
 
-                File.Copy(ToPlugin, targetDir / Path.GetFileName(ToPlugin), true);
+                CopyFileToDirectory(
+                    ToPlugin, targetDir,
+                    FileExistsPolicy.Overwrite
+                );
                 CopyDirectoryRecursively(
                     ToPlugin.Parent / "Source",
                     targetDir / "Source",

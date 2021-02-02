@@ -34,6 +34,9 @@ namespace Nuke.Unreal
         [Parameter("Specify the target Unreal Engine version")]
         public virtual string OutPath { get; set; } = ".deploy";
 
+        [Parameter("Which platform should the Checkout target")]
+        public string TargetPlatform { get; set; } = "Win64";
+
         public EngineVersion TargetEngineVersion => new EngineVersion(UnrealVersion, UnrealSubfolder);
 
         public abstract AbsolutePath ToProject { get; }
@@ -41,9 +44,14 @@ namespace Nuke.Unreal
         public AbsolutePath UnrealProjectFolder => ToProject.Parent;
         public AbsolutePath UnrealPluginsFolder => UnrealProjectFolder / "Plugins";
 
+        public string UnrealProjectName => Path.GetFileNameWithoutExtension(ToProject);
+
         private JObject _projectObject;
         protected JObject ProjectObject =>
             _projectObject ?? (_projectObject = JObject.Parse(File.ReadAllText(ToProject)));
+
+        public virtual Target CleanDeployment => _ => _
+            .Executes(() => DeleteDirectory(RootDirectory / OutPath));
 
         public virtual Target CleanProject => _ => _
             .Executes(() => Unreal.ClearFolder(UnrealProjectFolder));
@@ -66,9 +74,42 @@ namespace Nuke.Unreal
             {
                 Unreal.BuildTool(
                     TargetEngineVersion,
-                    "-projectfiles " +
-                    $"-project=\"{ToProject}\" " +
-                    "-game -rocket -progress"
+                    "-projectfiles"
+                    + $" -project=\"{ToProject}\""
+                    + " -game -rocket -progress"
+                );
+            });
+
+        public virtual Target BuildEditor => _ => _
+            .DependsOn(GenerateProject)
+            .Executes(() =>
+            {
+                Unreal.BuildTool(
+                    TargetEngineVersion,
+                    $"{UnrealProjectName}Editor {TargetPlatform} Development"
+                    + $" -Project=\"{ToProject}\"",
+                    true
+                );
+            });
+        
+        public virtual Target CookProject => _ => _
+            .DependsOn(BuildEditor)
+            .Executes(() =>
+            {
+                Unreal.AutomationToolBatch(
+                    TargetEngineVersion,
+                    "BuildCookRun"
+                    + $" -ScriptsForProject=\"{ToProject}\""
+                    + $" -project=\"{ToProject}\""
+                    + " -nocompile"
+                    + " -nocompileeditor"
+                    + " -installed"
+                    + " -nop4"
+                    + " -cook"
+                    + " -skipstage"
+                    + $" -ue4exe=\"{Unreal.GetEnginePath(TargetEngineVersion) / "Engine" / "Binaries" / "Win64" / "UE4Editor-Cmd.exe"}\""
+                    + $" -targetplatform={TargetPlatform}"
+                    + " -utf8output"
                 );
             });
     }
