@@ -57,27 +57,42 @@ namespace Nuke.Unreal
                 .First(sp => Directory.Exists(sp / ofVersion.SubFolderName))
                 / ofVersion.SubFolderName;
 
-        public static void BuildTool(EngineVersion ofVersion, string arguments, bool compactOutput = false, AbsolutePath workingDir = null)
-        {
-            var ubt = new UnrealToolOutput(
+        public static UnrealToolOutput BuildTool(
+            EngineVersion ofVersion,
+            string arguments,
+            bool compactOutput = false,
+            bool explicitUnimportance = false,
+            AbsolutePath workingDir = null
+        ) {
+            return new UnrealToolOutput(
                 GetEnginePath(ofVersion) / "Engine" / "Binaries" / "DotNET" / "UnrealBuildTool.exe",
-                arguments, compactOutput, workingDir
+                arguments, compactOutput, explicitUnimportance, workingDir
             );
         }
 
-        public static void AutomationToolBatch(EngineVersion ofVersion, string arguments, bool compactOutput = false, AbsolutePath workingDir = null)
-        {
-            var uatbat = new UnrealToolOutput(
+        public static UnrealToolOutput AutomationToolBatch(
+            EngineVersion ofVersion,
+            string arguments,
+            bool compactOutput = false,
+            bool explicitUnimportance = false,
+            AbsolutePath workingDir = null
+        ) {
+            return new UnrealToolOutput(
                 GetEnginePath(ofVersion) / "Engine" / "Build" / "BatchFiles" / "RunUAT.bat",
-                arguments, compactOutput, workingDir
+                arguments, compactOutput, explicitUnimportance, workingDir
             );
         }
 
-        public static void AutomationTool(EngineVersion ofVersion, string arguments, bool compactOutput = false, AbsolutePath workingDir = null)
-        {
-            var uatbat = new UnrealToolOutput(
+        public static UnrealToolOutput AutomationTool(
+            EngineVersion ofVersion,
+            string arguments,
+            bool compactOutput = false,
+            bool explicitUnimportance = false,
+            AbsolutePath workingDir = null
+        ) {
+            return new UnrealToolOutput(
                 GetEnginePath(ofVersion) / "Engine" / "Binaries" / "DotNET" / "AutomationTool.exe",
-                arguments, compactOutput, workingDir
+                arguments, compactOutput, explicitUnimportance, workingDir
             );
         }
 

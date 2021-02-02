@@ -77,7 +77,7 @@ namespace Nuke.Unreal
                     "-projectfiles"
                     + $" -project=\"{ToProject}\""
                     + " -game -rocket -progress"
-                );
+                ).Run();
             });
 
         public virtual Target BuildEditor => _ => _
@@ -88,8 +88,8 @@ namespace Nuke.Unreal
                     TargetEngineVersion,
                     $"{UnrealProjectName}Editor {TargetPlatform} Development"
                     + $" -Project=\"{ToProject}\"",
-                    true
-                );
+                    true, true
+                ).Run();
             });
         
         public virtual Target CookProject => _ => _
@@ -110,7 +110,7 @@ namespace Nuke.Unreal
                     + $" -ue4exe=\"{Unreal.GetEnginePath(TargetEngineVersion) / "Engine" / "Binaries" / "Win64" / "UE4Editor-Cmd.exe"}\""
                     + $" -targetplatform={TargetPlatform}"
                     + " -utf8output"
-                );
+                ).Run();
             });
     }
 }
