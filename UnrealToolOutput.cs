@@ -15,6 +15,8 @@ namespace Nuke.Unreal
     {
         private ConcurrentWriter _out;
         private Process _proc;
+        private bool _compactOutput;
+        private bool _cannotDisplayUnimportantOutput = false;
 
         private ConsoleColor _defaultColor = ConsoleColor.Gray;
         private int _curTop = 0;
@@ -22,22 +24,30 @@ namespace Nuke.Unreal
         private string _prevLine = "";
         private int _prevLength = 0;
         private bool _eraseLastLine = false;
-        private bool _noOutputProcessingSession = false;
+        private bool _noOutputProcessingSession;
 
         private readonly ConcurrentQueue<(Action<string> command, string input)> _outQueue = new();
         private AutoResetEvent _outQueueSemaphore;
 
-        public UnrealToolOutput(AbsolutePath exePath, string arguments, bool compactOutput = false, AbsolutePath workingDir = null)
-        {
+        public UnrealToolOutput(
+            AbsolutePath exePath,
+            string arguments,
+            bool compactOutput = false,
+            bool explicitUnimportance = false,
+            AbsolutePath workingDir = null
+        ) {
+            _compactOutput = compactOutput;
+            _noOutputProcessingSession = explicitUnimportance;
             _out = new ConcurrentWriter();
             _proc = new Process {
                 StartInfo = new ProcessStartInfo {
                     FileName = exePath,
                     Arguments = arguments,
                     UseShellExecute = false,
+                    CreateNoWindow = true,
                     WorkingDirectory = workingDir ?? exePath.Parent,
-                    RedirectStandardError = compactOutput,
-                    RedirectStandardOutput = compactOutput
+                    RedirectStandardError = true,
+                    RedirectStandardOutput = true
                 }
             };
             _proc.OutputDataReceived += HandleOutput;
@@ -47,17 +57,30 @@ namespace Nuke.Unreal
 
         public UnrealToolOutput Run()
         {
-            _curLeft = _out.CursorLeft;
-            _curTop = _out.CursorTop;
-            _out.CursorVisible = false;
+            try
+            {
+                _curLeft = _out.CursorLeft;
+                _curTop = _out.CursorTop;
+                _out.CursorVisible = false;
+                _defaultColor = _out.ForegroundColor;
+            }
+            catch
+            {
+                _cannotDisplayUnimportantOutput = true;
+            }
             _proc.Start();
+            _proc.BeginOutputReadLine();
+            _proc.BeginErrorReadLine();
             _proc.WaitForExit();
             if(_outQueue.Count > 0)
             {
                 _outQueue.Enqueue((_ => _outQueueSemaphore.Set(), ""));
                 _outQueueSemaphore.WaitOne();
             }
-            _out.ForegroundColor = _defaultColor;
+            if(!_cannotDisplayUnimportantOutput)
+            {
+                _out.ForegroundColor = _defaultColor;
+            }
             _out.WriteLine("Unreal Task completed");
 
             Assert(_proc.ExitCode == 0, "Unreal Task exited with a non-zero exit code.");
@@ -72,7 +95,7 @@ namespace Nuke.Unreal
         {
             // TODO: writelog
 
-            if(IsRunningUnattended()) return;
+            if(IsRunningUnattended() || _cannotDisplayUnimportantOutput) return;
 
             if(!_eraseLastLine)
             {
@@ -97,22 +120,35 @@ namespace Nuke.Unreal
 
         private void WriteImportant(string line)
         {
-            if(_eraseLastLine)
+            if(_cannotDisplayUnimportantOutput)
             {
-                _out.Write(new string(' ', _prevLength));
-                _out.CursorLeft = _curLeft;
-                _out.CursorTop = _curTop;
+                _out.WriteLine(line);
             }
-            _out.WriteLine(line);
-            _eraseLastLine = false;
+            else
+            {
+                if(_eraseLastLine)
+                {
+                    _out.Write(new string(' ', _prevLength));
+                    _out.CursorLeft = _curLeft;
+                    _out.CursorTop = _curTop;
+                }
+                _eraseLastLine = false;
+            }
         }
 
         private void HandleOutput(object sender, DataReceivedEventArgs e)
         {
             string input = e.Data?.Trim() ?? "";
-            bool queueWasEmpty = _outQueue.Count == 0;
-            _outQueue.Enqueue((new Action<string>(WriteOutput) + Proceed, input));
-            if(queueWasEmpty) Proceed(input);
+            if(_compactOutput)
+            {
+                bool queueWasEmpty = _outQueue.Count == 0;
+                _outQueue.Enqueue((new Action<string>(WriteOutput) + Proceed, input));
+                if(queueWasEmpty) Proceed(input);
+            }
+            else
+            {
+                _out.WriteLine(input);
+            }
         }
 
         private void Proceed(string _)
@@ -131,6 +167,13 @@ namespace Nuke.Unreal
 
             // VS building step
             if(Regex.IsMatch(input, @"\[\d+?\/\d+?\]\s"))
+            {
+                WriteUnimportant(input);
+                return;
+            }
+
+            // VS Creating library
+            if(input.StartsWith("Creating library", StringComparison.InvariantCultureIgnoreCase))
             {
                 WriteUnimportant(input);
                 return;
