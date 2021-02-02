@@ -109,7 +109,8 @@ namespace Nuke.Unreal
                     + " -skipstage"
                     + $" -ue4exe=\"{Unreal.GetEnginePath(TargetEngineVersion) / "Engine" / "Binaries" / "Win64" / "UE4Editor-Cmd.exe"}\""
                     + $" -targetplatform={TargetPlatform}"
-                    + " -utf8output"
+                    + " -utf8output",
+                    true
                 ).Run();
             });
     }

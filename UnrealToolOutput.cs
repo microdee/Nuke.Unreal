@@ -132,6 +132,7 @@ namespace Nuke.Unreal
                     _out.CursorLeft = _curLeft;
                     _out.CursorTop = _curTop;
                 }
+                _out.WriteLine(line);
                 _eraseLastLine = false;
             }
         }
