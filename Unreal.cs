@@ -50,6 +50,7 @@ namespace Nuke.Unreal
             (AbsolutePath) @"D:\Tools\Epic Games",
             (AbsolutePath) @"D:\ue4",
             (AbsolutePath) @"E:\Programmes",
+            (AbsolutePath) @"/Users/Shared/Epic Games",
         };
 
         public static AbsolutePath GetEnginePath(EngineVersion ofVersion) =>
@@ -77,8 +78,9 @@ namespace Nuke.Unreal
             bool explicitUnimportance = false,
             AbsolutePath workingDir = null
         ) {
+            var scriptExt = Environment.OSVersion.Platform <= PlatformID.WinCE ? "bat" : "sh";
             return new UnrealToolOutput(
-                GetEnginePath(ofVersion) / "Engine" / "Build" / "BatchFiles" / "RunUAT.bat",
+                GetEnginePath(ofVersion) / "Engine" / "Build" / "BatchFiles" / $"RunUAT.{scriptExt}",
                 arguments, compactOutput, explicitUnimportance, workingDir
             );
         }

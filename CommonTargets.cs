@@ -35,9 +35,9 @@ namespace Nuke.Unreal
         public virtual string OutPath { get; set; } = ".deploy";
 
         [Parameter("Which platform should the Checkout target")]
-        public string TargetPlatform { get; set; } = "Win64";
+        public string TargetPlatform { get; set; } = Environment.OSVersion.Platform <= PlatformID.WinCE ? "Win64" : "MacOS";
 
-        public EngineVersion TargetEngineVersion => new EngineVersion(UnrealVersion, UnrealSubfolder);
+        public EngineVersion TargetEngineVersion => new(UnrealVersion, UnrealSubfolder);
 
         public abstract AbsolutePath ToProject { get; }
 
@@ -107,7 +107,6 @@ namespace Nuke.Unreal
                     + " -nop4"
                     + " -cook"
                     + " -skipstage"
-                    + $" -ue4exe=\"{Unreal.GetEnginePath(TargetEngineVersion) / "Engine" / "Binaries" / "Win64" / "UE4Editor-Cmd.exe"}\""
                     + $" -targetplatform={TargetPlatform}"
                     + " -utf8output",
                     true
