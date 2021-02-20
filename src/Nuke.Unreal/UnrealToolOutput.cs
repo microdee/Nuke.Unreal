@@ -28,13 +28,13 @@ namespace Nuke.Unreal
 
         private readonly ConcurrentQueue<(Action<string> command, string input)> _outQueue = new();
         private AutoResetEvent _outQueueSemaphore;
-
+        
         public UnrealToolOutput(
-            AbsolutePath exePath,
+            string exePath,
+            AbsolutePath workingDir,
             string arguments,
             bool compactOutput = false,
-            bool explicitUnimportance = false,
-            AbsolutePath workingDir = null
+            bool explicitUnimportance = false
         ) {
             _compactOutput = compactOutput;
             _noOutputProcessingSession = explicitUnimportance;
@@ -45,7 +45,7 @@ namespace Nuke.Unreal
                     Arguments = arguments,
                     UseShellExecute = false,
                     CreateNoWindow = true,
-                    WorkingDirectory = workingDir ?? exePath.Parent,
+                    WorkingDirectory = workingDir,
                     RedirectStandardError = true,
                     RedirectStandardOutput = true
                 }
@@ -54,6 +54,20 @@ namespace Nuke.Unreal
             _proc.ErrorDataReceived += HandleOutput;
             _outQueueSemaphore = new AutoResetEvent(false);
         }
+
+        public UnrealToolOutput(
+            AbsolutePath exePath,
+            string arguments,
+            bool compactOutput = false,
+            bool explicitUnimportance = false,
+            AbsolutePath workingDir = null
+        ) : this(
+            exePath,
+            workingDir ?? exePath.Parent,
+            arguments,
+            compactOutput,
+            explicitUnimportance
+        ) { }
 
         public UnrealToolOutput Run()
         {
