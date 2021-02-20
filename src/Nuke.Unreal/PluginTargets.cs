@@ -27,7 +27,7 @@ namespace Nuke.Unreal
         protected JObject PluginObject =>
             _pluginObject ?? (_pluginObject = JObject.Parse(File.ReadAllText(ToPlugin)));
 
-        public virtual Target Checkout => _ => _
+        public Target Checkout => _ => _
             .DependsOn(CleanUnreal)
             .Executes(() =>
             {
@@ -48,11 +48,11 @@ namespace Nuke.Unreal
                 File.WriteAllText(ToProject, result);
             });
 
-        public virtual Target MakeRelease => _ => _
+        public Target MakeRelease => _ => _
             .Triggers(MakeMarketplaceRelease)
             .Triggers(PackPlugin);
 
-        public virtual Target PackPlugin => _ => _
+        public Target PackPlugin => _ => _
             .DependsOn(Checkout)
             .Executes(() =>
             {
@@ -82,7 +82,7 @@ namespace Nuke.Unreal
                 ZipFile.CreateFromDirectory(targetDir, targetDir.Parent / archiveFileName);
             });
 
-        public virtual Target MakeMarketplaceRelease => _ => _
+        public Target MakeMarketplaceRelease => _ => _
             .DependsOn(Checkout)
             .OnlyWhenStatic(() => ForMarketplace)
             .Executes(() =>

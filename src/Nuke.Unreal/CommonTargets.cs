@@ -35,7 +35,7 @@ namespace Nuke.Unreal
         public virtual string OutPath { get; set; } = ".deploy";
 
         [Parameter("Which platform should the Checkout target")]
-        public string TargetPlatform { get; set; } = Environment.OSVersion.Platform <= PlatformID.WinCE ? "Win64" : "MacOS";
+        public string TargetPlatform { get; set; } = Unreal.GetDefaultPlatform().ToString();
 
         public EngineVersion TargetEngineVersion => new(UnrealVersion, UnrealSubfolder);
 
@@ -50,13 +50,13 @@ namespace Nuke.Unreal
         protected JObject ProjectObject =>
             _projectObject ?? (_projectObject = JObject.Parse(File.ReadAllText(ToProject)));
 
-        public virtual Target CleanDeployment => _ => _
+        public Target CleanDeployment => _ => _
             .Executes(() => DeleteDirectory(RootDirectory / OutPath));
 
-        public virtual Target CleanProject => _ => _
+        public Target CleanProject => _ => _
             .Executes(() => Unreal.ClearFolder(UnrealProjectFolder));
 
-        public virtual Target CleanPlugins => _ => _
+        public Target CleanPlugins => _ => _
             .Executes(() =>
             {
                 foreach(var pluginDir in Directory.EnumerateDirectories(UnrealPluginsFolder))
@@ -65,11 +65,11 @@ namespace Nuke.Unreal
                 }
             });
 
-        public virtual Target CleanUnreal => _ => _
+        public Target CleanUnreal => _ => _
             .DependsOn(CleanProject)
             .DependsOn(CleanPlugins);
 
-        public virtual Target GenerateProject => _ => _
+        public Target GenerateProject => _ => _
             .Executes(() =>
             {
                 Unreal.BuildTool(
@@ -80,7 +80,7 @@ namespace Nuke.Unreal
                 ).Run();
             });
 
-        public virtual Target BuildEditor => _ => _
+        public Target BuildEditor => _ => _
             .DependsOn(GenerateProject)
             .Executes(() =>
             {
@@ -92,7 +92,7 @@ namespace Nuke.Unreal
                 ).Run();
             });
         
-        public virtual Target CookProject => _ => _
+        public Target CookProject => _ => _
             .DependsOn(BuildEditor)
             .Executes(() =>
             {
