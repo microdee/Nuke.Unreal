@@ -30,7 +30,6 @@
 
     <Reference Include="$(UnrealDotnetPath)/AutomationScripts/Android/Android.Automation.dll" />
 
-    <Reference Include="$(UnrealDotnetPath)/AutomationScripts/HoloLens/AutomationScripts.Automation.dll" />
     <Reference Include="$(UnrealDotnetPath)/AutomationScripts/HoloLens/HoloLens.Automation.dll" />
 
     <Reference Include="$(UnrealDotnetPath)/AutomationScripts/IOS/IOS.Automation.dll" />
