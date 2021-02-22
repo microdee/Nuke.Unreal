@@ -15,7 +15,7 @@ namespace Nuke.Unreal
 {
     public abstract class PluginTargets : CommonTargets
     {
-        [Parameter("Make marketplace complient archives")]
+        [Parameter("Make marketplace compliant archives")]
         public bool ForMarketplace = false;
 
         public abstract string PluginVersion { get; }
