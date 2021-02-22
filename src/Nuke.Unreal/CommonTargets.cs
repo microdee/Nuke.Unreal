@@ -31,10 +31,10 @@ namespace Nuke.Unreal
         [Parameter("Use the following subfolder for the specified engine version. 'UE_{0}.{1}' is the default. use '{0}' (= '4') for major and {1} for minor versions.")]
         public virtual string UnrealSubfolder { get; } = "UE_{0}.{1}";
         
-        [Parameter("Specify the target Unreal Engine version")]
+        [Parameter("Specify the output working directory")]
         public virtual string OutPath { get; set; } = ".deploy";
 
-        [Parameter("Which platform should the Checkout target")]
+        [Parameter("Set platform for running targets")]
         public string TargetPlatform { get; set; } = Unreal.GetDefaultPlatform().ToString();
 
         public EngineVersion TargetEngineVersion => new(UnrealVersion, UnrealSubfolder);
@@ -102,13 +102,13 @@ namespace Nuke.Unreal
                     "BuildCookRun"
                     + $" -ScriptsForProject=\"{ToProject}\""
                     + $" -project=\"{ToProject}\""
+                    + $" -targetplatform={TargetPlatform}"
                     + " -nocompile"
                     + " -nocompileeditor"
                     + " -installed"
                     + " -nop4"
                     + " -cook"
                     + " -skipstage"
-                    + $" -targetplatform={TargetPlatform}"
                     + " -utf8output"
                 )
                     .WithOnlyResults()
