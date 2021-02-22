@@ -1,4 +1,5 @@
 
+using System.Runtime.CompilerServices;
 using System;
 using System.Threading;
 using System.Text.RegularExpressions;
@@ -13,8 +14,10 @@ namespace Nuke.Unreal
 {
     public class UnrealToolOutput
     {
+
         private ConcurrentWriter _out;
         private Process _proc;
+        private ProcessStartInfo _procStartInfo;
         private bool _compactOutput;
         private bool _cannotDisplayUnimportantOutput = false;
 
@@ -31,43 +34,38 @@ namespace Nuke.Unreal
         
         public UnrealToolOutput(
             string exePath,
-            AbsolutePath workingDir,
-            string arguments,
-            bool compactOutput = false,
-            bool explicitUnimportance = false
+            string arguments
         ) {
-            _compactOutput = compactOutput;
-            _noOutputProcessingSession = explicitUnimportance;
             _out = new ConcurrentWriter();
-            _proc = new Process {
-                StartInfo = new ProcessStartInfo {
-                    FileName = exePath,
-                    Arguments = arguments,
-                    UseShellExecute = false,
-                    CreateNoWindow = true,
-                    WorkingDirectory = workingDir,
-                    RedirectStandardError = true,
-                    RedirectStandardOutput = true
-                }
+            _procStartInfo = new ProcessStartInfo {
+                FileName = exePath,
+                Arguments = arguments,
+                UseShellExecute = false,
+                CreateNoWindow = true,
+                RedirectStandardError = true,
+                RedirectStandardOutput = true
             };
-            _proc.OutputDataReceived += HandleOutput;
-            _proc.ErrorDataReceived += HandleOutput;
             _outQueueSemaphore = new AutoResetEvent(false);
         }
+        
+        public UnrealToolOutput WithOnlyResults()
+        {
+            _compactOutput = true;
+            _noOutputProcessingSession = false;
+            return this;
+        }
+        public UnrealToolOutput WithoutUnimportant()
+        {
+            _compactOutput = true;
+            _noOutputProcessingSession = true;
+            return this;
+        }
 
-        public UnrealToolOutput(
-            AbsolutePath exePath,
-            string arguments,
-            bool compactOutput = false,
-            bool explicitUnimportance = false,
-            AbsolutePath workingDir = null
-        ) : this(
-            exePath,
-            workingDir ?? exePath.Parent,
-            arguments,
-            compactOutput,
-            explicitUnimportance
-        ) { }
+        public UnrealToolOutput WithWorkingDir(AbsolutePath workingDir)
+        {
+            _procStartInfo.WorkingDirectory = workingDir;
+            return this;
+        }
 
         public UnrealToolOutput Run()
         {
@@ -82,6 +80,13 @@ namespace Nuke.Unreal
             {
                 _cannotDisplayUnimportantOutput = true;
             }
+
+            _proc = new Process
+            {
+                StartInfo = _procStartInfo
+            };
+            _proc.OutputDataReceived += HandleOutput;
+            _proc.ErrorDataReceived += HandleOutput;
             _proc.Start();
             _proc.BeginOutputReadLine();
             _proc.BeginErrorReadLine();

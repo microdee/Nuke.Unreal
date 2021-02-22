@@ -119,56 +119,31 @@ namespace Nuke.Unreal
             throw new Exception("Attempting to build on an unsupported platform");
         }
 
-        public static UnrealToolOutput BuildTool(
-            EngineVersion ofVersion,
-            string arguments,
-            bool compactOutput = false,
-            bool explicitUnimportance = false,
-            AbsolutePath workingDir = null
-        ) {
+        public static UnrealToolOutput BuildTool(EngineVersion ofVersion, string arguments)
+        {
             return new UnrealToolOutput(
                 GetEnginePath(ofVersion) / "Engine" / "Binaries" / "DotNET" / "UnrealBuildTool.exe",
-                arguments, compactOutput, explicitUnimportance, workingDir
+                arguments
             );
         }
 
-        public static UnrealToolOutput AutomationToolBatch(
-            EngineVersion ofVersion,
-            string arguments,
-            bool compactOutput = false,
-            bool explicitUnimportance = false,
-            AbsolutePath workingDir = null
-        ) {
+        public static UnrealToolOutput AutomationToolBatch(EngineVersion ofVersion, string arguments)
+        {
             var scriptExt = RuntimeInformation.IsOSPlatform(OSPlatform.Windows) ? "bat" : "sh";
             return new UnrealToolOutput(
                 GetEnginePath(ofVersion) / "Engine" / "Build" / "BatchFiles" / $"RunUAT.{scriptExt}",
-                arguments, compactOutput, explicitUnimportance, workingDir
+                arguments
             );
         }
 
-        public static UnrealToolOutput AutomationTool(
-            EngineVersion ofVersion,
-            string arguments,
-            bool compactOutput = false,
-            bool explicitUnimportance = false,
-            AbsolutePath workingDir = null
-        ) {
+        public static UnrealToolOutput AutomationTool(EngineVersion ofVersion, string arguments)
+        {
             var uatPath = GetEnginePath(ofVersion) / "Engine" / "Binaries" / "DotNET" / "AutomationTool.exe";
+
             if(RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
-            {
-                return new UnrealToolOutput(
-                    uatPath, arguments, compactOutput, explicitUnimportance, workingDir
-                );
-            }
-            else
-            {
-                return new UnrealToolOutput(
-                    "mono",
-                    workingDir ?? uatPath.Parent,
-                    $"\"{uatPath}\" " + arguments,
-                    compactOutput, explicitUnimportance
-                );
-            }
+                return new UnrealToolOutput(uatPath, arguments);
+
+            return new UnrealToolOutput("mono", $"\"{uatPath}\" " + arguments);
         }
 
         public static void ClearFolder(AbsolutePath folder)

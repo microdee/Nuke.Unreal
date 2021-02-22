@@ -74,9 +74,10 @@ namespace Nuke.Unreal
                     "BuildPlugin"
                     + $" -Plugin=\"{ToPlugin}\""
                     + $" -Package=\"{targetDir}\""
-                    + " -CreateSubFolder",
-                    true
-                ).Run();
+                    + " -CreateSubFolder"
+                )
+                    .WithOnlyResults()
+                    .Run();
 
                 Info($"Archiving release: {packageName}");
                 ZipFile.CreateFromDirectory(targetDir, targetDir.Parent / archiveFileName);

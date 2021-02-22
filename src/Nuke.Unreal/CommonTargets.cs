@@ -87,9 +87,10 @@ namespace Nuke.Unreal
                 Unreal.BuildTool(
                     TargetEngineVersion,
                     $"{UnrealProjectName}Editor {TargetPlatform} Development"
-                    + $" -Project=\"{ToProject}\"",
-                    true, true
-                ).Run();
+                    + $" -Project=\"{ToProject}\""
+                )
+                    .WithoutUnimportant()
+                    .Run();
             });
         
         public Target CookProject => _ => _
@@ -108,9 +109,10 @@ namespace Nuke.Unreal
                     + " -cook"
                     + " -skipstage"
                     + $" -targetplatform={TargetPlatform}"
-                    + " -utf8output",
-                    true
-                ).Run();
+                    + " -utf8output"
+                )
+                    .WithOnlyResults()
+                    .Run();
             });
     }
 }
