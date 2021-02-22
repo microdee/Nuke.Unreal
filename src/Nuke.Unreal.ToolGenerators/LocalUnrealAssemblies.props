@@ -1,0 +1,48 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup Condition="$([MSBuild]::IsOSPlatform('Windows'))">
+    <UnrealPath>C:/Program Files/Epic Games/UE_4.26</UnrealPath>
+    <UnrealDotnetPath>$(UnrealPath)/Engine/Binaries/DotNET</UnrealDotnetPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="$([MSBuild]::IsOSPlatform('OSX'))">
+    <UnrealPath>/Users/Shared/Epic Games/UE_4.26</UnrealPath>
+    <UnrealDotnetPath>$(UnrealPath)/Engine/Binaries/DotNET</UnrealDotnetPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="$([MSBuild]::IsOSPlatform('Linux'))">
+    <UnrealPath>/Users/Shared/Epic Games/UE_4.26</UnrealPath>
+    <UnrealDotnetPath>$(UnrealPath)/Engine/Binaries/DotNET</UnrealDotnetPath>
+    <!-- TODO: get default install locations for popular distros -->
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="$(UnrealDotnetPath)/DotNETUtilities.dll" />
+    <Reference Include="$(UnrealDotnetPath)/AutomationUtils.Automation.dll" />
+    <Reference Include="$(UnrealDotnetPath)/UnrealBuildTool.exe" />
+
+    <Reference Include="$(UnrealDotnetPath)/AutomationScripts/AutomationScripts.Automation.dll" />
+    <Reference Include="$(UnrealDotnetPath)/AutomationScripts/BuildGraph.Automation.dll" />
+    <Reference Include="$(UnrealDotnetPath)/AutomationScripts/Gauntlet.Automation.dll" />
+    <Reference Include="$(UnrealDotnetPath)/AutomationScripts/Localization.Automation.dll" />
+    <Reference Include="$(UnrealDotnetPath)/AutomationScripts/Win.Automation.dll" />
+    <Reference Include="$(UnrealDotnetPath)/AutomationScripts/XLocLocalization.Automation.dll" />
+
+    <Reference Include="$(UnrealDotnetPath)/AutomationScripts/AllDesktop/AllDesktop.Automation.dll" />
+
+    <Reference Include="$(UnrealDotnetPath)/AutomationScripts/Android/Android.Automation.dll" />
+
+    <Reference Include="$(UnrealDotnetPath)/AutomationScripts/HoloLens/AutomationScripts.Automation.dll" />
+    <Reference Include="$(UnrealDotnetPath)/AutomationScripts/HoloLens/HoloLens.Automation.dll" />
+
+    <Reference Include="$(UnrealDotnetPath)/AutomationScripts/IOS/IOS.Automation.dll" />
+
+    <Reference Include="$(UnrealDotnetPath)/AutomationScripts/Linux/Linux.Automation.dll" />
+
+    <!-- ask or pull request for Lumin -->
+
+    <Reference Include="$(UnrealDotnetPath)/AutomationScripts/Mac/Mac.Automation.dll" />
+    
+    <!-- ask or pull request for TVOS -->
+
+  </ItemGroup>
+  
+</Project>
