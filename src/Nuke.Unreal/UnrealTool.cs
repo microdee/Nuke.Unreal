@@ -25,7 +25,6 @@ namespace Nuke.Unreal
 
         public class ParameterCollection
         {
-            
             protected readonly List<Parameter> Parameters = new();
 
             public string Name { init; get; }
@@ -53,6 +52,8 @@ namespace Nuke.Unreal
         }
 
         protected Group SelectedGroup;
+        
+        internal readonly ParameterCollection Parameters = new();
 
         protected abstract AbsolutePath GetToolExe(EngineVersion withVersion);
         protected abstract bool IsToolDotNet();
@@ -62,9 +63,9 @@ namespace Nuke.Unreal
             var selCommand = SelectedGroup?.SelectedCommand ?? SelectedCommand;
             var result = "";
             if(selCommand != null)
-                result = selCommand.Name + " " + selCommand.Parameters.ToString();
+                result = selCommand.Name + " " + selCommand.Parameters;
 
-            return result;
+            return result + " " + Parameters;
         }
 
         public override UnrealToolOutput Invoke(EngineVersion withVersion)
