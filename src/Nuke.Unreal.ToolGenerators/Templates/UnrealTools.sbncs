@@ -5,7 +5,7 @@
     /// </summary>
     ret_type {{ param.name }}({{ if param.has_value }}string {{ param.value_name; end }})
     {
-        Parameters.Add( {{ param.name }}, {{ param.value_name }});
+        Parameters.Add( "{{ param.name }}"{{ if param.has_value }}, {{ param.value_name; end }});
         return this;
     }
 {{ end }}
