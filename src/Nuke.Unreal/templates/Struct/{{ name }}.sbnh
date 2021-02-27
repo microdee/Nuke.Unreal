@@ -1,0 +1,14 @@
+// {{ copyright }}
+
+#pragma once
+
+#include "CoreMinimal.h"
+
+#include "{{ name }}.generated.h"
+
+USTRUCT()
+struct {{ module.api_name }}_API F{{ name }}
+{
+    GENERATED_BODY()
+public:
+};

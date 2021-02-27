@@ -1,0 +1,21 @@
+{
+  "FileVersion": 3,
+  "Version": 1,
+  "VersionName": "1.0.0",
+  "EngineVersion": "{{ engine_version }}",
+  "FriendlyName": "{{ name }}",
+  "Description": "To be written",
+  "Category": "Misc",
+  "EnabledByDefault": true,
+  "CreatedBy": "Someone",
+  "CreatedByURL": "",
+  "DocsURL": "",
+  "MarketplaceURL": "",
+  "SupportURL": "",
+  "CanContainContent": false,
+  "IsBetaVersion": false,
+  "Installed": true,
+  "RequiresBuildPlatform": false,
+  "Modules": [
+  ]
+}
