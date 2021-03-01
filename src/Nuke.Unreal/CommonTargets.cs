@@ -13,6 +13,8 @@ using Nuke.Common.ProjectModel;
 using Nuke.Common.Tooling;
 using Nuke.Common.Tools.DotNet;
 using Nuke.Common.Utilities.Collections;
+using Nuke.Unreal.BoilerplateGenerators;
+
 using static Nuke.Common.EnvironmentInfo;
 using static Nuke.Common.IO.FileSystemTasks;
 using static Nuke.Common.IO.PathConstruction;
@@ -49,6 +51,56 @@ namespace Nuke.Unreal
         private JObject _projectObject;
         protected JObject ProjectObject =>
             _projectObject ?? (_projectObject = JObject.Parse(File.ReadAllText(ToProject)));
+
+        [Parameter("Specify a folder containing generator specific folders for Scriban scaffolding and templates")]
+        public virtual AbsolutePath TemplatesFolder { get; set; } = BoilerplateGenerator.DefaultTemplateFolder;
+
+        [Parameter("Name parameter for boilerplate generators.")]
+        public string Name { get; set; }
+
+        public Target NewActor => _ => _
+            .Description("Create new Unreal Actor in current directory")
+            .Requires(() => Name)
+            .Executes(() => {
+                new ActorGenerator().Generate(
+                    TemplatesFolder,
+                    (AbsolutePath) Environment.CurrentDirectory,
+                    new(Name, "Test, TODO")
+                );
+            });
+
+        public Target NewInterface => _ => _
+            .Description("Create new Unreal Interface in current directory")
+            .Requires(() => Name)
+            .Executes(() => {
+                new InterfaceGenerator().Generate(
+                    TemplatesFolder,
+                    (AbsolutePath) Environment.CurrentDirectory,
+                    new(Name, "Test, TODO")
+                );
+            });
+
+        public Target NewObject => _ => _
+            .Description("Create new Unreal Object in current directory")
+            .Requires(() => Name)
+            .Executes(() => {
+                new ObjectGenerator().Generate(
+                    TemplatesFolder,
+                    (AbsolutePath) Environment.CurrentDirectory,
+                    new(Name, "Test, TODO")
+                );
+            });
+
+        public Target NewStruct => _ => _
+            .Description("Create new Unreal Struct in current directory")
+            .Requires(() => Name)
+            .Executes(() => {
+                new StructGenerator().Generate(
+                    TemplatesFolder,
+                    (AbsolutePath) Environment.CurrentDirectory,
+                    new(Name, "Test, TODO")
+                );
+            });
 
         public Target CleanDeployment => _ => _
             .Executes(() => DeleteDirectory(RootDirectory / OutPath));
