@@ -9,7 +9,6 @@ namespace Nuke.Unreal.BoilerplateGenerators
         {
         }
 
-        protected override bool FilePredicate(string f) =>
-            f.EndsWith(".build.cs", StringComparison.InvariantCultureIgnoreCase);
+        protected override bool FilePredicate(string f) => f.EndsWith(".build.cs", true, null);
     }
 }
