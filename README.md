@@ -6,21 +6,21 @@ Nuke + Unreal Engine workflow provides a consistent way to work with UE4/5 tools
 
 ## Usage
 
-For now, no Nuget release available and its functionality is limited yet for mostly personal usage. If you still want to use this workflow you can start from the [Nuke.Unreal Workflow Template](https://github.com/microdee/Nuke.Unreal.WorkflowTemplate), or go manually:
+For now, no Nuget release available and its functionality is limited yet for mostly personal usage. When Nuget package will be available it'll be available as a simple package reference in your Nuke build project. If you still want to use this workflow you can start from the [Nuke.Unreal Workflow Template](https://github.com/microdee/Nuke.Unreal.WorkflowTemplate), or go manually:
 
 1. go and set up Nuke with their global tool in your project's root
 2. Submodule this repo in `<git root>/Nuke.Unreal`
 3. `dotnet sln .\Build.sln add .\Nuke.Unreal\src\Nuke.Unreal\Nuke.Unreal.csproj`
 4. `dotnet add .\build\_build.csproj reference .\Nuke.Unreal\src\Nuke.Unreal\Nuke.Unreal.csproj`
 5. Inherit your Build class from either `PluginTargets` or `ProjectTargets`
-6. Override abstract members, and add own targets
+6. Override abstract members, add own targets, set up dependencies
 
 ## Features:
 * Common UE4 build tasks (generate project files, build editor, cook, package, etc)
 * Prepare plugins for release in Marketplace
 * Bind Unreal tools to Nuke with fluent C# API \[WIP\]
 * Generate boilerplate code and scaffolding from [Scriban](https://github.com/scriban/scriban) templates so no editor needs to be opened \[WIP\]
-  * New Unreal class
+  * New Unreal classes
   * New Plugin
   * New Module
 
@@ -30,12 +30,38 @@ For now, no Nuget release available and its functionality is limited yet for mos
 
 Nuke.Unreal provides some targets which creates boilerplate code for common Unreal entities, such as
 
-* Plugins
-* Modules
-* Unreal Classes/Structs/Interfaces
-* Slate widgets
+* [ ] Plugins
+* [ ] Modules
+* [x] Unreal Object/Actor/Structs/Interfaces
+* [ ] Slate widgets
 
-without the need for opening the editor or extend IDE's. These boilerplate targets work with Scriban templates. The path to these templates can be overridden in the actual Nuke build class in case a project requires further boilerplate.
+without the need for opening the UE4 editor or extend heavy weight IDE's. These boilerplate targets work with Scriban templates. The path to these templates can be overridden in the actual Nuke build class in case a project requires further boilerplate. Example:
+
+In any folder in your project
+```
+> nuke NewActor --name MyPreciousActor
+```
+
+This will generate MyPreciousActor.h and ~.cpp at their respective places (taking public and private folders into account) and the minimal actor class boilerplate for unreal.
+
+Optional **Custom templates** folders are required to contain generator specific subfolders. If a subfolder doesn't exist for a generator the default will be used. Example:
+
+Scaffolding:
+* RootDirectory
+  * Nuke.Targets
+    * ...
+    * Build.cs
+  * ...
+  * MyTemplates
+    * Actor
+    * Object
+
+In `Nuke.Targets/Build.cs` override `TemplatesPath` property
+```CSharp
+public override AbsolutePath TemplatesPath { get; set; } = RootDirectory / "MyTemplates";
+```
+
+This way Actor and Object generators will have their project specific Scriban templates but the remaining generator types will use the default templates of Nuke.Unreal. 
 
 ### Generators for Unreal Tools \[WIP\]
 
