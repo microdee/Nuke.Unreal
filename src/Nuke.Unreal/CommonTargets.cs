@@ -53,7 +53,7 @@ namespace Nuke.Unreal
             _projectObject ?? (_projectObject = JObject.Parse(File.ReadAllText(ToProject)));
 
         [Parameter("Specify a folder containing generator specific folders for Scriban scaffolding and templates")]
-        public virtual AbsolutePath TemplatesFolder { get; set; } = BoilerplateGenerator.DefaultTemplateFolder;
+        public virtual AbsolutePath TemplatesPath { get; set; } = BoilerplateGenerator.DefaultTemplateFolder;
 
         [Parameter("Name parameter for boilerplate generators.")]
         public string Name { get; set; }
@@ -63,7 +63,7 @@ namespace Nuke.Unreal
             .Requires(() => Name)
             .Executes(() => {
                 new ActorGenerator().Generate(
-                    TemplatesFolder,
+                    TemplatesPath,
                     (AbsolutePath) Environment.CurrentDirectory,
                     new(Name, "Test, TODO")
                 );
@@ -74,7 +74,7 @@ namespace Nuke.Unreal
             .Requires(() => Name)
             .Executes(() => {
                 new InterfaceGenerator().Generate(
-                    TemplatesFolder,
+                    TemplatesPath,
                     (AbsolutePath) Environment.CurrentDirectory,
                     new(Name, "Test, TODO")
                 );
@@ -85,7 +85,7 @@ namespace Nuke.Unreal
             .Requires(() => Name)
             .Executes(() => {
                 new ObjectGenerator().Generate(
-                    TemplatesFolder,
+                    TemplatesPath,
                     (AbsolutePath) Environment.CurrentDirectory,
                     new(Name, "Test, TODO")
                 );
@@ -96,7 +96,7 @@ namespace Nuke.Unreal
             .Requires(() => Name)
             .Executes(() => {
                 new StructGenerator().Generate(
-                    TemplatesFolder,
+                    TemplatesPath,
                     (AbsolutePath) Environment.CurrentDirectory,
                     new(Name, "Test, TODO")
                 );
