@@ -72,7 +72,7 @@ namespace Nuke.Unreal.BoilerplateGenerators
 
         protected void CheckInsideSourceFolder(AbsolutePath currentFolder)
         {
-            if(!currentFolder.Contains("Source"))
+            if(!currentFolder.ToString().Contains("Source", StringComparison.InvariantCultureIgnoreCase))
             {
                 throw new InvalidOperationException(
                     $"{currentFolder} doesn't contain a Source folder. Unreal Engine requires all source files to be contained inside a Module in a Source folder."
