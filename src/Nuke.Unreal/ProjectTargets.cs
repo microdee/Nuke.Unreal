@@ -26,6 +26,7 @@ namespace Nuke.Unreal
         public virtual UnrealConfig BuildConfig { get; set; } = UnrealConfig.Development;
 
         public Target Package => _ => _
+            .Description("Same as running Package Project from Editor")
             .DependsOn(CookProject)
             .Executes(() => {
                 var appLocalDir = Unreal.GetEnginePath(TargetEngineVersion) / "Binaries" / "ThirdParty" / "AppLocalDependencies";

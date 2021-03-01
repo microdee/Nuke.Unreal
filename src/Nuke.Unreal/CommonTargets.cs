@@ -103,12 +103,15 @@ namespace Nuke.Unreal
             });
 
         public Target CleanDeployment => _ => _
+            .Description("Removes previous deployment folder")
             .Executes(() => DeleteDirectory(RootDirectory / OutPath));
 
         public Target CleanProject => _ => _
+            .Description("Removes auto generated folders of Unreal Engine from the project")
             .Executes(() => Unreal.ClearFolder(UnrealProjectFolder));
 
         public Target CleanPlugins => _ => _
+            .Description("Removes auto generated folders of Unreal Engine from the plugins")
             .Executes(() =>
             {
                 foreach(var pluginDir in Directory.EnumerateDirectories(UnrealPluginsFolder))
@@ -118,10 +121,12 @@ namespace Nuke.Unreal
             });
 
         public Target CleanUnreal => _ => _
+            .Description("Removes auto generated folders of Unreal Engine")
             .DependsOn(CleanProject)
             .DependsOn(CleanPlugins);
 
         public Target GenerateProject => _ => _
+            .Description("Generate project files for the default IDE of the current platform (Visual Studio or XCode)")
             .Executes(() =>
             {
                 Unreal.BuildTool(
@@ -133,6 +138,7 @@ namespace Nuke.Unreal
             });
 
         public Target BuildEditor => _ => _
+            .Description("Build the editor binaries so this project can be opened properly in the Unreal editor")
             .DependsOn(GenerateProject)
             .Executes(() =>
             {
@@ -146,6 +152,7 @@ namespace Nuke.Unreal
             });
         
         public Target CookProject => _ => _
+            .Description("Cook Unreal assets for standalone game execution")
             .DependsOn(BuildEditor)
             .Executes(() =>
             {
