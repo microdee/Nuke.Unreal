@@ -9,7 +9,7 @@
 
 
 UCLASS()
-class {{ module.api_name }}_API U{{ name }} : public UObject
+class {{ module.name | string.upcase }}_API U{{ name }} : public UObject
 {
 	GENERATED_BODY()
 public:

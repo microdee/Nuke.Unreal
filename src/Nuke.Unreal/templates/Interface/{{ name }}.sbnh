@@ -7,12 +7,12 @@
 #include "{{ name }}.generated.h"
 
 UINTERFACE()
-class {{ module.api_name }}_API U{{ name }} : public UInterface
+class {{ module.name | string.upcase }}_API U{{ name }} : public UInterface
 {
     GENERATED_BODY()
 };
 
-class {{ module.api_name }}_API I{{ name }}
+class {{ module.name | string.upcase }}_API I{{ name }}
 {
     GENERATED_BODY()
 public:

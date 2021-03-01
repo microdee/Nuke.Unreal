@@ -9,7 +9,7 @@
 
 
 UCLASS()
-class {{ module.api_name }}_API A{{ name }} : public AActor
+class {{ module.name | string.upcase }}_API A{{ name }} : public AActor
 {
 	GENERATED_BODY()
 public:
