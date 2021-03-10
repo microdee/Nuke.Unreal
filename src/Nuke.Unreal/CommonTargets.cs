@@ -133,7 +133,7 @@ namespace Nuke.Unreal
                     TargetEngineVersion,
                     "-projectfiles"
                     + $" -project=\"{ToProject}\""
-                    + " -game -rocket -progress"
+                    + " -game -progress"
                 ).Run();
             });
 

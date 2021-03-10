@@ -119,12 +119,19 @@ namespace Nuke.Unreal
             throw new Exception("Attempting to build on an unsupported platform");
         }
 
+        public static AbsolutePath MacRunMono(EngineVersion ofVersion) =>
+            GetEnginePath(ofVersion) / "Engine" / "Build" / "BatchFiles" / "Mac" / "RunMono.sh";
+
         public static UnrealToolOutput BuildTool(EngineVersion ofVersion, string arguments)
         {
-            return new UnrealToolOutput(
-                GetEnginePath(ofVersion) / "Engine" / "Binaries" / "DotNET" / "UnrealBuildTool.exe",
-                arguments
-            );
+            var ubtPath = GetEnginePath(ofVersion) / "Engine" / "Binaries" / "DotNET" / "UnrealBuildTool.exe";
+            if(RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+                return new UnrealToolOutput(ubtPath, arguments);
+
+            if(RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
+                return new UnrealToolOutput("sh", $"\"{MacRunMono(ofVersion)}\" \"{ubtPath}\" " + arguments);
+
+            return new UnrealToolOutput("mono", $"\"{ubtPath}\" " + arguments);
         }
 
         public static UnrealToolOutput AutomationToolBatch(EngineVersion ofVersion, string arguments)
@@ -142,6 +149,9 @@ namespace Nuke.Unreal
 
             if(RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
                 return new UnrealToolOutput(uatPath, arguments);
+
+            if(RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
+                return new UnrealToolOutput("sh", $"\"{MacRunMono(ofVersion)}\" \"{uatPath}\" " + arguments);
 
             return new UnrealToolOutput("mono", $"\"{uatPath}\" " + arguments);
         }
