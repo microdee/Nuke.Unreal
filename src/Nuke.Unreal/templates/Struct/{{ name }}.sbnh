@@ -11,4 +11,5 @@ struct {{ module.name | string.upcase }}_API F{{ name }}
 {
     GENERATED_BODY()
 public:
+
 };

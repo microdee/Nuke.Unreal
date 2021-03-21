@@ -14,4 +14,4 @@ class {{ module.name | string.upcase }}_API A{{ name }} : public AActor
 	GENERATED_BODY()
 public:
 
-}
+};

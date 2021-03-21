@@ -20,4 +20,4 @@ void F{{ name }}Module::ShutdownModule()
 
 #undef LOCTEXT_NAMESPACE
 	
-IMPLEMENT_MODULE(F{{ name }}Module, {{ name }})
+IMPLEMENT_MODULE(F{{ name }}Module, {{ name }});
