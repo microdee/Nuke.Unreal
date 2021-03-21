@@ -117,8 +117,12 @@ namespace Nuke.Unreal
                     arguments: ofVersion.VersionName,
                     outputFilter: line => {
                         if(string.IsNullOrWhiteSpace(line)) return line;
-                        location = line;
-                        return "Found at: " + line;
+                        if(Path.IsPathRooted(line.Trim()))
+                        {
+                            location = line.Trim();
+                            return "Found at: " + line;
+                        }
+                        return line;
                     }
                 );
                 locator.WaitForExit();
