@@ -1,0 +1,19 @@
+// {{ copyright }}
+
+#pragma once
+
+#include "CoreMinimal.h"
+
+#include "{{ name }}.generated.h"
+
+UINTERFACE()
+class {{ module.name | string.upcase }}_API U{{ name }} : public UInterface
+{
+    GENERATED_BODY()
+};
+
+class {{ module.name | string.upcase }}_API I{{ name }}
+{
+    GENERATED_BODY()
+public:
+};

@@ -1,0 +1,17 @@
+// {{ copyright }}
+
+#pragma once
+
+#include "CoreMinimal.h"
+#include "UObject/Object.h"
+
+#include "{{ name }}.generated.h"
+
+
+UCLASS()
+class {{ module.name | string.upcase }}_API U{{ name }} : public UObject
+{
+	GENERATED_BODY()
+public:
+
+};
