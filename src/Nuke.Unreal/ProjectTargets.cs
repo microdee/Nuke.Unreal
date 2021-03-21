@@ -20,10 +20,23 @@ namespace Nuke.Unreal
         Development,
         Shipping
     }
+
     public abstract class ProjectTargets : CommonTargets
     {
         [Parameter("The target packaged application configuration")]
         public virtual UnrealConfig BuildConfig { get; set; } = UnrealConfig.Development;
+
+        [Parameter("The target packaged application configuration")]
+        public virtual AbsolutePath CustomEnginePath { get; set; } = null;
+
+        protected override void OnBuildInitialized()
+        {
+            base.OnBuildInitialized();
+            if(CustomEnginePath != null)
+            {
+                Unreal.EnginePathOverride = CustomEnginePath;
+            }
+        }
 
         public Target Package => _ => _
             .Description("Same as running Package Project from Editor")
