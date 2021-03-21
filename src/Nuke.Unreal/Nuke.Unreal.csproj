@@ -12,6 +12,7 @@
   
   <ItemGroup>
     <Content Include="./Templates/**/*" CopyToOutputDirectory="PreserveNewest" />
+    <Content Include="./UnrealLocator/**/*" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
 
 </Project>
