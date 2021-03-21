@@ -7,6 +7,8 @@ using static Nuke.Common.Logger;
 using static Nuke.Common.ControlFlow;
 using static Nuke.Common.IO.FileSystemTasks;
 using System.Runtime.InteropServices;
+using Nuke.Common.Tooling;
+using System.Reflection;
 
 namespace Nuke.Unreal
 {
@@ -61,23 +63,13 @@ namespace Nuke.Unreal
         // TODO: there's got to be a more intelligent way of doing this, but documentation is not very searchable for this
         public static readonly HashSet<AbsolutePath> EngineSearchPaths;
 
+        public static AbsolutePath EnginePathOverride = null;
+
         static Unreal()
         {
             if(RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
             {
-                EngineSearchPaths = new()
-                {
-                    (AbsolutePath) @"C:\Program Files\Epic Games",
-                    (AbsolutePath) @"C:\Program Files\unreal_epic",
-                    (AbsolutePath) @"C:\ue4",
-                    (AbsolutePath) @"D:",
-                    (AbsolutePath) @"D:\Epic Games",
-                    (AbsolutePath) @"D:\EpicGames",
-                    (AbsolutePath) @"D:\Program Files\Epic Games",
-                    (AbsolutePath) @"D:\Tools\Epic Games",
-                    (AbsolutePath) @"D:\ue4",
-                    (AbsolutePath) @"E:\Programmes",
-                };
+                // Use UnrealLocator
                 return;
             }
             if(RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
@@ -90,6 +82,7 @@ namespace Nuke.Unreal
             }
             if(RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
             {
+                // TODO: build and use UnrealLocator on linux
                 EngineSearchPaths = new()
                 {
                     (AbsolutePath) @"/Users/Shared/Epic Games",
@@ -100,10 +93,47 @@ namespace Nuke.Unreal
             throw new Exception("Attempting to build on an unsupported platform");
         }
 
-        public static AbsolutePath GetEnginePath(EngineVersion ofVersion) =>
-            EngineSearchPaths
+        public static readonly AbsolutePath UnrealLocatorFolder = (AbsolutePath) Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) / "UnrealLocator";
+        public static AbsolutePath GetUnrealLocator()
+        {
+            if(RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+            {
+                return UnrealLocatorFolder / "UnrealLocator.exe";
+            }
+            throw new ApplicationException("Trying to get unreal locator on an unsupported platform.");
+        }
+
+        public static AbsolutePath GetEnginePath(EngineVersion ofVersion)
+        {
+            if(EnginePathOverride != null) return EnginePathOverride;
+
+            if(RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+            {
+                string location = null;
+                Normal("Looking for Unreal Engine installation:");
+
+                var locator = ProcessTasks.StartProcess(
+                    GetUnrealLocator(),
+                    arguments: ofVersion.VersionName,
+                    outputFilter: line => {
+                        if(string.IsNullOrWhiteSpace(line)) return line;
+                        location = line;
+                        return "Found at: " + line;
+                    }
+                );
+                locator.WaitForExit();
+                if(locator.ExitCode != 0 || string.IsNullOrWhiteSpace(location))
+                {
+                    throw new FileNotFoundException("No Unreal Engine installation could be found.");
+                }
+                EnginePathOverride = (AbsolutePath) location;
+                return (AbsolutePath) location;
+            }
+
+            return EngineSearchPaths
                 .First(sp => Directory.Exists(sp / ofVersion.SubFolderName))
                 / ofVersion.SubFolderName;
+        }
 
         public static UnrealPlatform GetDefaultPlatform()
         {
@@ -119,12 +149,19 @@ namespace Nuke.Unreal
             throw new Exception("Attempting to build on an unsupported platform");
         }
 
+        public static AbsolutePath MacRunMono(EngineVersion ofVersion) =>
+            GetEnginePath(ofVersion) / "Engine" / "Build" / "BatchFiles" / "Mac" / "RunMono.sh";
+
         public static UnrealToolOutput BuildTool(EngineVersion ofVersion, string arguments)
         {
-            return new UnrealToolOutput(
-                GetEnginePath(ofVersion) / "Engine" / "Binaries" / "DotNET" / "UnrealBuildTool.exe",
-                arguments
-            );
+            var ubtPath = GetEnginePath(ofVersion) / "Engine" / "Binaries" / "DotNET" / "UnrealBuildTool.exe";
+            if(RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+                return new UnrealToolOutput(ubtPath, arguments);
+
+            if(RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
+                return new UnrealToolOutput("sh", $"\"{MacRunMono(ofVersion)}\" \"{ubtPath}\" " + arguments);
+
+            return new UnrealToolOutput("mono", $"\"{ubtPath}\" " + arguments);
         }
 
         public static UnrealToolOutput AutomationToolBatch(EngineVersion ofVersion, string arguments)
@@ -142,6 +179,9 @@ namespace Nuke.Unreal
 
             if(RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
                 return new UnrealToolOutput(uatPath, arguments);
+
+            if(RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
+                return new UnrealToolOutput("sh", $"\"{MacRunMono(ofVersion)}\" \"{uatPath}\" " + arguments);
 
             return new UnrealToolOutput("mono", $"\"{uatPath}\" " + arguments);
         }

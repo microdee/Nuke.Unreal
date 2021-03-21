@@ -1,0 +1,17 @@
+// {{ copyright }}
+
+#pragma once
+
+#include "CoreMinimal.h"
+#include "GameFramework/Actor.h"
+
+#include "{{ name }}.generated.h"
+
+
+UCLASS()
+class {{ module.name | string.upcase }}_API A{{ name }} : public AActor
+{
+	GENERATED_BODY()
+public:
+
+};

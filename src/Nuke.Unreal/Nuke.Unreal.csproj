@@ -7,6 +7,12 @@
   <ItemGroup>
     <PackageReference Include="Nuke.Common" Version="5.0.2" />
     <PackageReference Include="Goblinfactory.Konsole" Version="6.2.0" />
+    <PackageReference Include="Scriban" Version="3.5.0" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <Content Include="./Templates/**/*" CopyToOutputDirectory="PreserveNewest" />
+    <Content Include="./UnrealLocator/**/*" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
 
 </Project>

@@ -15,7 +15,7 @@ namespace Nuke.Unreal
 {
     public abstract class PluginTargets : CommonTargets
     {
-        [Parameter("Make marketplace complient archives")]
+        [Parameter("Make marketplace compliant archives")]
         public bool ForMarketplace = false;
 
         public abstract string PluginVersion { get; }
@@ -28,6 +28,7 @@ namespace Nuke.Unreal
             _pluginObject ?? (_pluginObject = JObject.Parse(File.ReadAllText(ToPlugin)));
 
         public Target Checkout => _ => _
+            .Description("Switch to the specified Unreal Engine version and platform for plugin development or packaging")
             .DependsOn(CleanUnreal)
             .Executes(() =>
             {
@@ -49,10 +50,12 @@ namespace Nuke.Unreal
             });
 
         public Target MakeRelease => _ => _
+            .Description("Make a proper release of the target plugin for current version. This yields zip archives in the deployment path specified in OutPath (.deploy by default)")
             .Triggers(MakeMarketplaceRelease)
             .Triggers(PackPlugin);
 
         public Target PackPlugin => _ => _
+            .Description("Make a prebuilt release of the target plugin for current version. This yields zip archives in the deployment path specified in OutPath (.deploy by default)")
             .DependsOn(Checkout)
             .Executes(() =>
             {
@@ -84,6 +87,7 @@ namespace Nuke.Unreal
             });
 
         public Target MakeMarketplaceRelease => _ => _
+            .Description("Prepare a Marketplace complaint archive from the plugin. This target only executes when --for-marketplace is also present. This yields zip archives in the deployment path specified in OutPath (.deploy by default)")
             .DependsOn(Checkout)
             .OnlyWhenStatic(() => ForMarketplace)
             .Executes(() =>
