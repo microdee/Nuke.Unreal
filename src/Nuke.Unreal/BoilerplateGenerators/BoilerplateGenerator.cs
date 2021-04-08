@@ -18,6 +18,13 @@ namespace Nuke.Unreal.BoilerplateGenerators
             throw new ScribanParseException(template);
         }
 
+        /// <summary>
+        /// Render a file from a scriban template.
+        /// </summary>
+        /// <param name="templateRoot"></param>
+        /// <param name="source"></param>
+        /// <param name="destinationFolder"></param>
+        /// <param name="model"></param>
         protected static void RenderFile(AbsolutePath templateRoot, RelativePath source, AbsolutePath destinationFolder, object model)
         {
             var relFileTemplate = Template.Parse(source, templateRoot / source);
@@ -36,6 +43,13 @@ namespace Nuke.Unreal.BoilerplateGenerators
             File.WriteAllText((resultPath.Parent / resultFilename) + resultExt, renderedText);
         }
 
+        /// <summary>
+        /// Render scriban templated scaffoldings and files to destination folder.
+        /// </summary>
+        /// <param name="templateRoot"></param>
+        /// <param name="destinationFolder"></param>
+        /// <param name="model"></param>
+        /// <param name="currentFolder">This is != the current Working Directory! It should be only used by subsequent recursive function calls</param>
         protected static void RenderFolder(AbsolutePath templateRoot, AbsolutePath destinationFolder, object model, AbsolutePath currentFolder = null)
         {
             currentFolder ??= templateRoot;

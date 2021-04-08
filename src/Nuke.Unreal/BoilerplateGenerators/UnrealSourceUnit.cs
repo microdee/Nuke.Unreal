@@ -10,6 +10,8 @@ namespace Nuke.Unreal.BoilerplateGenerators
         public readonly string Folder;
         public readonly string Name;
 
+        public readonly bool IsValid = false;
+
         public UnrealSourceUnit(AbsolutePath currentFolder, string throwIfNotFound = null)
         {
             Folder = FileSystemTasks.FindParentDirectory(
@@ -18,7 +20,13 @@ namespace Nuke.Unreal.BoilerplateGenerators
             );
             if(throwIfNotFound != null && Folder == null)
             {
+                IsValid = false;
                 throw new InvalidOperationException(throwIfNotFound);
+            }
+            if(Folder == null)
+            {
+                IsValid = false;
+                return;
             }
             var unitFile = Directory.EnumerateFiles(Folder)
                 .Where(FilePredicate)
@@ -26,6 +34,7 @@ namespace Nuke.Unreal.BoilerplateGenerators
                 .First(); // it should fail when despite our efforts before it didn't find the module file anyway
 
             Name = GetNameFromFileName(unitFile);
+            IsValid = true;
         }
 
         protected abstract bool FilePredicate(string f);

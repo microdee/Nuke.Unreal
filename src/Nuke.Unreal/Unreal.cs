@@ -202,5 +202,21 @@ namespace Nuke.Unreal
             if(Directory.Exists(folder / "DerivedDataCache"))
                 DeleteDirectory(folder / "DerivedDataCache");
         }
+
+        public static string ReadCopyrightFromProject(AbsolutePath projectFolder)
+        {
+            var configPath = projectFolder / "Config" / "DefaultGame.ini";
+            if(!File.Exists(configPath)) return null;
+
+            var crLine = File.ReadAllLines(configPath)
+                .FirstOrDefault(l => l.StartsWith("CopyrightNotice="));
+            
+            if(string.IsNullOrWhiteSpace(crLine)) return null;
+
+            var crEntry = crLine.Split('=', 2, StringSplitOptions.TrimEntries);
+            if(crEntry.Length < 2) return null;
+
+            return crEntry[1];
+        }
     }
 }

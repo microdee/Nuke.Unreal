@@ -27,13 +27,18 @@ namespace Nuke.Unreal
 {
     public abstract class CommonTargets : NukeBuild
     {
-        [Parameter("Specify the target Unreal Engine version")]
+        /// <summary>
+        /// Most targets read the desired UE4 version from the project file.
+        /// This property is abstract only for the default version of the Checkout target,
+        /// or anything which modifies the project file.
+        /// </summary>
+        [Parameter("Specify the target Unreal Engine version. By default only used by the Checkout target.")]
         public abstract string UnrealVersion { get; set; }
 
-        [Parameter("Use the following subfolder for the specified engine version. 'UE_{0}.{1}' is the default. use '{0}' (= '4') for major and {1} for minor versions.")]
+        // not a command line parameter anymore especially when we have the UnrealLocator program
         public virtual string UnrealSubfolder { get; } = "UE_{0}.{1}";
         
-        [Parameter("Specify the output working directory")]
+        [Parameter("Specify the output working directory for artifacts")]
         public virtual string OutPath { get; set; } = ".deploy";
 
         [Parameter("Set platform for running targets")]
@@ -65,7 +70,7 @@ namespace Nuke.Unreal
                 new ActorGenerator().Generate(
                     TemplatesPath,
                     (AbsolutePath) Environment.CurrentDirectory,
-                    new(Name, "Test, TODO")
+                    new(Name)
                 );
             });
 
@@ -76,7 +81,7 @@ namespace Nuke.Unreal
                 new InterfaceGenerator().Generate(
                     TemplatesPath,
                     (AbsolutePath) Environment.CurrentDirectory,
-                    new(Name, "Test, TODO")
+                    new(Name)
                 );
             });
 
@@ -87,7 +92,7 @@ namespace Nuke.Unreal
                 new ObjectGenerator().Generate(
                     TemplatesPath,
                     (AbsolutePath) Environment.CurrentDirectory,
-                    new(Name, "Test, TODO")
+                    new(Name)
                 );
             });
 
@@ -98,7 +103,7 @@ namespace Nuke.Unreal
                 new StructGenerator().Generate(
                     TemplatesPath,
                     (AbsolutePath) Environment.CurrentDirectory,
-                    new(Name, "Test, TODO")
+                    new(Name)
                 );
             });
 
@@ -139,7 +144,6 @@ namespace Nuke.Unreal
 
         public Target BuildEditor => _ => _
             .Description("Build the editor binaries so this project can be opened properly in the Unreal editor")
-            .DependsOn(GenerateProject)
             .Executes(() =>
             {
                 Unreal.BuildTool(

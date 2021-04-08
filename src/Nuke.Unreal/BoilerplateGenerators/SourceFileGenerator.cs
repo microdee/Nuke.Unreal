@@ -12,7 +12,7 @@ namespace Nuke.Unreal.BoilerplateGenerators
         public UnrealModule Module { get; init; }
     }
 
-    public record SourceFileGeneratorArgs(string Name, string Copyright)
+    public record SourceFileGeneratorArgs(string Name)
     {
     }
 
@@ -57,18 +57,21 @@ namespace Nuke.Unreal.BoilerplateGenerators
             );
         }
 
-        public virtual TModel GetModelFromArguments(AbsolutePath currentFolder, TGeneratorArg Arguments) =>
-            new()
+        public virtual TModel GetModelFromArguments(AbsolutePath currentFolder, TGeneratorArg Arguments)
+        {
+            var project = new UnrealProject(currentFolder);
+            return new()
             {
                 Name = Arguments.Name,
-                Copyright = Arguments.Copyright,
-                Project = new UnrealProject(currentFolder),
+                Copyright = Unreal.ReadCopyrightFromProject((AbsolutePath)project.Folder),
+                Project = project,
                 Plugin = new UnrealPlugin(currentFolder),
                 Module = new UnrealModule(
                     currentFolder,
                     $"{currentFolder} is not inside a Module. Unreal Engine requires all source files to be contained inside a Module in a Source folder."
                 )
             };
+        }
 
         protected void CheckInsideSourceFolder(AbsolutePath currentFolder)
         {
