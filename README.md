@@ -1,4 +1,5 @@
 # Nuke.Unreal
+![](docs/nu_logo-250.png)
 
 Simplistic workflow for automating Unreal Engine project steps embracing [Nuke](https://nuke.build).
 
