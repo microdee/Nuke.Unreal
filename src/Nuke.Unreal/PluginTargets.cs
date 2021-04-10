@@ -44,7 +44,7 @@ namespace Nuke.Unreal
                 var result = PluginObject.ToString(Formatting.Indented);
                 File.WriteAllText(ToPlugin, result);
 
-                ProjectObject["EngineAssociation"] = TargetEngineVersion.VersionName;
+                ProjectObject["EngineAssociation"] = TargetEngineVersion.FullVersionName;
                 result = ProjectObject.ToString(Formatting.Indented);
                 File.WriteAllText(ToProject, result);
             });
@@ -59,7 +59,7 @@ namespace Nuke.Unreal
             .DependsOn(Checkout)
             .Executes(() =>
             {
-                var packageName = $"{PluginName}-{TargetPlatform}-{PluginVersion}.{TargetEngineVersion.FullVersionName}-PreBuilt";
+                var packageName = $"{PluginName}-{TargetPlatform}-{PluginVersion}.{GetEngineVersionFromProject().FullVersionName}-PreBuilt";
                 var targetDir = RootDirectory / OutPath / packageName;
                 var archiveFileName = $"{packageName}.zip";
 
@@ -73,7 +73,7 @@ namespace Nuke.Unreal
                     DeleteFile(targetDir.Parent / archiveFileName);
 
                 Unreal.AutomationTool(
-                    TargetEngineVersion,
+                    GetEngineVersionFromProject(),
                     "BuildPlugin"
                     + $" -Plugin=\"{ToPlugin}\""
                     + $" -Package=\"{targetDir}\""
@@ -92,7 +92,7 @@ namespace Nuke.Unreal
             .OnlyWhenStatic(() => ForMarketplace)
             .Executes(() =>
             {
-                var packageName = $"{PluginName}-{TargetPlatform}-{PluginVersion}.{TargetEngineVersion.FullVersionName}-Source";
+                var packageName = $"{PluginName}-{TargetPlatform}-{PluginVersion}.{GetEngineVersionFromProject().FullVersionName}-Source";
                 var targetDir = RootDirectory / OutPath / packageName;
                 var archiveFileName = $"{packageName}.zip";
 

@@ -42,9 +42,9 @@ namespace Nuke.Unreal
             .Description("Same as running Package Project from Editor")
             .DependsOn(CookProject)
             .Executes(() => {
-                var appLocalDir = Unreal.GetEnginePath(TargetEngineVersion) / "Binaries" / "ThirdParty" / "AppLocalDependencies";
+                var appLocalDir = Unreal.GetEnginePath(GetEngineVersionFromProject()) / "Binaries" / "ThirdParty" / "AppLocalDependencies";
                 Unreal.AutomationToolBatch(
-                    TargetEngineVersion,
+                    GetEngineVersionFromProject(),
                     "BuildCookRun"
                     + $" -ScriptsForProject=\"{ToProject}\""
                     + $" -project=\"{ToProject}\""

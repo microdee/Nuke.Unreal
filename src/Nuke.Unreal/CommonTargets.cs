@@ -32,7 +32,7 @@ namespace Nuke.Unreal
         /// This property is abstract only for the default version of the Checkout target,
         /// or anything which modifies the project file.
         /// </summary>
-        [Parameter("Specify the target Unreal Engine version. By default only used by the Checkout target.")]
+        [Parameter("Specify the target Unreal Engine version. By default only used by the Checkout target. Everything else should infer engine version from the project file.")]
         public abstract string UnrealVersion { get; set; }
 
         // not a command line parameter anymore especially when we have the UnrealLocator program
@@ -56,6 +56,8 @@ namespace Nuke.Unreal
         private JObject _projectObject;
         protected JObject ProjectObject =>
             _projectObject ?? (_projectObject = JObject.Parse(File.ReadAllText(ToProject)));
+
+        protected EngineVersion GetEngineVersionFromProject() => new(ProjectObject["EngineAssociation"].ToString());
 
         [Parameter("Specify a folder containing generator specific folders for Scriban scaffolding and templates")]
         public virtual AbsolutePath TemplatesPath { get; set; } = BoilerplateGenerator.DefaultTemplateFolder;
@@ -81,7 +83,7 @@ namespace Nuke.Unreal
                 new PluginGenerator().Generate(
                     TemplatesPath,
                     (AbsolutePath) Environment.CurrentDirectory,
-                    Name, TargetEngineVersion
+                    Name, GetEngineVersionFromProject()
                 )
             );
 
@@ -157,7 +159,7 @@ namespace Nuke.Unreal
             .Executes(() =>
             {
                 Unreal.BuildTool(
-                    TargetEngineVersion,
+                    GetEngineVersionFromProject(),
                     "-projectfiles"
                     + $" -project=\"{ToProject}\""
                     + " -game -progress"
@@ -169,7 +171,7 @@ namespace Nuke.Unreal
             .Executes(() =>
             {
                 Unreal.BuildTool(
-                    TargetEngineVersion,
+                    GetEngineVersionFromProject(),
                     $"{UnrealProjectName}Editor {TargetPlatform} Development"
                     + $" -Project=\"{ToProject}\""
                 )
@@ -183,7 +185,7 @@ namespace Nuke.Unreal
             .Executes(() =>
             {
                 Unreal.AutomationToolBatch(
-                    TargetEngineVersion,
+                    GetEngineVersionFromProject(),
                     "BuildCookRun"
                     + $" -ScriptsForProject=\"{ToProject}\""
                     + $" -project=\"{ToProject}\""
