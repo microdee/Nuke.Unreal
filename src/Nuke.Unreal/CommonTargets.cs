@@ -57,7 +57,7 @@ namespace Nuke.Unreal
         protected JObject ProjectObject =>
             _projectObject ?? (_projectObject = JObject.Parse(File.ReadAllText(ToProject)));
 
-        protected EngineVersion GetEngineVersionFromProject() => new(ProjectObject["EngineAssociation"].ToString());
+        protected EngineVersion GetEngineVersionFromProject() => new((ProjectObject["EngineVersionPatch"] ?? ProjectObject["EngineAssociation"]).ToString());
 
         [Parameter("Specify a folder containing generator specific folders for Scriban scaffolding and templates")]
         public virtual AbsolutePath TemplatesPath { get; set; } = BoilerplateGenerator.DefaultTemplateFolder;
