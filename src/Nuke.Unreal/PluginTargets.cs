@@ -44,7 +44,7 @@ namespace Nuke.Unreal
                 var result = PluginObject.ToString(Formatting.Indented);
                 File.WriteAllText(ToPlugin, result);
 
-                ProjectObject["EngineAssociation"] = TargetEngineVersion.FullVersionName;
+                ProjectObject["EngineAssociation"] = TargetEngineVersion.VersionName;
                 result = ProjectObject.ToString(Formatting.Indented);
                 File.WriteAllText(ToProject, result);
             });
