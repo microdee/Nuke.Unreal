@@ -63,49 +63,60 @@ namespace Nuke.Unreal
         [Parameter("Name parameter for boilerplate generators.")]
         public string Name { get; set; }
 
+        public Target NewModule => _ => _
+            .Description("Create new module in the owning project or plugin (depending on working directory)")
+            .Requires(() => Name)
+            .Executes(() => 
+                new ModuleGenerator().Generate(
+                    TemplatesPath,
+                    (AbsolutePath) Environment.CurrentDirectory,
+                    Name
+                )
+            );
+
         public Target NewActor => _ => _
             .Description("Create new Unreal Actor in current directory")
             .Requires(() => Name)
-            .Executes(() => {
+            .Executes(() =>
                 new ActorGenerator().Generate(
                     TemplatesPath,
                     (AbsolutePath) Environment.CurrentDirectory,
                     new(Name)
-                );
-            });
+                )
+            );
 
         public Target NewInterface => _ => _
             .Description("Create new Unreal Interface in current directory")
             .Requires(() => Name)
-            .Executes(() => {
+            .Executes(() =>
                 new InterfaceGenerator().Generate(
                     TemplatesPath,
                     (AbsolutePath) Environment.CurrentDirectory,
                     new(Name)
-                );
-            });
+                )
+            );
 
         public Target NewObject => _ => _
             .Description("Create new Unreal Object in current directory")
             .Requires(() => Name)
-            .Executes(() => {
+            .Executes(() => 
                 new ObjectGenerator().Generate(
                     TemplatesPath,
                     (AbsolutePath) Environment.CurrentDirectory,
                     new(Name)
-                );
-            });
+                )
+            );
 
         public Target NewStruct => _ => _
             .Description("Create new Unreal Struct in current directory")
             .Requires(() => Name)
-            .Executes(() => {
+            .Executes(() => 
                 new StructGenerator().Generate(
                     TemplatesPath,
                     (AbsolutePath) Environment.CurrentDirectory,
                     new(Name)
-                );
-            });
+                )
+            );
 
         public Target CleanDeployment => _ => _
             .Description("Removes previous deployment folder")

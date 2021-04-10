@@ -40,6 +40,9 @@ namespace Nuke.Unreal.BoilerplateGenerators
             var resultFilename = Path.GetFileNameWithoutExtension(resultPath);
             var resultExt = Path.GetExtension(resultPath).Replace("sbn", "");
 
+            if(!Directory.Exists(resultPath.Parent))
+                Directory.CreateDirectory(resultPath.Parent);
+
             File.WriteAllText((resultPath.Parent / resultFilename) + resultExt, renderedText);
         }
 
