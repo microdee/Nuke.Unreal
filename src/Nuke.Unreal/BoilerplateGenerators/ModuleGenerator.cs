@@ -37,7 +37,7 @@ namespace Nuke.Unreal.BoilerplateGenerators
                 throw new InvalidOperationException($"The module folder of {name} already exists in the current folder.");
             }
 
-            if(!FileSystemTasks.DirectoryExists(templatesPath / TemplateSubfolder))
+            if(!Directory.Exists(templatesPath / TemplateSubfolder))
                 templatesPath = DefaultTemplateFolder;
 
             var templateDir = templatesPath / TemplateSubfolder;

@@ -74,6 +74,17 @@ namespace Nuke.Unreal
                 )
             );
 
+        public Target NewPlugin => _ => _
+            .Description("Create a new project plugin.")
+            .Requires(() => Name)
+            .Executes(() => 
+                new PluginGenerator().Generate(
+                    TemplatesPath,
+                    (AbsolutePath) Environment.CurrentDirectory,
+                    Name, TargetEngineVersion
+                )
+            );
+
         public Target NewActor => _ => _
             .Description("Create new Unreal Actor in current directory")
             .Requires(() => Name)
