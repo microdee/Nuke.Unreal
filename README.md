@@ -31,8 +31,8 @@ For now, no Nuget release available and its functionality is limited yet for mos
 
 Nuke.Unreal provides some targets which creates boilerplate code for common Unreal entities, such as
 
-* [ ] Plugins
-* [ ] Modules
+* [x] Plugins
+* [x] Modules
 * [x] Unreal Object/Actor/Structs/Interfaces
 * [ ] Slate widgets
 
