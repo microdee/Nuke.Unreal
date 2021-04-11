@@ -37,6 +37,18 @@ namespace Nuke.Unreal
 
         // not a command line parameter anymore especially when we have the UnrealLocator program
         public virtual string UnrealSubfolder { get; } = "UE_{0}.{1}";
+
+        [Parameter("Specify a path to a custom engine version (eg.: built from source)")]
+        public virtual AbsolutePath CustomEnginePath { get; set; } = null;
+        
+        protected override void OnBuildInitialized()
+        {
+            base.OnBuildInitialized();
+            if(CustomEnginePath != null)
+            {
+                Unreal.EnginePathOverride = CustomEnginePath;
+            }
+        }
         
         [Parameter("Specify the output working directory for artifacts")]
         public virtual string OutPath { get; set; } = ".deploy";
