@@ -59,8 +59,6 @@ namespace Nuke.Unreal
 
     public static class Unreal
     {
-        // some random locations I've encountered so far with other people
-        // TODO: there's got to be a more intelligent way of doing this, but documentation is not very searchable for this
         public static readonly HashSet<AbsolutePath> EngineSearchPaths;
 
         public static AbsolutePath EnginePathOverride = null;
@@ -72,6 +70,8 @@ namespace Nuke.Unreal
                 // Use UnrealLocator
                 return;
             }
+
+            // TODO: Use UnrealLocator on other platforms as well
             if(RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
             {
                 EngineSearchPaths = new()
