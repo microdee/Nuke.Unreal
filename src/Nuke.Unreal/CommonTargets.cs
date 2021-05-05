@@ -63,6 +63,8 @@ namespace Nuke.Unreal
         public AbsolutePath UnrealProjectFolder => ToProject.Parent;
         public AbsolutePath UnrealPluginsFolder => UnrealProjectFolder / "Plugins";
 
+        public AbsolutePath UnrealEnginePath => Unreal.GetEnginePath(GetEngineVersionFromProject());
+
         public string UnrealProjectName => Path.GetFileNameWithoutExtension(ToProject);
 
         private JObject _projectObject;
