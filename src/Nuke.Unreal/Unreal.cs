@@ -159,6 +159,10 @@ namespace Nuke.Unreal
         public static UnrealToolOutput BuildTool(EngineVersion ofVersion, string arguments)
         {
             var ubtPath = GetEnginePath(ofVersion) / "Engine" / "Binaries" / "DotNET" / "UnrealBuildTool.exe";
+            if(ofVersion.SemanticalVersion.Major >= 5)
+            {
+                ubtPath = GetEnginePath(ofVersion) / "Engine" / "Binaries" / "DotNET" / "UnrealBuildTool" / "UnrealBuildTool.exe";
+            }
             if(RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
                 return new UnrealToolOutput(ubtPath, arguments);
 
@@ -180,6 +184,10 @@ namespace Nuke.Unreal
         public static UnrealToolOutput AutomationTool(EngineVersion ofVersion, string arguments)
         {
             var uatPath = GetEnginePath(ofVersion) / "Engine" / "Binaries" / "DotNET" / "AutomationTool.exe";
+            if(ofVersion.SemanticalVersion.Major >= 5)
+            {
+                uatPath = GetEnginePath(ofVersion) / "Engine" / "Binaries" / "DotNET" / "AutomationTool" / "AutomationTool.exe";
+            }
 
             if(RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
                 return new UnrealToolOutput(uatPath, arguments);
