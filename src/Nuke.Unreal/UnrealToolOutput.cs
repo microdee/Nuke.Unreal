@@ -9,6 +9,7 @@ using System.Diagnostics;
 using Konsole;
 using Nuke.Common.IO;
 using static Nuke.Common.ControlFlow;
+using static Nuke.Common.Logger;
 
 namespace Nuke.Unreal
 {
@@ -69,6 +70,9 @@ namespace Nuke.Unreal
 
         public UnrealToolOutput Run()
         {
+            Normal($"Running: {_procStartInfo.FileName}");
+            Normal("         " + string.Join(' ', _procStartInfo.Arguments));
+            
             try
             {
                 _curLeft = _out.CursorLeft;
