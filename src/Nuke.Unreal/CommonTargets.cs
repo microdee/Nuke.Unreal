@@ -56,7 +56,7 @@ namespace Nuke.Unreal
         [Parameter("Set platform for running targets")]
         public string TargetPlatform { get; set; } = Unreal.GetDefaultPlatform().ToString();
 
-        public EngineVersion TargetEngineVersion => new(UnrealVersion, UnrealSubfolder);
+        public EngineVersion TargetEngineVersion => new(UnrealVersion, UnrealSubfolder, CustomEnginePath);
 
         public abstract AbsolutePath ToProject { get; }
 
@@ -71,7 +71,13 @@ namespace Nuke.Unreal
         protected JObject ProjectObject =>
             _projectObject ?? (_projectObject = JObject.Parse(File.ReadAllText(ToProject)));
 
-        protected EngineVersion GetEngineVersionFromProject() => new((ProjectObject["EngineVersionPatch"] ?? ProjectObject["EngineAssociation"]).ToString());
+        protected EngineVersion GetEngineVersionFromProject() {
+            var result = (ProjectObject["EngineVersionPatch"] ?? ProjectObject["EngineAssociation"]).ToString();
+            if(!EngineVersion.ValidVersionString(result))
+                return TargetEngineVersion;
+            
+            return new(result, UnrealSubfolder, CustomEnginePath);
+        }
 
         [Parameter("Specify a folder containing generator specific folders for Scriban scaffolding and templates")]
         public virtual AbsolutePath TemplatesPath { get; set; } = BoilerplateGenerator.DefaultTemplateFolder;

@@ -15,7 +15,17 @@ namespace Nuke.Unreal
 {
     public struct EngineVersion
     {
-        public EngineVersion(string versionName, string subFolderFormat = null)
+        public static bool ValidVersionString(string versionName)
+        {
+            var regexedComponents = Regex.Match(versionName, @"(?<version>[\W\d]+)(?<extension>\w*)");
+            if(regexedComponents == null)
+                return false;
+
+            var pureVersionNamePatch = regexedComponents.Groups["version"].Value;
+            return Version.TryParse(pureVersionNamePatch, out _);
+        }
+
+        public EngineVersion(string versionName, string subFolderFormat = null, string customEnginePath = null)
         {
             subFolderFormat ??= "UE_{0}";
             FullVersionName = versionName;
@@ -39,6 +49,7 @@ namespace Nuke.Unreal
             PureVersionName = SemanticalVersion.Major + "." + SemanticalVersion.Minor;
             VersionName = PureVersionName + Extension;
             SubFolderName = string.Format(subFolderFormat, VersionName);
+            EngineAssociation = customEnginePath?.Replace('\\', '/') ?? VersionName;
         }
 
         public string VersionName;
@@ -49,6 +60,7 @@ namespace Nuke.Unreal
         public Version SemanticalVersion;
         public string Extension;
         public bool IsEarlyAccess;
+        public string EngineAssociation;
     }
 
     [Flags]
