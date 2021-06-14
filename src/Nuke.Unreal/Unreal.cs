@@ -112,23 +112,43 @@ namespace Nuke.Unreal
                 string location = null;
                 Normal("Looking for Unreal Engine installation:");
 
-                var locator = ProcessTasks.StartProcess(
-                    GetUnrealLocator(),
-                    arguments: ofVersion.VersionName,
-                    outputFilter: line => {
-                        if(string.IsNullOrWhiteSpace(line)) return line;
-                        if(Path.IsPathRooted(line.Trim()))
-                        {
-                            location = line.Trim();
-                            return "Found at: " + line;
-                        }
-                        return line;
+                string Filter(string line)
+                {
+                    if(string.IsNullOrWhiteSpace(line)) return line;
+                    if(Path.IsPathRooted(line.Trim()))
+                    {
+                        location = line.Trim();
+                        return "Found at: " + line;
                     }
+                    return line;
+                }
+
+                var locatorPath = GetUnrealLocator();
+
+                var locator = ProcessTasks.StartProcess(
+                    locatorPath,
+                    arguments: ofVersion.VersionName,
+                    outputFilter: Filter
                 );
                 locator.WaitForExit();
                 if(locator.ExitCode != 0 || string.IsNullOrWhiteSpace(location))
                 {
-                    throw new FileNotFoundException("No Unreal Engine installation could be found.");
+                    // UE5 early access is not using conventional semantical versioning. Try again with "EA" added.
+                    if(ofVersion.SemanticalVersion.Major >= 5)
+                    {
+                        locator = ProcessTasks.StartProcess(
+                            locatorPath,
+                            arguments: ofVersion.VersionName + "EA",
+                            outputFilter: Filter
+                        );
+                        locator.WaitForExit();
+                        if(locator.ExitCode != 0 || string.IsNullOrWhiteSpace(location))
+                            throw new FileNotFoundException("No Unreal Engine installation could be found.");
+                    }
+                    else
+                    {
+                        throw new FileNotFoundException("No Unreal Engine installation could be found.");
+                    }
                 }
                 EnginePathOverride = (AbsolutePath) location;
                 return (AbsolutePath) location;
