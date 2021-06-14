@@ -36,7 +36,7 @@ namespace Nuke.Unreal
         public abstract string UnrealVersion { get; set; }
 
         // not a command line parameter anymore especially when we have the UnrealLocator program
-        public virtual string UnrealSubfolder { get; } = "UE_{0}.{1}";
+        public virtual string UnrealSubfolder { get; } = "UE_{0}";
 
         [Parameter("Specify a path to a custom engine version (eg.: built from source)")]
         public virtual AbsolutePath CustomEnginePath { get; set; } = null;

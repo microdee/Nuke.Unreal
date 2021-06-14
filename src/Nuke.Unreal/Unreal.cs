@@ -1,4 +1,5 @@
 using System;
+using System.Text.RegularExpressions;
 using System.Linq;
 using System.IO;
 using System.Collections.Generic;
@@ -16,10 +17,17 @@ namespace Nuke.Unreal
     {
         public EngineVersion(string versionName, string subFolderFormat = null)
         {
-            subFolderFormat ??= "UE_{0}.{1}";
+            subFolderFormat ??= "UE_{0}";
             FullVersionName = versionName;
 
-            Assert(Version.TryParse(versionName, out var semVersion), "Couldn't parse semantic version of input UE version");
+            var regexedComponents = Regex.Match(versionName, @"(?<version>[\W\d]+)(?<extension>\w*)");
+            Assert(regexedComponents != null, "Invalid version format");
+
+            PureVersionNamePatch = regexedComponents.Groups["version"].Value;
+            Extension = regexedComponents.Groups["extension"].Value ?? "";
+            IsEarlyAccess = Extension == "EA";
+
+            Assert(Version.TryParse(PureVersionNamePatch, out var semVersion), "Couldn't parse semantic version of input UE version");
 
             SemanticalVersion = new Version(
                 semVersion.Major,
@@ -28,14 +36,19 @@ namespace Nuke.Unreal
                 0
             );
 
-            VersionName = SemanticalVersion.Major + "." + SemanticalVersion.Minor;
-            SubFolderName = string.Format(subFolderFormat, SemanticalVersion.Major, SemanticalVersion.Minor, SemanticalVersion.Build);
+            PureVersionName = SemanticalVersion.Major + "." + SemanticalVersion.Minor;
+            VersionName = PureVersionName + Extension;
+            SubFolderName = string.Format(subFolderFormat, VersionName);
         }
 
         public string VersionName;
+        public string PureVersionName;
+        public string PureVersionNamePatch;
         public string FullVersionName;
         public string SubFolderName;
         public Version SemanticalVersion;
+        public string Extension;
+        public bool IsEarlyAccess;
     }
 
     [Flags]
