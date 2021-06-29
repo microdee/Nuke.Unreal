@@ -56,6 +56,12 @@ namespace Nuke.Unreal
         [Parameter("Set platform for running targets")]
         public string TargetPlatform { get; set; } = Unreal.GetDefaultPlatform().ToString();
 
+        [Parameter("The target configuration for building or packaging the project")]
+        public virtual UnrealConfig Config { get; set; } = UnrealConfig.Development;
+
+        [Parameter("The target execution mode for building the project (Standalone or Editor")]
+        public virtual ExecMode RunIn { get; set; } = ExecMode.Standalone;
+
         public EngineVersion TargetEngineVersion => new(UnrealVersion, UnrealSubfolder, CustomEnginePath);
 
         public abstract AbsolutePath ToProject { get; }
@@ -169,12 +175,12 @@ namespace Nuke.Unreal
                 }
             });
 
-        public Target CleanUnreal => _ => _
+        public Target Clean => _ => _
             .Description("Removes auto generated folders of Unreal Engine")
             .DependsOn(CleanProject)
             .DependsOn(CleanPlugins);
 
-        public Target GenerateProject => _ => _
+        public Target Generate => _ => _
             .Description("Generate project files for the default IDE of the current platform (Visual Studio or XCode)")
             .Executes(() =>
             {
@@ -198,8 +204,22 @@ namespace Nuke.Unreal
                     .WithoutUnimportant()
                     .Run();
             });
+
+        public Target Build => _ => _
+            .Description("Build this project for execution")
+            .Executes(() =>
+            {
+                var targetEnv = RunIn == ExecMode.Standalone ? "" : "Editor";
+                Unreal.BuildTool(
+                    GetEngineVersionFromProject(),
+                    $"{UnrealProjectName}{targetEnv} {TargetPlatform} {Config}"
+                    + $" -Project=\"{ToProject}\""
+                )
+                    .WithoutUnimportant()
+                    .Run();
+            });
         
-        public Target CookProject => _ => _
+        public Target Cook => _ => _
             .Description("Cook Unreal assets for standalone game execution")
             .DependsOn(BuildEditor)
             .Executes(() =>

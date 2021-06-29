@@ -13,22 +13,11 @@ using static Nuke.Common.ControlFlow;
 
 namespace Nuke.Unreal
 {
-    public enum UnrealConfig
-    {
-        Debug,
-        DebugGame,
-        Development,
-        Shipping
-    }
-
     public abstract class ProjectTargets : CommonTargets
     {
-        [Parameter("The target packaged application configuration")]
-        public virtual UnrealConfig BuildConfig { get; set; } = UnrealConfig.Development;
-
         public Target Package => _ => _
             .Description("Same as running Package Project from Editor")
-            .DependsOn(CookProject)
+            .DependsOn(Cook)
             .Executes(() => {
                 var appLocalDir = Unreal.GetEnginePath(GetEngineVersionFromProject()) / "Binaries" / "ThirdParty" / "AppLocalDependencies";
                 Unreal.AutomationToolBatch(
@@ -37,7 +26,7 @@ namespace Nuke.Unreal
                     + $" -ScriptsForProject=\"{ToProject}\""
                     + $" -project=\"{ToProject}\""
                     + $" -targetplatform={TargetPlatform}"
-                    + $" -clientconfig={BuildConfig}"
+                    + $" -clientconfig={Config}"
                     + $" -archivedirectory=\"{OutPath}\""
                     + $" -applocaldirectory={appLocalDir}"
                     + " -package"
