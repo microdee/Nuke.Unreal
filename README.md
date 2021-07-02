@@ -10,19 +10,28 @@ Nuke + Unreal Engine workflow provides a consistent way to work with UE4/5 tools
 For now, no Nuget release available and its functionality is limited yet for mostly personal usage. When Nuget package will be available it'll be available as a simple package reference in your Nuke build project. If you still want to use this workflow you can start from the [Nuke.Unreal Workflow Template](https://github.com/microdee/Nuke.Unreal.WorkflowTemplate), or go manually:
 
 1. Set up the build project:
-  ```
-  > dotnet tool install Nuke.GlobalTool --global
+   * Via a script:
+     ```
+     iex ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/microdee/Nuke.Unreal.WorkflowTemplate/main/Setup.ps1'))
+     ```
+   * <details>
+      <summary>Manually</summary>
+  
+     ```
+     > dotnet tool install Nuke.GlobalTool --global
 
-  > dotnet new sln --name Build
+     > dotnet new sln --name Build
 
-  > nuke :setup
-  # preferably put your build project inside Nuke.Targets folder
+     > nuke :setup
+     # preferably put your build project inside Nuke.Targets folder
 
-  > git submodule add https://github.com/microdee/Nuke.Unreal.git Nuke.Unreal
+     > git submodule add https://github.com/microdee/Nuke.Unreal.git Nuke.Unreal
 
-  > dotnet sln .\Build.sln add .\Nuke.Unreal\src\Nuke.Unreal\Nuke.Unreal.csproj
-  > dotnet add .\Nuke.Targets\_build.csproj reference .\Nuke.Unreal\src\Nuke.Unreal\Nuke.Unreal.csproj
-  ```
+     > dotnet sln .\Build.sln add .\Nuke.Unreal\src\Nuke.Unreal\Nuke.Unreal.csproj
+     > dotnet add .\Nuke.Targets\_build.csproj reference .\Nuke.Unreal\src\Nuke.Unreal\Nuke.Unreal.csproj
+     ```
+  
+     </details>
 2. Inherit your Build class from either `PluginTargets` or `ProjectTargets`
 3. Set the path to your UE project:
   ```CSharp
