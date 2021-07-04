@@ -48,7 +48,8 @@ For now, no Nuget release available and its functionality is limited yet for mos
   ```
   > nuke generate
   > nuke build-editor
-  > nuke build --config DebugGame
+  > nuke build --config Shipping
+  > nuke build --config DebugGame --run-in Editor
   > nuke cook
   > nuke package
   ```
