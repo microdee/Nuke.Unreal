@@ -45,12 +45,24 @@ For now, no Nuget release available and its functionality is limited yet for mos
 
 ## Features:
 * Common UE4 build tasks (generate project files, build editor, cook, package, etc)
+  ```
+  > nuke generate
+  > nuke build-editor
+  > nuke build --config DebugGame
+  > nuke cook
+  > nuke package
+  ```
 * Prepare plugins for release in Marketplace
+  ```
+  > nuke make-release --for-marketplace
+  ```
 * Bind Unreal tools to Nuke with fluent C# API \[WIP\]
 * Generate boilerplate code and scaffolding from [Scriban](https://github.com/scriban/scriban) templates so no editor needs to be opened \[WIP\]
-  * New Unreal classes
-  * New Plugin
-  * New Module
+    ```
+    > nuke new-actor --name MyActor
+    > nuke new-plugin --name MyPlugin
+    > nuke new-module --name MyModule
+    ```
 
 ## Generators
 
