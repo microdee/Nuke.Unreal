@@ -1,4 +1,4 @@
-This utility is built with UE4 source code. It's distributed here as an executable so this repo doesn't rely on said engine source code. A pull request has been made https://github.com/EpicGames/UnrealEngine/pull/7849 to include this functionality inside official builds, and hopefully the launcher one day.
+Find the source code of this utility here: https://github.com/microdee/UnrealLocator
 
 ## Usage
 
