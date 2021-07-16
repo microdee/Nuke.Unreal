@@ -57,10 +57,10 @@ namespace Nuke.Unreal
         public string TargetPlatform { get; set; } = Unreal.GetDefaultPlatform().ToString();
 
         [Parameter("The target configuration for building or packaging the project")]
-        public virtual UnrealConfig Config { get; set; } = UnrealConfig.Development;
+        public virtual UnrealConfig[] Config { get; set; } = new [] {UnrealConfig.Development};
 
         [Parameter("The target execution mode for building the project (Standalone or Editor")]
-        public virtual ExecMode RunIn { get; set; } = ExecMode.Standalone;
+        public virtual ExecMode[] RunIn { get; set; } = new [] {ExecMode.Standalone};
 
         public EngineVersion TargetEngineVersion => new(UnrealVersion, UnrealSubfolder, CustomEnginePath);
 
@@ -209,14 +209,24 @@ namespace Nuke.Unreal
             .Description("Build this project for execution")
             .Executes(() =>
             {
-                var targetEnv = RunIn == ExecMode.Standalone ? "" : "Editor";
-                Unreal.BuildTool(
-                    GetEngineVersionFromProject(),
-                    $"{UnrealProjectName}{targetEnv} {TargetPlatform} {Config}"
-                    + $" -Project=\"{ToProject}\""
-                )
-                    .WithoutUnimportant()
-                    .Run();
+                (
+                    from c in Config
+                    from r in RunIn
+                    select (c, r)
+                ).ForEach(combination =>
+                {
+                    var (config, runIn) = combination;
+
+                    Logger.Block($"{config} ran in {runIn}:");
+                    var targetEnv = runIn == ExecMode.Standalone ? "" : "Editor";
+                    Unreal.BuildTool(
+                        GetEngineVersionFromProject(),
+                        $"{UnrealProjectName}{targetEnv} {TargetPlatform} {config}"
+                        + $" -Project=\"{ToProject}\""
+                    )
+                        .WithoutUnimportant()
+                        .Run();
+                });
             });
         
         public Target Cook => _ => _
