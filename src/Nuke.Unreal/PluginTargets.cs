@@ -19,7 +19,30 @@ namespace Nuke.Unreal
         public bool ForMarketplace = false;
 
         public abstract string PluginVersion { get; }
-        public abstract AbsolutePath ToPlugin { get; }
+
+        private AbsolutePath _toPluginCache;
+        
+        /// <summary>
+        /// Optionally specify a .uplugin path.
+        /// If not overridden Nuke.Unreal will traverse upwards on the directory tree,
+        /// then sift through all subdirectories recursively (ignoring some known folders)
+        /// </summary>
+        public virtual AbsolutePath ToPlugin
+        {
+            get
+            {
+                if(_toPluginCache != null) return _toPluginCache;
+
+                Logger.Info(".uplugin path was unspecified, looking for one...");
+                if(LookAroundFor(f => f.EndsWith(".uplugin"), out var candidate))
+                {
+                    Logger.Success($"Found project at {candidate}");
+                    _toPluginCache = candidate;
+                    return _toPluginCache;
+                }
+                throw new FileNotFoundException("No .uplugin was found");
+            }
+        }
 
         public string PluginName => Path.GetFileNameWithoutExtension(ToPlugin);
 
