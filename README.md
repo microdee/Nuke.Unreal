@@ -7,7 +7,7 @@ Nuke + Unreal Engine workflow provides a consistent way to work with UE4/5 tools
 
 ## Usage
 
-For now, no Nuget release available and its functionality is limited yet for mostly personal usage. When Nuget package will be available it'll be available as a simple package reference in your Nuke build project. If you still want to use this workflow you can start from the [Nuke.Unreal Workflow Template](https://github.com/microdee/Nuke.Unreal.WorkflowTemplate), or go manually:
+For now, no Nuget release available and its functionality is limited yet for mostly personal usage. When Nuget package will be available it'll be available as a simple package reference in your Nuke build project. If you still want to use this workflow you can install from script or go manually:
 
 1. Set up the build project:
    * Via a script:
@@ -32,24 +32,26 @@ For now, no Nuget release available and its functionality is limited yet for mos
      ```
   
      </details>
-2. Inherit your Build class from either `PluginTargets` or `ProjectTargets`
-3. Set the path to your UE project:
+2. Inherit your Build class from either `PluginTargets`, `ProgramTargets` or `ProjectTargets`
+3. Override abstract members, add own targets, set up dependencies
+4. ***(optional)*** Set the path to your UE project if it's not trivially around your Nuke targets:
   ```CSharp
-  public override AbsolutePath ToProject => RootDirectory / "MyProject" / "MyProject.uproject";
+  public override AbsolutePath ToProject => RootDirectory / ".." / "MyProject" / "MyProject.uproject";
   ```
-4. Optionally set the path to your target plugin:
+  * This is only necessary if 
+5. ***(optional)*** Set the path to your target plugin if there are more in your test project, or if it's not trivially around your Nuke targets:
   ```CSharp
   public override AbsolutePath ToPlugin => UnrealPluginsFolder / "MyPlugin" / "MyPlugin.uplugin";
   ```
-3. Override abstract members, add own targets, set up dependencies
 
 ## Features:
+* All what the great Nuke can offer
 * Common UE4 build tasks (generate project files, build editor, cook, package, etc)
   ```
   > nuke generate
   > nuke build-editor
   > nuke build --config Shipping
-  > nuke build --config DebugGame --run-in Editor
+  > nuke build --config DebugGame Development --run-in Editor
   > nuke cook
   > nuke package
   ```
@@ -57,17 +59,18 @@ For now, no Nuget release available and its functionality is limited yet for mos
   ```
   > nuke make-release --for-marketplace
   ```
-* Bind Unreal tools to Nuke with fluent C# API \[WIP\]
-* Generate boilerplate code and scaffolding from [Scriban](https://github.com/scriban/scriban) templates so no editor needs to be opened \[WIP\]
+* Bind Unreal tools to Nuke with fluent C# API \[very WIP\]
+* Generate boilerplate code and scaffolding from [Scriban](https://github.com/scriban/scriban) templates so no editor needs to be opened
     ```
     > nuke new-actor --name MyActor
     > nuke new-plugin --name MyPlugin
     > nuke new-module --name MyModule
+    etc...
     ```
 
 ## Generators
 
-### Unreal boilerplate templates \[WIP\]
+### Unreal boilerplate templates
 
 Nuke.Unreal provides some targets which creates boilerplate code for common Unreal entities, such as
 
