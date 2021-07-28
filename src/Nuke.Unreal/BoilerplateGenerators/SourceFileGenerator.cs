@@ -3,6 +3,7 @@ using System;
 using System.IO;
 using Nuke.Common.IO;
 using Nuke.Common.Utilities.Collections;
+using Nuke.Common;
 
 namespace Nuke.Unreal.BoilerplateGenerators
 {
@@ -35,27 +36,31 @@ namespace Nuke.Unreal.BoilerplateGenerators
             CheckInsideSourceFolder(currentFolder);
 
             Model = GetModelFromArguments(currentFolder, Arguments);
+            Model.CppIncludePath = Path.GetRelativePath(Model.Module.Folder, currentFolder)
+                .Replace("\\", "/")
+                .Replace("public", "", true, null)
+                .Replace("private", "", true, null)
+                .Trim('.').Trim('/');
 
             if(!FileSystemTasks.DirectoryExists(templatesPath / TemplateSubfolder))
                 templatesPath = DefaultTemplateFolder;
             
             var sourceTemplateDir = templatesPath / TemplateSubfolder;
             var cppDstDir = currentFolder.ToString().Replace("public", "private", true, null);
+
+            if(Model.Plugin != null)
+                Logger.Normal($"Plugin: {Model.Plugin.Folder}");
+            
+            Logger.Normal($"Module: {Model.Module.Folder}");
+
             Directory.EnumerateFiles(sourceTemplateDir, "*.sbncpp").ForEach(f =>
-            {
-                var srcFolder = ((AbsolutePath)f).Parent;
-                Model.CppIncludePath = Path.GetRelativePath(Model.Module.Folder, srcFolder)
-                    .Replace("\\", "/")
-                    .Replace("public", "", true, null)
-                    .Replace("private", "", true, null)
-                    .Trim('.').Trim('/');
                 RenderFile(
                     sourceTemplateDir,
                     (RelativePath) Path.GetFileName(f),
                     (AbsolutePath) cppDstDir,
                     Model
-                );
-    }       );
+                )
+            );
 
             var hDstDir = currentFolder.ToString().Replace("private", "public", true, null);
             Directory.EnumerateFiles(sourceTemplateDir, "*.sbnh").ForEach(f =>

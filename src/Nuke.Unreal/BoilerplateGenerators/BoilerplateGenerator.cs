@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using System.Reflection;
 using System.IO;
+using Nuke.Common;
 using Nuke.Common.IO;
 using Scriban;
 
@@ -43,7 +44,11 @@ namespace Nuke.Unreal.BoilerplateGenerators
             if(!Directory.Exists(resultPath.Parent))
                 Directory.CreateDirectory(resultPath.Parent);
 
-            File.WriteAllText((resultPath.Parent / resultFilename) + resultExt, renderedText);
+            var outPath = (resultPath.Parent / resultFilename) + resultExt;
+
+            Logger.Normal($"Rendering to: {resultFilename + resultExt}");
+
+            File.WriteAllText(outPath, renderedText);
         }
 
         /// <summary>
