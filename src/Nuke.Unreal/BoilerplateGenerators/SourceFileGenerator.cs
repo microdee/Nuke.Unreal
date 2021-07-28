@@ -2,6 +2,7 @@ using System.Linq;
 using System;
 using System.IO;
 using Nuke.Common.IO;
+using Nuke.Common.Utilities.Collections;
 
 namespace Nuke.Unreal.BoilerplateGenerators
 {
@@ -10,6 +11,7 @@ namespace Nuke.Unreal.BoilerplateGenerators
         public UnrealProject Project { get; init; }
         public UnrealPlugin Plugin { get; init; }
         public UnrealModule Module { get; init; }
+        public string CppIncludePath { get; set; }
     }
 
     public record SourceFileGeneratorArgs(string Name)
@@ -39,21 +41,30 @@ namespace Nuke.Unreal.BoilerplateGenerators
             
             var sourceTemplateDir = templatesPath / TemplateSubfolder;
             var cppDstDir = currentFolder.ToString().Replace("public", "private", true, null);
-            var cppFile = Directory.EnumerateFiles(sourceTemplateDir, "*.sbncpp").First();
-            RenderFile(
-                sourceTemplateDir,
-                (RelativePath) Path.GetFileName(cppFile),
-                (AbsolutePath) cppDstDir,
-                Model
-            );
+            Directory.EnumerateFiles(sourceTemplateDir, "*.sbncpp").ForEach(f =>
+            {
+                var srcFolder = ((AbsolutePath)f).Parent;
+                Model.CppIncludePath = Path.GetRelativePath(Model.Module.Folder, srcFolder)
+                    .Replace("\\", "/")
+                    .Replace("public", "", true, null)
+                    .Replace("private", "", true, null)
+                    .Trim('.').Trim('/');
+                RenderFile(
+                    sourceTemplateDir,
+                    (RelativePath) Path.GetFileName(f),
+                    (AbsolutePath) cppDstDir,
+                    Model
+                );
+    }       );
 
             var hDstDir = currentFolder.ToString().Replace("private", "public", true, null);
-            var hFile = Directory.EnumerateFiles(sourceTemplateDir, "*.sbnh").First();
-            RenderFile(
-                sourceTemplateDir,
-                (RelativePath) Path.GetFileName(hFile),
-                (AbsolutePath) hDstDir,
-                Model
+            Directory.EnumerateFiles(sourceTemplateDir, "*.sbnh").ForEach(f =>
+                RenderFile(
+                    sourceTemplateDir,
+                    (RelativePath) Path.GetFileName(f),
+                    (AbsolutePath) hDstDir,
+                    Model
+                )
             );
         }
 
