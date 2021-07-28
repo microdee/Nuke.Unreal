@@ -32,16 +32,18 @@ namespace Nuke.Unreal
         public virtual AbsolutePath TemplatesPath { get; set; } = BoilerplateGenerator.DefaultTemplateFolder;
 
         [Parameter("Name parameter for boilerplate generators.")]
-        public string Name { get; set; }
+        public string[] Name { get; set; }
 
         public Target NewModule => _ => _
             .Description("Create new module in the owning project or plugin (depending on working directory)")
             .Requires(() => Name)
-            .Executes(() => 
-                new ModuleGenerator().Generate(
-                    TemplatesPath,
-                    (AbsolutePath) Environment.CurrentDirectory,
-                    Name
+            .Executes(() =>
+                Name.ForEach(n => 
+                    new ModuleGenerator().Generate(
+                        TemplatesPath,
+                        (AbsolutePath) Environment.CurrentDirectory,
+                        n
+                    )
                 )
             );
 
@@ -49,10 +51,12 @@ namespace Nuke.Unreal
             .Description("Create a new project plugin.")
             .Requires(() => Name)
             .Executes(() => 
-                new PluginGenerator().Generate(
-                    TemplatesPath,
-                    (AbsolutePath) Environment.CurrentDirectory,
-                    Name, GetEngineVersionFromProject()
+                Name.ForEach(n => 
+                    new PluginGenerator().Generate(
+                        TemplatesPath,
+                        (AbsolutePath) Environment.CurrentDirectory,
+                        n, GetEngineVersionFromProject()
+                    )
                 )
             );
 
@@ -60,10 +64,12 @@ namespace Nuke.Unreal
             .Description("Create new Unreal Actor in current directory")
             .Requires(() => Name)
             .Executes(() =>
-                new ActorGenerator().Generate(
-                    TemplatesPath,
-                    (AbsolutePath) Environment.CurrentDirectory,
-                    new(Name)
+                Name.ForEach(n => 
+                    new ActorGenerator().Generate(
+                        TemplatesPath,
+                        (AbsolutePath) Environment.CurrentDirectory,
+                        new(n)
+                    )
                 )
             );
 
@@ -71,10 +77,12 @@ namespace Nuke.Unreal
             .Description("Create new Unreal Interface in current directory")
             .Requires(() => Name)
             .Executes(() =>
-                new InterfaceGenerator().Generate(
-                    TemplatesPath,
-                    (AbsolutePath) Environment.CurrentDirectory,
-                    new(Name)
+                Name.ForEach(n => 
+                    new InterfaceGenerator().Generate(
+                        TemplatesPath,
+                        (AbsolutePath) Environment.CurrentDirectory,
+                        new(n)
+                    )
                 )
             );
 
@@ -82,10 +90,12 @@ namespace Nuke.Unreal
             .Description("Create new Unreal Object in current directory")
             .Requires(() => Name)
             .Executes(() => 
-                new ObjectGenerator().Generate(
-                    TemplatesPath,
-                    (AbsolutePath) Environment.CurrentDirectory,
-                    new(Name)
+                Name.ForEach(n => 
+                    new ObjectGenerator().Generate(
+                        TemplatesPath,
+                        (AbsolutePath) Environment.CurrentDirectory,
+                        new(n)
+                    )
                 )
             );
 
@@ -93,10 +103,12 @@ namespace Nuke.Unreal
             .Description("Create new Unreal Struct in current directory")
             .Requires(() => Name)
             .Executes(() => 
-                new StructGenerator().Generate(
-                    TemplatesPath,
-                    (AbsolutePath) Environment.CurrentDirectory,
-                    new(Name)
+                Name.ForEach(n => 
+                    new StructGenerator().Generate(
+                        TemplatesPath,
+                        (AbsolutePath) Environment.CurrentDirectory,
+                        new(n)
+                    )
                 )
             );
     }
