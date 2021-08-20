@@ -35,7 +35,6 @@ namespace Nuke.Unreal
                         + $" -archivedirectory=\"{OutPath}\""
                         + $" -applocaldirectory={appLocalDir}"
                         + " -package"
-                        + " -nocompile"
                         + " -nocompileeditor"
                         + " -skipcook"
                         + " -installed"

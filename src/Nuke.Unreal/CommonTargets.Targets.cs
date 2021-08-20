@@ -29,7 +29,7 @@ namespace Nuke.Unreal
     {
         public Target CleanDeployment => _ => _
             .Description("Removes previous deployment folder")
-            .Executes(() => DeleteDirectory(RootDirectory / OutPath));
+            .Executes(() => DeleteDirectory(OutPath));
 
         public Target CleanProject => _ => _
             .Description("Removes auto generated folders of Unreal Engine from the project")
