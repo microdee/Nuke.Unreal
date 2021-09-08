@@ -51,7 +51,7 @@ namespace Nuke.Unreal
         }
         
         [Parameter("Specify the output working directory for artifacts")]
-        public virtual string OutPath { get; set; } = ".deploy";
+        public virtual AbsolutePath OutPath { get; set; } = RootDirectory / ".deploy";
 
         [Parameter("Set platform for running targets")]
         public string TargetPlatform { get; set; } = Unreal.GetDefaultPlatform().ToString();

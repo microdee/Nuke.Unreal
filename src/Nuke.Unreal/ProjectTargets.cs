@@ -6,6 +6,7 @@ using Nuke.Common.IO;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Nuke.Common;
+using Nuke.Common.Utilities.Collections;
 using static Nuke.Common.IO.FileSystemTasks;
 using static Nuke.Common.IO.PathConstruction;
 using static Nuke.Common.Logger;
@@ -18,30 +19,33 @@ namespace Nuke.Unreal
         public Target Package => _ => _
             .Description("Same as running Package Project from Editor")
             .DependsOn(Cook)
-            .Executes(() => {
-                var appLocalDir = Unreal.GetEnginePath(GetEngineVersionFromProject()) / "Binaries" / "ThirdParty" / "AppLocalDependencies";
-                Unreal.AutomationToolBatch(
-                    GetEngineVersionFromProject(),
-                    "BuildCookRun"
-                    + $" -ScriptsForProject=\"{ToProject}\""
-                    + $" -project=\"{ToProject}\""
-                    + $" -targetplatform={TargetPlatform}"
-                    + $" -clientconfig={Config}"
-                    + $" -archivedirectory=\"{OutPath}\""
-                    + $" -applocaldirectory={appLocalDir}"
-                    + " -package"
-                    + " -nocompile"
-                    + " -nocompileeditor"
-                    + " -skipcook"
-                    + " -installed"
-                    + " -nop4"
-                    + " -stage"
-                    + " -archive"
-                    + " -prereqs"
-                    + " -build"
-                    + " -CrashReporter"
-                    + " -utf8output"
-                );
+            .Executes(() =>
+            {
+                var appLocalDir = UnrealEnginePath / "Engine" / "Binaries" / "ThirdParty" / "AppLocalDependencies";
+                Config.ForEach(c =>
+                {
+                    Unreal.AutomationToolBatch(
+                        GetEngineVersionFromProject(),
+                        "BuildCookRun"
+                        + $" -ScriptsForProject=\"{ToProject}\""
+                        + $" -project=\"{ToProject}\""
+                        + $" -target={UnrealProjectName}"
+                        + $" -targetplatform={TargetPlatform}"
+                        + $" -clientconfig={c}"
+                        + $" -archivedirectory=\"{OutPath}\""
+                        + $" -applocaldirectory={appLocalDir}"
+                        + " -package"
+                        + " -nocompileeditor"
+                        + " -skipcook"
+                        + " -installed"
+                        + " -stage"
+                        + " -archive"
+                        + " -prereqs"
+                        + " -build"
+                    ).WithWorkingDir(UnrealEnginePath)
+                        .WithOnlyResults()
+                        .Run();
+                });
             });
     }
 }

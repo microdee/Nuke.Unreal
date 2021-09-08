@@ -84,7 +84,7 @@ namespace Nuke.Unreal
             .Executes(() =>
             {
                 var packageName = $"{PluginName}-{TargetPlatform}-{PluginVersion}.{GetEngineVersionFromProject().FullVersionName}-PreBuilt";
-                var targetDir = RootDirectory / OutPath / packageName;
+                var targetDir = OutPath / packageName;
                 var archiveFileName = $"{packageName}.zip";
 
                 Info($"Packaging plugin: {packageName}");
@@ -117,7 +117,7 @@ namespace Nuke.Unreal
             .Executes(() =>
             {
                 var packageName = $"{PluginName}-{TargetPlatform}-{PluginVersion}.{GetEngineVersionFromProject().FullVersionName}-Source";
-                var targetDir = RootDirectory / OutPath / packageName;
+                var targetDir = OutPath / packageName;
                 var archiveFileName = $"{packageName}.zip";
 
                 Info($"Gathering Marketplace release: {packageName}");
