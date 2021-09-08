@@ -46,6 +46,15 @@ namespace Nuke.Unreal
                     )
                 )
             );
+        public Target AddCode => _ => _
+            .Description("Add C++ code to a project which doesn't have one yet.")
+            .Executes(() => 
+                new TargetGenerator().Generate(
+                    TemplatesPath,
+                    UnrealProjectFolder,
+                    UnrealProjectName
+                )
+            );
 
         public Target NewPlugin => _ => _
             .Description("Create a new project plugin.")

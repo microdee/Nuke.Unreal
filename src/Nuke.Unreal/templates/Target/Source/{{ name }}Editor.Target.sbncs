@@ -1,0 +1,18 @@
+// {{ copyright }}
+
+// Find documentation and class members at this links:
+// https://github.com/EpicGames/UnrealEngine/blob/release/Engine/Source/Programs/UnrealBuildTool/Configuration/ModuleRules.cs
+// https://github.com/EpicGames/UnrealEngine/blob/release/Engine/Source/Programs/UnrealBuildTool/Configuration/ModuleRulesContext.cs
+// https://github.com/EpicGames/UnrealEngine/blob/release/Engine/Source/Programs/UnrealBuildTool/Configuration/TargetRules.cs
+
+using UnrealBuildTool;
+using System.Collections.Generic;
+
+public class {{ name }}EditorTarget : TargetRules
+{
+	public {{ name }}EditorTarget( TargetInfo Target) : base(Target)
+	{
+		Type = TargetType.Editor;
+		DefaultBuildSettings = BuildSettingsVersion.V2;
+	}
+}
