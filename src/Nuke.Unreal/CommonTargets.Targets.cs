@@ -68,7 +68,7 @@ namespace Nuke.Unreal
             {
                 Unreal.BuildTool(
                     GetEngineVersionFromProject(),
-                    $"{UnrealProjectName}Editor {TargetPlatform} Development"
+                    $"{UnrealProjectName}Editor Win64 Development"
                     + $" -Project=\"{ToProject}\""
                 )
                     .WithoutUnimportant()
