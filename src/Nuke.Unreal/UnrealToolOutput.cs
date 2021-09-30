@@ -17,6 +17,17 @@ namespace Nuke.Unreal
     {
 
         private ConcurrentWriter _out;
+
+        private void SafeSetCursor(int top, int left)
+        {
+            try
+            {
+                _out.CursorTop = top;
+                _out.CursorLeft = left;
+            }
+            catch {}
+        }
+
         private Process _proc;
         private ProcessStartInfo _procStartInfo;
         private bool _compactOutput;
@@ -131,13 +142,11 @@ namespace Nuke.Unreal
                 return;
 
             _out.Write(new string(' ', _prevLength));
-            _out.CursorLeft = _curLeft;
-            _out.CursorTop = _curTop;
+            SafeSetCursor(_curTop, _curLeft);
             _prevLength = line.Length;
             _prevLine = line;
             _out.Write("\r" + line);
-            _out.CursorLeft = _curLeft;
-            _out.CursorTop = _curTop;
+            SafeSetCursor(_curTop, _curLeft);
             _eraseLastLine = true;
         }
 
@@ -152,8 +161,7 @@ namespace Nuke.Unreal
                 if(_eraseLastLine)
                 {
                     _out.Write(new string(' ', _prevLength));
-                    _out.CursorLeft = _curLeft;
-                    _out.CursorTop = _curTop;
+                    SafeSetCursor(_curTop, _curLeft);
                 }
                 _out.WriteLine(line);
                 _eraseLastLine = false;
