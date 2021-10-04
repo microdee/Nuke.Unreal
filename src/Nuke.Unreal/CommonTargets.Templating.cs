@@ -34,12 +34,17 @@ namespace Nuke.Unreal
         [Parameter("Name parameter for boilerplate generators.")]
         public string[] Name { get; set; }
 
+        [Parameter("Explicitly add new module to project target")]
+        public bool AddToTarget { get; set; }
+
         public Target NewModule => _ => _
             .Description("Create new module in the owning project or plugin (depending on working directory)")
             .Requires(() => Name)
             .Executes(() =>
                 Name.ForEach(n => 
-                    new ModuleGenerator().Generate(
+                    new ModuleGenerator()
+                    .SetAddToTarget(AddToTarget)
+                    .Generate(
                         TemplatesPath,
                         (AbsolutePath) Environment.CurrentDirectory,
                         n
