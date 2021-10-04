@@ -10,6 +10,8 @@ using static Nuke.Common.IO.FileSystemTasks;
 using System.Runtime.InteropServices;
 using Nuke.Common.Tooling;
 using System.Reflection;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace Nuke.Unreal
 {
@@ -116,6 +118,19 @@ namespace Nuke.Unreal
             }
 
             throw new Exception("Attempting to build on an unsupported platform");
+        }
+
+        public static void WriteJson(object input, AbsolutePath path)
+        {
+            using(var fs = File.OpenWrite(path))
+            using(var sw = new StreamWriter(fs))
+            using(var jtw = new JsonTextWriter(sw) {
+                Formatting = Formatting.Indented,
+                Indentation = 1,
+                IndentChar = '\t'
+            }) {
+                new JsonSerializer().Serialize(jtw, input);
+            }
         }
 
         public static readonly AbsolutePath UnrealLocatorFolder = (AbsolutePath) Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) / "UnrealLocator";

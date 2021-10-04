@@ -80,8 +80,7 @@ namespace Nuke.Unreal.BoilerplateGenerators
                 else throw new InvalidOperationException($"A module named {name} already exist.");
             }
 
-            var result = unitJson.ToString(Formatting.Indented);
-            File.WriteAllText(projectFile, result);
+            Unreal.WriteJson(unitJson, projectFile);
         }
 
         protected void AddModuleToPlugin()
