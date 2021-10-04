@@ -64,13 +64,12 @@ namespace Nuke.Unreal
                 {
                     module["WhitelistPlatforms"] = new JArray(TargetPlatform);
                 }
-                var result = PluginObject.ToString(Formatting.Indented);
-                File.WriteAllText(ToPlugin, result);
+
+                Unreal.WriteJson(PluginObject, ToPlugin);
 
                 ProjectObject["EngineAssociation"] = TargetEngineVersion.EngineAssociation;
                 ProjectObject["EngineVersionPatch"] = TargetEngineVersion.FullVersionName;
-                result = ProjectObject.ToString(Formatting.Indented);
-                File.WriteAllText(ToProject, result);
+                Unreal.WriteJson(ProjectObject, ToProject);
             });
 
         public Target MakeRelease => _ => _
