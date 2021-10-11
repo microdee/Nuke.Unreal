@@ -2,15 +2,25 @@
 
 #include "Misc/AutomationTest.h"
 
-BEGIN_DEFINE_SPEC(F{{ name }}Spec, "{{ name }}", /* EAutomationTestFlags */)
+BEGIN_DEFINE_SPEC(F{{ name }}Spec, "{{ name }}",
+	EAutomationTestFlags::EngineFilter
+
+	| EAutomationTestFlags::ClientContext
+	| EAutomationTestFlags::EditorContext
+	| EAutomationTestFlags::CommandletContext
+
+	| EAutomationTestFlags::CriticalPriority
+
+	| EAutomationTestFlags::NonNullRHI
+)
 	// test class members
 END_DEFINE_SPEC(F{{ name }}Spec)
 
-F{{ name }}Spec::Define()
+void F{{ name }}Spec::Define()
 {
 	Describe("My feature", [this]()
 	{
-		It("should work" [this]()
+		It("should work", [this]()
 		{
 			// test code
 		});
