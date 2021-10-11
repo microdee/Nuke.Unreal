@@ -2,7 +2,7 @@
 
 #include "Misc/AutomationTest.h"
 
-BEGIN_DEFINE_SPEC(F{{ name }}Spec, "{{ name }}",
+BEGIN_DEFINE_SPEC(F{{ name }}Spec, TEXT("{{ name }}"),
 	EAutomationTestFlags::EngineFilter
 
 	| EAutomationTestFlags::ClientContext
@@ -18,14 +18,14 @@ END_DEFINE_SPEC(F{{ name }}Spec)
 
 void F{{ name }}Spec::Define()
 {
-	Describe("My feature", [this]()
+	Describe(TEXT("My feature"), [this]()
 	{
-		It("should work", [this]()
+		It(TEXT("should work"), [this]()
 		{
 			// test code
 		});
 		
-		LatentIt("should wait for something, then work", [this](const FDoneDelegate& Done)
+		LatentIt(TEXT("should wait for something, then work"), [this](const FDoneDelegate& Done)
 		{
 			// test code
 		});
