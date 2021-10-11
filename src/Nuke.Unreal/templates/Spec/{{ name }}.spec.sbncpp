@@ -1,0 +1,23 @@
+// {{ copyright }}
+
+#include "Misc/AutomationTest.h"
+
+BEGIN_DEFINE_SPEC(F{{ name }}Spec, "{{ name }}", /* EAutomationTestFlags */)
+	// test class members
+END_DEFINE_SPEC(F{{ name }}Spec)
+
+F{{ name }}Spec::Define()
+{
+	Describe("My feature", [this]()
+	{
+		It("should work" [this]()
+		{
+			// test code
+		});
+		
+		LatentIt("should wait for something, then work", [this](const FDoneDelegate& Done)
+		{
+			// test code
+		});
+	});
+}

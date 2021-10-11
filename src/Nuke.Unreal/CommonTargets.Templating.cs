@@ -116,5 +116,18 @@ namespace Nuke.Unreal
                     )
                 )
             );
+
+        public Target NewSpec => _ => _
+            .Description("Create new Unreal Automation Spec in current directory")
+            .Requires(() => Name)
+            .Executes(() => 
+                Name.ForEach(n => 
+                    new SpecGenerator().Generate(
+                        TemplatesPath,
+                        (AbsolutePath) Environment.CurrentDirectory,
+                        new(n)
+                    )
+                )
+            );
     }
 }
