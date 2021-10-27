@@ -43,7 +43,6 @@ namespace Nuke.Unreal
                         + " -prereqs"
                         + " -build"
                     ).WithWorkingDir(UnrealEnginePath)
-                        .WithOnlyResults()
                         .Run();
                 });
             });
