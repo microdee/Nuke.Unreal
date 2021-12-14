@@ -53,6 +53,7 @@ namespace Nuke.Unreal
         public Target Checkout => _ => _
             .Description("Switch to the specified Unreal Engine version and platform for plugin development or packaging")
             .DependsOn(Clean)
+            .Requires(() => UnrealVersion)
             .Executes(() =>
             {
                 Info($"Checking out targeting UE {UnrealVersion} on platform {TargetPlatform}");

@@ -29,11 +29,9 @@ namespace Nuke.Unreal
     {
         /// <summary>
         /// Most targets read the desired UE4 version from the project file.
-        /// This property is abstract only for the default version of the Checkout target,
-        /// or anything which modifies the project file.
         /// </summary>
         [Parameter("Specify the target Unreal Engine version. By default only used by the Checkout target. Everything else should infer engine version from the project file.")]
-        public abstract string UnrealVersion { get; set; }
+        public string UnrealVersion { get; set; }
 
         // not a command line parameter anymore especially when we have the UnrealLocator program
         public virtual string UnrealSubfolder { get; } = "UE_{0}";

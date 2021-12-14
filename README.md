@@ -38,11 +38,16 @@ For now, no Nuget release available and its functionality is limited yet for mos
   ```CSharp
   public override AbsolutePath ToProject => RootDirectory / ".." / "MyProject" / "MyProject.uproject";
   ```
-  * This is only necessary if 
+  * This is only necessary if
+    * project file is not recursively inside one of the subfolders compared to the path of the `.nuke` folder
+    * project file is not in one of the parent folders of the `.nuke` folder
+    * there are multiple `.uproject` files so one needs to be specified. Nuke.Unreal targets support only one Unreal project.
 5. ***(optional)*** Set the path to your target plugin if there are more in your test project, or if it's not trivially around your Nuke targets:
   ```CSharp
   public override AbsolutePath ToPlugin => UnrealPluginsFolder / "MyPlugin" / "MyPlugin.uplugin";
   ```
+  * This is only necessary if
+    * there are multiple plugins in the test project so one needs to be specified. Nuke.Unreal targets support only one Unreal plugin to be worked on.
 
 ## Features:
 * All what the great Nuke can offer
