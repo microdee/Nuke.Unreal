@@ -70,9 +70,7 @@ namespace Nuke.Unreal
                     GetEngineVersionFromProject(),
                     $"{UnrealProjectName}Editor Win64 Development"
                     + $" -Project=\"{ToProject}\""
-                )
-                    .WithoutUnimportant()
-                    .Run();
+                ).Run();
             });
 
         public virtual Target Build => _ => _
@@ -93,9 +91,7 @@ namespace Nuke.Unreal
                         GetEngineVersionFromProject(),
                         $"{UnrealProjectName}{targetEnv} {TargetPlatform} {config}"
                         + $" -Project=\"{ToProject}\""
-                    )
-                        .WithoutUnimportant()
-                        .Run();
+                    ).Run();
                 });
             });
         

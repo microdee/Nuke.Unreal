@@ -53,6 +53,7 @@ namespace Nuke.Unreal
         public Target Checkout => _ => _
             .Description("Switch to the specified Unreal Engine version and platform for plugin development or packaging")
             .DependsOn(Clean)
+            .Requires(() => UnrealVersion)
             .Executes(() =>
             {
                 Info($"Checking out targeting UE {UnrealVersion} on platform {TargetPlatform}");
@@ -64,13 +65,12 @@ namespace Nuke.Unreal
                 {
                     module["WhitelistPlatforms"] = new JArray(TargetPlatform);
                 }
-                var result = PluginObject.ToString(Formatting.Indented);
-                File.WriteAllText(ToPlugin, result);
+
+                Unreal.WriteJson(PluginObject, ToPlugin);
 
                 ProjectObject["EngineAssociation"] = TargetEngineVersion.EngineAssociation;
                 ProjectObject["EngineVersionPatch"] = TargetEngineVersion.FullVersionName;
-                result = ProjectObject.ToString(Formatting.Indented);
-                File.WriteAllText(ToProject, result);
+                Unreal.WriteJson(ProjectObject, ToProject);
             });
 
         public Target MakeRelease => _ => _

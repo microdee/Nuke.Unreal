@@ -9,7 +9,7 @@
 USTRUCT()
 struct {{ module.name | string.upcase }}_API F{{ name }}
 {
-    GENERATED_BODY()
+	GENERATED_BODY()
 public:
 
 };

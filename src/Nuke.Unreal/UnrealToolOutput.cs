@@ -17,6 +17,17 @@ namespace Nuke.Unreal
     {
 
         private ConcurrentWriter _out;
+
+        private void SafeSetCursor(int top, int left)
+        {
+            try
+            {
+                _out.CursorTop = top;
+                _out.CursorLeft = left;
+            }
+            catch {}
+        }
+
         private Process _proc;
         private ProcessStartInfo _procStartInfo;
         private bool _compactOutput;
@@ -131,13 +142,11 @@ namespace Nuke.Unreal
                 return;
 
             _out.Write(new string(' ', _prevLength));
-            _out.CursorLeft = _curLeft;
-            _out.CursorTop = _curTop;
+            SafeSetCursor(_curTop, _curLeft);
             _prevLength = line.Length;
             _prevLine = line;
             _out.Write("\r" + line);
-            _out.CursorLeft = _curLeft;
-            _out.CursorTop = _curTop;
+            SafeSetCursor(_curTop, _curLeft);
             _eraseLastLine = true;
         }
 
@@ -152,8 +161,7 @@ namespace Nuke.Unreal
                 if(_eraseLastLine)
                 {
                     _out.Write(new string(' ', _prevLength));
-                    _out.CursorLeft = _curLeft;
-                    _out.CursorTop = _curTop;
+                    SafeSetCursor(_curTop, _curLeft);
                 }
                 _out.WriteLine(line);
                 _eraseLastLine = false;
@@ -171,7 +179,7 @@ namespace Nuke.Unreal
             }
             else
             {
-                _out.WriteLine(input);
+                WriteFull(input);
             }
         }
 
@@ -185,6 +193,33 @@ namespace Nuke.Unreal
         
         bool Contains(string line, string text) => line.Contains(text, StringComparison.InvariantCultureIgnoreCase);
 
+        private void WriteFull(string input)
+        {
+            _out.ForegroundColor = _defaultColor;
+
+
+            if(Regex.IsMatch(input, @"\[\d+?\/\d+?\]\s")
+                || input.StartsWith("Creating library", StringComparison.InvariantCultureIgnoreCase)
+                || Contains(input, "Flushing Shader Jobs")
+            )
+                _out.ForegroundColor = ConsoleColor.DarkGray;
+                
+            if(Contains(input, "error"))
+                _out.ForegroundColor = ConsoleColor.Red;
+            if(Contains(input, "fail"))
+                _out.ForegroundColor = ConsoleColor.DarkYellow;
+            if(Contains(input, "warning"))
+                _out.ForegroundColor = ConsoleColor.Yellow;
+            if(Contains(input, "success")
+                || Contains(input, "done")
+                || Contains(input, "complete")
+                || Contains(input, "ready")
+                || Contains(input, "***")
+            )
+                _out.ForegroundColor = ConsoleColor.Green;
+            
+            _out.WriteLine(input);
+        }
         private void WriteOutput(string input)
         {
             _out.ForegroundColor = _defaultColor;

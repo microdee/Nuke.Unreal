@@ -22,6 +22,14 @@ namespace Nuke.Unreal.BoilerplateGenerators
         protected ModuleModel Model;
         public string TemplateSubfolder => "Module";
 
+        public bool AddToTarget { get; private set; }
+
+        public ModuleGenerator SetAddToTarget(bool addToTarget)
+        {
+            AddToTarget = addToTarget;
+            return this;
+        }
+
         public void Generate(AbsolutePath templatesPath, AbsolutePath currentFolder, string name)
         {
             var project = new UnrealProject(currentFolder);
@@ -72,8 +80,7 @@ namespace Nuke.Unreal.BoilerplateGenerators
                 else throw new InvalidOperationException($"A module named {name} already exist.");
             }
 
-            var result = unitJson.ToString(Formatting.Indented);
-            File.WriteAllText(projectFile, result);
+            Unreal.WriteJson(unitJson, projectFile);
         }
 
         protected void AddModuleToPlugin()
@@ -104,19 +111,21 @@ namespace Nuke.Unreal.BoilerplateGenerators
                 Logger.Warn("Exception:");
                 Logger.Warn(e);
             }
-
-            var targetFile = (AbsolutePath) Model.Project.Folder / "Source" / $"{Model.Project.Name}.Target.cs";
-            var editorTargetFile = (AbsolutePath) Model.Project.Folder / "Source" / $"{Model.Project.Name}Editor.Target.cs";
-            try
+            if(AddToTarget)
             {
-                AddModuleToTarget(targetFile);
-                AddModuleToTarget(editorTargetFile);
-            }
-            catch (Exception e)
-            {
-                Logger.Warn($"Couldn't add module {Model.Name} to {Model.Project.Name}'s target rules, it has to be added manually.");
-                Logger.Warn("Exception:");
-                Logger.Warn(e);
+                var targetFile = (AbsolutePath) Model.Project.Folder / "Source" / $"{Model.Project.Name}.Target.cs";
+                var editorTargetFile = (AbsolutePath) Model.Project.Folder / "Source" / $"{Model.Project.Name}Editor.Target.cs";
+                try
+                {
+                    AddModuleToTarget(targetFile);
+                    AddModuleToTarget(editorTargetFile);
+                }
+                catch (Exception e)
+                {
+                    Logger.Warn($"Couldn't add module {Model.Name} to {Model.Project.Name}'s target rules, it has to be added manually.");
+                    Logger.Warn("Exception:");
+                    Logger.Warn(e);
+                }
             }
         }
 

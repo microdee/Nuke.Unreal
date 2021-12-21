@@ -9,11 +9,11 @@
 UINTERFACE()
 class {{ module.name | string.upcase }}_API U{{ name }} : public UInterface
 {
-    GENERATED_BODY()
+	GENERATED_BODY()
 };
 
 class {{ module.name | string.upcase }}_API I{{ name }}
 {
-    GENERATED_BODY()
+	GENERATED_BODY()
 public:
 };
