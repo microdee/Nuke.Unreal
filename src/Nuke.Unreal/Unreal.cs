@@ -260,7 +260,6 @@ namespace Nuke.Unreal
 
         public static void ClearFolder(AbsolutePath folder)
         {
-            var targetName = Path.GetFileName(folder);
             if(Directory.Exists(folder / "Intermediate"))
                 DeleteDirectory(folder / "Intermediate");
 

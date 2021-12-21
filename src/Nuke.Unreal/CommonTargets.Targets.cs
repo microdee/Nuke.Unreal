@@ -22,6 +22,8 @@ using static Nuke.Common.Tools.DotNet.DotNetTasks;
 using static Nuke.Common.Logger;
 using static Nuke.Common.ControlFlow;
 using static Nuke.Unreal.BuildCommon;
+using GlobExpressions;
+using Nuke.Common.Tools.Git;
 
 namespace Nuke.Unreal
 {
@@ -39,9 +41,28 @@ namespace Nuke.Unreal
             .Description("Removes auto generated folders of Unreal Engine from the plugins")
             .Executes(() =>
             {
+                void recurseBody(AbsolutePath path)
+                {
+                    if(Glob.Files(path, "*.uplugin", GlobOptions.CaseInsensitive).Any())
+                    {
+                        Unreal.ClearFolder(path);
+                        if(DirectoryExists(path / ".git") || FileExists(path / ".git"))
+                            GitTasks.Git("clean -xdf", path);
+                    }
+                    else
+                    {
+                        if(DirectoryExists(path / ".git") || FileExists(path / ".git"))
+                            GitTasks.Git("clean -xdf", path);
+                        foreach(var dir in Directory.EnumerateDirectories(path))
+                        {
+                            recurseBody((AbsolutePath)dir);
+                        }
+                    }
+                }
+
                 foreach(var pluginDir in Directory.EnumerateDirectories(UnrealPluginsFolder))
                 {
-                    Unreal.ClearFolder((AbsolutePath)pluginDir);
+                    recurseBody((AbsolutePath)pluginDir);
                 }
             });
 
