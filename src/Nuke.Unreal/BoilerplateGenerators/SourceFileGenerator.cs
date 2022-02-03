@@ -1,6 +1,7 @@
 using System.Linq;
 using System;
 using System.IO;
+using Serilog;
 using Nuke.Common.IO;
 using Nuke.Common.Utilities.Collections;
 using Nuke.Common;
@@ -49,9 +50,9 @@ namespace Nuke.Unreal.BoilerplateGenerators
             var cppDstDir = currentFolder.ToString().Replace("public", "private", true, null);
 
             if(Model.Plugin != null)
-                Logger.Normal($"Plugin: {Model.Plugin.Folder}");
+                Log.Debug($"Plugin: {Model.Plugin.Folder}");
             
-            Logger.Normal($"Module: {Model.Module.Folder}");
+            Log.Debug($"Module: {Model.Module.Folder}");
 
             Directory.EnumerateFiles(sourceTemplateDir, "*.sbncpp").ForEach(f =>
                 RenderFile(

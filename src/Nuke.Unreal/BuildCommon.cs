@@ -1,7 +1,7 @@
 using System;
 using Nuke.Common.IO;
 using System.Runtime.CompilerServices;
-using static Nuke.Common.ControlFlow;
+using Nuke.Common;
 
 namespace Nuke.Unreal
 {
@@ -11,7 +11,7 @@ namespace Nuke.Unreal
         {
             AbsolutePath RecurseBody(AbsolutePath current)
             {
-                Assert(current.Parent != null, "Could not find a project root");
+                Assert.True(current.Parent != null, "Could not find a project root");
                 if(predicate(current)) return current;
                 return RecurseBody(current.Parent);
             }

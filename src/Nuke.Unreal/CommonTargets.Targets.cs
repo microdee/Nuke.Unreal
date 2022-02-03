@@ -19,11 +19,10 @@ using static Nuke.Common.EnvironmentInfo;
 using static Nuke.Common.IO.FileSystemTasks;
 using static Nuke.Common.IO.PathConstruction;
 using static Nuke.Common.Tools.DotNet.DotNetTasks;
-using static Nuke.Common.Logger;
-using static Nuke.Common.ControlFlow;
 using static Nuke.Unreal.BuildCommon;
 using GlobExpressions;
 using Nuke.Common.Tools.Git;
+using Serilog;
 
 namespace Nuke.Unreal
 {
@@ -46,12 +45,12 @@ namespace Nuke.Unreal
                     if(Glob.Files(path, "*.uplugin", GlobOptions.CaseInsensitive).Any())
                     {
                         Unreal.ClearFolder(path);
-                        if(DirectoryExists(path / ".git") || FileExists(path / ".git"))
+                        if((path / ".git").DirectoryExists() || (path / ".git").FileExists())
                             GitTasks.Git("clean -xdf", path);
                     }
                     else
                     {
-                        if(DirectoryExists(path / ".git") || FileExists(path / ".git"))
+                        if((path / ".git").DirectoryExists() || (path / ".git").FileExists())
                             GitTasks.Git("clean -xdf", path);
                         foreach(var dir in Directory.EnumerateDirectories(path))
                         {
@@ -106,7 +105,7 @@ namespace Nuke.Unreal
                 {
                     var (config, runIn) = combination;
 
-                    Logger.Block($"{config} ran in {runIn}:");
+                    Log.Information($"{config} ran in {runIn}:");
                     var targetEnv = runIn == ExecMode.Standalone ? "" : "Editor";
                     Unreal.BuildTool(
                         GetEngineVersionFromProject(),

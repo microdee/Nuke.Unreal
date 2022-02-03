@@ -3,15 +3,16 @@ using System.Text.RegularExpressions;
 using System.Linq;
 using System.IO;
 using System.Collections.Generic;
+using Nuke.Common;
 using Nuke.Common.IO;
-using static Nuke.Common.Logger;
-using static Nuke.Common.ControlFlow;
-using static Nuke.Common.IO.FileSystemTasks;
 using System.Runtime.InteropServices;
 using Nuke.Common.Tooling;
 using System.Reflection;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using Serilog;
+
+using static Nuke.Common.IO.FileSystemTasks;
 
 namespace Nuke.Unreal
 {
@@ -33,13 +34,13 @@ namespace Nuke.Unreal
             FullVersionName = versionName;
 
             var regexedComponents = Regex.Match(versionName, @"(?<version>[\W\d]+)(?<extension>\w*)");
-            Assert(regexedComponents != null, "Invalid version format");
+            Assert.True(regexedComponents != null, "Invalid version format");
 
             PureVersionNamePatch = regexedComponents.Groups["version"].Value;
             Extension = regexedComponents.Groups["extension"].Value ?? "";
             IsEarlyAccess = Extension == "EA";
 
-            Assert(Version.TryParse(PureVersionNamePatch, out var semVersion), "Couldn't parse semantic version of input UE version");
+            Assert.True(Version.TryParse(PureVersionNamePatch, out var semVersion), "Couldn't parse semantic version of input UE version");
 
             SemanticalVersion = new Version(
                 semVersion.Major,
@@ -150,7 +151,7 @@ namespace Nuke.Unreal
             if(RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
             {
                 string location = null;
-                Normal("Looking for Unreal Engine installation:");
+                Log.Debug("Looking for Unreal Engine installation:");
 
                 string Filter(string line)
                 {

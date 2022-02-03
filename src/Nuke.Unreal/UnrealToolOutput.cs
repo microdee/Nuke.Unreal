@@ -8,8 +8,8 @@ using System.Diagnostics;
 
 using Konsole;
 using Nuke.Common.IO;
-using static Nuke.Common.ControlFlow;
-using static Nuke.Common.Logger;
+using Serilog;
+using Nuke.Common;
 
 namespace Nuke.Unreal
 {
@@ -81,8 +81,8 @@ namespace Nuke.Unreal
 
         public UnrealToolOutput Run()
         {
-            Normal($"Running: {_procStartInfo.FileName}");
-            Normal("         " + string.Join(' ', _procStartInfo.Arguments));
+            Log.Debug($"Running: {_procStartInfo.FileName}");
+            Log.Debug("         " + string.Join(' ', _procStartInfo.Arguments));
             
             try
             {
@@ -117,7 +117,7 @@ namespace Nuke.Unreal
             }
             _out.WriteLine("Unreal Task completed");
 
-            Assert(_proc.ExitCode == 0, "Unreal Task exited with a non-zero exit code.");
+            Assert.True(_proc.ExitCode == 0, "Unreal Task exited with a non-zero exit code.");
             return this;
         }
 

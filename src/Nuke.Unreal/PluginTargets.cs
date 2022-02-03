@@ -3,13 +3,11 @@ using System;
 using System.IO;
 using System.IO.Compression;
 using Nuke.Common.IO;
+using Serilog;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Nuke.Common;
 using static Nuke.Common.IO.FileSystemTasks;
-using static Nuke.Common.IO.PathConstruction;
-using static Nuke.Common.Logger;
-using static Nuke.Common.ControlFlow;
 
 namespace Nuke.Unreal
 {
@@ -33,10 +31,10 @@ namespace Nuke.Unreal
             {
                 if(_toPluginCache != null) return _toPluginCache;
 
-                Logger.Info(".uplugin path was unspecified, looking for one...");
+                Log.Information(".uplugin path was unspecified, looking for one...");
                 if(LookAroundFor(f => f.EndsWith(".uplugin"), out var candidate))
                 {
-                    Logger.Success($"Found project at {candidate}");
+                    Log.Information($"Found project at {candidate}");
                     _toPluginCache = candidate;
                     return _toPluginCache;
                 }
@@ -56,7 +54,7 @@ namespace Nuke.Unreal
             .Requires(() => UnrealVersion)
             .Executes(() =>
             {
-                Info($"Checking out targeting UE {UnrealVersion} on platform {TargetPlatform}");
+                Log.Information($"Checking out targeting UE {UnrealVersion} on platform {TargetPlatform}");
 
                 PluginObject["EngineVersion"] = TargetEngineVersion.FullVersionName;
                 PluginObject["VersionName"] = PluginVersion;
@@ -87,7 +85,7 @@ namespace Nuke.Unreal
                 var targetDir = OutPath / packageName;
                 var archiveFileName = $"{packageName}.zip";
 
-                Info($"Packaging plugin: {packageName}");
+                Log.Information($"Packaging plugin: {packageName}");
 
                 if(Directory.Exists(targetDir))
                     DeleteDirectory(targetDir);
@@ -106,7 +104,7 @@ namespace Nuke.Unreal
                     .WithOnlyResults()
                     .Run();
 
-                Info($"Archiving release: {packageName}");
+                Log.Information($"Archiving release: {packageName}");
                 ZipFile.CreateFromDirectory(targetDir, targetDir.Parent / archiveFileName);
             });
 
@@ -120,7 +118,7 @@ namespace Nuke.Unreal
                 var targetDir = OutPath / packageName;
                 var archiveFileName = $"{packageName}.zip";
 
-                Info($"Gathering Marketplace release: {packageName}");
+                Log.Information($"Gathering Marketplace release: {packageName}");
 
                 if(Directory.Exists(targetDir))
                     DeleteDirectory(targetDir);
@@ -157,7 +155,7 @@ namespace Nuke.Unreal
                         DirectoryExistsPolicy.Merge
                     );
 
-                Info($"Archiving release: {packageName}");
+                Log.Information($"Archiving release: {packageName}");
                 ZipFile.CreateFromDirectory(targetDir, targetDir.Parent / archiveFileName);
             });
     }

@@ -48,7 +48,7 @@ namespace Nuke.Unreal
 
         public class Group : ToolEntity
         {
-            internal Command SelectedCommand;
+            internal Command SelectedCommand = new();
         }
 
         protected Group SelectedGroup;

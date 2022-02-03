@@ -1,27 +1,13 @@
 using System;
-using System.ComponentModel;
 using System.IO;
 using System.Linq;
-using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Nuke.Common;
-using Nuke.Common.CI;
-using Nuke.Common.Execution;
-using Nuke.Common.Git;
 using Nuke.Common.IO;
-using Nuke.Common.ProjectModel;
-using Nuke.Common.Tooling;
-using Nuke.Common.Tools.DotNet;
 using Nuke.Common.Utilities.Collections;
-using Nuke.Unreal.BoilerplateGenerators;
+using Serilog;
 
-using static Nuke.Common.EnvironmentInfo;
-using static Nuke.Common.IO.FileSystemTasks;
 using static Nuke.Common.IO.PathConstruction;
-using static Nuke.Common.Tools.DotNet.DotNetTasks;
-using static Nuke.Common.Logger;
-using static Nuke.Common.ControlFlow;
-using static Nuke.Unreal.BuildCommon;
 
 namespace Nuke.Unreal
 {
@@ -79,10 +65,10 @@ namespace Nuke.Unreal
             {
                 if(_toProjectCache != null) return _toProjectCache;
 
-                Logger.Info(".uproject path was unspecified, looking for one...");
+                Log.Information(".uproject path was unspecified, looking for one...");
                 if(LookAroundFor(f => f.EndsWith(".uproject"), out var candidate))
                 {
-                    Logger.Success($"Found project at {candidate}");
+                    Log.Information($"Found project at {candidate}");
                     _toProjectCache = candidate;
                     return _toProjectCache;
                 }

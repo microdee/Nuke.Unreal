@@ -5,6 +5,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Nuke.Common.IO;
 using Nuke.Common;
+using Serilog;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
@@ -92,9 +93,8 @@ namespace Nuke.Unreal.BoilerplateGenerators
             }
             catch (Exception e)
             {
-                Logger.Warn($"Couldn't add module {Model.Name} to {Model.Plugin.Name}.uproject, it has to be added manually.");
-                Logger.Warn("Exception:");
-                Logger.Warn(e);
+                Log.Warning($"Couldn't add module {Model.Name} to {Model.Plugin.Name}.uproject, it has to be added manually.");
+                Log.Warning(e, "Exception:");
             }
         }
 
@@ -107,9 +107,8 @@ namespace Nuke.Unreal.BoilerplateGenerators
             }
             catch (Exception e)
             {
-                Logger.Warn($"Couldn't add module {Model.Name} to {Model.Project.Name}.uproject, it has to be added manually.");
-                Logger.Warn("Exception:");
-                Logger.Warn(e);
+                Log.Warning($"Couldn't add module {Model.Name} to {Model.Project.Name}.uproject, it has to be added manually.");
+                Log.Warning(e, "Exception:");
             }
             if(AddToTarget)
             {
@@ -122,9 +121,8 @@ namespace Nuke.Unreal.BoilerplateGenerators
                 }
                 catch (Exception e)
                 {
-                    Logger.Warn($"Couldn't add module {Model.Name} to {Model.Project.Name}'s target rules, it has to be added manually.");
-                    Logger.Warn("Exception:");
-                    Logger.Warn(e);
+                    Log.Warning($"Couldn't add module {Model.Name} to {Model.Project.Name}'s target rules, it has to be added manually.");
+                    Log.Warning(e, "Exception:");
                 }
             }
         }

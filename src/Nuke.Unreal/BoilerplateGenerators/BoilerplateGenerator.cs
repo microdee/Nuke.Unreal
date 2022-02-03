@@ -5,6 +5,7 @@ using System.IO;
 using Nuke.Common;
 using Nuke.Common.IO;
 using Scriban;
+using Serilog;
 
 namespace Nuke.Unreal.BoilerplateGenerators
 {
@@ -46,7 +47,7 @@ namespace Nuke.Unreal.BoilerplateGenerators
 
             var outPath = (resultPath.Parent / resultFilename) + resultExt;
 
-            Logger.Normal($"Rendering to: {resultFilename + resultExt}");
+            Log.Debug($"Rendering to: {resultFilename + resultExt}");
 
             File.WriteAllText(outPath, renderedText);
         }
