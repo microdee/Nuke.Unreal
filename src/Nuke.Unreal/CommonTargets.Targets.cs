@@ -1,25 +1,12 @@
 using System;
-using System.ComponentModel;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using Nuke.Common;
-using Nuke.Common.CI;
-using Nuke.Common.Execution;
-using Nuke.Common.Git;
 using Nuke.Common.IO;
-using Nuke.Common.ProjectModel;
-using Nuke.Common.Tooling;
-using Nuke.Common.Tools.DotNet;
 using Nuke.Common.Utilities.Collections;
-using Nuke.Unreal.BoilerplateGenerators;
 
-using static Nuke.Common.EnvironmentInfo;
 using static Nuke.Common.IO.FileSystemTasks;
-using static Nuke.Common.IO.PathConstruction;
-using static Nuke.Common.Tools.DotNet.DotNetTasks;
-using static Nuke.Unreal.BuildCommon;
 using GlobExpressions;
 using Nuke.Common.Tools.Git;
 using Serilog;
@@ -114,28 +101,52 @@ namespace Nuke.Unreal
                     ).Run();
                 });
             });
+
+        public virtual bool CookAll => false;
+        public virtual IEnumerable<string> CookArguments
+        {
+            get
+            {
+                var result = new List<string> {
+                    "-nocompile",
+                    "-nocompileeditor",
+                    "-installed",
+                    "-skipstage",
+                    "-skipbuild",
+                    "-nop4",
+                    "-utf8output",
+                    "-manifests",
+                };
+                if(CookAll)
+                {
+                    result.Add("-CookAll");
+                }
+                return result;
+            }
+        }
         
         public virtual Target Cook => _ => _
             .Description("Cook Unreal assets for standalone game execution")
-            .DependsOn(BuildEditor)
+            .DependsOn(BuildEditor, Build)
             .Executes(() =>
             {
-                Unreal.AutomationToolBatch(
-                    GetEngineVersionFromProject(),
-                    "BuildCookRun"
-                    + $" -ScriptsForProject=\"{ToProject}\""
-                    + $" -project=\"{ToProject}\""
-                    + $" -targetplatform={TargetPlatform}"
-                    + " -nocompile"
-                    + " -nocompileeditor"
-                    + " -installed"
-                    + " -nop4"
-                    + " -cook"
-                    + " -skipstage"
-                    + " -utf8output"
-                )
-                    .WithOnlyResults()
+                Config.ForEach(c =>
+                {
+                    Unreal.AutomationToolBatch(
+                        GetEngineVersionFromProject(),
+                        "BuildCookRun"
+                        + $" -ScriptsForProject=\"{ToProject}\""
+                        + $" -project=\"{ToProject}\""
+                        + $" -targetplatform={TargetPlatform}"
+                        + $" -platform={TargetPlatform}"
+                        + $" -clientconfig={c}"
+                        + " -ue4exe=UE4Editor-Cmd.exe"
+                        + " -cook"
+                        + " " + string.Join(' ', CookArguments)
+                    )
+                    .WithWorkingDir(UnrealEnginePath)
                     .Run();
+                });
             });
     }
 }

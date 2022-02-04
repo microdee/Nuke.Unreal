@@ -48,7 +48,7 @@ namespace Nuke.Unreal
         protected JObject PluginObject =>
             _pluginObject ?? (_pluginObject = JObject.Parse(File.ReadAllText(ToPlugin)));
 
-        public Target Checkout => _ => _
+        public virtual Target Checkout => _ => _
             .Description("Switch to the specified Unreal Engine version and platform for plugin development or packaging")
             .DependsOn(Clean)
             .Requires(() => UnrealVersion)
@@ -71,12 +71,12 @@ namespace Nuke.Unreal
                 Unreal.WriteJson(ProjectObject, ToProject);
             });
 
-        public Target MakeRelease => _ => _
+        public virtual Target MakeRelease => _ => _
             .Description("Make a proper release of the target plugin for current version. This yields zip archives in the deployment path specified in OutPath (.deploy by default)")
             .Triggers(MakeMarketplaceRelease)
             .Triggers(PackPlugin);
 
-        public Target PackPlugin => _ => _
+        public virtual Target PackPlugin => _ => _
             .Description("Make a prebuilt release of the target plugin for current version. This yields zip archives in the deployment path specified in OutPath (.deploy by default)")
             .DependsOn(Checkout)
             .Executes(() =>
@@ -108,7 +108,7 @@ namespace Nuke.Unreal
                 ZipFile.CreateFromDirectory(targetDir, targetDir.Parent / archiveFileName);
             });
 
-        public Target MakeMarketplaceRelease => _ => _
+        public virtual Target MakeMarketplaceRelease => _ => _
             .Description("Prepare a Marketplace complaint archive from the plugin. This target only executes when --for-marketplace is also present. This yields zip archives in the deployment path specified in OutPath (.deploy by default)")
             .DependsOn(Checkout)
             .OnlyWhenStatic(() => ForMarketplace)
