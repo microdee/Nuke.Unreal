@@ -44,6 +44,7 @@ namespace Nuke.Unreal
         public virtual Target Package => _ => _
             .Description("Same as running Package Project from Editor")
             .DependsOn(Cook)
+            .After(CleanDeployment)
             .Executes(() =>
             {
                 var appLocalDir = UnrealEnginePath / "Engine" / "Binaries" / "ThirdParty" / "AppLocalDependencies";
@@ -72,27 +73,3 @@ namespace Nuke.Unreal
             });
     }
 }
-/*
--project=E:\work\14\s\RW1.uproject
--noP4
--utf8output
--ue4exe=UE4Editor-Cmd.exe
--manifests
--stagingdirectory=E:\work\14\a\s
--archivedirectory=E:\work\14\a\__default
--clientconfig=Development
--platform=Win64
--server
--serverconfig=Development
--serverplatform=Linux
--createreleaseversion=core
--map=ToolsTest+WarpTest+InteractionTest+ReviewRoom+AttachmentSystemTest+ChartsTest+UserRoom+Symposium+MeetingRoom+CompanyRoom_01+MenuCansTutorial+MenuFilesTutorial+GeneralMenuTutorialMain+GeneralMenuTutorialUserRoom+LevelStreamingTest
--skipbuild
--skipcook
--pak
--package
--stage
--archive
--CookOutputDir=E:\work\14\a\c
--compile
-*/

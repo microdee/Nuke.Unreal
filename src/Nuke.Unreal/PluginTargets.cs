@@ -79,6 +79,7 @@ namespace Nuke.Unreal
         public virtual Target PackPlugin => _ => _
             .Description("Make a prebuilt release of the target plugin for current version. This yields zip archives in the deployment path specified in OutPath (.deploy by default)")
             .DependsOn(Checkout)
+            .After(CleanDeployment)
             .Executes(() =>
             {
                 var packageName = $"{PluginName}-{TargetPlatform}-{PluginVersion}.{GetEngineVersionFromProject().FullVersionName}-PreBuilt";
