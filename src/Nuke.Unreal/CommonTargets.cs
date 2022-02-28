@@ -60,6 +60,12 @@ namespace Nuke.Unreal
         [Parameter("The target execution mode for building the project (Standalone or Editor")]
         public virtual ExecMode[] RunIn { get; set; } = new [] {ExecMode.Standalone};
 
+        [Parameter("Extra arguments passed to UBT. It's recommended to use it only from command line, do not override.")]
+        public virtual string[] UbtArgs { get; set; }
+
+        [Parameter("Extra arguments passed to UAT. It's recommended to use it only from command line, do not override.")]
+        public virtual string[] UatArgs { get; set; }
+
         public EngineVersion TargetEngineVersion => new(UnrealVersion, UnrealSubfolder, CustomEnginePath);
 
         protected EngineVersion GetEngineVersionFromProject() {

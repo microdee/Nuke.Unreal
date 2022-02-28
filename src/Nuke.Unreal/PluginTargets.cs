@@ -101,6 +101,7 @@ namespace Nuke.Unreal
                     + $" -Plugin=\"{ToPlugin}\""
                     + $" -Package=\"{targetDir}\""
                     + " -CreateSubFolder"
+                    + UatArgs.AppendAsArguments()
                 )
                     .WithOnlyResults()
                     .Run();

@@ -7,7 +7,7 @@ Nuke + Unreal Engine workflow provides a consistent way to work with UE4/5 tools
 
 ## Usage
 
-For now, no Nuget release available and its functionality is limited yet for mostly personal usage. When Nuget package will be available it'll be available as a simple package reference in your Nuke build project. If you still want to use this workflow you can install from script or go manually:
+For now, no Nuget release available but planned when it hits 1.0. When Nuget package will be available it'll be available as a simple package reference in your Nuke build project. If you still want to use this workflow you can install from script or go manually:
 
 1. Set up the build project:
    * Via a script:
@@ -72,6 +72,12 @@ For now, no Nuget release available and its functionality is limited yet for mos
     > nuke new-module --name MyModule
     etc...
     ```
+
+### Custom UBT or UAT arguments
+
+Nuke.Unreal supports passing custom arguments to UBT or UAT via `--ubt-args` or `--uat-args`. These are regular array properties exposed as Nuke target parameters. This means however that doing `--ubt-args -ShowIncludes` wouldn't actually add `-ShowIncludes` to the argument list. This happens because Nuke stops parsing the array argument when it hits a `-` character. For this reason Nuke.Unreal has a special escape mechanism where `~-` is replaced with `-`, or if the argument starts with `~` then that's also replaced with a `-`.
+
+So doing `--ubt-args ~ShowIncludes ~2022` will correctly pass arguments `-ShowIncludes -2022` to UBT.
 
 ## Generators
 

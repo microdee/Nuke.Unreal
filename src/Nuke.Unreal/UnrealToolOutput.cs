@@ -10,6 +10,8 @@ using Konsole;
 using Nuke.Common.IO;
 using Serilog;
 using Nuke.Common;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Nuke.Unreal
 {
@@ -42,6 +44,8 @@ namespace Nuke.Unreal
         private bool _noOutputProcessingSession;
 
         private readonly ConcurrentQueue<(Action<string> command, string input)> _outQueue = new();
+        private readonly ConcurrentQueue<string> _includeContextQueue = new();
+        private readonly object _includeLock = new();
         private AutoResetEvent _outQueueSemaphore;
         
         public UnrealToolOutput(
@@ -76,6 +80,12 @@ namespace Nuke.Unreal
         public UnrealToolOutput WithWorkingDir(AbsolutePath workingDir)
         {
             _procStartInfo.WorkingDirectory = workingDir;
+            return this;
+        }
+
+        public UnrealToolOutput WithSelectiveShowIncludes()
+        {
+            _procStartInfo.Arguments += " -ShowIncludes";
             return this;
         }
 
@@ -193,23 +203,112 @@ namespace Nuke.Unreal
         
         bool Contains(string line, string text) => line.Contains(text, StringComparison.InvariantCultureIgnoreCase);
 
+        bool IsBuildTask(string input) => Regex.IsMatch(input, @"\[\d+?\/\d+?\]\s");
+
+        int CountInitSpace(string input)
+        {
+            if(string.IsNullOrWhiteSpace(input)) return 0;
+
+            int res = 0;
+            while(input.Length > 1 && input[0] == ' ')
+            {
+                input = input.Substring(1);
+                res++;
+            }
+            return res;
+        }
+
+        void WriteWithIncludeContext(string input, ConsoleColor color)
+        {
+            if(!_includeContextQueue.IsEmpty)
+            {
+                _out.ForegroundColor = _defaultColor;
+                _out.WriteLine("\nInclude trace:");
+                var includes = new List<string>();
+
+                lock (_includeLock)
+                {
+                    while(_includeContextQueue.TryDequeue(out var includeLine))
+                    {
+                        includes.Add(includeLine.Replace("Note: including file:", ""));
+                    }
+                    _includeContextQueue.Clear();
+                }
+
+                includes.Reverse();
+
+                var indent = 9999;
+                var trace = new List<string>();
+
+                foreach(var includeLine in includes)
+                {
+                    int currIndent = CountInitSpace(includeLine);
+                    if(currIndent < indent)
+                    {
+                        trace.Add(includeLine);
+                        indent = currIndent;
+                    }
+                }
+
+                trace.Reverse();
+                foreach(var includeLine in trace)
+                {
+                    _out.WriteLine("Including file: " + includeLine);
+                }
+            }
+            _out.ForegroundColor = color;
+            _out.WriteLine(input);
+        }
+
+        void WriteBuildTask(string input)
+        {
+            if(Contains(_procStartInfo.Arguments, "ShowIncludes"))
+            {
+                _includeContextQueue.Clear();
+            }
+            _out.ForegroundColor = ConsoleColor.DarkGray;
+            _out.WriteLine(input);
+        }
+
         private void WriteFull(string input)
         {
             _out.ForegroundColor = _defaultColor;
 
+            if(Contains(_procStartInfo.Arguments, "ShowIncludes"))
+            {
+                if(input.StartsWith("Note: including file:", true, null))
+                {
+                    lock (_includeLock)
+                    {
+                        _includeContextQueue.Enqueue(input);
+                    }
+                    return;
+                }
+            }
 
-            if(Regex.IsMatch(input, @"\[\d+?\/\d+?\]\s")
+            if(IsBuildTask(input)
                 || input.StartsWith("Creating library", StringComparison.InvariantCultureIgnoreCase)
                 || Contains(input, "Flushing Shader Jobs")
-            )
-                _out.ForegroundColor = ConsoleColor.DarkGray;
+            ) {
+                WriteBuildTask(input);
+                return;
+            }
                 
             if(Contains(input, "error"))
-                _out.ForegroundColor = ConsoleColor.Red;
+            {
+                WriteWithIncludeContext(input, ConsoleColor.Red);
+                return;
+            }
             if(Contains(input, "fail"))
-                _out.ForegroundColor = ConsoleColor.DarkYellow;
+            {
+                WriteWithIncludeContext(input, ConsoleColor.DarkYellow);
+                return;
+            }
             if(Contains(input, "warning"))
-                _out.ForegroundColor = ConsoleColor.Yellow;
+            {
+                WriteWithIncludeContext(input, ConsoleColor.Yellow);
+                return;
+            }
             if(Contains(input, "success")
                 || Contains(input, "done")
                 || Contains(input, "complete")
@@ -225,7 +324,7 @@ namespace Nuke.Unreal
             _out.ForegroundColor = _defaultColor;
 
             // VS building step
-            if(Regex.IsMatch(input, @"\[\d+?\/\d+?\]\s"))
+            if(IsBuildTask(input))
             {
                 WriteUnimportant(input);
                 return;
