@@ -83,16 +83,10 @@ namespace Nuke.Unreal
             return this;
         }
 
-        public UnrealToolOutput WithSelectiveShowIncludes()
-        {
-            _procStartInfo.Arguments += " -ShowIncludes";
-            return this;
-        }
-
         public UnrealToolOutput Run()
         {
             Log.Debug($"Running: {_procStartInfo.FileName}");
-            Log.Debug("         " + string.Join(' ', _procStartInfo.Arguments));
+            Log.Debug( "         " + string.Join(' ', _procStartInfo.Arguments));
             
             try
             {
@@ -223,7 +217,7 @@ namespace Nuke.Unreal
             if(!_includeContextQueue.IsEmpty)
             {
                 _out.ForegroundColor = _defaultColor;
-                _out.WriteLine("\nInclude trace:");
+                _out.WriteLine("Including files encountered until this point since last trace: (showing only ascendants)");
                 var includes = new List<string>();
 
                 lock (_includeLock)
@@ -253,7 +247,15 @@ namespace Nuke.Unreal
                 trace.Reverse();
                 foreach(var includeLine in trace)
                 {
-                    _out.WriteLine("Including file: " + includeLine);
+                    if(input.Contains(includeLine.Trim()))
+                    {
+                        _out.ForegroundColor = ConsoleColor.Magenta;
+                    }
+                    else
+                    {
+                        _out.ForegroundColor = _defaultColor;
+                    }
+                    _out.WriteLine(includeLine);
                 }
             }
             _out.ForegroundColor = color;

@@ -78,6 +78,7 @@ namespace Nuke.Unreal
                     GetEngineVersionFromProject(),
                     $"{UnrealProjectName}Editor Win64 Development"
                     + $" -Project=\"{ToProject}\""
+                    +  " -ShowIncludes"
                     + UbtArgs.AppendAsArguments()
                 ).Run();
             });
@@ -100,6 +101,7 @@ namespace Nuke.Unreal
                         GetEngineVersionFromProject(),
                         $"{UnrealProjectName}{targetEnv} {TargetPlatform} {config}"
                         + $" -Project=\"{ToProject}\""
+                        +  " -ShowIncludes"
                         + UbtArgs.AppendAsArguments()
                     ).Run();
                 });

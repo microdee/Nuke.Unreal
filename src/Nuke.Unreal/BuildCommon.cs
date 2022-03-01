@@ -27,9 +27,8 @@ namespace Nuke.Unreal
         {
             if(string.IsNullOrWhiteSpace(arg)) return arg;
 
-            // internal escape character is ~
             arg = arg.TrimMatchingDoubleQuotes()
-                .Replace("~''", "\"") // sequence for double quotes
+                .Replace("''", "\"") // sequence for double quotes
                 .Replace("~-", "-"); // sequence for -
             if(arg[0] == '~')
                 arg = string.Concat("-", arg.AsSpan(1));

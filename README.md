@@ -75,9 +75,18 @@ For now, no Nuget release available but planned when it hits 1.0. When Nuget pac
 
 ### Custom UBT or UAT arguments
 
-Nuke.Unreal supports passing custom arguments to UBT or UAT via `--ubt-args` or `--uat-args`. These are regular array properties exposed as Nuke target parameters. This means however that doing `--ubt-args -ShowIncludes` wouldn't actually add `-ShowIncludes` to the argument list. This happens because Nuke stops parsing the array argument when it hits a `-` character. For this reason Nuke.Unreal has a special escape mechanism where `~-` is replaced with `-`, or if the argument starts with `~` then that's also replaced with a `-`.
+Nuke.Unreal supports passing custom arguments to UBT or UAT via `--ubt-args` or `--uat-args`. These are regular array properties exposed as Nuke target parameters. This means however that doing `--ubt-args -DisableUnity` wouldn't actually add `-DisableUnity` to the argument list. This happens because Nuke stops parsing the array argument when it hits a `-` character. For this reason Nuke.Unreal has a special escape mechanism where `~-` is replaced with `-`, or if the argument starts with `~` then that's also replaced with a `-`.
 
-So doing `--ubt-args ~ShowIncludes ~2022` will correctly pass arguments `-ShowIncludes -2022` to UBT.
+So doing `--ubt-args ~DisableUnity ~2022` will correctly pass arguments `-DisableUnity -2022` to UBT.
+
+For convenience the sequence `''` is also replaced with a double quote `"` hopefully escaping command line parsers.
+
+This is especially useful for doing temporary debugging with UBT and the compiler: (not an actual usecase)
+```
+> nuke build ... --ubt-args "~CompilerArguments=''/diagnostics:caret /P /C''" ~DisableUnity
+> nuke build ... --ubt-args "~LinkerArguments=''/VERBOSE''"
+> nuke build ... --ubt-args ~Preprocess
+```
 
 ## Generators
 
