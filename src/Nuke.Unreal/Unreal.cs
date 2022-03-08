@@ -13,6 +13,7 @@ using Newtonsoft.Json.Linq;
 using Serilog;
 
 using static Nuke.Common.IO.FileSystemTasks;
+using Nuke.Common.Utilities;
 
 namespace Nuke.Unreal
 {
@@ -20,6 +21,11 @@ namespace Nuke.Unreal
     {
         public static bool ValidVersionString(string versionName)
         {
+            if(Guid.TryParse(versionName, out _))
+            {
+                return true;
+            }
+
             var regexedComponents = Regex.Match(versionName, @"(?<version>[\W\d]+)(?<extension>\w*)");
             if(regexedComponents == null)
                 return false;
@@ -28,10 +34,41 @@ namespace Nuke.Unreal
             return Version.TryParse(pureVersionNamePatch, out _);
         }
 
-        public EngineVersion(string versionName, string subFolderFormat = null, string customEnginePath = null)
+        public EngineVersion(string versionName, string customEnginePath = null)
         {
-            subFolderFormat ??= "UE_{0}";
             FullVersionName = versionName;
+            VersionName = versionName;
+
+            PureVersionName = "";
+            PureVersionNamePatch = "";
+            Extension = "";
+            IsEngineSource = false;
+            IsEarlyAccess = false;
+            SemanticalVersion = null;
+
+            if(Guid.TryParse(versionName, out EngineSourceId))
+            {
+                IsEngineSource = true;
+                EngineAssociation = versionName;
+                var enginePath = (AbsolutePath) customEnginePath ?? Unreal.GetEnginePath(versionName);
+                if(enginePath != null)
+                {
+                    var buildVersionPath = enginePath / "Engine" / "Build" / "Build.version";
+                    if(buildVersionPath.Exists())
+                    {
+                        var buildVersion = JObject.Parse(File.ReadAllText(buildVersionPath));
+                        SemanticalVersion = new(
+                            buildVersion.GetPropertyValue<int>("MajorVersion"),
+                            buildVersion.GetPropertyValue<int>("MinorVersion"),
+                            buildVersion.GetPropertyValue<int>("PatchVersion")
+                        );
+
+                        PureVersionName = $"{SemanticalVersion.Major}.{SemanticalVersion.Minor}";
+                        PureVersionNamePatch = $"{SemanticalVersion.Major}.{SemanticalVersion.Minor}.{SemanticalVersion.Build}";
+                    }
+                }
+                return;
+            }
 
             var regexedComponents = Regex.Match(versionName, @"(?<version>[\W\d]+)(?<extension>\w*)");
             Assert.True(regexedComponents != null, "Invalid version format");
@@ -51,7 +88,6 @@ namespace Nuke.Unreal
 
             PureVersionName = SemanticalVersion.Major + "." + SemanticalVersion.Minor;
             VersionName = PureVersionName + Extension;
-            SubFolderName = string.Format(subFolderFormat, VersionName);
             EngineAssociation = customEnginePath?.Replace('\\', '/') ?? VersionName;
         }
 
@@ -59,10 +95,11 @@ namespace Nuke.Unreal
         public string PureVersionName;
         public string PureVersionNamePatch;
         public string FullVersionName;
-        public string SubFolderName;
         public Version SemanticalVersion;
         public string Extension;
         public bool IsEarlyAccess;
+        public bool IsEngineSource;
+        public Guid EngineSourceId;
         public string EngineAssociation;
     }
 
@@ -144,7 +181,7 @@ namespace Nuke.Unreal
             throw new ApplicationException("Trying to get unreal locator on an unsupported platform.");
         }
 
-        public static AbsolutePath GetEnginePath(EngineVersion ofVersion)
+        public static AbsolutePath GetEnginePath(string engineAssociation)
         {
             if(EnginePathOverride != null) return EnginePathOverride;
 
@@ -168,36 +205,31 @@ namespace Nuke.Unreal
 
                 var locator = ProcessTasks.StartProcess(
                     locatorPath,
-                    arguments: ofVersion.VersionName,
+                    arguments: engineAssociation,
                     outputFilter: Filter
                 );
                 locator.WaitForExit();
                 if(locator.ExitCode != 0 || string.IsNullOrWhiteSpace(location))
                 {
-                    // UE5 early access is not using conventional semantical versioning. Try again with "EA" added.
-                    if(ofVersion.SemanticalVersion.Major >= 5)
-                    {
-                        locator = ProcessTasks.StartProcess(
-                            locatorPath,
-                            arguments: ofVersion.VersionName + "EA",
-                            outputFilter: Filter
-                        );
-                        locator.WaitForExit();
-                        if(locator.ExitCode != 0 || string.IsNullOrWhiteSpace(location))
-                            throw new FileNotFoundException("No Unreal Engine installation could be found.");
-                    }
-                    else
-                    {
-                        throw new FileNotFoundException("No Unreal Engine installation could be found.");
-                    }
+                    throw new FileNotFoundException("No Unreal Engine installation could be found.");
                 }
                 EnginePathOverride = (AbsolutePath) location;
                 return (AbsolutePath) location;
             }
 
-            return EngineSearchPaths
-                .First(sp => Directory.Exists(sp / ofVersion.SubFolderName))
-                / ofVersion.SubFolderName;
+            throw new FileNotFoundException("No Unreal Engine installation could be found.");
+        }
+
+        public static AbsolutePath GetEnginePath(EngineVersion ofVersion)
+        {
+            if(EnginePathOverride != null) return EnginePathOverride;
+
+            if(RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+            {
+                return GetEnginePath(ofVersion.VersionName);
+            }
+
+            throw new FileNotFoundException("No Unreal Engine installation could be found.");
         }
 
         public static UnrealPlatform GetDefaultPlatform()

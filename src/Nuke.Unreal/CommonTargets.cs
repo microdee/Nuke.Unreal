@@ -33,9 +33,6 @@ namespace Nuke.Unreal
         [Parameter("Specify the target Unreal Engine version. By default only used by the Checkout target. Everything else should infer engine version from the project file.")]
         public virtual string UnrealVersion { get; set; }
 
-        // not a command line parameter anymore especially when we have the UnrealLocator program
-        public virtual string UnrealSubfolder { get; } = "UE_{0}";
-
         [Parameter("Specify a path to a custom engine version (eg.: built from source)")]
         public virtual AbsolutePath CustomEnginePath { get; set; } = null;
         
@@ -60,14 +57,14 @@ namespace Nuke.Unreal
         [Parameter("The target execution mode for building the project (Standalone or Editor")]
         public virtual ExecMode[] RunIn { get; set; } = new [] {ExecMode.Standalone};
 
-        public EngineVersion TargetEngineVersion => new(UnrealVersion, UnrealSubfolder, CustomEnginePath);
+        public EngineVersion TargetEngineVersion => new(UnrealVersion, CustomEnginePath);
 
         protected EngineVersion GetEngineVersionFromProject() {
             var result = (ProjectObject["EngineVersionPatch"] ?? ProjectObject["EngineAssociation"]).ToString();
             if(!EngineVersion.ValidVersionString(result))
                 return TargetEngineVersion;
             
-            return new(result, UnrealSubfolder, CustomEnginePath);
+            return new(result, CustomEnginePath);
         }
 
         public AbsolutePath UnrealEnginePath => Unreal.GetEnginePath(GetEngineVersionFromProject());
