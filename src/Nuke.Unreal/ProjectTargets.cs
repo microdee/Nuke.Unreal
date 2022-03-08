@@ -65,7 +65,8 @@ namespace Nuke.Unreal
                         + " -package"
                         + " -stage"
                         + " -archive"
-                        + " " + string.Join(' ', PackageArguments)
+                        + PackageArguments.AppendAsArguments()
+                        + UatArgs.AppendAsArguments()
                     )
                     .WithWorkingDir(UnrealEnginePath)
                     .Run();

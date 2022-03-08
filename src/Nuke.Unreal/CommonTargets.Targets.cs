@@ -66,6 +66,7 @@ namespace Nuke.Unreal
                     "-projectfiles"
                     + $" -project=\"{ToProject}\""
                     + " -game -progress"
+                    + UbtArgs.AppendAsArguments()
                 ).Run();
             });
 
@@ -77,6 +78,8 @@ namespace Nuke.Unreal
                     GetEngineVersionFromProject(),
                     $"{UnrealProjectName}Editor Win64 Development"
                     + $" -Project=\"{ToProject}\""
+                    +  " -ShowIncludes"
+                    + UbtArgs.AppendAsArguments()
                 ).Run();
             });
 
@@ -98,6 +101,8 @@ namespace Nuke.Unreal
                         GetEngineVersionFromProject(),
                         $"{UnrealProjectName}{targetEnv} {TargetPlatform} {config}"
                         + $" -Project=\"{ToProject}\""
+                        +  " -ShowIncludes"
+                        + UbtArgs.AppendAsArguments()
                     ).Run();
                 });
             });
@@ -142,7 +147,8 @@ namespace Nuke.Unreal
                         + $" -clientconfig={c}"
                         + " -ue4exe=UE4Editor-Cmd.exe"
                         + " -cook"
-                        + " " + string.Join(' ', CookArguments)
+                        + CookArguments.AppendAsArguments()
+                        + UatArgs.AppendAsArguments()
                     )
                     .WithWorkingDir(UnrealEnginePath)
                     .Run();
