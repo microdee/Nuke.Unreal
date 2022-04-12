@@ -16,11 +16,11 @@ using static Nuke.Common.ControlFlow;
 
 namespace Nuke.Unreal
 {
-    public abstract class ProjectTargets : CommonTargets
+    public interface IPackageTargets
     {
-        public virtual bool PackagePak => false;
+        bool PackagePak => false;
         
-        public virtual IEnumerable<string> PackageArguments
+        IEnumerable<string> PackageArguments
         {
             get
             {
@@ -41,34 +41,39 @@ namespace Nuke.Unreal
             }
         }
 
-        public virtual Target Package => _ => _
+        Target Package => _ => _
             .Description("Same as running Package Project from Editor")
-            .DependsOn(Cook)
-            .After(CleanDeployment)
+            .DependsOn((this as UnrealBuild)?.Cook)
+            .After((this as UnrealBuild)?.CleanDeployment)
             .Executes(() =>
             {
-                var appLocalDir = UnrealEnginePath / "Engine" / "Binaries" / "ThirdParty" / "AppLocalDependencies";
-                Config.ForEach(c =>
+                if (this is not UnrealBuild self)
+                {
+                    throw new Exception("An UnrealBuild class needs to inherit IPackageTargets");
+                }
+
+                var appLocalDir = self.UnrealEnginePath / "Engine" / "Binaries" / "ThirdParty" / "AppLocalDependencies";
+                self.Config.ForEach(c =>
                 {
                     Unreal.AutomationToolBatch(
-                        GetEngineVersionFromProject(),
+                        self.GetEngineVersionFromProject(),
                         "BuildCookRun"
-                        + $" -ScriptsForProject=\"{ToProject}\""
-                        + $" -project=\"{ToProject}\""
-                        + $" -target={UnrealProjectName}"
-                        + $" -targetplatform={TargetPlatform}"
-                        + $" -platform={TargetPlatform}"
+                        + $" -ScriptsForProject=\"{self.ToProject}\""
+                        + $" -project=\"{self.ToProject}\""
+                        + $" -target={self.UnrealProjectName}"
+                        + $" -targetplatform={self.TargetPlatform}"
+                        + $" -platform={self.TargetPlatform}"
                         + $" -clientconfig={c}"
-                        + $" -archivedirectory=\"{OutPath}\""
+                        + $" -archivedirectory=\"{self.OutPath}\""
                         + $" -applocaldirectory={appLocalDir}"
                         + " -build"
                         + " -package"
                         + " -stage"
                         + " -archive"
                         + PackageArguments.AppendAsArguments()
-                        + UatArgs.AppendAsArguments()
+                        + self.UatArgs.AppendAsArguments()
                     )
-                    .WithWorkingDir(UnrealEnginePath)
+                    .WithWorkingDir(self.UnrealEnginePath)
                     .Run();
                 });
             });

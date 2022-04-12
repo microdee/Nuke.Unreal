@@ -11,9 +11,9 @@ using static Nuke.Common.IO.PathConstruction;
 
 namespace Nuke.Unreal
 {
-    public abstract partial class CommonTargets : NukeBuild
+    public abstract partial class UnrealBuild : NukeBuild
     {
-        protected bool LookAroundFor(Func<string, bool> predicate, out AbsolutePath result)
+        public bool LookAroundFor(Func<string, bool> predicate, out AbsolutePath result)
         {
             result = null;
             var parents = RootDirectory
@@ -82,7 +82,6 @@ namespace Nuke.Unreal
         public string UnrealProjectName => Path.GetFileNameWithoutExtension(ToProject);
 
         private JObject _projectObject;
-        protected JObject ProjectObject =>
-            _projectObject ?? (_projectObject = JObject.Parse(File.ReadAllText(ToProject)));
+        public JObject ProjectObject => _projectObject ??= JObject.Parse(File.ReadAllText(ToProject));
     }
 }

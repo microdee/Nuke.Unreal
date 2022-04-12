@@ -13,7 +13,7 @@ using Serilog;
 
 namespace Nuke.Unreal
 {
-    public abstract partial class CommonTargets : NukeBuild
+    public abstract partial class UnrealBuild : NukeBuild
     {
         public Target CleanDeployment => _ => _
             .Description("Removes previous deployment folder")

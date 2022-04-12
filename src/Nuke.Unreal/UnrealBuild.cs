@@ -1,31 +1,9 @@
-using System;
-using System.ComponentModel;
-using System.IO;
-using System.Linq;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using Nuke.Common;
-using Nuke.Common.CI;
-using Nuke.Common.Execution;
-using Nuke.Common.Git;
 using Nuke.Common.IO;
-using Nuke.Common.ProjectModel;
-using Nuke.Common.Tooling;
-using Nuke.Common.Tools.DotNet;
-using Nuke.Common.Utilities.Collections;
-using Nuke.Unreal.BoilerplateGenerators;
-
-using static Nuke.Common.EnvironmentInfo;
-using static Nuke.Common.IO.FileSystemTasks;
-using static Nuke.Common.IO.PathConstruction;
-using static Nuke.Common.Tools.DotNet.DotNetTasks;
-using static Nuke.Common.Logger;
-using static Nuke.Common.ControlFlow;
-using static Nuke.Unreal.BuildCommon;
 
 namespace Nuke.Unreal
 {
-    public abstract partial class CommonTargets : NukeBuild
+    public abstract partial class UnrealBuild : NukeBuild
     {
         /// <summary>
         /// Most targets read the desired UE4 version from the project file.
@@ -64,7 +42,7 @@ namespace Nuke.Unreal
         [Parameter("Extra arguments passed to UAT. It's recommended to use it only from command line, do not override.")]
         public virtual string[] UatArgs { get; set; }
 
-        protected EngineVersion GetEngineVersionFromProject() {
+        public EngineVersion GetEngineVersionFromProject() {
             var result = (ProjectObject["EngineVersionPatch"] ?? ProjectObject["EngineAssociation"]).ToString();
             if(!EngineVersion.ValidVersionString(result))
                 return TargetEngineVersion;
