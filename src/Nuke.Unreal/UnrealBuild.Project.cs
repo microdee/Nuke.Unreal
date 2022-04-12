@@ -13,45 +13,6 @@ namespace Nuke.Unreal
 {
     public abstract partial class UnrealBuild : NukeBuild
     {
-        public bool LookAroundFor(Func<string, bool> predicate, out AbsolutePath result)
-        {
-            result = null;
-            var parents = RootDirectory
-                .DescendantsAndSelf(d => d.Parent, d => Path.GetPathRoot(d) != d );
-
-            foreach(var p in parents)
-                foreach(var f in Directory.EnumerateFiles(p))
-                {
-                    if(predicate(f))
-                    {
-                        result = (AbsolutePath) f;
-                        return true;
-                    }
-                }
-            
-            var descendants = RootDirectory.DescendantsAndSelf(d =>
-                from sd in d.GlobDirectories("*")
-                where !Path.GetFileName(sd).StartsWith(".")
-                where !Path.GetFileName(sd).StartsWith("Nuke.")
-                where Path.GetFileName(sd) != "Intermediate"
-                where Path.GetFileName(sd) != "Binaries"
-                where Path.GetFileName(sd) != "ThirdParty"
-                where Path.GetFileName(sd) != "Saved"
-                select sd
-            );
-
-            foreach(var p in descendants)
-                foreach(var f in Directory.EnumerateFiles(p))
-                {
-                    if(predicate(f))
-                    {
-                        result = (AbsolutePath) f;
-                        return true;
-                    }
-                }
-            return false;
-        }
-
         private AbsolutePath _toProjectCache = null;
 
         /// <summary>
@@ -63,10 +24,10 @@ namespace Nuke.Unreal
         {
             get
             {
-                if(_toProjectCache != null) return _toProjectCache;
+                if (_toProjectCache != null) return _toProjectCache;
 
                 Log.Information(".uproject path was unspecified, looking for one...");
-                if(LookAroundFor(f => f.EndsWith(".uproject"), out var candidate))
+                if (BuildCommon.LookAroundFor(f => f.EndsWith(".uproject"), out var candidate))
                 {
                     Log.Information($"Found project at {candidate}");
                     _toProjectCache = candidate;

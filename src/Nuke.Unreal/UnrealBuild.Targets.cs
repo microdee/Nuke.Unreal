@@ -10,6 +10,8 @@ using static Nuke.Common.IO.FileSystemTasks;
 using GlobExpressions;
 using Nuke.Common.Tools.Git;
 using Serilog;
+using Nuke.Common.Tools.MSBuild;
+using Nuke.Common.ProjectModel;
 
 namespace Nuke.Unreal
 {
@@ -151,6 +153,31 @@ namespace Nuke.Unreal
                     .WithWorkingDir(UnrealEnginePath)
                     .Run();
                 });
+            });
+        
+        public virtual Target DiscoverPluginTargets => _ => _
+            .Description(
+                "Discover other C# projects which may contain additional Nuke targets, and add them to the main build project."
+                + " However after discovery they still need to be added to the main Build class."
+            )
+            .Executes(() =>
+            {
+                var buildProject = ProjectModelTasks.ParseProject(BuildProjectFile);
+                var addonProjectFiles = RootDirectory.SubTreeProject()
+                    .Where(sd => Directory.Exists(sd / "Nuke.Targets"))
+                    .Select(sd => Glob.Files(sd / "Nuke.Targets", "*.csproj", GlobOptions.CaseInsensitive)
+                        .Cast<AbsolutePath>()
+                        .FirstOrDefault()
+                    );
+                foreach(var addonTargetsProject in addonProjectFiles)
+                {
+                    var relativeToBuildProject = BuildProjectDirectory.GetRelativePathTo(addonTargetsProject);
+                    Log.Information($"Found addon project at {relativeToBuildProject}");
+
+                    buildProject.AddItem("ProjectReference", addonTargetsProject);
+                }
+
+                buildProject.Save();
             });
     }
 }
