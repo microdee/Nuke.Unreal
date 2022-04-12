@@ -171,7 +171,7 @@ namespace Nuke.Unreal
             }
         }
 
-        public static readonly AbsolutePath UnrealLocatorFolder = (AbsolutePath) Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) / "UnrealLocator";
+        public static readonly AbsolutePath UnrealLocatorFolder = BuildCommon.GetContentsFolder() / "UnrealLocator";
         public static AbsolutePath GetUnrealLocator()
         {
             if(RuntimeInformation.IsOSPlatform(OSPlatform.Windows))

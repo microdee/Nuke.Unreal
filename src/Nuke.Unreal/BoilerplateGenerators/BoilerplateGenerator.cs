@@ -11,8 +11,7 @@ namespace Nuke.Unreal.BoilerplateGenerators
 {
     public class BoilerplateGenerator
     {
-        public static AbsolutePath DefaultTemplateFolder =>
-            (AbsolutePath) Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) / "Templates";
+        public static AbsolutePath DefaultTemplateFolder => BuildCommon.GetContentsFolder() / "Templates";
 
         protected static void CheckErrors(Template template)
         {

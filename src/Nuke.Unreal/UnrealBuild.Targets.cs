@@ -163,18 +163,27 @@ namespace Nuke.Unreal
             .Executes(() =>
             {
                 var buildProject = ProjectModelTasks.ParseProject(BuildProjectFile);
-                var addonProjectFiles = RootDirectory.SubTreeProject()
+                var pluginProjectFiles = RootDirectory.SubTreeProject()
                     .Where(sd => Directory.Exists(sd / "Nuke.Targets"))
                     .Select(sd => Glob.Files(sd / "Nuke.Targets", "*.csproj", GlobOptions.CaseInsensitive)
-                        .Cast<AbsolutePath>()
+                        .Where(f => sd / "Nuke.Targets" / f != BuildProjectFile)
+                        .Select(f => sd / "Nuke.Targets" / f)
                         .FirstOrDefault()
-                    );
-                foreach(var addonTargetsProject in addonProjectFiles)
+                    )
+                    .WhereNotNull();
+                
+                if (pluginProjectFiles.IsEmpty())
                 {
-                    var relativeToBuildProject = BuildProjectDirectory.GetRelativePathTo(addonTargetsProject);
-                    Log.Information($"Found addon project at {relativeToBuildProject}");
+                    Log.Information("No plugin targets have been found.");
+                    return;
+                }
+                
+                foreach(var pluginTargetsProject in pluginProjectFiles)
+                {
+                    var relativeToBuildProject = BuildProjectDirectory.GetRelativePathTo(pluginTargetsProject);
+                    Log.Information($"Found plugin project at {relativeToBuildProject}");
 
-                    buildProject.AddItem("ProjectReference", addonTargetsProject);
+                    buildProject.AddItem("ProjectReference", relativeToBuildProject);
                 }
 
                 buildProject.Save();

@@ -59,7 +59,7 @@ namespace Nuke.Unreal
                 }
 
                 Log.Information(".uplugin path was unspecified, looking for one...");
-                if(self.LookAroundFor(f => f.EndsWith(".uplugin"), out var candidate))
+                if(BuildCommon.LookAroundFor(f => f.EndsWith(".uplugin"), out var candidate))
                 {
                     Log.Information($"Found project at {candidate}");
                     this.Cache().ToPlugin = candidate;
