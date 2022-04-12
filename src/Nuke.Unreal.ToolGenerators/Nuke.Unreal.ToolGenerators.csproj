@@ -1,8 +1,27 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFramework>net5.0</TargetFramework>
+    <PackageId>md.Nuke.Unreal.ToolGenerators</PackageId>
+    <Version>1.0.1</Version>
+    <Authors>David Mórász</Authors>
+    <Company>mcro.de</Company>
+    <Description>Commonly used Unreal Engine targets and tasks for the Nuke execution engine</Description>
+    <RepositoryUrl>https://github.com/microdee/Nuke.Unreal.git</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageProjectUrl>https://github.com/microdee/Nuke.Unreal</PackageProjectUrl>
+    <PackageLicenseUrl>https://github.com/microdee/Nuke.Unreal/blob/main/LICENSE</PackageLicenseUrl>
+    <PackageIcon>nu_logo-125.png</PackageIcon>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <IncludeSource>true</IncludeSource>
+    <IncludeSymbols>true</IncludeSymbols>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="../../docs/nu_logo-125.png" Pack="true" PackagePath="/" />
+    <None Include="../../README.md" Pack="true" PackagePath="/" />
+  </ItemGroup>
 
   <Import Project="./LocalUnrealAssemblies.props" />
   
