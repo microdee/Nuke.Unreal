@@ -181,6 +181,13 @@ namespace Nuke.Unreal
                 foreach(var pluginTargetsProject in pluginProjectFiles)
                 {
                     var relativeToBuildProject = BuildProjectDirectory.GetRelativePathTo(pluginTargetsProject);
+
+                    if (buildProject.GetItems("ProjectReference").Any(
+                        i => i.EvaluatedInclude.Contains(Path.GetFileName(pluginTargetsProject))
+                    )) {
+                        Log.Information($"Plugin project was already included {relativeToBuildProject}");
+                        continue;
+                    }
                     Log.Information($"Found plugin project at {relativeToBuildProject}");
 
                     buildProject.AddItem("ProjectReference", relativeToBuildProject);
