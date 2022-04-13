@@ -164,7 +164,8 @@ namespace Nuke.Unreal
             {
                 var buildProject = ProjectModelTasks.ParseProject(BuildProjectFile);
                 var pluginProjectFiles = RootDirectory.SubTreeProject()
-                    .Where(sd => Directory.Exists(sd / "Nuke.Targets"))
+                    .Where(sd =>  Directory.Exists(sd / "Nuke.Targets"))
+                    .Where(sd => !Directory.Exists(sd / ".nuke"))
                     .Select(sd => Glob.Files(sd / "Nuke.Targets", "*.csproj", GlobOptions.CaseInsensitive)
                         .Where(f => sd / "Nuke.Targets" / f != BuildProjectFile)
                         .Select(f => sd / "Nuke.Targets" / f)

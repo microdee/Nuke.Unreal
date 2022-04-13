@@ -34,7 +34,7 @@ namespace Nuke.Unreal
         }
     }
 
-    public interface IPluginTargets
+    public interface IPluginTargets : INukeBuild, ISelf
     {
 
         [Parameter("Make marketplace compliant archives")]
@@ -76,14 +76,11 @@ namespace Nuke.Unreal
 
         Target Checkout => _ => _
             .Description("Switch to the specified Unreal Engine version and platform for plugin development or packaging")
-            .DependsOn((this as UnrealBuild)?.Clean)
-            .Requires(() => ((UnrealBuild) this).UnrealVersion)
+            .DependsOn<UnrealBuild>(u => u.Clean)
+            .Requires(() => Self<UnrealBuild>().UnrealVersion)
             .Executes(() =>
             {
-                if (this is not UnrealBuild self)
-                {
-                    throw new Exception("An UnrealBuild class needs to inherit IPluginTargets");
-                }
+                var self = Self<UnrealBuild>();
 
                 Log.Information($"Checking out targeting UE {self.UnrealVersion} on platform {self.TargetPlatform}");
 
@@ -110,13 +107,10 @@ namespace Nuke.Unreal
         Target PackPlugin => _ => _
             .Description("Make a prebuilt release of the target plugin for current version. This yields zip archives in the deployment path specified in OutPath (.deploy by default)")
             .DependsOn(Checkout)
-            .After((this as UnrealBuild)?.CleanDeployment)
+            .After<UnrealBuild>(u => u.CleanDeployment)
             .Executes(() =>
             {
-                if (this is not UnrealBuild self)
-                {
-                    throw new Exception("An UnrealBuild class needs to inherit IPluginTargets");
-                }
+                var self = Self<UnrealBuild>();
 
                 var packageName = $"{PluginName}-{self.TargetPlatform}-{PluginVersion}.{self.GetEngineVersionFromProject().FullVersionName}-PreBuilt";
                 var targetDir = self.OutPath / packageName;
@@ -152,10 +146,7 @@ namespace Nuke.Unreal
             .OnlyWhenStatic(() => ForMarketplace)
             .Executes(() =>
             {
-                if (this is not UnrealBuild self)
-                {
-                    throw new Exception("An UnrealBuild class needs to inherit IPluginTargets");
-                }
+                var self = Self<UnrealBuild>();
 
                 var packageName = $"{PluginName}-{self.TargetPlatform}-{PluginVersion}.{self.GetEngineVersionFromProject().FullVersionName}-Source";
                 var targetDir = self.OutPath / packageName;

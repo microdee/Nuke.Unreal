@@ -16,7 +16,7 @@ using static Nuke.Common.ControlFlow;
 
 namespace Nuke.Unreal
 {
-    public interface IPackageTargets
+    public interface IPackageTargets : INukeBuild, ISelf
     {
         bool PackagePak => false;
         
@@ -43,14 +43,11 @@ namespace Nuke.Unreal
 
         Target Package => _ => _
             .Description("Same as running Package Project from Editor")
-            .DependsOn((this as UnrealBuild)?.Cook)
-            .After((this as UnrealBuild)?.CleanDeployment)
+            .DependsOn<UnrealBuild>(u => u.Cook)
+            .After<UnrealBuild>(u => u.CleanDeployment)
             .Executes(() =>
             {
-                if (this is not UnrealBuild self)
-                {
-                    throw new Exception("An UnrealBuild class needs to inherit IPackageTargets");
-                }
+                var self = Self<UnrealBuild>();
 
                 var appLocalDir = self.UnrealEnginePath / "Engine" / "Binaries" / "ThirdParty" / "AppLocalDependencies";
                 self.Config.ForEach(c =>
