@@ -20,7 +20,7 @@ namespace Nuke.Unreal
         public JObject PluginObject;
     }
 
-    public static class PluginTargets
+    public static class PluginTargetsExtensions
     {
         public static PluginCache Cache(this IPluginTargets self)
         {
@@ -34,13 +34,22 @@ namespace Nuke.Unreal
         }
     }
 
+    public class PluginTargets : NukeBuild, IPluginTargets
+    {
+        public static IPluginTargets Default => new PluginTargets();
+    }
+
     public interface IPluginTargets : INukeBuild, ISelf
     {
 
         [Parameter("Make marketplace compliant archives")]
-        bool ForMarketplace {get; set;}
+        bool ForMarketplace
+        {
+            get => false;
+            set { }
+        }
 
-        string PluginVersion { get; }
+        string PluginVersion => "1.0.0";
         
         /// <summary>
         /// Optionally specify a .uplugin path.

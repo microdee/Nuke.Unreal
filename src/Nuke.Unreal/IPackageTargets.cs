@@ -16,6 +16,11 @@ using static Nuke.Common.ControlFlow;
 
 namespace Nuke.Unreal
 {
+    public class PackageTargets : NukeBuild, IPackageTargets
+    {
+        public static IPackageTargets Default => new PackageTargets();
+    }
+
     public interface IPackageTargets : INukeBuild, ISelf
     {
         bool PackagePak => false;
