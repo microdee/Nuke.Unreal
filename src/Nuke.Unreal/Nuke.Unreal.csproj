@@ -2,7 +2,7 @@
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
     <PackageId>md.Nuke.Unreal</PackageId>
-    <Version>1.0.1</Version>
+    <Version>1.0.3</Version>
     <Authors>David Mórász</Authors>
     <Company>mcro.de</Company>
     <Description>Commonly used Unreal Engine targets and tasks for the Nuke execution engine</Description>
@@ -30,8 +30,12 @@
   </ItemGroup>
   
   <ItemGroup>
-    <Content Include="./Templates/**/*" CopyToOutputDirectory="PreserveNewest" />
-    <Content Include="./UnrealLocator/**/*" CopyToOutputDirectory="PreserveNewest" />
+    <Content Include="./Templates/**/*" CopyToOutputDirectory="PreserveNewest">
+      <PackageCopyToOutput>true</PackageCopyToOutput>
+    </Content>
+    <Content Include="./UnrealLocator/**/*" CopyToOutputDirectory="PreserveNewest" >
+      <PackageCopyToOutput>true</PackageCopyToOutput>
+    </Content>
   </ItemGroup>
 
 </Project>
