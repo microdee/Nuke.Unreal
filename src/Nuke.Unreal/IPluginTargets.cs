@@ -36,7 +36,7 @@ namespace Nuke.Unreal
 
     public class PluginTargets : NukeBuild, IPluginTargets
     {
-        public static IPluginTargets Default => new PluginTargets();
+        public static readonly IPluginTargets Default = new PluginTargets();
     }
 
     public interface IPluginTargets : INukeBuild, ISelf
