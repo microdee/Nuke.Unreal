@@ -21,8 +21,10 @@ namespace Nuke.Unreal
         public static IPackageTargets Default => new PackageTargets();
     }
 
-    public interface IPackageTargets : INukeBuild, ISelf
+    public interface IPackageTargets : INukeBuild
     {
+        T Self<T>() where T : INukeBuild => (T)(object)this;
+
         bool PackagePak => false;
         
         IEnumerable<string> PackageArguments
@@ -54,9 +56,14 @@ namespace Nuke.Unreal
             {
                 var self = Self<UnrealBuild>();
 
+                var isAndroidPlatform = self.TargetPlatform == UnrealPlatform.Android;
                 var appLocalDir = self.UnrealEnginePath / "Engine" / "Binaries" / "ThirdParty" / "AppLocalDependencies";
-                self.Config.ForEach(c =>
+                var configCombination = isAndroidPlatform
+                    ? (from config in self.Config from textureMode in self.AndroidTextureMode select (config, textureMode))
+                    : self.Config.Select(c => (c, AndroidCookFlavor.Multi));
+                configCombination.ForEach(combination =>
                 {
+                    var (config, textureMode) = combination;
                     Unreal.AutomationToolBatch(
                         self.GetEngineVersionFromProject(),
                         "BuildCookRun"
@@ -65,13 +72,14 @@ namespace Nuke.Unreal
                         + $" -target={self.UnrealProjectName}"
                         + $" -targetplatform={self.TargetPlatform}"
                         + $" -platform={self.TargetPlatform}"
-                        + $" -clientconfig={c}"
+                        + $" -clientconfig={config}"
                         + $" -archivedirectory=\"{self.OutPath}\""
                         + $" -applocaldirectory={appLocalDir}"
                         + " -build"
                         + " -package"
                         + " -stage"
                         + " -archive"
+                        + (isAndroidPlatform ? $" -cookflavor={textureMode}" : "")
                         + PackageArguments.AppendAsArguments()
                         + self.UatArgs.AppendAsArguments()
                     )

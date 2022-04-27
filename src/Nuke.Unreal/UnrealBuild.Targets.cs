@@ -76,9 +76,10 @@ namespace Nuke.Unreal
             .Description("Build the editor binaries so this project can be opened properly in the Unreal editor")
             .Executes(() =>
             {
+                var platform = Unreal.GetDefaultPlatform();
                 Unreal.BuildTool(
                     GetEngineVersionFromProject(),
-                    $"{UnrealProjectName}Editor Win64 Development"
+                    $"{UnrealProjectName}Editor {platform} Development"
                     + $" -Project=\"{ToProject}\""
                     + UbtArgs.AppendAsArguments()
                 ).Run();
@@ -135,8 +136,13 @@ namespace Nuke.Unreal
             .DependsOn(BuildEditor, Build)
             .Executes(() =>
             {
-                Config.ForEach(c =>
+                var isAndroidPlatform = TargetPlatform == UnrealPlatform.Android;
+                var configCombination = isAndroidPlatform
+                    ? (from config in Config from textureMode in AndroidTextureMode select (config, textureMode))
+                    : Config.Select(c => (c, AndroidCookFlavor.Multi));
+                configCombination.ForEach(combination =>
                 {
+                    var (config, textureMode) = combination;
                     Unreal.AutomationToolBatch(
                         GetEngineVersionFromProject(),
                         "BuildCookRun"
@@ -144,9 +150,10 @@ namespace Nuke.Unreal
                         + $" -project=\"{ToProject}\""
                         + $" -targetplatform={TargetPlatform}"
                         + $" -platform={TargetPlatform}"
-                        + $" -clientconfig={c}"
+                        + $" -clientconfig={config}"
                         + " -ue4exe=UE4Editor-Cmd.exe"
                         + " -cook"
+                        + (isAndroidPlatform ? $" -cookflavor={textureMode}" : "")
                         + CookArguments.AppendAsArguments()
                         + UatArgs.AppendAsArguments()
                     )

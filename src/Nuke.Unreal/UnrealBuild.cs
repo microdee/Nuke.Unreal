@@ -27,7 +27,7 @@ namespace Nuke.Unreal
         public virtual AbsolutePath OutPath { get; set; } = RootDirectory / ".deploy";
 
         [Parameter("Set platform for running targets")]
-        public string TargetPlatform { get; set; } = Unreal.GetDefaultPlatform().ToString();
+        public UnrealPlatform TargetPlatform { get; set; } = UnrealPlatform.FromFlag(Unreal.GetDefaultPlatform());
 
         [Parameter("The target configuration for building or packaging the project")]
         public virtual UnrealConfig[] Config { get; set; } = new [] {UnrealConfig.Development};
@@ -41,6 +41,9 @@ namespace Nuke.Unreal
 
         [Parameter("Extra arguments passed to UAT. It's recommended to use it only from command line, do not override.")]
         public virtual string[] UatArgs { get; set; }
+
+        [Parameter("Select texture compression mode for Android")]
+        public virtual AndroidCookFlavor[] AndroidTextureMode { get; set; }
 
         public EngineVersion GetEngineVersionFromProject() {
             var result = (ProjectObject["EngineVersionPatch"] ?? ProjectObject["EngineAssociation"]).ToString();

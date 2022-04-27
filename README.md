@@ -17,10 +17,9 @@ Nuke.Unreal is available as a Nuget package and you can just add it to your buil
    ```
    > dotnet tool install Nuke.GlobalTool --global
    
-   > dotnet new sln --name Build
-   
    > nuke :setup
-   # preferably put your build project inside Nuke.Targets folder
+     select None for solution
+     build project inside Nuke.Targets folder
    
    > cd ./Nuke.Targets
    > dotnet add package md.Nuke.Unreal

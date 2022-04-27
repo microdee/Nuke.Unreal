@@ -39,8 +39,9 @@ namespace Nuke.Unreal
         public static IPluginTargets Default => new PluginTargets();
     }
 
-    public interface IPluginTargets : INukeBuild, ISelf
+    public interface IPluginTargets : INukeBuild
     {
+        T Self<T>() where T : INukeBuild => (T)(object)this;
 
         [Parameter("Make marketplace compliant archives")]
         bool ForMarketplace

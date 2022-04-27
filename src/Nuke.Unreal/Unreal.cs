@@ -104,7 +104,7 @@ namespace Nuke.Unreal
     }
 
     [Flags]
-    public enum UnrealPlatform
+    public enum UnrealPlatformFlag
     {
         Win64 =         0b_00000001,
         Win32 =         0b_00000010,
@@ -232,16 +232,16 @@ namespace Nuke.Unreal
             throw new FileNotFoundException("No Unreal Engine installation could be found.");
         }
 
-        public static UnrealPlatform GetDefaultPlatform()
+        public static UnrealPlatformFlag GetDefaultPlatform()
         {
             if(RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
-                return UnrealPlatform.Win64;
+                return UnrealPlatformFlag.Win64;
 
             if(RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
-                return UnrealPlatform.Mac;
+                return UnrealPlatformFlag.Mac;
                 
             if(RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
-                return UnrealPlatform.Linux;
+                return UnrealPlatformFlag.Linux;
                 
             throw new Exception("Attempting to build on an unsupported platform");
         }
