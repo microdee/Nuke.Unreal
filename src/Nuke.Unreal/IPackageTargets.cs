@@ -24,6 +24,7 @@ namespace Nuke.Unreal
     public interface IPackageTargets : INukeBuild
     {
         T Self<T>() where T : INukeBuild => (T)(object)this;
+        T SelfAs<T>() where T : class, INukeBuild => (object)this as T;
 
         bool PackagePak => false;
         
@@ -55,11 +56,13 @@ namespace Nuke.Unreal
             .Executes(() =>
             {
                 var self = Self<UnrealBuild>();
+                var androidTextureMode = SelfAs<IAndroidTargets>()?.AndroidTextureMode
+                    ?? new [] { AndroidCookFlavor.Multi };
 
                 var isAndroidPlatform = self.TargetPlatform == UnrealPlatform.Android;
                 var appLocalDir = self.UnrealEnginePath / "Engine" / "Binaries" / "ThirdParty" / "AppLocalDependencies";
                 var configCombination = isAndroidPlatform
-                    ? (from config in self.Config from textureMode in self.AndroidTextureMode select (config, textureMode))
+                    ? (from config in self.Config from textureMode in androidTextureMode select (config, textureMode))
                     : self.Config.Select(c => (c, AndroidCookFlavor.Multi));
                 configCombination.ForEach(combination =>
                 {

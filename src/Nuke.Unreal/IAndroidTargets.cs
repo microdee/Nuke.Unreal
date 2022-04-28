@@ -92,7 +92,7 @@ namespace Nuke.Unreal
         {
             pid = 0;
             var processes = new Dictionary<int, AndroidProcess>();
-            foreach(var line in output)
+            foreach(var line in output.Skip(1))
             {
                 var process = AndroidProcess.Make(line.Text);
                 if (process == null) continue;
@@ -129,20 +129,69 @@ namespace Nuke.Unreal
             {
                 var self = Self<UnrealBuild>();
                 var adb = ToolResolver.GetPathTool("adb");
-                var artifactFolder = self.OutPath / $"Android_{AndroidTextureMode}";
-                var ndkFolderParent = (AbsolutePath) EnvironmentInfo.SpecialFolder(SpecialFolders.LocalApplicationData)
-                    / "Android" / "Sdk" / "ndk";
 
-                Assert.True(
-                    ndkFolderParent.DirectoryExists(),
-                    "NDK parent folder doesn't exist. Please configure your Android development environment"
+                var artifactFolder = self.OutPath / $"Android_{AndroidTextureMode[0]}";
+                var androidHome = (AbsolutePath) EnvironmentInfo.SpecialFolder(SpecialFolders.LocalApplicationData)
+                    / "Android" / "Sdk";
+                var ndkFolderParent = androidHome / "ndk";
+
+                Assert.DirectoryExists(
+                    ndkFolderParent,
+                    $"{ndkFolderParent} doesn't exist. Please configure your Android development environment"
                 );
 
-                var ndkFolder = (AbsolutePath) Directory.EnumerateDirectories(ndkFolderParent).First();
+                var ndkFolder = (AbsolutePath) Directory.EnumerateDirectories(ndkFolderParent).FirstOrDefault();
+                
+                Assert.NotNull(
+                    ndkFolder,
+                    "There are no NDK subfolders. Please configure your Android development environment"
+                );
 
-                Log.Information("Installing packaged app");
-                var installBat = artifactFolder / Glob.Files(artifactFolder, "Install_*.bat").First();
-                ProcessTasks.StartShell(installBat);
+                var apkName = $"{self.UnrealProjectName}-Android-{self.Config[0]}-{AndroidCpu.ToString().ToLower()}";
+                var apkFile = artifactFolder / (apkName + ".apk");
+
+                try
+                {
+                    Log.Information("Uninstall {0} (failures here are not fatal)", AndroidAppName);
+                    adb($"uninstall {AndroidAppName}");
+                }
+                catch (Exception e)
+                {
+                    Log.Warning(e, "Uninstallation threw errors, but that might not be a problem");
+                }
+
+                Log.Information("Installing {0}", apkFile);
+                adb($"install {apkFile}");
+
+                var storagePath = adb("shell echo $EXTERNAL_STORAGE").FirstOrDefault(o => !string.IsNullOrWhiteSpace(o.Text));
+                
+                try
+                {
+                    Log.Information("Removing existing assets from device");
+                    adb($"shell rm -r {storagePath}/UE4Game/{self.UnrealProjectName}");
+                    adb($"shell rm -r {storagePath}/UE4Game/UE4CommandLine.txt");
+                    adb($"shell rm -r {storagePath}/obb/{AndroidAppName}");
+                    adb($"shell rm -r {storagePath}/Android/obb/{AndroidAppName}");
+                    adb($"shell rm -r {storagePath}/Download/obb/{AndroidAppName}");
+                }
+                catch (Exception e)
+                {
+                    Log.Warning(e, "Removing existing asset files threw errors, but that might not be a problem");
+                }
+
+                var obbName = $"main.1.{AndroidAppName}";
+                var obbFile = artifactFolder / (obbName + ".obb");
+
+                Log.Information("Installing {0}", obbFile);
+
+                adb($"push {obbFile} {storagePath}/obb/{AndroidAppName}/{obbName}.obb");
+
+                Log.Information("Grant READ_EXTERNAL_STORAGE and WRITE_EXTERNAL_STORAGE to the apk for reading OBB file or game file in external storage.");
+
+                adb($"shell pm grant {AndroidAppName} android.permission.READ_EXTERNAL_STORAGE");
+                adb($"shell pm grant {AndroidAppName} android.permission.WRITE_EXTERNAL_STORAGE");
+                
+                Log.Information("Done installing {0}", AndroidAppName);
 
                 var gdbServer = ndkFolder / "prebuilt" / $"android-{AndroidCpu.ToString().ToLower()}" / "gdbserver" / "gdbserver";
                 Assert.True(gdbServer.FileExists(), "NDK didn't contain a suitable GDB server");
@@ -153,7 +202,7 @@ namespace Nuke.Unreal
                 int pid = 0;
                 while(true)
                 {
-                    var output = adb($"shell ps");
+                    var output = adb($"shell ps", logOutput: false);
                     if (GetAndroidProcess(output, out pid))
                     {
                         break;

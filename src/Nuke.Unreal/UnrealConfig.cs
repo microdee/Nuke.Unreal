@@ -32,6 +32,7 @@ namespace Nuke.Unreal
         }
     }
 
+    [TypeConverter(typeof(TypeConverter<UnrealPlatform>))]
     public class UnrealPlatform : Enumeration
     {
         public static UnrealPlatform Win64 = new()

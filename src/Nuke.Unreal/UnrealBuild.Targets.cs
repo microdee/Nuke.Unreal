@@ -12,6 +12,7 @@ using Nuke.Common.Tools.Git;
 using Serilog;
 using Nuke.Common.Tools.MSBuild;
 using Nuke.Common.ProjectModel;
+using System.Security.Cryptography;
 
 namespace Nuke.Unreal
 {
@@ -137,8 +138,12 @@ namespace Nuke.Unreal
             .Executes(() =>
             {
                 var isAndroidPlatform = TargetPlatform == UnrealPlatform.Android;
+                
+                var androidTextureMode = SelfAs<IAndroidTargets>()?.AndroidTextureMode
+                    ?? new [] { AndroidCookFlavor.Multi };
+
                 var configCombination = isAndroidPlatform
-                    ? (from config in Config from textureMode in AndroidTextureMode select (config, textureMode))
+                    ? (from config in Config from textureMode in androidTextureMode select (config, textureMode))
                     : Config.Select(c => (c, AndroidCookFlavor.Multi));
                 configCombination.ForEach(combination =>
                 {
