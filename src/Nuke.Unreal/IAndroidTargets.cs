@@ -32,7 +32,7 @@ namespace Nuke.Unreal
         int ParentPid,
         int Vsz,
         int Rss,
-        int Wchan,
+        string Wchan,
         int Addr,
         string S,
         string Name
@@ -40,18 +40,30 @@ namespace Nuke.Unreal
         public static AndroidProcess Make(string line)
         {
             var r = Regex.Matches(line, @"(?<USER>\S+)\s+(?<PID>\S+)\s+(?<PPID>\S+)\s+(?<VSZ>\S+)\s+(?<RSS>\S+)\s+(?<WCHAN>\S+)\s+(?<ADDR>\S+)\s+(?<S>\S+)\s+(?<NAME>\S+)")
-                .First().Groups;
+                .FirstOrDefault()?.Groups;
+
             return r == null ? null : new(
-                r["USER"].Value,
-                int.Parse(r["PID"].Value),
-                int.Parse(r["PPID"].Value),
-                int.Parse(r["VSZ"].Value),
-                int.Parse(r["RSS"].Value),
-                int.Parse(r["WCHAN"].Value),
-                int.Parse(r["ADDR"].Value),
-                r["S"].Value,
-                r["NAME"].Value
+                r["USER"]?.Value ?? "",
+                int.TryParse(r["PID"]?.Value, out int pid) ? pid : 0,
+                int.TryParse(r["PPID"]?.Value, out int ppid) ? ppid : 0,
+                int.TryParse(r["VSZ"]?.Value, out int vsz) ? vsz : 0,
+                int.TryParse(r["RSS"]?.Value, out int rss) ? rss : 0,
+                r["WCHAN"]?.Value ?? "",
+                int.TryParse(r["ADDR"]?.Value, out int addr) ? addr : 0,
+                r["S"]?.Value ?? "",
+                r["NAME"]?.Value ?? ""
             );
+        }
+
+        public bool IsAnyIdNull()
+        {
+            return Pid == 0
+                || (new [] {User, S, Wchan, Name}).Any(s => string.IsNullOrWhiteSpace(s));
+        }
+
+        public override string ToString()
+        {
+            return $"User: {User}, Pid: {Pid}, ParentPid: {ParentPid}, Vsz: {Vsz}, Rss: {Rss}, Wchan: {Wchan}, Addr: {Addr}, S: {S}, Name: {Name}";
         }
     }
 
@@ -70,15 +82,25 @@ namespace Nuke.Unreal
             => GetParameter(() => AndroidAppName)
             ?? $"com.epicgames.{Self<UnrealBuild>().UnrealProjectName}";
 
-        [Parameter("Specify the full qualified android app name")]
-        int? AndroidGdbPort
-            => GetParameter(() => AndroidGdbPort)
+        [Parameter("Specify the port used by the debugger server")]
+        int? AndroidDebugPort
+            => GetParameter(() => AndroidDebugPort)
             ?? 5045;
+
+        [Parameter("Debug the plain process instead of the one forked by Zygote")]
+        bool? AndroidDebugPlainProcess
+            => GetParameter(() => AndroidDebugPlainProcess)
+            ?? false;
 
         [Parameter("Processor architecture of your target hardware")]
         AndroidProcessorArchitecture AndroidCpu
             => GetParameter(() => AndroidCpu)
             ?? AndroidProcessorArchitecture.Arm64;
+
+        [Parameter("The debugger server to be used on Android")]
+        AndroidDebuggerBackend AndroidDebugger
+            => GetParameter(() => AndroidDebugger)
+            ?? AndroidDebuggerBackend.GDB;
 
         Target CleanIntermediateAndroid => _ => _
             .Description("Clean up the Android folder inside Intermediate")
@@ -96,6 +118,10 @@ namespace Nuke.Unreal
             {
                 var process = AndroidProcess.Make(line.Text);
                 if (process == null) continue;
+                if (process.IsAnyIdNull())
+                {
+                    Log.Warning("Not all data could be parsed for the following process:\n    {0}", process);
+                }
                 processes.Add(process.Pid, process);
             }
 
@@ -111,16 +137,42 @@ namespace Nuke.Unreal
             }
 
             pid = ownProcesses.FirstOrDefault(
-                proc => processes[proc.ParentPid].Name.Contains("zygote", StringComparison.InvariantCultureIgnoreCase)
+                proc =>
+                    processes[proc.ParentPid].Name.Contains("zygote", StringComparison.InvariantCultureIgnoreCase)
+                    != (AndroidDebugPlainProcess ?? false)
             )?.Pid ?? 0;
             return pid > 0;
+        }
+
+        (AbsolutePath artifactFolder, AbsolutePath androidHome, AbsolutePath ndkFolder) AndroidBoilerplate()
+        {
+                var self = Self<UnrealBuild>();
+            var artifactFolder = self.OutPath / $"Android_{AndroidTextureMode[0]}";
+            var androidHome = (AbsolutePath) EnvironmentInfo.SpecialFolder(SpecialFolders.LocalApplicationData)
+                / "Android" / "Sdk";
+            var ndkFolderParent = androidHome / "ndk";
+
+            Assert.DirectoryExists(
+                ndkFolderParent,
+                $"{ndkFolderParent} doesn't exist. Please configure your Android development environment"
+            );
+
+            var ndkFolder = (AbsolutePath) Directory.EnumerateDirectories(ndkFolderParent).FirstOrDefault();
+            
+            Assert.NotNull(
+                ndkFolder,
+                "There are no NDK subfolders. Please configure your Android development environment"
+            );
+
+            return (artifactFolder, androidHome, ndkFolder);
         }
 
         Target DebugOnAndroid => _ => _
             .Description(
                 "Package and launch the product on android but wait for debugger."
                 + " This requires ADB to be in your PATH and NDK to be correctly configured."
-                + " GDB server is copied to the device, and GDB will be used to debug the application"
+                + " Selected debugger server is copied to the device, and will be attached"
+                + " to the app which just has been started."
                 + " Only executed when target-platform is set to Android"
             )
             .OnlyWhenStatic(() => Self<UnrealBuild>().TargetPlatform == UnrealPlatform.Android)
@@ -130,22 +182,7 @@ namespace Nuke.Unreal
                 var self = Self<UnrealBuild>();
                 var adb = ToolResolver.GetPathTool("adb");
 
-                var artifactFolder = self.OutPath / $"Android_{AndroidTextureMode[0]}";
-                var androidHome = (AbsolutePath) EnvironmentInfo.SpecialFolder(SpecialFolders.LocalApplicationData)
-                    / "Android" / "Sdk";
-                var ndkFolderParent = androidHome / "ndk";
-
-                Assert.DirectoryExists(
-                    ndkFolderParent,
-                    $"{ndkFolderParent} doesn't exist. Please configure your Android development environment"
-                );
-
-                var ndkFolder = (AbsolutePath) Directory.EnumerateDirectories(ndkFolderParent).FirstOrDefault();
-                
-                Assert.NotNull(
-                    ndkFolder,
-                    "There are no NDK subfolders. Please configure your Android development environment"
-                );
+                var (artifactFolder, androidHome, ndkFolder) = AndroidBoilerplate();
 
                 var apkName = $"{self.UnrealProjectName}-Android-{self.Config[0]}-{AndroidCpu.ToString().ToLower()}";
                 var apkFile = artifactFolder / (apkName + ".apk");
@@ -163,11 +200,15 @@ namespace Nuke.Unreal
                 Log.Information("Installing {0}", apkFile);
                 adb($"install {apkFile}");
 
-                var storagePath = adb("shell echo $EXTERNAL_STORAGE").FirstOrDefault(o => !string.IsNullOrWhiteSpace(o.Text));
+                var storagePath = adb("shell echo $EXTERNAL_STORAGE")
+                    .FirstOrDefault(o => !string.IsNullOrWhiteSpace(o.Text))
+                    .Text;
+
+                Assert.False(string.IsNullOrWhiteSpace(storagePath), "Couldn't get a storage path from the device");
                 
                 try
                 {
-                    Log.Information("Removing existing assets from device");
+                    Log.Information("Removing existing assets from device (failures here are not fatal)");
                     adb($"shell rm -r {storagePath}/UE4Game/{self.UnrealProjectName}");
                     adb($"shell rm -r {storagePath}/UE4Game/UE4CommandLine.txt");
                     adb($"shell rm -r {storagePath}/obb/{AndroidAppName}");
@@ -192,12 +233,23 @@ namespace Nuke.Unreal
                 adb($"shell pm grant {AndroidAppName} android.permission.WRITE_EXTERNAL_STORAGE");
                 
                 Log.Information("Done installing {0}", AndroidAppName);
+                Log.Information("Copying {0} from NDK to device", AndroidDebugger.ServerProgramName);
 
-                var gdbServer = ndkFolder / "prebuilt" / $"android-{AndroidCpu.ToString().ToLower()}" / "gdbserver" / "gdbserver";
-                Assert.True(gdbServer.FileExists(), "NDK didn't contain a suitable GDB server");
+                var server = ndkFolder / AndroidDebugger.ServerProgramPath(AndroidCpu);
+                Assert.True(server.FileExists(), $"NDK didn't contain a suitable {AndroidDebugger.ServerProgramName}");
 
-                adb($"push {gdbServer} /data/local/tmp/");
-                adb($"shell am start -D -n {AndroidAppName}/com.epicgames.ue4.GameActivity");
+                var serverFolderTmp = "/data/local/tmp";
+                var serverFolderUser = $"/data/user/0/{AndroidAppName}";
+
+                adb($"push {server} {serverFolderTmp}/");
+                adb($"shell chmod 775 {serverFolderTmp}/{AndroidDebugger.ServerProgramName}");
+
+                Log.Information("Duplicating {0} to be used by {1}", AndroidDebugger.ServerProgramName, AndroidAppName);
+                adb($"shell run-as {AndroidAppName} cp {serverFolderTmp}/{AndroidDebugger.ServerProgramName} {serverFolderUser}/{AndroidDebugger.ServerProgramName}");
+
+                var waitForDebugger = AndroidDebugger == AndroidDebuggerBackend.LLDB ? " -D" : "";
+                adb($"shell am start{waitForDebugger} -n {AndroidAppName}/com.epicgames.ue4.GameActivity");
+                adb($"forward tcp:{AndroidDebugPort} tcp:{AndroidDebugPort}");
 
                 int pid = 0;
                 while(true)
@@ -211,10 +263,17 @@ namespace Nuke.Unreal
                     Thread.Sleep(1000);
                 }
 
-                Log.Information("Attaching GDB server to process ID {0} listening on port {1}", pid, AndroidGdbPort);
-                
-                adb($"forward tcp:{AndroidGdbPort} tcp:{AndroidGdbPort}");
-                adb($"shell /data/local/tmp/gdbserver :{AndroidGdbPort} --attach {pid}");
+                if (AndroidDebugger == AndroidDebuggerBackend.GDB)
+                {
+                    Log.Information("Attaching gdbserver to process ID {0} listening on port {1}", pid, AndroidDebugPort);
+                }
+                if (AndroidDebugger == AndroidDebuggerBackend.LLDB)
+                {
+                    Log.Information("lldb-server is listening on port {0}.", AndroidDebugPort);
+                    Log.Information("Attach to process {0} ({1}) from LLDB client", AndroidAppName, pid);
+                }
+
+                adb($"shell run-as {AndroidAppName} {serverFolderUser}/{AndroidDebugger.ServerProgramName} {AndroidDebugger.LaunchArguments(AndroidDebugPort ?? 5045, pid)}");
             });
     }
 }

@@ -22,6 +22,7 @@ using static Nuke.Common.Tools.NuGet.NuGetTasks;
 [GitHubActions(
     "Release",
     GitHubActionsImage.WindowsLatest,
+    AutoGenerate = false,
     OnPushBranches = new[] { MasterBranch },
     OnPullRequestBranches = new[] { MasterBranch }
 )]
@@ -70,7 +71,7 @@ class Build : NukeBuild
             var nukeUnrealMsBuild = NukeUnreal.GetMSBuildProject();
             nukeUnrealMsBuild.SetProperty("Version", newVersion.ToString(3));
             nukeUnrealMsBuild.Save();
-            
+
             DotNetBuild(s => s
                 .SetNoRestore(true)
                 .SetProjectFile(NukeUnreal)
