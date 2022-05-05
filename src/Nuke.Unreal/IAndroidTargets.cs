@@ -81,6 +81,9 @@ namespace Nuke.Unreal
         string AndroidAppName
             => GetParameter(() => AndroidAppName)
             ?? $"com.epicgames.{Self<UnrealBuild>().UnrealProjectName}";
+            
+        [Parameter("Attach a debugger to the launched Android app")]
+        bool? WithNativeDebugger => GetParameter(() => WithNativeDebugger) ?? false;
 
         [Parameter("Specify the port used by the debugger server")]
         int? AndroidDebugPort
@@ -171,8 +174,8 @@ namespace Nuke.Unreal
             .Description(
                 "Package and launch the product on android but wait for debugger."
                 + " This requires ADB to be in your PATH and NDK to be correctly configured."
-                + " Selected debugger server is copied to the device, and will be attached"
-                + " to the app which just has been started."
+                + " If --with-native-debugger is set select a debugger server which will be"
+                + " copied to the device, and will be attached to the just-started application."
                 + " Only executed when target-platform is set to Android"
             )
             .OnlyWhenStatic(() => Self<UnrealBuild>().TargetPlatform == UnrealPlatform.Android)
@@ -233,47 +236,57 @@ namespace Nuke.Unreal
                 adb($"shell pm grant {AndroidAppName} android.permission.WRITE_EXTERNAL_STORAGE");
                 
                 Log.Information("Done installing {0}", AndroidAppName);
-                Log.Information("Copying {0} from NDK to device", AndroidDebugger.ServerProgramName);
 
-                var server = ndkFolder / AndroidDebugger.ServerProgramPath(AndroidCpu);
-                Assert.True(server.FileExists(), $"NDK didn't contain a suitable {AndroidDebugger.ServerProgramName}");
-
-                var serverFolderTmp = "/data/local/tmp";
-                var serverFolderUser = $"/data/user/0/{AndroidAppName}";
-
-                adb($"push {server} {serverFolderTmp}/");
-                adb($"shell chmod 775 {serverFolderTmp}/{AndroidDebugger.ServerProgramName}");
-
-                Log.Information("Duplicating {0} to be used by {1}", AndroidDebugger.ServerProgramName, AndroidAppName);
-                adb($"shell run-as {AndroidAppName} cp {serverFolderTmp}/{AndroidDebugger.ServerProgramName} {serverFolderUser}/{AndroidDebugger.ServerProgramName}");
-
-                var waitForDebugger = AndroidDebugger == AndroidDebuggerBackend.LLDB ? " -D" : "";
-                adb($"shell am start{waitForDebugger} -n {AndroidAppName}/com.epicgames.ue4.GameActivity");
-                adb($"forward tcp:{AndroidDebugPort} tcp:{AndroidDebugPort}");
-
-                int pid = 0;
-                while(true)
+                if (WithNativeDebugger ?? false)
                 {
-                    var output = adb($"shell ps", logOutput: false);
-                    if (GetAndroidProcess(output, out pid))
+                    Log.Information("Copying {0} from NDK to device", AndroidDebugger.ServerProgramName);
+
+                    var server = ndkFolder / AndroidDebugger.ServerProgramPath(AndroidCpu);
+                    Assert.True(server.FileExists(), $"NDK didn't contain a suitable {AndroidDebugger.ServerProgramName}");
+
+                    var serverFolderTmp = "/data/local/tmp";
+                    var serverFolderUser = $"/data/user/0/{AndroidAppName}";
+
+                    adb($"push {server} {serverFolderTmp}/");
+                    adb($"shell chmod 775 {serverFolderTmp}/{AndroidDebugger.ServerProgramName}");
+
+                    Log.Information("Duplicating {0} to be used by {1}", AndroidDebugger.ServerProgramName, AndroidAppName);
+                    adb($"shell run-as {AndroidAppName} cp {serverFolderTmp}/{AndroidDebugger.ServerProgramName} {serverFolderUser}/{AndroidDebugger.ServerProgramName}");
+
+                    var waitForDebugger = AndroidDebugger == AndroidDebuggerBackend.LLDB ? " -D" : "";
+
+                    adb($"shell am start{waitForDebugger} -n {AndroidAppName}/com.epicgames.ue4.GameActivity");
+                    adb($"forward tcp:{AndroidDebugPort} tcp:{AndroidDebugPort}");
+
+                    int pid = 0;
+                    while(true)
                     {
-                        break;
+                        var output = adb($"shell ps", logOutput: false);
+                        if (GetAndroidProcess(output, out pid))
+                        {
+                            break;
+                        }
+                        Log.Information("Waiting for process to start on device...");
+                        Thread.Sleep(1000);
                     }
-                    Log.Information("Waiting for process to start on device...");
-                    Thread.Sleep(1000);
-                }
 
-                if (AndroidDebugger == AndroidDebuggerBackend.GDB)
-                {
-                    Log.Information("Attaching gdbserver to process ID {0} listening on port {1}", pid, AndroidDebugPort);
-                }
-                if (AndroidDebugger == AndroidDebuggerBackend.LLDB)
-                {
-                    Log.Information("lldb-server is listening on port {0}.", AndroidDebugPort);
-                    Log.Information("Attach to process {0} ({1}) from LLDB client", AndroidAppName, pid);
-                }
+                    if (AndroidDebugger == AndroidDebuggerBackend.GDB)
+                    {
+                        Log.Information("Attaching gdbserver to process ID {0} listening on port {1}", pid, AndroidDebugPort);
+                    }
+                    if (AndroidDebugger == AndroidDebuggerBackend.LLDB)
+                    {
+                        Log.Information("lldb-server is listening on port {0}.", AndroidDebugPort);
+                        Log.Information("Attach to process {0} ({1}) from LLDB client", AndroidAppName, pid);
+                    }
 
-                adb($"shell run-as {AndroidAppName} {serverFolderUser}/{AndroidDebugger.ServerProgramName} {AndroidDebugger.LaunchArguments(AndroidDebugPort ?? 5045, pid)}");
+                    adb($"shell run-as {AndroidAppName} {serverFolderUser}/{AndroidDebugger.ServerProgramName} {AndroidDebugger.LaunchArguments(AndroidDebugPort ?? 5045, pid)}");
+                }
+                else
+                {
+                    Log.Information("Running {0} but wait for a debugger to be attached", AndroidAppName);
+                    adb($"shell am start -D -n {AndroidAppName}/com.epicgames.ue4.GameActivity");
+                }
             });
     }
 }
