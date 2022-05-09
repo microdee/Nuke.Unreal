@@ -187,7 +187,10 @@ namespace Nuke.Unreal
 
                 var (artifactFolder, androidHome, ndkFolder) = AndroidBoilerplate();
 
-                var apkName = $"{self.UnrealProjectName}-Android-{self.Config[0]}-{AndroidCpu.ToString().ToLower()}";
+                var apkName = self.Config[0] == UnrealConfig.Development
+                    ? $"{self.UnrealProjectName}-{AndroidCpu.ToString().ToLower()}"
+                    : $"{self.UnrealProjectName}-Android-{self.Config[0]}-{AndroidCpu.ToString().ToLower()}";
+
                 var apkFile = artifactFolder / (apkName + ".apk");
 
                 try
@@ -226,9 +229,12 @@ namespace Nuke.Unreal
                 var obbName = $"main.1.{AndroidAppName}";
                 var obbFile = artifactFolder / (obbName + ".obb");
 
-                Log.Information("Installing {0}", obbFile);
+                if (obbFile.FileExists())
+                {
+                    Log.Information("Installing {0}", obbFile);
 
-                adb($"push {obbFile} {storagePath}/obb/{AndroidAppName}/{obbName}.obb");
+                    adb($"push {obbFile} {storagePath}/obb/{AndroidAppName}/{obbName}.obb");
+                }
 
                 Log.Information("Grant READ_EXTERNAL_STORAGE and WRITE_EXTERNAL_STORAGE to the apk for reading OBB file or game file in external storage.");
 
