@@ -44,11 +44,7 @@ namespace Nuke.Unreal
         T Self<T>() where T : INukeBuild => (T)(object)this;
 
         [Parameter("Make marketplace compliant archives")]
-        bool ForMarketplace
-        {
-            get => false;
-            set { }
-        }
+        bool? ForMarketplace => EnvironmentInfo.GetParameter(() => ForMarketplace) ?? false;
 
         string PluginVersion => "1.0.0";
         
@@ -71,7 +67,7 @@ namespace Nuke.Unreal
                 Log.Information(".uplugin path was unspecified, looking for one...");
                 if(BuildCommon.LookAroundFor(f => f.EndsWith(".uplugin"), out var candidate))
                 {
-                    Log.Information($"Found project at {candidate}");
+                    Log.Information($"Found plugin at {candidate}");
                     this.Cache().ToPlugin = candidate;
                     return candidate;
                 }
@@ -99,7 +95,7 @@ namespace Nuke.Unreal
 
                 foreach (var module in PluginObject["Modules"])
                 {
-                    module["WhitelistPlatforms"] = new JArray(self.TargetPlatform);
+                    module["WhitelistPlatforms"] = new JArray(self.TargetPlatform.ToString());
                 }
 
                 Unreal.WriteJson(PluginObject, ToPlugin);
@@ -153,7 +149,7 @@ namespace Nuke.Unreal
         public virtual Target MakeMarketplaceRelease => _ => _
             .Description("Prepare a Marketplace complaint archive from the plugin. This target only executes when --for-marketplace is also present. This yields zip archives in the deployment path specified in OutPath (.deploy by default)")
             .DependsOn(Checkout)
-            .OnlyWhenStatic(() => ForMarketplace)
+            .OnlyWhenStatic(() => ForMarketplace ?? false)
             .Executes(() =>
             {
                 var self = Self<UnrealBuild>();
