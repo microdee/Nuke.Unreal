@@ -3,80 +3,101 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 
-namespace Nuke.Unreal.Config
-{
-    public static class ConfigCommon
-    {
-        public static GroupCollection MatchGroup(
-            this string text,
-            string pattern,
-            RegexOptions options = RegexOptions.CultureInvariant | RegexOptions.Multiline)
-        {
-            var match = Regex.Match(text, pattern, options);
-            return match?.Groups;
-        }
+namespace Nuke.Unreal.Config;
 
-        public static GroupCollection Fetch(this GroupCollection groups, string capturename, out string result)
-        {
-            result = groups[capturename]?.Value;
-            return groups;
-        }
+public static class ConfigCommon
+{
+    public static GroupCollection MatchGroup(
+        this string text,
+        string pattern,
+        RegexOptions options = RegexOptions.CultureInvariant | RegexOptions.Multiline)
+    {
+        var match = Regex.Match(text, pattern, options);
+        return match?.Groups;
     }
 
-    public class ConfigIni
+    public static GroupCollection Fetch(this GroupCollection groups, string capturename, out string result)
     {
-        public readonly Dictionary<string, ConfigSession> Sessions = new();
+        result = groups[capturename]?.Value;
+        return groups;
+    }
 
-        public ConfigSession this[string key] => Sessions.ContainsKey(key) ? Sessions[key] : null;
+    public static string AsCharacter(this CommandType commandType) => commandType switch
+    {
+        CommandType.Set => "",
+        CommandType.Add => "+",
+        CommandType.Remove => "-",
+        CommandType.Clear => "!",
+        CommandType.Comment => ";",
+        _ => ""
+    };
+}
 
-        public static ConfigIni Parse(string input)
+public class ConfigIni
+{
+    public readonly Dictionary<string, ConfigSession> Sessions = new();
+
+    public ConfigSession this[string key] => Sessions.ContainsKey(key) ? Sessions[key] : null;
+
+    public ConfigSession FindOrAdd(string key)
+    {
+        var result = this[key];
+        if (result == null)
         {
-            ConfigSession currentSession = null;
-            var ini = new ConfigIni();
-            int order = 0;
-            foreach(var line in input.Split(Environment.NewLine))
-            {
-                if (string.IsNullOrWhiteSpace(line)) continue;
-                if (line.StartsWith('[') && line.EndsWith(']'))
-                {
-                    var sessionName = new string(line.Skip(1).SkipLast(1).ToArray());
-                    if (ini.Sessions.ContainsKey(sessionName))
-                    {
-                        currentSession = ini.Sessions[sessionName];
-                    }
-                    else
-                    {
-                        currentSession = new() { Order = order, Name = sessionName };
-                        ini.Sessions.Add(sessionName, currentSession);
-                    }
-                }
-                else if (currentSession != null)
-                {
-                    currentSession.SetLine(line, order);
-                }
-                order++;
-            }
-
-            return order > 0 ? ini : null;
+            var lastOrder = Sessions.Count > 0 ? Sessions.Values.Max(s => s.Order) + 1 : 0;
+            result = new ConfigSession {Order = lastOrder, Name = key};
+            Sessions.Add(key, result);
         }
+        return result;
+    }
 
-        public void Merge(ConfigIni from)
+    public static ConfigIni Parse(string input)
+    {
+        ConfigSession currentSession = null;
+        var ini = new ConfigIni();
+        int order = 0;
+        foreach(var line in input.Split(new [] { Environment.NewLine }, StringSplitOptions.None))
         {
-            foreach(var fromSession in from.Sessions.Values)
+            if (string.IsNullOrWhiteSpace(line)) continue;
+            if (line.StartsWith("[") && line.EndsWith("]"))
             {
-                if (Sessions.ContainsKey(fromSession.Name))
+                var sessionName = line.TrimStart('[').TrimEnd(']');
+                if (ini.Sessions.ContainsKey(sessionName))
                 {
-                    Sessions[fromSession.Name].Merge(fromSession);
+                    currentSession = ini.Sessions[sessionName];
                 }
                 else
                 {
-                    Sessions.Add(fromSession.Name, fromSession.Copy());
+                    currentSession = new() { Order = order, Name = sessionName };
+                    ini.Sessions.Add(sessionName, currentSession);
                 }
             }
+            else if (currentSession != null)
+            {
+                currentSession.SetLine(line, order);
+            }
+            order++;
         }
 
-        public string Serialize() => string.Join(Environment.NewLine,
-            Sessions.Values.OrderBy(s => s.Order).Select(s => s.Serialize())
-        );
+        return order > 0 ? ini : null;
     }
+
+    public void Merge(ConfigIni from)
+    {
+        foreach(var fromSession in from.Sessions.Values)
+        {
+            if (Sessions.ContainsKey(fromSession.Name))
+            {
+                Sessions[fromSession.Name].Merge(fromSession);
+            }
+            else
+            {
+                Sessions.Add(fromSession.Name, fromSession.Copy());
+            }
+        }
+    }
+
+    public string Serialize() => string.Join(Environment.NewLine,
+        Sessions.Values.OrderBy(s => s.Order).Select(s => s.Serialize())
+    );
 }
