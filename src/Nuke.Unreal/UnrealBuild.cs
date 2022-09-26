@@ -1,32 +1,13 @@
-using System;
-using System.ComponentModel;
-using System.IO;
-using System.Linq;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using Nuke.Common;
-using Nuke.Common.CI;
-using Nuke.Common.Execution;
-using Nuke.Common.Git;
 using Nuke.Common.IO;
-using Nuke.Common.ProjectModel;
-using Nuke.Common.Tooling;
-using Nuke.Common.Tools.DotNet;
-using Nuke.Common.Utilities.Collections;
-using Nuke.Unreal.BoilerplateGenerators;
-
-using static Nuke.Common.EnvironmentInfo;
-using static Nuke.Common.IO.FileSystemTasks;
-using static Nuke.Common.IO.PathConstruction;
-using static Nuke.Common.Tools.DotNet.DotNetTasks;
-using static Nuke.Common.Logger;
-using static Nuke.Common.ControlFlow;
-using static Nuke.Unreal.BuildCommon;
 
 namespace Nuke.Unreal
 {
-    public abstract partial class CommonTargets : NukeBuild
+    public abstract partial class UnrealBuild : NukeBuild
     {
+        T Self<T>() where T : INukeBuild => (T)(object)this;
+        T SelfAs<T>() where T : class, INukeBuild => (object)this as T;
+
         /// <summary>
         /// Most targets read the desired UE4 version from the project file.
         /// </summary>
@@ -49,7 +30,7 @@ namespace Nuke.Unreal
         public virtual AbsolutePath OutPath { get; set; } = RootDirectory / ".deploy";
 
         [Parameter("Set platform for running targets")]
-        public string TargetPlatform { get; set; } = Unreal.GetDefaultPlatform().ToString();
+        public virtual UnrealPlatform TargetPlatform { get; set; } = UnrealPlatform.FromFlag(Unreal.GetDefaultPlatform());
 
         [Parameter("The target configuration for building or packaging the project")]
         public virtual UnrealConfig[] Config { get; set; } = new [] {UnrealConfig.Development};
@@ -64,7 +45,7 @@ namespace Nuke.Unreal
         [Parameter("Extra arguments passed to UAT. It's recommended to use it only from command line, do not override.")]
         public virtual string[] UatArgs { get; set; }
 
-        protected EngineVersion GetEngineVersionFromProject() {
+        public EngineVersion GetEngineVersionFromProject() {
             var result = (ProjectObject["EngineVersionPatch"] ?? ProjectObject["EngineAssociation"]).ToString();
             if(!EngineVersion.ValidVersionString(result))
                 return TargetEngineVersion;

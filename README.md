@@ -1,53 +1,47 @@
 # Nuke.Unreal
 ![](docs/nu_logo-250.png)
 
+![](https://badgen.net/nuget/v/md.Nuke.Unreal)
+
 Simplistic workflow for automating Unreal Engine project steps embracing [Nuke](https://nuke.build).
 
 Nuke + Unreal Engine workflow provides a consistent way to work with UE4/5 tools reducing the chore it comes with 
 
 ## Usage
 
-For now, no Nuget release available but planned when it hits 1.0. When Nuget package will be available it'll be available as a simple package reference in your Nuke build project. If you still want to use this workflow you can install from script or go manually:
+Nuke.Unreal is available as a Nuget package and you can just add it to your build project as usual (package ID is `md.Nuke.Unreal`)
 
-1. Set up the build project:
-   * Via a script:
-     ```
-     iex ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/microdee/Nuke.Unreal.WorkflowTemplate/main/Setup.ps1'))
-     ```
-   * <details>
-      <summary>Manually</summary>
-  
-     ```
-     > dotnet tool install Nuke.GlobalTool --global
 
-     > dotnet new sln --name Build
+1. <details><summary>Install Nuke for an Unreal project</summary>  
+   
+   ```
+   > dotnet tool install Nuke.GlobalTool --global
+   
+   > nuke :setup
+     select None for solution
+     build project inside Nuke.Targets folder
+   
+   > nuke :add-package md.Nuke.Unreal
+   ```
+   
+   </details>
+2. Inherit your Build class from `UnrealBuild` instead of `NukeBuild`
+3. No further boilerplate required, run `nuke --plan` to test Nuke.Unreal
+4. ***(optional)*** Inherit `IPackageTargets` interface if you want to package the associated Unreal project
+5. ***(optional)*** Inherit `IPluginTargets` interface for automating plugin development related steps.
 
-     > nuke :setup
-     # preferably put your build project inside Nuke.Targets folder
+Your bare-bones minimal Build.cs which will provide the default features of Nuke.Unreal should look like this:
 
-     > git submodule add https://github.com/microdee/Nuke.Unreal.git Nuke.Unreal
+```CSharp
+// Build.cs
+using namespace Nuke.Common;
+using namespace Nuke.Unreal;
 
-     > dotnet sln .\Build.sln add .\Nuke.Unreal\src\Nuke.Unreal\Nuke.Unreal.csproj
-     > dotnet add .\Nuke.Targets\_build.csproj reference .\Nuke.Unreal\src\Nuke.Unreal\Nuke.Unreal.csproj
-     ```
-  
-     </details>
-2. Inherit your Build class from either `PluginTargets`, `ProgramTargets` or `ProjectTargets`
-3. Override abstract members, add own targets, set up dependencies
-4. ***(optional)*** Set the path to your UE project if it's not trivially around your Nuke targets:
-  ```CSharp
-  public override AbsolutePath ToProject => RootDirectory / ".." / "MyProject" / "MyProject.uproject";
-  ```
-  * This is only necessary if
-    * project file is not recursively inside one of the subfolders compared to the path of the `.nuke` folder
-    * project file is not in one of the parent folders of the `.nuke` folder
-    * there are multiple `.uproject` files so one needs to be specified. Nuke.Unreal targets support only one Unreal project.
-5. ***(optional)*** Set the path to your target plugin if there are more in your test project, or if it's not trivially around your Nuke targets:
-  ```CSharp
-  public override AbsolutePath ToPlugin => UnrealPluginsFolder / "MyPlugin" / "MyPlugin.uplugin";
-  ```
-  * This is only necessary if
-    * there are multiple plugins in the test project so one needs to be specified. Nuke.Unreal targets support only one Unreal plugin to be worked on.
+class Build : UnrealBuild
+{
+    public static int Main () => Execute<Build>(x => x.BuildEditor);
+}
+```
 
 ## Features:
 * All what the great Nuke can offer
@@ -64,7 +58,6 @@ For now, no Nuget release available but planned when it hits 1.0. When Nuget pac
   ```
   > nuke make-release --for-marketplace
   ```
-* Bind Unreal tools to Nuke with fluent C# API \[very WIP\]
 * Generate boilerplate code and scaffolding from [Scriban](https://github.com/scriban/scriban) templates so no editor needs to be opened
     ```
     > nuke new-actor --name MyActor
@@ -72,10 +65,98 @@ For now, no Nuget release available but planned when it hits 1.0. When Nuget pac
     > nuke new-module --name MyModule
     etc...
     ```
+* Pluggable way to define targets for reusable plugins and modules
+
+## Setting up for a project
+
+Nuke.Unreal targets looks for the `*.uproject` file automatically and it will use the first one it finds. A `*.uproject` is required to be present even for plugin development (more on plugins below). Automatically found project files can be in the sub-folder tree of Nuke's root (which is the folder containing the `.nuke`) or in parent folders of Nuke's root. If for any reason there are more than one or no `*.uproject` files in that area, the developer can specify an explicit location of the associated `*.uproject` file.
+
+```CSharp
+public override AbsolutePath ToProject => RootDirectory / ".." / "MyProject" / "MyProject.uproject";
+```
+
+Only one Unreal project is supported per Nuke.Unreal instance.
+
+## Setting up for plugin development
+
+Same is applicable when Nuke.Unreal is used for developing an Unreal Plugin for release. Of course Nuke.Unreal can work with multiple plugins in a project, but the `IPluginTargets` interface focuses only on one plugin. Again if the plugin is not trivially locatable then the developer can specify its location explicitly.
+
+```CSharp
+public override AbsolutePath ToPlugin => UnrealPluginsFolder / "MyPlugin" / "MyPlugin.uplugin";
+```
+
+### Additional Plugin Targets
+
+However plugins which require some pre-processing might benefit from the very simple "Plugin Targets" pattern, which is just simple class-library C# projects, referencing Nuke.Unreal as a nuget, and define extra targets or functionality which can be used by the main Nuke installation for the project. Let's have this scaffolding as an example:
+
+```
+<project root>
+  - .nuke
+  - Nuke.Targets
+    - _build.csproj
+    - Build.cs (main build script)
+  - Content, Build, etc...
+  - Source
+    - MyModule
+      - <source files>
+      - Nuke.Targets
+        - MyModule.csproj
+        - MyModule.cs
+  - Plugins
+    - MyPlugin
+      - <regular plugin files>
+      - Nuke.Targets
+        - MyPlugin.csproj
+        - MyPlugin.cs
+  - MyUnrealProject.uproject
+```
+
+`MyModule.csproj` and `MyPlugin.csproj` were both simply generated by `dotnet new classlib --name ... --output ./Nuke.Targets` and then the `md.Nuke.Unreal` which brings in the core Nuke packages, was added to define targets. Of course the developer can manually add these project references to the main build project, but Nuke.Unreal provides `discover-plugin-targets` target, which seeks out C# projects inside `Nuke.Targets` folders, and add them to the main build project automatically. After calling `discover-plugin-targets`, the developer can use these plugin projects as any other regular .NET reference. In most cases the plugin projects define interfaces which has some targets declared with "default implementation", then these interfaces can be inherited by the main Build class. Nuke will see the new targets without further boilerplate.
+
+```CSharp
+
+// MyModule.cs
+using namespace Nuke.Common;
+using namespace Nuke.Unreal;
+namespace Nuke.MyModule;
+
+public interface IMyModuleTargets : INukeBuild
+{
+    Target Foo => _ => _
+        .DependsOn<IPackageTargets>()
+        .Executes(() {...});
+}
+
+// MyPlugin.cs
+using namespace Nuke.Common;
+using namespace Nuke.Unreal;
+namespace Nuke.MyPlugin;
+
+public interface IMyPluginTargets : INukeBuild
+{
+    Target Foo => _ => _
+        .Before<UnrealBuild>(u => u.Generate, u => u.Build, u => u.BuildEditor)
+        .Executes(() {...});
+}
+
+// Build.cs
+using namespace Nuke.Common;
+using namespace Nuke.Unreal;
+using namespace Nuke.MyModule;
+using namespace Nuke.MyPlugin;
+
+class Build : UnrealBuild, IPackageTargets, IMyModuleTargets, IMyPluginTargets
+{
+    public static int Main () => Execute<Build>(x => x.BuildEditor);
+}
+```
+
+While discovering plugin targets, C# projects inside a `Nuke.Targets` folder neighbouring a `.nuke` folder will be ignored.
 
 ### Custom UBT or UAT arguments
 
-Nuke.Unreal supports passing custom arguments to UBT or UAT via `--ubt-args` or `--uat-args`. These are regular array properties exposed as Nuke target parameters. This means however that doing `--ubt-args -DisableUnity` wouldn't actually add `-DisableUnity` to the argument list. This happens because Nuke stops parsing the array argument when it hits a `-` character. For this reason Nuke.Unreal has a special escape mechanism where `~-` is replaced with `-`, or if the argument starts with `~` then that's also replaced with a `-`.
+Nuke.Unreal supports passing custom arguments to UBT or UAT via `--ubt-args` or `--uat-args`. These are regular array properties exposed as Nuke target parameters. This means however that doing `--ubt-args -DisableUnity` wouldn't actually add `-DisableUnity` to the argument list. This happens bec
+ause Nuke stops parsing the array argument when it hits a `-` character. For this reason Nuke.Unreal has a special escape mechanism where `~-` is replaced with `-`, or if the argument starts with `~` then that's also replaced with a `-`.
 
 So doing `--ubt-args ~DisableUnity ~2022` will correctly pass arguments `-DisableUnity -2022` to UBT.
 
@@ -126,9 +207,3 @@ public override AbsolutePath TemplatesPath { get; set; } = RootDirectory / "MyTe
 ```
 
 This way Actor and Object generators will have their project specific Scriban templates but the remaining generator types will use the default templates of Nuke.Unreal. 
-
-### Generators for Unreal Tools \[WIP\]
-
-Nuke.Unreal can generate type-safe fluent API for UE tooling with similar mindset as Nuke tools using direct reflection data from Unreal tools written for .NET. The Tool Generators project directly reference those programs as .NET assemblies. It's only done like this in the generator, and not actually inside the build project because the assemblies are referred with an absolute path, but the location of Unreal is a dynamic data during runtime ("build-time" if you prefer). So there's no extra ceremony for the user during setting up their build environment with Nuke.Unreal. As an added extra this way we can still somewhat treat these tools as executable black-boxes during runtime/build-time, so we don't run into any problems regarding different .NET environment requirements.
-
-On the other hand Contributors to Nuke.Unreal need to modify `LocalUnrealAssemblies.targets` in order to explicitly point to their own location of their unreal installation depending on their development platform. Again this is only necessary for generating the fluent tool API, but not for running the actual Nuke.Unreal targets.
