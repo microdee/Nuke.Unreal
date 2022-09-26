@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 
-namespace Nuke.Unreal.Config;
+namespace Nuke.Unreal.Ini;
 
 public enum CommandType
 {
@@ -36,18 +36,20 @@ public struct ConfigCommand
     {
         Order = order;
 
+        string command = "", name = "", value = "";
+
         line.MatchGroup(@"^(?<COMMAND>[\+\-!;]?)(?<NAME>.*?)(=(?<VALUE>.*))?$", RegexOptions.CultureInvariant)
-            .Fetch("COMMAND", out var command)
-            .Fetch("NAME", out var name)
-            .Fetch("VALUE", out var value);
+            ?.Fetch("COMMAND", out command)
+            ?.Fetch("NAME", out name)
+            ?.Fetch("VALUE", out value);
         
 
         Type = string.IsNullOrWhiteSpace(command) || AllCommands.All(c => c != command[0])
             ? CommandType.Set
             : (CommandType) command[0];
 
-        value = value?.Trim();
-        Name = Type != CommandType.Comment ? name?.Trim() : name;
+        value = value.Trim();
+        Name = Type != CommandType.Comment ? name.Trim() : name;
         IsQuotedString = value.StartsWith("\"") && value.EndsWith("\"");
         Value = IsQuotedString ? value.Trim('"') : value;
     }
@@ -64,7 +66,7 @@ public struct ConfigCommand
         _ => ""
     };
 
-    public override bool Equals(object obj)
+    public override bool Equals(object? obj)
     {
         if (obj is ConfigCommand b)
         {

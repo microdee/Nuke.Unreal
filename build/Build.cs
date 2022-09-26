@@ -44,7 +44,11 @@ class Build : NukeBuild
     const string MasterBranch = "master";
 
     [Solution] readonly Solution Solution;
-    Project NukeUnreal => Solution.GetProject("Nuke.Unreal");
+    Project[] NukeUnreal => new []
+    {
+        Solution.GetProject("Nuke.Unreal"),
+        Solution.GetProject("Nuke.Unreal.Ini")
+    };
 
     [Parameter]
     string[] NugetApiKeys;
@@ -52,14 +56,17 @@ class Build : NukeBuild
     [Parameter]
     NuGetPublishTarget[] PublishTo = new [] { IsLocalBuild ? NuGetPublishTarget.Github : NuGetPublishTarget.NugetOrg };
 
-    Version CurrentVersion => Version.Parse(NukeUnreal.GetProperty("Version"));
+    Version CurrentVersion => Version.Parse(NukeUnreal.First().GetProperty("Version"));
 
     Target Restore => _ => _
         .Executes(() =>
         {
-            DotNetRestore(s => s
-                .SetProjectFile(NukeUnreal)
-            );
+            foreach(var project in NukeUnreal)
+            {
+                DotNetRestore(s => s
+                    .SetProjectFile(project)
+                );
+            }
         });
 
     Target Compile => _ => _
@@ -67,38 +74,53 @@ class Build : NukeBuild
         .Executes(() =>
         {
             var currentVersion = CurrentVersion;
-            var newVersion = new Version(currentVersion.Major, currentVersion.Minor, currentVersion.Build + 1);
-            var nukeUnrealMsBuild = NukeUnreal.GetMSBuildProject();
-            nukeUnrealMsBuild.SetProperty("Version", newVersion.ToString(3));
-            nukeUnrealMsBuild.Save();
+            foreach(var project in NukeUnreal)
+            {
+                var newVersion = new Version(currentVersion.Major, currentVersion.Minor, currentVersion.Build + 1);
+                var nukeUnrealMsBuild = project.GetMSBuildProject();
+                nukeUnrealMsBuild.SetProperty("Version", newVersion.ToString(3));
+                nukeUnrealMsBuild.Save();
 
-            DotNetBuild(s => s
-                .SetNoRestore(true)
-                .SetProjectFile(NukeUnreal)
-                .SetVersion(newVersion.ToString())
-                .SetAssemblyVersion(newVersion.ToString())
+                DotNetBuild(s => s
+                    .SetNoRestore(true)
+                    .SetProjectFile(project)
+                    .SetVersion(newVersion.ToString())
+                    .SetAssemblyVersion(newVersion.ToString())
+                );
+            }
+        });
+
+    Target Test => _ => _
+        .Executes(() =>
+        {
+            DotNetTest(s => s
+                .SetProjectFile(Solution.GetProject("Nuke.Unreal.Tests"))
             );
         });
 
     Target PublishNuget => _ => _
-        .DependsOn(Compile)
+        .DependsOn(Compile, Test)
         .Requires(() => NugetApiKeys)
         .Requires(() => PublishTo)
         .Executes(() =>
         {
+            var currentVersion = CurrentVersion;
             for (int i=0; i<PublishTo.Length; i++)
             {
-                var source = PublishTo[i].Source;
-                var apiKey = NugetApiKeys[i % NugetApiKeys.Length];
+                foreach(var project in NukeUnreal)
+                {
+                    var source = PublishTo[i].Source;
+                    var apiKey = NugetApiKeys[i % NugetApiKeys.Length];
 
-                Log.Information("Publishing nuget package to {0}", source);
+                    Log.Information("Publishing nuget package to {0}", source);
 
-                var packageId = NukeUnreal.GetProperty("PackageId");
-                DotNetNuGetPush(s => s
-                    .SetTargetPath(NukeUnreal.Directory / "bin" / Configuration / $"{packageId}.{CurrentVersion.ToString(3)}.symbols.nupkg")
-                    .SetApiKey(apiKey)
-                    .SetSource(source)
-                );
+                    var packageId = project.GetProperty("PackageId");
+                    DotNetNuGetPush(s => s
+                        .SetTargetPath(project.Directory / "bin" / Configuration / $"{packageId}.{currentVersion.ToString(3)}.symbols.nupkg")
+                        .SetApiKey(apiKey)
+                        .SetSource(source)
+                    );
+                }
             }
         });
 

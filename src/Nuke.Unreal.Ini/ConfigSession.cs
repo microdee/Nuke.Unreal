@@ -2,12 +2,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Nuke.Unreal.Config;
+namespace Nuke.Unreal.Ini;
 
 public class ConfigSession
 {
     public int Order { get; set; }
-    public string Name { get; set; }
+    public string? Name { get; set; }
     public List<ConfigCommand> Commands { get; private set; } = new();
 
     public IEnumerable<ConfigCommand> this[string key] => Commands.Where(c => c.Name == key);
@@ -30,7 +30,7 @@ public class ConfigSession
 
     public void Remove(IEnumerable<string> keys)
     {
-        Commands = Commands.Where(c => keys.All(k => c.Name != k)).ToList();
+        Commands = Commands.Where(c => !keys.Any(k => c.Name == k)).ToList();
     }
 
     public void Remove(params string[] keys) => Remove(keys.AsEnumerable());

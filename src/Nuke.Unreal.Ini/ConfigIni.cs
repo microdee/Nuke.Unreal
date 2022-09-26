@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 
-namespace Nuke.Unreal.Config;
+namespace Nuke.Unreal.Ini;
 
 public static class ConfigCommon
 {
-    public static GroupCollection MatchGroup(
+    public static GroupCollection? MatchGroup(
         this string text,
         string pattern,
         RegexOptions options = RegexOptions.CultureInvariant | RegexOptions.Multiline)
@@ -16,9 +16,9 @@ public static class ConfigCommon
         return match?.Groups;
     }
 
-    public static GroupCollection Fetch(this GroupCollection groups, string capturename, out string result)
+    public static GroupCollection? Fetch(this GroupCollection groups, string capturename, out string result)
     {
-        result = groups[capturename]?.Value;
+        result = groups[capturename].Value;
         return groups;
     }
 
@@ -37,7 +37,7 @@ public class ConfigIni
 {
     public readonly Dictionary<string, ConfigSession> Sessions = new();
 
-    public ConfigSession this[string key] => Sessions.ContainsKey(key) ? Sessions[key] : null;
+    public ConfigSession? this[string key] => Sessions.ContainsKey(key) ? Sessions[key] : null;
 
     public ConfigSession FindOrAdd(string key)
     {
@@ -51,9 +51,9 @@ public class ConfigIni
         return result;
     }
 
-    public static ConfigIni Parse(string input)
+    public static ConfigIni? Parse(string input)
     {
-        ConfigSession currentSession = null;
+        ConfigSession? currentSession = null;
         var ini = new ConfigIni();
         int order = 0;
         foreach(var line in input.Split(new [] { Environment.NewLine }, StringSplitOptions.None))
@@ -86,13 +86,14 @@ public class ConfigIni
     {
         foreach(var fromSession in from.Sessions.Values)
         {
-            if (Sessions.ContainsKey(fromSession.Name))
+            var name = fromSession.Name ?? "";
+            if (Sessions.ContainsKey(name))
             {
-                Sessions[fromSession.Name].Merge(fromSession);
+                Sessions[name].Merge(fromSession);
             }
             else
             {
-                Sessions.Add(fromSession.Name, fromSession.Copy());
+                Sessions.Add(name, fromSession.Copy());
             }
         }
     }

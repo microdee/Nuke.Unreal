@@ -22,6 +22,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Nuke.Unreal\Nuke.Unreal.csproj" />
+    <ProjectReference Include="..\Nuke.Unreal.Ini\Nuke.Unreal.Ini.csproj" />
   </ItemGroup>
 
 </Project>

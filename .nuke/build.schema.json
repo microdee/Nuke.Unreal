@@ -89,7 +89,8 @@
             "enum": [
               "Compile",
               "PublishNuget",
-              "Restore"
+              "Restore",
+              "Test"
             ]
           }
         },
@@ -105,7 +106,8 @@
             "enum": [
               "Compile",
               "PublishNuget",
-              "Restore"
+              "Restore",
+              "Test"
             ]
           }
         },
