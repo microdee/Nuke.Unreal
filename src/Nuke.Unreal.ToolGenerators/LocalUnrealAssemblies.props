@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup Condition="$([MSBuild]::IsOSPlatform('Windows'))">
-    <UnrealPath>C:/Program Files/Epic Games/UE_4.26</UnrealPath>
+    <UnrealPath>C:\UE\UE_4.27</UnrealPath>
     <UnrealDotnetPath>$(UnrealPath)/Engine/Binaries/DotNET</UnrealDotnetPath>
   </PropertyGroup>
   <PropertyGroup Condition="$([MSBuild]::IsOSPlatform('OSX'))">

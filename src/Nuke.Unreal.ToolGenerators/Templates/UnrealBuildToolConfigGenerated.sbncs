@@ -1,0 +1,68 @@
+{{ ##
+Get possible command line parameters from UBT:
+
+[CommandLine("-MyArg")]
+[CommandLine("-MyArg=")]
+
+arg.transform_params should take into account whether the CommandLine attributed member is a collection or not
+
+## }}
+
+{{
+    func params_declare;
+        for param in $0; param.type; " "; param.name; for.last ? "" : ", "; end;
+    end;
+    func params_use;
+        for param in $0; param.name; for.last ? "" : ", "; end;
+    end;
+}}
+
+{{ func build_argument(arg, config_type) }}
+    {{ config_type }} {{ arg.config_name }}({{ params_declare arg.parameters }})
+    {
+        AppendArgument({{ arg.transform_params }}("{{ arg.cli_name }}", {{ params_use arg.parameters }}))
+        return ({{ config_type }}) this;
+    }
+{{ end }}
+
+{{ func build_subtool(subtool) }}
+public class {{ subtool.config_type }} : SubtoolConfig
+{
+    {{~ for arg in subtool.arguments }}
+    {{ build_argument arg subtool.config_type }}
+    {{ end ~}}
+}
+{{ end }}
+
+namespace Nuke.Unreal.Tools;
+
+/// <summary>
+/// This is the generated portion of UnrealBuildToolConfig therefore
+/// UnrealBuildToolConfig should inherit from this class
+/// </summary>
+public abstract class UnrealBuildToolConfigGenerated : ToolConfig
+{
+    {{~ for arg in tool.arguments }}
+    {{ build_argument arg "UnrealBuildToolConfig" }}
+    {{ end ~}}
+
+    {{~ for subtool in tool.subtools }}
+    {{ build_subtool subtool }}
+    protected readonly {{ subtool.config_type }} {{ subtool.config_name }}Storage = new();
+    {{ end ~}}
+    
+    protected readonly SubtoolConfig[] Configs = new SubtoolConfig[]
+    {
+        {{~ for subtool in tool.subtools }}
+        {{ subtool.config_name }},
+        {{ end ~}}
+    };
+    
+    {{~ for subtool in tool.subtools }}
+    public UnrealBuildToolConfig {{ subtool.config_name }}(Action<{{ subtool.config_type }}> configurator = null)
+    {
+        configurator?.Invoke({{ subtool.config_name }}Storage);
+        return (UnrealBuildToolConfig) this;
+    }
+    {{ end ~}}
+}

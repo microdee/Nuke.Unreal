@@ -1,0 +1,16 @@
+{{ ##
+Get possible command line parameters from UAT:
+
+: BuildCommand
+
+[Help("...", "...")]
+    .IsParamHelp
+
+regexes:
+(Get|Parse)(Optional)?Param(Values?)?(IfNotSpecified)?
+( : BuildCommand|(Parse|Get)(Optional)?Param.*?\(.*?")
+( : BuildCommand|\[Help\(.*?",\s?@?"|(Parse|Get)(Optional)?Param.*?\(.*?")
+
+if these are not found under a BuildCommand class consider them global arguments.
+
+## }}
