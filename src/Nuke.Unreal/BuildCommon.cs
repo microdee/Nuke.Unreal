@@ -41,6 +41,12 @@ namespace Nuke.Unreal
         public static string AppendAsArguments(this IEnumerable<string> input) =>
             (input?.IsEmpty() ?? true) ? "" : " " + string.Join(' ', input.Select(ProcessArgument));
 
+        public static string DoubleQuoteIfNeeded(this string self) =>
+            " \t\n\f".Any(ws => self.Contains(ws)) ? self.DoubleQuote() : self;
+
+        public static IEnumerable<string> DoubleQuoteIfNeeded(this IEnumerable<string> self) =>
+            self.Select(DoubleQuoteIfNeeded);
+
         public static AbsolutePath GetContentsFolder()
         {
             var executingAssemblyFolder = (AbsolutePath) Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
