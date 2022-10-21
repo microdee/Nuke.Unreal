@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
+    <LangVersion>10.0</LangVersion>
     <PackageId>md.Nuke.Unreal.ToolGenerators</PackageId>
     <Version>1.0.1</Version>
     <Authors>David Mórász</Authors>
