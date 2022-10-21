@@ -24,7 +24,7 @@ namespace Nuke.Unreal
 
         public Target CleanProject => _ => _
             .Description("Removes auto generated folders of Unreal Engine from the project")
-            .Executes(() => Unreal.ClearFolder(UnrealProjectFolder));
+            .Executes(() => Unreal.ClearFolder(ProjectFolder));
 
         public Target CleanPlugins => _ => _
             .Description("Removes auto generated folders of Unreal Engine from the plugins")
@@ -49,7 +49,7 @@ namespace Nuke.Unreal
                     }
                 }
 
-                foreach(var pluginDir in Directory.EnumerateDirectories(UnrealPluginsFolder))
+                foreach(var pluginDir in Directory.EnumerateDirectories(PluginsFolder))
                 {
                     recurseBody((AbsolutePath)pluginDir);
                 }
@@ -67,7 +67,7 @@ namespace Nuke.Unreal
                 Unreal.BuildTool(
                     GetEngineVersionFromProject(),
                     "-projectfiles"
-                    + $" -project=\"{ToProject}\""
+                    + $" -project=\"{ProjectPath}\""
                     + " -game -progress"
                     + UbtArgs.AppendAsArguments()
                 ).Run();
@@ -80,8 +80,8 @@ namespace Nuke.Unreal
                 var platform = Unreal.GetDefaultPlatform();
                 Unreal.BuildTool(
                     GetEngineVersionFromProject(),
-                    $"{UnrealProjectName}Editor {platform} Development"
-                    + $" -Project=\"{ToProject}\""
+                    $"{ProjectName}Editor {platform} Development"
+                    + $" -Project=\"{ProjectPath}\""
                     + UbtArgs.AppendAsArguments()
                 ).Run();
             });
@@ -92,18 +92,18 @@ namespace Nuke.Unreal
             {
                 (
                     from c in Config
-                    from r in RunIn
-                    select (c, r)
+                    from t in TargetType
+                    select (c, t)
                 ).ForEach(combination =>
                 {
-                    var (config, runIn) = combination;
+                    var (config, targetType) = combination;
 
-                    Log.Information($"{config} ran in {runIn}:");
-                    var targetEnv = runIn == ExecMode.Standalone ? "" : "Editor";
+                    Log.Information($"{config} ran in {targetType}:");
+                    var targetSuffix = targetType == UnreaTargetType.Game ? "" : targetType.ToString();
                     Unreal.BuildTool(
                         GetEngineVersionFromProject(),
-                        $"{UnrealProjectName}{targetEnv} {TargetPlatform} {config}"
-                        + $" -Project=\"{ToProject}\""
+                        $"{ProjectName}{targetSuffix} {Platform} {config}"
+                        + $" -Project=\"{ProjectPath}\""
                         + UbtArgs.AppendAsArguments()
                     ).Run();
                 });
@@ -137,7 +137,7 @@ namespace Nuke.Unreal
             .DependsOn(BuildEditor, Build)
             .Executes(() =>
             {
-                var isAndroidPlatform = TargetPlatform == UnrealPlatform.Android;
+                var isAndroidPlatform = Platform == UnrealPlatform.Android;
                 
                 var androidTextureMode = SelfAs<IAndroidTargets>()?.AndroidTextureMode
                     ?? new [] { AndroidCookFlavor.Multi };
@@ -151,10 +151,10 @@ namespace Nuke.Unreal
                     Unreal.AutomationToolBatch(
                         GetEngineVersionFromProject(),
                         "BuildCookRun"
-                        + $" -ScriptsForProject=\"{ToProject}\""
-                        + $" -project=\"{ToProject}\""
-                        + $" -targetplatform={TargetPlatform}"
-                        + $" -platform={TargetPlatform}"
+                        + $" -ScriptsForProject=\"{ProjectPath}\""
+                        + $" -project=\"{ProjectPath}\""
+                        + $" -targetplatform={Platform}"
+                        + $" -platform={Platform}"
                         + $" -clientconfig={config}"
                         + " -ue4exe=UE4Editor-Cmd.exe"
                         + " -cook"

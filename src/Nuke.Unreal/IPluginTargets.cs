@@ -88,21 +88,21 @@ namespace Nuke.Unreal
             {
                 var self = Self<UnrealBuild>();
 
-                Log.Information($"Checking out targeting UE {self.UnrealVersion} on platform {self.TargetPlatform}");
+                Log.Information($"Checking out targeting UE {self.UnrealVersion} on platform {self.Platform}");
 
-                PluginObject["EngineVersion"] = self.TargetEngineVersion.FullVersionName;
+                PluginObject["EngineVersion"] = self.EngineVersion.FullVersionName;
                 PluginObject["VersionName"] = PluginVersion;
 
                 foreach (var module in PluginObject["Modules"])
                 {
-                    module["WhitelistPlatforms"] = new JArray(self.TargetPlatform.ToString());
+                    module["WhitelistPlatforms"] = new JArray(self.Platform.ToString());
                 }
 
                 Unreal.WriteJson(PluginObject, ToPlugin);
 
-                self.ProjectObject["EngineAssociation"] = self.TargetEngineVersion.EngineAssociation;
-                self.ProjectObject["EngineVersionPatch"] = self.TargetEngineVersion.FullVersionName;
-                Unreal.WriteJson(self.ProjectObject, self.ToProject);
+                self.ProjectObject["EngineAssociation"] = self.EngineVersion.EngineAssociation;
+                self.ProjectObject["EngineVersionPatch"] = self.EngineVersion.FullVersionName;
+                Unreal.WriteJson(self.ProjectObject, self.ProjectPath);
             });
 
         Target MakeRelease => _ => _
@@ -118,7 +118,7 @@ namespace Nuke.Unreal
             {
                 var self = Self<UnrealBuild>();
 
-                var packageName = $"{PluginName}-{self.TargetPlatform}-{PluginVersion}.{self.GetEngineVersionFromProject().FullVersionName}-PreBuilt";
+                var packageName = $"{PluginName}-{self.Platform}-{PluginVersion}.{self.GetEngineVersionFromProject().FullVersionName}-PreBuilt";
                 var targetDir = self.OutPath / packageName;
                 var archiveFileName = $"{packageName}.zip";
 
@@ -154,7 +154,7 @@ namespace Nuke.Unreal
             {
                 var self = Self<UnrealBuild>();
 
-                var packageName = $"{PluginName}-{self.TargetPlatform}-{PluginVersion}.{self.GetEngineVersionFromProject().FullVersionName}-Source";
+                var packageName = $"{PluginName}-{self.Platform}-{PluginVersion}.{self.GetEngineVersionFromProject().FullVersionName}-Source";
                 var targetDir = self.OutPath / packageName;
                 var archiveFileName = $"{packageName}.zip";
 

@@ -80,7 +80,7 @@ namespace Nuke.Unreal
         [Parameter("Specify the full qualified android app name")]
         string AndroidAppName
             => GetParameter(() => AndroidAppName)
-            ?? $"com.epicgames.{Self<UnrealBuild>().UnrealProjectName}";
+            ?? $"com.epicgames.{Self<UnrealBuild>().ProjectName}";
             
         [Parameter("Attach a debugger to the launched Android app")]
         bool? WithNativeDebugger => GetParameter(() => WithNativeDebugger) ?? false;
@@ -110,7 +110,7 @@ namespace Nuke.Unreal
             .Executes(() =>
             {
                 var self = Self<UnrealBuild>();
-                DeleteDirectory(self.UnrealProjectFolder / "Intermediate" / "Android");
+                DeleteDirectory(self.ProjectFolder / "Intermediate" / "Android");
             });
 
         bool GetAndroidProcess(IEnumerable<Output> output, out int pid)
@@ -178,7 +178,7 @@ namespace Nuke.Unreal
                 + " copied to the device, and will be attached to the just-started application."
                 + " Only executed when target-platform is set to Android"
             )
-            .OnlyWhenStatic(() => Self<UnrealBuild>().TargetPlatform == UnrealPlatform.Android)
+            .OnlyWhenStatic(() => Self<UnrealBuild>().Platform == UnrealPlatform.Android)
             .DependsOn<IPackageTargets>(p => p.Package)
             .Executes(() => 
             {
@@ -188,8 +188,8 @@ namespace Nuke.Unreal
                 var (artifactFolder, androidHome, ndkFolder) = AndroidBoilerplate();
 
                 var apkName = self.Config[0] == UnrealConfig.Development
-                    ? $"{self.UnrealProjectName}-{AndroidCpu.ToString().ToLower()}"
-                    : $"{self.UnrealProjectName}-Android-{self.Config[0]}-{AndroidCpu.ToString().ToLower()}";
+                    ? $"{self.ProjectName}-{AndroidCpu.ToString().ToLower()}"
+                    : $"{self.ProjectName}-Android-{self.Config[0]}-{AndroidCpu.ToString().ToLower()}";
 
                 var apkFile = artifactFolder / (apkName + ".apk");
 
@@ -215,7 +215,7 @@ namespace Nuke.Unreal
                 try
                 {
                     Log.Information("Removing existing assets from device (failures here are not fatal)");
-                    adb($"shell rm -r {storagePath}/UE4Game/{self.UnrealProjectName}");
+                    adb($"shell rm -r {storagePath}/UE4Game/{self.ProjectName}");
                     adb($"shell rm -r {storagePath}/UE4Game/UE4CommandLine.txt");
                     adb($"shell rm -r {storagePath}/obb/{AndroidAppName}");
                     adb($"shell rm -r {storagePath}/Android/obb/{AndroidAppName}");

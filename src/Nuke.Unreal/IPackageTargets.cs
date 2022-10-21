@@ -59,7 +59,7 @@ namespace Nuke.Unreal
                 var androidTextureMode = SelfAs<IAndroidTargets>()?.AndroidTextureMode
                     ?? new [] { AndroidCookFlavor.Multi };
 
-                var isAndroidPlatform = self.TargetPlatform == UnrealPlatform.Android;
+                var isAndroidPlatform = self.Platform == UnrealPlatform.Android;
                 var appLocalDir = self.UnrealEnginePath / "Engine" / "Binaries" / "ThirdParty" / "AppLocalDependencies";
                 var configCombination = isAndroidPlatform
                     ? (from config in self.Config from textureMode in androidTextureMode select (config, textureMode))
@@ -70,11 +70,11 @@ namespace Nuke.Unreal
                     Unreal.AutomationToolBatch(
                         self.GetEngineVersionFromProject(),
                         "BuildCookRun"
-                        + $" -ScriptsForProject=\"{self.ToProject}\""
-                        + $" -project=\"{self.ToProject}\""
-                        + $" -target={self.UnrealProjectName}"
-                        + $" -targetplatform={self.TargetPlatform}"
-                        + $" -platform={self.TargetPlatform}"
+                        + $" -ScriptsForProject=\"{self.ProjectPath}\""
+                        + $" -project=\"{self.ProjectPath}\""
+                        + $" -target={self.ProjectName}"
+                        + $" -targetplatform={self.Platform}"
+                        + $" -platform={self.Platform}"
                         + $" -clientconfig={config}"
                         + $" -archivedirectory=\"{self.OutPath}\""
                         + $" -applocaldirectory={appLocalDir}"
