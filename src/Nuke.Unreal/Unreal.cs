@@ -18,92 +18,6 @@ using System.Text;
 
 namespace Nuke.Unreal
 {
-    public struct EngineVersion
-    {
-        public static bool ValidVersionString(string versionName)
-        {
-            if(Guid.TryParse(versionName, out _))
-            {
-                return true;
-            }
-
-            var regexedComponents = Regex.Match(versionName, @"(?<version>[\W\d]+)(?<extension>\w*)");
-            if(regexedComponents == null)
-                return false;
-
-            var pureVersionNamePatch = regexedComponents.Groups["version"].Value;
-            return Version.TryParse(pureVersionNamePatch, out _);
-        }
-
-        public EngineVersion(string versionName, string customEnginePath = null)
-        {
-            FullVersionName = versionName;
-            VersionName = versionName;
-
-            PureVersionName = "";
-            PureVersionNamePatch = "";
-            Extension = "";
-            IsEngineSource = false;
-            IsEarlyAccess = false;
-            SemanticalVersion = null;
-
-            if(Guid.TryParse(versionName, out EngineSourceId))
-            {
-                IsEngineSource = true;
-                EngineAssociation = versionName;
-                var enginePath = (AbsolutePath) customEnginePath ?? Unreal.GetEnginePath(versionName);
-                if(enginePath != null)
-                {
-                    var buildVersionPath = enginePath / "Engine" / "Build" / "Build.version";
-                    if(buildVersionPath.Exists())
-                    {
-                        var buildVersion = JObject.Parse(File.ReadAllText(buildVersionPath));
-                        SemanticalVersion = new(
-                            buildVersion.GetPropertyValue<int>("MajorVersion"),
-                            buildVersion.GetPropertyValue<int>("MinorVersion"),
-                            buildVersion.GetPropertyValue<int>("PatchVersion")
-                        );
-
-                        PureVersionName = $"{SemanticalVersion.Major}.{SemanticalVersion.Minor}";
-                        PureVersionNamePatch = $"{SemanticalVersion.Major}.{SemanticalVersion.Minor}.{SemanticalVersion.Build}";
-                    }
-                }
-                return;
-            }
-
-            var regexedComponents = Regex.Match(versionName, @"(?<version>[\W\d]+)(?<extension>\w*)");
-            Assert.True(regexedComponents != null, "Invalid version format");
-
-            PureVersionNamePatch = regexedComponents.Groups["version"].Value;
-            Extension = regexedComponents.Groups["extension"].Value ?? "";
-            IsEarlyAccess = Extension == "EA";
-
-            Assert.True(Version.TryParse(PureVersionNamePatch, out var semVersion), "Couldn't parse semantic version of input UE version");
-
-            SemanticalVersion = new Version(
-                semVersion.Major,
-                semVersion.Minor,
-                Math.Max(semVersion.Build, 0),
-                0
-            );
-
-            PureVersionName = SemanticalVersion.Major + "." + SemanticalVersion.Minor;
-            VersionName = PureVersionName + Extension;
-            EngineAssociation = customEnginePath?.Replace('\\', '/') ?? VersionName;
-        }
-
-        public string VersionName;
-        public string PureVersionName;
-        public string PureVersionNamePatch;
-        public string FullVersionName;
-        public Version SemanticalVersion;
-        public string Extension;
-        public bool IsEarlyAccess;
-        public bool IsEngineSource;
-        public Guid EngineSourceId;
-        public string EngineAssociation;
-    }
-
     public static class Unreal
     {
         public static readonly HashSet<AbsolutePath> EngineSearchPaths;
@@ -156,15 +70,16 @@ namespace Nuke.Unreal
             File.WriteAllText(path, sb.ToString());
         }
 
-        public static readonly AbsolutePath UnrealLocatorFolder = BuildCommon.GetContentsFolder() / "UnrealLocator";
-        public static AbsolutePath GetUnrealLocator()
+        public static AbsolutePath GetUnrealLocatorPath()
         {
             if(RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
             {
-                return UnrealLocatorFolder / "UnrealLocator.exe";
+                return BuildCommon.GetContentsFolder() / "UnrealLocator" / "UnrealLocator.exe";
             }
             throw new ApplicationException("Trying to get unreal locator on an unsupported platform.");
         }
+
+        public static Tool UnrealLocator => ToolResolver.GetLocalTool(GetUnrealLocatorPath());
 
         public static AbsolutePath GetEnginePath(string engineAssociation)
         {
@@ -172,32 +87,9 @@ namespace Nuke.Unreal
 
             if(RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
             {
-                string location = null;
                 Log.Debug("Looking for Unreal Engine installation:");
-
-                string Filter(string line)
-                {
-                    if(string.IsNullOrWhiteSpace(line)) return line;
-                    if(Path.IsPathRooted(line.Trim()))
-                    {
-                        location = line.Trim();
-                        return "Found at: " + line;
-                    }
-                    return line;
-                }
-
-                var locatorPath = GetUnrealLocator();
-
-                var locator = ProcessTasks.StartProcess(
-                    locatorPath,
-                    arguments: engineAssociation,
-                    outputFilter: Filter
-                );
-                locator.WaitForExit();
-                if(locator.ExitCode != 0 || string.IsNullOrWhiteSpace(location))
-                {
-                    throw new FileNotFoundException("No Unreal Engine installation could be found.");
-                }
+                string location = UnrealLocator(engineAssociation, logOutput: false).Single().Text;
+                Log.Debug("Found at: {0}", location);
                 EnginePathOverride = (AbsolutePath) location;
                 return (AbsolutePath) location;
             }
@@ -234,46 +126,24 @@ namespace Nuke.Unreal
         public static AbsolutePath MacRunMono(EngineVersion ofVersion) =>
             GetEnginePath(ofVersion) / "Engine" / "Build" / "BatchFiles" / "Mac" / "RunMono.sh";
 
-        public static UnrealToolOutput BuildTool(EngineVersion ofVersion, string arguments)
+        public static Tool BuildTool(EngineVersion ofVersion)
         {
-            var ubtPath = GetEnginePath(ofVersion) / "Engine" / "Binaries" / "DotNET" / "UnrealBuildTool.exe";
-            if(ofVersion.SemanticalVersion.Major >= 5)
-            {
-                ubtPath = GetEnginePath(ofVersion) / "Engine" / "Binaries" / "DotNET" / "UnrealBuildTool" / "UnrealBuildTool.exe";
-            }
-            if(RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
-                return new UnrealToolOutput(ubtPath, arguments);
+            var ubtPath = ofVersion.SemanticalVersion.Major >= 5
+                ? GetEnginePath(ofVersion) / "Engine" / "Binaries" / "DotNET" / "UnrealBuildTool" / "UnrealBuildTool.exe"
+                : GetEnginePath(ofVersion) / "Engine" / "Binaries" / "DotNET" / "UnrealBuildTool.exe";
+            
+            return ToolResolver.GetLocalTool(ubtPath);
 
-            if(RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
-                return new UnrealToolOutput("sh", $"\"{MacRunMono(ofVersion)}\" \"{ubtPath}\" " + arguments);
-
-            return new UnrealToolOutput("mono", $"\"{ubtPath}\" " + arguments);
+            // TODO: MacOS: "sh", $"\"{MacRunMono(ofVersion)}\" \"{ubtPath}\" " + arguments
+            // TODO: Linux: "mono", $"\"{ubtPath}\" " + arguments
         }
 
-        public static UnrealToolOutput AutomationToolBatch(EngineVersion ofVersion, string arguments)
+        public static Tool AutomationTool(EngineVersion ofVersion)
         {
             var scriptExt = RuntimeInformation.IsOSPlatform(OSPlatform.Windows) ? "bat" : "sh";
-            return new UnrealToolOutput(
-                GetEnginePath(ofVersion) / "Engine" / "Build" / "BatchFiles" / $"RunUAT.{scriptExt}",
-                arguments
+            return ToolResolver.GetLocalTool(
+                GetEnginePath(ofVersion) / "Engine" / "Build" / "BatchFiles" / $"RunUAT.{scriptExt}"
             );
-        }
-
-        public static UnrealToolOutput AutomationTool(EngineVersion ofVersion, string arguments)
-        {
-            var uatPath = GetEnginePath(ofVersion) / "Engine" / "Binaries" / "DotNET" / "AutomationTool.exe";
-            if(ofVersion.SemanticalVersion.Major >= 5)
-            {
-                uatPath = GetEnginePath(ofVersion) / "Engine" / "Binaries" / "DotNET" / "AutomationTool" / "AutomationTool.exe";
-            }
-
-            if(RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
-                return new UnrealToolOutput(uatPath, arguments);
-
-            if(RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
-                return new UnrealToolOutput("sh", $"\"{MacRunMono(ofVersion)}\" \"{uatPath}\" " + arguments);
-
-            return new UnrealToolOutput("mono", $"\"{uatPath}\" " + arguments);
         }
 
         public static void ClearFolder(AbsolutePath folder)

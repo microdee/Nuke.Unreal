@@ -131,16 +131,13 @@ namespace Nuke.Unreal
                 if(File.Exists(targetDir.Parent / archiveFileName))
                     DeleteFile(targetDir.Parent / archiveFileName);
 
-                Unreal.AutomationTool(
-                    self.GetEngineVersionFromProject(),
+                Unreal.AutomationTool(self.GetEngineVersionFromProject())(
                     "BuildPlugin"
                     + $" -Plugin=\"{ToPlugin}\""
                     + $" -Package=\"{targetDir}\""
                     + " -CreateSubFolder"
                     + self.UatArgs.AppendAsArguments()
-                )
-                    .WithOnlyResults()
-                    .Run();
+                );
 
                 Log.Information($"Archiving release: {packageName}");
                 ZipFile.CreateFromDirectory(targetDir, targetDir.Parent / archiveFileName);

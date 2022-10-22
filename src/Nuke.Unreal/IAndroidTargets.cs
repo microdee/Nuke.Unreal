@@ -243,6 +243,7 @@ namespace Nuke.Unreal
                 
                 Log.Information("Done installing {0}", AndroidAppName);
 
+                // TODO: remove this feature, didn't work out
                 if (WithNativeDebugger ?? false)
                 {
                     Log.Information("Copying {0} from NDK to device", AndroidDebugger.ServerProgramName);

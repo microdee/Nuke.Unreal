@@ -67,27 +67,26 @@ namespace Nuke.Unreal
                 configCombination.ForEach(combination =>
                 {
                     var (config, textureMode) = combination;
-                    Unreal.AutomationToolBatch(
-                        self.GetEngineVersionFromProject(),
-                        "BuildCookRun"
-                        + $" -ScriptsForProject=\"{self.ProjectPath}\""
-                        + $" -project=\"{self.ProjectPath}\""
-                        + $" -target={self.ProjectName}"
-                        + $" -targetplatform={self.Platform}"
-                        + $" -platform={self.Platform}"
-                        + $" -clientconfig={config}"
-                        + $" -archivedirectory=\"{self.OutPath}\""
-                        + $" -applocaldirectory={appLocalDir}"
-                        + " -build"
-                        + " -package"
-                        + " -stage"
-                        + " -archive"
-                        + (isAndroidPlatform ? $" -cookflavor={textureMode}" : "")
-                        + PackageArguments.AppendAsArguments()
-                        + self.UatArgs.AppendAsArguments()
-                    )
-                    .WithWorkingDir(self.UnrealEnginePath)
-                    .Run();
+                    Unreal.AutomationTool(self.GetEngineVersionFromProject())(
+                        arguments:
+                            "BuildCookRun"
+                            + $" -ScriptsForProject=\"{self.ProjectPath}\""
+                            + $" -project=\"{self.ProjectPath}\""
+                            + $" -target={self.ProjectName}"
+                            + $" -targetplatform={self.Platform}"
+                            + $" -platform={self.Platform}"
+                            + $" -clientconfig={config}"
+                            + $" -archivedirectory=\"{self.OutPath}\""
+                            + $" -applocaldirectory={appLocalDir}"
+                            + " -build"
+                            + " -package"
+                            + " -stage"
+                            + " -archive"
+                            + (isAndroidPlatform ? $" -cookflavor={textureMode}" : "")
+                            + PackageArguments.AppendAsArguments()
+                            + self.UatArgs.AppendAsArguments(),
+                        workingDirectory: self.UnrealEnginePath
+                    );
                 });
             });
     }
