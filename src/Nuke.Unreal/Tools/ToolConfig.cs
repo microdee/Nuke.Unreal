@@ -7,6 +7,8 @@ namespace Nuke.Unreal.Tools;
 
 public abstract class ToolConfig
 {
+    public abstract string Name { get; }
+    
     internal readonly List<string> Arguments = new();
 
     protected virtual ToolConfig[] Configs => Array.Empty<ToolConfig>();

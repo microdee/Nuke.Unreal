@@ -12,6 +12,8 @@
 {{ func build_tool(tool) }}
 public {{ tool.class_keywords }} class {{ tool.config_type.base }} : ToolConfig
 {
+    public override string Name => "{{ tool.config_name }}";
+
     {{~ for arg in tool.arguments }}
     {{ build_argument arg tool.config_type.final }}
     {{ end ~}}
