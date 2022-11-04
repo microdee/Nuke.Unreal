@@ -56,7 +56,7 @@ namespace Nuke.Unreal
             .Executes(() =>
             {
                 var self = Self<UnrealBuild>();
-                var androidTextureMode = SelfAs<IAndroidTargets>()?.AndroidTextureMode
+                var androidTextureMode = SelfAs<IAndroidTargets>()?.TextureMode
                     ?? new [] { AndroidCookFlavor.Multi };
 
                 var isAndroidPlatform = self.TargetPlatform == UnrealPlatform.Android;

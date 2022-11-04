@@ -139,7 +139,7 @@ namespace Nuke.Unreal
             {
                 var isAndroidPlatform = TargetPlatform == UnrealPlatform.Android;
                 
-                var androidTextureMode = SelfAs<IAndroidTargets>()?.AndroidTextureMode
+                var androidTextureMode = SelfAs<IAndroidTargets>()?.TextureMode
                     ?? new [] { AndroidCookFlavor.Multi };
 
                 var configCombination = isAndroidPlatform
