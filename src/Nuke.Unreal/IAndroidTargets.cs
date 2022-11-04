@@ -68,7 +68,12 @@ namespace Nuke.Unreal
         }
     }
 
-    public record AndroidBuildEnvironment(AbsolutePath ArtifactFolder, AbsolutePath AndroidHome, AbsolutePath NdkFolder);
+    public record AndroidBuildEnvironment(
+        AbsolutePath ArtifactFolder,
+        AbsolutePath AndroidHome,
+        AbsolutePath NdkFolder,
+        AbsolutePath BuildTools
+    );
 
     [ParameterPrefix("Android")]
     public interface IAndroidTargets : INukeBuild
@@ -102,6 +107,9 @@ namespace Nuke.Unreal
             => GetParameter(() => Cpu)
             ?? AndroidProcessorArchitecture.Arm64;
 
+        [Parameter("Specify version of the Android build tools to use. Latest will be used by default, or when the specified version is not found")]
+        int BuildToolVersion => GetParameter(() => BuildToolVersion);
+
         Target CleanIntermediateAndroid => _ => _
             .Description("Clean up the Android folder inside Intermediate")
             .Executes(() =>
@@ -114,8 +122,7 @@ namespace Nuke.Unreal
         {
                 var self = Self<UnrealBuild>();
             var artifactFolder = self.OutPath / $"Android_{TextureMode[0]}";
-            var androidHome = (AbsolutePath) EnvironmentInfo.SpecialFolder(SpecialFolders.LocalApplicationData)
-                / "Android" / "Sdk";
+            var androidHome = (AbsolutePath) EnvironmentInfo.SpecialFolder(SpecialFolders.LocalApplicationData) / "Android" / "Sdk";
             var ndkFolderParent = androidHome / "ndk";
 
             Assert.DirectoryExists(
@@ -130,7 +137,15 @@ namespace Nuke.Unreal
                 "There are no NDK subfolders. Please configure your Android development environment"
             );
 
-            return new(artifactFolder, androidHome, ndkFolder);
+            var buildToolsParent = androidHome / "build-tools";
+            var buildToolsCandidates = buildToolsParent.GlobDirectories($"{BuildToolVersion}.*");
+            if (buildToolsCandidates.IsEmpty())
+            {
+                buildToolsCandidates = buildToolsParent.GlobDirectories("*");
+            }
+            var buildTools = buildToolsCandidates.Last();
+
+            return new(artifactFolder, androidHome, ndkFolder, buildTools);
         }
 
         string GetApkName()
@@ -143,16 +158,44 @@ namespace Nuke.Unreal
 
         string GetApkFile()
         {
-            var (artifactFolder, _, _) = AndroidBoilerplate();
-            return artifactFolder / (GetApkName() + ".apk");
+            var androidEnv = AndroidBoilerplate();
+            return androidEnv.ArtifactFolder / (GetApkName() + ".apk");
         }
+
+        Target SignApk => _ => _
+            .Description("Sign the output APK")
+            .DependsOn<IPackageTargets>(p => p.Package)
+            .Executes(() =>
+            {
+                var self = Self<UnrealBuild>();
+                var androidRuntimeSettings = self.ReadIniHierarchy("Engine")?["/Script/AndroidRuntimeSettings.AndroidRuntimeSettings"];
+                var keyStore = androidRuntimeSettings?.GetFirst("KeyStore").Value;
+                var password = androidRuntimeSettings?.GetFirst("KeyStorePassword").Value;
+                var keystorePath = self.UnrealProjectFolder / "Build" / "Android" / keyStore;
+                
+                Assert.False(string.IsNullOrWhiteSpace(keyStore), "There was no keystore specified");
+                Assert.True(keystorePath.FileExists(), "Specified keystore was not found");
+
+                if (string.IsNullOrWhiteSpace(password))
+                    password = androidRuntimeSettings?.GetFirst("KeyPassword").Value;
+                    
+                Assert.False(string.IsNullOrWhiteSpace(password), "There was no keystore password specified");
+
+                // save the password in a temporary file so special characters not appreciated by batch will not cause trouble
+                var kspassFile = TemporaryDirectory / "Android" / "kspass";
+                File.WriteAllText(kspassFile, password);
+
+                var androidEnv = AndroidBoilerplate();
+                var apkSignerBat = ToolResolver.GetLocalTool(androidEnv.BuildTools / "apksigner.bat");
+                apkSignerBat(
+                    $"sign --ks \"{keystorePath}\" --ks-pass \"file:{kspassFile}\" \"{GetApkFile()}\""
+                );
+            });
 
         Target DebugOnAndroid => _ => _
             .Description(
                 "Package and launch the product on android but wait for debugger."
                 + " This requires ADB to be in your PATH and NDK to be correctly configured."
-                + " If --with-native-debugger is set select a debugger server which will be"
-                + " copied to the device, and will be attached to the just-started application."
                 + " Only executed when target-platform is set to Android"
             )
             .OnlyWhenStatic(() => Self<UnrealBuild>().TargetPlatform == UnrealPlatform.Android)
@@ -162,7 +205,7 @@ namespace Nuke.Unreal
                 var self = Self<UnrealBuild>();
                 var adb = ToolResolver.GetPathTool("adb");
 
-                var (artifactFolder, _, _) = AndroidBoilerplate();
+                var androidEnv = AndroidBoilerplate();
 
                 var apkFile = GetApkFile();
 
@@ -200,7 +243,7 @@ namespace Nuke.Unreal
                 }
 
                 var obbName = $"main.1.{AppName}";
-                var obbFile = artifactFolder / (obbName + ".obb");
+                var obbFile = androidEnv.ArtifactFolder / (obbName + ".obb");
 
                 if (obbFile.FileExists())
                 {
