@@ -12,6 +12,7 @@ using Nuke.Common.Utilities.Collections;
 using static Nuke.Common.IO.FileSystemTasks;
 using static Nuke.Common.IO.PathConstruction;
 using Nuke.Common.Tooling;
+using Nuke.Unreal.Ini;
 using Serilog;
 using GlobExpressions;
 using System.Linq.Expressions;
@@ -80,9 +81,21 @@ namespace Nuke.Unreal
             => GetParameter(() => TextureMode)
             ?? new [] {AndroidCookFlavor.Multi};
 
+        string GetAppNameFromConfig()
+        {
+            var packageNameCommands = Self<UnrealBuild>().ReadIniHierarchy("Engine")
+                ?["/Script/AndroidRuntimeSettings.AndroidRuntimeSettings"]
+                ?["PackageName"];
+
+            return packageNameCommands.IsEmpty()
+                ? $"com.epicgames.{Self<UnrealBuild>().UnrealProjectName}"
+                : packageNameCommands.First().Value;
+        }
+
         [Parameter("Specify the full qualified android app name")]
         string AppName
-            => GetParameter(() => AppName);
+            => GetParameter(() => AppName)
+            ?? GetAppNameFromConfig();
 
         [Parameter("Processor architecture of your target hardware")]
         AndroidProcessorArchitecture Cpu
