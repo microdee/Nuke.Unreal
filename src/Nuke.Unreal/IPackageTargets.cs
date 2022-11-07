@@ -33,8 +33,6 @@ namespace Nuke.Unreal
             get
             {
                 var result = new List<string> {
-                    "-skipcook",
-                    "-nocompileeditor",
                     "-installed",
                     "-prereqs",
                     "-nop4",
@@ -51,8 +49,9 @@ namespace Nuke.Unreal
 
         Target Package => _ => _
             .Description("Same as running Package Project from Editor")
-            .DependsOn<UnrealBuild>(u => u.Cook)
+            .DependsOn<UnrealBuild>(u => u.BuildEditor)
             .After<UnrealBuild>(u => u.CleanDeployment)
+            .After<UnrealBuild>(u => u.Cook)
             .Executes(() =>
             {
                 var self = Self<UnrealBuild>();
@@ -82,6 +81,8 @@ namespace Nuke.Unreal
                         + " -package"
                         + " -stage"
                         + " -archive"
+                        + (InvokedTargets.Contains(self.BuildEditor) ? " -nocompileeditor" : "")
+                        + (InvokedTargets.Contains(self.Cook) ? " -skipcook" : "")
                         + (isAndroidPlatform ? $" -cookflavor={textureMode}" : "")
                         + PackageArguments.AppendAsArguments()
                         + self.UatArgs.AppendAsArguments()
