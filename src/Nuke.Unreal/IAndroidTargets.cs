@@ -192,15 +192,14 @@ namespace Nuke.Unreal
                 );
             });
 
-        Target DebugOnAndroid => _ => _
+        Target InstallOnAndroid => _ => _
             .Description(
-                "Package and launch the product on android but wait for debugger."
-                + " This requires ADB to be in your PATH and NDK to be correctly configured."
+                "Package and install the product on a connected android device."
                 + " Only executed when target-platform is set to Android"
             )
             .OnlyWhenStatic(() => Self<UnrealBuild>().TargetPlatform == UnrealPlatform.Android)
             .DependsOn<IPackageTargets>(p => p.Package)
-            .Executes(() => 
+            .Executes(() =>
             {
                 var self = Self<UnrealBuild>();
                 var adb = ToolResolver.GetPathTool("adb");
@@ -258,6 +257,19 @@ namespace Nuke.Unreal
                 adb($"shell pm grant {AppName} android.permission.WRITE_EXTERNAL_STORAGE");
                 
                 Log.Information("Done installing {0}", AppName);
+            });
+
+        Target DebugOnAndroid => _ => _
+            .Description(
+                "Launch the product on android but wait for debugger."
+                + " This requires ADB to be in your PATH and NDK to be correctly configured."
+                + " Only executed when target-platform is set to Android"
+            )
+            .OnlyWhenStatic(() => Self<UnrealBuild>().TargetPlatform == UnrealPlatform.Android)
+            .After(InstallOnAndroid)
+            .Executes(() => 
+            {
+                var adb = ToolResolver.GetPathTool("adb");
 
                 Log.Information("Running {0} but wait for a debugger to be attached", AppName);
                 adb($"shell am start -D -n {AppName}/com.epicgames.ue4.GameActivity");

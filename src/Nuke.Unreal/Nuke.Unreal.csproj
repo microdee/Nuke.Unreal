@@ -2,7 +2,7 @@
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
     <PackageId>md.Nuke.Unreal</PackageId>
-    <Version>1.0.43</Version>
+    <Version>1.0.46</Version>
     <Authors>David Mórász</Authors>
     <Company>mcro.de</Company>
     <Description>Commonly used Unreal Engine targets and tasks for the Nuke execution engine</Description>
@@ -24,9 +24,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Nuke.Unreal.Ini\Nuke.Unreal.Ini.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="3.9.0" />
     <PackageReference Include="Nuke.Common" Version="6.0.1" />
-    <PackageReference Include="md.Nuke.Unreal.Ini" />
     <PackageReference Include="Goblinfactory.Konsole" Version="6.2.0" />
     <PackageReference Include="Scriban" Version="4.0.1" />
   </ItemGroup>
