@@ -2,7 +2,7 @@
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
     <PackageId>md.Nuke.Unreal</PackageId>
-    <Version>1.0.41</Version>
+    <Version>1.0.47</Version>
     <Authors>David Mórász</Authors>
     <Company>mcro.de</Company>
     <Description>Commonly used Unreal Engine targets and tasks for the Nuke execution engine</Description>
@@ -21,6 +21,10 @@
   <ItemGroup>
     <None Include="../../docs/nu_logo-125.png" Pack="true" PackagePath="/" />
     <None Include="../../README.md" Pack="true" PackagePath="/" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Nuke.Unreal.Ini\Nuke.Unreal.Ini.csproj" />
   </ItemGroup>
 
   <ItemGroup>

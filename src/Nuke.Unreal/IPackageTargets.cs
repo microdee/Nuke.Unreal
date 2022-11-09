@@ -33,8 +33,6 @@ namespace Nuke.Unreal
             get
             {
                 var result = new List<string> {
-                    "-skipcook",
-                    "-nocompileeditor",
                     "-installed",
                     "-prereqs",
                     "-nop4",
@@ -51,12 +49,13 @@ namespace Nuke.Unreal
 
         Target Package => _ => _
             .Description("Same as running Package Project from Editor")
-            .DependsOn<UnrealBuild>(u => u.Cook)
+            .DependsOn<UnrealBuild>(u => u.BuildEditor)
             .After<UnrealBuild>(u => u.CleanDeployment)
+            .After<UnrealBuild>(u => u.Cook)
             .Executes(() =>
             {
                 var self = Self<UnrealBuild>();
-                var androidTextureMode = SelfAs<IAndroidTargets>()?.AndroidTextureMode
+                var androidTextureMode = SelfAs<IAndroidTargets>()?.TextureMode
                     ?? new [] { AndroidCookFlavor.Multi };
 
                 var isAndroidPlatform = self.TargetPlatform == UnrealPlatform.Android;
@@ -78,11 +77,13 @@ namespace Nuke.Unreal
                         + $" -clientconfig={config}"
                         + $" -archivedirectory=\"{self.OutPath}\""
                         + $" -applocaldirectory={appLocalDir}"
+                        + (InvokedTargets.Contains(self.Cook) ? " -skipcook" : " -cook")
                         + " -build"
-                        + " -package"
                         + " -stage"
+                        + " -package"
                         + " -archive"
-                        + (isAndroidPlatform ? $" -cookflavor={textureMode}" : "")
+                        + (InvokedTargets.Contains(self.BuildEditor) ? " -nocompileeditor" : "")
+                        + (!InvokedTargets.Contains(self.Cook) && self.CookAll ? " -CookAll" : "")
                         + PackageArguments.AppendAsArguments()
                         + self.UatArgs.AppendAsArguments()
                     )
