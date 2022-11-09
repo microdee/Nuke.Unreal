@@ -77,13 +77,13 @@ namespace Nuke.Unreal
                         + $" -clientconfig={config}"
                         + $" -archivedirectory=\"{self.OutPath}\""
                         + $" -applocaldirectory={appLocalDir}"
+                        + (InvokedTargets.Contains(self.Cook) ? " -skipcook" : " -cook")
                         + " -build"
-                        + " -package"
                         + " -stage"
+                        + " -package"
                         + " -archive"
                         + (InvokedTargets.Contains(self.BuildEditor) ? " -nocompileeditor" : "")
-                        + (InvokedTargets.Contains(self.Cook) ? " -skipcook" : "")
-                        + (isAndroidPlatform ? $" -cookflavor={textureMode}" : "")
+                        + (!InvokedTargets.Contains(self.Cook) && self.CookAll ? " -CookAll" : "")
                         + PackageArguments.AppendAsArguments()
                         + self.UatArgs.AppendAsArguments()
                     )
