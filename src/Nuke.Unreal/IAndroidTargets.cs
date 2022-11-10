@@ -92,7 +92,7 @@ namespace Nuke.Unreal
                 ?["/Script/AndroidRuntimeSettings.AndroidRuntimeSettings"]
                 ?["PackageName"];
 
-            return packageNameCommands.IsEmpty()
+            return packageNameCommands?.IsEmpty() ?? true
                 ? $"com.epicgames.{Self<UnrealBuild>().UnrealProjectName}"
                 : packageNameCommands.First().Value;
         }
@@ -122,6 +122,15 @@ namespace Nuke.Unreal
         {
                 var self = Self<UnrealBuild>();
             var artifactFolder = self.OutPath / $"Android_{TextureMode[0]}";
+            if (!artifactFolder.DirectoryExists())
+            {
+                artifactFolder = self.OutPath / "Android";
+            }
+            Assert.DirectoryExists(
+                artifactFolder,
+                $"{artifactFolder} doesn't exist. Did packaging go wrong?"
+            );
+
             var androidHome = (AbsolutePath) EnvironmentInfo.SpecialFolder(SpecialFolders.LocalApplicationData) / "Android" / "Sdk";
             var ndkFolderParent = androidHome / "ndk";
 
