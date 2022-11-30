@@ -196,6 +196,10 @@ namespace Nuke.Unreal
 
                 // save the password in a temporary file so special characters not appreciated by batch will not cause trouble
                 var kspassFile = TemporaryDirectory / "Android" / "kspass";
+                if (!kspassFile.Parent.DirectoryExists())
+                {
+                    Directory.CreateDirectory(kspassFile.Parent);
+                }
                 File.WriteAllText(kspassFile, password);
 
                 var androidEnv = AndroidBoilerplate();
@@ -227,7 +231,7 @@ namespace Nuke.Unreal
 
                 var sourceSoFileName = self.Config.First() == UnrealConfig.Development
                     ? $"{self.UnrealProjectName}-{Cpu}.so"
-                    : $"{self.UnrealProjectName}-Android-{self.Config}-{Cpu}.so";
+                    : $"{self.UnrealProjectName}-Android-{self.Config.First()}-{Cpu}.so";
                 
                 var sourceSo = self.UnrealProjectFolder / "Binaries" / "Android" / sourceSoFileName;
                 
