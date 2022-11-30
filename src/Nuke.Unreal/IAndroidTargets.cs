@@ -123,7 +123,7 @@ namespace Nuke.Unreal
 
         AndroidBuildEnvironment AndroidBoilerplate()
         {
-                var self = Self<UnrealBuild>();
+            var self = Self<UnrealBuild>();
             var artifactFolder = self.OutPath / $"Android_{TextureMode[0]}";
             if (!artifactFolder.DirectoryExists())
             {
@@ -168,7 +168,7 @@ namespace Nuke.Unreal
                 : $"{self.UnrealProjectName}-Android-{self.Config[0]}-{Cpu.ToString().ToLower()}";
         }
 
-        string GetApkFile()
+        AbsolutePath GetApkFile()
         {
             var androidEnv = AndroidBoilerplate();
             return androidEnv.ArtifactFolder / (GetApkName() + ".apk");
@@ -205,6 +205,66 @@ namespace Nuke.Unreal
                 );
             });
 
+        Target RefreshApkBinaries => _ => _
+            .Description(
+                "Instead of re-packaging the entire project for android when"
+                + " iterating C++ code, inject a new libUE4.so into an already"
+                + " packaged APK file."
+            )
+            .OnlyWhenStatic(() => Self<UnrealBuild>().TargetPlatform == UnrealPlatform.Android)
+            .DependsOn<UnrealBuild>(u => u.Build)
+            .Triggers(SignApk)
+            .Before(SignApk, InstallOnAndroid)
+            .Executes(() =>
+            {
+                var self = Self<UnrealBuild>();
+                var libUE4 = "libUE4.so";
+
+                var androidEnv = AndroidBoilerplate();
+                var aapt = ToolResolver.GetLocalTool(androidEnv.BuildTools / "aapt.exe");
+                var apkRelativePath = $"lib/{Cpu.AbiName.ToLower()}/{libUE4}";
+                var apkFile = GetApkFile();
+
+                var sourceSoFileName = self.Config.First() == UnrealConfig.Development
+                    ? $"{self.UnrealProjectName}-{Cpu}.so"
+                    : $"{self.UnrealProjectName}-Android-{self.Config}-{Cpu}.so";
+                
+                var sourceSo = self.UnrealProjectFolder / "Binaries" / "Android" / sourceSoFileName;
+                
+                Assert.FileExists(apkFile);
+                Assert.FileExists(sourceSo);
+                Log.Information("Attempting to remove previous {0}", apkRelativePath);
+                try
+                {
+                    aapt(
+                        arguments: $"remove -v {apkFile} {apkRelativePath}",
+                        workingDirectory: apkFile.Parent,
+                        logInvocation: true
+                    );
+                }
+                catch (Exception e)
+                {
+                    Log.Warning(
+                        "Failed removing {0} from APK, might be a sign of something more sinister.\n    Exception: {1}",
+                        apkRelativePath, e.Message
+                    );
+                }
+
+                Log.Information("Preparing for APK injection");
+                CopyFile(
+                    sourceSo,
+                    apkFile.Parent / "lib" / Cpu.AbiName.ToLower() / libUE4,
+                    FileExistsPolicy.Overwrite, true
+                );
+
+                Log.Information("Injecting {0}", apkRelativePath);
+                aapt(
+                    arguments: $"add -v {apkFile} {apkRelativePath}",
+                    workingDirectory: apkFile.Parent,
+                    logInvocation: true
+                );
+            });
+
         Target InstallOnAndroid => _ => _
             .Description(
                 "Package and install the product on a connected android device."
@@ -220,7 +280,7 @@ namespace Nuke.Unreal
                 var androidEnv = AndroidBoilerplate();
 
                 var apkFile = GetApkFile();
-                Assert.True(File.Exists(apkFile));
+                Assert.True(apkFile.FileExists());
 
                 if (!NoUninstall)
                 {

@@ -11,25 +11,30 @@ namespace Nuke.Unreal
         public static AndroidProcessorArchitecture Arm = new()
         {
             Value = nameof(Arm),
-            AltName = "arm"
+            AltName = "arm",
+            AbiName = "armeabi-v7a"
         };
         public static AndroidProcessorArchitecture Arm64 = new()
         {
             Value = nameof(Arm64),
-            AltName = "aarch64"
+            AltName = "aarch64",
+            AbiName = "arm64-v8a"
         };
         public static AndroidProcessorArchitecture X86 = new()
         {
             Value = nameof(X86),
-            AltName = "i386"
+            AltName = "i386",
+            AbiName = "x86"
         };
         public static AndroidProcessorArchitecture X86_64 = new()
         {
             Value = nameof(X86_64),
-            AltName = "x86_64"
+            AltName = "x86_64",
+            AbiName = "x86_64"
         };
 
         public string AltName { get; init; }
+        public string AbiName { get; init; }
 
         public static implicit operator string(AndroidProcessorArchitecture configuration)
         {
