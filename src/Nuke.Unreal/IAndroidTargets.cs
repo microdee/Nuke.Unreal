@@ -170,8 +170,8 @@ namespace Nuke.Unreal
 
         AbsolutePath GetApkFile()
         {
-            var androidEnv = AndroidBoilerplate();
-            return androidEnv.ArtifactFolder / (GetApkName() + ".apk");
+            var self = Self<UnrealBuild>();
+            return self.UnrealProjectFolder / "Binaries" / "Android" / (GetApkName() + ".apk");
         }
 
         Target SignApk => _ => _
@@ -206,66 +206,6 @@ namespace Nuke.Unreal
                 var apkSignerBat = ToolResolver.GetLocalTool(androidEnv.BuildTools / "apksigner.bat");
                 apkSignerBat(
                     $"sign --ks \"{keystorePath}\" --ks-pass \"file:{kspassFile}\" \"{GetApkFile()}\""
-                );
-            });
-
-        Target RefreshApkBinaries => _ => _
-            .Description(
-                "Instead of re-packaging the entire project for android when"
-                + " iterating C++ code, inject a new libUE4.so into an already"
-                + " packaged APK file."
-            )
-            .OnlyWhenStatic(() => Self<UnrealBuild>().TargetPlatform == UnrealPlatform.Android)
-            .DependsOn<UnrealBuild>(u => u.Build)
-            .Triggers(SignApk)
-            .Before(SignApk, InstallOnAndroid)
-            .Executes(() =>
-            {
-                var self = Self<UnrealBuild>();
-                var libUE4 = "libUE4.so";
-
-                var androidEnv = AndroidBoilerplate();
-                var aapt = ToolResolver.GetLocalTool(androidEnv.BuildTools / "aapt.exe");
-                var apkRelativePath = $"lib/{Cpu.AbiName.ToLower()}/{libUE4}";
-                var apkFile = GetApkFile();
-
-                var sourceSoFileName = self.Config.First() == UnrealConfig.Development
-                    ? $"{self.UnrealProjectName}-{Cpu}.so"
-                    : $"{self.UnrealProjectName}-Android-{self.Config.First()}-{Cpu}.so";
-                
-                var sourceSo = self.UnrealProjectFolder / "Binaries" / "Android" / sourceSoFileName;
-                
-                Assert.FileExists(apkFile);
-                Assert.FileExists(sourceSo);
-                Log.Information("Attempting to remove previous {0}", apkRelativePath);
-                try
-                {
-                    aapt(
-                        arguments: $"remove -v {apkFile} {apkRelativePath}",
-                        workingDirectory: apkFile.Parent,
-                        logInvocation: true
-                    );
-                }
-                catch (Exception e)
-                {
-                    Log.Warning(
-                        "Failed removing {0} from APK, might be a sign of something more sinister.\n    Exception: {1}",
-                        apkRelativePath, e.Message
-                    );
-                }
-
-                Log.Information("Preparing for APK injection");
-                CopyFile(
-                    sourceSo,
-                    apkFile.Parent / "lib" / Cpu.AbiName.ToLower() / libUE4,
-                    FileExistsPolicy.Overwrite, true
-                );
-
-                Log.Information("Injecting {0}", apkRelativePath);
-                aapt(
-                    arguments: $"add -v {apkFile} {apkRelativePath}",
-                    workingDirectory: apkFile.Parent,
-                    logInvocation: true
                 );
             });
 
