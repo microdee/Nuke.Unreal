@@ -107,6 +107,9 @@ namespace Nuke.Unreal
             => GetParameter(() => Cpu)
             ?? AndroidProcessorArchitecture.Arm64;
 
+        [Parameter("Processor architecture of your target hardware")]
+        bool NoUninstall => GetParameter(() => NoUninstall);
+
         [Parameter("Specify version of the Android build tools to use. Latest will be used by default, or when the specified version is not found")]
         int BuildToolVersion => GetParameter(() => BuildToolVersion);
 
@@ -173,7 +176,8 @@ namespace Nuke.Unreal
 
         Target SignApk => _ => _
             .Description("Sign the output APK")
-            .DependsOn<IPackageTargets>(p => p.Package)
+            .TriggeredBy<IPackageTargets>(p => p.Package)
+            .Before(InstallOnAndroid, DebugOnAndroid)
             .Executes(() =>
             {
                 var self = Self<UnrealBuild>();
@@ -216,15 +220,19 @@ namespace Nuke.Unreal
                 var androidEnv = AndroidBoilerplate();
 
                 var apkFile = GetApkFile();
+                Assert.True(File.Exists(apkFile));
 
-                try
+                if (!NoUninstall)
                 {
-                    Log.Information("Uninstall {0} (failures here are not fatal)", AppName);
-                    adb($"uninstall {AppName}");
-                }
-                catch (Exception e)
-                {
-                    Log.Warning(e, "Uninstallation threw errors, but that might not be a problem");
+                    try
+                    {
+                        Log.Information("Uninstall {0} (failures here are not fatal)", AppName);
+                        adb($"uninstall {AppName}");
+                    }
+                    catch (Exception e)
+                    {
+                        Log.Warning(e, "Uninstallation threw errors, but that might not be a problem");
+                    }
                 }
 
                 Log.Information("Installing {0}", apkFile);
@@ -236,18 +244,21 @@ namespace Nuke.Unreal
 
                 Assert.False(string.IsNullOrWhiteSpace(storagePath), "Couldn't get a storage path from the device");
                 
-                try
+                if (!NoUninstall)
                 {
-                    Log.Information("Removing existing assets from device (failures here are not fatal)");
-                    adb($"shell rm -r {storagePath}/UE4Game/{self.UnrealProjectName}");
-                    adb($"shell rm -r {storagePath}/UE4Game/UE4CommandLine.txt");
-                    adb($"shell rm -r {storagePath}/obb/{AppName}");
-                    adb($"shell rm -r {storagePath}/Android/obb/{AppName}");
-                    adb($"shell rm -r {storagePath}/Download/obb/{AppName}");
-                }
-                catch (Exception e)
-                {
-                    Log.Warning(e, "Removing existing asset files threw errors, but that might not be a problem");
+                    try
+                    {
+                        Log.Information("Removing existing assets from device (failures here are not fatal)");
+                        adb($"shell rm -r {storagePath}/UE4Game/{self.UnrealProjectName}");
+                        adb($"shell rm -r {storagePath}/UE4Game/UE4CommandLine.txt");
+                        adb($"shell rm -r {storagePath}/obb/{AppName}");
+                        adb($"shell rm -r {storagePath}/Android/obb/{AppName}");
+                        adb($"shell rm -r {storagePath}/Download/obb/{AppName}");
+                    }
+                    catch (Exception e)
+                    {
+                        Log.Warning(e, "Removing existing asset files threw errors, but that might not be a problem");
+                    }
                 }
 
                 var obbName = $"main.1.{AppName}";
