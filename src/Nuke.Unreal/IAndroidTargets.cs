@@ -80,6 +80,7 @@ namespace Nuke.Unreal
     {
         T Self<T>() where T : INukeBuild => (T)(object)this;
         T GetParameter<T>(Expression<Func<T>> expression) => EnvironmentInfo.GetParameter(expression);
+        bool IsAndroidPlatform() => Self<UnrealBuild>().TargetPlatform == UnrealPlatform.Android;
 
         [Parameter("Select texture compression mode for Android")]
         AndroidCookFlavor[] TextureMode
@@ -115,6 +116,9 @@ namespace Nuke.Unreal
 
         Target CleanIntermediateAndroid => _ => _
             .Description("Clean up the Android folder inside Intermediate")
+            .OnlyWhenStatic(() => IsAndroidPlatform())
+            .DependentFor<UnrealBuild>(ub => ub.Build)
+            .DependentFor<IPackageTargets>(p => p.Package)
             .Executes(() =>
             {
                 var self = Self<UnrealBuild>();
@@ -176,8 +180,10 @@ namespace Nuke.Unreal
 
         Target SignApk => _ => _
             .Description("Sign the output APK")
+            .OnlyWhenStatic(() => IsAndroidPlatform())
             .TriggeredBy<IPackageTargets>(p => p.Package)
             .Before(InstallOnAndroid, DebugOnAndroid)
+            .After<UnrealBuild>(ub => ub.Build)
             .Executes(() =>
             {
                 var self = Self<UnrealBuild>();
@@ -214,8 +220,9 @@ namespace Nuke.Unreal
                 "Package and install the product on a connected android device."
                 + " Only executed when target-platform is set to Android"
             )
-            .OnlyWhenStatic(() => Self<UnrealBuild>().TargetPlatform == UnrealPlatform.Android)
-            .DependsOn<IPackageTargets>(p => p.Package)
+            .OnlyWhenStatic(() => IsAndroidPlatform())
+            .After<IPackageTargets>(p => p.Package)
+            .After<UnrealBuild>(u => u.Build)
             .Executes(() =>
             {
                 var self = Self<UnrealBuild>();
@@ -289,7 +296,7 @@ namespace Nuke.Unreal
                 + " This requires ADB to be in your PATH and NDK to be correctly configured."
                 + " Only executed when target-platform is set to Android"
             )
-            .OnlyWhenStatic(() => Self<UnrealBuild>().TargetPlatform == UnrealPlatform.Android)
+            .OnlyWhenStatic(() => IsAndroidPlatform())
             .After(InstallOnAndroid)
             .Executes(() => 
             {
