@@ -26,7 +26,6 @@ using static Nuke.Common.Tools.NuGet.NuGetTasks;
     OnPushBranches = new[] { MasterBranch },
     OnPullRequestBranches = new[] { MasterBranch }
 )]
-[CheckBuildProjectConfigurations]
 class Build : NukeBuild
 {
     /// Support plugins are available for:
