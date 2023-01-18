@@ -2,7 +2,7 @@
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
     <PackageId>md.Nuke.Unreal</PackageId>
-    <Version>1.0.48</Version>
+    <Version>1.0.56</Version>
     <Authors>David Mórász</Authors>
     <Company>mcro.de</Company>
     <Description>Commonly used Unreal Engine targets and tasks for the Nuke execution engine</Description>

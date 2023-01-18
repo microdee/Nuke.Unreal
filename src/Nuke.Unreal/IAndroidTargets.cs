@@ -80,6 +80,7 @@ namespace Nuke.Unreal
     {
         T Self<T>() where T : INukeBuild => (T)(object)this;
         T GetParameter<T>(Expression<Func<T>> expression) => EnvironmentInfo.GetParameter(expression);
+        bool IsAndroidPlatform() => Self<UnrealBuild>().TargetPlatform == UnrealPlatform.Android;
 
         [Parameter("Select texture compression mode for Android")]
         AndroidCookFlavor[] TextureMode
@@ -107,11 +108,17 @@ namespace Nuke.Unreal
             => GetParameter(() => Cpu)
             ?? AndroidProcessorArchitecture.Arm64;
 
+        [Parameter("Processor architecture of your target hardware")]
+        bool NoUninstall => GetParameter(() => NoUninstall);
+
         [Parameter("Specify version of the Android build tools to use. Latest will be used by default, or when the specified version is not found")]
         int BuildToolVersion => GetParameter(() => BuildToolVersion);
 
         Target CleanIntermediateAndroid => _ => _
             .Description("Clean up the Android folder inside Intermediate")
+            .OnlyWhenStatic(() => IsAndroidPlatform())
+            .DependentFor<UnrealBuild>(ub => ub.Build)
+            .DependentFor<IPackageTargets>(p => p.Package)
             .Executes(() =>
             {
                 var self = Self<UnrealBuild>();
@@ -120,7 +127,7 @@ namespace Nuke.Unreal
 
         AndroidBuildEnvironment AndroidBoilerplate()
         {
-                var self = Self<UnrealBuild>();
+            var self = Self<UnrealBuild>();
             var artifactFolder = self.OutPath / $"Android_{TextureMode[0]}";
             if (!artifactFolder.DirectoryExists())
             {
@@ -165,15 +172,18 @@ namespace Nuke.Unreal
                 : $"{self.UnrealProjectName}-Android-{self.Config[0]}-{Cpu.ToString().ToLower()}";
         }
 
-        string GetApkFile()
+        AbsolutePath GetApkFile()
         {
-            var androidEnv = AndroidBoilerplate();
-            return androidEnv.ArtifactFolder / (GetApkName() + ".apk");
+            var self = Self<UnrealBuild>();
+            return self.UnrealProjectFolder / "Binaries" / "Android" / (GetApkName() + ".apk");
         }
 
         Target SignApk => _ => _
             .Description("Sign the output APK")
-            .DependsOn<IPackageTargets>(p => p.Package)
+            .OnlyWhenStatic(() => IsAndroidPlatform())
+            .TriggeredBy<IPackageTargets>(p => p.Package)
+            .Before(InstallOnAndroid, DebugOnAndroid)
+            .After<UnrealBuild>(ub => ub.Build)
             .Executes(() =>
             {
                 var self = Self<UnrealBuild>();
@@ -192,6 +202,10 @@ namespace Nuke.Unreal
 
                 // save the password in a temporary file so special characters not appreciated by batch will not cause trouble
                 var kspassFile = TemporaryDirectory / "Android" / "kspass";
+                if (!kspassFile.Parent.DirectoryExists())
+                {
+                    Directory.CreateDirectory(kspassFile.Parent);
+                }
                 File.WriteAllText(kspassFile, password);
 
                 var androidEnv = AndroidBoilerplate();
@@ -206,8 +220,9 @@ namespace Nuke.Unreal
                 "Package and install the product on a connected android device."
                 + " Only executed when target-platform is set to Android"
             )
-            .OnlyWhenStatic(() => Self<UnrealBuild>().TargetPlatform == UnrealPlatform.Android)
-            .DependsOn<IPackageTargets>(p => p.Package)
+            .OnlyWhenStatic(() => IsAndroidPlatform())
+            .After<IPackageTargets>(p => p.Package)
+            .After<UnrealBuild>(u => u.Build)
             .Executes(() =>
             {
                 var self = Self<UnrealBuild>();
@@ -216,15 +231,19 @@ namespace Nuke.Unreal
                 var androidEnv = AndroidBoilerplate();
 
                 var apkFile = GetApkFile();
+                Assert.True(apkFile.FileExists());
 
-                try
+                if (!NoUninstall)
                 {
-                    Log.Information("Uninstall {0} (failures here are not fatal)", AppName);
-                    adb($"uninstall {AppName}");
-                }
-                catch (Exception e)
-                {
-                    Log.Warning(e, "Uninstallation threw errors, but that might not be a problem");
+                    try
+                    {
+                        Log.Information("Uninstall {0} (failures here are not fatal)", AppName);
+                        adb($"uninstall {AppName}");
+                    }
+                    catch (Exception e)
+                    {
+                        Log.Warning(e, "Uninstallation threw errors, but that might not be a problem");
+                    }
                 }
 
                 Log.Information("Installing {0}", apkFile);
@@ -236,18 +255,21 @@ namespace Nuke.Unreal
 
                 Assert.False(string.IsNullOrWhiteSpace(storagePath), "Couldn't get a storage path from the device");
                 
-                try
+                if (!NoUninstall)
                 {
-                    Log.Information("Removing existing assets from device (failures here are not fatal)");
-                    adb($"shell rm -r {storagePath}/UE4Game/{self.UnrealProjectName}");
-                    adb($"shell rm -r {storagePath}/UE4Game/UE4CommandLine.txt");
-                    adb($"shell rm -r {storagePath}/obb/{AppName}");
-                    adb($"shell rm -r {storagePath}/Android/obb/{AppName}");
-                    adb($"shell rm -r {storagePath}/Download/obb/{AppName}");
-                }
-                catch (Exception e)
-                {
-                    Log.Warning(e, "Removing existing asset files threw errors, but that might not be a problem");
+                    try
+                    {
+                        Log.Information("Removing existing assets from device (failures here are not fatal)");
+                        adb($"shell rm -r {storagePath}/UE4Game/{self.UnrealProjectName}");
+                        adb($"shell rm -r {storagePath}/UE4Game/UE4CommandLine.txt");
+                        adb($"shell rm -r {storagePath}/obb/{AppName}");
+                        adb($"shell rm -r {storagePath}/Android/obb/{AppName}");
+                        adb($"shell rm -r {storagePath}/Download/obb/{AppName}");
+                    }
+                    catch (Exception e)
+                    {
+                        Log.Warning(e, "Removing existing asset files threw errors, but that might not be a problem");
+                    }
                 }
 
                 var obbName = $"main.1.{AppName}";
@@ -274,7 +296,7 @@ namespace Nuke.Unreal
                 + " This requires ADB to be in your PATH and NDK to be correctly configured."
                 + " Only executed when target-platform is set to Android"
             )
-            .OnlyWhenStatic(() => Self<UnrealBuild>().TargetPlatform == UnrealPlatform.Android)
+            .OnlyWhenStatic(() => IsAndroidPlatform())
             .After(InstallOnAndroid)
             .Executes(() => 
             {
