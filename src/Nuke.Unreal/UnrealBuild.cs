@@ -1,5 +1,18 @@
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using Nuke.Common;
 using Nuke.Common.IO;
+using Nuke.Common.Utilities;
+using Nuke.Unreal.Ini;
+
+public enum IniHierarchyLevel
+{
+    Base,
+    Default,
+    Saved
+}
 
 namespace Nuke.Unreal
 {
@@ -54,5 +67,65 @@ namespace Nuke.Unreal
         }
 
         public AbsolutePath UnrealEnginePath => Unreal.GetEnginePath(GetEngineVersionFromProject());
+        
+        public ConfigIni ReadIniHierarchy(
+            string shortName,
+            IniHierarchyLevel lowestLevel = IniHierarchyLevel.Base,
+            IniHierarchyLevel highestLevel = IniHierarchyLevel.Saved,
+            IEnumerable<string> extraConfigSubfolder = null
+        ) {
+            var resultIni = new ConfigIni();
+            extraConfigSubfolder = (extraConfigSubfolder ?? Enumerable.Empty<string>())
+                .Append(TargetPlatform.ToString());
+
+            IReadOnlyCollection<AbsolutePath> GlobIni(AbsolutePath folder)
+            {
+                return folder.GlobFiles($"{shortName}.ini", $"*{shortName}.ini");
+            }
+
+            void MergeInis(AbsolutePath folder, ConfigIni result)
+            {
+                if (folder.DirectoryExists())
+                    foreach (var iniFile in GlobIni(folder))
+                    {
+                        var currIni = ConfigIni.Parse(File.ReadAllText(iniFile));
+                        if (currIni != null)
+                            result.Merge(currIni);
+                    }
+            }
+
+            void GatherInis(AbsolutePath configFolder, ConfigIni result)
+            {
+                MergeInis(configFolder, resultIni);
+                foreach (var folder in extraConfigSubfolder.Select(s => configFolder / s))
+                {
+                    if (folder.DirectoryExists())
+                        MergeInis(folder, resultIni);
+                }
+            }
+
+            if (lowestLevel <= IniHierarchyLevel.Base && highestLevel >= IniHierarchyLevel.Base)
+            {
+                var configFolder = UnrealEnginePath / "Engine" / "Config";
+                var baseIni = ConfigIni.Parse(File.ReadAllText(configFolder / "Base.ini"));
+                if (baseIni != null)
+                    resultIni.Merge(baseIni);
+                
+                GatherInis(configFolder, resultIni);
+            }
+
+            if (lowestLevel <= IniHierarchyLevel.Default && highestLevel >= IniHierarchyLevel.Default)
+            {
+                var configFolder = UnrealProjectFolder / "Config";
+                GatherInis(configFolder, resultIni);
+            }
+            if (lowestLevel <= IniHierarchyLevel.Saved && highestLevel >= IniHierarchyLevel.Saved)
+            {
+                var configFolder = UnrealProjectFolder / "Saved" / "Config";
+                GatherInis(configFolder, resultIni);
+            }
+
+            return resultIni;
+        }
     }
 }

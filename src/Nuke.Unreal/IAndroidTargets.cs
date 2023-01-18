@@ -12,6 +12,7 @@ using Nuke.Common.Utilities.Collections;
 using static Nuke.Common.IO.FileSystemTasks;
 using static Nuke.Common.IO.PathConstruction;
 using Nuke.Common.Tooling;
+using Nuke.Unreal.Ini;
 using Serilog;
 using GlobExpressions;
 using System.Linq.Expressions;
@@ -67,92 +68,77 @@ namespace Nuke.Unreal
         }
     }
 
+    public record AndroidBuildEnvironment(
+        AbsolutePath ArtifactFolder,
+        AbsolutePath AndroidHome,
+        AbsolutePath NdkFolder,
+        AbsolutePath BuildTools
+    );
+
+    [ParameterPrefix("Android")]
     public interface IAndroidTargets : INukeBuild
     {
         T Self<T>() where T : INukeBuild => (T)(object)this;
         T GetParameter<T>(Expression<Func<T>> expression) => EnvironmentInfo.GetParameter(expression);
+        bool IsAndroidPlatform() => Self<UnrealBuild>().TargetPlatform == UnrealPlatform.Android;
 
         [Parameter("Select texture compression mode for Android")]
-        AndroidCookFlavor[] AndroidTextureMode
-            => GetParameter(() => AndroidTextureMode)
+        AndroidCookFlavor[] TextureMode
+            => GetParameter(() => TextureMode)
             ?? new [] {AndroidCookFlavor.Multi};
 
+        string GetAppNameFromConfig()
+        {
+            var packageNameCommands = Self<UnrealBuild>().ReadIniHierarchy("Engine")
+                ?["/Script/AndroidRuntimeSettings.AndroidRuntimeSettings"]
+                ?["PackageName"];
+
+            return packageNameCommands?.IsEmpty() ?? true
+                ? $"com.epicgames.{Self<UnrealBuild>().UnrealProjectName}"
+                : packageNameCommands.First().Value;
+        }
+
         [Parameter("Specify the full qualified android app name")]
-        string AndroidAppName
-            => GetParameter(() => AndroidAppName)
-            ?? $"com.epicgames.{Self<UnrealBuild>().ProjectName}";
-            
-        [Parameter("Attach a debugger to the launched Android app")]
-        bool? WithNativeDebugger => GetParameter(() => WithNativeDebugger) ?? false;
-
-        [Parameter("Specify the port used by the debugger server")]
-        int? AndroidDebugPort
-            => GetParameter(() => AndroidDebugPort)
-            ?? 5045;
-
-        [Parameter("Debug the plain process instead of the one forked by Zygote")]
-        bool? AndroidDebugPlainProcess
-            => GetParameter(() => AndroidDebugPlainProcess)
-            ?? false;
+        string AppName
+            => GetParameter(() => AppName)
+            ?? GetAppNameFromConfig();
 
         [Parameter("Processor architecture of your target hardware")]
-        AndroidProcessorArchitecture AndroidCpu
-            => GetParameter(() => AndroidCpu)
+        AndroidProcessorArchitecture Cpu
+            => GetParameter(() => Cpu)
             ?? AndroidProcessorArchitecture.Arm64;
 
-        [Parameter("The debugger server to be used on Android")]
-        AndroidDebuggerBackend AndroidDebugger
-            => GetParameter(() => AndroidDebugger)
-            ?? AndroidDebuggerBackend.GDB;
+        [Parameter("Processor architecture of your target hardware")]
+        bool NoUninstall => GetParameter(() => NoUninstall);
+
+        [Parameter("Specify version of the Android build tools to use. Latest will be used by default, or when the specified version is not found")]
+        int BuildToolVersion => GetParameter(() => BuildToolVersion);
 
         Target CleanIntermediateAndroid => _ => _
             .Description("Clean up the Android folder inside Intermediate")
+            .OnlyWhenStatic(() => IsAndroidPlatform())
+            .DependentFor<UnrealBuild>(ub => ub.Build)
+            .DependentFor<IPackageTargets>(p => p.Package)
             .Executes(() =>
             {
                 var self = Self<UnrealBuild>();
                 DeleteDirectory(self.ProjectFolder / "Intermediate" / "Android");
             });
 
-        bool GetAndroidProcess(IEnumerable<Output> output, out int pid)
+        AndroidBuildEnvironment AndroidBoilerplate()
         {
-            pid = 0;
-            var processes = new Dictionary<int, AndroidProcess>();
-            foreach(var line in output.Skip(1))
+            var self = Self<UnrealBuild>();
+            var artifactFolder = self.OutPath / $"Android_{TextureMode[0]}";
+            if (!artifactFolder.DirectoryExists())
             {
-                var process = AndroidProcess.Make(line.Text);
-                if (process == null) continue;
-                if (process.IsAnyIdNull())
-                {
-                    Log.Warning("Not all data could be parsed for the following process:\n    {0}", process);
-                }
-                processes.Add(process.Pid, process);
+                artifactFolder = self.OutPath / "Android";
             }
+            Assert.DirectoryExists(
+                artifactFolder,
+                $"{artifactFolder} doesn't exist. Did packaging go wrong?"
+            );
 
-            var ownProcesses = from kvp in processes
-                where kvp.Value.Name.Contains(AndroidAppName)
-                select kvp.Value;
-            
-            if (ownProcesses.IsEmpty()) return false;
-            if (ownProcesses.Count() == 1)
-            {
-                pid = ownProcesses.First().Pid;
-                return true;
-            }
-
-            pid = ownProcesses.FirstOrDefault(
-                proc =>
-                    processes[proc.ParentPid].Name.Contains("zygote", StringComparison.InvariantCultureIgnoreCase)
-                    != (AndroidDebugPlainProcess ?? false)
-            )?.Pid ?? 0;
-            return pid > 0;
-        }
-
-        (AbsolutePath artifactFolder, AbsolutePath androidHome, AbsolutePath ndkFolder) AndroidBoilerplate()
-        {
-                var self = Self<UnrealBuild>();
-            var artifactFolder = self.OutPath / $"Android_{AndroidTextureMode[0]}";
-            var androidHome = (AbsolutePath) EnvironmentInfo.SpecialFolder(SpecialFolders.LocalApplicationData)
-                / "Android" / "Sdk";
+            var androidHome = (AbsolutePath) EnvironmentInfo.SpecialFolder(SpecialFolders.LocalApplicationData) / "Android" / "Sdk";
             var ndkFolderParent = androidHome / "ndk";
 
             Assert.DirectoryExists(
@@ -167,40 +153,97 @@ namespace Nuke.Unreal
                 "There are no NDK subfolders. Please configure your Android development environment"
             );
 
-            return (artifactFolder, androidHome, ndkFolder);
+            var buildToolsParent = androidHome / "build-tools";
+            var buildToolsCandidates = buildToolsParent.GlobDirectories($"{BuildToolVersion}.*");
+            if (buildToolsCandidates.IsEmpty())
+            {
+                buildToolsCandidates = buildToolsParent.GlobDirectories("*");
+            }
+            var buildTools = buildToolsCandidates.Last();
+
+            return new(artifactFolder, androidHome, ndkFolder, buildTools);
         }
 
-        Target DebugOnAndroid => _ => _
+        string GetApkName()
+        {
+            var self = Self<UnrealBuild>();
+            return self.Config[0] == UnrealConfig.Development
+                ? $"{self.UnrealProjectName}-{Cpu.ToString().ToLower()}"
+                : $"{self.UnrealProjectName}-Android-{self.Config[0]}-{Cpu.ToString().ToLower()}";
+        }
+
+        AbsolutePath GetApkFile()
+        {
+            var self = Self<UnrealBuild>();
+            return self.UnrealProjectFolder / "Binaries" / "Android" / (GetApkName() + ".apk");
+        }
+
+        Target SignApk => _ => _
+            .Description("Sign the output APK")
+            .OnlyWhenStatic(() => IsAndroidPlatform())
+            .TriggeredBy<IPackageTargets>(p => p.Package)
+            .Before(InstallOnAndroid, DebugOnAndroid)
+            .After<UnrealBuild>(ub => ub.Build)
+            .Executes(() =>
+            {
+                var self = Self<UnrealBuild>();
+                var androidRuntimeSettings = self.ReadIniHierarchy("Engine")?["/Script/AndroidRuntimeSettings.AndroidRuntimeSettings"];
+                var keyStore = androidRuntimeSettings?.GetFirst("KeyStore").Value;
+                var password = androidRuntimeSettings?.GetFirst("KeyStorePassword").Value;
+                var keystorePath = self.UnrealProjectFolder / "Build" / "Android" / keyStore;
+                
+                Assert.False(string.IsNullOrWhiteSpace(keyStore), "There was no keystore specified");
+                Assert.True(keystorePath.FileExists(), "Specified keystore was not found");
+
+                if (string.IsNullOrWhiteSpace(password))
+                    password = androidRuntimeSettings?.GetFirst("KeyPassword").Value;
+                    
+                Assert.False(string.IsNullOrWhiteSpace(password), "There was no keystore password specified");
+
+                // save the password in a temporary file so special characters not appreciated by batch will not cause trouble
+                var kspassFile = TemporaryDirectory / "Android" / "kspass";
+                if (!kspassFile.Parent.DirectoryExists())
+                {
+                    Directory.CreateDirectory(kspassFile.Parent);
+                }
+                File.WriteAllText(kspassFile, password);
+
+                var androidEnv = AndroidBoilerplate();
+                var apkSignerBat = ToolResolver.GetLocalTool(androidEnv.BuildTools / "apksigner.bat");
+                apkSignerBat(
+                    $"sign --ks \"{keystorePath}\" --ks-pass \"file:{kspassFile}\" \"{GetApkFile()}\""
+                );
+            });
+
+        Target InstallOnAndroid => _ => _
             .Description(
-                "Package and launch the product on android but wait for debugger."
-                + " This requires ADB to be in your PATH and NDK to be correctly configured."
-                + " If --with-native-debugger is set select a debugger server which will be"
-                + " copied to the device, and will be attached to the just-started application."
+                "Package and install the product on a connected android device."
                 + " Only executed when target-platform is set to Android"
             )
-            .OnlyWhenStatic(() => Self<UnrealBuild>().Platform == UnrealPlatform.Android)
-            .DependsOn<IPackageTargets>(p => p.Package)
-            .Executes(() => 
+            .OnlyWhenStatic(() => IsAndroidPlatform())
+            .After<IPackageTargets>(p => p.Package)
+            .After<UnrealBuild>(u => u.Build)
+            .Executes(() =>
             {
                 var self = Self<UnrealBuild>();
                 var adb = ToolResolver.GetPathTool("adb");
 
-                var (artifactFolder, androidHome, ndkFolder) = AndroidBoilerplate();
+                var androidEnv = AndroidBoilerplate();
 
-                var apkName = self.Config[0] == UnrealConfig.Development
-                    ? $"{self.ProjectName}-{AndroidCpu.ToString().ToLower()}"
-                    : $"{self.ProjectName}-Android-{self.Config[0]}-{AndroidCpu.ToString().ToLower()}";
+                var apkFile = GetApkFile();
+                Assert.True(apkFile.FileExists());
 
-                var apkFile = artifactFolder / (apkName + ".apk");
-
-                try
+                if (!NoUninstall)
                 {
-                    Log.Information("Uninstall {0} (failures here are not fatal)", AndroidAppName);
-                    adb($"uninstall {AndroidAppName}");
-                }
-                catch (Exception e)
-                {
-                    Log.Warning(e, "Uninstallation threw errors, but that might not be a problem");
+                    try
+                    {
+                        Log.Information("Uninstall {0} (failures here are not fatal)", AppName);
+                        adb($"uninstall {AppName}");
+                    }
+                    catch (Exception e)
+                    {
+                        Log.Warning(e, "Uninstallation threw errors, but that might not be a problem");
+                    }
                 }
 
                 Log.Information("Installing {0}", apkFile);
@@ -212,88 +255,55 @@ namespace Nuke.Unreal
 
                 Assert.False(string.IsNullOrWhiteSpace(storagePath), "Couldn't get a storage path from the device");
                 
-                try
+                if (!NoUninstall)
                 {
-                    Log.Information("Removing existing assets from device (failures here are not fatal)");
-                    adb($"shell rm -r {storagePath}/UE4Game/{self.ProjectName}");
-                    adb($"shell rm -r {storagePath}/UE4Game/UE4CommandLine.txt");
-                    adb($"shell rm -r {storagePath}/obb/{AndroidAppName}");
-                    adb($"shell rm -r {storagePath}/Android/obb/{AndroidAppName}");
-                    adb($"shell rm -r {storagePath}/Download/obb/{AndroidAppName}");
-                }
-                catch (Exception e)
-                {
-                    Log.Warning(e, "Removing existing asset files threw errors, but that might not be a problem");
+                    try
+                    {
+                        Log.Information("Removing existing assets from device (failures here are not fatal)");
+                        adb($"shell rm -r {storagePath}/UE4Game/{self.UnrealProjectName}");
+                        adb($"shell rm -r {storagePath}/UE4Game/UE4CommandLine.txt");
+                        adb($"shell rm -r {storagePath}/obb/{AppName}");
+                        adb($"shell rm -r {storagePath}/Android/obb/{AppName}");
+                        adb($"shell rm -r {storagePath}/Download/obb/{AppName}");
+                    }
+                    catch (Exception e)
+                    {
+                        Log.Warning(e, "Removing existing asset files threw errors, but that might not be a problem");
+                    }
                 }
 
-                var obbName = $"main.1.{AndroidAppName}";
-                var obbFile = artifactFolder / (obbName + ".obb");
+                var obbName = $"main.1.{AppName}";
+                var obbFile = androidEnv.ArtifactFolder / (obbName + ".obb");
 
                 if (obbFile.FileExists())
                 {
                     Log.Information("Installing {0}", obbFile);
 
-                    adb($"push {obbFile} {storagePath}/obb/{AndroidAppName}/{obbName}.obb");
+                    adb($"push {obbFile} {storagePath}/obb/{AppName}/{obbName}.obb");
                 }
 
                 Log.Information("Grant READ_EXTERNAL_STORAGE and WRITE_EXTERNAL_STORAGE to the apk for reading OBB file or game file in external storage.");
 
-                adb($"shell pm grant {AndroidAppName} android.permission.READ_EXTERNAL_STORAGE");
-                adb($"shell pm grant {AndroidAppName} android.permission.WRITE_EXTERNAL_STORAGE");
+                adb($"shell pm grant {AppName} android.permission.READ_EXTERNAL_STORAGE");
+                adb($"shell pm grant {AppName} android.permission.WRITE_EXTERNAL_STORAGE");
                 
-                Log.Information("Done installing {0}", AndroidAppName);
+                Log.Information("Done installing {0}", AppName);
+            });
 
-                // TODO: remove this feature, didn't work out
-                if (WithNativeDebugger ?? false)
-                {
-                    Log.Information("Copying {0} from NDK to device", AndroidDebugger.ServerProgramName);
+        Target DebugOnAndroid => _ => _
+            .Description(
+                "Launch the product on android but wait for debugger."
+                + " This requires ADB to be in your PATH and NDK to be correctly configured."
+                + " Only executed when target-platform is set to Android"
+            )
+            .OnlyWhenStatic(() => IsAndroidPlatform())
+            .After(InstallOnAndroid)
+            .Executes(() => 
+            {
+                var adb = ToolResolver.GetPathTool("adb");
 
-                    var server = ndkFolder / AndroidDebugger.ServerProgramPath(AndroidCpu);
-                    Assert.True(server.FileExists(), $"NDK didn't contain a suitable {AndroidDebugger.ServerProgramName}");
-
-                    var serverFolderTmp = "/data/local/tmp";
-                    var serverFolderUser = $"/data/user/0/{AndroidAppName}";
-
-                    adb($"push {server} {serverFolderTmp}/");
-                    adb($"shell chmod 775 {serverFolderTmp}/{AndroidDebugger.ServerProgramName}");
-
-                    Log.Information("Duplicating {0} to be used by {1}", AndroidDebugger.ServerProgramName, AndroidAppName);
-                    adb($"shell run-as {AndroidAppName} cp {serverFolderTmp}/{AndroidDebugger.ServerProgramName} {serverFolderUser}/{AndroidDebugger.ServerProgramName}");
-
-                    var waitForDebugger = AndroidDebugger == AndroidDebuggerBackend.LLDB ? " -D" : "";
-
-                    adb($"shell am start{waitForDebugger} -n {AndroidAppName}/com.epicgames.ue4.GameActivity");
-                    adb($"forward tcp:{AndroidDebugPort} tcp:{AndroidDebugPort}");
-
-                    int pid = 0;
-                    while(true)
-                    {
-                        var output = adb($"shell ps", logOutput: false);
-                        if (GetAndroidProcess(output, out pid))
-                        {
-                            break;
-                        }
-                        Log.Information("Waiting for process to start on device...");
-                        Thread.Sleep(1000);
-                    }
-
-                    if (AndroidDebugger == AndroidDebuggerBackend.GDB)
-                    {
-                        Log.Information("Attaching gdbserver to process ID {0} listening on port {1}", pid, AndroidDebugPort);
-                    }
-                    if (AndroidDebugger == AndroidDebuggerBackend.LLDB)
-                    {
-                        Log.Information("lldb-server is listening on port {0}.", AndroidDebugPort);
-                        Log.Information("Attach to process {0} ({1}) from LLDB client", AndroidAppName, pid);
-                    }
-
-                    adb($"shell run-as {AndroidAppName} {serverFolderUser}/{AndroidDebugger.ServerProgramName} {AndroidDebugger.LaunchArguments(AndroidDebugPort ?? 5045, pid)}");
-                }
-                else
-                {
-                    Log.Information("Running {0} but wait for a debugger to be attached", AndroidAppName);
-                    adb($"shell am start -D -n {AndroidAppName}/com.epicgames.ue4.GameActivity");
-                }
+                Log.Information("Running {0} but wait for a debugger to be attached", AppName);
+                adb($"shell am start -D -n {AppName}/com.epicgames.ue4.GameActivity");
             });
     }
 }

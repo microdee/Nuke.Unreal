@@ -27,7 +27,6 @@ using System.Xml.Linq;
     OnPushBranches = new[] { MasterBranch },
     OnPullRequestBranches = new[] { MasterBranch }
 )]
-[CheckBuildProjectConfigurations]
 class Build : NukeBuild
 {
     /// Support plugins are available for:

@@ -86,6 +86,7 @@ namespace Nuke.Unreal
 
         public virtual Target Build => _ => _
             .Description("Build this project for execution")
+            .After(Cook) // Android needs Cook to happen before building the APK, so OBB files can be included in the APK
             .Executes(() =>
             {
                 (
@@ -113,7 +114,6 @@ namespace Nuke.Unreal
             {
                 var result = new List<string> {
                     "-nocompile",
-                    "-nocompileeditor",
                     "-installed",
                     "-skipstage",
                     "-skipbuild",
@@ -131,12 +131,12 @@ namespace Nuke.Unreal
         
         public virtual Target Cook => _ => _
             .Description("Cook Unreal assets for standalone game execution")
-            .DependsOn(BuildEditor, Build)
+            .DependsOn(BuildEditor)
             .Executes(() =>
             {
                 var isAndroidPlatform = Platform == UnrealPlatform.Android;
                 
-                var androidTextureMode = SelfAs<IAndroidTargets>()?.AndroidTextureMode
+                var androidTextureMode = SelfAs<IAndroidTargets>()?.TextureMode
                     ?? new [] { AndroidCookFlavor.Multi };
 
                 var configCombination = isAndroidPlatform
@@ -156,6 +156,7 @@ namespace Nuke.Unreal
                             + " -ue4exe=UE4Editor-Cmd.exe"
                             + " -cook"
                             + (isAndroidPlatform ? $" -cookflavor={textureMode}" : "")
+                            + (InvokedTargets.Contains(BuildEditor) ? " -nocompileeditor" : "")
                             + CookArguments.AppendAsArguments()
                             + UatArgs.AppendAsArguments(),
                         workingDirectory: UnrealEnginePath
