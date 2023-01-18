@@ -76,7 +76,7 @@ namespace Nuke.Unreal
         ) {
             var resultIni = new ConfigIni();
             extraConfigSubfolder = (extraConfigSubfolder ?? Enumerable.Empty<string>())
-                .Append(TargetPlatform.ToString());
+                .Append(Platform.ToString());
 
             IReadOnlyCollection<AbsolutePath> GlobIni(AbsolutePath folder)
             {
@@ -116,12 +116,12 @@ namespace Nuke.Unreal
 
             if (lowestLevel <= IniHierarchyLevel.Default && highestLevel >= IniHierarchyLevel.Default)
             {
-                var configFolder = UnrealProjectFolder / "Config";
+                var configFolder = ProjectFolder / "Config";
                 GatherInis(configFolder, resultIni);
             }
             if (lowestLevel <= IniHierarchyLevel.Saved && highestLevel >= IniHierarchyLevel.Saved)
             {
-                var configFolder = UnrealProjectFolder / "Saved" / "Config";
+                var configFolder = ProjectFolder / "Saved" / "Config";
                 GatherInis(configFolder, resultIni);
             }
 

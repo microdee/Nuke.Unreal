@@ -69,11 +69,11 @@ namespace Nuke.Unreal
                     Unreal.AutomationTool(self.GetEngineVersionFromProject())(
                         arguments:
                             "BuildCookRun"
-                            + $" -ScriptsForProject=\"{self.ToProject}\""
-                            + $" -project=\"{self.ToProject}\""
-                            + $" -target={self.UnrealProjectName}"
-                            + $" -targetplatform={self.TargetPlatform}"
-                            + $" -platform={self.TargetPlatform}"
+                            + $" -ScriptsForProject=\"{self.ProjectPath}\""
+                            + $" -project=\"{self.ProjectPath}\""
+                            + $" -target={self.ProjectName}"
+                            + $" -targetplatform={self.Platform}"
+                            + $" -platform={self.Platform}"
                             + $" -clientconfig={config}"
                             + $" -archivedirectory=\"{self.OutPath}\""
                             + $" -applocaldirectory={appLocalDir}"

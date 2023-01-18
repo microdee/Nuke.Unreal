@@ -26,6 +26,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Nuke.Unreal.ToolGenerators\Nuke.Unreal.ToolGenerators.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
+    <ProjectReference Include="..\Nuke.Unreal.Ini\Nuke.Unreal.Ini.csproj" />
   </ItemGroup>
 
   <ItemGroup>

@@ -80,7 +80,7 @@ namespace Nuke.Unreal
     {
         T Self<T>() where T : INukeBuild => (T)(object)this;
         T GetParameter<T>(Expression<Func<T>> expression) => EnvironmentInfo.GetParameter(expression);
-        bool IsAndroidPlatform() => Self<UnrealBuild>().TargetPlatform == UnrealPlatform.Android;
+        bool IsAndroidPlatform() => Self<UnrealBuild>().Platform == UnrealPlatform.Android;
 
         [Parameter("Select texture compression mode for Android")]
         AndroidCookFlavor[] TextureMode
@@ -94,7 +94,7 @@ namespace Nuke.Unreal
                 ?["PackageName"];
 
             return packageNameCommands?.IsEmpty() ?? true
-                ? $"com.epicgames.{Self<UnrealBuild>().UnrealProjectName}"
+                ? $"com.epicgames.{Self<UnrealBuild>().ProjectName}"
                 : packageNameCommands.First().Value;
         }
 
@@ -168,14 +168,14 @@ namespace Nuke.Unreal
         {
             var self = Self<UnrealBuild>();
             return self.Config[0] == UnrealConfig.Development
-                ? $"{self.UnrealProjectName}-{Cpu.ToString().ToLower()}"
-                : $"{self.UnrealProjectName}-Android-{self.Config[0]}-{Cpu.ToString().ToLower()}";
+                ? $"{self.ProjectName}-{Cpu.ToString().ToLower()}"
+                : $"{self.ProjectName}-Android-{self.Config[0]}-{Cpu.ToString().ToLower()}";
         }
 
         AbsolutePath GetApkFile()
         {
             var self = Self<UnrealBuild>();
-            return self.UnrealProjectFolder / "Binaries" / "Android" / (GetApkName() + ".apk");
+            return self.ProjectFolder / "Binaries" / "Android" / (GetApkName() + ".apk");
         }
 
         Target SignApk => _ => _
@@ -190,7 +190,7 @@ namespace Nuke.Unreal
                 var androidRuntimeSettings = self.ReadIniHierarchy("Engine")?["/Script/AndroidRuntimeSettings.AndroidRuntimeSettings"];
                 var keyStore = androidRuntimeSettings?.GetFirst("KeyStore").Value;
                 var password = androidRuntimeSettings?.GetFirst("KeyStorePassword").Value;
-                var keystorePath = self.UnrealProjectFolder / "Build" / "Android" / keyStore;
+                var keystorePath = self.ProjectFolder / "Build" / "Android" / keyStore;
                 
                 Assert.False(string.IsNullOrWhiteSpace(keyStore), "There was no keystore specified");
                 Assert.True(keystorePath.FileExists(), "Specified keystore was not found");
@@ -260,7 +260,7 @@ namespace Nuke.Unreal
                     try
                     {
                         Log.Information("Removing existing assets from device (failures here are not fatal)");
-                        adb($"shell rm -r {storagePath}/UE4Game/{self.UnrealProjectName}");
+                        adb($"shell rm -r {storagePath}/UE4Game/{self.ProjectName}");
                         adb($"shell rm -r {storagePath}/UE4Game/UE4CommandLine.txt");
                         adb($"shell rm -r {storagePath}/obb/{AppName}");
                         adb($"shell rm -r {storagePath}/Android/obb/{AppName}");
