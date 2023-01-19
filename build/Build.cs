@@ -79,7 +79,7 @@ class Build : NukeBuild
             localAssembliesXml
                 .Element(XName.Get("Project", _msbuildXmlns))
                 .Elements(XName.Get("PropertyGroup", _msbuildXmlns))
-                .Where(xl => xl.Attribute(XName.Get("Condition")).Value.Contains("Windows"))
+                .Where(xl => xl.Attribute(XName.Get("Condition"))?.Value.Contains("Windows") ?? false)
                 .ForEach(propGroup => {
                     propGroup.SetElementValue(XName.Get("UnrealPath", _msbuildXmlns), unrealPath);
                 });
