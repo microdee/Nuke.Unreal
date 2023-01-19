@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Nuke.Common.Utilities;
 
-namespace Nuke.Unreal.ToolGenerators;
+namespace build.Generators;
 
 public class ToolModel
 {

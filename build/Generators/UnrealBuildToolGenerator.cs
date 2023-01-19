@@ -9,12 +9,9 @@ using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.Text;
 using Serilog;
 
-using UnrealBuildTool;
-using UeDotnet = Tools.DotNETCommon;
-
 using Nuke.Common.Utilities;
 
-namespace Nuke.Unreal.ToolGenerators;
+namespace build.Generators;
 
 [Generator]
 public class UnrealBuildToolGenerator : ToolGenerator, ISourceGenerator
@@ -30,8 +27,11 @@ public class UnrealBuildToolGenerator : ToolGenerator, ISourceGenerator
         {
             if (_model != null) return _model;
 
-            var assembly = typeof(TargetInfo).Assembly;
-            var cmdLineAttrType = typeof(UeDotnet.CommandLineAttribute);
+            // TODO: map types
+            //  UnrealBuildTool.TargetInfo
+            //  Tools.DotNETCommon.CommandLineAttribute
+            var assembly = typeof(UnrealBuildTool.TargetInfo).Assembly;
+            var cmdLineAttrType = typeof(Tools.DotNETCommon.CommandLineAttribute);
 
             // private classes:
             Type toolModeType = assembly.GetType("UnrealBuildTool.ToolMode");
@@ -57,7 +57,7 @@ public class UnrealBuildToolGenerator : ToolGenerator, ISourceGenerator
                 // Add special cases here
             }
 
-            ArgumentModel GetArgument(MemberInfo member, Type memberType, UeDotnet.CommandLineAttribute cmdLine)
+            ArgumentModel GetArgument(MemberInfo member, Type memberType, Tools.DotNETCommon.CommandLineAttribute cmdLine)
             {
                 var name = cmdLine.Prefix[1..].TrimEnd('=').TrimEnd(':');
                 var csharpName = name[0] switch
@@ -129,7 +129,7 @@ public class UnrealBuildToolGenerator : ToolGenerator, ISourceGenerator
                 }
                 Log.Information("    {0} {1}", memberType.GetDisplayShortName(), member.Name);
 
-                var cmdLineAttributes = member.GetCustomAttributes<UeDotnet.CommandLineAttribute>(false);
+                var cmdLineAttributes = member.GetCustomAttributes<Tools.DotNETCommon.CommandLineAttribute>(false);
                 foreach(var cmdLine in cmdLineAttributes)
                 {
                     var arg = GetArgument(member, memberType, cmdLine);

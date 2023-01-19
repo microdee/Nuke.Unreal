@@ -20,6 +20,8 @@ using static Nuke.Common.Tools.DotNet.DotNetTasks;
 using static Nuke.Common.Tools.NuGet.NuGetTasks;
 using System.Xml.Linq;
 
+namespace build;
+
 [GitHubActions(
     "Release",
     GitHubActionsImage.WindowsLatest,
@@ -52,8 +54,7 @@ class Build : NukeBuild
 
     ProjectRecord MainProject => new (Solution.GetProject("Nuke.Unreal") , true);
     ProjectRecord IniProject => new (Solution.GetProject("Nuke.Unreal.Ini") , true);
-    ProjectRecord ToolGeneratorsProject => new (Solution.GetProject("Nuke.Unreal.ToolGenerators") , false);
-    ProjectRecord[] NukeUnreal => new [] { MainProject, IniProject, ToolGeneratorsProject };
+    ProjectRecord[] NukeUnreal => new [] { MainProject, IniProject };
 
     [Solution] readonly Solution Solution;
 
@@ -65,27 +66,10 @@ class Build : NukeBuild
 
     Version CurrentVersion => Version.Parse(NukeUnreal.First().Project.GetProperty("Version"));
 
+    // TODO: Add generate tools target
     Target Restore => _ => _
         .Executes(() =>
         {
-            Log.Information("Writing Unreal path into LocalUnrealAssemblies.props");
-            var unrealLocator = ToolResolver.GetLocalTool(RootDirectory / "build" / "UnrealLocator" / "UnrealLocator.exe");
-            var unrealPath = unrealLocator(UnrealVersion).Single().Text;
-            Log.Information("Found Unreal at {0}", unrealPath);
-
-            var localAssembliesPath = ToolGeneratorsProject.Project.Directory / "LocalUnrealAssemblies.props";
-            var localAssembliesXml = XDocument.Load(localAssembliesPath);
-
-            localAssembliesXml
-                .Element(XName.Get("Project", _msbuildXmlns))
-                .Elements(XName.Get("PropertyGroup", _msbuildXmlns))
-                .Where(xl => xl.Attribute(XName.Get("Condition"))?.Value.Contains("Windows") ?? false)
-                .ForEach(propGroup => {
-                    propGroup.SetElementValue(XName.Get("UnrealPath", _msbuildXmlns), unrealPath);
-                });
-            
-            localAssembliesXml.Save(localAssembliesPath);
-
             foreach(var project in NukeUnreal)
             {
                 DotNetRestore(s => s

@@ -12,7 +12,7 @@ using Nuke.Common.IO;
 using Scriban;
 
 
-namespace Nuke.Unreal.ToolGenerators;
+namespace build.Generators;
 
 public abstract class ToolGenerator
 {
