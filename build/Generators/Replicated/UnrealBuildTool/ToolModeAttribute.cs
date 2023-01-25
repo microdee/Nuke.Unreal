@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 
 namespace build.Generators.Replicated.UnrealBuildTool;
 
@@ -9,7 +10,7 @@ namespace build.Generators.Replicated.UnrealBuildTool;
 /// Systems that need to be configured to execute a tool mode
 /// </summary>
 [Flags]
-enum ToolModeOptions
+public enum ToolModeOptions
 {
     /// <summary>
     /// Do not initialize anything
@@ -52,12 +53,27 @@ enum ToolModeOptions
     ShowExecutionTime = 64,
 }
 
+public static class ToolModeOptions_Info
+{
+    public static UnrealTypeMap<ToolModeOptions> Mapping(UnrealDotnetAssemblies assemblies) => new()
+    {
+        Namespace = "UnrealBuildTool",
+        UeAssembly = assemblies.UnrealBuildTool
+    };
+}
+
 /// <summary>
 /// Attribute used to specify options for a UBT mode.
 /// </summary>
 [AttributeUsage(AttributeTargets.Class)]
 class ToolModeAttribute : Attribute
 {
+    public static UnrealTypeMap<ToolModeAttribute> Mapping(UnrealDotnetAssemblies assemblies) => new()
+    {
+        Namespace = "UnrealBuildTool",
+        UeAssembly = assemblies.UnrealBuildTool
+    };
+
     /// <summary>
     /// Name of this mode
     /// </summary>
@@ -67,4 +83,17 @@ class ToolModeAttribute : Attribute
     /// Options for executing this mode
     /// </summary>
     public ToolModeOptions Options;
+}
+
+/// <summary>
+/// Base class for standalone UBT modes. Different modes can be invoked using the -Mode=[Name] argument on the command line, where [Name] is determined by 
+/// the ToolModeAttribute on a ToolMode derived class. The log system will be initialized before calling the mode, but little else.
+/// </summary>
+public class ToolMode
+{
+    public static UnrealTypeMap<ToolMode> Mapping(UnrealDotnetAssemblies assemblies) => new()
+    {
+        Namespace = "UnrealBuildTool",
+        UeAssembly = assemblies.UnrealBuildTool
+    };
 }

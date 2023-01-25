@@ -21,6 +21,8 @@ public abstract class ToolGenerator
 
     public abstract string TemplateName { get; }
 
+    public string UnrealVersion { init; get; }
+
     protected abstract object Model { get; }
 
     private string ReadTemplate(AbsolutePath path, HashSet<AbsolutePath> previousIncludes = null)
@@ -57,6 +59,7 @@ public abstract class ToolGenerator
         var path = GetTemplatesFolder() / $"{TemplateName}.sbncs";
         var templateText = ReadTemplate(path);
         var scribanTemplate = Template.Parse(templateText, path);
+        // TODO: Output to actual file
         context.AddSource(TemplateName, SourceText.From(scribanTemplate.Render(Model), Encoding.UTF8));
     }
 }

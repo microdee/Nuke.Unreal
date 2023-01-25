@@ -7,7 +7,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace build.Generators.Replicated.DotNETUtilities;
+namespace build.Generators.Replicated.Tools.DotNETCommon;
 
 /// <summary>
 /// Attribute to indicate the name of a command line argument
@@ -15,6 +15,12 @@ namespace build.Generators.Replicated.DotNETUtilities;
 [AttributeUsage(AttributeTargets.Field, AllowMultiple = true)]
 public class CommandLineAttribute : Attribute
 {
+    public static UnrealTypeMap<CommandLineAttribute> Mapping(UnrealDotnetAssemblies assemblies) => new()
+    {
+        Namespace = "Tools.DotNETCommon",
+        UeAssembly = assemblies.DotNETUtilities
+    };
+    
     /// <summary>
     /// Prefix for the option, with a leading '-' and trailing '=' character if a value is expected.
     /// </summary>

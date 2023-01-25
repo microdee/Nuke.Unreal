@@ -10,6 +10,8 @@ using Microsoft.CodeAnalysis.Text;
 using Serilog;
 
 using Nuke.Common.Utilities;
+using build.Generators.Replicated.Tools.DotNETCommon;
+using build.Generators.Replicated.UnrealBuildTool;
 
 namespace build.Generators;
 
@@ -30,12 +32,10 @@ public class UnrealBuildToolGenerator : ToolGenerator, ISourceGenerator
             // TODO: map types
             //  UnrealBuildTool.TargetInfo
             //  Tools.DotNETCommon.CommandLineAttribute
-            var assembly = typeof(UnrealBuildTool.TargetInfo).Assembly;
-            var cmdLineAttrType = typeof(Tools.DotNETCommon.CommandLineAttribute);
-
-            // private classes:
-            Type toolModeType = assembly.GetType("UnrealBuildTool.ToolMode");
-            Type toolModeAttributeType = assembly.GetType("UnrealBuildTool.ToolModeAttribute");
+            var ueAssemblies = Unreal.GetInstance(UnrealVersion).Assemblies;
+            var cmdLineAttrMapping = CommandLineAttribute.Mapping(ueAssemblies);
+            var toolModeMapping = ToolMode.Mapping(ueAssemblies);
+            var toolModeAttributeMapping = ToolModeAttribute.Mapping(ueAssemblies);
 
             UbtModel model = new(
                 new ToolModel {
@@ -48,17 +48,15 @@ public class UnrealBuildToolGenerator : ToolGenerator, ISourceGenerator
             );
 
             var ubtTool = model.UnrealBuildTool;
-
-            string GetToolModeName(object attr) =>
-                toolModeAttributeType.GetField("Name").GetValue<string>(attr);
             
             void ProcessNewTool(ToolModel tool)
             {
                 // Add special cases here
             }
 
-            ArgumentModel GetArgument(MemberInfo member, Type memberType, Tools.DotNETCommon.CommandLineAttribute cmdLine)
+            ArgumentModel GetArgument(MemberInfo member, Type memberType, object cmdLineUnreal)
             {
+                var cmdLine = cmdLineAttrMapping.FromUnreal(cmdLineUnreal);
                 var name = cmdLine.Prefix[1..].TrimEnd('=').TrimEnd(':');
                 var csharpName = name[0] switch
                 {
@@ -129,7 +127,7 @@ public class UnrealBuildToolGenerator : ToolGenerator, ISourceGenerator
                 }
                 Log.Information("    {0} {1}", memberType.GetDisplayShortName(), member.Name);
 
-                var cmdLineAttributes = member.GetCustomAttributes<Tools.DotNETCommon.CommandLineAttribute>(false);
+                var cmdLineAttributes = member.GetCustomAttributes(cmdLineAttrMapping.UeType, false);
                 foreach(var cmdLine in cmdLineAttributes)
                 {
                     var arg = GetArgument(member, memberType, cmdLine);
@@ -140,29 +138,29 @@ public class UnrealBuildToolGenerator : ToolGenerator, ISourceGenerator
                 }
             }
 
-            foreach(var ubtType in assembly.GetTypes())
+            foreach(var ubtType in ueAssemblies.UnrealBuildTool.GetTypes())
             {
                 var members = ubtType.GetMembers()
-                    .Where(m => m.GetCustomAttribute(cmdLineAttrType, false) != null)
+                    .Where(m => m.GetCustomAttribute(cmdLineAttrMapping.UeType, false) != null)
                     .ToArray();
 
                 if (members.Length == 0) continue;
                 Log.Information("Processing UBT type: {0}", ubtType.GetDisplayName());
                 
-                var toolModeAttr = ubtType.GetCustomAttribute(toolModeAttributeType, false);
+                var toolModeAttr = ubtType.GetCustomAttribute(toolModeAttributeMapping.UeType, false);
                 var targetToolModel = ubtTool;
                 if (toolModeAttr != null)
                 {
-                    var modeName = GetToolModeName(toolModeAttr);
-                    Log.Information("    Subtool: {0}", modeName);
-                    var toolCandidate = ubtTool.Subtools.FirstOrDefault(t => t.ConfigName.EqualsOrdinalIgnoreCase(modeName));
+                    var localToolModeAttr = toolModeAttributeMapping.FromUnreal(toolModeAttr);
+                    Log.Information("    Subtool: {0}", localToolModeAttr.Name);
+                    var toolCandidate = ubtTool.Subtools.FirstOrDefault(t => t.ConfigName.EqualsOrdinalIgnoreCase(localToolModeAttr.Name));
                     if (toolCandidate == null)
                     {
                         toolCandidate = new()
                         {
-                            ConfigName = modeName,
-                            CliName = "-" + modeName,
-                            ConfigType = new(modeName + "Config", modeName + "Config"),
+                            ConfigName = localToolModeAttr.Name,
+                            CliName = "-" + localToolModeAttr.Name,
+                            ConfigType = new(localToolModeAttr.Name + "Config", localToolModeAttr.Name + "Config"),
                         };
                         ProcessNewTool(toolCandidate);
                         ubtTool.Subtools.Add(toolCandidate);
