@@ -5,18 +5,15 @@ using System.Reflection;
 using System.Threading.Tasks;
 using System.Text;
 using System.Text.RegularExpressions;
-using Microsoft.CodeAnalysis;
-using Microsoft.CodeAnalysis.Text;
 using Serilog;
-
 using Nuke.Common.Utilities;
 using build.Generators.Replicated.Tools.DotNETCommon;
 using build.Generators.Replicated.UnrealBuildTool;
+using Nuke.Common.IO;
 
 namespace build.Generators;
 
-[Generator]
-public class UnrealBuildToolGenerator : ToolGenerator, ISourceGenerator
+public class UnrealBuildToolGenerator : ToolGenerator
 {
     public override string TemplateName => "UnrealBuildToolConfigGenerated";
 
@@ -29,9 +26,6 @@ public class UnrealBuildToolGenerator : ToolGenerator, ISourceGenerator
         {
             if (_model != null) return _model;
 
-            // TODO: map types
-            //  UnrealBuildTool.TargetInfo
-            //  Tools.DotNETCommon.CommandLineAttribute
             var ueAssemblies = Unreal.GetInstance(UnrealVersion).Assemblies;
             var cmdLineAttrMapping = CommandLineAttribute.Mapping(ueAssemblies);
             var toolModeMapping = ToolMode.Mapping(ueAssemblies);
@@ -176,17 +170,8 @@ public class UnrealBuildToolGenerator : ToolGenerator, ISourceGenerator
                     ProcessMember(member, targetToolModel);
                 }
             }
-
             _model = model;
-
             return _model;
         }
-    }
-
-    public void Initialize(GeneratorInitializationContext context) {}
-
-    public void Execute(GeneratorExecutionContext context)
-    {
-        Generate(context);
     }
 }

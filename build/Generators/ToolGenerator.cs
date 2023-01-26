@@ -6,8 +6,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using Microsoft.CodeAnalysis;
-using Microsoft.CodeAnalysis.Text;
+using Nuke.Common;
 using Nuke.Common.IO;
 using Scriban;
 
@@ -20,6 +19,8 @@ public abstract class ToolGenerator
         ((AbsolutePath) sourcePath).Parent / "Templates";
 
     public abstract string TemplateName { get; }
+
+    protected virtual RelativePath OutputPath => (RelativePath) "src" / "Nuke.Unreal" / "Tools" / (TemplateName + ".cs");
 
     public string UnrealVersion { init; get; }
 
@@ -54,12 +55,12 @@ public abstract class ToolGenerator
         return templateText;
     }
 
-    public virtual void Generate(GeneratorExecutionContext context)
+    public virtual void Generate(INukeBuild build)
     {
         var path = GetTemplatesFolder() / $"{TemplateName}.sbncs";
         var templateText = ReadTemplate(path);
         var scribanTemplate = Template.Parse(templateText, path);
-        // TODO: Output to actual file
-        context.AddSource(TemplateName, SourceText.From(scribanTemplate.Render(Model), Encoding.UTF8));
+        var output = scribanTemplate.Render(Model);
+        File.WriteAllText(build.RootDirectory / OutputPath, output);
     }
 }
