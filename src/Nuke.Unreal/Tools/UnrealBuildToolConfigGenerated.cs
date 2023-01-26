@@ -108,9 +108,9 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// <summary>
         /// No description
         /// </summary>
-        public UnrealBuildToolConfig WriteOutdatedActions(string val = null)
+        public UnrealBuildToolConfig WriteOutdatedActions(object val = null)
         {
-            AppendArgument(string.IsNullOrWhiteSpace(val) ? "-WriteOutdatedActions" : "-WriteOutdatedActions=" + val.DoubleQuoteIfNeeded());
+            AppendArgument(string.IsNullOrWhiteSpace(val?.ToString()) ? "-WriteOutdatedActions" : "-WriteOutdatedActions=" + val.ToString().DoubleQuoteIfNeeded());
             return (UnrealBuildToolConfig) this;
         }
 
@@ -119,9 +119,9 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// <summary>
         /// No description
         /// </summary>
-        public UnrealBuildToolConfig Receipt(string val = null)
+        public UnrealBuildToolConfig Receipt(object val = null)
         {
-            AppendArgument(string.IsNullOrWhiteSpace(val) ? "-Receipt" : "-Receipt=" + val.DoubleQuoteIfNeeded());
+            AppendArgument(string.IsNullOrWhiteSpace(val?.ToString()) ? "-Receipt" : "-Receipt=" + val.ToString().DoubleQuoteIfNeeded());
             return (UnrealBuildToolConfig) this;
         }
 
@@ -130,9 +130,9 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// <summary>
         /// No description
         /// </summary>
-        public UnrealBuildToolConfig Actions(string val = null)
+        public UnrealBuildToolConfig Actions(object val = null)
         {
-            AppendArgument(string.IsNullOrWhiteSpace(val) ? "-Actions" : "-Actions=" + val.DoubleQuoteIfNeeded());
+            AppendArgument(string.IsNullOrWhiteSpace(val?.ToString()) ? "-Actions" : "-Actions=" + val.ToString().DoubleQuoteIfNeeded());
             return (UnrealBuildToolConfig) this;
         }
 
@@ -152,9 +152,9 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// <summary>
         /// No description
         /// </summary>
-        public UnrealBuildToolConfig Plugin(string val = null)
+        public UnrealBuildToolConfig Plugin(object val = null)
         {
-            AppendArgument(string.IsNullOrWhiteSpace(val) ? "-Plugin" : "-Plugin=" + val.DoubleQuoteIfNeeded());
+            AppendArgument(string.IsNullOrWhiteSpace(val?.ToString()) ? "-Plugin" : "-Plugin=" + val.ToString().DoubleQuoteIfNeeded());
             return (UnrealBuildToolConfig) this;
         }
 
@@ -163,9 +163,9 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// <summary>
         /// No description
         /// </summary>
-        public UnrealBuildToolConfig Module(string val = null)
+        public UnrealBuildToolConfig Module(object val = null)
         {
-            AppendArgument(string.IsNullOrWhiteSpace(val) ? "-Module" : "-Module=" + val.DoubleQuoteIfNeeded());
+            AppendArgument(string.IsNullOrWhiteSpace(val?.ToString()) ? "-Module" : "-Module=" + val.ToString().DoubleQuoteIfNeeded());
             return (UnrealBuildToolConfig) this;
         }
 
@@ -174,9 +174,9 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// <summary>
         /// No description
         /// </summary>
-        public UnrealBuildToolConfig SingleFile(string val = null)
+        public UnrealBuildToolConfig SingleFile(object val = null)
         {
-            AppendArgument(string.IsNullOrWhiteSpace(val) ? "-SingleFile" : "-SingleFile=" + val.DoubleQuoteIfNeeded());
+            AppendArgument(string.IsNullOrWhiteSpace(val?.ToString()) ? "-SingleFile" : "-SingleFile=" + val.ToString().DoubleQuoteIfNeeded());
             return (UnrealBuildToolConfig) this;
         }
 
@@ -218,9 +218,9 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// <summary>
         /// No description
         /// </summary>
-        public UnrealBuildToolConfig WriteActions(string val = null)
+        public UnrealBuildToolConfig WriteActions(object val = null)
         {
-            AppendArgument(string.IsNullOrWhiteSpace(val) ? "-WriteActions" : "-WriteActions=" + val.DoubleQuoteIfNeeded());
+            AppendArgument(string.IsNullOrWhiteSpace(val?.ToString()) ? "-WriteActions" : "-WriteActions=" + val.ToString().DoubleQuoteIfNeeded());
             return (UnrealBuildToolConfig) this;
         }
 
@@ -229,9 +229,9 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// <summary>
         /// No description
         /// </summary>
-        public UnrealBuildToolConfig LiveCodingModules(string val = null)
+        public UnrealBuildToolConfig LiveCodingModules(object val = null)
         {
-            AppendArgument(string.IsNullOrWhiteSpace(val) ? "-LiveCodingModules" : "-LiveCodingModules=" + val.DoubleQuoteIfNeeded());
+            AppendArgument(string.IsNullOrWhiteSpace(val?.ToString()) ? "-LiveCodingModules" : "-LiveCodingModules=" + val.ToString().DoubleQuoteIfNeeded());
             return (UnrealBuildToolConfig) this;
         }
 
@@ -240,9 +240,9 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// <summary>
         /// No description
         /// </summary>
-        public UnrealBuildToolConfig LiveCodingManifest(string val = null)
+        public UnrealBuildToolConfig LiveCodingManifest(object val = null)
         {
-            AppendArgument(string.IsNullOrWhiteSpace(val) ? "-LiveCodingManifest" : "-LiveCodingManifest=" + val.DoubleQuoteIfNeeded());
+            AppendArgument(string.IsNullOrWhiteSpace(val?.ToString()) ? "-LiveCodingManifest" : "-LiveCodingManifest=" + val.ToString().DoubleQuoteIfNeeded());
             return (UnrealBuildToolConfig) this;
         }
 
@@ -262,9 +262,9 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// <summary>
         /// No description
         /// </summary>
-        public UnrealBuildToolConfig Input(string val = null)
+        public UnrealBuildToolConfig Input(object val = null)
         {
-            AppendArgument(string.IsNullOrWhiteSpace(val) ? "-Input" : "-Input=" + val.DoubleQuoteIfNeeded());
+            AppendArgument(string.IsNullOrWhiteSpace(val?.ToString()) ? "-Input" : "-Input=" + val.ToString().DoubleQuoteIfNeeded());
             return (UnrealBuildToolConfig) this;
         }
 
@@ -273,9 +273,9 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// <summary>
         /// No description
         /// </summary>
-        public UnrealBuildToolConfig XmlConfigCache(string val = null)
+        public UnrealBuildToolConfig XmlConfigCache(object val = null)
         {
-            AppendArgument(string.IsNullOrWhiteSpace(val) ? "-XmlConfigCache" : "-XmlConfigCache=" + val.DoubleQuoteIfNeeded());
+            AppendArgument(string.IsNullOrWhiteSpace(val?.ToString()) ? "-XmlConfigCache" : "-XmlConfigCache=" + val.ToString().DoubleQuoteIfNeeded());
             return (UnrealBuildToolConfig) this;
         }
 
@@ -295,9 +295,9 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// <summary>
         /// No description
         /// </summary>
-        public UnrealBuildToolConfig BuildPlugin(string val = null)
+        public UnrealBuildToolConfig BuildPlugin(object val = null)
         {
-            AppendArgument(string.IsNullOrWhiteSpace(val) ? "-BuildPlugin" : "-BuildPlugin=" + val.DoubleQuoteIfNeeded());
+            AppendArgument(string.IsNullOrWhiteSpace(val?.ToString()) ? "-BuildPlugin" : "-BuildPlugin=" + val.ToString().DoubleQuoteIfNeeded());
             return (UnrealBuildToolConfig) this;
         }
 
@@ -306,9 +306,9 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// <summary>
         /// No description
         /// </summary>
-        public UnrealBuildToolConfig EnablePlugin(string val = null)
+        public UnrealBuildToolConfig EnablePlugin(object val = null)
         {
-            AppendArgument(string.IsNullOrWhiteSpace(val) ? "-EnablePlugin" : "-EnablePlugin=" + val.DoubleQuoteIfNeeded());
+            AppendArgument(string.IsNullOrWhiteSpace(val?.ToString()) ? "-EnablePlugin" : "-EnablePlugin=" + val.ToString().DoubleQuoteIfNeeded());
             return (UnrealBuildToolConfig) this;
         }
 
@@ -317,9 +317,9 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// <summary>
         /// No description
         /// </summary>
-        public UnrealBuildToolConfig DisablePlugin(string val = null)
+        public UnrealBuildToolConfig DisablePlugin(object val = null)
         {
-            AppendArgument(string.IsNullOrWhiteSpace(val) ? "-DisablePlugin" : "-DisablePlugin=" + val.DoubleQuoteIfNeeded());
+            AppendArgument(string.IsNullOrWhiteSpace(val?.ToString()) ? "-DisablePlugin" : "-DisablePlugin=" + val.ToString().DoubleQuoteIfNeeded());
             return (UnrealBuildToolConfig) this;
         }
 
@@ -603,9 +603,9 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// <summary>
         /// No description
         /// </summary>
-        public UnrealBuildToolConfig FastPDB(string val = null)
+        public UnrealBuildToolConfig FastPDB(object val = null)
         {
-            AppendArgument(string.IsNullOrWhiteSpace(val) ? "-FastPDB" : "-FastPDB=" + val.DoubleQuoteIfNeeded());
+            AppendArgument(string.IsNullOrWhiteSpace(val?.ToString()) ? "-FastPDB" : "-FastPDB=" + val.ToString().DoubleQuoteIfNeeded());
             return (UnrealBuildToolConfig) this;
         }
 
@@ -625,9 +625,9 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// <summary>
         /// No description
         /// </summary>
-        public UnrealBuildToolConfig BundleVersion(string val = null)
+        public UnrealBuildToolConfig BundleVersion(object val = null)
         {
-            AppendArgument(string.IsNullOrWhiteSpace(val) ? "-BundleVersion" : "-BundleVersion=" + val.DoubleQuoteIfNeeded());
+            AppendArgument(string.IsNullOrWhiteSpace(val?.ToString()) ? "-BundleVersion" : "-BundleVersion=" + val.ToString().DoubleQuoteIfNeeded());
             return (UnrealBuildToolConfig) this;
         }
 
@@ -713,9 +713,9 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// <summary>
         /// No description
         /// </summary>
-        public UnrealBuildToolConfig ToolChain(string val = null)
+        public UnrealBuildToolConfig ToolChain(object val = null)
         {
-            AppendArgument(string.IsNullOrWhiteSpace(val) ? "-ToolChain" : "-ToolChain=" + val.DoubleQuoteIfNeeded());
+            AppendArgument(string.IsNullOrWhiteSpace(val?.ToString()) ? "-ToolChain" : "-ToolChain=" + val.ToString().DoubleQuoteIfNeeded());
             return (UnrealBuildToolConfig) this;
         }
 
@@ -724,9 +724,9 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// <summary>
         /// No description
         /// </summary>
-        public UnrealBuildToolConfig CppStd(string val = null)
+        public UnrealBuildToolConfig CppStd(object val = null)
         {
-            AppendArgument(string.IsNullOrWhiteSpace(val) ? "-CppStd" : "-CppStd=" + val.DoubleQuoteIfNeeded());
+            AppendArgument(string.IsNullOrWhiteSpace(val?.ToString()) ? "-CppStd" : "-CppStd=" + val.ToString().DoubleQuoteIfNeeded());
             return (UnrealBuildToolConfig) this;
         }
 
@@ -735,9 +735,9 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// <summary>
         /// No description
         /// </summary>
-        public UnrealBuildToolConfig BuildVersion(string val = null)
+        public UnrealBuildToolConfig BuildVersion(object val = null)
         {
-            AppendArgument(string.IsNullOrWhiteSpace(val) ? "-BuildVersion" : "-BuildVersion=" + val.DoubleQuoteIfNeeded());
+            AppendArgument(string.IsNullOrWhiteSpace(val?.ToString()) ? "-BuildVersion" : "-BuildVersion=" + val.ToString().DoubleQuoteIfNeeded());
             return (UnrealBuildToolConfig) this;
         }
 
@@ -746,9 +746,9 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// <summary>
         /// No description
         /// </summary>
-        public UnrealBuildToolConfig Define(string val = null)
+        public UnrealBuildToolConfig Define(object val = null)
         {
-            AppendArgument(string.IsNullOrWhiteSpace(val) ? "-Define" : "-Define:" + val.DoubleQuoteIfNeeded());
+            AppendArgument(string.IsNullOrWhiteSpace(val?.ToString()) ? "-Define" : "-Define:" + val.ToString().DoubleQuoteIfNeeded());
             return (UnrealBuildToolConfig) this;
         }
 
@@ -757,9 +757,9 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// <summary>
         /// No description
         /// </summary>
-        public UnrealBuildToolConfig ProjectDefine(string val = null)
+        public UnrealBuildToolConfig ProjectDefine(object val = null)
         {
-            AppendArgument(string.IsNullOrWhiteSpace(val) ? "-ProjectDefine" : "-ProjectDefine:" + val.DoubleQuoteIfNeeded());
+            AppendArgument(string.IsNullOrWhiteSpace(val?.ToString()) ? "-ProjectDefine" : "-ProjectDefine:" + val.ToString().DoubleQuoteIfNeeded());
             return (UnrealBuildToolConfig) this;
         }
 
@@ -768,9 +768,9 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// <summary>
         /// No description
         /// </summary>
-        public UnrealBuildToolConfig Manifest(string val = null)
+        public UnrealBuildToolConfig Manifest(object val = null)
         {
-            AppendArgument(string.IsNullOrWhiteSpace(val) ? "-Manifest" : "-Manifest=" + val.DoubleQuoteIfNeeded());
+            AppendArgument(string.IsNullOrWhiteSpace(val?.ToString()) ? "-Manifest" : "-Manifest=" + val.ToString().DoubleQuoteIfNeeded());
             return (UnrealBuildToolConfig) this;
         }
 
@@ -779,9 +779,9 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// <summary>
         /// No description
         /// </summary>
-        public UnrealBuildToolConfig DependencyList(string val = null)
+        public UnrealBuildToolConfig DependencyList(object val = null)
         {
-            AppendArgument(string.IsNullOrWhiteSpace(val) ? "-DependencyList" : "-DependencyList=" + val.DoubleQuoteIfNeeded());
+            AppendArgument(string.IsNullOrWhiteSpace(val?.ToString()) ? "-DependencyList" : "-DependencyList=" + val.ToString().DoubleQuoteIfNeeded());
             return (UnrealBuildToolConfig) this;
         }
 
@@ -801,9 +801,9 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// <summary>
         /// No description
         /// </summary>
-        public UnrealBuildToolConfig CompilerArguments(string val = null)
+        public UnrealBuildToolConfig CompilerArguments(object val = null)
         {
-            AppendArgument(string.IsNullOrWhiteSpace(val) ? "-CompilerArguments" : "-CompilerArguments=" + val.DoubleQuoteIfNeeded());
+            AppendArgument(string.IsNullOrWhiteSpace(val?.ToString()) ? "-CompilerArguments" : "-CompilerArguments=" + val.ToString().DoubleQuoteIfNeeded());
             return (UnrealBuildToolConfig) this;
         }
 
@@ -812,9 +812,9 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// <summary>
         /// No description
         /// </summary>
-        public UnrealBuildToolConfig LinkerArguments(string val = null)
+        public UnrealBuildToolConfig LinkerArguments(object val = null)
         {
-            AppendArgument(string.IsNullOrWhiteSpace(val) ? "-LinkerArguments" : "-LinkerArguments=" + val.DoubleQuoteIfNeeded());
+            AppendArgument(string.IsNullOrWhiteSpace(val?.ToString()) ? "-LinkerArguments" : "-LinkerArguments=" + val.ToString().DoubleQuoteIfNeeded());
             return (UnrealBuildToolConfig) this;
         }
 
@@ -856,9 +856,9 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// <summary>
         /// No description
         /// </summary>
-        public UnrealBuildToolConfig Architectures(string val = null)
+        public UnrealBuildToolConfig Architectures(object val = null)
         {
-            AppendArgument(string.IsNullOrWhiteSpace(val) ? "-Architectures" : "-Architectures=" + val.DoubleQuoteIfNeeded());
+            AppendArgument(string.IsNullOrWhiteSpace(val?.ToString()) ? "-Architectures" : "-Architectures=" + val.ToString().DoubleQuoteIfNeeded());
             return (UnrealBuildToolConfig) this;
         }
 
@@ -867,9 +867,9 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// <summary>
         /// No description
         /// </summary>
-        public UnrealBuildToolConfig GPUArchitectures(string val = null)
+        public UnrealBuildToolConfig GPUArchitectures(object val = null)
         {
-            AppendArgument(string.IsNullOrWhiteSpace(val) ? "-GPUArchitectures" : "-GPUArchitectures=" + val.DoubleQuoteIfNeeded());
+            AppendArgument(string.IsNullOrWhiteSpace(val?.ToString()) ? "-GPUArchitectures" : "-GPUArchitectures=" + val.ToString().DoubleQuoteIfNeeded());
             return (UnrealBuildToolConfig) this;
         }
 
@@ -988,9 +988,9 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// <summary>
         /// No description
         /// </summary>
-        public UnrealBuildToolConfig ImportProvision(string val = null)
+        public UnrealBuildToolConfig ImportProvision(object val = null)
         {
-            AppendArgument(string.IsNullOrWhiteSpace(val) ? "-ImportProvision" : "-ImportProvision=" + val.DoubleQuoteIfNeeded());
+            AppendArgument(string.IsNullOrWhiteSpace(val?.ToString()) ? "-ImportProvision" : "-ImportProvision=" + val.ToString().DoubleQuoteIfNeeded());
             return (UnrealBuildToolConfig) this;
         }
 
@@ -999,9 +999,9 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// <summary>
         /// No description
         /// </summary>
-        public UnrealBuildToolConfig ImportCertificate(string val = null)
+        public UnrealBuildToolConfig ImportCertificate(object val = null)
         {
-            AppendArgument(string.IsNullOrWhiteSpace(val) ? "-ImportCertificate" : "-ImportCertificate=" + val.DoubleQuoteIfNeeded());
+            AppendArgument(string.IsNullOrWhiteSpace(val?.ToString()) ? "-ImportCertificate" : "-ImportCertificate=" + val.ToString().DoubleQuoteIfNeeded());
             return (UnrealBuildToolConfig) this;
         }
 
@@ -1010,9 +1010,9 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// <summary>
         /// No description
         /// </summary>
-        public UnrealBuildToolConfig ImportCertificatePassword(string val = null)
+        public UnrealBuildToolConfig ImportCertificatePassword(object val = null)
         {
-            AppendArgument(string.IsNullOrWhiteSpace(val) ? "-ImportCertificatePassword" : "-ImportCertificatePassword=" + val.DoubleQuoteIfNeeded());
+            AppendArgument(string.IsNullOrWhiteSpace(val?.ToString()) ? "-ImportCertificatePassword" : "-ImportCertificatePassword=" + val.ToString().DoubleQuoteIfNeeded());
             return (UnrealBuildToolConfig) this;
         }
 
@@ -1153,9 +1153,9 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// <summary>
         /// No description
         /// </summary>
-        public UnrealBuildToolConfig Compiler(string val = null)
+        public UnrealBuildToolConfig Compiler(object val = null)
         {
-            AppendArgument(string.IsNullOrWhiteSpace(val) ? "-Compiler" : "-Compiler=" + val.DoubleQuoteIfNeeded());
+            AppendArgument(string.IsNullOrWhiteSpace(val?.ToString()) ? "-Compiler" : "-Compiler=" + val.ToString().DoubleQuoteIfNeeded());
             return (UnrealBuildToolConfig) this;
         }
 
@@ -1164,9 +1164,9 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// <summary>
         /// No description
         /// </summary>
-        public UnrealBuildToolConfig CompilerVersion(string val = null)
+        public UnrealBuildToolConfig CompilerVersion(object val = null)
         {
-            AppendArgument(string.IsNullOrWhiteSpace(val) ? "-CompilerVersion" : "-CompilerVersion=" + val.DoubleQuoteIfNeeded());
+            AppendArgument(string.IsNullOrWhiteSpace(val?.ToString()) ? "-CompilerVersion" : "-CompilerVersion=" + val.ToString().DoubleQuoteIfNeeded());
             return (UnrealBuildToolConfig) this;
         }
 
@@ -1175,9 +1175,9 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// <summary>
         /// No description
         /// </summary>
-        public UnrealBuildToolConfig StaticAnalyzer(string val = null)
+        public UnrealBuildToolConfig StaticAnalyzer(object val = null)
         {
-            AppendArgument(string.IsNullOrWhiteSpace(val) ? "-StaticAnalyzer" : "-StaticAnalyzer=" + val.DoubleQuoteIfNeeded());
+            AppendArgument(string.IsNullOrWhiteSpace(val?.ToString()) ? "-StaticAnalyzer" : "-StaticAnalyzer=" + val.ToString().DoubleQuoteIfNeeded());
             return (UnrealBuildToolConfig) this;
         }
 
@@ -1186,9 +1186,9 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// <summary>
         /// No description
         /// </summary>
-        public UnrealBuildToolConfig ObjSrcMap(string val = null)
+        public UnrealBuildToolConfig ObjSrcMap(object val = null)
         {
-            AppendArgument(string.IsNullOrWhiteSpace(val) ? "-ObjSrcMap" : "-ObjSrcMap=" + val.DoubleQuoteIfNeeded());
+            AppendArgument(string.IsNullOrWhiteSpace(val?.ToString()) ? "-ObjSrcMap" : "-ObjSrcMap=" + val.ToString().DoubleQuoteIfNeeded());
             return (UnrealBuildToolConfig) this;
         }
 
@@ -1241,9 +1241,9 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// <summary>
         /// No description
         /// </summary>
-        public UnrealBuildToolConfig Log(string val = null)
+        public UnrealBuildToolConfig Log(object val = null)
         {
-            AppendArgument(string.IsNullOrWhiteSpace(val) ? "-Log" : "-Log=" + val.DoubleQuoteIfNeeded());
+            AppendArgument(string.IsNullOrWhiteSpace(val?.ToString()) ? "-Log" : "-Log=" + val.ToString().DoubleQuoteIfNeeded());
             return (UnrealBuildToolConfig) this;
         }
 
@@ -1307,9 +1307,9 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// <summary>
         /// No description
         /// </summary>
-        public UnrealBuildToolConfig RemoteIni(string val = null)
+        public UnrealBuildToolConfig RemoteIni(object val = null)
         {
-            AppendArgument(string.IsNullOrWhiteSpace(val) ? "-RemoteIni" : "-RemoteIni=" + val.DoubleQuoteIfNeeded());
+            AppendArgument(string.IsNullOrWhiteSpace(val?.ToString()) ? "-RemoteIni" : "-RemoteIni=" + val.ToString().DoubleQuoteIfNeeded());
             return (UnrealBuildToolConfig) this;
         }
 
@@ -1318,9 +1318,9 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// <summary>
         /// No description
         /// </summary>
-        public UnrealBuildToolConfig Mode(string val = null)
+        public UnrealBuildToolConfig Mode(object val = null)
         {
-            AppendArgument(string.IsNullOrWhiteSpace(val) ? "-Mode" : "-Mode=" + val.DoubleQuoteIfNeeded());
+            AppendArgument(string.IsNullOrWhiteSpace(val?.ToString()) ? "-Mode" : "-Mode=" + val.ToString().DoubleQuoteIfNeeded());
             return (UnrealBuildToolConfig) this;
         }
 
