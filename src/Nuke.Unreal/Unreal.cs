@@ -15,6 +15,7 @@ using Serilog;
 using static Nuke.Common.IO.FileSystemTasks;
 using Nuke.Common.Utilities;
 using System.Text;
+using Nuke.Unreal.Tools;
 
 namespace Nuke.Unreal
 {
@@ -136,6 +137,18 @@ namespace Nuke.Unreal
 
             // TODO: MacOS: "sh", $"\"{MacRunMono(ofVersion)}\" \"{ubtPath}\" " + arguments
             // TODO: Linux: "mono", $"\"{ubtPath}\" " + arguments
+        }
+
+        public static Tool BuildTool(EngineVersion ofVersion, Action<UnrealBuildToolConfig> config)
+        {
+            var toolConfig = new UnrealBuildToolConfig();
+            config?.Invoke(toolConfig);
+            return new PropagateToolExecution(
+                BuildTool(ofVersion),
+                new() {
+                    Arguments = toolConfig.Gather()
+                }
+            ).Execute;
         }
 
         public static Tool AutomationTool(EngineVersion ofVersion)
