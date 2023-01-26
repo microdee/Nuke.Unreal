@@ -22,7 +22,7 @@ public class ArgumentModel
     public ArgumentModelType ArgumentType { init; get; }
     public string CollectionSeparator { get; set; } = "+";
     public string ValueSetter { get; set; } = "=";
-    public string Description { get; set; } = "No description";
+    public string DocsXml { get; set; } = "";
     public string ParametersRenderer => ArgumentType switch
     {
         ArgumentModelType.Switch => "bool present = true",

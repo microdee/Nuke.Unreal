@@ -4,12 +4,13 @@ Get possible command line parameters from UBT:
 [CommandLine("-MyArg")]
 [CommandLine("-MyArg=")]
 
-arg.transform_params should take into account whether the CommandLine attributed member is a collection or not
-
 Get possible tool modes (subtools) from UBT:
  : ToolMode
 
 Do they all need the un-marked Project-Targets-Platforms-Configs arguments? Probably not
+
+Parse UBT sources for hard coded arguments:
+* Arguments.Get__(...)
 
 ## }}
 

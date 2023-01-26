@@ -6,6 +6,7 @@ using Nuke.Common.Tooling;
 using Nuke.Common.IO;
 using System.Collections.Concurrent;
 using System.Reflection;
+using System.IO;
 
 namespace build;
 
@@ -37,22 +38,48 @@ public class UnrealDotnetAssemblies
     public UnrealDotnetAssemblies(AbsolutePath location) => DllPaths = new(location);
 
     public readonly Dlls DllPaths;
+
+    private Assembly LoadAssembly(AbsolutePath file)
+    {
+        var result = Assembly.LoadFrom(file);
+        var xmlPath = file.Parent / (file.NameWithoutExtension + ".xml");
+        if (xmlPath.Exists())
+        {
+            Towel.Meta.LoadXmlDocumentation(File.ReadAllText(xmlPath));
+        }
+        return result;
+    }
     
-    public Assembly DotNETUtilities                    => Assembly.LoadFrom(DllPaths.DotNETUtilities);
-    public Assembly AutomationUtilsAutomation          => Assembly.LoadFrom(DllPaths.AutomationUtilsAutomation);
-    public Assembly UnrealBuildTool                    => Assembly.LoadFrom(DllPaths.UnrealBuildTool);
-    public Assembly AutomationScriptsAutomationScripts => Assembly.LoadFrom(DllPaths.AutomationScriptsAutomationScripts);
-    public Assembly AutomationScriptsBuildGraph        => Assembly.LoadFrom(DllPaths.AutomationScriptsBuildGraph);
-    public Assembly AutomationScriptsGauntlet          => Assembly.LoadFrom(DllPaths.AutomationScriptsGauntlet);
-    public Assembly AutomationScriptsLocalization      => Assembly.LoadFrom(DllPaths.AutomationScriptsLocalization);
-    public Assembly AutomationScriptsWin               => Assembly.LoadFrom(DllPaths.AutomationScriptsWin);
-    public Assembly AutomationScriptsXLocLocalization  => Assembly.LoadFrom(DllPaths.AutomationScriptsXLocLocalization);
-    public Assembly AutomationScriptsAllDesktop        => Assembly.LoadFrom(DllPaths.AutomationScriptsAllDesktop);
-    public Assembly AutomationScriptsAndroid           => Assembly.LoadFrom(DllPaths.AutomationScriptsAndroid);
-    public Assembly AutomationScriptsHoloLens          => Assembly.LoadFrom(DllPaths.AutomationScriptsHoloLens);
-    public Assembly AutomationScriptsIOS               => Assembly.LoadFrom(DllPaths.AutomationScriptsIOS);
-    public Assembly AutomationScriptsLinux             => Assembly.LoadFrom(DllPaths.AutomationScriptsLinux);
-    public Assembly AutomationScriptsMac               => Assembly.LoadFrom(DllPaths.AutomationScriptsMac);
+    private Assembly _dotNetUtilities;
+    public  Assembly  DotNETUtilities                    => _dotNetUtilities ??= LoadAssembly(DllPaths.DotNETUtilities);
+    private Assembly _automationUtilsAutomation;
+    public  Assembly  AutomationUtilsAutomation          => _automationUtilsAutomation ??= LoadAssembly(DllPaths.AutomationUtilsAutomation);
+    private Assembly _unrealBuildTool;
+    public  Assembly  UnrealBuildTool                    => _unrealBuildTool ??= LoadAssembly(DllPaths.UnrealBuildTool);
+    private Assembly _automationScriptsAutomationScripts;
+    public  Assembly  AutomationScriptsAutomationScripts => _automationScriptsAutomationScripts ??= LoadAssembly(DllPaths.AutomationScriptsAutomationScripts);
+    private Assembly _automationScriptsBuildGraph;
+    public  Assembly  AutomationScriptsBuildGraph        => _automationScriptsBuildGraph ??= LoadAssembly(DllPaths.AutomationScriptsBuildGraph);
+    private Assembly _automationScriptsGauntlet;
+    public  Assembly  AutomationScriptsGauntlet          => _automationScriptsGauntlet ??= LoadAssembly(DllPaths.AutomationScriptsGauntlet);
+    private Assembly _automationScriptsLocalization;
+    public  Assembly  AutomationScriptsLocalization      => _automationScriptsLocalization ??= LoadAssembly(DllPaths.AutomationScriptsLocalization);
+    private Assembly _automationScriptsWin;
+    public  Assembly  AutomationScriptsWin               => _automationScriptsWin ??= LoadAssembly(DllPaths.AutomationScriptsWin);
+    private Assembly _automationScriptsXLocLocalization;
+    public  Assembly  AutomationScriptsXLocLocalization  => _automationScriptsXLocLocalization ??= LoadAssembly(DllPaths.AutomationScriptsXLocLocalization);
+    private Assembly _automationScriptsAllDesktop;
+    public  Assembly  AutomationScriptsAllDesktop        => _automationScriptsAllDesktop ??= LoadAssembly(DllPaths.AutomationScriptsAllDesktop);
+    private Assembly _automationScriptsAndroid;
+    public  Assembly  AutomationScriptsAndroid           => _automationScriptsAndroid ??= LoadAssembly(DllPaths.AutomationScriptsAndroid);
+    private Assembly _automationScriptsHoloLens;
+    public  Assembly  AutomationScriptsHoloLens          => _automationScriptsHoloLens ??= LoadAssembly(DllPaths.AutomationScriptsHoloLens);
+    private Assembly _automationScriptsIos;
+    public  Assembly  AutomationScriptsIOS               => _automationScriptsIos ??= LoadAssembly(DllPaths.AutomationScriptsIOS);
+    private Assembly _automationScriptsLinux;
+    public  Assembly  AutomationScriptsLinux             => _automationScriptsLinux ??= LoadAssembly(DllPaths.AutomationScriptsLinux);
+    private Assembly _automationScriptsMac;
+    public  Assembly  AutomationScriptsMac               => _automationScriptsMac ??= LoadAssembly(DllPaths.AutomationScriptsMac);
 }
 
 public record UnrealEngineInstance(string Version, AbsolutePath Location, UnrealDotnetAssemblies Assemblies);

@@ -11,6 +11,7 @@ using build.Generators.Replicated.Tools.DotNETCommon;
 using build.Generators.Replicated.UnrealBuildTool;
 using Nuke.Common.IO;
 using Humanizer;
+using Towel;
 
 namespace build.Generators;
 
@@ -22,6 +23,9 @@ public partial class UnrealBuildToolGenerator : ToolGenerator
 
     [GeneratedRegex("[^a-zA-Z0-9_]")]
     private static partial Regex InvalidCharacters();
+
+    [GeneratedRegex("^")]
+    private static partial Regex NewLine();
 
     private object _model = null;
     protected override object Model
@@ -41,7 +45,11 @@ public partial class UnrealBuildToolGenerator : ToolGenerator
                     CliName = "UnrealBuildTool",
                     ConfigType = new(TemplateName.Replace("Generated", ""), TemplateName),
                     ClassKeywords = "abstract",
-                    Description = "Unreal Build Tool compiles the binaries of Unreal projects"
+                    DocsXml = """
+                    /// <summary>
+                    /// Unreal Build Tool compiles the binaries of Unreal projects
+                    /// </summary>
+                    """
                 }
             );
 
@@ -109,8 +117,8 @@ public partial class UnrealBuildToolGenerator : ToolGenerator
                     CollectionSeparator = cmdLine.ListSeparator.ToString(),
                     ValueSetter = "=:".Any(c => c == cmdLine.Prefix[^1])
                         ? cmdLine.Prefix[^1].ToString()
-                        : "="
-                    // TODO: description
+                        : "=",
+                    DocsXml = member.GetDocumentation()?.DocsXmlComment() ?? ""
                 };
             }
 
@@ -166,6 +174,7 @@ public partial class UnrealBuildToolGenerator : ToolGenerator
                             ConfigName = localToolModeAttr.Name,
                             CliName = "-" + localToolModeAttr.Name,
                             ConfigType = new(localToolModeAttr.Name + "Config", localToolModeAttr.Name + "Config"),
+                            DocsXml = ubtType.GetDocumentation()?.DocsXmlComment() ?? ""
                         };
                         ProcessNewTool(toolCandidate);
                         ubtTool.Subtools.Add(toolCandidate);

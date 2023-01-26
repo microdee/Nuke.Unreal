@@ -14,7 +14,7 @@ public class ToolModel
     public string CliName { init; get; }
     public TypeModel ConfigType { init; get; }
     public string ClassKeywords { get; set; } = "";
-    public string Description { get; set; } = "No description";
+    public string DocsXml { get; set; } = "";
     public List<ArgumentModel> Arguments { get; } = new();
     public List<ToolModel> Subtools { get; } = new();
 }
