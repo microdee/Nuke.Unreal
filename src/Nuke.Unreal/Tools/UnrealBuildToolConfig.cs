@@ -17,6 +17,18 @@ public class UnrealBuildToolConfig : UnrealBuildToolConfigGenerated
         return this;
     }
 
+    public UnrealBuildToolConfig Game(bool present = true)
+    {
+        AppendArgument(present ? "-game" : "");
+        return this;
+    }
+
+    public UnrealBuildToolConfig Engine(bool present = true)
+    {
+        AppendArgument(present ? "-engine" : "");
+        return this;
+    }
+
     public UnrealBuildToolConfig Target(params string[] target)
     {
         AppendArgument(string.Join('+', target));

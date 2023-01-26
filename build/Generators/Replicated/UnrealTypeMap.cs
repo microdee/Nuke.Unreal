@@ -12,10 +12,10 @@ public class UnrealTypeMap<T>
     public string Namespace { init; get; }
     public Assembly UeAssembly { init; get; }
 
-    public string TypeName => $"${Namespace}.${typeof(T).Name}";
+    public string TypeName => $"{Namespace}.{typeof(T).Name}";
 
     private Type _ueType;
-    public Type UeType => _ueType ??= UeAssembly.GetType(TypeName);
+    public Type UeType => _ueType ??= UeAssembly.GetType(TypeName, true);
 
     private IMapper _mapper;
     public IMapper Map => _mapper ??= new Mapper(new MapperConfiguration(c =>

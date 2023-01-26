@@ -9,17 +9,17 @@ public abstract class ToolConfig
 {
     public abstract string Name { get; }
     
-    internal readonly List<string> Arguments = new();
+    protected readonly List<string> Arguments = new();
 
     protected virtual ToolConfig[] Configs => Array.Empty<ToolConfig>();
 
-    internal virtual void AppendArgument(string arg)
+    public virtual void AppendArgument(string arg)
     {
         if (!string.IsNullOrWhiteSpace(arg))
             Arguments.Add(arg);
     }
 
-    internal virtual void AppendSubtool(ToolConfig subtool)
+    public virtual void AppendSubtool(ToolConfig subtool)
     {
         AppendArgument(subtool.Gather());
     }

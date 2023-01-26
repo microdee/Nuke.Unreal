@@ -89,6 +89,7 @@
             "type": "string",
             "enum": [
               "Compile",
+              "GenerateTools",
               "PublishNuget",
               "Restore",
               "Test"
@@ -106,6 +107,7 @@
             "type": "string",
             "enum": [
               "Compile",
+              "GenerateTools",
               "PublishNuget",
               "Restore",
               "Test"

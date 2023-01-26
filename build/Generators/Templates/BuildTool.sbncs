@@ -2,7 +2,7 @@
     /// <summary>
     /// {{ arg.description }}
     /// </summary>
-    {{ config_type.final }} {{ arg.config_name }}({{ arg.parameters_renderer }})
+    public {{ config_type.final }} {{ arg.config_name }}({{ arg.parameters_renderer }})
     {
         AppendArgument({{ arg.command_line_renderer }});
         return ({{ config_type.final }}) this;
@@ -15,7 +15,7 @@ public {{ tool.class_keywords }} class {{ tool.config_type.base }} : ToolConfig
     public override string Name => "{{ tool.config_name }}";
 
     {{~ for arg in tool.arguments }}
-    {{ build_argument arg tool.config_type.final }}
+    {{ build_argument arg tool.config_type }}
     {{ end ~}}
 
     {{~ for subtool in tool.subtools }}
@@ -39,7 +39,7 @@ public {{ tool.class_keywords }} class {{ tool.config_type.base }} : ToolConfig
     {
         configurator?.Invoke({{ subtool.config_name }}Storage);
         AppendSubtool({{ subtool.config_name }}Storage);
-        return (tool.config_type.final) this;
+        return ({{ tool.config_type.final }}) this;
     }
     {{ end ~}}
 

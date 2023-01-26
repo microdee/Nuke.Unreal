@@ -19,6 +19,7 @@ using static Nuke.Common.IO.PathConstruction;
 using static Nuke.Common.Tools.DotNet.DotNetTasks;
 using static Nuke.Common.Tools.NuGet.NuGetTasks;
 using System.Xml.Linq;
+using build.Generators;
 
 namespace build;
 
@@ -66,7 +67,16 @@ class Build : NukeBuild
 
     Version CurrentVersion => Version.Parse(NukeUnreal.First().Project.GetProperty("Version"));
 
-    // TODO: Add generate tools target
+    Target GenerateTools => _ => _
+        .Executes(() =>
+        {
+            var generator = new UnrealBuildToolGenerator
+            {
+                UnrealVersion = UnrealVersion
+            };
+            generator.Generate(this);
+        });
+
     Target Restore => _ => _
         .Executes(() =>
         {

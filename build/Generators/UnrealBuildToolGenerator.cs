@@ -10,14 +10,18 @@ using Nuke.Common.Utilities;
 using build.Generators.Replicated.Tools.DotNETCommon;
 using build.Generators.Replicated.UnrealBuildTool;
 using Nuke.Common.IO;
+using Humanizer;
 
 namespace build.Generators;
 
-public class UnrealBuildToolGenerator : ToolGenerator
+public partial class UnrealBuildToolGenerator : ToolGenerator
 {
     public override string TemplateName => "UnrealBuildToolConfigGenerated";
 
     private record UbtModel(ToolModel UnrealBuildTool);
+
+    [GeneratedRegex("[^a-zA-Z0-9_]")]
+    private static partial Regex InvalidCharacters();
 
     private object _model = null;
     protected override object Model
@@ -48,9 +52,12 @@ public class UnrealBuildToolGenerator : ToolGenerator
                 // Add special cases here
             }
 
-            ArgumentModel GetArgument(MemberInfo member, Type memberType, object cmdLineUnreal)
+            ArgumentModel GetArgument(MemberInfo member, Type memberType, CommandLineAttribute cmdLine)
             {
-                var cmdLine = cmdLineAttrMapping.FromUnreal(cmdLineUnreal);
+                if (string.IsNullOrWhiteSpace(cmdLine.Prefix))
+                {
+                    cmdLine.Prefix = $"-{member.Name}";
+                }
                 var name = cmdLine.Prefix[1..].TrimEnd('=').TrimEnd(':');
                 var csharpName = name[0] switch
                 {
@@ -59,6 +66,7 @@ public class UnrealBuildToolGenerator : ToolGenerator
                     >= 'A' and <= 'Z' => name,
                     _ => "_" + name
                 };
+                csharpName = InvalidCharacters().Replace(csharpName, "_").Pascalize();
 
                 bool IsScalarType(Type T)
                 {
@@ -122,8 +130,9 @@ public class UnrealBuildToolGenerator : ToolGenerator
                 Log.Information("    {0} {1}", memberType.GetDisplayShortName(), member.Name);
 
                 var cmdLineAttributes = member.GetCustomAttributes(cmdLineAttrMapping.UeType, false);
-                foreach(var cmdLine in cmdLineAttributes)
+                foreach(var cmdLineUnreal in cmdLineAttributes)
                 {
+                    var cmdLine = cmdLineAttrMapping.FromUnreal(cmdLineUnreal);
                     var arg = GetArgument(member, memberType, cmdLine);
                     if (tool.AddArgument(arg, ubtTool))
                     {
@@ -135,16 +144,18 @@ public class UnrealBuildToolGenerator : ToolGenerator
             foreach(var ubtType in ueAssemblies.UnrealBuildTool.GetTypes())
             {
                 var members = ubtType.GetMembers()
-                    .Where(m => m.GetCustomAttribute(cmdLineAttrMapping.UeType, false) != null)
+                    .Where(m => m.GetCustomAttributes(cmdLineAttrMapping.UeType, false).Length > 0)
                     .ToArray();
 
                 if (members.Length == 0) continue;
                 Log.Information("Processing UBT type: {0}", ubtType.GetDisplayName());
                 
-                var toolModeAttr = ubtType.GetCustomAttribute(toolModeAttributeMapping.UeType, false);
+                var toolModeAttrs = ubtType.GetCustomAttributes(toolModeAttributeMapping.UeType, false);
                 var targetToolModel = ubtTool;
-                if (toolModeAttr != null)
+                bool contributeToGlobal = true;
+                foreach(var toolModeAttr in toolModeAttrs)
                 {
+                    contributeToGlobal = false;
                     var localToolModeAttr = toolModeAttributeMapping.FromUnreal(toolModeAttr);
                     Log.Information("    Subtool: {0}", localToolModeAttr.Name);
                     var toolCandidate = ubtTool.Subtools.FirstOrDefault(t => t.ConfigName.EqualsOrdinalIgnoreCase(localToolModeAttr.Name));
@@ -160,7 +171,7 @@ public class UnrealBuildToolGenerator : ToolGenerator
                         ubtTool.Subtools.Add(toolCandidate);
                     }
                 }
-                else
+                if (contributeToGlobal)
                 {
                     Log.Information("    Contributes to global");
                 }
