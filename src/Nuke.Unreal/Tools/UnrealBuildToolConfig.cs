@@ -29,19 +29,22 @@ public class UnrealBuildToolConfig : UnrealBuildToolConfigGenerated
         return this;
     }
 
-    public UnrealBuildToolConfig Target(params string[] target)
+    public UnrealBuildToolConfig Target(params object[] target) => Target(target.AsEnumerable());
+    public UnrealBuildToolConfig Target(IEnumerable<object> target)
     {
         AppendArgument(string.Join('+', target));
         return this;
     }
 
-    public UnrealBuildToolConfig Platform(params string[] platform)
+    public UnrealBuildToolConfig Platform(params object[] platform) => Platform(platform.AsEnumerable());
+    public UnrealBuildToolConfig Platform(IEnumerable<object> platform)
     {
         AppendArgument(string.Join('+', platform));
         return this;
     }
 
-    public UnrealBuildToolConfig Configuration(params string[] config)
+    public UnrealBuildToolConfig Configuration(params object[] config) => Configuration(config.AsEnumerable());
+    public UnrealBuildToolConfig Configuration(IEnumerable<object> config)
     {
         AppendArgument(string.Join('+', config));
         return this;

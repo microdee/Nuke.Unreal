@@ -28,9 +28,9 @@ public class ArgumentModel
         ArgumentModelType.Switch => "bool present = true",
         ArgumentModelType.Bool => "bool? val = null",
         ArgumentModelType.Scalar => "double? val = null",
-        ArgumentModelType.Text => "string val = null",
+        ArgumentModelType.Text => "object val = null",
         ArgumentModelType.ScalarCollection => "params double[] values",
-        ArgumentModelType.TextCollection => "params string[] values",
+        ArgumentModelType.TextCollection => "params object[] values",
         _ => throw new NotImplementedException()
     };
 
@@ -39,7 +39,7 @@ public class ArgumentModel
         ArgumentModelType.Switch => $"present ? \"{CliName}\" : \"\"",
         ArgumentModelType.Bool => $"val == null ? \"{CliName}\" : \"{CliName}{ValueSetter}\" + val.ToString()",
         ArgumentModelType.Scalar => $"val == null ? \"{CliName}\" : \"{CliName}{ValueSetter}\" + val.ToString()",
-        ArgumentModelType.Text => $"string.IsNullOrWhiteSpace(val) ? \"{CliName}\" : \"{CliName}{ValueSetter}\" + val.DoubleQuoteIfNeeded()",
+        ArgumentModelType.Text => $"string.IsNullOrWhiteSpace(val?.ToString()) ? \"{CliName}\" : \"{CliName}{ValueSetter}\" + val.ToString().DoubleQuoteIfNeeded()",
         ArgumentModelType.ScalarCollection =>
             "values != null && values.Length > 0"
             + $" ? \"{CliName}{ValueSetter}\" + string.Join(\"{CollectionSeparator}\", values)"
