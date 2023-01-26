@@ -36,18 +36,18 @@ public class ArgumentModel
 
     public string CommandLineRenderer => ArgumentType switch
     {
-        ArgumentModelType.Switch => $"present ? \"-{CliName}\" : \"\"",
-        ArgumentModelType.Bool => $"val == null ? \"-{CliName}\" : \"-{CliName}{ValueSetter}\" + val.ToString()",
-        ArgumentModelType.Scalar => $"val == null ? \"-{CliName}\" : \"-{CliName}{ValueSetter}\" + val.ToString()",
-        ArgumentModelType.Text => $"string.IsNullOrWhiteSpace(val) ? \"-{CliName}\" : \"-{CliName}{ValueSetter}\" + val.DoubleQuoteIfNeeded()",
+        ArgumentModelType.Switch => $"present ? \"{CliName}\" : \"\"",
+        ArgumentModelType.Bool => $"val == null ? \"{CliName}\" : \"{CliName}{ValueSetter}\" + val.ToString()",
+        ArgumentModelType.Scalar => $"val == null ? \"{CliName}\" : \"{CliName}{ValueSetter}\" + val.ToString()",
+        ArgumentModelType.Text => $"string.IsNullOrWhiteSpace(val) ? \"{CliName}\" : \"{CliName}{ValueSetter}\" + val.DoubleQuoteIfNeeded()",
         ArgumentModelType.ScalarCollection =>
             "values != null && values.Length > 0"
-            + $" ? \"-{CliName}{ValueSetter}\" + string.Join(\"{CollectionSeparator}\", values)"
-            + $" : \"-{CliName}\"",
+            + $" ? \"{CliName}{ValueSetter}\" + string.Join(\"{CollectionSeparator}\", values)"
+            + $" : \"{CliName}\"",
         ArgumentModelType.TextCollection =>
             "values != null && values.Length > 0"
-            + $" ? \"-{CliName}{ValueSetter}\" + string.Join(\"{CollectionSeparator}\", values.DoubleQuoteIfNeeded())"
-            + $" : \"-{CliName}\"",
+            + $" ? \"{CliName}{ValueSetter}\" + string.Join(\"{CollectionSeparator}\", values.DoubleQuoteIfNeeded())"
+            + $" : \"{CliName}\"",
         _ => throw new NotImplementedException()
     };
 }

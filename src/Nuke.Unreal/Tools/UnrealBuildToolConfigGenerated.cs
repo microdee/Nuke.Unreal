@@ -22,7 +22,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// </summary>
         public UnrealBuildToolConfig EnableASan(bool? val = null)
         {
-            AppendArgument(val == null ? "--EnableASan" : "--EnableASan=" + val.ToString());
+            AppendArgument(val == null ? "-EnableASan" : "-EnableASan=" + val.ToString());
             return (UnrealBuildToolConfig) this;
         }
 
@@ -33,7 +33,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// </summary>
         public UnrealBuildToolConfig EnableTSan(bool? val = null)
         {
-            AppendArgument(val == null ? "--EnableTSan" : "--EnableTSan=" + val.ToString());
+            AppendArgument(val == null ? "-EnableTSan" : "-EnableTSan=" + val.ToString());
             return (UnrealBuildToolConfig) this;
         }
 
@@ -44,7 +44,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// </summary>
         public UnrealBuildToolConfig EnableUBSan(bool? val = null)
         {
-            AppendArgument(val == null ? "--EnableUBSan" : "--EnableUBSan=" + val.ToString());
+            AppendArgument(val == null ? "-EnableUBSan" : "-EnableUBSan=" + val.ToString());
             return (UnrealBuildToolConfig) this;
         }
 
@@ -55,7 +55,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// </summary>
         public UnrealBuildToolConfig IgnoreJunk(bool? val = null)
         {
-            AppendArgument(val == null ? "--IgnoreJunk" : "--IgnoreJunk=" + val.ToString());
+            AppendArgument(val == null ? "-IgnoreJunk" : "-IgnoreJunk=" + val.ToString());
             return (UnrealBuildToolConfig) this;
         }
 
@@ -66,7 +66,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// </summary>
         public UnrealBuildToolConfig SkipBuild(bool? val = null)
         {
-            AppendArgument(val == null ? "--SkipBuild" : "--SkipBuild=" + val.ToString());
+            AppendArgument(val == null ? "-SkipBuild" : "-SkipBuild=" + val.ToString());
             return (UnrealBuildToolConfig) this;
         }
 
@@ -77,7 +77,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// </summary>
         public UnrealBuildToolConfig SkipPreBuildTargets(bool? val = null)
         {
-            AppendArgument(val == null ? "--SkipPreBuildTargets" : "--SkipPreBuildTargets=" + val.ToString());
+            AppendArgument(val == null ? "-SkipPreBuildTargets" : "-SkipPreBuildTargets=" + val.ToString());
             return (UnrealBuildToolConfig) this;
         }
 
@@ -88,7 +88,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// </summary>
         public UnrealBuildToolConfig XGEExport(bool? val = null)
         {
-            AppendArgument(val == null ? "--XGEExport" : "--XGEExport=" + val.ToString());
+            AppendArgument(val == null ? "-XGEExport" : "-XGEExport=" + val.ToString());
             return (UnrealBuildToolConfig) this;
         }
 
@@ -99,7 +99,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// </summary>
         public UnrealBuildToolConfig NoEngineChanges(bool? val = null)
         {
-            AppendArgument(val == null ? "--NoEngineChanges" : "--NoEngineChanges=" + val.ToString());
+            AppendArgument(val == null ? "-NoEngineChanges" : "-NoEngineChanges=" + val.ToString());
             return (UnrealBuildToolConfig) this;
         }
 
@@ -110,7 +110,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// </summary>
         public UnrealBuildToolConfig WriteOutdatedActions(string val = null)
         {
-            AppendArgument(string.IsNullOrWhiteSpace(val) ? "--WriteOutdatedActions" : "--WriteOutdatedActions=" + val.DoubleQuoteIfNeeded());
+            AppendArgument(string.IsNullOrWhiteSpace(val) ? "-WriteOutdatedActions" : "-WriteOutdatedActions=" + val.DoubleQuoteIfNeeded());
             return (UnrealBuildToolConfig) this;
         }
 
@@ -121,7 +121,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// </summary>
         public UnrealBuildToolConfig Receipt(string val = null)
         {
-            AppendArgument(string.IsNullOrWhiteSpace(val) ? "--Receipt" : "--Receipt=" + val.DoubleQuoteIfNeeded());
+            AppendArgument(string.IsNullOrWhiteSpace(val) ? "-Receipt" : "-Receipt=" + val.DoubleQuoteIfNeeded());
             return (UnrealBuildToolConfig) this;
         }
 
@@ -132,7 +132,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// </summary>
         public UnrealBuildToolConfig Actions(string val = null)
         {
-            AppendArgument(string.IsNullOrWhiteSpace(val) ? "--Actions" : "--Actions=" + val.DoubleQuoteIfNeeded());
+            AppendArgument(string.IsNullOrWhiteSpace(val) ? "-Actions" : "-Actions=" + val.DoubleQuoteIfNeeded());
             return (UnrealBuildToolConfig) this;
         }
 
@@ -143,7 +143,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// </summary>
         public UnrealBuildToolConfig ExecCodeGenActions(bool? val = null)
         {
-            AppendArgument(val == null ? "--ExecCodeGenActions" : "--ExecCodeGenActions=" + val.ToString());
+            AppendArgument(val == null ? "-ExecCodeGenActions" : "-ExecCodeGenActions=" + val.ToString());
             return (UnrealBuildToolConfig) this;
         }
 
@@ -154,7 +154,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// </summary>
         public UnrealBuildToolConfig Plugin(string val = null)
         {
-            AppendArgument(string.IsNullOrWhiteSpace(val) ? "--Plugin" : "--Plugin=" + val.DoubleQuoteIfNeeded());
+            AppendArgument(string.IsNullOrWhiteSpace(val) ? "-Plugin" : "-Plugin=" + val.DoubleQuoteIfNeeded());
             return (UnrealBuildToolConfig) this;
         }
 
@@ -165,7 +165,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// </summary>
         public UnrealBuildToolConfig Module(string val = null)
         {
-            AppendArgument(string.IsNullOrWhiteSpace(val) ? "--Module" : "--Module=" + val.DoubleQuoteIfNeeded());
+            AppendArgument(string.IsNullOrWhiteSpace(val) ? "-Module" : "-Module=" + val.DoubleQuoteIfNeeded());
             return (UnrealBuildToolConfig) this;
         }
 
@@ -176,7 +176,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// </summary>
         public UnrealBuildToolConfig SingleFile(string val = null)
         {
-            AppendArgument(string.IsNullOrWhiteSpace(val) ? "--SingleFile" : "--SingleFile=" + val.DoubleQuoteIfNeeded());
+            AppendArgument(string.IsNullOrWhiteSpace(val) ? "-SingleFile" : "-SingleFile=" + val.DoubleQuoteIfNeeded());
             return (UnrealBuildToolConfig) this;
         }
 
@@ -187,7 +187,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// </summary>
         public UnrealBuildToolConfig NoHotReload(bool present = true)
         {
-            AppendArgument(present ? "--NoHotReload" : "");
+            AppendArgument(present ? "-NoHotReload" : "");
             return (UnrealBuildToolConfig) this;
         }
 
@@ -198,7 +198,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// </summary>
         public UnrealBuildToolConfig ForceHotReload(bool present = true)
         {
-            AppendArgument(present ? "--ForceHotReload" : "");
+            AppendArgument(present ? "-ForceHotReload" : "");
             return (UnrealBuildToolConfig) this;
         }
 
@@ -209,7 +209,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// </summary>
         public UnrealBuildToolConfig LiveCoding(bool present = true)
         {
-            AppendArgument(present ? "--LiveCoding" : "");
+            AppendArgument(present ? "-LiveCoding" : "");
             return (UnrealBuildToolConfig) this;
         }
 
@@ -220,7 +220,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// </summary>
         public UnrealBuildToolConfig WriteActions(string val = null)
         {
-            AppendArgument(string.IsNullOrWhiteSpace(val) ? "--WriteActions" : "--WriteActions=" + val.DoubleQuoteIfNeeded());
+            AppendArgument(string.IsNullOrWhiteSpace(val) ? "-WriteActions" : "-WriteActions=" + val.DoubleQuoteIfNeeded());
             return (UnrealBuildToolConfig) this;
         }
 
@@ -231,7 +231,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// </summary>
         public UnrealBuildToolConfig LiveCodingModules(string val = null)
         {
-            AppendArgument(string.IsNullOrWhiteSpace(val) ? "--LiveCodingModules" : "--LiveCodingModules=" + val.DoubleQuoteIfNeeded());
+            AppendArgument(string.IsNullOrWhiteSpace(val) ? "-LiveCodingModules" : "-LiveCodingModules=" + val.DoubleQuoteIfNeeded());
             return (UnrealBuildToolConfig) this;
         }
 
@@ -242,7 +242,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// </summary>
         public UnrealBuildToolConfig LiveCodingManifest(string val = null)
         {
-            AppendArgument(string.IsNullOrWhiteSpace(val) ? "--LiveCodingManifest" : "--LiveCodingManifest=" + val.DoubleQuoteIfNeeded());
+            AppendArgument(string.IsNullOrWhiteSpace(val) ? "-LiveCodingManifest" : "-LiveCodingManifest=" + val.DoubleQuoteIfNeeded());
             return (UnrealBuildToolConfig) this;
         }
 
@@ -253,7 +253,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// </summary>
         public UnrealBuildToolConfig Quiet(bool? val = null)
         {
-            AppendArgument(val == null ? "--Quiet" : "--Quiet=" + val.ToString());
+            AppendArgument(val == null ? "-Quiet" : "-Quiet=" + val.ToString());
             return (UnrealBuildToolConfig) this;
         }
 
@@ -264,7 +264,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// </summary>
         public UnrealBuildToolConfig Input(string val = null)
         {
-            AppendArgument(string.IsNullOrWhiteSpace(val) ? "--Input" : "--Input=" + val.DoubleQuoteIfNeeded());
+            AppendArgument(string.IsNullOrWhiteSpace(val) ? "-Input" : "-Input=" + val.DoubleQuoteIfNeeded());
             return (UnrealBuildToolConfig) this;
         }
 
@@ -275,7 +275,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// </summary>
         public UnrealBuildToolConfig XmlConfigCache(string val = null)
         {
-            AppendArgument(string.IsNullOrWhiteSpace(val) ? "--XmlConfigCache" : "--XmlConfigCache=" + val.DoubleQuoteIfNeeded());
+            AppendArgument(string.IsNullOrWhiteSpace(val) ? "-XmlConfigCache" : "-XmlConfigCache=" + val.DoubleQuoteIfNeeded());
             return (UnrealBuildToolConfig) this;
         }
 
@@ -286,7 +286,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// </summary>
         public UnrealBuildToolConfig AllModules(bool? val = null)
         {
-            AppendArgument(val == null ? "--AllModules" : "--AllModules=" + val.ToString());
+            AppendArgument(val == null ? "-AllModules" : "-AllModules=" + val.ToString());
             return (UnrealBuildToolConfig) this;
         }
 
@@ -297,7 +297,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// </summary>
         public UnrealBuildToolConfig BuildPlugin(string val = null)
         {
-            AppendArgument(string.IsNullOrWhiteSpace(val) ? "--BuildPlugin" : "--BuildPlugin=" + val.DoubleQuoteIfNeeded());
+            AppendArgument(string.IsNullOrWhiteSpace(val) ? "-BuildPlugin" : "-BuildPlugin=" + val.DoubleQuoteIfNeeded());
             return (UnrealBuildToolConfig) this;
         }
 
@@ -308,7 +308,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// </summary>
         public UnrealBuildToolConfig EnablePlugin(string val = null)
         {
-            AppendArgument(string.IsNullOrWhiteSpace(val) ? "--EnablePlugin" : "--EnablePlugin=" + val.DoubleQuoteIfNeeded());
+            AppendArgument(string.IsNullOrWhiteSpace(val) ? "-EnablePlugin" : "-EnablePlugin=" + val.DoubleQuoteIfNeeded());
             return (UnrealBuildToolConfig) this;
         }
 
@@ -319,7 +319,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// </summary>
         public UnrealBuildToolConfig DisablePlugin(string val = null)
         {
-            AppendArgument(string.IsNullOrWhiteSpace(val) ? "--DisablePlugin" : "--DisablePlugin=" + val.DoubleQuoteIfNeeded());
+            AppendArgument(string.IsNullOrWhiteSpace(val) ? "-DisablePlugin" : "-DisablePlugin=" + val.DoubleQuoteIfNeeded());
             return (UnrealBuildToolConfig) this;
         }
 
@@ -330,7 +330,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// </summary>
         public UnrealBuildToolConfig CompileAsDll(bool? val = null)
         {
-            AppendArgument(val == null ? "--CompileAsDll" : "--CompileAsDll=" + val.ToString());
+            AppendArgument(val == null ? "-CompileAsDll" : "-CompileAsDll=" + val.ToString());
             return (UnrealBuildToolConfig) this;
         }
 
@@ -341,7 +341,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// </summary>
         public UnrealBuildToolConfig NoCompileChaos(bool present = true)
         {
-            AppendArgument(present ? "--NoCompileChaos" : "");
+            AppendArgument(present ? "-NoCompileChaos" : "");
             return (UnrealBuildToolConfig) this;
         }
 
@@ -352,7 +352,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// </summary>
         public UnrealBuildToolConfig CompileChaos(bool present = true)
         {
-            AppendArgument(present ? "--CompileChaos" : "");
+            AppendArgument(present ? "-CompileChaos" : "");
             return (UnrealBuildToolConfig) this;
         }
 
@@ -363,7 +363,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// </summary>
         public UnrealBuildToolConfig NoUseChaos(bool present = true)
         {
-            AppendArgument(present ? "--NoUseChaos" : "");
+            AppendArgument(present ? "-NoUseChaos" : "");
             return (UnrealBuildToolConfig) this;
         }
 
@@ -374,7 +374,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// </summary>
         public UnrealBuildToolConfig UseChaos(bool present = true)
         {
-            AppendArgument(present ? "--UseChaos" : "");
+            AppendArgument(present ? "-UseChaos" : "");
             return (UnrealBuildToolConfig) this;
         }
 
@@ -385,7 +385,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// </summary>
         public UnrealBuildToolConfig Rtti(bool? val = null)
         {
-            AppendArgument(val == null ? "--rtti" : "--rtti=" + val.ToString());
+            AppendArgument(val == null ? "-rtti" : "-rtti=" + val.ToString());
             return (UnrealBuildToolConfig) this;
         }
 
@@ -396,7 +396,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// </summary>
         public UnrealBuildToolConfig IWYU(bool? val = null)
         {
-            AppendArgument(val == null ? "--IWYU" : "--IWYU=" + val.ToString());
+            AppendArgument(val == null ? "-IWYU" : "-IWYU=" + val.ToString());
             return (UnrealBuildToolConfig) this;
         }
 
@@ -407,7 +407,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// </summary>
         public UnrealBuildToolConfig Precompile(bool? val = null)
         {
-            AppendArgument(val == null ? "--Precompile" : "--Precompile=" + val.ToString());
+            AppendArgument(val == null ? "-Precompile" : "-Precompile=" + val.ToString());
             return (UnrealBuildToolConfig) this;
         }
 
@@ -418,7 +418,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// </summary>
         public UnrealBuildToolConfig DisableUnity(bool present = true)
         {
-            AppendArgument(present ? "--DisableUnity" : "");
+            AppendArgument(present ? "-DisableUnity" : "");
             return (UnrealBuildToolConfig) this;
         }
 
@@ -429,7 +429,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// </summary>
         public UnrealBuildToolConfig ForceUnity(bool? val = null)
         {
-            AppendArgument(val == null ? "--ForceUnity" : "--ForceUnity=" + val.ToString());
+            AppendArgument(val == null ? "-ForceUnity" : "-ForceUnity=" + val.ToString());
             return (UnrealBuildToolConfig) this;
         }
 
@@ -440,7 +440,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// </summary>
         public UnrealBuildToolConfig ShadowVariableErrors(bool present = true)
         {
-            AppendArgument(present ? "--ShadowVariableErrors" : "");
+            AppendArgument(present ? "-ShadowVariableErrors" : "");
             return (UnrealBuildToolConfig) this;
         }
 
@@ -451,7 +451,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// </summary>
         public UnrealBuildToolConfig FastMonoCalls(bool present = true)
         {
-            AppendArgument(present ? "--FastMonoCalls" : "");
+            AppendArgument(present ? "-FastMonoCalls" : "");
             return (UnrealBuildToolConfig) this;
         }
 
@@ -462,7 +462,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// </summary>
         public UnrealBuildToolConfig NoFastMonoCalls(bool present = true)
         {
-            AppendArgument(present ? "--NoFastMonoCalls" : "");
+            AppendArgument(present ? "-NoFastMonoCalls" : "");
             return (UnrealBuildToolConfig) this;
         }
 
@@ -473,7 +473,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// </summary>
         public UnrealBuildToolConfig StressTestUnity(bool? val = null)
         {
-            AppendArgument(val == null ? "--StressTestUnity" : "--StressTestUnity=" + val.ToString());
+            AppendArgument(val == null ? "-StressTestUnity" : "-StressTestUnity=" + val.ToString());
             return (UnrealBuildToolConfig) this;
         }
 
@@ -484,7 +484,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// </summary>
         public UnrealBuildToolConfig ForceDebugInfo(bool? val = null)
         {
-            AppendArgument(val == null ? "--ForceDebugInfo" : "--ForceDebugInfo=" + val.ToString());
+            AppendArgument(val == null ? "-ForceDebugInfo" : "-ForceDebugInfo=" + val.ToString());
             return (UnrealBuildToolConfig) this;
         }
 
@@ -495,7 +495,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// </summary>
         public UnrealBuildToolConfig NoDebugInfo(bool? val = null)
         {
-            AppendArgument(val == null ? "--NoDebugInfo" : "--NoDebugInfo=" + val.ToString());
+            AppendArgument(val == null ? "-NoDebugInfo" : "-NoDebugInfo=" + val.ToString());
             return (UnrealBuildToolConfig) this;
         }
 
@@ -506,7 +506,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// </summary>
         public UnrealBuildToolConfig NoPDB(bool present = true)
         {
-            AppendArgument(present ? "--NoPDB" : "");
+            AppendArgument(present ? "-NoPDB" : "");
             return (UnrealBuildToolConfig) this;
         }
 
@@ -517,7 +517,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// </summary>
         public UnrealBuildToolConfig NoPCH(bool present = true)
         {
-            AppendArgument(present ? "--NoPCH" : "");
+            AppendArgument(present ? "-NoPCH" : "");
             return (UnrealBuildToolConfig) this;
         }
 
@@ -528,7 +528,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// </summary>
         public UnrealBuildToolConfig Preprocess(bool? val = null)
         {
-            AppendArgument(val == null ? "--Preprocess" : "--Preprocess=" + val.ToString());
+            AppendArgument(val == null ? "-Preprocess" : "-Preprocess=" + val.ToString());
             return (UnrealBuildToolConfig) this;
         }
 
@@ -539,7 +539,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// </summary>
         public UnrealBuildToolConfig IncrementalLinking(bool? val = null)
         {
-            AppendArgument(val == null ? "--IncrementalLinking" : "--IncrementalLinking=" + val.ToString());
+            AppendArgument(val == null ? "-IncrementalLinking" : "-IncrementalLinking=" + val.ToString());
             return (UnrealBuildToolConfig) this;
         }
 
@@ -550,7 +550,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// </summary>
         public UnrealBuildToolConfig NoIncrementalLinking(bool present = true)
         {
-            AppendArgument(present ? "--NoIncrementalLinking" : "");
+            AppendArgument(present ? "-NoIncrementalLinking" : "");
             return (UnrealBuildToolConfig) this;
         }
 
@@ -561,7 +561,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// </summary>
         public UnrealBuildToolConfig LTCG(bool? val = null)
         {
-            AppendArgument(val == null ? "--LTCG" : "--LTCG=" + val.ToString());
+            AppendArgument(val == null ? "-LTCG" : "-LTCG=" + val.ToString());
             return (UnrealBuildToolConfig) this;
         }
 
@@ -572,7 +572,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// </summary>
         public UnrealBuildToolConfig PGOProfile(bool present = true)
         {
-            AppendArgument(present ? "--PGOProfile" : "");
+            AppendArgument(present ? "-PGOProfile" : "");
             return (UnrealBuildToolConfig) this;
         }
 
@@ -583,7 +583,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// </summary>
         public UnrealBuildToolConfig PGOOptimize(bool present = true)
         {
-            AppendArgument(present ? "--PGOOptimize" : "");
+            AppendArgument(present ? "-PGOOptimize" : "");
             return (UnrealBuildToolConfig) this;
         }
 
@@ -594,7 +594,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// </summary>
         public UnrealBuildToolConfig NoSharedPCH(bool present = true)
         {
-            AppendArgument(present ? "--NoSharedPCH" : "");
+            AppendArgument(present ? "-NoSharedPCH" : "");
             return (UnrealBuildToolConfig) this;
         }
 
@@ -605,7 +605,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// </summary>
         public UnrealBuildToolConfig FastPDB(string val = null)
         {
-            AppendArgument(string.IsNullOrWhiteSpace(val) ? "--FastPDB" : "--FastPDB=" + val.DoubleQuoteIfNeeded());
+            AppendArgument(string.IsNullOrWhiteSpace(val) ? "-FastPDB" : "-FastPDB=" + val.DoubleQuoteIfNeeded());
             return (UnrealBuildToolConfig) this;
         }
 
@@ -616,7 +616,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// </summary>
         public UnrealBuildToolConfig MapFile(bool? val = null)
         {
-            AppendArgument(val == null ? "--MapFile" : "--MapFile=" + val.ToString());
+            AppendArgument(val == null ? "-MapFile" : "-MapFile=" + val.ToString());
             return (UnrealBuildToolConfig) this;
         }
 
@@ -627,7 +627,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// </summary>
         public UnrealBuildToolConfig BundleVersion(string val = null)
         {
-            AppendArgument(string.IsNullOrWhiteSpace(val) ? "--BundleVersion" : "--BundleVersion=" + val.DoubleQuoteIfNeeded());
+            AppendArgument(string.IsNullOrWhiteSpace(val) ? "-BundleVersion" : "-BundleVersion=" + val.DoubleQuoteIfNeeded());
             return (UnrealBuildToolConfig) this;
         }
 
@@ -638,7 +638,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// </summary>
         public UnrealBuildToolConfig Deploy(bool? val = null)
         {
-            AppendArgument(val == null ? "--Deploy" : "--Deploy=" + val.ToString());
+            AppendArgument(val == null ? "-Deploy" : "-Deploy=" + val.ToString());
             return (UnrealBuildToolConfig) this;
         }
 
@@ -649,7 +649,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// </summary>
         public UnrealBuildToolConfig NoLink(bool? val = null)
         {
-            AppendArgument(val == null ? "--NoLink" : "--NoLink=" + val.ToString());
+            AppendArgument(val == null ? "-NoLink" : "-NoLink=" + val.ToString());
             return (UnrealBuildToolConfig) this;
         }
 
@@ -660,7 +660,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// </summary>
         public UnrealBuildToolConfig Formal(bool? val = null)
         {
-            AppendArgument(val == null ? "--Formal" : "--Formal=" + val.ToString());
+            AppendArgument(val == null ? "-Formal" : "-Formal=" + val.ToString());
             return (UnrealBuildToolConfig) this;
         }
 
@@ -671,7 +671,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// </summary>
         public UnrealBuildToolConfig FlushMac(bool? val = null)
         {
-            AppendArgument(val == null ? "--FlushMac" : "--FlushMac=" + val.ToString());
+            AppendArgument(val == null ? "-FlushMac" : "-FlushMac=" + val.ToString());
             return (UnrealBuildToolConfig) this;
         }
 
@@ -682,7 +682,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// </summary>
         public UnrealBuildToolConfig Timing(bool? val = null)
         {
-            AppendArgument(val == null ? "--Timing" : "--Timing=" + val.ToString());
+            AppendArgument(val == null ? "-Timing" : "-Timing=" + val.ToString());
             return (UnrealBuildToolConfig) this;
         }
 
@@ -693,7 +693,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// </summary>
         public UnrealBuildToolConfig Tracing(bool? val = null)
         {
-            AppendArgument(val == null ? "--Tracing" : "--Tracing=" + val.ToString());
+            AppendArgument(val == null ? "-Tracing" : "-Tracing=" + val.ToString());
             return (UnrealBuildToolConfig) this;
         }
 
@@ -704,7 +704,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// </summary>
         public UnrealBuildToolConfig PublicSymbolsByDefault(bool? val = null)
         {
-            AppendArgument(val == null ? "--PublicSymbolsByDefault" : "--PublicSymbolsByDefault=" + val.ToString());
+            AppendArgument(val == null ? "-PublicSymbolsByDefault" : "-PublicSymbolsByDefault=" + val.ToString());
             return (UnrealBuildToolConfig) this;
         }
 
@@ -715,7 +715,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// </summary>
         public UnrealBuildToolConfig ToolChain(string val = null)
         {
-            AppendArgument(string.IsNullOrWhiteSpace(val) ? "--ToolChain" : "--ToolChain=" + val.DoubleQuoteIfNeeded());
+            AppendArgument(string.IsNullOrWhiteSpace(val) ? "-ToolChain" : "-ToolChain=" + val.DoubleQuoteIfNeeded());
             return (UnrealBuildToolConfig) this;
         }
 
@@ -726,7 +726,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// </summary>
         public UnrealBuildToolConfig CppStd(string val = null)
         {
-            AppendArgument(string.IsNullOrWhiteSpace(val) ? "--CppStd" : "--CppStd=" + val.DoubleQuoteIfNeeded());
+            AppendArgument(string.IsNullOrWhiteSpace(val) ? "-CppStd" : "-CppStd=" + val.DoubleQuoteIfNeeded());
             return (UnrealBuildToolConfig) this;
         }
 
@@ -737,7 +737,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// </summary>
         public UnrealBuildToolConfig BuildVersion(string val = null)
         {
-            AppendArgument(string.IsNullOrWhiteSpace(val) ? "--BuildVersion" : "--BuildVersion=" + val.DoubleQuoteIfNeeded());
+            AppendArgument(string.IsNullOrWhiteSpace(val) ? "-BuildVersion" : "-BuildVersion=" + val.DoubleQuoteIfNeeded());
             return (UnrealBuildToolConfig) this;
         }
 
@@ -748,7 +748,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// </summary>
         public UnrealBuildToolConfig Define(string val = null)
         {
-            AppendArgument(string.IsNullOrWhiteSpace(val) ? "--Define" : "--Define:" + val.DoubleQuoteIfNeeded());
+            AppendArgument(string.IsNullOrWhiteSpace(val) ? "-Define" : "-Define:" + val.DoubleQuoteIfNeeded());
             return (UnrealBuildToolConfig) this;
         }
 
@@ -759,7 +759,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// </summary>
         public UnrealBuildToolConfig ProjectDefine(string val = null)
         {
-            AppendArgument(string.IsNullOrWhiteSpace(val) ? "--ProjectDefine" : "--ProjectDefine:" + val.DoubleQuoteIfNeeded());
+            AppendArgument(string.IsNullOrWhiteSpace(val) ? "-ProjectDefine" : "-ProjectDefine:" + val.DoubleQuoteIfNeeded());
             return (UnrealBuildToolConfig) this;
         }
 
@@ -770,7 +770,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// </summary>
         public UnrealBuildToolConfig Manifest(string val = null)
         {
-            AppendArgument(string.IsNullOrWhiteSpace(val) ? "--Manifest" : "--Manifest=" + val.DoubleQuoteIfNeeded());
+            AppendArgument(string.IsNullOrWhiteSpace(val) ? "-Manifest" : "-Manifest=" + val.DoubleQuoteIfNeeded());
             return (UnrealBuildToolConfig) this;
         }
 
@@ -781,7 +781,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// </summary>
         public UnrealBuildToolConfig DependencyList(string val = null)
         {
-            AppendArgument(string.IsNullOrWhiteSpace(val) ? "--DependencyList" : "--DependencyList=" + val.DoubleQuoteIfNeeded());
+            AppendArgument(string.IsNullOrWhiteSpace(val) ? "-DependencyList" : "-DependencyList=" + val.DoubleQuoteIfNeeded());
             return (UnrealBuildToolConfig) this;
         }
 
@@ -792,7 +792,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// </summary>
         public UnrealBuildToolConfig OverrideBuildEnvironment(bool? val = null)
         {
-            AppendArgument(val == null ? "--OverrideBuildEnvironment" : "--OverrideBuildEnvironment=" + val.ToString());
+            AppendArgument(val == null ? "-OverrideBuildEnvironment" : "-OverrideBuildEnvironment=" + val.ToString());
             return (UnrealBuildToolConfig) this;
         }
 
@@ -803,7 +803,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// </summary>
         public UnrealBuildToolConfig CompilerArguments(string val = null)
         {
-            AppendArgument(string.IsNullOrWhiteSpace(val) ? "--CompilerArguments" : "--CompilerArguments=" + val.DoubleQuoteIfNeeded());
+            AppendArgument(string.IsNullOrWhiteSpace(val) ? "-CompilerArguments" : "-CompilerArguments=" + val.DoubleQuoteIfNeeded());
             return (UnrealBuildToolConfig) this;
         }
 
@@ -814,7 +814,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// </summary>
         public UnrealBuildToolConfig LinkerArguments(string val = null)
         {
-            AppendArgument(string.IsNullOrWhiteSpace(val) ? "--LinkerArguments" : "--LinkerArguments=" + val.DoubleQuoteIfNeeded());
+            AppendArgument(string.IsNullOrWhiteSpace(val) ? "-LinkerArguments" : "-LinkerArguments=" + val.DoubleQuoteIfNeeded());
             return (UnrealBuildToolConfig) this;
         }
 
@@ -825,7 +825,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// </summary>
         public UnrealBuildToolConfig BuildAsFramework(bool? val = null)
         {
-            AppendArgument(val == null ? "--build-as-framework" : "--build-as-framework=" + val.ToString());
+            AppendArgument(val == null ? "-build-as-framework" : "-build-as-framework=" + val.ToString());
             return (UnrealBuildToolConfig) this;
         }
 
@@ -836,7 +836,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// </summary>
         public UnrealBuildToolConfig Generatedsymfile(bool? val = null)
         {
-            AppendArgument(val == null ? "--generatedsymfile" : "--generatedsymfile=" + val.ToString());
+            AppendArgument(val == null ? "-generatedsymfile" : "-generatedsymfile=" + val.ToString());
             return (UnrealBuildToolConfig) this;
         }
 
@@ -847,7 +847,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// </summary>
         public UnrealBuildToolConfig Generatedsymbundle(bool? val = null)
         {
-            AppendArgument(val == null ? "--generatedsymbundle" : "--generatedsymbundle=" + val.ToString());
+            AppendArgument(val == null ? "-generatedsymbundle" : "-generatedsymbundle=" + val.ToString());
             return (UnrealBuildToolConfig) this;
         }
 
@@ -858,7 +858,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// </summary>
         public UnrealBuildToolConfig Architectures(string val = null)
         {
-            AppendArgument(string.IsNullOrWhiteSpace(val) ? "--Architectures" : "--Architectures=" + val.DoubleQuoteIfNeeded());
+            AppendArgument(string.IsNullOrWhiteSpace(val) ? "-Architectures" : "-Architectures=" + val.DoubleQuoteIfNeeded());
             return (UnrealBuildToolConfig) this;
         }
 
@@ -869,7 +869,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// </summary>
         public UnrealBuildToolConfig GPUArchitectures(string val = null)
         {
-            AppendArgument(string.IsNullOrWhiteSpace(val) ? "--GPUArchitectures" : "--GPUArchitectures=" + val.DoubleQuoteIfNeeded());
+            AppendArgument(string.IsNullOrWhiteSpace(val) ? "-GPUArchitectures" : "-GPUArchitectures=" + val.DoubleQuoteIfNeeded());
             return (UnrealBuildToolConfig) this;
         }
 
@@ -880,7 +880,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// </summary>
         public UnrealBuildToolConfig ForceAPKGeneration(bool present = true)
         {
-            AppendArgument(present ? "--ForceAPKGeneration" : "");
+            AppendArgument(present ? "-ForceAPKGeneration" : "");
             return (UnrealBuildToolConfig) this;
         }
 
@@ -891,7 +891,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// </summary>
         public UnrealBuildToolConfig _2015(bool present = true)
         {
-            AppendArgument(present ? "--2015" : "");
+            AppendArgument(present ? "-2015" : "");
             return (UnrealBuildToolConfig) this;
         }
 
@@ -902,7 +902,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// </summary>
         public UnrealBuildToolConfig _2017(bool present = true)
         {
-            AppendArgument(present ? "--2017" : "");
+            AppendArgument(present ? "-2017" : "");
             return (UnrealBuildToolConfig) this;
         }
 
@@ -913,7 +913,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// </summary>
         public UnrealBuildToolConfig _2019(bool present = true)
         {
-            AppendArgument(present ? "--2019" : "");
+            AppendArgument(present ? "-2019" : "");
             return (UnrealBuildToolConfig) this;
         }
 
@@ -924,7 +924,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// </summary>
         public UnrealBuildToolConfig _2022(bool present = true)
         {
-            AppendArgument(present ? "--2022" : "");
+            AppendArgument(present ? "-2022" : "");
             return (UnrealBuildToolConfig) this;
         }
 
@@ -935,7 +935,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// </summary>
         public UnrealBuildToolConfig Stripsymbols(bool present = true)
         {
-            AppendArgument(present ? "--stripsymbols" : "");
+            AppendArgument(present ? "-stripsymbols" : "");
             return (UnrealBuildToolConfig) this;
         }
 
@@ -946,7 +946,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// </summary>
         public UnrealBuildToolConfig CreateStub(bool present = true)
         {
-            AppendArgument(present ? "--CreateStub" : "");
+            AppendArgument(present ? "-CreateStub" : "");
             return (UnrealBuildToolConfig) this;
         }
 
@@ -957,7 +957,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// </summary>
         public UnrealBuildToolConfig Alwaysgeneratedsym(bool present = true)
         {
-            AppendArgument(present ? "--alwaysgeneratedsym" : "");
+            AppendArgument(present ? "-alwaysgeneratedsym" : "");
             return (UnrealBuildToolConfig) this;
         }
 
@@ -968,7 +968,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// </summary>
         public UnrealBuildToolConfig Skipcrashlytics(bool? val = null)
         {
-            AppendArgument(val == null ? "--skipcrashlytics" : "--skipcrashlytics=" + val.ToString());
+            AppendArgument(val == null ? "-skipcrashlytics" : "-skipcrashlytics=" + val.ToString());
             return (UnrealBuildToolConfig) this;
         }
 
@@ -979,7 +979,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// </summary>
         public UnrealBuildToolConfig Distribution(bool? val = null)
         {
-            AppendArgument(val == null ? "--distribution" : "--distribution=" + val.ToString());
+            AppendArgument(val == null ? "-distribution" : "-distribution=" + val.ToString());
             return (UnrealBuildToolConfig) this;
         }
 
@@ -990,7 +990,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// </summary>
         public UnrealBuildToolConfig ImportProvision(string val = null)
         {
-            AppendArgument(string.IsNullOrWhiteSpace(val) ? "--ImportProvision" : "--ImportProvision=" + val.DoubleQuoteIfNeeded());
+            AppendArgument(string.IsNullOrWhiteSpace(val) ? "-ImportProvision" : "-ImportProvision=" + val.DoubleQuoteIfNeeded());
             return (UnrealBuildToolConfig) this;
         }
 
@@ -1001,7 +1001,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// </summary>
         public UnrealBuildToolConfig ImportCertificate(string val = null)
         {
-            AppendArgument(string.IsNullOrWhiteSpace(val) ? "--ImportCertificate" : "--ImportCertificate=" + val.DoubleQuoteIfNeeded());
+            AppendArgument(string.IsNullOrWhiteSpace(val) ? "-ImportCertificate" : "-ImportCertificate=" + val.DoubleQuoteIfNeeded());
             return (UnrealBuildToolConfig) this;
         }
 
@@ -1012,7 +1012,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// </summary>
         public UnrealBuildToolConfig ImportCertificatePassword(string val = null)
         {
-            AppendArgument(string.IsNullOrWhiteSpace(val) ? "--ImportCertificatePassword" : "--ImportCertificatePassword=" + val.DoubleQuoteIfNeeded());
+            AppendArgument(string.IsNullOrWhiteSpace(val) ? "-ImportCertificatePassword" : "-ImportCertificatePassword=" + val.DoubleQuoteIfNeeded());
             return (UnrealBuildToolConfig) this;
         }
 
@@ -1023,7 +1023,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// </summary>
         public UnrealBuildToolConfig EnableMSan(bool? val = null)
         {
-            AppendArgument(val == null ? "--EnableMSan" : "--EnableMSan=" + val.ToString());
+            AppendArgument(val == null ? "-EnableMSan" : "-EnableMSan=" + val.ToString());
             return (UnrealBuildToolConfig) this;
         }
 
@@ -1034,7 +1034,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// </summary>
         public UnrealBuildToolConfig ThinLTO(bool? val = null)
         {
-            AppendArgument(val == null ? "--ThinLTO" : "--ThinLTO=" + val.ToString());
+            AppendArgument(val == null ? "-ThinLTO" : "-ThinLTO=" + val.ToString());
             return (UnrealBuildToolConfig) this;
         }
 
@@ -1045,7 +1045,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// </summary>
         public UnrealBuildToolConfig UsePrecompiled(bool? val = null)
         {
-            AppendArgument(val == null ? "--UsePrecompiled" : "--UsePrecompiled=" + val.ToString());
+            AppendArgument(val == null ? "-UsePrecompiled" : "-UsePrecompiled=" + val.ToString());
             return (UnrealBuildToolConfig) this;
         }
 
@@ -1056,7 +1056,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// </summary>
         public UnrealBuildToolConfig NoXGE(bool present = true)
         {
-            AppendArgument(present ? "--NoXGE" : "");
+            AppendArgument(present ? "-NoXGE" : "");
             return (UnrealBuildToolConfig) this;
         }
 
@@ -1067,7 +1067,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// </summary>
         public UnrealBuildToolConfig NoFASTBuild(bool present = true)
         {
-            AppendArgument(present ? "--NoFASTBuild" : "");
+            AppendArgument(present ? "-NoFASTBuild" : "");
             return (UnrealBuildToolConfig) this;
         }
 
@@ -1078,7 +1078,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// </summary>
         public UnrealBuildToolConfig NoUBTMakefiles(bool present = true)
         {
-            AppendArgument(present ? "--NoUBTMakefiles" : "");
+            AppendArgument(present ? "-NoUBTMakefiles" : "");
             return (UnrealBuildToolConfig) this;
         }
 
@@ -1089,7 +1089,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// </summary>
         public UnrealBuildToolConfig MaxParallelActions(double? val = null)
         {
-            AppendArgument(val == null ? "--MaxParallelActions" : "--MaxParallelActions=" + val.ToString());
+            AppendArgument(val == null ? "-MaxParallelActions" : "-MaxParallelActions=" + val.ToString());
             return (UnrealBuildToolConfig) this;
         }
 
@@ -1100,7 +1100,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// </summary>
         public UnrealBuildToolConfig ForceHeaderGeneration(bool? val = null)
         {
-            AppendArgument(val == null ? "--ForceHeaderGeneration" : "--ForceHeaderGeneration=" + val.ToString());
+            AppendArgument(val == null ? "-ForceHeaderGeneration" : "-ForceHeaderGeneration=" + val.ToString());
             return (UnrealBuildToolConfig) this;
         }
 
@@ -1111,7 +1111,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// </summary>
         public UnrealBuildToolConfig NoBuildUHT(bool? val = null)
         {
-            AppendArgument(val == null ? "--NoBuildUHT" : "--NoBuildUHT=" + val.ToString());
+            AppendArgument(val == null ? "-NoBuildUHT" : "-NoBuildUHT=" + val.ToString());
             return (UnrealBuildToolConfig) this;
         }
 
@@ -1122,7 +1122,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// </summary>
         public UnrealBuildToolConfig FailIfGeneratedCodeChanges(bool? val = null)
         {
-            AppendArgument(val == null ? "--FailIfGeneratedCodeChanges" : "--FailIfGeneratedCodeChanges=" + val.ToString());
+            AppendArgument(val == null ? "-FailIfGeneratedCodeChanges" : "-FailIfGeneratedCodeChanges=" + val.ToString());
             return (UnrealBuildToolConfig) this;
         }
 
@@ -1133,7 +1133,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// </summary>
         public UnrealBuildToolConfig NoHotReloadFromIDE(bool present = true)
         {
-            AppendArgument(present ? "--NoHotReloadFromIDE" : "");
+            AppendArgument(present ? "-NoHotReloadFromIDE" : "");
             return (UnrealBuildToolConfig) this;
         }
 
@@ -1144,7 +1144,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// </summary>
         public UnrealBuildToolConfig SkipRulesCompile(bool? val = null)
         {
-            AppendArgument(val == null ? "--SkipRulesCompile" : "--SkipRulesCompile=" + val.ToString());
+            AppendArgument(val == null ? "-SkipRulesCompile" : "-SkipRulesCompile=" + val.ToString());
             return (UnrealBuildToolConfig) this;
         }
 
@@ -1155,7 +1155,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// </summary>
         public UnrealBuildToolConfig Compiler(string val = null)
         {
-            AppendArgument(string.IsNullOrWhiteSpace(val) ? "--Compiler" : "--Compiler=" + val.DoubleQuoteIfNeeded());
+            AppendArgument(string.IsNullOrWhiteSpace(val) ? "-Compiler" : "-Compiler=" + val.DoubleQuoteIfNeeded());
             return (UnrealBuildToolConfig) this;
         }
 
@@ -1166,7 +1166,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// </summary>
         public UnrealBuildToolConfig CompilerVersion(string val = null)
         {
-            AppendArgument(string.IsNullOrWhiteSpace(val) ? "--CompilerVersion" : "--CompilerVersion=" + val.DoubleQuoteIfNeeded());
+            AppendArgument(string.IsNullOrWhiteSpace(val) ? "-CompilerVersion" : "-CompilerVersion=" + val.DoubleQuoteIfNeeded());
             return (UnrealBuildToolConfig) this;
         }
 
@@ -1177,7 +1177,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// </summary>
         public UnrealBuildToolConfig StaticAnalyzer(string val = null)
         {
-            AppendArgument(string.IsNullOrWhiteSpace(val) ? "--StaticAnalyzer" : "--StaticAnalyzer=" + val.DoubleQuoteIfNeeded());
+            AppendArgument(string.IsNullOrWhiteSpace(val) ? "-StaticAnalyzer" : "-StaticAnalyzer=" + val.DoubleQuoteIfNeeded());
             return (UnrealBuildToolConfig) this;
         }
 
@@ -1188,7 +1188,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// </summary>
         public UnrealBuildToolConfig ObjSrcMap(string val = null)
         {
-            AppendArgument(string.IsNullOrWhiteSpace(val) ? "--ObjSrcMap" : "--ObjSrcMap=" + val.DoubleQuoteIfNeeded());
+            AppendArgument(string.IsNullOrWhiteSpace(val) ? "-ObjSrcMap" : "-ObjSrcMap=" + val.DoubleQuoteIfNeeded());
             return (UnrealBuildToolConfig) this;
         }
 
@@ -1199,7 +1199,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// </summary>
         public UnrealBuildToolConfig Strict(bool? val = null)
         {
-            AppendArgument(val == null ? "--Strict" : "--Strict=" + val.ToString());
+            AppendArgument(val == null ? "-Strict" : "-Strict=" + val.ToString());
             return (UnrealBuildToolConfig) this;
         }
 
@@ -1210,7 +1210,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// </summary>
         public UnrealBuildToolConfig ShowIncludes(bool? val = null)
         {
-            AppendArgument(val == null ? "--ShowIncludes" : "--ShowIncludes=" + val.ToString());
+            AppendArgument(val == null ? "-ShowIncludes" : "-ShowIncludes=" + val.ToString());
             return (UnrealBuildToolConfig) this;
         }
 
@@ -1221,7 +1221,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// </summary>
         public UnrealBuildToolConfig Verbose(bool present = true)
         {
-            AppendArgument(present ? "--Verbose" : "");
+            AppendArgument(present ? "-Verbose" : "");
             return (UnrealBuildToolConfig) this;
         }
 
@@ -1232,7 +1232,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// </summary>
         public UnrealBuildToolConfig VeryVerbose(bool present = true)
         {
-            AppendArgument(present ? "--VeryVerbose" : "");
+            AppendArgument(present ? "-VeryVerbose" : "");
             return (UnrealBuildToolConfig) this;
         }
 
@@ -1243,7 +1243,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// </summary>
         public UnrealBuildToolConfig Log(string val = null)
         {
-            AppendArgument(string.IsNullOrWhiteSpace(val) ? "--Log" : "--Log=" + val.DoubleQuoteIfNeeded());
+            AppendArgument(string.IsNullOrWhiteSpace(val) ? "-Log" : "-Log=" + val.DoubleQuoteIfNeeded());
             return (UnrealBuildToolConfig) this;
         }
 
@@ -1254,7 +1254,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// </summary>
         public UnrealBuildToolConfig Timestamps(bool? val = null)
         {
-            AppendArgument(val == null ? "--Timestamps" : "--Timestamps=" + val.ToString());
+            AppendArgument(val == null ? "-Timestamps" : "-Timestamps=" + val.ToString());
             return (UnrealBuildToolConfig) this;
         }
 
@@ -1265,7 +1265,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// </summary>
         public UnrealBuildToolConfig FromMsBuild(bool? val = null)
         {
-            AppendArgument(val == null ? "--FromMsBuild" : "--FromMsBuild=" + val.ToString());
+            AppendArgument(val == null ? "-FromMsBuild" : "-FromMsBuild=" + val.ToString());
             return (UnrealBuildToolConfig) this;
         }
 
@@ -1276,7 +1276,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// </summary>
         public UnrealBuildToolConfig Progress(bool? val = null)
         {
-            AppendArgument(val == null ? "--Progress" : "--Progress=" + val.ToString());
+            AppendArgument(val == null ? "-Progress" : "-Progress=" + val.ToString());
             return (UnrealBuildToolConfig) this;
         }
 
@@ -1287,7 +1287,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// </summary>
         public UnrealBuildToolConfig NoMutex(bool? val = null)
         {
-            AppendArgument(val == null ? "--NoMutex" : "--NoMutex=" + val.ToString());
+            AppendArgument(val == null ? "-NoMutex" : "-NoMutex=" + val.ToString());
             return (UnrealBuildToolConfig) this;
         }
 
@@ -1298,7 +1298,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// </summary>
         public UnrealBuildToolConfig WaitMutex(bool? val = null)
         {
-            AppendArgument(val == null ? "--WaitMutex" : "--WaitMutex=" + val.ToString());
+            AppendArgument(val == null ? "-WaitMutex" : "-WaitMutex=" + val.ToString());
             return (UnrealBuildToolConfig) this;
         }
 
@@ -1309,7 +1309,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// </summary>
         public UnrealBuildToolConfig RemoteIni(string val = null)
         {
-            AppendArgument(string.IsNullOrWhiteSpace(val) ? "--RemoteIni" : "--RemoteIni=" + val.DoubleQuoteIfNeeded());
+            AppendArgument(string.IsNullOrWhiteSpace(val) ? "-RemoteIni" : "-RemoteIni=" + val.DoubleQuoteIfNeeded());
             return (UnrealBuildToolConfig) this;
         }
 
@@ -1320,7 +1320,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// </summary>
         public UnrealBuildToolConfig Mode(string val = null)
         {
-            AppendArgument(string.IsNullOrWhiteSpace(val) ? "--Mode" : "--Mode=" + val.DoubleQuoteIfNeeded());
+            AppendArgument(string.IsNullOrWhiteSpace(val) ? "-Mode" : "-Mode=" + val.DoubleQuoteIfNeeded());
             return (UnrealBuildToolConfig) this;
         }
 
@@ -1331,7 +1331,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// </summary>
         public UnrealBuildToolConfig Clean(bool present = true)
         {
-            AppendArgument(present ? "--Clean" : "");
+            AppendArgument(present ? "-Clean" : "");
             return (UnrealBuildToolConfig) this;
         }
 
@@ -1342,7 +1342,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// </summary>
         public UnrealBuildToolConfig ProjectFiles(bool present = true)
         {
-            AppendArgument(present ? "--ProjectFiles" : "");
+            AppendArgument(present ? "-ProjectFiles" : "");
             return (UnrealBuildToolConfig) this;
         }
 
@@ -1353,7 +1353,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// </summary>
         public UnrealBuildToolConfig ProjectFileFormat(bool present = true)
         {
-            AppendArgument(present ? "--ProjectFileFormat" : "");
+            AppendArgument(present ? "-ProjectFileFormat" : "");
             return (UnrealBuildToolConfig) this;
         }
 
@@ -1364,7 +1364,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// </summary>
         public UnrealBuildToolConfig Makefile(bool present = true)
         {
-            AppendArgument(present ? "--Makefile" : "");
+            AppendArgument(present ? "-Makefile" : "");
             return (UnrealBuildToolConfig) this;
         }
 
@@ -1375,7 +1375,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// </summary>
         public UnrealBuildToolConfig CMakefile(bool present = true)
         {
-            AppendArgument(present ? "--CMakefile" : "");
+            AppendArgument(present ? "-CMakefile" : "");
             return (UnrealBuildToolConfig) this;
         }
 
@@ -1386,7 +1386,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// </summary>
         public UnrealBuildToolConfig QMakefile(bool present = true)
         {
-            AppendArgument(present ? "--QMakefile" : "");
+            AppendArgument(present ? "-QMakefile" : "");
             return (UnrealBuildToolConfig) this;
         }
 
@@ -1397,7 +1397,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// </summary>
         public UnrealBuildToolConfig KDevelopfile(bool present = true)
         {
-            AppendArgument(present ? "--KDevelopfile" : "");
+            AppendArgument(present ? "-KDevelopfile" : "");
             return (UnrealBuildToolConfig) this;
         }
 
@@ -1408,7 +1408,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// </summary>
         public UnrealBuildToolConfig CodeliteFiles(bool present = true)
         {
-            AppendArgument(present ? "--CodeliteFiles" : "");
+            AppendArgument(present ? "-CodeliteFiles" : "");
             return (UnrealBuildToolConfig) this;
         }
 
@@ -1419,7 +1419,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// </summary>
         public UnrealBuildToolConfig XCodeProjectFiles(bool present = true)
         {
-            AppendArgument(present ? "--XCodeProjectFiles" : "");
+            AppendArgument(present ? "-XCodeProjectFiles" : "");
             return (UnrealBuildToolConfig) this;
         }
 
@@ -1430,7 +1430,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// </summary>
         public UnrealBuildToolConfig EdditProjectFiles(bool present = true)
         {
-            AppendArgument(present ? "--EdditProjectFiles" : "");
+            AppendArgument(present ? "-EdditProjectFiles" : "");
             return (UnrealBuildToolConfig) this;
         }
 
@@ -1441,7 +1441,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// </summary>
         public UnrealBuildToolConfig VSCode(bool present = true)
         {
-            AppendArgument(present ? "--VSCode" : "");
+            AppendArgument(present ? "-VSCode" : "");
             return (UnrealBuildToolConfig) this;
         }
 
@@ -1452,7 +1452,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// </summary>
         public UnrealBuildToolConfig VSMac(bool present = true)
         {
-            AppendArgument(present ? "--VSMac" : "");
+            AppendArgument(present ? "-VSMac" : "");
             return (UnrealBuildToolConfig) this;
         }
 
@@ -1463,7 +1463,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// </summary>
         public UnrealBuildToolConfig CLion(bool present = true)
         {
-            AppendArgument(present ? "--CLion" : "");
+            AppendArgument(present ? "-CLion" : "");
             return (UnrealBuildToolConfig) this;
         }
 
@@ -1474,7 +1474,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         /// </summary>
         public UnrealBuildToolConfig Rider(bool present = true)
         {
-            AppendArgument(present ? "--Rider" : "");
+            AppendArgument(present ? "-Rider" : "");
             return (UnrealBuildToolConfig) this;
         }
 
