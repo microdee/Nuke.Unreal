@@ -49,7 +49,7 @@ namespace Nuke.Unreal
         public virtual UnrealConfig[] Config { get; set; } = new [] {UnrealConfig.Development};
 
         [Parameter("The Unreal target type for building the project")]
-        public virtual UnreaTargetType[] TargetType { get; set; } = new [] {UnreaTargetType.Game};
+        public virtual UnrealTargetType[] TargetType { get; set; } = new [] {UnrealTargetType.Game};
 
         public EngineVersion EngineVersion => new(UnrealVersion, CustomEnginePath);
         [Parameter("Extra arguments passed to UBT. It's recommended to use it only from command line, do not override.")]

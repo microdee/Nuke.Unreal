@@ -13,6 +13,9 @@ using Serilog;
 using Nuke.Common.Tools.MSBuild;
 using Nuke.Common.ProjectModel;
 using System.Security.Cryptography;
+using Nuke.Unreal.Tools;
+using Nuke.Common.Tooling;
+using System.Reflection;
 
 namespace Nuke.Unreal
 {
@@ -64,12 +67,13 @@ namespace Nuke.Unreal
             .Description("Generate project files for the default IDE of the current platform (Visual Studio or XCode)")
             .Executes(() =>
             {
-                Unreal.BuildTool(GetEngineVersionFromProject())(
-                    "-projectfiles"
-                    + $" -project=\"{ProjectPath}\""
-                    + " -game -progress"
-                    + UbtArgs.AppendAsArguments()
-                );
+                Unreal.BuildTool(GetEngineVersionFromProject(), _ => _
+                    .ProjectFiles()
+                    .Project(ProjectPath)
+                    .Game()
+                    .Progress()
+                    .Append(UbtArgs.AsArguments())
+                )();
             });
 
         public virtual Target BuildEditor => _ => _
@@ -89,22 +93,18 @@ namespace Nuke.Unreal
             .After(Cook) // Android needs Cook to happen before building the APK, so OBB files can be included in the APK
             .Executes(() =>
             {
-                (
-                    from c in Config
-                    from t in TargetType
-                    select (c, t)
-                ).ForEach(combination =>
-                {
-                    var (config, targetType) = combination;
-
-                    Log.Information($"{config} ran in {targetType}:");
-                    var targetSuffix = targetType == UnreaTargetType.Game ? "" : targetType.ToString();
-                    Unreal.BuildTool(GetEngineVersionFromProject())(
-                        $"{ProjectName}{targetSuffix} {Platform} {config}"
-                        + $" -Project=\"{ProjectPath}\""
-                        + UbtArgs.AppendAsArguments()
-                    );
-                });
+                Unreal.BuildTool(GetEngineVersionFromProject(), _ => _
+                    .Target(
+                        TargetType.Select(tt => tt == UnrealTargetType.Game
+                            ? ProjectName
+                            : ProjectName + tt
+                        )
+                    )
+                    .Platform(Platform)
+                    .Configuration(Config)
+                    .Project(ProjectPath)
+                    .Append(UbtArgs.AsArguments())
+                )();
             });
 
         public virtual bool CookAll => false;
