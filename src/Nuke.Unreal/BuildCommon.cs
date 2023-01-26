@@ -38,8 +38,13 @@ namespace Nuke.Unreal
             return arg;
         }
 
-        public static string AppendAsArguments(this IEnumerable<string> input) =>
-            (input?.IsEmpty() ?? true) ? "" : " " + string.Join(' ', input.Select(ProcessArgument));
+        public static IEnumerable<string> AsArguments(this IEnumerable<string> args) =>
+            args.Select(ProcessArgument);
+
+        public static string AppendAsArguments(this IEnumerable<string> input, bool leadingSpace = true) =>
+            (input?.IsEmpty() ?? true)
+                ? ""
+                : (leadingSpace ? " " : "") + string.Join(' ', input.Select(ProcessArgument));
 
         public static string DoubleQuoteIfNeeded(this string self) =>
             " \t\n\f".Any(ws => self.Contains(ws)) ? self.DoubleQuote() : self;

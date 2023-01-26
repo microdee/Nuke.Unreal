@@ -36,7 +36,10 @@ public static class ToolConfigExtensions
         return config;
     }
 
-    public static T Append<T>(this T config, params string[] arguments) where T : ToolConfig
+    public static T Append<T>(this T config, params string[] arguments) where T : ToolConfig =>
+        Append(config, arguments.AsEnumerable());
+
+    public static T Append<T>(this T config, IEnumerable<string> arguments) where T : ToolConfig
     {
         foreach(var arg in arguments)
         {
