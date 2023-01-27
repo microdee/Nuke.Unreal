@@ -80,12 +80,13 @@ namespace Nuke.Unreal
             .Description("Build the editor binaries so this project can be opened properly in the Unreal editor")
             .Executes(() =>
             {
-                var platform = Unreal.GetDefaultPlatform();
-                Unreal.BuildTool(GetEngineVersionFromProject())(
-                    $"{ProjectName}Editor {platform} Development"
-                    + $" -Project=\"{ProjectPath}\""
-                    + UbtArgs.AppendAsArguments()
-                );
+                Unreal.BuildTool(GetEngineVersionFromProject(), _ => _
+                    .Target(ProjectName + UnrealTargetType.Editor)
+                    .Platform(Unreal.GetDefaultPlatform())
+                    .Configuration(UnrealConfig.Development)
+                    .Project(ProjectPath)
+                    .Append(UbtArgs.AsArguments())
+                )();
             });
 
         public virtual Target Build => _ => _
