@@ -49,4 +49,6 @@ public class UnrealBuildToolConfig : UnrealBuildToolConfigGenerated
         AppendArgument(string.Join('+', config));
         return this;
     }
+
+    public override string Gather() => string.Join(' ', Arguments);
 }
