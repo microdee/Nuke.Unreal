@@ -13,13 +13,14 @@ Parse UBT sources for hard coded arguments:
 * Arguments.Get__(...)
 
 ## }}
+// This file is generated via `nuke generate-tools` target.
 
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 namespace Nuke.Unreal.Tools;
-
+/* BuildEnum.sbncs */
 /* BuildTool.sbncs */
-
+{{ build_enums unreal_build_tool }}
 {{ build_tool unreal_build_tool }}

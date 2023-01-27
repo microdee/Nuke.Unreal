@@ -1,10 +1,120 @@
 
+// This file is generated via `nuke generate-tools` target.
 
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 namespace Nuke.Unreal.Tools;
+
+/// <summary>
+/// Specifies which language standard to use. This enum should be kept in order, so that toolchains can check whether the requested setting is &gt;= values that they support.
+/// </summary>
+public enum CppStandardVersion
+{
+
+    /// <summary>
+    /// Use the default standard version
+    /// </summary>
+    Default,
+    
+    /// <summary>
+    /// Supports C++14
+    /// </summary>
+    Cpp14,
+    
+    /// <summary>
+    /// Supports C++17
+    /// </summary>
+    Cpp17,
+    
+    /// <summary>
+    /// Latest standard supported by the compiler
+    /// </summary>
+    Latest,
+    }
+
+
+
+/// <summary>
+/// Available compiler toolchains on Windows platform
+/// </summary>
+public enum WindowsCompiler
+{
+
+    /// <summary>
+    /// Use the default compiler. A specific value will always be used outside of configuration classes.
+    /// </summary>
+    Default,
+    
+    /// <summary>
+    /// Use Clang for Windows, using the clang-cl driver.
+    /// </summary>
+    Clang,
+    
+    /// <summary>
+    /// Use the Intel C++ compiler
+    /// </summary>
+    Intel,
+    
+    /// <summary>
+    /// Visual Studio 2015 (Visual C++ 14.0)
+    /// </summary>
+    VisualStudio2015_DEPRECATED,
+    
+    /// <summary>
+    /// Visual Studio 2015 (Visual C++ 14.0)
+    /// </summary>
+    VisualStudio2015,
+    
+    /// <summary>
+    /// Visual Studio 2017 (Visual C++ 15.0)
+    /// </summary>
+    VisualStudio2017,
+    
+    /// <summary>
+    /// Visual Studio 2019 (Visual C++ 16.0)
+    /// </summary>
+    VisualStudio2019,
+    
+    /// <summary>
+    /// Visual Studio 2022 (Visual C++ 17.0)
+    /// </summary>
+    VisualStudio2022,
+    }
+
+
+
+/// <summary>
+/// Which static analyzer to use
+/// </summary>
+public enum WindowsStaticAnalyzer
+{
+
+    /// <summary>
+    /// Do not perform static analysis
+    /// </summary>
+    None,
+    
+    /// <summary>
+    /// Use the built-in Visual C++ static analyzer
+    /// </summary>
+    VisualCpp,
+    
+    /// <summary>
+    /// Use PVS-Studio for static analysis
+    /// </summary>
+    PVSStudio,
+    }
+
+
+
+
+
+
+
+
+
 
 
 
@@ -17,8 +127,6 @@ namespace Nuke.Unreal.Tools;
 public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 {
     public override string Name => "UnrealBuildTool";
-
-
     
         
 /// <summary>
@@ -30,8 +138,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
             return (UnrealBuildToolConfig) this;
         }
 
-    
-    
+        
         
 /// <summary>
 /// Enables thread sanitizer (TSan).
@@ -42,8 +149,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
             return (UnrealBuildToolConfig) this;
         }
 
-    
-    
+        
         
 /// <summary>
 /// Enables undefined behavior sanitizer (UBSan).
@@ -54,8 +160,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
             return (UnrealBuildToolConfig) this;
         }
 
-    
-    
+        
         
 /// <summary>
 /// Whether to skip checking for files identified by the junk manifest.
@@ -66,8 +171,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
             return (UnrealBuildToolConfig) this;
         }
 
-    
-    
+        
         
 /// <summary>
 /// Skip building; just do setup and terminate.
@@ -78,8 +182,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
             return (UnrealBuildToolConfig) this;
         }
 
-    
-    
+        
         
 /// <summary>
 /// Skip pre build targets; just do the main target.
@@ -90,8 +193,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
             return (UnrealBuildToolConfig) this;
         }
 
-    
-    
+        
         
 /// <summary>
 /// Whether we should just export the XGE XML and pretend it succeeded
@@ -102,8 +204,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
             return (UnrealBuildToolConfig) this;
         }
 
-    
-    
+        
         
 /// <summary>
 /// Do not allow any engine files to be output (used by compile on startup functionality)
@@ -114,8 +215,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
             return (UnrealBuildToolConfig) this;
         }
 
-    
-    
+        
         
 /// <summary>
 /// Whether we should just export the outdated actions list
@@ -126,8 +226,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
             return (UnrealBuildToolConfig) this;
         }
 
-    
-    
+        
         
 /// <summary>
 /// If we are just running the deployment step, specifies the path to the given deployment settings
@@ -138,8 +237,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
             return (UnrealBuildToolConfig) this;
         }
 
-    
-    
+        
         
 /// <summary>
 /// Whether we should just export the outdated actions list
@@ -150,8 +248,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
             return (UnrealBuildToolConfig) this;
         }
 
-    
-    
+        
         
 /// <summary>
 /// Execute any actions which result in code generation (eg. ISPC compilation)
@@ -162,8 +259,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
             return (UnrealBuildToolConfig) this;
         }
 
-    
-    
+        
         
 /// <summary>
 /// Foreign plugin to compile against this target
@@ -174,8 +270,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
             return (UnrealBuildToolConfig) this;
         }
 
-    
-    
+        
         
 /// <summary>
 /// Set of module names to compile.
@@ -186,8 +281,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
             return (UnrealBuildToolConfig) this;
         }
 
-    
-    
+        
         
 /// <summary>
 /// Individual file(s) to compile
@@ -198,8 +292,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
             return (UnrealBuildToolConfig) this;
         }
 
-    
-    
+        
         
 /// <summary>
 /// Whether to perform hot reload for this target
@@ -210,8 +303,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
             return (UnrealBuildToolConfig) this;
         }
 
-    
-    
+        
         
 /// <summary>
 /// Whether to perform hot reload for this target
@@ -222,8 +314,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
             return (UnrealBuildToolConfig) this;
         }
 
-    
-    
+        
         
 /// <summary>
 /// Whether to perform hot reload for this target
@@ -234,8 +325,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
             return (UnrealBuildToolConfig) this;
         }
 
-    
-    
+        
         
 /// <summary>
 /// Export the actions for the target to a file
@@ -246,8 +336,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
             return (UnrealBuildToolConfig) this;
         }
 
-    
-    
+        
         
 /// <summary>
 /// Path to a file containing a list of modules that may be modified for live coding.
@@ -258,8 +347,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
             return (UnrealBuildToolConfig) this;
         }
 
-    
-    
+        
         
 /// <summary>
 /// Path to the manifest for passing info about the output to live coding
@@ -270,8 +358,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
             return (UnrealBuildToolConfig) this;
         }
 
-    
-    
+        
         
 /// <summary>
 /// Suppress messages about building this target
@@ -282,8 +369,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
             return (UnrealBuildToolConfig) this;
         }
 
-    
-    
+        
         
     
         public UnrealBuildToolConfig Input(object val = null)
@@ -292,8 +378,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
             return (UnrealBuildToolConfig) this;
         }
 
-    
-    
+        
         
     
         public UnrealBuildToolConfig XmlConfigCache(object val = null)
@@ -302,8 +387,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
             return (UnrealBuildToolConfig) this;
         }
 
-    
-    
+        
         
 /// <summary>
 /// Build all the modules that are valid for this target type. Used for CIS and making installed engine builds.
@@ -314,8 +398,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
             return (UnrealBuildToolConfig) this;
         }
 
-    
-    
+        
         
 /// <summary>
 /// Additional plugins that are built for this target type but not enabled.
@@ -326,8 +409,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
             return (UnrealBuildToolConfig) this;
         }
 
-    
-    
+        
         
 /// <summary>
 /// Additional plugins that should be included for this target.
@@ -338,8 +420,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
             return (UnrealBuildToolConfig) this;
         }
 
-    
-    
+        
         
 /// <summary>
 /// List of plugins to be disabled for this target. Note that the project file may still reference them, so they should be marked
@@ -351,8 +432,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
             return (UnrealBuildToolConfig) this;
         }
 
-    
-    
+        
         
 /// <summary>
 /// Whether this target should be compiled as a DLL.  Requires LinkType to be set to TargetLinkType.Monolithic.
@@ -363,8 +443,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
             return (UnrealBuildToolConfig) this;
         }
 
-    
-    
+        
         
 /// <summary>
 /// Whether to compile the Chaos physics plugin.
@@ -375,8 +454,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
             return (UnrealBuildToolConfig) this;
         }
 
-    
-    
+        
         
 /// <summary>
 /// Whether to compile the Chaos physics plugin.
@@ -387,8 +465,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
             return (UnrealBuildToolConfig) this;
         }
 
-    
-    
+        
         
 /// <summary>
 /// Whether to use the Chaos physics interface. This overrides the physx flags to disable APEX and NvCloth
@@ -399,8 +476,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
             return (UnrealBuildToolConfig) this;
         }
 
-    
-    
+        
         
 /// <summary>
 /// Whether to use the Chaos physics interface. This overrides the physx flags to disable APEX and NvCloth
@@ -411,8 +487,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
             return (UnrealBuildToolConfig) this;
         }
 
-    
-    
+        
         
 /// <summary>
 /// Enable RTTI for all modules.
@@ -423,8 +498,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
             return (UnrealBuildToolConfig) this;
         }
 
-    
-    
+        
         
 /// <summary>
 /// Enables "include what you use" by default for modules in this target. Changes the default PCH mode for any module in this project to PCHUsageMode.UseExplicitOrSharedPCHs.
@@ -435,8 +509,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
             return (UnrealBuildToolConfig) this;
         }
 
-    
-    
+        
         
 /// <summary>
 /// Make static libraries for all engine modules as intermediates for this target.
@@ -447,8 +520,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
             return (UnrealBuildToolConfig) this;
         }
 
-    
-    
+        
         
 /// <summary>
 /// Whether to unify C++ code into larger files for faster compilation.
@@ -459,8 +531,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
             return (UnrealBuildToolConfig) this;
         }
 
-    
-    
+        
         
 /// <summary>
 /// Whether to force C++ source files to be combined into larger files for faster compilation.
@@ -471,8 +542,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
             return (UnrealBuildToolConfig) this;
         }
 
-    
-    
+        
         
 /// <summary>
 /// Forces shadow variable warnings to be treated as errors on platforms that support it.
@@ -483,8 +553,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
             return (UnrealBuildToolConfig) this;
         }
 
-    
-    
+        
         
 /// <summary>
 /// New Monolithic Graphics drivers have optional "fast calls" replacing various D3d functions
@@ -495,8 +564,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
             return (UnrealBuildToolConfig) this;
         }
 
-    
-    
+        
         
 /// <summary>
 /// New Monolithic Graphics drivers have optional "fast calls" replacing various D3d functions
@@ -507,8 +575,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
             return (UnrealBuildToolConfig) this;
         }
 
-    
-    
+        
         
 /// <summary>
 /// Whether to stress test the C++ unity build robustness by including all C++ files files in a project from a single unified file.
@@ -519,8 +586,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
             return (UnrealBuildToolConfig) this;
         }
 
-    
-    
+        
         
 /// <summary>
 /// Whether to force debug info to be generated.
@@ -531,8 +597,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
             return (UnrealBuildToolConfig) this;
         }
 
-    
-    
+        
         
 /// <summary>
 /// Whether to globally disable debug info generation; see DebugInfoHeuristics.cs for per-config and per-platform options.
@@ -543,8 +608,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
             return (UnrealBuildToolConfig) this;
         }
 
-    
-    
+        
         
 /// <summary>
 /// Whether PDB files should be used for Visual C++ builds.
@@ -555,8 +619,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
             return (UnrealBuildToolConfig) this;
         }
 
-    
-    
+        
         
 /// <summary>
 /// Whether PCH files should be used.
@@ -567,8 +630,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
             return (UnrealBuildToolConfig) this;
         }
 
-    
-    
+        
         
 /// <summary>
 /// Whether to just preprocess source files for this target, and skip compilation
@@ -579,8 +641,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
             return (UnrealBuildToolConfig) this;
         }
 
-    
-    
+        
         
 /// <summary>
 /// Whether to use incremental linking or not. Incremental linking can yield faster iteration times when making small changes.
@@ -592,8 +653,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
             return (UnrealBuildToolConfig) this;
         }
 
-    
-    
+        
         
 /// <summary>
 /// Whether to use incremental linking or not. Incremental linking can yield faster iteration times when making small changes.
@@ -605,8 +665,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
             return (UnrealBuildToolConfig) this;
         }
 
-    
-    
+        
         
 /// <summary>
 /// Whether to allow the use of link time code generation (LTCG).
@@ -617,8 +676,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
             return (UnrealBuildToolConfig) this;
         }
 
-    
-    
+        
         
 /// <summary>
 /// Whether to enable Profile Guided Optimization (PGO) instrumentation in this build.
@@ -629,8 +687,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
             return (UnrealBuildToolConfig) this;
         }
 
-    
-    
+        
         
 /// <summary>
 /// Whether to optimize this build with Profile Guided Optimization (PGO).
@@ -641,8 +698,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
             return (UnrealBuildToolConfig) this;
         }
 
-    
-    
+        
         
 /// <summary>
 /// Enables "Shared PCHs", a feature which significantly speeds up compile times by attempting to
@@ -654,8 +710,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
             return (UnrealBuildToolConfig) this;
         }
 
-    
-    
+        
         
 /// <summary>
 /// Whether to use the :FASTLINK option when building with /DEBUG to create local PDBs on Windows. Fast, but currently seems to have problems finding symbols in the debugger.
@@ -666,8 +721,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
             return (UnrealBuildToolConfig) this;
         }
 
-    
-    
+        
         
 /// <summary>
 /// Outputs a map file as part of the build.
@@ -678,8 +732,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
             return (UnrealBuildToolConfig) this;
         }
 
-    
-    
+        
         
 /// <summary>
 /// Bundle version for Mac apps.
@@ -690,8 +743,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
             return (UnrealBuildToolConfig) this;
         }
 
-    
-    
+        
         
 /// <summary>
 /// Whether to deploy the executable after compilation on platforms that require deployment.
@@ -702,8 +754,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
             return (UnrealBuildToolConfig) this;
         }
 
-    
-    
+        
         
 /// <summary>
 /// Whether to disable linking for this target.
@@ -714,8 +765,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
             return (UnrealBuildToolConfig) this;
         }
 
-    
-    
+        
         
 /// <summary>
 /// Indicates that this is a formal build, intended for distribution. This flag is automatically set to true when Build.version has a changelist set.
@@ -728,8 +778,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
             return (UnrealBuildToolConfig) this;
         }
 
-    
-    
+        
         
 /// <summary>
 /// Whether to clean Builds directory on a remote Mac before building.
@@ -740,8 +789,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
             return (UnrealBuildToolConfig) this;
         }
 
-    
-    
+        
         
 /// <summary>
 /// Whether to write detailed timing info from the compiler and linker.
@@ -752,8 +800,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
             return (UnrealBuildToolConfig) this;
         }
 
-    
-    
+        
         
 /// <summary>
 /// Whether to parse timing data into a tracing file compatible with chrome://tracing.
@@ -764,8 +811,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
             return (UnrealBuildToolConfig) this;
         }
 
-    
-    
+        
         
 /// <summary>
 /// Whether to expose all symbols as public by default on POSIX platforms
@@ -776,8 +822,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
             return (UnrealBuildToolConfig) this;
         }
 
-    
-    
+        
         
 /// <summary>
 /// Allows overriding the toolchain to be created for this target. This must match the name of a class declared in the UnrealBuildTool assembly.
@@ -788,20 +833,18 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
             return (UnrealBuildToolConfig) this;
         }
 
-    
-    
+        
         
 /// <summary>
 /// Which C++ stanard to use for compiling this target
 /// </summary>
-        public UnrealBuildToolConfig CppStd(object val = null)
+        public UnrealBuildToolConfig CppStd(CppStandardVersion? val = null)
         {
-            AppendArgument(string.IsNullOrWhiteSpace(val?.ToString()) ? "-CppStd" : "-CppStd=" + val.ToString().DoubleQuoteIfNeeded());
+            AppendArgument(val == null ? "-CppStd" : "-CppStd=" + val.ToString());
             return (UnrealBuildToolConfig) this;
         }
 
-    
-    
+        
         
 /// <summary>
 /// The build version string
@@ -812,8 +855,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
             return (UnrealBuildToolConfig) this;
         }
 
-    
-    
+        
         
 /// <summary>
 /// Macros to define globally across the whole target.
@@ -824,8 +866,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
             return (UnrealBuildToolConfig) this;
         }
 
-    
-    
+        
         
 /// <summary>
 /// Macros to define across all macros in the project.
@@ -836,8 +877,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
             return (UnrealBuildToolConfig) this;
         }
 
-    
-    
+        
         
 /// <summary>
 /// Path to a manifest to output for this target
@@ -848,8 +888,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
             return (UnrealBuildToolConfig) this;
         }
 
-    
-    
+        
         
 /// <summary>
 /// Path to a list of dependencies for this target, when precompiling
@@ -860,8 +899,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
             return (UnrealBuildToolConfig) this;
         }
 
-    
-    
+        
         
 /// <summary>
 /// Whether to ignore violations to the shared build environment (eg. editor targets modifying definitions)
@@ -872,8 +910,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
             return (UnrealBuildToolConfig) this;
         }
 
-    
-    
+        
         
 /// <summary>
 /// Additional arguments to pass to the compiler
@@ -884,8 +921,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
             return (UnrealBuildToolConfig) this;
         }
 
-    
-    
+        
         
 /// <summary>
 /// Additional arguments to pass to the linker
@@ -896,8 +932,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
             return (UnrealBuildToolConfig) this;
         }
 
-    
-    
+        
         
 /// <summary>
 /// Whether to build the iOS project as a framework.
@@ -908,8 +943,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
             return (UnrealBuildToolConfig) this;
         }
 
-    
-    
+        
         
 /// <summary>
 /// Whether to generate a dSYM file or not.
@@ -920,8 +954,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
             return (UnrealBuildToolConfig) this;
         }
 
-    
-    
+        
         
 /// <summary>
 /// Whether to generate a dSYM bundle (as opposed to single file dSYM)
@@ -932,8 +965,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
             return (UnrealBuildToolConfig) this;
         }
 
-    
-    
+        
         
 /// <summary>
 /// Lists Architectures that you want to build
@@ -944,8 +976,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
             return (UnrealBuildToolConfig) this;
         }
 
-    
-    
+        
         
 /// <summary>
 /// Lists GPU Architectures that you want to build (mostly used for mobile etc.)
@@ -956,8 +987,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
             return (UnrealBuildToolConfig) this;
         }
 
-    
-    
+        
         
 /// <summary>
 /// Ignore AppBundle (AAB) generation setting if "-ForceAPKGeneration" specified
@@ -968,8 +998,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
             return (UnrealBuildToolConfig) this;
         }
 
-    
-    
+        
         
 /// <summary>
 /// Version of the compiler toolchain to use on HoloLens. A value of "default" will be changed to a specific version at UBT startup.
@@ -980,8 +1009,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
             return (UnrealBuildToolConfig) this;
         }
 
-    
-    
+        
         
 /// <summary>
 /// Version of the compiler toolchain to use on HoloLens. A value of "default" will be changed to a specific version at UBT startup.
@@ -992,8 +1020,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
             return (UnrealBuildToolConfig) this;
         }
 
-    
-    
+        
         
 /// <summary>
 /// Version of the compiler toolchain to use on HoloLens. A value of "default" will be changed to a specific version at UBT startup.
@@ -1004,8 +1031,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
             return (UnrealBuildToolConfig) this;
         }
 
-    
-    
+        
         
 /// <summary>
 /// Version of the compiler toolchain to use on HoloLens. A value of "default" will be changed to a specific version at UBT startup.
@@ -1016,8 +1042,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
             return (UnrealBuildToolConfig) this;
         }
 
-    
-    
+        
         
 /// <summary>
 /// Whether to strip iOS symbols or not (implied by Shipping config).
@@ -1028,8 +1053,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
             return (UnrealBuildToolConfig) this;
         }
 
-    
-    
+        
         
 /// <summary>
 /// If true, then a stub IPA will be generated when compiling is done (minimal files needed for a valid IPA).
@@ -1040,8 +1064,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
             return (UnrealBuildToolConfig) this;
         }
 
-    
-    
+        
         
 /// <summary>
 /// Don't generate crashlytics data
@@ -1052,8 +1075,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
             return (UnrealBuildToolConfig) this;
         }
 
-    
-    
+        
         
 /// <summary>
 /// Don't generate crashlytics data
@@ -1064,8 +1086,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
             return (UnrealBuildToolConfig) this;
         }
 
-    
-    
+        
         
 /// <summary>
 /// Mark the build for distribution
@@ -1076,8 +1097,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
             return (UnrealBuildToolConfig) this;
         }
 
-    
-    
+        
         
 /// <summary>
 /// Manual override for the provision to use. Should be a full path.
@@ -1088,8 +1108,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
             return (UnrealBuildToolConfig) this;
         }
 
-    
-    
+        
         
 /// <summary>
 /// Imports the given certificate (inc private key) into a temporary keychain before signing.
@@ -1100,8 +1119,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
             return (UnrealBuildToolConfig) this;
         }
 
-    
-    
+        
         
 /// <summary>
 /// Password for the imported certificate
@@ -1112,8 +1130,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
             return (UnrealBuildToolConfig) this;
         }
 
-    
-    
+        
         
 /// <summary>
 /// Enables memory sanitizer (MSan)
@@ -1124,8 +1141,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
             return (UnrealBuildToolConfig) this;
         }
 
-    
-    
+        
         
 /// <summary>
 /// Enables "thin" LTO
@@ -1136,8 +1152,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
             return (UnrealBuildToolConfig) this;
         }
 
-    
-    
+        
         
 /// <summary>
 /// Use existing static libraries for all engine modules in this target.
@@ -1148,8 +1163,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
             return (UnrealBuildToolConfig) this;
         }
 
-    
-    
+        
         
 /// <summary>
 /// Whether XGE may be used.
@@ -1160,8 +1174,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
             return (UnrealBuildToolConfig) this;
         }
 
-    
-    
+        
         
 /// <summary>
 /// Whether FASTBuild may be used.
@@ -1172,8 +1185,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
             return (UnrealBuildToolConfig) this;
         }
 
-    
-    
+        
         
 /// <summary>
 /// Enables support for very fast iterative builds by caching target data. Turning this on causes Unreal Build Tool to emit
@@ -1202,8 +1214,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
             return (UnrealBuildToolConfig) this;
         }
 
-    
-    
+        
         
 /// <summary>
 /// Number of actions that can be executed in parallel. If 0 then code will pick a default based
@@ -1215,8 +1226,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
             return (UnrealBuildToolConfig) this;
         }
 
-    
-    
+        
         
 /// <summary>
 /// If true, force header regeneration. Intended for the build machine.
@@ -1227,8 +1237,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
             return (UnrealBuildToolConfig) this;
         }
 
-    
-    
+        
         
 /// <summary>
 /// If true, do not build UHT, assume it is already built.
@@ -1239,8 +1248,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
             return (UnrealBuildToolConfig) this;
         }
 
-    
-    
+        
         
 /// <summary>
 /// If true, fail if any of the generated header files is out of date.
@@ -1251,8 +1259,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
             return (UnrealBuildToolConfig) this;
         }
 
-    
-    
+        
         
 /// <summary>
 /// True if hot-reload from IDE is allowed.
@@ -1263,8 +1270,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
             return (UnrealBuildToolConfig) this;
         }
 
-    
-    
+        
         
 /// <summary>
 /// Whether to skip compiling rules assemblies and just assume they are valid
@@ -1275,20 +1281,18 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
             return (UnrealBuildToolConfig) this;
         }
 
-    
-    
+        
         
 /// <summary>
 /// Version of the compiler toolchain to use on Windows platform. A value of "default" will be changed to a specific version at UBT start up.
 /// </summary>
-        public UnrealBuildToolConfig Compiler(object val = null)
+        public UnrealBuildToolConfig Compiler(WindowsCompiler? val = null)
         {
-            AppendArgument(string.IsNullOrWhiteSpace(val?.ToString()) ? "-Compiler" : "-Compiler=" + val.ToString().DoubleQuoteIfNeeded());
+            AppendArgument(val == null ? "-Compiler" : "-Compiler=" + val.ToString());
             return (UnrealBuildToolConfig) this;
         }
 
-    
-    
+        
         
 /// <summary>
 /// The specific toolchain version to use. This may be a specific version number (for example, "14.13.26128"), the string "Latest" to select the newest available version, or
@@ -1301,20 +1305,18 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
             return (UnrealBuildToolConfig) this;
         }
 
-    
-    
+        
         
 /// <summary>
 /// The static analyzer to use.
 /// </summary>
-        public UnrealBuildToolConfig StaticAnalyzer(object val = null)
+        public UnrealBuildToolConfig StaticAnalyzer(WindowsStaticAnalyzer? val = null)
         {
-            AppendArgument(string.IsNullOrWhiteSpace(val?.ToString()) ? "-StaticAnalyzer" : "-StaticAnalyzer=" + val.ToString().DoubleQuoteIfNeeded());
+            AppendArgument(val == null ? "-StaticAnalyzer" : "-StaticAnalyzer=" + val.ToString());
             return (UnrealBuildToolConfig) this;
         }
 
-    
-    
+        
         
 /// <summary>
 /// Whether we should export a file containing .obj to source file mappings.
@@ -1325,8 +1327,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
             return (UnrealBuildToolConfig) this;
         }
 
-    
-    
+        
         
 /// <summary>
 /// Enables strict standard conformance mode (/permissive-) in VS2017+.
@@ -1337,8 +1338,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
             return (UnrealBuildToolConfig) this;
         }
 
-    
-    
+        
         
 /// <summary>
 /// Print out files that are included by each source file
@@ -1349,8 +1349,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
             return (UnrealBuildToolConfig) this;
         }
 
-    
-    
+        
         
 /// <summary>
 /// The amount of detail to write to the log
@@ -1361,8 +1360,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
             return (UnrealBuildToolConfig) this;
         }
 
-    
-    
+        
         
 /// <summary>
 /// The amount of detail to write to the log
@@ -1373,8 +1371,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
             return (UnrealBuildToolConfig) this;
         }
 
-    
-    
+        
         
 /// <summary>
 /// Specifies the path to a log file to write. Note that the default mode (eg. building, generating project files) will create a log file by default if this not specified.
@@ -1385,8 +1382,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
             return (UnrealBuildToolConfig) this;
         }
 
-    
-    
+        
         
 /// <summary>
 /// Whether to include timestamps in the log
@@ -1397,8 +1393,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
             return (UnrealBuildToolConfig) this;
         }
 
-    
-    
+        
         
 /// <summary>
 /// Whether to format messages in MsBuild format
@@ -1409,8 +1404,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
             return (UnrealBuildToolConfig) this;
         }
 
-    
-    
+        
         
 /// <summary>
 /// Whether to write progress markup in a format that can be parsed by other programs
@@ -1421,8 +1415,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
             return (UnrealBuildToolConfig) this;
         }
 
-    
-    
+        
         
 /// <summary>
 /// Whether to ignore the mutex
@@ -1433,8 +1426,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
             return (UnrealBuildToolConfig) this;
         }
 
-    
-    
+        
         
 /// <summary>
 /// Whether to wait for the mutex rather than aborting immediately
@@ -1445,8 +1437,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
             return (UnrealBuildToolConfig) this;
         }
 
-    
-    
+        
         
 /// <summary>
 /// Whether to wait for the mutex rather than aborting immediately
@@ -1457,8 +1448,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
             return (UnrealBuildToolConfig) this;
         }
 
-    
-    
+        
         
 /// <summary>
 /// The mode to execute
@@ -1469,8 +1459,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
             return (UnrealBuildToolConfig) this;
         }
 
-    
-    
+        
         
 /// <summary>
 /// The mode to execute
@@ -1481,8 +1470,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
             return (UnrealBuildToolConfig) this;
         }
 
-    
-    
+        
         
 /// <summary>
 /// The mode to execute
@@ -1493,8 +1481,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
             return (UnrealBuildToolConfig) this;
         }
 
-    
-    
+        
         
 /// <summary>
 /// The mode to execute
@@ -1505,8 +1492,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
             return (UnrealBuildToolConfig) this;
         }
 
-    
-    
+        
         
 /// <summary>
 /// The mode to execute
@@ -1517,8 +1503,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
             return (UnrealBuildToolConfig) this;
         }
 
-    
-    
+        
         
 /// <summary>
 /// The mode to execute
@@ -1529,8 +1514,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
             return (UnrealBuildToolConfig) this;
         }
 
-    
-    
+        
         
 /// <summary>
 /// The mode to execute
@@ -1541,8 +1525,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
             return (UnrealBuildToolConfig) this;
         }
 
-    
-    
+        
         
 /// <summary>
 /// The mode to execute
@@ -1553,8 +1536,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
             return (UnrealBuildToolConfig) this;
         }
 
-    
-    
+        
         
 /// <summary>
 /// The mode to execute
@@ -1565,8 +1547,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
             return (UnrealBuildToolConfig) this;
         }
 
-    
-    
+        
         
 /// <summary>
 /// The mode to execute
@@ -1577,8 +1558,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
             return (UnrealBuildToolConfig) this;
         }
 
-    
-    
+        
         
 /// <summary>
 /// The mode to execute
@@ -1589,8 +1569,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
             return (UnrealBuildToolConfig) this;
         }
 
-    
-    
+        
         
 /// <summary>
 /// The mode to execute
@@ -1601,8 +1580,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
             return (UnrealBuildToolConfig) this;
         }
 
-    
-    
+        
         
 /// <summary>
 /// The mode to execute
@@ -1613,8 +1591,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
             return (UnrealBuildToolConfig) this;
         }
 
-    
-    
+        
         
 /// <summary>
 /// The mode to execute
@@ -1625,8 +1602,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
             return (UnrealBuildToolConfig) this;
         }
 
-    
-    
+        
         
 /// <summary>
 /// The mode to execute
@@ -1637,9 +1613,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
             return (UnrealBuildToolConfig) this;
         }
 
-    
-
-    
+        
 /// <summary>
 /// Builds a target
 /// </summary>
@@ -1647,13 +1621,10 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
     {
         public override string Name => "Build";
     
-    
-    
         private ToolConfig[] _configs = null;
         protected override ToolConfig[] Configs => _configs ??= new ToolConfig[]
         {
         };
-        
     
         public override string Gather()
         {
@@ -1663,8 +1634,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
     }
 
     protected readonly BuildConfig BuildStorage = new();
-    
-    
+        
 /// <summary>
 /// Cleans build products and intermediates for the target. This deletes files which are named consistently with the target being built
 /// (e.g. UE4Editor-Foo-Win64-Debug.dll) rather than an actual record of previous build products.
@@ -1673,13 +1643,10 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
     {
         public override string Name => "Clean";
     
-    
-    
         private ToolConfig[] _configs = null;
         protected override ToolConfig[] Configs => _configs ??= new ToolConfig[]
         {
         };
-        
     
         public override string Gather()
         {
@@ -1689,8 +1656,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
     }
 
     protected readonly CleanConfig CleanStorage = new();
-    
-    
+        
 /// <summary>
 /// Invokes the deployment handler for a target.
 /// </summary>
@@ -1698,13 +1664,10 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
     {
         public override string Name => "Deploy";
     
-    
-    
         private ToolConfig[] _configs = null;
         protected override ToolConfig[] Configs => _configs ??= new ToolConfig[]
         {
         };
-        
     
         public override string Gather()
         {
@@ -1714,8 +1677,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
     }
 
     protected readonly DeployConfig DeployStorage = new();
-    
-    
+        
 /// <summary>
 /// Builds a target
 /// </summary>
@@ -1723,13 +1685,10 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
     {
         public override string Name => "Execute";
     
-    
-    
         private ToolConfig[] _configs = null;
         protected override ToolConfig[] Configs => _configs ??= new ToolConfig[]
         {
         };
-        
     
         public override string Gather()
         {
@@ -1739,8 +1698,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
     }
 
     protected readonly ExecuteConfig ExecuteStorage = new();
-    
-    
+        
 /// <summary>
 /// Exports a target as a JSON file
 /// </summary>
@@ -1748,13 +1706,10 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
     {
         public override string Name => "JsonExport";
     
-    
-    
         private ToolConfig[] _configs = null;
         protected override ToolConfig[] Configs => _configs ??= new ToolConfig[]
         {
         };
-        
     
         public override string Gather()
         {
@@ -1764,20 +1719,16 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
     }
 
     protected readonly JsonExportConfig JsonExportStorage = new();
-    
-    
+        
     
     public  class IOSPostBuildSyncConfig : ToolConfig
     {
         public override string Name => "IOSPostBuildSync";
     
-    
-    
         private ToolConfig[] _configs = null;
         protected override ToolConfig[] Configs => _configs ??= new ToolConfig[]
         {
         };
-        
     
         public override string Gather()
         {
@@ -1787,7 +1738,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
     }
 
     protected readonly IOSPostBuildSyncConfig IOSPostBuildSyncStorage = new();
-    
+
     private ToolConfig[] _configs = null;
     protected override ToolConfig[] Configs => _configs ??= new ToolConfig[]
     {
@@ -1798,8 +1749,6 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
                 JsonExportStorage,
                 IOSPostBuildSyncStorage,
             };
-    
-
 /// <summary>
 /// Builds a target
 /// </summary>
@@ -1809,7 +1758,6 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         AppendSubtool(BuildStorage);
         return (UnrealBuildToolConfig) this;
     }
-    
 /// <summary>
 /// Cleans build products and intermediates for the target. This deletes files which are named consistently with the target being built
 /// (e.g. UE4Editor-Foo-Win64-Debug.dll) rather than an actual record of previous build products.
@@ -1820,7 +1768,6 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         AppendSubtool(CleanStorage);
         return (UnrealBuildToolConfig) this;
     }
-    
 /// <summary>
 /// Invokes the deployment handler for a target.
 /// </summary>
@@ -1830,7 +1777,6 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         AppendSubtool(DeployStorage);
         return (UnrealBuildToolConfig) this;
     }
-    
 /// <summary>
 /// Builds a target
 /// </summary>
@@ -1840,7 +1786,6 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         AppendSubtool(ExecuteStorage);
         return (UnrealBuildToolConfig) this;
     }
-    
 /// <summary>
 /// Exports a target as a JSON file
 /// </summary>
@@ -1850,7 +1795,6 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         AppendSubtool(JsonExportStorage);
         return (UnrealBuildToolConfig) this;
     }
-    
 
     public UnrealBuildToolConfig IOSPostBuildSync(Action<IOSPostBuildSyncConfig> configurator = null)
     {
@@ -1858,7 +1802,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         AppendSubtool(IOSPostBuildSyncStorage);
         return (UnrealBuildToolConfig) this;
     }
-    
+
     public override string Gather()
     {
         Arguments.Insert(0, "UnrealBuildTool");

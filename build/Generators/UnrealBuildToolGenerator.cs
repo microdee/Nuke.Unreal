@@ -93,6 +93,8 @@ public partial class UnrealBuildToolGenerator : ToolGenerator
 
                 bool hasValue = string.IsNullOrWhiteSpace(cmdLine.Value);
                 var type = ArgumentModelType.Switch;
+                EnumData enumData = null;
+                Type enumType = null;
                 if (hasValue)
                 {
                     type = ArgumentModelType.Text;
@@ -104,10 +106,34 @@ public partial class UnrealBuildToolGenerator : ToolGenerator
                     
                     else if (memberType.IsArray && memberType.GetElementType() != null)
                     {
-                        if (IsScalarType(memberType.GetElementType()))
+                        var elementType = memberType.GetElementType();
+                        if (IsScalarType(elementType))
                             type = ArgumentModelType.ScalarCollection;
+                        else if (elementType.IsEnum)
+                        {
+                            type = ArgumentModelType.EnumCollection;
+                            enumType = elementType;
+                        }
                         else type = ArgumentModelType.TextCollection;
                     }
+                    else if (memberType.IsEnum)
+                    {
+                        type = ArgumentModelType.Enum;
+                        enumType = memberType;
+                    }
+                }
+
+                if (type == ArgumentModelType.Enum || type == ArgumentModelType.EnumCollection)
+                {
+                    enumData = new(
+                        enumType.Name,
+                        enumType.GetDocumentation()?.DocsXmlComment(),
+                        enumType.GetFields(BindingFlags.Static | BindingFlags.Public)
+                            .Select(_ => new EnumEntry(
+                                _.Name,
+                                _.GetDocumentation()?.DocsXmlComment()
+                            ))
+                    );
                 }
 
                 return new() {
@@ -118,7 +144,8 @@ public partial class UnrealBuildToolGenerator : ToolGenerator
                     ValueSetter = "=:".Any(c => c == cmdLine.Prefix[^1])
                         ? cmdLine.Prefix[^1].ToString()
                         : "=",
-                    DocsXml = member.GetDocumentation()?.DocsXmlComment() ?? ""
+                    DocsXml = member.GetDocumentation()?.DocsXmlComment() ?? "",
+                    Enum = enumData
                 };
             }
 

@@ -1,0 +1,20 @@
+{{- func build_enum(enum_data) }}
+{{ enum_data.docs_xml }}
+public enum {{ enum_data.name }}
+{
+    {{~ for entry in enum_data.entries }}
+    {{ entry.docs_xml }}
+    {{ entry.name }},
+    {{ end ~}}
+}
+{{ end -}}
+{{- func build_enums(tool) }}
+{{- for arg in tool.arguments }}
+{{- if arg.enum != null }}
+{{ build_enum arg.enum }}
+{{ end -}}
+{{ end -}}
+{{- for subtool in tool.subtools }}
+{{ build_enums subtool }}
+{{ end -}}
+{{ end -}}

@@ -1,4 +1,4 @@
-{{ func build_argument(arg, config_type) }}
+{{- func build_argument(arg, config_type) }}
     
     {{~ arg.docs_xml }}
     public {{ config_type.final }} {{ arg.config_name }}({{ arg.parameters_renderer }})
@@ -6,22 +6,21 @@
         AppendArgument({{ arg.command_line_renderer }});
         return ({{ config_type.final }}) this;
     }
-{{ end }}
-
-{{ func build_tool(tool) }}
+{{ end -}}
+{{- func build_tool(tool) }}
 {{~ tool.docs_xml }}
 public {{ tool.class_keywords }} class {{ tool.config_type.base }} : ToolConfig
 {
     public override string Name => "{{ tool.config_name }}";
 
-    {{~ for arg in tool.arguments }}
+    {{- for arg in tool.arguments }}
     {{ build_argument arg tool.config_type }}
-    {{ end ~}}
+    {{- end -}}
 
-    {{~ for subtool in tool.subtools }}
+    {{- for subtool in tool.subtools }}
     {{ build_tool subtool }}
     protected readonly {{ subtool.config_type.final }} {{ subtool.config_name }}Storage = new();
-    {{ end ~}}
+    {{- end }}
 
     private ToolConfig[] _configs = null;
     protected override ToolConfig[] Configs => _configs ??= new ToolConfig[]
@@ -31,7 +30,7 @@ public {{ tool.class_keywords }} class {{ tool.config_type.base }} : ToolConfig
         {{ end ~}}
     };
     
-    {{~ for subtool in tool.subtools }}
+    {{- for subtool in tool.subtools }}
     {{~ subtool.docs_xml }}
     public {{ tool.config_type.final }} {{ subtool.config_name }}(Action<{{ subtool.config_type.final }}> configurator = null)
     {
@@ -39,7 +38,7 @@ public {{ tool.class_keywords }} class {{ tool.config_type.base }} : ToolConfig
         AppendSubtool({{ subtool.config_name }}Storage);
         return ({{ tool.config_type.final }}) this;
     }
-    {{ end ~}}
+    {{- end }}
 
     public override string Gather()
     {
@@ -47,4 +46,4 @@ public {{ tool.class_keywords }} class {{ tool.config_type.base }} : ToolConfig
         return base.Gather();
     }
 }
-{{ end }}
+{{ end -}}
