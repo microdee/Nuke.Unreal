@@ -21,12 +21,6 @@ public partial class UnrealBuildToolGenerator : ToolGenerator
 
     private record UbtModel(ToolModel UnrealBuildTool);
 
-    [GeneratedRegex("[^a-zA-Z0-9_]")]
-    private static partial Regex InvalidCharacters();
-
-    [GeneratedRegex("^")]
-    private static partial Regex NewLine();
-
     private object _model = null;
     protected override object Model
     {
@@ -67,14 +61,7 @@ public partial class UnrealBuildToolGenerator : ToolGenerator
                     cmdLine.Prefix = $"-{member.Name}";
                 }
                 var name = cmdLine.Prefix[1..].TrimEnd('=').TrimEnd(':');
-                var csharpName = name[0] switch
-                {
-                    '_' => name,
-                    >= 'a' and <= 'z' => name,
-                    >= 'A' and <= 'Z' => name,
-                    _ => "_" + name
-                };
-                csharpName = InvalidCharacters().Replace(csharpName, "_").Pascalize();
+                var csharpName = name.EnsureIdentifierCompatibleName();
 
                 bool IsScalarType(Type T)
                 {
