@@ -7,5 +7,5 @@ using Microsoft.CodeAnalysis;
 namespace build.Generators;
 public interface IGatherArgumentsFromSource
 {
-    void Gather(ToolModel mainTool, SyntaxTree source);
+    void Gather(ToolModel mainTool, SyntaxTree source, IGatheringContext context);
 }

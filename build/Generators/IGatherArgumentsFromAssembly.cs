@@ -7,5 +7,5 @@ using System.Threading.Tasks;
 namespace build.Generators;
 public interface IGatherArgumentsFromAssembly
 {
-    void Gather(ToolModel mainTool, Assembly assembly);
+    void Gather(ToolModel mainTool, Assembly assembly, IGatheringContext context);
 }
