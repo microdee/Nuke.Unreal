@@ -26,14 +26,23 @@ public static class ToolModelExtensions
         var compareArgs = alsoSearchIn
             .Append(self)
             .Distinct()
-            .SelectMany(t => t.Arguments);
-        
-        if (compareArgs.Any(a => a.ConfigName.EqualsOrdinalIgnoreCase(arg.ConfigName)))
+            .SelectMany(t => t.Arguments)
+            .Where(a => a.ConfigName.EqualsOrdinalIgnoreCase(arg.ConfigName));
+            
+        bool addNew = true;
+        foreach(var otherArg in compareArgs)
         {
-            return false;
+            if (string.IsNullOrWhiteSpace(otherArg.DocsXml))
+            {
+                otherArg.DocsXml = arg.DocsXml;
+            }
+            otherArg.Enum ??= arg.Enum;
+            addNew = false;
         }
-
-        self.Arguments.Add(arg);
-        return true;
+        if (addNew)
+        {
+            self.Arguments.Add(arg);
+        }
+        return addNew;
     }
 }
