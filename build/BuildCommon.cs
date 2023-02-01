@@ -61,6 +61,7 @@ public static class BuildCommon
             select sd
         );
 
-    public static string DocsXmlComment(this string xml) =>
-        string.Join(Environment.NewLine, xml.Trim().SplitLineBreaks().Select(_ => "/// " + _.Trim()));
+    public static string DocsXmlComment(this string xml) => string.IsNullOrWhiteSpace(xml)
+        ? ""
+        : string.Join(Environment.NewLine, xml.Trim().SplitLineBreaks().Select(_ => "/// " + _.Trim()));
 }

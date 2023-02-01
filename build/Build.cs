@@ -70,11 +70,13 @@ class Build : NukeBuild
     Target GenerateTools => _ => _
         .Executes(() =>
         {
-            var generator = new UnrealBuildToolGenerator
-            {
-                UnrealVersion = UnrealVersion
-            };
-            generator.Generate(this);
+            // var generator = new UnrealBuildToolGenerator
+            // {
+            //     UnrealVersion = UnrealVersion
+            // };
+            // generator.Generate(this);
+
+            new UnrealAutomationToolGenerator().Test();
         });
 
     Target Restore => _ => _

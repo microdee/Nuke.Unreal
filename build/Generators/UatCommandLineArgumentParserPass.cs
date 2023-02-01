@@ -13,6 +13,15 @@ using Towel;
 
 namespace build.Generators;
 
+file static class UatCommandLineArgumentParserPassUtils
+{
+    public static bool MemberAssociable(this string a, string b)
+    {
+        return a.EqualsOrdinalIgnoreCase(b)
+        || a.TrimStart("b").EqualsOrdinalIgnoreCase(b);
+    }
+}
+
 public partial class UatCommandLineArgumentParserPass : IGatherArgumentsFromSource
 {
     [GeneratedRegex(@"(Parse|Get)(Optional)?Param")]
@@ -28,13 +37,16 @@ public partial class UatCommandLineArgumentParserPass : IGatherArgumentsFromSour
                 .First()
                 .Identifier.Text
             ));
+        
         foreach(var invocation in paramGetterInvocations)
         {
             var cliName = invocation.DescendantNodes()
                 .OfType<LiteralExpressionSyntax>()
                 .Where(n => n.IsKind(SyntaxKind.StringLiteralExpression))
+                .Select(n => n.Token.Text)
+                .Where(n => !string.IsNullOrWhiteSpace(n))
                 .FirstOrDefault()
-                ?.Token.Text?.TrimMatchingDoubleQuotes();
+                ?.TrimMatchingDoubleQuotes();
             
             if (string.IsNullOrWhiteSpace(cliName))
                 continue;
@@ -48,12 +60,11 @@ public partial class UatCommandLineArgumentParserPass : IGatherArgumentsFromSour
                 )
                 .Where(n => n != null)
                 .Select(n => n.GetText().ToString())
-                .Where(n => n.EqualsOrdinalIgnoreCase(cliName))
+                .Where(n => n.MemberAssociable(cliName))
                 .FirstOrDefault(cliName)
                 .EnsureIdentifierCompatibleName();
                 
             var indentation = "  ".Repeat((context as IHaveLogDisplayInfo)?.Indentation ?? 1);
-            Log.Information(indentation + "{0} {1}", cliName, csharpName);
 
             var parentClass = invocation.Ancestors()
                 .OfType<ClassDeclarationSyntax>()
@@ -63,21 +74,45 @@ public partial class UatCommandLineArgumentParserPass : IGatherArgumentsFromSour
             
             if (parentClass != null)
             {
-                var propertyCandidate = parentClass.Members
+                var propertyCandidates = parentClass.Members
                     .OfType<PropertyDeclarationSyntax>()
-                    .Where(n => n.Identifier.Text.EqualsOrdinalIgnoreCase(csharpName))
-                    .FirstOrDefault();
+                    .Where(n => n.Identifier.Text.MemberAssociable(csharpName))
+                    .Cast<MemberDeclarationSyntax>();
                 
-                if (propertyCandidate?.HasStructuredTrivia ?? false)
+                var fieldCandidates = parentClass.Members
+                    .OfType<FieldDeclarationSyntax>()
+                    .Where(n => n
+                        .DescendantNodes()
+                        .OfType<VariableDeclaratorSyntax>()
+                        .FirstOrDefault()
+                        ?.Identifier.Text.MemberAssociable(csharpName) ?? false
+                    )
+                    .Cast<MemberDeclarationSyntax>();
+
+                var memberCandidate = propertyCandidates.Concat(fieldCandidates).FirstOrDefault();
+                
+                if (memberCandidate?.HasStructuredTrivia ?? false)
                 {
-                    documentation = propertyCandidate.GetLeadingTrivia()
-                        .Where(t => t.IsKind(SyntaxKind.SingleLineDocumentationCommentTrivia))
-                        .FirstOrDefault().FullSpan.ToString();
+                    var doscSpan = memberCandidate.GetLeadingTrivia()
+                        .Where(t =>
+                            t.IsKind(SyntaxKind.SingleLineDocumentationCommentTrivia)
+                            || t.IsKind(SyntaxKind.MultiLineDocumentationCommentTrivia)
+                        )
+                        .FirstOrDefault()
+                        .FullSpan;
+
+                    documentation = source.GetText().GetSubText(doscSpan)
+                        .ToString()
+                        .Trim()
+                        .Replace("///", "")
+                        .DocsXmlComment();
                     
+                    // TODO: Make documentation more modular + add source line info
+                    // Log.Information(documentation);
                 }
             }
             
-            mainTool.AddArgument(
+            if (mainTool.AddArgument(
                 new() {
                     ConfigName = csharpName,
                     CliName = "-" + cliName,
@@ -85,7 +120,10 @@ public partial class UatCommandLineArgumentParserPass : IGatherArgumentsFromSour
                     DocsXml = documentation
                 },
                 (context as IHaveSubTools)?.SubTools ?? Array.Empty<ToolModel>()
-            );
+            ))
+            {
+                Log.Information(indentation + "{0} {1}", cliName, csharpName);
+            }
         }
     }
 }
