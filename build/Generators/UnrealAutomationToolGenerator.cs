@@ -42,15 +42,9 @@ public class UnrealAutomationToolGenerator : ToolGenerator
             ConfigName = "UnrealAutomationTool",
             CliName = "UnrealAutomationTool",
             ConfigType = new(TemplateName.Replace("Generated", ""), TemplateName),
-            ClassKeywords = "abstract",
-            DocsXml = """
-            /// <summary>
-            /// Unreal Automation Tool is a vast collection of scripts solving all aspects
-            /// of deploying a program made in Unreal Engine
-            /// </summary>
-            """
-        };
+            ClassKeywords = "abstract"
+        }.AddSummary("Unreal Automation Tool is a vast collection of scripts solving all aspects of deploying a program made in Unreal Engine");
         var testPass = new UatCommandLineArgumentParserPass();
-        testPass.Gather(toolModel, syntaxTree, null);
+        // testPass.Gather(toolModel, syntaxTree, null);
     }
 }
