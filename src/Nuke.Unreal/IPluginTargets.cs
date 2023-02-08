@@ -16,7 +16,7 @@ namespace Nuke.Unreal
     {
         public static readonly Dictionary<IPluginTargets, PluginCache> Instances = new();
         
-        public AbsolutePath ToPlugin;
+        public AbsolutePath PluginPath;
         public JObject PluginObject;
     }
 
@@ -53,11 +53,11 @@ namespace Nuke.Unreal
         /// If not overridden Nuke.Unreal will traverse upwards on the directory tree,
         /// then sift through all subdirectories recursively (ignoring some known folders)
         /// </summary>
-        AbsolutePath ToPlugin
+        AbsolutePath PluginPath
         {
             get
             {
-                if(this.Cache().ToPlugin != null) return this.Cache().ToPlugin;
+                if(this.Cache().PluginPath != null) return this.Cache().PluginPath;
 
                 if (this is not UnrealBuild self)
                 {
@@ -68,17 +68,17 @@ namespace Nuke.Unreal
                 if(BuildCommon.LookAroundFor(f => f.EndsWith(".uplugin"), out var candidate))
                 {
                     Log.Information($"Found plugin at {candidate}");
-                    this.Cache().ToPlugin = candidate;
+                    this.Cache().PluginPath = candidate;
                     return candidate;
                 }
                 throw new FileNotFoundException("No .uplugin was found");
             }
         }
 
-        string PluginName => Path.GetFileNameWithoutExtension(ToPlugin);
+        string PluginName => Path.GetFileNameWithoutExtension(PluginPath);
 
         JObject PluginObject =>
-            this.Cache().PluginObject ?? (this.Cache().PluginObject = JObject.Parse(File.ReadAllText(ToPlugin)));
+            this.Cache().PluginObject ?? (this.Cache().PluginObject = JObject.Parse(File.ReadAllText(PluginPath)));
 
         Target Checkout => _ => _
             .Description("Switch to the specified Unreal Engine version and platform for plugin development or packaging")
@@ -98,7 +98,7 @@ namespace Nuke.Unreal
                     module["WhitelistPlatforms"] = new JArray(self.Platform.ToString());
                 }
 
-                Unreal.WriteJson(PluginObject, ToPlugin);
+                Unreal.WriteJson(PluginObject, PluginPath);
 
                 self.ProjectObject["EngineAssociation"] = self.EngineVersion.EngineAssociation;
                 self.ProjectObject["EngineVersionPatch"] = self.EngineVersion.FullVersionName;
@@ -133,7 +133,7 @@ namespace Nuke.Unreal
 
                 Unreal.AutomationTool(self.GetEngineVersionFromProject())(
                     "BuildPlugin"
-                    + $" -Plugin=\"{ToPlugin}\""
+                    + $" -Plugin=\"{PluginPath}\""
                     + $" -Package=\"{targetDir}\""
                     + " -CreateSubFolder"
                     + self.UatArgs.AppendAsArguments()
@@ -165,11 +165,11 @@ namespace Nuke.Unreal
                     DeleteFile(targetDir.Parent / archiveFileName);
 
                 CopyFileToDirectory(
-                    ToPlugin, targetDir,
+                    PluginPath, targetDir,
                     FileExistsPolicy.Overwrite
                 );
                 CopyDirectoryRecursively(
-                    ToPlugin.Parent / "Source",
+                    PluginPath.Parent / "Source",
                     targetDir / "Source",
                     DirectoryExistsPolicy.Merge,
                     excludeDirectory: d => d.Name.StartsWith(".git", StringComparison.InvariantCultureIgnoreCase),
@@ -178,16 +178,16 @@ namespace Nuke.Unreal
                         || f.Name.EndsWith(".md", StringComparison.InvariantCultureIgnoreCase)
                 );
 
-                if(Directory.Exists(ToPlugin.Parent / "Resources"))
+                if(Directory.Exists(PluginPath.Parent / "Resources"))
                     CopyDirectoryRecursively(
-                        ToPlugin.Parent / "Resources",
+                        PluginPath.Parent / "Resources",
                         targetDir / "Resources",
                         DirectoryExistsPolicy.Merge
                     );
                 
-                if(Directory.Exists(ToPlugin.Parent / "Config"))
+                if(Directory.Exists(PluginPath.Parent / "Config"))
                     CopyDirectoryRecursively(
-                        ToPlugin.Parent / "Config",
+                        PluginPath.Parent / "Config",
                         targetDir / "Config",
                         DirectoryExistsPolicy.Merge
                     );
