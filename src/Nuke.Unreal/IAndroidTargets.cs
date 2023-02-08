@@ -346,7 +346,7 @@ namespace Nuke.Unreal
                 var intermediateJavaSourcesFolder = self.ProjectFolder / "Intermediate" / "Android" / "arm64" / "gradle" / "app" / "src" / "main" / "java";
                 var searchRoot = self.PluginsFolder;
 
-                using var watcher = new FileSystemWatcher()
+                using var watcher = new FileSystemWatcher(intermediateJavaSourcesFolder)
                 {
                     NotifyFilter = NotifyFilters.LastWrite
                         | NotifyFilters.DirectoryName
