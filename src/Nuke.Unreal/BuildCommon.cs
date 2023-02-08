@@ -38,8 +38,19 @@ namespace Nuke.Unreal
             return arg;
         }
 
-        public static string AppendAsArguments(this IEnumerable<string> input) =>
-            (input?.IsEmpty() ?? true) ? "" : " " + string.Join(' ', input.Select(ProcessArgument));
+        public static IEnumerable<string> AsArguments(this IEnumerable<string> args) =>
+            args.Select(ProcessArgument);
+
+        public static string AppendAsArguments(this IEnumerable<string> input, bool leadingSpace = true) =>
+            (input?.IsEmpty() ?? true)
+                ? ""
+                : (leadingSpace ? " " : "") + string.Join(' ', input.Select(ProcessArgument));
+
+        public static string DoubleQuoteIfNeeded(this object self) =>
+            " \t\n\f".Any(ws => self.ToString().Contains(ws)) ? self.ToString().DoubleQuote() : self.ToString();
+
+        public static IEnumerable<string> DoubleQuoteIfNeeded(this IEnumerable<object> self) =>
+            self.Select(DoubleQuoteIfNeeded);
 
         public static AbsolutePath GetContentsFolder()
         {
@@ -73,12 +84,12 @@ namespace Nuke.Unreal
         
         public static IEnumerable<AbsolutePath> SubTreeProject(this AbsolutePath origin, Func<AbsolutePath, bool> filter = null) =>
             origin.SubTree(sd => filter?.Invoke(sd) ?? true
-                && !Path.GetFileName(sd).StartsWith(".")
-                && !Path.GetFileName(sd).StartsWith("Nuke.")
-                && Path.GetFileName(sd) != "Intermediate"
-                && Path.GetFileName(sd) != "Binaries"
-                && Path.GetFileName(sd) != "ThirdParty"
-                && Path.GetFileName(sd) != "Saved"
+                && !sd.Name.StartsWith(".")
+                && !sd.Name.StartsWith("Nuke.")
+                && sd.Name != "Intermediate"
+                && sd.Name != "Binaries"
+                && sd.Name != "ThirdParty"
+                && sd.Name != "Saved"
             );
         
         public static bool LookAroundFor(Func<string, bool> predicate, out AbsolutePath result)

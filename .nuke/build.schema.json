@@ -89,6 +89,7 @@
             "type": "string",
             "enum": [
               "Compile",
+              "GenerateTools",
               "PublishNuget",
               "Restore",
               "Test"
@@ -106,11 +107,16 @@
             "type": "string",
             "enum": [
               "Compile",
+              "GenerateTools",
               "PublishNuget",
               "Restore",
               "Test"
             ]
           }
+        },
+        "UnrealVersion": {
+          "type": "string",
+          "description": "Reference Unreal version"
         },
         "Verbosity": {
           "type": "string",

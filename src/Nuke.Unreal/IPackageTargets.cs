@@ -58,7 +58,7 @@ namespace Nuke.Unreal
                 var androidTextureMode = SelfAs<IAndroidTargets>()?.TextureMode
                     ?? new [] { AndroidCookFlavor.Multi };
 
-                var isAndroidPlatform = self.TargetPlatform == UnrealPlatform.Android;
+                var isAndroidPlatform = self.Platform == UnrealPlatform.Android;
                 var appLocalDir = self.UnrealEnginePath / "Engine" / "Binaries" / "ThirdParty" / "AppLocalDependencies";
                 var configCombination = isAndroidPlatform
                     ? (from config in self.Config from textureMode in androidTextureMode select (config, textureMode))
@@ -66,29 +66,28 @@ namespace Nuke.Unreal
                 configCombination.ForEach(combination =>
                 {
                     var (config, textureMode) = combination;
-                    Unreal.AutomationToolBatch(
-                        self.GetEngineVersionFromProject(),
-                        "BuildCookRun"
-                        + $" -ScriptsForProject=\"{self.ToProject}\""
-                        + $" -project=\"{self.ToProject}\""
-                        + $" -target={self.UnrealProjectName}"
-                        + $" -targetplatform={self.TargetPlatform}"
-                        + $" -platform={self.TargetPlatform}"
-                        + $" -clientconfig={config}"
-                        + $" -archivedirectory=\"{self.OutPath}\""
-                        + $" -applocaldirectory={appLocalDir}"
-                        + (InvokedTargets.Contains(self.Cook) ? " -skipcook" : " -cook")
-                        + " -build"
-                        + " -stage"
-                        + " -package"
-                        + " -archive"
-                        + (InvokedTargets.Contains(self.BuildEditor) ? " -nocompileeditor" : "")
-                        + (!InvokedTargets.Contains(self.Cook) && self.CookAll ? " -CookAll" : "")
-                        + PackageArguments.AppendAsArguments()
-                        + self.UatArgs.AppendAsArguments()
-                    )
-                    .WithWorkingDir(self.UnrealEnginePath)
-                    .Run();
+                    Unreal.AutomationTool(self.GetEngineVersionFromProject())(
+                        arguments:
+                            "BuildCookRun"
+                            + $" -ScriptsForProject=\"{self.ProjectPath}\""
+                            + $" -project=\"{self.ProjectPath}\""
+                            + $" -target={self.ProjectName}"
+                            + $" -targetplatform={self.Platform}"
+                            + $" -platform={self.Platform}"
+                            + $" -clientconfig={config}"
+                            + $" -archivedirectory=\"{self.OutPath}\""
+                            + $" -applocaldirectory={appLocalDir}"
+                            + (InvokedTargets.Contains(self.Cook) ? " -skipcook" : " -cook")
+                            + " -build"
+                            + " -stage"
+                            + " -package"
+                            + " -archive"
+                            + (InvokedTargets.Contains(self.BuildEditor) ? " -nocompileeditor" : "")
+                            + (!InvokedTargets.Contains(self.Cook) && self.CookAll ? " -CookAll" : "")
+                            + PackageArguments.AppendAsArguments()
+                            + self.UatArgs.AppendAsArguments(),
+                        workingDirectory: self.UnrealEnginePath
+                    );
                 });
             });
     }

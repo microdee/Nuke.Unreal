@@ -43,15 +43,15 @@ namespace Nuke.Unreal
         public virtual AbsolutePath OutPath { get; set; } = RootDirectory / ".deploy";
 
         [Parameter("Set platform for running targets")]
-        public virtual UnrealPlatform TargetPlatform { get; set; } = UnrealPlatform.FromFlag(Unreal.GetDefaultPlatform());
+        public virtual UnrealPlatform Platform { get; set; } = UnrealPlatform.FromFlag(Unreal.GetDefaultPlatform());
 
         [Parameter("The target configuration for building or packaging the project")]
         public virtual UnrealConfig[] Config { get; set; } = new [] {UnrealConfig.Development};
 
-        [Parameter("The target execution mode for building the project (Standalone or Editor")]
-        public virtual ExecMode[] RunIn { get; set; } = new [] {ExecMode.Standalone};
+        [Parameter("The Unreal target type for building the project")]
+        public virtual UnrealTargetType[] TargetType { get; set; } = new [] {UnrealTargetType.Game};
 
-        public EngineVersion TargetEngineVersion => new(UnrealVersion, CustomEnginePath);
+        public EngineVersion EngineVersion => new(UnrealVersion, CustomEnginePath);
         [Parameter("Extra arguments passed to UBT. It's recommended to use it only from command line, do not override.")]
         public virtual string[] UbtArgs { get; set; }
 
@@ -61,7 +61,7 @@ namespace Nuke.Unreal
         public EngineVersion GetEngineVersionFromProject() {
             var result = (ProjectObject["EngineVersionPatch"] ?? ProjectObject["EngineAssociation"]).ToString();
             if(!EngineVersion.ValidVersionString(result))
-                return TargetEngineVersion;
+                return EngineVersion;
             
             return new(result, CustomEnginePath);
         }
@@ -76,7 +76,7 @@ namespace Nuke.Unreal
         ) {
             var resultIni = new ConfigIni();
             extraConfigSubfolder = (extraConfigSubfolder ?? Enumerable.Empty<string>())
-                .Append(TargetPlatform.ToString());
+                .Append(Platform.ToString());
 
             IReadOnlyCollection<AbsolutePath> GlobIni(AbsolutePath folder)
             {
@@ -116,12 +116,12 @@ namespace Nuke.Unreal
 
             if (lowestLevel <= IniHierarchyLevel.Default && highestLevel >= IniHierarchyLevel.Default)
             {
-                var configFolder = UnrealProjectFolder / "Config";
+                var configFolder = ProjectFolder / "Config";
                 GatherInis(configFolder, resultIni);
             }
             if (lowestLevel <= IniHierarchyLevel.Saved && highestLevel >= IniHierarchyLevel.Saved)
             {
-                var configFolder = UnrealProjectFolder / "Saved" / "Config";
+                var configFolder = ProjectFolder / "Saved" / "Config";
                 GatherInis(configFolder, resultIni);
             }
 

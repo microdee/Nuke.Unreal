@@ -49,10 +49,10 @@ class Build : UnrealBuild
   ```
   > nuke generate
   > nuke build-editor
-  > nuke build --config Shipping
-  > nuke build --config DebugGame Development --run-in Editor
   > nuke cook
   > nuke package
+  > nuke build --config Shipping
+  > nuke build --config DebugGame Development --target-type Game --platform Android
   ```
 * Prepare plugins for release in Marketplace
   ```
@@ -67,12 +67,22 @@ class Build : UnrealBuild
     ```
 * Pluggable way to define targets for reusable plugins and modules
 
+## Breaking changes
+
+### 1.0 → 1.1
+* `ToProject` and `ToPlugin` → `ProjectPath` and `PluginPath`
+* `TargetPlatform` → `Platform`
+* `TargetEngineVersion` → `EngineVersion`
+* `RunIn` and `ExecMode` has been replaced with proper Unreal compliant target names `TargetType` and `UnrealTargetType`
+* `UnrealTool` and `UnrealToolOutput` has been replaced by proper Nuke `Tool` delegates
+* More smaller things might be there, beware when updating
+
 ## Setting up for a project
 
-Nuke.Unreal targets looks for the `*.uproject` file automatically and it will use the first one it finds. A `*.uproject` is required to be present even for plugin development (more on plugins below). Automatically found project files can be in the sub-folder tree of Nuke's root (which is the folder containing the `.nuke`) or in parent folders of Nuke's root. If for any reason there are more than one or no `*.uproject` files in that area, the developer can specify an explicit location of the associated `*.uproject` file.
+Nuke.Unreal targets looks for the `*.uproject` file automatically and it will use the first one it finds. A `*.uproject` is required to be present even for plugin development (more on plugins below). Automatically found project files can be in the sub-folder tree of Nuke's root (which is the folder containing the `.nuke` temporary folder) or in parent folders of Nuke's root. If for any reason there are more than one or no `*.uproject` files in that area, the developer can specify an explicit location of the associated `*.uproject` file.
 
 ```CSharp
-public override AbsolutePath ToProject => RootDirectory / ".." / "MyProject" / "MyProject.uproject";
+public override AbsolutePath ProjectPath => RootDirectory / ".." / "MyProject" / "MyProject.uproject";
 ```
 
 Only one Unreal project is supported per Nuke.Unreal instance.
@@ -82,7 +92,7 @@ Only one Unreal project is supported per Nuke.Unreal instance.
 Same is applicable when Nuke.Unreal is used for developing an Unreal Plugin for release. Of course Nuke.Unreal can work with multiple plugins in a project, but the `IPluginTargets` interface focuses only on one plugin. Again if the plugin is not trivially locatable then the developer can specify its location explicitly.
 
 ```CSharp
-public override AbsolutePath ToPlugin => UnrealPluginsFolder / "MyPlugin" / "MyPlugin.uplugin";
+public AbsolutePath PluginPath => UnrealPluginsFolder / "MyPlugin" / "MyPlugin.uplugin";
 ```
 
 ### Additional Plugin Targets
@@ -171,6 +181,10 @@ This is especially useful for doing temporary debugging with UBT and the compile
 
 ## Generators
 
+### C# code generators for Unreal tools
+
+UBT already has some generated goodies, however the big feature announcement will come when I'm finished with UAT.
+
 ### Unreal boilerplate templates
 
 Nuke.Unreal provides some targets which creates boilerplate code for common Unreal entities, such as
@@ -206,4 +220,4 @@ In `Nuke.Targets/Build.cs` override `TemplatesPath` property
 public override AbsolutePath TemplatesPath { get; set; } = RootDirectory / "MyTemplates";
 ```
 
-This way Actor and Object generators will have their project specific Scriban templates but the remaining generator types will use the default templates of Nuke.Unreal. 
+This way Actor and Object generators will have their project specific Scriban templates but the remaining generator types will use the default templates of Nuke.Unreal.

@@ -18,6 +18,10 @@ using static Nuke.Common.IO.FileSystemTasks;
 using static Nuke.Common.IO.PathConstruction;
 using static Nuke.Common.Tools.DotNet.DotNetTasks;
 using static Nuke.Common.Tools.NuGet.NuGetTasks;
+using System.Xml.Linq;
+using build.Generators;
+
+namespace build;
 
 [GitHubActions(
     "Release",
@@ -34,20 +38,26 @@ class Build : NukeBuild
     ///   - Microsoft VisualStudio     https://nuke.build/visualstudio
     ///   - Microsoft VSCode           https://nuke.build/vscode
 
+    private readonly string _msbuildXmlns = "http://schemas.microsoft.com/developer/msbuild/2003";
+
     public static int Main () => Execute<Build>(x => x.Compile);
     protected override void OnBuildCreated() => NoLogo = true;
 
     [Parameter("Configuration to build - Default is 'Debug' (local) or 'Release' (server)")]
     readonly Configuration Configuration = IsLocalBuild ? Configuration.Debug : Configuration.Release;
 
+    [Parameter("Reference Unreal version")]
+    readonly string UnrealVersion = "4.27";
+
     const string MasterBranch = "master";
 
+    record ProjectRecord(Project Project, bool PublishToNuget);
+
+    ProjectRecord MainProject => new (Solution.GetProject("Nuke.Unreal") , true);
+    ProjectRecord IniProject => new (Solution.GetProject("Nuke.Unreal.Ini") , true);
+    ProjectRecord[] NukeUnreal => new [] { MainProject, IniProject };
+
     [Solution] readonly Solution Solution;
-    Project[] NukeUnreal => new []
-    {
-        Solution.GetProject("Nuke.Unreal"),
-        Solution.GetProject("Nuke.Unreal.Ini")
-    };
 
     [Parameter]
     string[] NugetApiKeys;
@@ -55,7 +65,19 @@ class Build : NukeBuild
     [Parameter]
     NuGetPublishTarget[] PublishTo = new [] { IsLocalBuild ? NuGetPublishTarget.Github : NuGetPublishTarget.NugetOrg };
 
-    Version CurrentVersion => Version.Parse(NukeUnreal.First().GetProperty("Version"));
+    Version CurrentVersion => Version.Parse(NukeUnreal.First().Project.GetProperty("Version"));
+
+    Target GenerateTools => _ => _
+        .Executes(() =>
+        {
+            // var generator = new UnrealBuildToolGenerator
+            // {
+            //     UnrealVersion = UnrealVersion
+            // };
+            // generator.Generate(this);
+
+            new UnrealAutomationToolGenerator().Test();
+        });
 
     Target Restore => _ => _
         .Executes(() =>
@@ -63,7 +85,7 @@ class Build : NukeBuild
             foreach(var project in NukeUnreal)
             {
                 DotNetRestore(s => s
-                    .SetProjectFile(project)
+                    .SetProjectFile(project.Project)
                 );
             }
         });
@@ -76,13 +98,13 @@ class Build : NukeBuild
             foreach(var project in NukeUnreal)
             {
                 var newVersion = new Version(currentVersion.Major, currentVersion.Minor, currentVersion.Build + 1);
-                var nukeUnrealMsBuild = project.GetMSBuildProject();
+                var nukeUnrealMsBuild = project.Project.GetMSBuildProject();
                 nukeUnrealMsBuild.SetProperty("Version", newVersion.ToString(3));
                 nukeUnrealMsBuild.Save();
 
                 DotNetBuild(s => s
                     .SetNoRestore(true)
-                    .SetProjectFile(project)
+                    .SetProjectFile(project.Project)
                     .SetVersion(newVersion.ToString())
                     .SetAssemblyVersion(newVersion.ToString())
                 );
@@ -108,14 +130,16 @@ class Build : NukeBuild
             {
                 foreach(var project in NukeUnreal)
                 {
+                    if (!project.PublishToNuget) continue;
+
                     var source = PublishTo[i].Source;
                     var apiKey = NugetApiKeys[i % NugetApiKeys.Length];
 
                     Log.Information("Publishing nuget package to {0}", source);
 
-                    var packageId = project.GetProperty("PackageId");
+                    var packageId = project.Project.GetProperty("PackageId");
                     DotNetNuGetPush(s => s
-                        .SetTargetPath(project.Directory / "bin" / Configuration / $"{packageId}.{currentVersion.ToString(3)}.symbols.nupkg")
+                        .SetTargetPath(project.Project.Directory / "bin" / Configuration / $"{packageId}.{currentVersion.ToString(3)}.symbols.nupkg")
                         .SetApiKey(apiKey)
                         .SetSource(source)
                     );

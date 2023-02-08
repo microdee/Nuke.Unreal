@@ -13,6 +13,9 @@ using Serilog;
 using Nuke.Common.Tools.MSBuild;
 using Nuke.Common.ProjectModel;
 using System.Security.Cryptography;
+using Nuke.Unreal.Tools;
+using Nuke.Common.Tooling;
+using System.Reflection;
 
 namespace Nuke.Unreal
 {
@@ -24,7 +27,7 @@ namespace Nuke.Unreal
 
         public Target CleanProject => _ => _
             .Description("Removes auto generated folders of Unreal Engine from the project")
-            .Executes(() => Unreal.ClearFolder(UnrealProjectFolder));
+            .Executes(() => Unreal.ClearFolder(ProjectFolder));
 
         public Target CleanPlugins => _ => _
             .Description("Removes auto generated folders of Unreal Engine from the plugins")
@@ -49,7 +52,7 @@ namespace Nuke.Unreal
                     }
                 }
 
-                foreach(var pluginDir in Directory.EnumerateDirectories(UnrealPluginsFolder))
+                foreach(var pluginDir in Directory.EnumerateDirectories(PluginsFolder))
                 {
                     recurseBody((AbsolutePath)pluginDir);
                 }
@@ -64,26 +67,26 @@ namespace Nuke.Unreal
             .Description("Generate project files for the default IDE of the current platform (Visual Studio or XCode)")
             .Executes(() =>
             {
-                Unreal.BuildTool(
-                    GetEngineVersionFromProject(),
-                    "-projectfiles"
-                    + $" -project=\"{ToProject}\""
-                    + " -game -progress"
-                    + UbtArgs.AppendAsArguments()
-                ).Run();
+                Unreal.BuildTool(GetEngineVersionFromProject(), _ => _
+                    .ProjectFiles()
+                    .Project(ProjectPath)
+                    .Game()
+                    .Progress()
+                    .Append(UbtArgs.AsArguments())
+                )();
             });
 
         public virtual Target BuildEditor => _ => _
             .Description("Build the editor binaries so this project can be opened properly in the Unreal editor")
             .Executes(() =>
             {
-                var platform = Unreal.GetDefaultPlatform();
-                Unreal.BuildTool(
-                    GetEngineVersionFromProject(),
-                    $"{UnrealProjectName}Editor {platform} Development"
-                    + $" -Project=\"{ToProject}\""
-                    + UbtArgs.AppendAsArguments()
-                ).Run();
+                Unreal.BuildTool(GetEngineVersionFromProject(), _ => _
+                    .Target(ProjectName + UnrealTargetType.Editor)
+                    .Platform(Unreal.GetDefaultPlatform())
+                    .Configuration(UnrealConfig.Development)
+                    .Project(ProjectPath)
+                    .Append(UbtArgs.AsArguments())
+                )();
             });
 
         public virtual Target Build => _ => _
@@ -91,23 +94,18 @@ namespace Nuke.Unreal
             .After(Cook) // Android needs Cook to happen before building the APK, so OBB files can be included in the APK
             .Executes(() =>
             {
-                (
-                    from c in Config
-                    from r in RunIn
-                    select (c, r)
-                ).ForEach(combination =>
-                {
-                    var (config, runIn) = combination;
-
-                    Log.Information($"{config} ran in {runIn}:");
-                    var targetEnv = runIn == ExecMode.Standalone ? "" : "Editor";
-                    Unreal.BuildTool(
-                        GetEngineVersionFromProject(),
-                        $"{UnrealProjectName}{targetEnv} {TargetPlatform} {config}"
-                        + $" -Project=\"{ToProject}\""
-                        + UbtArgs.AppendAsArguments()
-                    ).Run();
-                });
+                Unreal.BuildTool(GetEngineVersionFromProject(), _ => _
+                    .Target(
+                        TargetType.Select(tt => tt == UnrealTargetType.Game
+                            ? ProjectName
+                            : ProjectName + tt
+                        )
+                    )
+                    .Platform(Platform)
+                    .Configuration(Config)
+                    .Project(ProjectPath)
+                    .Append(UbtArgs.AsArguments())
+                )();
             });
 
         public virtual bool CookAll => false;
@@ -137,7 +135,7 @@ namespace Nuke.Unreal
             .DependsOn(BuildEditor)
             .Executes(() =>
             {
-                var isAndroidPlatform = TargetPlatform == UnrealPlatform.Android;
+                var isAndroidPlatform = Platform == UnrealPlatform.Android;
                 
                 var androidTextureMode = SelfAs<IAndroidTargets>()?.TextureMode
                     ?? new [] { AndroidCookFlavor.Multi };
@@ -148,23 +146,22 @@ namespace Nuke.Unreal
                 configCombination.ForEach(combination =>
                 {
                     var (config, textureMode) = combination;
-                    Unreal.AutomationToolBatch(
-                        GetEngineVersionFromProject(),
-                        "BuildCookRun"
-                        + $" -ScriptsForProject=\"{ToProject}\""
-                        + $" -project=\"{ToProject}\""
-                        + $" -targetplatform={TargetPlatform}"
-                        + $" -platform={TargetPlatform}"
-                        + $" -clientconfig={config}"
-                        + " -ue4exe=UE4Editor-Cmd.exe"
-                        + " -cook"
-                        + (isAndroidPlatform ? $" -cookflavor={textureMode}" : "")
-                        + (InvokedTargets.Contains(BuildEditor) ? " -nocompileeditor" : "")
-                        + CookArguments.AppendAsArguments()
-                        + UatArgs.AppendAsArguments()
-                    )
-                    .WithWorkingDir(UnrealEnginePath)
-                    .Run();
+                    Unreal.AutomationTool(GetEngineVersionFromProject())(
+                        arguments:
+                            "BuildCookRun"
+                            + $" -ScriptsForProject=\"{ProjectPath}\""
+                            + $" -project=\"{ProjectPath}\""
+                            + $" -targetplatform={Platform}"
+                            + $" -platform={Platform}"
+                            + $" -clientconfig={config}"
+                            + " -ue4exe=UE4Editor-Cmd.exe"
+                            + " -cook"
+                            + (isAndroidPlatform ? $" -cookflavor={textureMode}" : "")
+                            + (InvokedTargets.Contains(BuildEditor) ? " -nocompileeditor" : "")
+                            + CookArguments.AppendAsArguments()
+                            + UatArgs.AppendAsArguments(),
+                        workingDirectory: UnrealEnginePath
+                    );
                 });
             });
         
@@ -172,6 +169,7 @@ namespace Nuke.Unreal
             .Description(
                 "Discover other C# projects which may contain additional Nuke targets, and add them to the main build project."
                 + " However after discovery they still need to be added to the main Build class."
+                // TODO: add them automatically via Roslyn
             )
             .Executes(() =>
             {

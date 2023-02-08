@@ -1,0 +1,26 @@
+{{ ##
+Get possible command line parameters from UBT:
+
+[CommandLine("-MyArg")]
+[CommandLine("-MyArg=")]
+
+Get possible tool modes (subtools) from UBT:
+ : ToolMode
+
+Do they all need the un-marked Project-Targets-Platforms-Configs arguments? Probably not
+
+Parse UBT sources for hard coded arguments:
+* Arguments.Get__(...)
+
+## }}
+// This file is generated via `nuke generate-tools` target.
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+namespace Nuke.Unreal.Tools;
+/* BuildEnum.sbncs */
+/* BuildTool.sbncs */
+{{ build_enums unreal_build_tool }}
+{{ build_tool unreal_build_tool }}

@@ -7,7 +7,7 @@ namespace Nuke.Unreal.Tests;
 
 public class ConfigTests
 {
-        string MainConfig = @"
+    string MainConfig = @"
 [SimpleEntries]
 ; This is a comment
 BoolEntry=True

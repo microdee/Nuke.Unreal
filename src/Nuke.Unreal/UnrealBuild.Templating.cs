@@ -37,8 +37,8 @@ namespace Nuke.Unreal
             .Executes(() => 
                 new TargetGenerator().Generate(
                     TemplatesPath,
-                    UnrealProjectFolder,
-                    UnrealProjectName
+                    ProjectFolder,
+                    ProjectName
                 )
             );
 

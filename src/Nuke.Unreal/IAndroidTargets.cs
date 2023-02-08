@@ -8,6 +8,7 @@ using Nuke.Common.IO;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Nuke.Common;
+using Nuke.Common.Utilities;
 using Nuke.Common.Utilities.Collections;
 using static Nuke.Common.IO.FileSystemTasks;
 using static Nuke.Common.IO.PathConstruction;
@@ -80,7 +81,7 @@ namespace Nuke.Unreal
     {
         T Self<T>() where T : INukeBuild => (T)(object)this;
         T GetParameter<T>(Expression<Func<T>> expression) => EnvironmentInfo.GetParameter(expression);
-        bool IsAndroidPlatform() => Self<UnrealBuild>().TargetPlatform == UnrealPlatform.Android;
+        bool IsAndroidPlatform() => Self<UnrealBuild>().Platform == UnrealPlatform.Android;
 
         [Parameter("Select texture compression mode for Android")]
         AndroidCookFlavor[] TextureMode
@@ -94,7 +95,7 @@ namespace Nuke.Unreal
                 ?["PackageName"];
 
             return packageNameCommands?.IsEmpty() ?? true
-                ? $"com.epicgames.{Self<UnrealBuild>().UnrealProjectName}"
+                ? $"com.epicgames.{Self<UnrealBuild>().ProjectName}"
                 : packageNameCommands.First().Value;
         }
 
@@ -122,7 +123,7 @@ namespace Nuke.Unreal
             .Executes(() =>
             {
                 var self = Self<UnrealBuild>();
-                DeleteDirectory(self.UnrealProjectFolder / "Intermediate" / "Android");
+                DeleteDirectory(self.ProjectFolder / "Intermediate" / "Android");
             });
 
         AndroidBuildEnvironment AndroidBoilerplate()
@@ -168,14 +169,14 @@ namespace Nuke.Unreal
         {
             var self = Self<UnrealBuild>();
             return self.Config[0] == UnrealConfig.Development
-                ? $"{self.UnrealProjectName}-{Cpu.ToString().ToLower()}"
-                : $"{self.UnrealProjectName}-Android-{self.Config[0]}-{Cpu.ToString().ToLower()}";
+                ? $"{self.ProjectName}-{Cpu.ToString().ToLower()}"
+                : $"{self.ProjectName}-Android-{self.Config[0]}-{Cpu.ToString().ToLower()}";
         }
 
         AbsolutePath GetApkFile()
         {
             var self = Self<UnrealBuild>();
-            return self.UnrealProjectFolder / "Binaries" / "Android" / (GetApkName() + ".apk");
+            return self.ProjectFolder / "Binaries" / "Android" / (GetApkName() + ".apk");
         }
 
         Target SignApk => _ => _
@@ -190,7 +191,7 @@ namespace Nuke.Unreal
                 var androidRuntimeSettings = self.ReadIniHierarchy("Engine")?["/Script/AndroidRuntimeSettings.AndroidRuntimeSettings"];
                 var keyStore = androidRuntimeSettings?.GetFirst("KeyStore").Value;
                 var password = androidRuntimeSettings?.GetFirst("KeyStorePassword").Value;
-                var keystorePath = self.UnrealProjectFolder / "Build" / "Android" / keyStore;
+                var keystorePath = self.ProjectFolder / "Build" / "Android" / keyStore;
                 
                 Assert.False(string.IsNullOrWhiteSpace(keyStore), "There was no keystore specified");
                 Assert.True(keystorePath.FileExists(), "Specified keystore was not found");
@@ -260,7 +261,7 @@ namespace Nuke.Unreal
                     try
                     {
                         Log.Information("Removing existing assets from device (failures here are not fatal)");
-                        adb($"shell rm -r {storagePath}/UE4Game/{self.UnrealProjectName}");
+                        adb($"shell rm -r {storagePath}/UE4Game/{self.ProjectName}");
                         adb($"shell rm -r {storagePath}/UE4Game/UE4CommandLine.txt");
                         adb($"shell rm -r {storagePath}/obb/{AppName}");
                         adb($"shell rm -r {storagePath}/Android/obb/{AppName}");
@@ -304,6 +305,113 @@ namespace Nuke.Unreal
 
                 Log.Information("Running {0} but wait for a debugger to be attached", AppName);
                 adb($"shell am start -D -n {AppName}/com.epicgames.ue4.GameActivity");
+            });
+
+        private void FinishKeyReminder()
+        {
+            var prevCursor = Console.GetCursorPosition();
+            Console.WriteLine("Press Escape when finished...");
+            Console.SetCursorPosition(prevCursor.Left, prevCursor.Top);
+        }
+
+        private static readonly Regex ComponentFromPathRegex = new Regex("/com/[a-z0-9_/]*$", RegexOptions.Multiline | RegexOptions.IgnoreCase);
+        private static string GetComponentFromPath(AbsolutePath path)
+        {
+            return ComponentFromPathRegex.Match(path.ToString().Replace('\\', '/'))?.Value;
+        }
+
+        private static bool ArePathsSharingComponents(AbsolutePath a, AbsolutePath b)
+        {
+            var ac = GetComponentFromPath(a);
+            var bc = GetComponentFromPath(b);
+            return ac?.EqualsOrdinalIgnoreCase(bc ?? "") ?? false;
+        }
+
+        private static AbsolutePath FindMatchingComponentPath(AbsolutePath reference, AbsolutePath root)
+        {
+            return root.SubTreeProject().FirstOrDefault(s => ArePathsSharingComponents(reference, s));
+        }
+
+        Target JavaDevelopmentService => _ => _
+            .Description(
+                "This is a service which synchronizes Java sources from the Intermediate Gradle project back to plugin sources."
+                + "\nHit Escape when it is finished."
+                + "\nThis Target assumes the plugin Java sources are also organized into the package compliant name pattern (com/company/product/etc)"
+            )
+            .After<UnrealBuild>(u => u.Build)
+            .After<IPackageTargets>(p => p.Package)
+            .Executes(() =>
+            {
+                var self = Self<UnrealBuild>();
+                var intermediateJavaSourcesFolder = self.ProjectFolder / "Intermediate" / "Android" / "arm64" / "gradle" / "app" / "src" / "main" / "java";
+                var searchRoot = self.PluginsFolder;
+
+                using var watcher = new FileSystemWatcher(intermediateJavaSourcesFolder)
+                {
+                    NotifyFilter = NotifyFilters.LastWrite
+                        | NotifyFilters.DirectoryName
+                        | NotifyFilters.FileName,
+                    EnableRaisingEvents = true,
+                    IncludeSubdirectories = true
+                };
+
+                void FileSystemEventBody(object s, FileSystemEventArgs e, Action<AbsolutePath, AbsolutePath> onItemDirectory, Action<AbsolutePath, AbsolutePath> onItemFile)
+                {
+                    var path = (AbsolutePath) ((e as RenamedEventArgs)?.OldFullPath ?? e.FullPath);
+                    Log.Information("Item change: {0} | {1}", path, e.ChangeType);
+                    var targetParentFolder = FindMatchingComponentPath(path.Parent, searchRoot);
+                    if (targetParentFolder != null)
+                    {
+                        Log.Information("Found matching parent source folder: {0}", targetParentFolder);
+                        try
+                        {
+                            if (path.DirectoryExists()) // Changed item is directory
+                            {
+                                onItemDirectory?.Invoke(path, targetParentFolder);
+                            }
+                            else if (path.FileExists()) // Changed item is directory
+                            {
+                                onItemFile?.Invoke(path, targetParentFolder);
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            Log.Error(ex, "Error during reacting to file-system changes");
+                        }
+                    }
+                    else
+                    {
+                        Log.Information("No matching parent source folder was found. Nothing will happen.");
+                    }
+                }
+
+                watcher.Created += (s, e) => FileSystemEventBody(s, e,
+                    (p, t) => Directory.CreateDirectory(t / p.Name),
+                    (p, t) =>
+                    {
+                        var content = File.ReadAllText(p);
+                        File.WriteAllText(p / t.Name, content);
+                    }
+                );
+
+                watcher.Renamed += (s, e) => FileSystemEventBody(s, e,
+                    (p, t) => RenameDirectory(t / p.Name, e.Name, DirectoryExistsPolicy.Merge, FileExistsPolicy.OverwriteIfNewer),
+                    (p, t) => RenameFile(t / p.Name, e.Name, FileExistsPolicy.OverwriteIfNewer)
+                );
+
+                watcher.Deleted += (s, e) => FileSystemEventBody(s, e,
+                    (p, t) => DeleteDirectory(t / p.Name),
+                    (p, t) => DeleteFile(t / p.Name)
+                );
+
+                watcher.Changed += (s, e) => FileSystemEventBody(s, e,
+                    null,
+                    (p, t) => CopyFileToDirectory(p, t, FileExistsPolicy.Overwrite)
+                );
+
+                while(true) {
+                    watcher.WaitForChanged(WatcherChangeTypes.All);
+                }
             });
     }
 }

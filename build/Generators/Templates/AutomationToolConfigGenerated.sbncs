@@ -1,0 +1,27 @@
+{{ ##
+Get possible command line parameters from UAT:
+
+: BuildCommand
+
+[Help("...", "...")]
+    .IsParamHelp
+
+regexes:
+(Get|Parse)(Optional)?Param(Values?)?(IfNotSpecified)?
+( : BuildCommand|(Parse|Get)(Optional)?Param.*?\(.*?")
+( : BuildCommand|\[Help\(.*?",\s?@?"|(Parse|Get)(Optional)?Param.*?\(.*?")
+
+only search with these, include them via C# language analysis
+
+if these are not found under a BuildCommand class consider them global arguments.
+
+## }}
+// This file is generated via `nuke generate-tools` target.
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+namespace Nuke.Unreal.Tools;
+/* BuildTool.sbncs */
+{{ build_tool unreal_automation_tool }}
