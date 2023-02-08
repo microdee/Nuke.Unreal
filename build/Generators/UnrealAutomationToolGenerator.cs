@@ -7,6 +7,7 @@ using Microsoft.CodeAnalysis.CSharp;
 
 /*
 TODO:
+    * Gather all classes 
     * Gather BuildCommand classes
         * Check all class inheritance hierarchy until we're getting to BuildCommand
             * Classes without inheritance can be ignored automatically

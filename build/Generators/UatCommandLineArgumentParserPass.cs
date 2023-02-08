@@ -22,14 +22,14 @@ file static class UatCommandLineArgumentParserPassUtils
     }
 }
 
-public partial class UatCommandLineArgumentParserPass : IGatherArgumentsFromSource
+public partial class UatCommandLineArgumentParserPass : IGatherArgumentsFromClass
 {
     [GeneratedRegex(@"(Parse|Get)(Optional)?Param")]
     private static partial Regex ParamGetterInvocationRegex();
 
-    public void Gather(ToolModel mainTool, SyntaxTree source, IGatheringContext context)
+    public void Gather(ClassDeclarationSyntax sourceClass, IGatheringContext context)
     {
-        var paramGetterInvocations = source.GetCompilationUnitRoot()
+        var paramGetterInvocations = sourceClass
             .DescendantNodes().OfType<InvocationExpressionSyntax>()
             .Where(n => ParamGetterInvocationRegex().IsMatch(n
                 .DescendantNodes()
@@ -66,63 +66,56 @@ public partial class UatCommandLineArgumentParserPass : IGatherArgumentsFromSour
                 
             var indentation = "  ".Repeat((context as IHaveLogDisplayInfo)?.Indentation ?? 1);
 
-            var parentClass = invocation.Ancestors()
-                .OfType<ClassDeclarationSyntax>()
-                .FirstOrDefault();
-
             var documentation = "";
+        
+            var propertyCandidates = sourceClass.Members
+                .OfType<PropertyDeclarationSyntax>()
+                .Where(n => n.Identifier.Text.MemberAssociable(csharpName))
+                .Cast<MemberDeclarationSyntax>();
             
-            if (parentClass != null)
+            var fieldCandidates = sourceClass.Members
+                .OfType<FieldDeclarationSyntax>()
+                .Where(n => n
+                    .DescendantNodes()
+                    .OfType<VariableDeclaratorSyntax>()
+                    .FirstOrDefault()
+                    ?.Identifier.Text.MemberAssociable(csharpName) ?? false
+                )
+                .Cast<MemberDeclarationSyntax>();
+
+            var memberCandidate = propertyCandidates.Concat(fieldCandidates).FirstOrDefault();
+            
+            if (memberCandidate?.HasStructuredTrivia ?? false)
             {
-                var propertyCandidates = parentClass.Members
-                    .OfType<PropertyDeclarationSyntax>()
-                    .Where(n => n.Identifier.Text.MemberAssociable(csharpName))
-                    .Cast<MemberDeclarationSyntax>();
-                
-                var fieldCandidates = parentClass.Members
-                    .OfType<FieldDeclarationSyntax>()
-                    .Where(n => n
-                        .DescendantNodes()
-                        .OfType<VariableDeclaratorSyntax>()
-                        .FirstOrDefault()
-                        ?.Identifier.Text.MemberAssociable(csharpName) ?? false
+                var doscSpan = memberCandidate.GetLeadingTrivia()
+                    .Where(t =>
+                        t.IsKind(SyntaxKind.SingleLineDocumentationCommentTrivia)
+                        || t.IsKind(SyntaxKind.MultiLineDocumentationCommentTrivia)
                     )
-                    .Cast<MemberDeclarationSyntax>();
+                    .FirstOrDefault()
+                    .FullSpan;
 
-                var memberCandidate = propertyCandidates.Concat(fieldCandidates).FirstOrDefault();
-                
-                if (memberCandidate?.HasStructuredTrivia ?? false)
-                {
-                    var doscSpan = memberCandidate.GetLeadingTrivia()
-                        .Where(t =>
-                            t.IsKind(SyntaxKind.SingleLineDocumentationCommentTrivia)
-                            || t.IsKind(SyntaxKind.MultiLineDocumentationCommentTrivia)
-                        )
-                        .FirstOrDefault()
-                        .FullSpan;
-
-                    documentation = source.GetText().GetSubText(doscSpan)
-                        .ToString()
-                        .Trim()
-                        .Replace("///", "")
-                        .DocsXmlComment();
-                    
-                    // TODO: Make documentation more modular + add source line info
-                    // Log.Information(documentation);
-                }
+                documentation = sourceClass.SyntaxTree
+                    .GetText().GetSubText(doscSpan).ToString()
+                    .Replace("///", "")
+                    .Trim();
             }
-            
-            if (mainTool.AddArgument(
-                new() {
-                    ConfigName = csharpName,
-                    CliName = "-" + cliName,
-                    ArgumentType = ArgumentModelType.TextCollection,
-                    DocsXml = documentation
-                },
-                (context as IHaveSubTools)?.SubTools ?? Array.Empty<ToolModel>()
-            ))
+
+            if (context is IHaveTargetClass contextWithTargetClass)
             {
-                Log.Information(indentation + "{0} {1}", cliName, csharpName);
+                var targetClass = contextWithTargetClass.TargetClass;
+                var existing = targetClass.AddArgument(
+                    new ArgumentModel() {
+                        ConfigName = csharpName,
+                        CliName = "-" + cliName,
+                        ArgumentType = ArgumentModelType.TextCollection
+                    }.AddRootlessXmlDocs(documentation)
+                );
+                
+                if (existing != null)
+                {
+                    Log.Information(indentation + "{0} {1}", cliName, csharpName);
+                }
             }
         }
     }
