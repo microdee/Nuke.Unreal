@@ -390,7 +390,7 @@ namespace Nuke.Unreal
                     (p, t) =>
                     {
                         var content = File.ReadAllText(p);
-                        File.WriteAllText(p / t.Name, content);
+                        File.WriteAllText(t / p.Name, content);
                     }
                 );
 
