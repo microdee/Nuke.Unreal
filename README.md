@@ -72,8 +72,8 @@ class Build : UnrealBuild
 ### 1.0 → 1.1
 * `ToProject` and `ToPlugin` → `ProjectPath` and `PluginPath`
 * `TargetPlatform` → `Platform`
-* `RunIn` and `ExecMode` has been replaced with proper Unreal compliant target names `TargetType` and `UnrealTargetType`
 * `TargetEngineVersion` → `EngineVersion`
+* `RunIn` and `ExecMode` has been replaced with proper Unreal compliant target names `TargetType` and `UnrealTargetType`
 * `UnrealTool` and `UnrealToolOutput` has been replaced by proper Nuke `Tool` delegates
 * More smaller things might be there, beware when updating
 
