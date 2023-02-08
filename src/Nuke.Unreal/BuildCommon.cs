@@ -84,12 +84,12 @@ namespace Nuke.Unreal
         
         public static IEnumerable<AbsolutePath> SubTreeProject(this AbsolutePath origin, Func<AbsolutePath, bool> filter = null) =>
             origin.SubTree(sd => filter?.Invoke(sd) ?? true
-                && !Path.GetFileName(sd).StartsWith(".")
-                && !Path.GetFileName(sd).StartsWith("Nuke.")
-                && Path.GetFileName(sd) != "Intermediate"
-                && Path.GetFileName(sd) != "Binaries"
-                && Path.GetFileName(sd) != "ThirdParty"
-                && Path.GetFileName(sd) != "Saved"
+                && !sd.Name.StartsWith(".")
+                && !sd.Name.StartsWith("Nuke.")
+                && sd.Name != "Intermediate"
+                && sd.Name != "Binaries"
+                && sd.Name != "ThirdParty"
+                && sd.Name != "Saved"
             );
         
         public static bool LookAroundFor(Func<string, bool> predicate, out AbsolutePath result)
