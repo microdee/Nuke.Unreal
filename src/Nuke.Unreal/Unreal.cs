@@ -133,7 +133,7 @@ namespace Nuke.Unreal
                 ? GetEnginePath(ofVersion) / "Engine" / "Binaries" / "DotNET" / "UnrealBuildTool" / "UnrealBuildTool.exe"
                 : GetEnginePath(ofVersion) / "Engine" / "Binaries" / "DotNET" / "UnrealBuildTool.exe";
             
-            return ToolResolver.GetLocalTool(ubtPath);
+            return ToolResolver.GetLocalTool(ubtPath).WithSemanticLogging();
 
             // TODO: MacOS: "sh", $"\"{MacRunMono(ofVersion)}\" \"{ubtPath}\" " + arguments
             // TODO: Linux: "mono", $"\"{ubtPath}\" " + arguments
@@ -143,20 +143,14 @@ namespace Nuke.Unreal
         {
             var toolConfig = new UnrealBuildToolConfig();
             config?.Invoke(toolConfig);
-            return new PropagateToolExecution(
-                BuildTool(ofVersion),
-                new() {
-                    Arguments = toolConfig.Gather()
-                }
-            ).Execute;
+            return BuildTool(ofVersion).With(arguments: toolConfig.Gather());
         }
 
         public static Tool AutomationTool(EngineVersion ofVersion)
         {
             var scriptExt = RuntimeInformation.IsOSPlatform(OSPlatform.Windows) ? "bat" : "sh";
-            return ToolResolver.GetLocalTool(
-                GetEnginePath(ofVersion) / "Engine" / "Build" / "BatchFiles" / $"RunUAT.{scriptExt}"
-            );
+            return ToolResolver.GetLocalTool(GetEnginePath(ofVersion) / "Engine" / "Build" / "BatchFiles" / $"RunUAT.{scriptExt}")
+                .WithSemanticLogging();
         }
 
         public static void ClearFolder(AbsolutePath folder)

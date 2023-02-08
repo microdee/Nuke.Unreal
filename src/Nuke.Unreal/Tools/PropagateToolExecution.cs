@@ -4,7 +4,9 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Nuke.Common.Tooling;
+using Nuke.Common.Utilities;
 using Nuke.Common.Utilities.Collections;
+using Serilog;
 
 namespace Nuke.Unreal.Tools;
 
@@ -47,7 +49,7 @@ public record ToolArguments(
 
             CustomLogger = (a?.CustomLogger == null && b?.CustomLogger == null)
                 ? null
-                : a?.CustomLogger + b?.CustomLogger,
+                : b?.CustomLogger ?? a?.CustomLogger,
 
             OutputFilter = (a?.OutputFilter == null && b?.OutputFilter == null)
                 ? null
@@ -93,6 +95,32 @@ public static class ToolExtensions
         customLogger,
         outputFilter
     ));
+
+    public static Tool WithSemanticLogging(this Tool tool, Action<OutputType, string> normalOutputLogger = null) =>
+        tool.With(customLogger: (t, l) =>
+        {
+            if (l.ContainsAnyOrdinalIgnoreCase("success", "complete", "ready", "start", "***"))
+            {
+                Log.Information(l);
+            }
+            else if (l.ContainsOrdinalIgnoreCase("warning"))
+            {
+                Log.Warning(l);
+            }
+            else if (l.ContainsAnyOrdinalIgnoreCase("error", "fail"))
+            {
+                Log.Error(l);
+            }
+            else
+            {
+                if (normalOutputLogger != null)
+                    normalOutputLogger(t, l);
+                else
+                {
+                    Log.Debug(l);
+                }
+            }
+        });
 }
 
 public record PropagateToolExecution(Tool Target, ToolArguments PropagateArguments = null)
