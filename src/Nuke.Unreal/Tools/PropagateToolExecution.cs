@@ -69,6 +69,30 @@ public static class ToolExtensions
             args.CustomLogger,
             args.OutputFilter
         );
+
+    public static Tool With(this Tool tool, ToolArguments args) =>
+        new PropagateToolExecution(tool, args).Execute;
+
+    public static Tool With(
+        this Tool tool,
+        string arguments = null,
+        string workingDirectory = null,
+        IReadOnlyDictionary<string, string> environmentVariables = null,
+        int? timeout = null,
+        bool? logOutput = null,
+        bool? logInvocation = null,
+        Action<OutputType, string> customLogger = null,
+        Func<string, string> outputFilter = null
+    ) => tool.With(new ToolArguments(
+        arguments,
+        workingDirectory,
+        environmentVariables,
+        timeout,
+        logOutput,
+        logInvocation,
+        customLogger,
+        outputFilter
+    ));
 }
 
 public record PropagateToolExecution(Tool Target, ToolArguments PropagateArguments = null)
