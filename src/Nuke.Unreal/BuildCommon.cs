@@ -39,18 +39,18 @@ namespace Nuke.Unreal
         }
 
         public static IEnumerable<string> AsArguments(this IEnumerable<string> args) =>
-            args.Select(ProcessArgument);
+            args?.Select(ProcessArgument) ?? Enumerable.Empty<string>();
 
         public static string AppendAsArguments(this IEnumerable<string> input, bool leadingSpace = true) =>
             (input?.IsEmpty() ?? true)
                 ? ""
-                : (leadingSpace ? " " : "") + string.Join(' ', input.Select(ProcessArgument));
+                : (leadingSpace ? " " : "") + string.Join(' ', input?.Select(ProcessArgument) ?? Enumerable.Empty<string>());
 
         public static string DoubleQuoteIfNeeded(this object self) =>
             " \t\n\f".Any(ws => self.ToString().Contains(ws)) ? self.ToString().DoubleQuote() : self.ToString();
 
         public static IEnumerable<string> DoubleQuoteIfNeeded(this IEnumerable<object> self) =>
-            self.Select(DoubleQuoteIfNeeded);
+            self?.Select(DoubleQuoteIfNeeded) ?? Enumerable.Empty<string>();
 
         public static AbsolutePath GetContentsFolder()
         {

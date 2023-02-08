@@ -343,8 +343,15 @@ namespace Nuke.Unreal
             .Executes(() =>
             {
                 var self = Self<UnrealBuild>();
-                var intermediateJavaSourcesFolder = self.ProjectFolder / "Intermediate" / "Android" / "arm64" / "gradle" / "app" / "src" / "main" / "java";
+                var gradleProjectFolder = self.ProjectFolder / "Intermediate" / "Android" / "arm64" / "gradle";
+                var intermediateJavaSourcesFolder = gradleProjectFolder / "app" / "src" / "main" / "java";
                 var searchRoot = self.PluginsFolder;
+
+                Assert.DirectoryExists(
+                    intermediateJavaSourcesFolder,
+                    "Generated Gradle project doesn't exist, did you successfully build the project for Anroid?"
+                    + "\nnuke build --platform Android"
+                );
 
                 using var watcher = new FileSystemWatcher(intermediateJavaSourcesFolder)
                 {
@@ -390,7 +397,7 @@ namespace Nuke.Unreal
                     (p, t) =>
                     {
                         var content = File.ReadAllText(p);
-                        File.WriteAllText(p / t.Name, content);
+                        File.WriteAllText(t / p.Name, content);
                     }
                 );
 
@@ -408,6 +415,9 @@ namespace Nuke.Unreal
                     null,
                     (p, t) => CopyFileToDirectory(p, t, FileExistsPolicy.Overwrite)
                 );
+
+                Log.Information("Now you can start Android Studio and load the gradle project at\n{0}", gradleProjectFolder);
+                Log.Information("Just close with Ctrl+C when finished");
 
                 while(true) {
                     watcher.WaitForChanged(WatcherChangeTypes.All);
