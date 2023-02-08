@@ -20,14 +20,11 @@ public enum ArgumentModelType
 public record EnumEntry(string Name, string DocsXml);
 public record EnumData(string Name, string DocsXml, IEnumerable<EnumEntry> Entries);
 
-public class ArgumentModel
+public class ArgumentModel : CommandLineEntity
 {
-    public string ConfigName { init; get; }
-    public string CliName { init; get; }
     public ArgumentModelType ArgumentType { init; get; }
     public string CollectionSeparator { get; set; } = "+";
     public string ValueSetter { get; set; } = "=";
-    public string DocsXml { get; set; } = "";
     public EnumData Enum { get; set; }
     public string ParametersRenderer => ArgumentType switch
     {

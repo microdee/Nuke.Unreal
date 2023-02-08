@@ -1,9 +1,9 @@
 {{- func build_enum(enum_data) }}
-{{ enum_data.docs_xml }}
+{{ enum_data.docs }}
 public enum {{ enum_data.name }}
 {
     {{~ for entry in enum_data.entries }}
-    {{ entry.docs_xml }}
+    {{ entry.docs }}
     {{ entry.name }},
     {{ end ~}}
 }

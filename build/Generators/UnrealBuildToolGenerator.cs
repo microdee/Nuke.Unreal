@@ -38,13 +38,8 @@ public partial class UnrealBuildToolGenerator : ToolGenerator
                     ConfigName = "UnrealBuildTool",
                     CliName = "UnrealBuildTool",
                     ConfigType = new(TemplateName.Replace("Generated", ""), TemplateName),
-                    ClassKeywords = "abstract",
-                    DocsXml = """
-                    /// <summary>
-                    /// Unreal Build Tool compiles the binaries of Unreal projects
-                    /// </summary>
-                    """
-                }
+                    ClassKeywords = "abstract"
+                }.AddSummary("Unreal Build Tool compiles the binaries of Unreal projects")
             );
 
             var ubtTool = model.UnrealBuildTool;
@@ -123,7 +118,7 @@ public partial class UnrealBuildToolGenerator : ToolGenerator
                     );
                 }
 
-                return new() {
+                return new ArgumentModel() {
                     ConfigName = csharpName,
                     CliName = "-" + name,
                     ArgumentType = type,
@@ -131,9 +126,8 @@ public partial class UnrealBuildToolGenerator : ToolGenerator
                     ValueSetter = "=:".Any(c => c == cmdLine.Prefix[^1])
                         ? cmdLine.Prefix[^1].ToString()
                         : "=",
-                    DocsXml = member.GetDocumentation()?.DocsXmlComment() ?? "",
                     Enum = enumData
-                };
+                }.AddRootlessXmlDocs(member.GetDocumentation());
             }
 
             void ProcessMember(MemberInfo member, ToolModel tool)
@@ -156,7 +150,7 @@ public partial class UnrealBuildToolGenerator : ToolGenerator
                 {
                     var cmdLine = cmdLineAttrMapping.FromUnreal(cmdLineUnreal);
                     var arg = GetArgument(member, memberType, cmdLine);
-                    if (tool.AddArgument(arg, ubtTool))
+                    if (tool.AddArgument(arg, ubtTool) == null)
                     {
                         Log.Information("        {0} {1} ({2})", arg.ArgumentType, arg.ConfigName, arg.CliName);
                     }
@@ -183,13 +177,13 @@ public partial class UnrealBuildToolGenerator : ToolGenerator
                     var toolCandidate = ubtTool.Subtools.FirstOrDefault(t => t.ConfigName.EqualsOrdinalIgnoreCase(localToolModeAttr.Name));
                     if (toolCandidate == null)
                     {
-                        toolCandidate = new()
+                        toolCandidate = new ToolModel()
                         {
                             ConfigName = localToolModeAttr.Name,
                             CliName = "-" + localToolModeAttr.Name,
                             ConfigType = new(localToolModeAttr.Name + "Config", localToolModeAttr.Name + "Config"),
-                            DocsXml = ubtType.GetDocumentation()?.DocsXmlComment() ?? ""
-                        };
+                        }.AddRootlessXmlDocs(ubtType.GetDocumentation());
+
                         ProcessNewTool(toolCandidate);
                         ubtTool.Subtools.Add(toolCandidate);
                     }

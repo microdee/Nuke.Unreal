@@ -1,6 +1,6 @@
 {{- func build_argument(arg, config_type) }}
     
-    {{~ arg.docs_xml }}
+    {{~ arg.docs }}
     public virtual {{ config_type.final }} {{ arg.config_name }}({{ arg.parameters_renderer }})
     {
         AppendArgument({{ arg.command_line_renderer }});
@@ -8,7 +8,7 @@
     }
 {{ end -}}
 {{- func build_tool(tool) }}
-{{~ tool.docs_xml }}
+{{~ tool.docs }}
 public {{ tool.class_keywords }} class {{ tool.config_type.base }} : ToolConfig
 {
     public override string Name => "{{ tool.config_name }}";
@@ -31,7 +31,7 @@ public {{ tool.class_keywords }} class {{ tool.config_type.base }} : ToolConfig
     };
     
     {{- for subtool in tool.subtools }}
-    {{~ subtool.docs_xml }}
+    {{~ subtool.docs }}
     public {{ tool.config_type.final }} {{ subtool.config_name }}(Action<{{ subtool.config_type.final }}> configurator = null)
     {
         configurator?.Invoke({{ subtool.config_name }}Storage);
