@@ -6,6 +6,7 @@ using Nuke.Common;
 using Nuke.Common.IO;
 using Nuke.Common.Utilities;
 using Nuke.Unreal.Ini;
+using Nuke.Unreal.Tools;
 
 public enum IniHierarchyLevel
 {
@@ -54,6 +55,8 @@ namespace Nuke.Unreal
         public EngineVersion EngineVersion => new(UnrealVersion, CustomEnginePath);
         [Parameter("Extra arguments passed to UBT. It's recommended to use it only from command line, do not override.")]
         public virtual string[] UbtArgs { get; set; }
+        
+        protected virtual UnrealBuildToolConfig UbtConfig(UnrealBuildToolConfig _) => _;
 
         [Parameter("Extra arguments passed to UAT. It's recommended to use it only from command line, do not override.")]
         public virtual string[] UatArgs { get; set; }
