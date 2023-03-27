@@ -80,11 +80,13 @@ namespace Nuke.Unreal
             .Description("Build the editor binaries so this project can be opened properly in the Unreal editor")
             .Executes(() =>
             {
-                Unreal.BuildTool(GetEngineVersionFromProject(), _ => _
-                    .Target(ProjectName + UnrealTargetType.Editor)
-                    .Platform(Unreal.GetDefaultPlatform())
-                    .Configuration(UnrealConfig.Development)
-                    .Project(ProjectPath)
+                Unreal.BuildTool(GetEngineVersionFromProject(), _ => 
+                    UbtConfig(_
+                        .Target(ProjectName + UnrealTargetType.Editor)
+                        .Platform(Unreal.GetDefaultPlatform())
+                        .Configuration(UnrealConfig.Development)
+                        .Project(ProjectPath)
+                    )
                     .Append(UbtArgs.AsArguments())
                 )();
             });
@@ -94,16 +96,18 @@ namespace Nuke.Unreal
             .After(Cook) // Android needs Cook to happen before building the APK, so OBB files can be included in the APK
             .Executes(() =>
             {
-                Unreal.BuildTool(GetEngineVersionFromProject(), _ => _
-                    .Target(
-                        TargetType.Select(tt => tt == UnrealTargetType.Game
-                            ? ProjectName
-                            : ProjectName + tt
+                Unreal.BuildTool(GetEngineVersionFromProject(), _ => 
+                    UbtConfig(_
+                        .Target(
+                            TargetType.Select(tt => tt == UnrealTargetType.Game
+                                ? ProjectName
+                                : ProjectName + tt
+                            )
                         )
+                        .Platform(Platform)
+                        .Configuration(Config)
+                        .Project(ProjectPath)
                     )
-                    .Platform(Platform)
-                    .Configuration(Config)
-                    .Project(ProjectPath)
                     .Append(UbtArgs.AsArguments())
                 )();
             });

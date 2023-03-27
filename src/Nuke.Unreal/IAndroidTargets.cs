@@ -20,9 +20,19 @@ using System.Linq.Expressions;
 using System.Text.RegularExpressions;
 using Microsoft.Azure.KeyVault.Models;
 using System.Threading;
+using System.Runtime.InteropServices;
 
 namespace Nuke.Unreal
 {
+    [StructLayout(LayoutKind.Sequential)]
+    public struct FLASHWINFO
+    {
+        public UInt32 cbSize;
+        public IntPtr hwnd;
+        public Int32 dwFlags;
+        public UInt32 uCount;
+        public Int32 dwTimeout;
+    }
     public class AndroidTargets : NukeBuild, IAndroidTargets
     {
         public static readonly IAndroidTargets Default = new AndroidTargets();
@@ -309,16 +319,15 @@ namespace Nuke.Unreal
 
         private void FinishKeyReminder()
         {
-            var prevCursor = Console.GetCursorPosition();
+            var (Left, Top) = Console.GetCursorPosition();
             Console.WriteLine("Press Escape when finished...");
-            Console.SetCursorPosition(prevCursor.Left, prevCursor.Top);
+            Console.SetCursorPosition(Left, Top);
         }
 
-        private static readonly Regex ComponentFromPathRegex = new Regex("/com/[a-z0-9_/]*$", RegexOptions.Multiline | RegexOptions.IgnoreCase);
-        private static string GetComponentFromPath(AbsolutePath path)
-        {
-            return ComponentFromPathRegex.Match(path.ToString().Replace('\\', '/'))?.Value;
-        }
+        private static readonly Regex ComponentFromPathRegex = new Regex(@"/(?:org|com|extensions?)/.*$", RegexOptions.Multiline | RegexOptions.IgnoreCase);
+
+        private static string GetComponentFromPath(AbsolutePath path) =>
+            ComponentFromPathRegex.Match(path.ToString().Replace('\\', '/'))?.Value;
 
         private static bool ArePathsSharingComponents(AbsolutePath a, AbsolutePath b)
         {
@@ -327,9 +336,16 @@ namespace Nuke.Unreal
             return ac?.EqualsOrdinalIgnoreCase(bc ?? "") ?? false;
         }
 
-        private static AbsolutePath FindMatchingComponentPath(AbsolutePath reference, AbsolutePath root)
+        private static AbsolutePath FindMatchingComponentPath(AbsolutePath reference, AbsolutePath root, bool lookForFiles)
         {
-            return root.SubTreeProject().FirstOrDefault(s => ArePathsSharingComponents(reference, s));
+            var target = root.SubTreeProject()
+                .Where(s => s.ToString().Replace('\\', '/').ContainsOrdinalIgnoreCase("java/src"));
+                
+            if (lookForFiles)
+            {
+                target = target.Concat(target.SelectMany(d => d.GlobFiles("*.*")));
+            }
+            return target.FirstOrDefault(s => ArePathsSharingComponents(reference, s));
         }
 
         Target JavaDevelopmentService => _ => _
@@ -362,23 +378,23 @@ namespace Nuke.Unreal
                     IncludeSubdirectories = true
                 };
 
-                void FileSystemEventBody(object s, FileSystemEventArgs e, Action<AbsolutePath, AbsolutePath> onItemDirectory, Action<AbsolutePath, AbsolutePath> onItemFile)
+                void FileSystemEventBody(object s, FileSystemEventArgs e, bool useFileInComparison, Action<AbsolutePath, AbsolutePath> onItemDirectory, Action<AbsolutePath, AbsolutePath> onItemFile)
                 {
                     var path = (AbsolutePath) ((e as RenamedEventArgs)?.OldFullPath ?? e.FullPath);
                     Log.Information("Item change: {0} | {1}", path, e.ChangeType);
-                    var targetParentFolder = FindMatchingComponentPath(path.Parent, searchRoot);
-                    if (targetParentFolder != null)
+                    var target = FindMatchingComponentPath(useFileInComparison ? path : path.Parent, searchRoot, useFileInComparison);
+                    if (target != null)
                     {
-                        Log.Information("Found matching parent source folder: {0}", targetParentFolder);
+                        Log.Information("Found matching source: {0}", target);
                         try
                         {
                             if (path.DirectoryExists()) // Changed item is directory
                             {
-                                onItemDirectory?.Invoke(path, targetParentFolder);
+                                onItemDirectory?.Invoke(path, target);
                             }
                             else if (path.FileExists()) // Changed item is directory
                             {
-                                onItemFile?.Invoke(path, targetParentFolder);
+                                onItemFile?.Invoke(path, target);
                             }
                         }
                         catch (Exception ex)
@@ -388,11 +404,11 @@ namespace Nuke.Unreal
                     }
                     else
                     {
-                        Log.Information("No matching parent source folder was found. Nothing will happen.");
+                        Log.Information("No matching source was found. Nothing will happen.");
                     }
                 }
 
-                watcher.Created += (s, e) => FileSystemEventBody(s, e,
+                watcher.Created += (s, e) => FileSystemEventBody(s, e, false,
                     (p, t) => Directory.CreateDirectory(t / p.Name),
                     (p, t) =>
                     {
@@ -401,19 +417,19 @@ namespace Nuke.Unreal
                     }
                 );
 
-                watcher.Renamed += (s, e) => FileSystemEventBody(s, e,
-                    (p, t) => RenameDirectory(t / p.Name, e.Name, DirectoryExistsPolicy.Merge, FileExistsPolicy.OverwriteIfNewer),
-                    (p, t) => RenameFile(t / p.Name, e.Name, FileExistsPolicy.OverwriteIfNewer)
+                watcher.Renamed += (s, e) => FileSystemEventBody(s, e, true,
+                    (p, t) => RenameDirectory(t, e.Name, DirectoryExistsPolicy.Merge, FileExistsPolicy.OverwriteIfNewer),
+                    (p, t) => RenameFile(t, e.Name, FileExistsPolicy.OverwriteIfNewer)
                 );
 
-                watcher.Deleted += (s, e) => FileSystemEventBody(s, e,
-                    (p, t) => DeleteDirectory(t / p.Name),
-                    (p, t) => DeleteFile(t / p.Name)
+                watcher.Deleted += (s, e) => FileSystemEventBody(s, e, true,
+                    (p, t) => DeleteDirectory(t),
+                    (p, t) => DeleteFile(t)
                 );
 
-                watcher.Changed += (s, e) => FileSystemEventBody(s, e,
+                watcher.Changed += (s, e) => FileSystemEventBody(s, e, true,
                     null,
-                    (p, t) => CopyFileToDirectory(p, t, FileExistsPolicy.Overwrite)
+                    (p, t) => CopyFileToDirectory(p, t.Parent, FileExistsPolicy.Overwrite)
                 );
 
                 Log.Information("Now you can start Android Studio and load the gradle project at\n{0}", gradleProjectFolder);
