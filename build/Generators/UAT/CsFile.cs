@@ -11,10 +11,8 @@ using Nuke.Common.Utilities.Collections;
 
 namespace build.Generators.UAT;
 
-public class CsFile
+public record CsFile(AbsolutePath Path)
 {
-    public AbsolutePath Path { init; get; }
-
     private List<CsClass> _classes;
     public List<CsClass> Classes => _classes ??= Ast.GetCompilationUnitRoot()
             .DescendantNodes()

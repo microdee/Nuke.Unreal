@@ -24,6 +24,9 @@ TODO:
     * Make subtools for Real BuildCommands
     * Add warning to docs when [RequireP4] is present
     * Import arguments of referred Shared BuildCommands into subtools based on ImportCommandHelp attribute (Help<Type>)
+
+    * IMPORTANT: Add metadata for tools where 'UE4' became 'Unreal' and make a mechanism to know which one to use
+        * in Nuke C# programs expose Unreal only, decide based on version.
 */
 namespace build.Generators;
 
@@ -44,7 +47,6 @@ public class UnrealAutomationToolGenerator : ToolGenerator
             ConfigType = new(TemplateName.Replace("Generated", ""), TemplateName),
             ClassKeywords = "abstract"
         }.AddSummary("Unreal Automation Tool is a vast collection of scripts solving all aspects of deploying a program made in Unreal Engine");
-        var testPass = new UatCommandLineArgumentParserPass();
         // testPass.Gather(toolModel, syntaxTree, null);
     }
 }

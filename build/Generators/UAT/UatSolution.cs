@@ -20,7 +20,7 @@ public class UatSolution
         Files = automationToolRoot
             .GlobFilesRecursive("*.cs")
             .Where(f => !f.ToString().Contains("\\obj\\"))
-            .Select(f => new CsFile() { Path = f })
+            .Select(f => new CsFile(f))
             .ToList();
     }
 }

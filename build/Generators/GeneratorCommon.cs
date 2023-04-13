@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using System.Text;
 using System.Text.RegularExpressions;
 using Humanizer;
+using Nuke.Common.Utilities;
 
 namespace build.Generators;
 
