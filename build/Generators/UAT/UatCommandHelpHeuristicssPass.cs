@@ -9,7 +9,7 @@ using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Nuke.Common.Utilities.Collections;
 
 namespace build.Generators;
-public partial class UatCommandHelpHeuristicssPass : IGatherArgumentsFromClass
+public partial class UatCommandHelpHeuristicssPass
 {
     [GeneratedRegex(@"(?<NAME>[\w-]+)((?<SETTER>[:=]).*)?")]
     private static partial Regex ArgumentFromHelp();
