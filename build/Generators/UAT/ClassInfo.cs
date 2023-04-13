@@ -30,4 +30,14 @@ public class ClassInfo : IProvideArguments
             .OfType<AttributeSyntax>()
         )
         .Where(a => a.Name.ToString() == "Help");
+
+    private bool? _requireP4 = null;
+    public bool RequireP4 => _requireP4 ??= Declarations 
+        .SelectMany(d => d.Declaration
+            .DescendantNodes()
+            .OfType<AttributeSyntax>()
+        )
+        .Any(a => a.Name.ToString() == "RequireP4");
+
+    public IEnumerable<MemberDeclarationSyntax> PropertiesAndFields => Declarations.SelectMany(d => d.PropertiesAndFields);
 }

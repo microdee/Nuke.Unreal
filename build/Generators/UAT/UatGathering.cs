@@ -14,15 +14,6 @@ using Towel;
 
 namespace build.Generators.UAT;
 
-file static class UatCommandLineArgumentParserPassUtils
-{
-    public static bool MemberAssociable(this string a, string b)
-    {
-        return a.EqualsOrdinalIgnoreCase(b)
-            || a.TrimStart("b").EqualsOrdinalIgnoreCase(b);
-    }
-}
-
 public partial class UatGathering
 {
     public readonly UatSolution Solution;
@@ -105,24 +96,11 @@ public partial class UatGathering
 
             var documentation = "";
 
-            var classMembers = from.Declarations.SelectMany(c => c.Declaration.Members);
-        
-            var propertyCandidates = classMembers
-                .OfType<PropertyDeclarationSyntax>()
-                .Where(n => n.Identifier.Text.MemberAssociable(csharpName))
-                .Cast<MemberDeclarationSyntax>();
-            
-            var fieldCandidates = classMembers
-                .OfType<FieldDeclarationSyntax>()
-                .Where(n => n
-                    .DescendantNodes()
-                    .OfType<VariableDeclaratorSyntax>()
-                    .FirstOrDefault()
-                    ?.Identifier.Text.MemberAssociable(csharpName) ?? false
-                )
-                .Cast<MemberDeclarationSyntax>();
-
-            var memberCandidate = propertyCandidates.Concat(fieldCandidates).FirstOrDefault();
+            var memberCandidate = from.PropertiesAndFields
+                .FirstOrDefault(m => m
+                    .GetFieldOrPropertyName()
+                    .MemberAssociable(csharpName)
+                );
             
             if (memberCandidate?.HasStructuredTrivia ?? false)
             {
@@ -133,6 +111,8 @@ public partial class UatGathering
                     )
                     .FirstOrDefault()
                     .FullSpan;
+
+                // TODO: get extra help from HelpAttribute
 
                 documentation = memberCandidate.SyntaxTree
                     .GetText().GetSubText(doscSpan).ToString()
@@ -161,6 +141,12 @@ public partial class UatGathering
     protected void GatherFromHelpHeuristics(ClassInfo from, IGatheringContext context)
     {
         var commandHelpAttributes = from.HelpAttributes
+            .Concat(
+                from.Declarations.SelectMany(c => c.Declaration
+                    .Members
+                    .Where(m => m.)
+                )
+            )
             .Where(a => a
                 .DescendantNodes()
                 .OfType<AttributeArgumentSyntax>()
@@ -191,5 +177,32 @@ public partial class UatGathering
             }.AddSummary(arguments[1].Token.Text);
             from.AddArgument(argument);
         }
+    }
+
+    public void Gather(IGatheringContext context)
+    {
+        GatherClasses();
+
+        /*
+            Classes are considered where
+                - non-abstract T is BuildCommand
+                - special cases
+            
+            Inheriting params via
+                - Base class
+                - Member field/property of considered class
+
+            Special unique-snowflake-unicorn classes which provide important command line arguments but they're
+            sooo important and sooo reusable in the pile of garbage that is the UAT source code they don't follow
+            any apparent source conventions to ease their discoveribility: (as of UE 4.27)
+                - Program
+                - ProjectParams
+                - Automation
+                - CodeSign
+                - McpConfigMapper
+                - P4Environment
+                - UE4Build (probably renamed in UE5 to UnrealBuild)
+                - LocalizationProvider (+ implementations)
+        */
     }
 }

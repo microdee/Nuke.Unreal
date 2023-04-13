@@ -18,7 +18,7 @@ public record CsClass(ClassDeclarationSyntax Declaration)
         .OfType<SyntaxToken>()
         .Any(t => t.IsKind(SyntaxKind.PartialKeyword));
 
-    public bool? _hasBase;
+    public bool? _hasBase = null;
     public bool HasBase => _hasBase ??= Declaration
         .DescendantNodes()
         .Any(s => s is SimpleBaseTypeSyntax);
@@ -33,4 +33,13 @@ public record CsClass(ClassDeclarationSyntax Declaration)
         )
         .Select(s => s.GetText().ToString())
         .FirstOrDefault();
+
+    public IEnumerable<MemberDeclarationSyntax> PropertiesAndFields => Declaration.Members
+        .OfType<PropertyDeclarationSyntax>()
+        .Cast<MemberDeclarationSyntax>()
+        .Concat(
+            Declaration.Members
+                .OfType<FieldDeclarationSyntax>()
+                .Cast<MemberDeclarationSyntax>()
+        );
 }
