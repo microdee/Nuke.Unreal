@@ -141,12 +141,6 @@ public partial class UatGathering
     protected void GatherFromHelpHeuristics(ClassInfo from, IGatheringContext context)
     {
         var commandHelpAttributes = from.HelpAttributes
-            .Concat(
-                from.Declarations.SelectMany(c => c.Declaration
-                    .Members
-                    .Where(m => m.)
-                )
-            )
             .Where(a => a
                 .DescendantNodes()
                 .OfType<AttributeArgumentSyntax>()
