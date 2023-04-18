@@ -27,6 +27,7 @@ TODO:
 
     * IMPORTANT: Add metadata for tools where 'UE4' became 'Unreal' and make a mechanism to know which one to use
         * in Nuke C# programs expose Unreal only, decide based on version.
+        * will do command line transformation at invocation
 */
 namespace build.Generators;
 
