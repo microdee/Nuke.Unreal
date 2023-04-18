@@ -22,6 +22,11 @@ public record CsClass(ClassDeclarationSyntax Declaration)
     public bool HasBase => _hasBase ??= Declaration
         .DescendantNodes()
         .Any(s => s is SimpleBaseTypeSyntax);
+    
+    public bool? _isAbstract = null;
+    public bool IsAbstract => _isAbstract ??= Declaration
+        .DescendantTokens()
+        .Any(t => t.IsKind(SyntaxKind.AbstractKeyword));
 
     private string _baseClass;
     public string BaseClass => !HasBase ? null : _baseClass ??= Declaration

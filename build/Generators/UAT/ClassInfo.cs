@@ -40,4 +40,5 @@ public class ClassInfo : IProvideArguments
         .Any(a => a.Name.ToString() == "RequireP4");
 
     public IEnumerable<MemberDeclarationSyntax> PropertiesAndFields => Declarations.SelectMany(d => d.PropertiesAndFields);
+    public bool IsAbstract => Declarations.Any(d => d.IsAbstract);
 }

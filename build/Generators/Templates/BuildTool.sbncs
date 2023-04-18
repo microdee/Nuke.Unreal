@@ -42,7 +42,9 @@ public {{ tool.class_keywords }} class {{ tool.config_type.base }} : ToolConfig
 
     public override string Gather()
     {
+        {{ if tool.cli_name != null && tool.cli_name != "" -}}
         Arguments.Insert(0, "{{ tool.cli_name }}");
+        {{- end -}}
         return base.Gather();
     }
 }
