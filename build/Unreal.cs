@@ -96,7 +96,9 @@ public static class Unreal
 
     public static UnrealEngineInstance GetInstance(string version) => Instances.GetOrAdd(version, v =>
     {
-        var location = (AbsolutePath) Locator(v, logOutput: false).Single().Text;
+        var location = Directory.Exists(version)
+            ? (AbsolutePath) version
+            : (AbsolutePath) Locator(v, logOutput: false).Single().Text;
         return new(v, location, new(location));
     });
 }
