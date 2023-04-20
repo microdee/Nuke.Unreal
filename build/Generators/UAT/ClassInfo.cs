@@ -10,11 +10,13 @@ public class ClassInfo : IProvideArguments
 {
     public string Name { init; get; }
     public bool IsPartial { init; get; }
-    public readonly HashSet<CsClass> Declarations;
+    public readonly HashSet<CsClass> Declarations = new();
     public ClassInfo BaseClass;
 
     public ClassInfo Implements(string baseType)
     {
+        if (BaseClass == null) return null;
+        
         if (BaseClass.Name.Equals(baseType))
         {
             return BaseClass;

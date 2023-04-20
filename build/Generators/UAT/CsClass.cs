@@ -17,11 +17,6 @@ public record CsClass(ClassDeclarationSyntax Declaration)
         .DescendantNodesAndTokens()
         .OfType<SyntaxToken>()
         .Any(t => t.IsKind(SyntaxKind.PartialKeyword));
-
-    public bool? _hasBase = null;
-    public bool HasBase => _hasBase ??= Declaration
-        .DescendantNodes()
-        .Any(s => s is SimpleBaseTypeSyntax);
     
     public bool? _isAbstract = null;
     public bool IsAbstract => _isAbstract ??= Declaration
@@ -29,15 +24,15 @@ public record CsClass(ClassDeclarationSyntax Declaration)
         .Any(t => t.IsKind(SyntaxKind.AbstractKeyword));
 
     private string _baseClass;
-    public string BaseClass => !HasBase ? null : _baseClass ??= Declaration
+    public string BaseClass => _baseClass ??= Declaration
         .DescendantNodes()
         .OfType<SimpleBaseTypeSyntax>()
         .SelectMany(s => s
-            .DescendantNodes()
+            .DescendantNodes(n => n is not GenericNameSyntax)
             .OfType<IdentifierNameSyntax>()
         )
         .Select(s => s.GetText().ToString())
-        .FirstOrDefault();
+        .FirstOrDefault()?.Trim() ?? "";
 
     public IEnumerable<MemberDeclarationSyntax> PropertiesAndFields => Declaration.Members
         .OfType<PropertyDeclarationSyntax>()

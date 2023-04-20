@@ -11,6 +11,7 @@ using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Nuke.Common.Utilities.Collections;
 using Towel;
+using System.Security;
 
 namespace build.Generators.UAT;
 
@@ -39,6 +40,8 @@ namespace build.Generators.UAT;
           cannot be inferred from static code analysis. Developer should just invoke them through regular
           tool invokation arguments
             - MegaXGE
+
+    TODO: make sure all command line parsers are detected
 */
 
 public static class UniqueClass
@@ -84,7 +87,7 @@ public partial class UatGathering
     protected void GatherClasses(IGatheringContext context)
     {
         context.IncreaseIndent();
-        Dictionary<string, ClassInfo> baseClassRequests = new();
+        Dictionary<string, string> baseClassRequests = new();
         foreach(var csClass in Solution.Files.SelectMany(f => f.Classes))
         {
             Log.Debug(context.Indent() + "Gathered class: {0}", csClass.Name);
@@ -94,17 +97,19 @@ public partial class UatGathering
                     Name = csClass.Name,
                     IsPartial = csClass.IsPartial
                 };
+                Classes.Add(csClass.Name, classInfo);
             }
             classInfo.Declarations.Add(csClass);
-            if (csClass.HasBase)
+            if (!string.IsNullOrWhiteSpace(csClass.BaseClass))
             {
-                baseClassRequests.TryAdd(csClass.BaseClass, classInfo);
+                baseClassRequests.TryAdd(classInfo.Name, csClass.BaseClass);
             }
         }
-        foreach(var (baseClassOf, targetClass) in baseClassRequests)
+        foreach(var (targetClassName, baseClassName) in baseClassRequests)
         {
-            if (Classes.TryGetValue(baseClassOf, out var baseClass))
+            if (Classes.TryGetValue(targetClassName, out var targetClass) && Classes.TryGetValue(baseClassName, out var baseClass))
             {
+                Log.Debug(context.Indent() + "Inheritance: {0}: {1}", targetClassName, baseClassName);
                 targetClass.BaseClass = baseClass;
             }
         }
@@ -137,6 +142,11 @@ public partial class UatGathering
                 .Identifier.Text
             ))
         );
+        
+        if (!paramGetterInvocations.IsNullOrEmpty())
+        {
+            Log.Debug(context.Indent() + "Using commandline argument parsers.");
+        }
 
         foreach(var invocation in paramGetterInvocations)
         {
@@ -188,6 +198,20 @@ public partial class UatGathering
                     .GetText().GetSubText(doscSpan).ToString()
                     .Replace("///", "")
                     .Trim();
+
+                // Of course we have instances of malformed XML docs in UAT
+                if (documentation.StartsWithOrdinalIgnoreCase("<summary>") && !documentation.EndsWithOrdinalIgnoreCase("</summary>"))
+                {
+                    documentation += "</summary>";
+                }
+                if (!documentation.StartsWithOrdinalIgnoreCase("<summary>") && documentation.EndsWithOrdinalIgnoreCase("</summary>"))
+                {
+                    documentation = "<summary>" + documentation;
+                }
+                if (!documentation.StartsWith("<") && !documentation.EndsWith(">"))
+                {
+                    documentation = "<summary>" + SecurityElement.Escape(documentation) + "</summary>";
+                }
             }
 
             
@@ -198,7 +222,7 @@ public partial class UatGathering
                     ArgumentType = ArgumentModelType.TextCollection
                 }.AddRootlessXmlDocs(documentation)
             );
-            if (existing != null)
+            if (existing == null)
             {
                 Log.Debug(context.Indent() + "{0} {1}", cliName, csharpName);
             }
@@ -217,6 +241,10 @@ public partial class UatGathering
                 .Count() == 2
             );
         
+        if (!commandHelpAttributes.IsNullOrEmpty())
+        {
+            Log.Debug(context.Indent() + "Using Help attribute heuristics");
+        }
         foreach(var attr in commandHelpAttributes)
         {
             var arguments = attr
@@ -233,15 +261,16 @@ public partial class UatGathering
             var regexMatch = ArgumentFromHelp().Match(arguments[0].Token.Text);
             if (regexMatch?.Groups?["NAME"] == null) continue;
 
+            var cliName = regexMatch.Groups["NAME"].Value;
             var argument = new ArgumentModel()
             {
-                CliName = regexMatch.Groups["NAME"].Value,
+                CliName = (cliName[0] == '-' ? "" : "-") + cliName,
                 ConfigName = regexMatch.Groups["NAME"].Value.Replace("-", "").EnsureIdentifierCompatibleName(),
                 ArgumentType = ArgumentModelType.TextCollection,
                 ValueSetter = regexMatch.Groups["SETTER"]?.Value ?? "="
             }.AddSummary(arguments[1].Token.Text);
             var existing = from.AddArgument(argument);
-            if (existing != null)
+            if (existing == null)
             {
                 Log.Debug(context.Indent() + "{0} {1}", argument.CliName, argument.ConfigName);
             }

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
 using System.Threading.Tasks;
+using System.Xml;
+using System.Security;
 
 namespace build.Generators;
 public abstract class CommandLineEntity
@@ -21,6 +23,7 @@ public abstract class CommandLineEntity
 
     public void AddDocsTag(string tag, string text)
     {
+        text = SecurityElement.Escape(text);
         var summaryElement = DocsRoot.Element(tag);
         if (summaryElement == null)
         {
@@ -54,7 +57,7 @@ public static class CommandLineEntityExtensions
         if (element == null) return self;
         foreach(var el in element.Elements())
         {
-            self.DocsXml.Add(el);
+            self.DocsRoot.Add(el);
         }
         return self;
     }
