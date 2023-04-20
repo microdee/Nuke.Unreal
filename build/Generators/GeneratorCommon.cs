@@ -11,17 +11,109 @@ namespace build.Generators;
 
 public static partial class GeneratorCommon
 {
+    private static readonly List<string> Reserved = new()
+    {
+        "Name",
+        "Arguments",
+        "Configs",
+        "Append",
+        "AppendArgument",
+        "AppendSubtool",
+        "Gather",
+        "If",
+
+        "abstract",
+        "as",
+        "base",
+        "bool",
+        "break",
+        "byte",
+        "case",
+        "catch",
+        "char",
+        "checked",
+        "class",
+        "const",
+        "continue",
+        "decimal",
+        "default",
+        "delegate",
+        "do",
+        "double",
+        "else",
+        "enum",
+        "event",
+        "explicit",
+        "extern",
+        "false",
+        "finally",
+        "fixed",
+        "float",
+        "for",
+        "foreach",
+        "goto",
+        "if",
+        "implicit",
+        "in",
+        "int",
+        "interface",
+        "internal",
+        "is",
+        "lock",
+        "long",
+        "namespace",
+        "new",
+        "null",
+        "object",
+        "operator",
+        "out",
+        "override",
+        "params",
+        "private",
+        "protected",
+        "public",
+        "readonly",
+        "ref",
+        "return",
+        "sbyte",
+        "sealed",
+        "short",
+        "sizeof",
+        "stackalloc",
+        "static",
+        "string",
+        "struct",
+        "switch",
+        "this",
+        "throw",
+        "true",
+        "try",
+        "typeof",
+        "uint",
+        "ulong",
+        "unchecked",
+        "unsafe",
+        "ushort",
+        "using",
+        "virtual",
+        "void",
+        "volatile",
+        "while",
+    };
+
     [GeneratedRegex("[^a-zA-Z0-9_]")]
     private static partial Regex InvalidCharacters();
     public static string EnsureIdentifierCompatibleName(this string name)
     {
-        var result = name[0] switch
+        var curedName = name.Trim();
+        var result = curedName[0] switch
             {
-                '_' => name,
-                >= 'a' and <= 'z' => name,
-                >= 'A' and <= 'Z' => name,
-                _ => "_" + name
+                '_' => curedName,
+                >= 'a' and <= 'z' => curedName,
+                >= 'A' and <= 'Z' => curedName,
+                _ => "_" + curedName
             };
-        return InvalidCharacters().Replace(result, "_").Pascalize();
+        result = InvalidCharacters().Replace(result, "_").Pascalize();
+        return Reserved.Any(r => r == result) ? "_" + result : result;
     }
 }

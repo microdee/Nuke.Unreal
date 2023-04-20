@@ -76,7 +76,7 @@ class Build : NukeBuild
             // };
             // generator.Generate(this);
 
-            new UnrealAutomationToolGenerator().Test();
+            new UnrealAutomationToolGenerator { UnrealVersion = UnrealVersion }.Generate(this);
         });
 
     Target Restore => _ => _
