@@ -124,9 +124,36 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
         
         
     
-        public virtual UnrealAutomationToolConfig TimeStamps(params object[] values)
+        public virtual UnrealAutomationToolConfig Telemetry(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-TimeStamps=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-TimeStamps");
+            AppendArgument(values != null && values.Length > 0 ? "-Telemetry=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-Telemetry");
+            return (UnrealAutomationToolConfig) this;
+        }
+
+        
+        
+    
+        public virtual UnrealAutomationToolConfig Utf8output(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-Utf8output=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-Utf8output");
+            return (UnrealAutomationToolConfig) this;
+        }
+
+        
+        
+    
+        public virtual UnrealAutomationToolConfig VeryVerbose(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-VeryVerbose=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-VeryVerbose");
+            return (UnrealAutomationToolConfig) this;
+        }
+
+        
+        
+    
+        public virtual UnrealAutomationToolConfig Timestamps(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-Timestamps=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-Timestamps");
             return (UnrealAutomationToolConfig) this;
         }
 
@@ -165,15 +192,6 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
         
         
     
-        public virtual UnrealAutomationToolConfig UTF8Output(params object[] values)
-        {
-            AppendArgument(values != null && values.Length > 0 ? "-UTF8Output=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-UTF8Output");
-            return (UnrealAutomationToolConfig) this;
-        }
-
-        
-        
-    
         public virtual UnrealAutomationToolConfig AllowStdOutLogVerbosity(params object[] values)
         {
             AppendArgument(values != null && values.Length > 0 ? "-AllowStdOutLogVerbosity=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-AllowStdOutLogVerbosity");
@@ -194,6 +212,42 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     public  class ProgramConfig : ToolConfig
     {
         public override string Name => "Program";
+    
+        
+    
+        public virtual ProgramConfig Utf8output(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-Utf8output=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-Utf8output");
+            return (ProgramConfig) this;
+        }
+
+        
+        
+    
+        public virtual ProgramConfig Verbose(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-Verbose=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-Verbose");
+            return (ProgramConfig) this;
+        }
+
+        
+        
+    
+        public virtual ProgramConfig VeryVerbose(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-VeryVerbose=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-VeryVerbose");
+            return (ProgramConfig) this;
+        }
+
+        
+        
+    
+        public virtual ProgramConfig Timestamps(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-Timestamps=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-Timestamps");
+            return (ProgramConfig) this;
+        }
+    
     
         private ToolConfig[] _configs = null;
         protected override ToolConfig[] Configs => _configs ??= new ToolConfig[]
@@ -324,6 +378,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
             AppendArgument(values != null && values.Length > 0 ? "-UseLocalBuildStorage=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-UseLocalBuildStorage");
             return (AutomationConfig) this;
         }
+
+        
+        
+    
+        public virtual AutomationConfig Telemetry(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-Telemetry=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-Telemetry");
+            return (AutomationConfig) this;
+        }
     
     
         private ToolConfig[] _configs = null;
@@ -348,7 +411,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Skips signing of code/content files."</summary>
         public virtual CodeSignConfig NoSign(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-NoSign" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-NoSign");
+            AppendArgument(values != null && values.Length > 0 ? "-NoSign=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-NoSign");
             return (CodeSignConfig) this;
         }
     
@@ -371,6 +434,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     {
         public override string Name => "McpConfigMapper";
     
+        
+    
+        public virtual McpConfigMapperConfig MCPConfig(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-MCPConfig=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-MCPConfig");
+            return (McpConfigMapperConfig) this;
+        }
+    
+    
         private ToolConfig[] _configs = null;
         protected override ToolConfig[] Configs => _configs ??= new ToolConfig[]
         {
@@ -388,6 +460,26 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     public  class P4EnvironmentConfig : ToolConfig
     {
         public override string Name => "P4Environment";
+    
+        
+/// <summary>
+/// The Perforce host and port number (eg. perforce:1666)
+/// </summary>
+        public virtual P4EnvironmentConfig P4port(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-p4port=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-p4port");
+            return (P4EnvironmentConfig) this;
+        }
+
+        
+        
+    
+        public virtual P4EnvironmentConfig P4user(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-p4user=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-p4user");
+            return (P4EnvironmentConfig) this;
+        }
+    
     
         private ToolConfig[] _configs = null;
         protected override ToolConfig[] Configs => _configs ??= new ToolConfig[]
@@ -1148,7 +1240,10 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 
         
         
-/// <summary>"Start extra clients, n should be 2 or more"</summary>
+/// <summary>"Start extra clients, n should be 2 or more"
+/// 
+/// Run: The indicated server has already been started
+/// </summary>
         public virtual ProjectParamsConfig Numclients(params object[] values)
         {
             AppendArgument(values != null && values.Length > 0 ? "-numclients=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-numclients");
@@ -1318,7 +1413,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"timeout to wait after we lunch the game"</summary>
         public virtual ProjectParamsConfig RunTimeoutSeconds(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-RunTimeoutSeconds" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-RunTimeoutSeconds");
+            AppendArgument(values != null && values.Length > 0 ? "-RunTimeoutSeconds=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-RunTimeoutSeconds");
             return (ProjectParamsConfig) this;
         }
 
@@ -1373,7 +1468,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"List of maps that need light maps rebuilding"</summary>
         public virtual ProjectParamsConfig MapsToRebuildLightMaps(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-MapsToRebuildLightMaps" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-MapsToRebuildLightMaps");
+            AppendArgument(values != null && values.Length > 0 ? "-MapsToRebuildLightMaps=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-MapsToRebuildLightMaps");
             return (ProjectParamsConfig) this;
         }
 
@@ -1382,7 +1477,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"List of maps that need HLOD rebuilding"</summary>
         public virtual ProjectParamsConfig MapsToRebuildHLODMaps(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-MapsToRebuildHLODMaps" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-MapsToRebuildHLODMaps");
+            AppendArgument(values != null && values.Length > 0 ? "-MapsToRebuildHLODMaps=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-MapsToRebuildHLODMaps");
             return (ProjectParamsConfig) this;
         }
 
@@ -1392,6 +1487,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
         public virtual ProjectParamsConfig IgnoreLightMapErrors(params object[] values)
         {
             AppendArgument(values != null && values.Length > 0 ? "-IgnoreLightMapErrors" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-IgnoreLightMapErrors");
+            return (ProjectParamsConfig) this;
+        }
+
+        
+        
+    
+        public virtual ProjectParamsConfig Cookflavor(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-cookflavor=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-cookflavor");
             return (ProjectParamsConfig) this;
         }
 
@@ -1410,6 +1514,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
         public virtual ProjectParamsConfig I18npreset(params object[] values)
         {
             AppendArgument(values != null && values.Length > 0 ? "-i18npreset=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-i18npreset");
+            return (ProjectParamsConfig) this;
+        }
+
+        
+        
+    
+        public virtual ProjectParamsConfig CookCultures(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-CookCultures=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-CookCultures");
             return (ProjectParamsConfig) this;
         }
 
@@ -1641,6 +1754,17 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
         
         
 /// <summary>
+/// Cook: number of additional cookers to spawn while cooking
+/// </summary>
+        public virtual ProjectParamsConfig NumCookersToSpawn(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-NumCookersToSpawn=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-NumCookersToSpawn");
+            return (ProjectParamsConfig) this;
+        }
+
+        
+        
+/// <summary>
 /// Compress packages during cook.
 /// </summary>
         public virtual ProjectParamsConfig Compressed(params object[] values)
@@ -1712,6 +1836,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
         public virtual ProjectParamsConfig CookOutputDir(params object[] values)
         {
             AppendArgument(values != null && values.Length > 0 ? "-CookOutputDir=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-CookOutputDir");
+            return (ProjectParamsConfig) this;
+        }
+
+        
+        
+    
+        public virtual ProjectParamsConfig Target(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-target=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-target");
             return (ProjectParamsConfig) this;
         }
 
@@ -1882,6 +2015,95 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
             AppendArgument(values != null && values.Length > 0 ? "-RunAutomationTest=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-RunAutomationTest");
             return (ProjectParamsConfig) this;
         }
+
+        
+        
+    
+        public virtual ProjectParamsConfig Clientconfig(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-clientconfig=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-clientconfig");
+            return (ProjectParamsConfig) this;
+        }
+
+        
+        
+    
+        public virtual ProjectParamsConfig Config(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-config=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-config");
+            return (ProjectParamsConfig) this;
+        }
+
+        
+        
+    
+        public virtual ProjectParamsConfig Configuration(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-configuration=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-configuration");
+            return (ProjectParamsConfig) this;
+        }
+
+        
+        
+    
+        public virtual ProjectParamsConfig Port(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-port=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-port");
+            return (ProjectParamsConfig) this;
+        }
+
+        
+        
+/// <summary>
+/// Cook: List of maps to cook.
+/// </summary>
+        public virtual ProjectParamsConfig MapsToCook(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-MapsToCook=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-MapsToCook");
+            return (ProjectParamsConfig) this;
+        }
+
+        
+        
+/// <summary>
+/// Cook: List of map inisections to cook (see allmaps)
+/// </summary>
+        public virtual ProjectParamsConfig MapIniSectionsToCook(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-MapIniSectionsToCook=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-MapIniSectionsToCook");
+            return (ProjectParamsConfig) this;
+        }
+
+        
+        
+/// <summary>
+/// TitleID to package
+/// </summary>
+        public virtual ProjectParamsConfig TitleID(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-TitleID=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-TitleID");
+            return (ProjectParamsConfig) this;
+        }
+
+        
+        
+    
+        public virtual ProjectParamsConfig Serverconfig(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-serverconfig=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-serverconfig");
+            return (ProjectParamsConfig) this;
+        }
+
+        
+        
+/// <summary>
+/// Run: Adds commands like debug crash, debug rendercrash, etc based on index
+/// </summary>
+        public virtual ProjectParamsConfig CrashIndex(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-CrashIndex=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-CrashIndex");
+            return (ProjectParamsConfig) this;
+        }
     
     
         private ToolConfig[] _configs = null;
@@ -1967,9 +2189,9 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
         
         
     
-        public virtual UE4BuildConfig Clean(params object[] values)
+        public virtual UE4BuildConfig Branch(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-Clean=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-Clean");
+            AppendArgument(values != null && values.Length > 0 ? "-Branch=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-Branch");
             return (UE4BuildConfig) this;
         }
 
@@ -1979,6 +2201,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
         public virtual UE4BuildConfig StopOnErrors(params object[] values)
         {
             AppendArgument(values != null && values.Length > 0 ? "-StopOnErrors=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-StopOnErrors");
+            return (UE4BuildConfig) this;
+        }
+
+        
+        
+    
+        public virtual UE4BuildConfig Clean(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-Clean=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-Clean");
             return (UE4BuildConfig) this;
         }
     
@@ -2708,9 +2939,54 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
         
         
     
+        public virtual RunUnrealConfig Editor(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-editor=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-editor");
+            return (RunUnrealConfig) this;
+        }
+
+        
+        
+    
+        public virtual RunUnrealConfig Skip(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-Skip=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-Skip");
+            return (RunUnrealConfig) this;
+        }
+
+        
+        
+    
+        public virtual RunUnrealConfig Removedevices(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-removedevices=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-removedevices");
+            return (RunUnrealConfig) this;
+        }
+
+        
+        
+    
         public virtual RunUnrealConfig Clean(params object[] values)
         {
             AppendArgument(values != null && values.Length > 0 ? "-clean=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-clean");
+            return (RunUnrealConfig) this;
+        }
+
+        
+        
+    
+        public virtual RunUnrealConfig Listargs(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-listargs=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-listargs");
+            return (RunUnrealConfig) this;
+        }
+
+        
+        
+    
+        public virtual RunUnrealConfig Listallargs(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-listallargs=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-listallargs");
             return (RunUnrealConfig) this;
         }
     
@@ -2948,7 +3224,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Name of the config data to use (see OneSkyConfigHelper)."</summary>
         public virtual OneSkyLocalizationProviderConfig OneSkyConfigName(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-OneSkyConfigName" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-OneSkyConfigName");
+            AppendArgument(values != null && values.Length > 0 ? "-OneSkyConfigName=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-OneSkyConfigName");
             return (OneSkyLocalizationProviderConfig) this;
         }
 
@@ -2957,7 +3233,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Name of the project group in OneSky."</summary>
         public virtual OneSkyLocalizationProviderConfig OneSkyProjectGroupName(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-OneSkyProjectGroupName" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-OneSkyProjectGroupName");
+            AppendArgument(values != null && values.Length > 0 ? "-OneSkyProjectGroupName=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-OneSkyProjectGroupName");
             return (OneSkyLocalizationProviderConfig) this;
         }
     
@@ -3932,7 +4208,10 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 
         
         
-/// <summary>"Start extra clients, n should be 2 or more"</summary>
+/// <summary>"Start extra clients, n should be 2 or more"
+/// 
+/// Run: The indicated server has already been started
+/// </summary>
         public virtual BuildCookRunConfig Numclients(params object[] values)
         {
             AppendArgument(values != null && values.Length > 0 ? "-numclients=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-numclients");
@@ -4102,7 +4381,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"timeout to wait after we lunch the game"</summary>
         public virtual BuildCookRunConfig RunTimeoutSeconds(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-RunTimeoutSeconds" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-RunTimeoutSeconds");
+            AppendArgument(values != null && values.Length > 0 ? "-RunTimeoutSeconds=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-RunTimeoutSeconds");
             return (BuildCookRunConfig) this;
         }
 
@@ -4157,7 +4436,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"List of maps that need light maps rebuilding"</summary>
         public virtual BuildCookRunConfig MapsToRebuildLightMaps(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-MapsToRebuildLightMaps" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-MapsToRebuildLightMaps");
+            AppendArgument(values != null && values.Length > 0 ? "-MapsToRebuildLightMaps=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-MapsToRebuildLightMaps");
             return (BuildCookRunConfig) this;
         }
 
@@ -4166,7 +4445,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"List of maps that need HLOD rebuilding"</summary>
         public virtual BuildCookRunConfig MapsToRebuildHLODMaps(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-MapsToRebuildHLODMaps" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-MapsToRebuildHLODMaps");
+            AppendArgument(values != null && values.Length > 0 ? "-MapsToRebuildHLODMaps=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-MapsToRebuildHLODMaps");
             return (BuildCookRunConfig) this;
         }
 
@@ -4176,6 +4455,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
         public virtual BuildCookRunConfig IgnoreLightMapErrors(params object[] values)
         {
             AppendArgument(values != null && values.Length > 0 ? "-IgnoreLightMapErrors" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-IgnoreLightMapErrors");
+            return (BuildCookRunConfig) this;
+        }
+
+        
+        
+    
+        public virtual BuildCookRunConfig Cookflavor(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-cookflavor=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-cookflavor");
             return (BuildCookRunConfig) this;
         }
 
@@ -4407,6 +4695,17 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
         
         
 /// <summary>
+/// Cook: number of additional cookers to spawn while cooking
+/// </summary>
+        public virtual BuildCookRunConfig NumCookersToSpawn(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-NumCookersToSpawn=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-NumCookersToSpawn");
+            return (BuildCookRunConfig) this;
+        }
+
+        
+        
+/// <summary>
 /// Compress packages during cook.
 /// </summary>
         public virtual BuildCookRunConfig Compressed(params object[] values)
@@ -4478,6 +4777,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
         public virtual BuildCookRunConfig CookOutputDir(params object[] values)
         {
             AppendArgument(values != null && values.Length > 0 ? "-CookOutputDir=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-CookOutputDir");
+            return (BuildCookRunConfig) this;
+        }
+
+        
+        
+    
+        public virtual BuildCookRunConfig Target(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-target=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-target");
             return (BuildCookRunConfig) this;
         }
 
@@ -4651,6 +4959,95 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 
         
         
+    
+        public virtual BuildCookRunConfig Clientconfig(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-clientconfig=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-clientconfig");
+            return (BuildCookRunConfig) this;
+        }
+
+        
+        
+    
+        public virtual BuildCookRunConfig Config(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-config=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-config");
+            return (BuildCookRunConfig) this;
+        }
+
+        
+        
+    
+        public virtual BuildCookRunConfig Configuration(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-configuration=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-configuration");
+            return (BuildCookRunConfig) this;
+        }
+
+        
+        
+    
+        public virtual BuildCookRunConfig Port(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-port=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-port");
+            return (BuildCookRunConfig) this;
+        }
+
+        
+        
+/// <summary>
+/// Cook: List of maps to cook.
+/// </summary>
+        public virtual BuildCookRunConfig MapsToCook(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-MapsToCook=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-MapsToCook");
+            return (BuildCookRunConfig) this;
+        }
+
+        
+        
+/// <summary>
+/// Cook: List of map inisections to cook (see allmaps)
+/// </summary>
+        public virtual BuildCookRunConfig MapIniSectionsToCook(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-MapIniSectionsToCook=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-MapIniSectionsToCook");
+            return (BuildCookRunConfig) this;
+        }
+
+        
+        
+/// <summary>
+/// TitleID to package
+/// </summary>
+        public virtual BuildCookRunConfig TitleID(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-TitleID=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-TitleID");
+            return (BuildCookRunConfig) this;
+        }
+
+        
+        
+    
+        public virtual BuildCookRunConfig Serverconfig(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-serverconfig=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-serverconfig");
+            return (BuildCookRunConfig) this;
+        }
+
+        
+        
+/// <summary>
+/// Run: Adds commands like debug crash, debug rendercrash, etc based on index
+/// </summary>
+        public virtual BuildCookRunConfig CrashIndex(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-CrashIndex=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-CrashIndex");
+            return (BuildCookRunConfig) this;
+        }
+
+        
+        
 /// <summary>"Toggle to combined the result into one executable"</summary>
         public virtual BuildCookRunConfig ForceMonolithic(params object[] values)
         {
@@ -4706,6 +5103,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
         
         
     
+        public virtual BuildCookRunConfig Branch(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-Branch=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-Branch");
+            return (BuildCookRunConfig) this;
+        }
+
+        
+        
+    
         public virtual BuildCookRunConfig StopOnErrors(params object[] values)
         {
             AppendArgument(values != null && values.Length > 0 ? "-StopOnErrors=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-StopOnErrors");
@@ -4717,7 +5123,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Skips signing of code/content files."</summary>
         public virtual BuildCookRunConfig NoSign(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-NoSign" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-NoSign");
+            AppendArgument(values != null && values.Length > 0 ? "-NoSign=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-NoSign");
             return (BuildCookRunConfig) this;
         }
     
@@ -5177,7 +5583,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Specify a list of target platforms to build, separated by '+' characters (eg. -TargetPlatforms=Win32+Win64). Default is all the Rocket target platforms."</summary>
         public virtual BuildPluginConfig TargetPlatforms(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-TargetPlatforms" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-TargetPlatforms");
+            AppendArgument(values != null && values.Length > 0 ? "-TargetPlatforms=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-TargetPlatforms");
             return (BuildPluginConfig) this;
         }
 
@@ -5223,6 +5629,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
         public virtual BuildPluginConfig NoDeleteHostProject(params object[] values)
         {
             AppendArgument(values != null && values.Length > 0 ? "-NoDeleteHostProject=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-NoDeleteHostProject");
+            return (BuildPluginConfig) this;
+        }
+
+        
+        
+    
+        public virtual BuildPluginConfig NoTargetPlatforms(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-NoTargetPlatforms=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-NoTargetPlatforms");
             return (BuildPluginConfig) this;
         }
     

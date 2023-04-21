@@ -109,6 +109,7 @@ public static partial class GeneratorCommon
         var result = curedName[0] switch
             {
                 '_' => curedName,
+                '-' => curedName.Substring(1),
                 >= 'a' and <= 'z' => curedName,
                 >= 'A' and <= 'Z' => curedName,
                 _ => "_" + curedName

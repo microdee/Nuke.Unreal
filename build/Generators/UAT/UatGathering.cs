@@ -137,12 +137,7 @@ public partial class UatGathering
     {
         var paramGetterInvocations = from.Declarations.SelectMany(c => c.Declaration
             .DescendantNodes().OfType<InvocationExpressionSyntax>()
-            .Where(n => ParamGetterInvocationRegex().IsMatch(n
-                .DescendantNodes()
-                .OfType<IdentifierNameSyntax>()
-                .First()
-                .Identifier.Text
-            ))
+            .Where(n => ParamGetterInvocationRegex().IsMatch(n.ToString()))
         );
         
         if (!paramGetterInvocations.IsNullOrEmpty())
@@ -152,7 +147,7 @@ public partial class UatGathering
 
         foreach(var invocation in paramGetterInvocations)
         {
-            var cliName = invocation.DescendantNodes()
+            var cliName = invocation.ArgumentList.Arguments.SelectMany(i => i.DescendantNodes())
                 .OfType<LiteralExpressionSyntax>()
                 .Where(n => n.IsKind(SyntaxKind.StringLiteralExpression))
                 .Select(n => n.Token.Text)
@@ -293,11 +288,11 @@ public partial class UatGathering
         }
     }
 
-    protected void CopyAutomationArgumentsToGlobal(IGatheringContext context)
+    protected void CopyArgumentsToGlobal(string className, IGatheringContext context)
     {
         if (context is IHaveSubTools contextWithSubtools)
         {
-            var automationSubtool = contextWithSubtools.SubTools.First(t => t.ConfigName == UniqueClass.Automation);
+            var automationSubtool = contextWithSubtools.SubTools.First(t => t.ConfigName == className);
             automationSubtool.Arguments.ForEach(a => contextWithSubtools.MainTool.AddArgument(a));
         }
     }
@@ -439,9 +434,10 @@ public partial class UatGathering
             }
         });
         context.DecreaseIndent();
-        
+
         Log.Information(context.Indent() + "Placing commonly used arguments on top tool level");
-        CopyAutomationArgumentsToGlobal(context);
+        CopyArgumentsToGlobal(UniqueClass.Automation, context);
+        CopyArgumentsToGlobal(UniqueClass.Program, context);
         GatherGlobalCommandLine(context);
     }
 }

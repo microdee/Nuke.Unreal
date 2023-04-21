@@ -153,6 +153,13 @@ namespace Nuke.Unreal
                 .WithSemanticLogging();
         }
 
+        public static Tool AutomationTool(EngineVersion ofVersion, Action<UnrealAutomationToolConfig> config)
+        {
+            var toolConfig = new UnrealAutomationToolConfig();
+            config?.Invoke(toolConfig);
+            return AutomationTool(ofVersion).With(arguments: toolConfig.Gather());
+        }
+
         public static void ClearFolder(AbsolutePath folder)
         {
             if(Directory.Exists(folder / "Intermediate"))
