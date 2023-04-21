@@ -56,7 +56,10 @@ namespace Nuke.Unreal
         [Parameter("Extra arguments passed to UBT. It's recommended to use it only from command line, do not override.")]
         public virtual string[] UbtArgs { get; set; }
         
-        protected virtual UnrealBuildToolConfig UbtConfig(UnrealBuildToolConfig _) => _;
+        public virtual UnrealBuildToolConfig UbtConfig(UnrealBuildToolConfig _) => _;
+        public virtual UnrealAutomationToolConfig UatConfig(UnrealAutomationToolConfig _) => _
+            .Utf8output()
+            .Nop4();
 
         [Parameter("Extra arguments passed to UAT. It's recommended to use it only from command line, do not override.")]
         public virtual string[] UatArgs { get; set; }

@@ -113,27 +113,8 @@ namespace Nuke.Unreal
             });
 
         public virtual bool CookAll => false;
-        public virtual IEnumerable<string> CookArguments
-        {
-            get
-            {
-                var result = new List<string> {
-                    "-nocompile",
-                    "-installed",
-                    "-skipstage",
-                    "-skipbuild",
-                    "-nop4",
-                    "-utf8output",
-                    "-manifests",
-                };
-                if(CookAll)
-                {
-                    result.Add("-CookAll");
-                }
-                return result;
-            }
-        }
-        
+
+        public virtual UnrealAutomationToolConfig CookArguments(UnrealAutomationToolConfig _) => _;
         public virtual Target Cook => _ => _
             .Description("Cook Unreal assets for standalone game execution")
             .DependsOn(BuildEditor)
@@ -144,28 +125,29 @@ namespace Nuke.Unreal
                 var androidTextureMode = SelfAs<IAndroidTargets>()?.TextureMode
                     ?? new [] { AndroidCookFlavor.Multi };
 
-                var configCombination = isAndroidPlatform
-                    ? (from config in Config from textureMode in androidTextureMode select (config, textureMode))
-                    : Config.Select(c => (c, AndroidCookFlavor.Multi));
-                configCombination.ForEach(combination =>
+                Config.ForEach(config =>
                 {
-                    var (config, textureMode) = combination;
-                    Unreal.AutomationTool(GetEngineVersionFromProject())(
-                        arguments:
-                            "BuildCookRun"
-                            + $" -ScriptsForProject=\"{ProjectPath}\""
-                            + $" -project=\"{ProjectPath}\""
-                            + $" -targetplatform={Platform}"
-                            + $" -platform={Platform}"
-                            + $" -clientconfig={config}"
-                            + " -ue4exe=UE4Editor-Cmd.exe"
-                            + " -cook"
-                            + (isAndroidPlatform ? $" -cookflavor={textureMode}" : "")
-                            + (InvokedTargets.Contains(BuildEditor) ? " -nocompileeditor" : "")
-                            + CookArguments.AppendAsArguments()
-                            + UatArgs.AppendAsArguments(),
-                        workingDirectory: UnrealEnginePath
-                    );
+                    Unreal.AutomationTool(GetEngineVersionFromProject(), _ =>
+                        CookArguments(
+                        UatConfig(_
+                            .BuildCookRun(_ => _
+                                .Project(ProjectPath)
+                                .Clientconfig(Config)
+                                .Skipstage()
+                                .Manifests()
+                            )
+                            .ScriptsForProject(ProjectPath)
+                            .Targetplatform(Platform)
+                            .Cook()
+                            .If(InvokedTargets.Contains(BuildEditor), _ => _
+                                .NoCompileEditor()
+                            )
+                            .If(isAndroidPlatform, _ => _
+                                .Cookflavor(androidTextureMode)
+                            )
+                            .Append(UatArgs.AsArguments())
+                        ))
+                    )(workingDirectory: UnrealEnginePath);
                 });
             });
         
