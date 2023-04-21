@@ -159,6 +159,1549 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 
         
         
+/// <summary>"target platform for building, cooking and deployment (also -Platform)"</summary>
+        public virtual UnrealAutomationToolConfig Targetplatform(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-targetplatform=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-targetplatform");
+            return (UnrealAutomationToolConfig) this;
+        }
+
+        
+        
+/// <summary>"target platform for building, cooking and deployment of the dedicated server (also -ServerPlatform)"</summary>
+        public virtual UnrealAutomationToolConfig Servertargetplatform(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-servertargetplatform=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-servertargetplatform");
+            return (UnrealAutomationToolConfig) this;
+        }
+
+        
+        
+/// <summary>"Generate a foreign uproject from blankproject and use that"
+/// 
+/// Shared: The current project is a foreign project, commandline: -foreign
+/// </summary>
+        public virtual UnrealAutomationToolConfig Foreign(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-foreign=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-foreign");
+            return (UnrealAutomationToolConfig) this;
+        }
+
+        
+        
+/// <summary>"Generate a foreign code uproject from platformergame and use that"
+/// 
+/// Shared: The current project is a foreign project, commandline: -foreign
+/// </summary>
+        public virtual UnrealAutomationToolConfig Foreigncode(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-foreigncode=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-foreigncode");
+            return (UnrealAutomationToolConfig) this;
+        }
+
+        
+        
+/// <summary>"true if we should build crash reporter"
+/// 
+/// Shared: true if we should build crash reporter
+/// </summary>
+        public virtual UnrealAutomationToolConfig CrashReporter(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-CrashReporter=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-CrashReporter");
+            return (UnrealAutomationToolConfig) this;
+        }
+
+        
+        
+/// <summary>"Determines if the build is going to use cooked data"
+/// 
+/// Shared: Determines if the build is going to use cooked data, commandline: -cook, -cookonthefly
+/// </summary>
+        public virtual UnrealAutomationToolConfig Cook(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-cook=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-cook");
+            return (UnrealAutomationToolConfig) this;
+        }
+
+        
+        
+/// <summary>"use a cooked build, but we assume the cooked data is up to date and where it belongs, implies -cook"
+/// 
+/// Shared: Determines if the build is going to use cooked data, commandline: -cook, -cookonthefly
+/// </summary>
+        public virtual UnrealAutomationToolConfig Skipcook(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-skipcook=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-skipcook");
+            return (UnrealAutomationToolConfig) this;
+        }
+
+        
+        
+/// <summary>"in a cookonthefly build, used solely to pass information to the package step"
+/// 
+/// Shared: In a cookonthefly build, used solely to pass information to the package step. This is necessary because you can't set cookonthefly and cook at the same time, and skipcook sets cook.
+/// </summary>
+        public virtual UnrealAutomationToolConfig Skipcookonthefly(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-skipcookonthefly=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-skipcookonthefly");
+            return (UnrealAutomationToolConfig) this;
+        }
+
+        
+        
+/// <summary>"wipe intermediate folders before building"
+/// 
+/// Shared: Determines if the intermediate folders will be wiped before building, commandline: -clean
+/// </summary>
+        public virtual UnrealAutomationToolConfig Clean(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-clean=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-clean");
+            return (UnrealAutomationToolConfig) this;
+        }
+
+        
+        
+/// <summary>"assumes no operator is present, always terminates without waiting for something."
+/// 
+/// Shared: Assumes no user is sitting at the console, so for example kills clients automatically, commandline: -Unattended
+/// </summary>
+        public virtual UnrealAutomationToolConfig Unattended(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-unattended=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-unattended");
+            return (UnrealAutomationToolConfig) this;
+        }
+
+        
+        
+/// <summary>"generate a pak file"
+/// "disable reuse of pak files from the alternate cook source folder, if specified"
+/// 
+/// Shared: True if pak file should be generated.
+/// </summary>
+        public virtual UnrealAutomationToolConfig Pak(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-pak=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-pak");
+            return (UnrealAutomationToolConfig) this;
+        }
+
+        
+        
+/// <summary>"generate I/O store container file(s)"
+/// 
+/// Shared: True if container file(s) should be generated with ZenPak.
+/// </summary>
+        public virtual UnrealAutomationToolConfig Iostore(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-iostore=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-iostore");
+            return (UnrealAutomationToolConfig) this;
+        }
+
+        
+        
+/// <summary>"generate optimized config data during staging to improve loadtimes"</summary>
+        public virtual UnrealAutomationToolConfig Makebinaryconfig(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-makebinaryconfig=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-makebinaryconfig");
+            return (UnrealAutomationToolConfig) this;
+        }
+
+        
+        
+/// <summary>"sign the generated pak file with the specified key, i.e. -signpak=C:\\Encryption.keys. Also implies -signedpak."
+/// 
+/// Shared: Encryption keys used for signing the pak file.
+/// </summary>
+        public virtual UnrealAutomationToolConfig Signpak(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-signpak=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-signpak");
+            return (UnrealAutomationToolConfig) this;
+        }
+
+        
+        
+/// <summary>"attempt to avoid cooking and instead pull pak files from the network, implies pak and skipcook"
+/// 
+/// Shared: true if this build is staged, command line: -stage
+/// </summary>
+        public virtual UnrealAutomationToolConfig Prepak(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-prepak=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-prepak");
+            return (UnrealAutomationToolConfig) this;
+        }
+
+        
+        
+/// <summary>"the game should expect to use a signed pak file."</summary>
+        public virtual UnrealAutomationToolConfig Signed(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-signed" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-signed");
+            return (UnrealAutomationToolConfig) this;
+        }
+
+        
+        
+/// <summary>"The game will be set up for memory mapping bulk data."
+/// 
+/// Shared: The game will be set up for memory mapping bulk data.
+/// </summary>
+        public virtual UnrealAutomationToolConfig PakAlignForMemoryMapping(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-PakAlignForMemoryMapping=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-PakAlignForMemoryMapping");
+            return (UnrealAutomationToolConfig) this;
+        }
+
+        
+        
+/// <summary>"use a pak file, but assume it is already built, implies pak"
+/// 
+/// Shared: true if this build is staged, command line: -stage
+/// </summary>
+        public virtual UnrealAutomationToolConfig Skippak(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-skippak=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-skippak");
+            return (UnrealAutomationToolConfig) this;
+        }
+
+        
+        
+/// <summary>"override the -iostore commandline option to not run it"
+/// 
+/// Shared: true if we want to skip iostore, even if -iostore is specified
+/// </summary>
+        public virtual UnrealAutomationToolConfig Skipiostore(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-skipiostore=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-skipiostore");
+            return (UnrealAutomationToolConfig) this;
+        }
+
+        
+        
+/// <summary>"put this build in a stage directory"
+/// 
+/// Shared: true if this build is staged, command line: -stage
+/// </summary>
+        public virtual UnrealAutomationToolConfig Stage(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-stage=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-stage");
+            return (UnrealAutomationToolConfig) this;
+        }
+
+        
+        
+/// <summary>"uses a stage directory, but assumes everything is already there, implies -stage"
+/// 
+/// Shared: true if this build is staged, command line: -stage
+/// </summary>
+        public virtual UnrealAutomationToolConfig Skipstage(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-skipstage=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-skipstage");
+            return (UnrealAutomationToolConfig) this;
+        }
+
+        
+        
+/// <summary>"generate streaming install manifests when cooking data"
+/// 
+/// Shared: true if this build is using streaming install manifests, command line: -manifests
+/// </summary>
+        public virtual UnrealAutomationToolConfig Manifests(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-manifests=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-manifests");
+            return (UnrealAutomationToolConfig) this;
+        }
+
+        
+        
+/// <summary>"generate streaming install data from manifest when cooking data, requires -stage &amp; -manifests"
+/// 
+/// Shared: true if this build chunk install streaming install data, command line: -createchunkinstalldata
+/// </summary>
+        public virtual UnrealAutomationToolConfig Createchunkinstall(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-createchunkinstall=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-createchunkinstall");
+            return (UnrealAutomationToolConfig) this;
+        }
+
+        
+        
+/// <summary>"skips encrypting pak files even if crypto keys are provided"</summary>
+        public virtual UnrealAutomationToolConfig Skipencryption(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-skipencryption=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-skipencryption");
+            return (UnrealAutomationToolConfig) this;
+        }
+
+        
+        
+/// <summary>"Directory to copy the builds to, i.e. -stagingdirectory=C:\\Stage"</summary>
+        public virtual UnrealAutomationToolConfig Stagingdirectory(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-stagingdirectory=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-stagingdirectory");
+            return (UnrealAutomationToolConfig) this;
+        }
+
+        
+        
+/// <summary>"Name of the UE4 Editor executable, i.e. -ue4exe=UE4Editor.exe"</summary>
+        public virtual UnrealAutomationToolConfig Ue4exe(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-ue4exe=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-ue4exe");
+            return (UnrealAutomationToolConfig) this;
+        }
+
+        
+        
+/// <summary>"put this build in an archive directory"
+/// 
+/// Shared: true if this build is archived, command line: -archive
+/// </summary>
+        public virtual UnrealAutomationToolConfig Archive(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-archive=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-archive");
+            return (UnrealAutomationToolConfig) this;
+        }
+
+        
+        
+/// <summary>"Directory to archive the builds to, i.e. -archivedirectory=C:\\Archive"</summary>
+        public virtual UnrealAutomationToolConfig Archivedirectory(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-archivedirectory=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-archivedirectory");
+            return (UnrealAutomationToolConfig) this;
+        }
+
+        
+        
+/// <summary>"Archive extra metadata files in addition to the build (e.g. build.properties)"
+/// 
+/// Whether the project should use non monolithic staging
+/// </summary>
+        public virtual UnrealAutomationToolConfig Archivemetadata(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-archivemetadata=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-archivemetadata");
+            return (UnrealAutomationToolConfig) this;
+        }
+
+        
+        
+/// <summary>"When archiving for Mac, set this to true to package it in a .app bundle instead of normal loose files"
+/// 
+/// When archiving for Mac, set this to true to package it in a .app bundle instead of normal loose files
+/// </summary>
+        public virtual UnrealAutomationToolConfig Createappbundle(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-createappbundle=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-createappbundle");
+            return (UnrealAutomationToolConfig) this;
+        }
+
+        
+        
+/// <summary>"True if build step should be executed"
+/// 
+/// Build: True if build step should be executed, command: -build
+/// </summary>
+        public virtual UnrealAutomationToolConfig Build(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-build=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-build");
+            return (UnrealAutomationToolConfig) this;
+        }
+
+        
+        
+/// <summary>"True if XGE should NOT be used for building"
+/// 
+/// Build: True if XGE should NOT be used for building.
+/// 
+/// "Toggle to disable the distributed build process"</summary>
+        public virtual UnrealAutomationToolConfig Noxge(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-noxge=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-noxge");
+            return (UnrealAutomationToolConfig) this;
+        }
+
+        
+        
+/// <summary>"while cooking clean up packages as we are done with them rather then cleaning everything up when we run out of space"
+/// 
+/// Cook: While cooking clean up packages as we go along rather then cleaning everything (and potentially having to reload some of it) when we run out of space
+/// </summary>
+        public virtual UnrealAutomationToolConfig CookPartialgc(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-CookPartialgc=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-CookPartialgc");
+            return (UnrealAutomationToolConfig) this;
+        }
+
+        
+        
+/// <summary>"Did we cook in the editor instead of in UAT"
+/// 
+/// Stage: Did we cook in the editor instead of from UAT (cook in editor uses a different staging directory)
+/// </summary>
+        public virtual UnrealAutomationToolConfig CookInEditor(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-CookInEditor=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-CookInEditor");
+            return (UnrealAutomationToolConfig) this;
+        }
+
+        
+        
+/// <summary>"Uses the iterative cooking, command line: -iterativecooking or -iterate"
+/// "Uses the iterative cooking, command line: -iterativedeploy or -iterate"
+/// 
+/// Cook: Uses the iterative cooking, command line: -iterativecooking or -iterate
+/// </summary>
+        public virtual UnrealAutomationToolConfig Iterativecooking(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-iterativecooking=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-iterativecooking");
+            return (UnrealAutomationToolConfig) this;
+        }
+
+        
+        
+/// <summary>"Cook only maps this only affects usage of -cookall the flag"
+/// 
+/// Cook: Only cook maps (and referenced content) instead of cooking everything only affects -cookall flag
+/// </summary>
+        public virtual UnrealAutomationToolConfig CookMapsOnly(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-CookMapsOnly=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-CookMapsOnly");
+            return (UnrealAutomationToolConfig) this;
+        }
+
+        
+        
+/// <summary>"Cook all the things in the content directory for this project"
+/// 
+/// Cook: Only cook maps (and referenced content) instead of cooking everything only affects cookall flag
+/// </summary>
+        public virtual UnrealAutomationToolConfig CookAll(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-CookAll=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-CookAll");
+            return (UnrealAutomationToolConfig) this;
+        }
+
+        
+        
+/// <summary>"Skips content under /Engine/Editor when cooking"
+/// 
+/// Cook: Skip cooking editor content
+/// </summary>
+        public virtual UnrealAutomationToolConfig SkipCookingEditorContent(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-SkipCookingEditorContent=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-SkipCookingEditorContent");
+            return (UnrealAutomationToolConfig) this;
+        }
+
+        
+        
+/// <summary>"Uses fast cook path if supported by target"</summary>
+        public virtual UnrealAutomationToolConfig FastCook(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-FastCook=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-FastCook");
+            return (UnrealAutomationToolConfig) this;
+        }
+
+        
+        
+/// <summary>"Ignores cook errors and continues with packaging etc"
+/// 
+/// Cook: Ignores cook errors and continues with packaging etc.
+/// </summary>
+        public virtual UnrealAutomationToolConfig IgnoreCookErrors(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-IgnoreCookErrors=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-IgnoreCookErrors");
+            return (UnrealAutomationToolConfig) this;
+        }
+
+        
+        
+/// <summary>"do not copy debug files to the stage"
+/// 
+/// Stage: Commandline: -nodebuginfo
+/// </summary>
+        public virtual UnrealAutomationToolConfig Nodebuginfo(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-nodebuginfo=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-nodebuginfo");
+            return (UnrealAutomationToolConfig) this;
+        }
+
+        
+        
+/// <summary>"output debug info to a separate directory"
+/// 
+/// Stage: Commandline: -separatedebuginfo
+/// </summary>
+        public virtual UnrealAutomationToolConfig Separatedebuginfo(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-separatedebuginfo=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-separatedebuginfo");
+            return (UnrealAutomationToolConfig) this;
+        }
+
+        
+        
+/// <summary>"generates a *.map file"
+/// 
+/// Stage: Commandline: -mapfile
+/// </summary>
+        public virtual UnrealAutomationToolConfig MapFile(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-MapFile=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-MapFile");
+            return (UnrealAutomationToolConfig) this;
+        }
+
+        
+        
+/// <summary>"skip cleaning the stage directory"
+/// 
+/// true if the staging directory is to be cleaned: -cleanstage (also true if -clean is specified)
+/// </summary>
+        public virtual UnrealAutomationToolConfig Nocleanstage(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-nocleanstage=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-nocleanstage");
+            return (UnrealAutomationToolConfig) this;
+        }
+
+        
+        
+/// <summary>"command line to put into the stage in UE4CommandLine.txt"</summary>
+        public virtual UnrealAutomationToolConfig Cmdline(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-cmdline=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-cmdline");
+            return (UnrealAutomationToolConfig) this;
+        }
+
+        
+        
+/// <summary>"string to use as the bundle name when deploying to mobile device"
+/// 
+/// Stage: If non-empty, the contents will be used for the bundle name
+/// </summary>
+        public virtual UnrealAutomationToolConfig Bundlename(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-bundlename=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-bundlename");
+            return (UnrealAutomationToolConfig) this;
+        }
+
+        
+        
+/// <summary>"run the game after it is built (including server, if -server)"
+/// 
+/// Run: True if the Run step should be executed, command: -run
+/// </summary>
+        public virtual UnrealAutomationToolConfig Run(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-run=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-run");
+            return (UnrealAutomationToolConfig) this;
+        }
+
+        
+        
+/// <summary>"run the client with cooked data provided by cook on the fly server"
+/// 
+/// Run: The client runs with cooked data provided by cook on the fly server, command line: -cookonthefly
+/// </summary>
+        public virtual UnrealAutomationToolConfig Cookonthefly(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-cookonthefly=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-cookonthefly");
+            return (UnrealAutomationToolConfig) this;
+        }
+
+        
+        
+/// <summary>"run the client in streaming cook on the fly mode (don't cache files locally instead force reget from server each file load)"
+/// 
+/// Run: The client should run in streaming mode when connecting to cook on the fly server
+/// </summary>
+        public virtual UnrealAutomationToolConfig Cookontheflystreaming(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-Cookontheflystreaming=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-Cookontheflystreaming");
+            return (UnrealAutomationToolConfig) this;
+        }
+
+        
+        
+/// <summary>"run the client with cooked data provided by UnrealFileServer"
+/// 
+/// Run: The client runs with cooked data provided by UnrealFileServer, command line: -fileserver
+/// </summary>
+        public virtual UnrealAutomationToolConfig Fileserver(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-fileserver=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-fileserver");
+            return (UnrealAutomationToolConfig) this;
+        }
+
+        
+        
+/// <summary>"build, cook and run both a client and a server (also -server)"
+/// 
+/// Run: The client connects to dedicated server to get data, command line: -dedicatedserver
+/// </summary>
+        public virtual UnrealAutomationToolConfig Dedicatedserver(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-dedicatedserver=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-dedicatedserver");
+            return (UnrealAutomationToolConfig) this;
+        }
+
+        
+        
+/// <summary>"build, cook and run a client and a server, uses client target configuration"
+/// 
+/// Run: Uses a client target configuration, also implies -dedicatedserver, command line: -client
+/// </summary>
+        public virtual UnrealAutomationToolConfig Client(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-client=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-client");
+            return (UnrealAutomationToolConfig) this;
+        }
+
+        
+        
+/// <summary>"do not run the client, just run the server"
+/// 
+/// Run: Whether the client should start or not, command line (to disable): -noclient
+/// </summary>
+        public virtual UnrealAutomationToolConfig Noclient(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-noclient=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-noclient");
+            return (UnrealAutomationToolConfig) this;
+        }
+
+        
+        
+/// <summary>"create a log window for the client"
+/// 
+/// Run: Client should create its own log window, command line: -logwindow
+/// </summary>
+        public virtual UnrealAutomationToolConfig Logwindow(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-logwindow=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-logwindow");
+            return (UnrealAutomationToolConfig) this;
+        }
+
+        
+        
+/// <summary>"map to run the game with"</summary>
+        public virtual UnrealAutomationToolConfig Map(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-map=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-map");
+            return (UnrealAutomationToolConfig) this;
+        }
+
+        
+        
+/// <summary>"Additional server map params, i.e ?param=value"
+/// 
+/// Run: Additional server map params.
+/// </summary>
+        public virtual UnrealAutomationToolConfig AdditionalServerMapParams(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-AdditionalServerMapParams=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-AdditionalServerMapParams");
+            return (UnrealAutomationToolConfig) this;
+        }
+
+        
+        
+/// <summary>"Devices to run the game on"
+/// "Device names without the platform prefix to run the game on"</summary>
+        public virtual UnrealAutomationToolConfig Device(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-device=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-device");
+            return (UnrealAutomationToolConfig) this;
+        }
+
+        
+        
+/// <summary>"Device to run the server on"
+/// 
+/// Run: the target device to run the server on
+/// </summary>
+        public virtual UnrealAutomationToolConfig Serverdevice(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-serverdevice=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-serverdevice");
+            return (UnrealAutomationToolConfig) this;
+        }
+
+        
+        
+/// <summary>"Skip starting the server"
+/// 
+/// Run: The indicated server has already been started
+/// </summary>
+        public virtual UnrealAutomationToolConfig Skipserver(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-skipserver=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-skipserver");
+            return (UnrealAutomationToolConfig) this;
+        }
+
+        
+        
+/// <summary>"Start extra clients, n should be 2 or more"
+/// 
+/// Run: The indicated server has already been started
+/// </summary>
+        public virtual UnrealAutomationToolConfig Numclients(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-numclients=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-numclients");
+            return (UnrealAutomationToolConfig) this;
+        }
+
+        
+        
+/// <summary>"Additional command line arguments for the program"</summary>
+        public virtual UnrealAutomationToolConfig Addcmdline(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-addcmdline=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-addcmdline");
+            return (UnrealAutomationToolConfig) this;
+        }
+
+        
+        
+/// <summary>"Additional command line arguments for the program"</summary>
+        public virtual UnrealAutomationToolConfig Servercmdline(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-servercmdline=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-servercmdline");
+            return (UnrealAutomationToolConfig) this;
+        }
+
+        
+        
+/// <summary>"Override command line arguments to pass to the client"</summary>
+        public virtual UnrealAutomationToolConfig Clientcmdline(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-clientcmdline=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-clientcmdline");
+            return (UnrealAutomationToolConfig) this;
+        }
+
+        
+        
+/// <summary>"add -nullrhi to the client commandlines"
+/// 
+/// Run:adds -nullrhi to the client commandline
+/// </summary>
+        public virtual UnrealAutomationToolConfig Nullrhi(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-nullrhi=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-nullrhi");
+            return (UnrealAutomationToolConfig) this;
+        }
+
+        
+        
+/// <summary>"adds ?fake to the server URL"
+/// 
+/// Run:adds ?fake to the server URL
+/// </summary>
+        public virtual UnrealAutomationToolConfig Fakeclient(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-fakeclient=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-fakeclient");
+            return (UnrealAutomationToolConfig) this;
+        }
+
+        
+        
+/// <summary>"rather than running a client, run the editor instead"
+/// 
+/// Run:adds ?fake to the server URL
+/// </summary>
+        public virtual UnrealAutomationToolConfig Editortest(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-editortest=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-editortest");
+            return (UnrealAutomationToolConfig) this;
+        }
+
+        
+        
+/// <summary>"when running -editortest or a client, run all automation tests, not compatible with -server"
+/// "when running -editortest or a client, run a specific automation tests, not compatible with -server"
+/// 
+/// Run:when running -editortest or a client, run all automation tests, not compatible with -server
+/// </summary>
+        public virtual UnrealAutomationToolConfig RunAutomationTests(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-RunAutomationTests=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-RunAutomationTests");
+            return (UnrealAutomationToolConfig) this;
+        }
+
+        
+        
+/// <summary>"when running -editortest or a client, adds commands like debug crash, debug rendercrash, etc based on index"</summary>
+        public virtual UnrealAutomationToolConfig Crash(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-Crash=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-Crash");
+            return (UnrealAutomationToolConfig) this;
+        }
+
+        
+        
+/// <summary>"Linux username for unattended key genereation"</summary>
+        public virtual UnrealAutomationToolConfig Deviceuser(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-deviceuser=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-deviceuser");
+            return (UnrealAutomationToolConfig) this;
+        }
+
+        
+        
+/// <summary>"Linux password"</summary>
+        public virtual UnrealAutomationToolConfig Devicepass(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-devicepass=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-devicepass");
+            return (UnrealAutomationToolConfig) this;
+        }
+
+        
+        
+/// <summary>"package the project for the target platform"
+/// "Determine whether data is packaged. This can be an iteration optimization for platforms that require packages for deployment"</summary>
+        public virtual UnrealAutomationToolConfig Package(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-package=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-package");
+            return (UnrealAutomationToolConfig) this;
+        }
+
+        
+        
+/// <summary>"Skips packaging the project for the target platform"</summary>
+        public virtual UnrealAutomationToolConfig Skippackage(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-skippackage=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-skippackage");
+            return (UnrealAutomationToolConfig) this;
+        }
+
+        
+        
+/// <summary>"package for distribution the project"</summary>
+        public virtual UnrealAutomationToolConfig Distribution(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-distribution=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-distribution");
+            return (UnrealAutomationToolConfig) this;
+        }
+
+        
+        
+/// <summary>"stage prerequisites along with the project"</summary>
+        public virtual UnrealAutomationToolConfig Prereqs(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-prereqs=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-prereqs");
+            return (UnrealAutomationToolConfig) this;
+        }
+
+        
+        
+/// <summary>"location of prerequisites for applocal deployment"</summary>
+        public virtual UnrealAutomationToolConfig Applocaldir(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-applocaldir" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-applocaldir");
+            return (UnrealAutomationToolConfig) this;
+        }
+
+        
+        
+/// <summary>"this is a prebuilt cooked and packaged build"</summary>
+        public virtual UnrealAutomationToolConfig Prebuilt(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-Prebuilt=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-Prebuilt");
+            return (UnrealAutomationToolConfig) this;
+        }
+
+        
+        
+/// <summary>"timeout to wait after we lunch the game"</summary>
+        public virtual UnrealAutomationToolConfig RunTimeoutSeconds(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-RunTimeoutSeconds=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-RunTimeoutSeconds");
+            return (UnrealAutomationToolConfig) this;
+        }
+
+        
+        
+/// <summary>"Determine a specific Minimum OS"</summary>
+        public virtual UnrealAutomationToolConfig SpecifiedArchitecture(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-SpecifiedArchitecture=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-SpecifiedArchitecture");
+            return (UnrealAutomationToolConfig) this;
+        }
+
+        
+        
+/// <summary>"extra options to pass to ubt"</summary>
+        public virtual UnrealAutomationToolConfig UbtArgs(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-UbtArgs=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-UbtArgs");
+            return (UnrealAutomationToolConfig) this;
+        }
+
+        
+        
+/// <summary>"extra options to pass to the platform's packager"</summary>
+        public virtual UnrealAutomationToolConfig AdditionalPackageOptions(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-AdditionalPackageOptions=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-AdditionalPackageOptions");
+            return (UnrealAutomationToolConfig) this;
+        }
+
+        
+        
+/// <summary>"deploy the project for the target platform"
+/// "Location to deploy to on the target platform"</summary>
+        public virtual UnrealAutomationToolConfig Deploy(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-deploy=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-deploy");
+            return (UnrealAutomationToolConfig) this;
+        }
+
+        
+        
+/// <summary>"download file from target after successful run"</summary>
+        public virtual UnrealAutomationToolConfig Getfile(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-getfile=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-getfile");
+            return (UnrealAutomationToolConfig) this;
+        }
+
+        
+        
+/// <summary>"List of maps that need light maps rebuilding"</summary>
+        public virtual UnrealAutomationToolConfig MapsToRebuildLightMaps(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-MapsToRebuildLightMaps=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-MapsToRebuildLightMaps");
+            return (UnrealAutomationToolConfig) this;
+        }
+
+        
+        
+/// <summary>"List of maps that need HLOD rebuilding"</summary>
+        public virtual UnrealAutomationToolConfig MapsToRebuildHLODMaps(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-MapsToRebuildHLODMaps=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-MapsToRebuildHLODMaps");
+            return (UnrealAutomationToolConfig) this;
+        }
+
+        
+        
+/// <summary>"Whether Light Map errors should be treated as critical"</summary>
+        public virtual UnrealAutomationToolConfig IgnoreLightMapErrors(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-IgnoreLightMapErrors" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-IgnoreLightMapErrors");
+            return (UnrealAutomationToolConfig) this;
+        }
+
+        
+        
+    
+        public virtual UnrealAutomationToolConfig Cookflavor(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-cookflavor=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-cookflavor");
+            return (UnrealAutomationToolConfig) this;
+        }
+
+        
+        
+    
+        public virtual UnrealAutomationToolConfig Ddc(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-ddc=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-ddc");
+            return (UnrealAutomationToolConfig) this;
+        }
+
+        
+        
+    
+        public virtual UnrealAutomationToolConfig I18npreset(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-i18npreset=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-i18npreset");
+            return (UnrealAutomationToolConfig) this;
+        }
+
+        
+        
+    
+        public virtual UnrealAutomationToolConfig CookCultures(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-CookCultures=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-CookCultures");
+            return (UnrealAutomationToolConfig) this;
+        }
+
+        
+        
+    
+        public virtual UnrealAutomationToolConfig Skipbuild(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-skipbuild=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-skipbuild");
+            return (UnrealAutomationToolConfig) this;
+        }
+
+        
+        
+/// <summary>
+/// SkipBuildClient if true then don't build the client exe
+/// </summary>
+        public virtual UnrealAutomationToolConfig SkipBuildClient(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-skipbuildclient=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-skipbuildclient");
+            return (UnrealAutomationToolConfig) this;
+        }
+
+        
+        
+/// <summary>
+/// SkipBuildEditor if true then don't build the editor exe
+/// </summary>
+        public virtual UnrealAutomationToolConfig SkipBuildEditor(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-skipbuildeditor=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-skipbuildeditor");
+            return (UnrealAutomationToolConfig) this;
+        }
+
+        
+        
+    
+        public virtual UnrealAutomationToolConfig Createreleaseversionroot(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-createreleaseversionroot=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-createreleaseversionroot");
+            return (UnrealAutomationToolConfig) this;
+        }
+
+        
+        
+    
+        public virtual UnrealAutomationToolConfig Basedonreleaseversionroot(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-basedonreleaseversionroot=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-basedonreleaseversionroot");
+            return (UnrealAutomationToolConfig) this;
+        }
+
+        
+        
+/// <summary>
+/// The version of the originally released build. This is required by some platforms when generating patches.
+/// </summary>
+        public virtual UnrealAutomationToolConfig OriginalReleaseVersion(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-originalreleaseversion=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-originalreleaseversion");
+            return (UnrealAutomationToolConfig) this;
+        }
+
+        
+        
+/// <summary>
+/// Cook: Create a cooked release version.  Also, the version. e.g. 1.0
+/// </summary>
+        public virtual UnrealAutomationToolConfig CreateReleaseVersion(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-createreleaseversion=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-createreleaseversion");
+            return (UnrealAutomationToolConfig) this;
+        }
+
+        
+        
+/// <summary>
+/// Cook: Base this cook of a already released version of the cooked data
+/// </summary>
+        public virtual UnrealAutomationToolConfig BasedOnReleaseVersion(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-basedonreleaseversion=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-basedonreleaseversion");
+            return (UnrealAutomationToolConfig) this;
+        }
+
+        
+        
+/// <summary>
+/// Are we generating a patch, generate a patch from a previously released version of the game (use CreateReleaseVersion to create a release).
+/// this requires BasedOnReleaseVersion
+/// see also CreateReleaseVersion, BasedOnReleaseVersion
+/// </summary>
+        public virtual UnrealAutomationToolConfig GeneratePatch(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-GeneratePatch=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-GeneratePatch");
+            return (UnrealAutomationToolConfig) this;
+        }
+
+        
+        
+/// <summary></summary>
+        public virtual UnrealAutomationToolConfig AddPatchLevel(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-AddPatchLevel=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-AddPatchLevel");
+            return (UnrealAutomationToolConfig) this;
+        }
+
+        
+        
+/// <summary>
+/// Are we staging the unmodified pak files from the base release</summary>
+        public virtual UnrealAutomationToolConfig StageBaseReleasePaks(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-StageBaseReleasePaks=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-StageBaseReleasePaks");
+            return (UnrealAutomationToolConfig) this;
+        }
+
+        
+        
+/// <summary>
+/// Required when building remaster package
+/// </summary>
+        public virtual UnrealAutomationToolConfig DiscVersion(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-DiscVersion=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-DiscVersion");
+            return (UnrealAutomationToolConfig) this;
+        }
+
+        
+        
+/// <summary>
+/// Cook: Additional cooker options to include on the cooker commandline
+/// </summary>
+        public virtual UnrealAutomationToolConfig AdditionalCookerOptions(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-AdditionalCookerOptions=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-AdditionalCookerOptions");
+            return (UnrealAutomationToolConfig) this;
+        }
+
+        
+        
+    
+        public virtual UnrealAutomationToolConfig DLCName(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-DLCName=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-DLCName");
+            return (UnrealAutomationToolConfig) this;
+        }
+
+        
+        
+/// <summary>
+/// After cook completes diff the cooked content against another cooked content directory.
+/// report all errors to the log
+/// </summary>
+        public virtual UnrealAutomationToolConfig DiffCookedContentPath(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-DiffCookedContentPath=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-DiffCookedContentPath");
+            return (UnrealAutomationToolConfig) this;
+        }
+
+        
+        
+/// <summary>
+/// Enable cooking of engine content when cooking dlc
+/// not included in original release but is referenced by current cook
+/// </summary>
+        public virtual UnrealAutomationToolConfig DLCIncludeEngineContent(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-DLCIncludeEngineContent=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-DLCIncludeEngineContent");
+            return (UnrealAutomationToolConfig) this;
+        }
+
+        
+        
+/// <summary>
+/// Enable packaging up the uplugin file inside the dlc pak.  This is sometimes desired if you want the plugin to be standalone
+/// </summary>
+        public virtual UnrealAutomationToolConfig DLCPakPluginFile(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-DLCPakPluginFile=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-DLCPakPluginFile");
+            return (UnrealAutomationToolConfig) this;
+        }
+
+        
+        
+/// <summary>
+/// DLC will remap it's files to the game directory and act like a patch.  This is useful if you want to override content in the main game along side your main game.
+/// For example having different main game content in different DLCs
+/// </summary>
+        public virtual UnrealAutomationToolConfig DLCActLikePatch(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-DLCActLikePatch=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-DLCActLikePatch");
+            return (UnrealAutomationToolConfig) this;
+        }
+
+        
+        
+/// <summary>
+/// Shared: the game will use only signed content.
+/// </summary>
+        public virtual UnrealAutomationToolConfig SignedPak(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-signedpak=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-signedpak");
+            return (UnrealAutomationToolConfig) this;
+        }
+
+        
+        
+/// <summary>
+/// Stage: True if we should disable trying to re-use pak files from another staged build when we've specified a different cook source platform
+/// </summary>
+        public virtual UnrealAutomationToolConfig IgnorePaksFromDifferentCookSource(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-IgnorePaksFromDifferentCookSource=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-IgnorePaksFromDifferentCookSource");
+            return (UnrealAutomationToolConfig) this;
+        }
+
+        
+        
+/// <summary>
+/// Cook: Do not include a version number in the cooked content
+/// </summary>
+        public virtual UnrealAutomationToolConfig UnversionedCookedContent(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-UnversionedCookedContent=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-UnversionedCookedContent");
+            return (UnrealAutomationToolConfig) this;
+        }
+
+        
+        
+/// <summary>
+/// Cook: number of additional cookers to spawn while cooking
+/// </summary>
+        public virtual UnrealAutomationToolConfig NumCookersToSpawn(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-NumCookersToSpawn=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-NumCookersToSpawn");
+            return (UnrealAutomationToolConfig) this;
+        }
+
+        
+        
+/// <summary>
+/// Compress packages during cook.
+/// </summary>
+        public virtual UnrealAutomationToolConfig Compressed(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-compressed=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-compressed");
+            return (UnrealAutomationToolConfig) this;
+        }
+
+        
+        
+/// <summary>
+/// Do not compress packages during cook, override game ProjectPackagingSettings to force it off
+/// </summary>
+        public virtual UnrealAutomationToolConfig ForceUncompressed(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-ForceUncompressed=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-ForceUncompressed");
+            return (UnrealAutomationToolConfig) this;
+        }
+
+        
+        
+/// <summary>
+/// Additional parameters when generating the PAK file
+/// </summary>
+        public virtual UnrealAutomationToolConfig AdditionalPakOptions(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-AdditionalPakOptions=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-AdditionalPakOptions");
+            return (UnrealAutomationToolConfig) this;
+        }
+
+        
+        
+/// <summary>
+/// Additional parameters when generating iostore container files
+/// </summary>
+        public virtual UnrealAutomationToolConfig AdditionalIoStoreOptions(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-AdditionalIoStoreOptions=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-AdditionalIoStoreOptions");
+            return (UnrealAutomationToolConfig) this;
+        }
+
+        
+        
+/// <summary>
+/// Cook: Iterate from a build on the network
+/// </summary>
+        public virtual UnrealAutomationToolConfig Iteratesharedcookedbuild(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-iteratesharedcookedbuild=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-iteratesharedcookedbuild");
+            return (UnrealAutomationToolConfig) this;
+        }
+
+        
+        
+/// <summary>
+/// Build: Don't build the game instead use the prebuild exe (requires iterate shared cooked build
+/// </summary>
+        public virtual UnrealAutomationToolConfig IterateSharedBuildUsePrecompiledExe(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-IterateSharedBuildUsePrecompiledExe=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-IterateSharedBuildUsePrecompiledExe");
+            return (UnrealAutomationToolConfig) this;
+        }
+
+        
+        
+/// <summary>
+/// Cook: Output directory for cooked data
+/// </summary>
+        public virtual UnrealAutomationToolConfig CookOutputDir(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-CookOutputDir=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-CookOutputDir");
+            return (UnrealAutomationToolConfig) this;
+        }
+
+        
+        
+    
+        public virtual UnrealAutomationToolConfig Target(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-target=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-target");
+            return (UnrealAutomationToolConfig) this;
+        }
+
+        
+        
+/// <summary>Stage: Specifies a list of extra targets that should be staged along with a client
+/// </summary>
+        public virtual UnrealAutomationToolConfig ExtraTargetsToStageWithClient(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-ExtraTargetsToStageWithClient=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-ExtraTargetsToStageWithClient");
+            return (UnrealAutomationToolConfig) this;
+        }
+
+        
+        
+/// <summary>
+/// By default we don't code sign unless it is required or requested
+/// </summary>
+        public virtual UnrealAutomationToolConfig CodeSign(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-CodeSign=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-CodeSign");
+            return (UnrealAutomationToolConfig) this;
+        }
+
+        
+        
+/// <summary>
+/// If true, non-shipping binaries will be considered DebugUFS files and will appear on the debugfiles manifest
+/// </summary>
+        public virtual UnrealAutomationToolConfig TreatNonShippingBinariesAsDebugFiles(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-TreatNonShippingBinariesAsDebugFiles=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-TreatNonShippingBinariesAsDebugFiles");
+            return (UnrealAutomationToolConfig) this;
+        }
+
+        
+        
+/// <summary>
+/// If true, use chunk manifest files generated for extra flavor
+/// </summary>
+        public virtual UnrealAutomationToolConfig UseExtraFlavor(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-UseExtraFlavor=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-UseExtraFlavor");
+            return (UnrealAutomationToolConfig) this;
+        }
+
+        
+        
+/// <summary>
+/// Shared: Directory to use for built chunk install data, command line: -chunkinstalldirectory=
+/// </summary>
+        public virtual UnrealAutomationToolConfig ChunkInstallDirectory(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-chunkinstalldirectory=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-chunkinstalldirectory");
+            return (UnrealAutomationToolConfig) this;
+        }
+
+        
+        
+    
+        public virtual UnrealAutomationToolConfig Chunkinstallversion(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-chunkinstallversion=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-chunkinstallversion");
+            return (UnrealAutomationToolConfig) this;
+        }
+
+        
+        
+    
+        public virtual UnrealAutomationToolConfig Chunkinstallrelease(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-chunkinstallrelease=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-chunkinstallrelease");
+            return (UnrealAutomationToolConfig) this;
+        }
+
+        
+        
+    
+        public virtual UnrealAutomationToolConfig AppLocalDirectory(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-applocaldirectory=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-applocaldirectory");
+            return (UnrealAutomationToolConfig) this;
+        }
+
+        
+        
+/// <summary>
+/// On Windows, adds an executable to the root of the staging directory which checks for prerequisites being
+/// installed and launches the game with a path to the .uproject file.
+/// </summary>
+        public virtual UnrealAutomationToolConfig NoBootstrapExe(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-nobootstrapexe=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-nobootstrapexe");
+            return (UnrealAutomationToolConfig) this;
+        }
+
+        
+        
+    
+        public virtual UnrealAutomationToolConfig ForcePackageData(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-forcepackagedata=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-forcepackagedata");
+            return (UnrealAutomationToolConfig) this;
+        }
+
+        
+        
+/// <summary>
+/// Cook: Uses the iterative deploy, command line: -iterativedeploy or -iterate
+/// </summary>
+        public virtual UnrealAutomationToolConfig IterativeDeploy(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-iterativedeploy=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-iterativedeploy");
+            return (UnrealAutomationToolConfig) this;
+        }
+
+        
+        
+/// <summary>
+/// Provision to use
+/// </summary>
+        public virtual UnrealAutomationToolConfig Provision(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-provision=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-provision");
+            return (UnrealAutomationToolConfig) this;
+        }
+
+        
+        
+/// <summary>
+/// Certificate to use
+/// </summary>
+        public virtual UnrealAutomationToolConfig Certificate(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-certificate=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-certificate");
+            return (UnrealAutomationToolConfig) this;
+        }
+
+        
+        
+/// <summary>
+/// Team ID to use
+/// </summary>
+        public virtual UnrealAutomationToolConfig Team(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-team=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-team");
+            return (UnrealAutomationToolConfig) this;
+        }
+
+        
+        
+/// <summary>
+/// true if provisioning is automatically managed
+/// </summary>
+        public virtual UnrealAutomationToolConfig AutomaticSigning(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-AutomaticSigning=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-AutomaticSigning");
+            return (UnrealAutomationToolConfig) this;
+        }
+
+        
+        
+/// <summary>
+/// Run:when running -editortest or a client, run all automation tests, not compatible with -server
+/// </summary>
+        public virtual UnrealAutomationToolConfig RunAutomationTest(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-RunAutomationTest=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-RunAutomationTest");
+            return (UnrealAutomationToolConfig) this;
+        }
+
+        
+        
+    
+        public virtual UnrealAutomationToolConfig Clientconfig(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-clientconfig=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-clientconfig");
+            return (UnrealAutomationToolConfig) this;
+        }
+
+        
+        
+    
+        public virtual UnrealAutomationToolConfig Config(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-config=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-config");
+            return (UnrealAutomationToolConfig) this;
+        }
+
+        
+        
+    
+        public virtual UnrealAutomationToolConfig Configuration(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-configuration=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-configuration");
+            return (UnrealAutomationToolConfig) this;
+        }
+
+        
+        
+    
+        public virtual UnrealAutomationToolConfig Port(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-port=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-port");
+            return (UnrealAutomationToolConfig) this;
+        }
+
+        
+        
+/// <summary>
+/// Cook: List of maps to cook.
+/// </summary>
+        public virtual UnrealAutomationToolConfig MapsToCook(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-MapsToCook=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-MapsToCook");
+            return (UnrealAutomationToolConfig) this;
+        }
+
+        
+        
+/// <summary>
+/// Cook: List of map inisections to cook (see allmaps)
+/// </summary>
+        public virtual UnrealAutomationToolConfig MapIniSectionsToCook(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-MapIniSectionsToCook=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-MapIniSectionsToCook");
+            return (UnrealAutomationToolConfig) this;
+        }
+
+        
+        
+/// <summary>
+/// TitleID to package
+/// </summary>
+        public virtual UnrealAutomationToolConfig TitleID(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-TitleID=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-TitleID");
+            return (UnrealAutomationToolConfig) this;
+        }
+
+        
+        
+    
+        public virtual UnrealAutomationToolConfig Serverconfig(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-serverconfig=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-serverconfig");
+            return (UnrealAutomationToolConfig) this;
+        }
+
+        
+        
+/// <summary>
+/// Run: Adds commands like debug crash, debug rendercrash, etc based on index
+/// </summary>
+        public virtual UnrealAutomationToolConfig CrashIndex(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-CrashIndex=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-CrashIndex");
+            return (UnrealAutomationToolConfig) this;
+        }
+
+        
+        
     
         public virtual UnrealAutomationToolConfig IgnoreDependencies(params object[] values)
         {

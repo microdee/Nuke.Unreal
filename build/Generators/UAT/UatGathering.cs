@@ -438,6 +438,7 @@ public partial class UatGathering
         Log.Information(context.Indent() + "Placing commonly used arguments on top tool level");
         CopyArgumentsToGlobal(UniqueClass.Automation, context);
         CopyArgumentsToGlobal(UniqueClass.Program, context);
+        CopyArgumentsToGlobal(UniqueClass.ProjectParams, context);
         GatherGlobalCommandLine(context);
     }
 }
