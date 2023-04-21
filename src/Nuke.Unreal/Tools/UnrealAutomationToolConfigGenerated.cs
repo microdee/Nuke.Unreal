@@ -11,6 +11,185 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 {
     public override string Name => "UnrealAutomationTool";
     
+        
+/// <summary>"Enables verbose logging"</summary>
+        public virtual UnrealAutomationToolConfig Verbose(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-verbose=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-verbose");
+            return (UnrealAutomationToolConfig) this;
+        }
+
+        
+        
+/// <summary>"Disables Perforce functionality (default if not run on a build machine)"</summary>
+        public virtual UnrealAutomationToolConfig Nop4(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-nop4=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-nop4");
+            return (UnrealAutomationToolConfig) this;
+        }
+
+        
+        
+/// <summary>"Enables Perforce functionality (default if run on a build machine)"</summary>
+        public virtual UnrealAutomationToolConfig P4(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-p4=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-p4");
+            return (UnrealAutomationToolConfig) this;
+        }
+
+        
+        
+/// <summary>"Does not run any commands, only compiles them"</summary>
+        public virtual UnrealAutomationToolConfig Compileonly(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-compileonly=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-compileonly");
+            return (UnrealAutomationToolConfig) this;
+        }
+
+        
+        
+/// <summary>"Dynamically compiles all commands (otherwise assumes they are already built)"</summary>
+        public virtual UnrealAutomationToolConfig Compile(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-compile=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-compile");
+            return (UnrealAutomationToolConfig) this;
+        }
+
+        
+        
+/// <summary>"Displays help"</summary>
+        public virtual UnrealAutomationToolConfig Help(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-help=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-help");
+            return (UnrealAutomationToolConfig) this;
+        }
+
+        
+        
+/// <summary>"Lists all available commands"</summary>
+        public virtual UnrealAutomationToolConfig List(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-list=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-list");
+            return (UnrealAutomationToolConfig) this;
+        }
+
+        
+        
+/// <summary>"Allows UAT command to submit changes"</summary>
+        public virtual UnrealAutomationToolConfig Submit(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-submit=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-submit");
+            return (UnrealAutomationToolConfig) this;
+        }
+
+        
+        
+/// <summary>"Prevents any submit attempts"</summary>
+        public virtual UnrealAutomationToolConfig Nosubmit(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-nosubmit=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-nosubmit");
+            return (UnrealAutomationToolConfig) this;
+        }
+
+        
+        
+/// <summary>"Does not kill any spawned processes on exit"</summary>
+        public virtual UnrealAutomationToolConfig Nokill(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-nokill=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-nokill");
+            return (UnrealAutomationToolConfig) this;
+        }
+
+        
+        
+/// <summary>"Prevents UBT from cleaning junk files"</summary>
+        public virtual UnrealAutomationToolConfig Ignorejunk(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-ignorejunk" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-ignorejunk");
+            return (UnrealAutomationToolConfig) this;
+        }
+
+        
+        
+/// <summary>@"Allows you to use local storage for your root build storage dir (default of P:\Builds (on PC) is changed to Engine\Saved\LocalBuilds). Used for local testing."
+/// 
+/// Allows you to use local storage for your root build storage dir (default of P:\Builds (on PC) is changed to Engine\Saved\LocalBuilds). Used for local testing.
+/// </summary>
+        public virtual UnrealAutomationToolConfig UseLocalBuildStorage(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-UseLocalBuildStorage=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-UseLocalBuildStorage");
+            return (UnrealAutomationToolConfig) this;
+        }
+
+        
+        
+    
+        public virtual UnrealAutomationToolConfig TimeStamps(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-TimeStamps=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-TimeStamps");
+            return (UnrealAutomationToolConfig) this;
+        }
+
+        
+        
+    
+        public virtual UnrealAutomationToolConfig IgnoreDependencies(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-IgnoreDependencies=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-IgnoreDependencies");
+            return (UnrealAutomationToolConfig) this;
+        }
+
+        
+        
+/// <summary>
+/// This command is LEGACY because we used to run UAT.exe to compile scripts by default.
+/// Now we only compile by default when run via RunUAT.bat, which still understands -nocompile.
+/// However, the batch file simply passes on all arguments, so UAT will choke when encountering -nocompile.
+/// Keep this CommandLineArg around so that doesn't happen.
+/// </summary>
+        public virtual UnrealAutomationToolConfig NoCompileLegacyDontUse(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-NoCompile=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-NoCompile");
+            return (UnrealAutomationToolConfig) this;
+        }
+
+        
+        
+    
+        public virtual UnrealAutomationToolConfig NoCompileEditor(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-NoCompileEditor=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-NoCompileEditor");
+            return (UnrealAutomationToolConfig) this;
+        }
+
+        
+        
+    
+        public virtual UnrealAutomationToolConfig UTF8Output(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-UTF8Output=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-UTF8Output");
+            return (UnrealAutomationToolConfig) this;
+        }
+
+        
+        
+    
+        public virtual UnrealAutomationToolConfig AllowStdOutLogVerbosity(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-AllowStdOutLogVerbosity=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-AllowStdOutLogVerbosity");
+            return (UnrealAutomationToolConfig) this;
+        }
+
+        
+        
+    
+        public virtual UnrealAutomationToolConfig NoAutoSDK(params object[] values)
+        {
+            AppendArgument(values != null && values.Length > 0 ? "-NoAutoSDK=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-NoAutoSDK");
+            return (UnrealAutomationToolConfig) this;
+        }
+
+        
     
     public  class ProgramConfig : ToolConfig
     {
@@ -40,7 +219,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Enables verbose logging"</summary>
         public virtual AutomationConfig Verbose(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-verbose" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-verbose");
+            AppendArgument(values != null && values.Length > 0 ? "-verbose=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-verbose");
             return (AutomationConfig) this;
         }
 
@@ -49,7 +228,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Disables Perforce functionality (default if not run on a build machine)"</summary>
         public virtual AutomationConfig Nop4(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-nop4" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-nop4");
+            AppendArgument(values != null && values.Length > 0 ? "-nop4=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-nop4");
             return (AutomationConfig) this;
         }
 
@@ -58,7 +237,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Enables Perforce functionality (default if run on a build machine)"</summary>
         public virtual AutomationConfig P4(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-p4" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-p4");
+            AppendArgument(values != null && values.Length > 0 ? "-p4=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-p4");
             return (AutomationConfig) this;
         }
 
@@ -67,7 +246,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Does not run any commands, only compiles them"</summary>
         public virtual AutomationConfig Compileonly(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-compileonly" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-compileonly");
+            AppendArgument(values != null && values.Length > 0 ? "-compileonly=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-compileonly");
             return (AutomationConfig) this;
         }
 
@@ -76,7 +255,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Dynamically compiles all commands (otherwise assumes they are already built)"</summary>
         public virtual AutomationConfig Compile(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-compile" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-compile");
+            AppendArgument(values != null && values.Length > 0 ? "-compile=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-compile");
             return (AutomationConfig) this;
         }
 
@@ -85,7 +264,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Displays help"</summary>
         public virtual AutomationConfig Help(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-help" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-help");
+            AppendArgument(values != null && values.Length > 0 ? "-help=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-help");
             return (AutomationConfig) this;
         }
 
@@ -94,7 +273,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Lists all available commands"</summary>
         public virtual AutomationConfig List(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-list" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-list");
+            AppendArgument(values != null && values.Length > 0 ? "-list=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-list");
             return (AutomationConfig) this;
         }
 
@@ -103,7 +282,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Allows UAT command to submit changes"</summary>
         public virtual AutomationConfig Submit(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-submit" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-submit");
+            AppendArgument(values != null && values.Length > 0 ? "-submit=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-submit");
             return (AutomationConfig) this;
         }
 
@@ -112,7 +291,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Prevents any submit attempts"</summary>
         public virtual AutomationConfig Nosubmit(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-nosubmit" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-nosubmit");
+            AppendArgument(values != null && values.Length > 0 ? "-nosubmit=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-nosubmit");
             return (AutomationConfig) this;
         }
 
@@ -121,7 +300,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Does not kill any spawned processes on exit"</summary>
         public virtual AutomationConfig Nokill(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-nokill" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-nokill");
+            AppendArgument(values != null && values.Length > 0 ? "-nokill=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-nokill");
             return (AutomationConfig) this;
         }
 
@@ -136,10 +315,13 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 
         
         
-/// <summary>@"Allows you to use local storage for your root build storage dir (default of P:\Builds (on PC) is changed to Engine\Saved\LocalBuilds). Used for local testing."</summary>
+/// <summary>@"Allows you to use local storage for your root build storage dir (default of P:\Builds (on PC) is changed to Engine\Saved\LocalBuilds). Used for local testing."
+/// 
+/// Allows you to use local storage for your root build storage dir (default of P:\Builds (on PC) is changed to Engine\Saved\LocalBuilds). Used for local testing.
+/// </summary>
         public virtual AutomationConfig UseLocalBuildStorage(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-UseLocalBuildStorage" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-UseLocalBuildStorage");
+            AppendArgument(values != null && values.Length > 0 ? "-UseLocalBuildStorage=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-UseLocalBuildStorage");
             return (AutomationConfig) this;
         }
     

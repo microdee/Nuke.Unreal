@@ -52,20 +52,21 @@ public class UnrealAutomationToolGenerator
 
             var uatRoot = Unreal.GetInstance(UnrealVersion).Location / "Engine" / "Source" / "Programs" / "AutomationTool";
             var gatherer = new UatGathering(uatRoot);
-            gatherer.Gather(this);
-            var toolModel = new ToolModel
+            MainTool = new ToolModel
             {
                 ConfigName = "UnrealAutomationTool",
                 CliName = "UnrealAutomationTool",
                 ConfigType = new(TemplateName.Replace("Generated", ""), TemplateName),
                 ClassKeywords = "abstract"
             }.AddSummary("Unreal Automation Tool is a vast collection of scripts solving all aspects of deploying a program made in Unreal Engine");
-            toolModel.Subtools.AddRange(SubTools);
+            gatherer.Gather(this);
+            MainTool.Subtools.AddRange(SubTools);
 
-            _model = new UatModel(toolModel);
+            _model = new UatModel(MainTool);
             return _model;
         }
     }
     
     public int Indentation { get; set; } = 0;
+    public ToolModel MainTool { get; private set; }
 }

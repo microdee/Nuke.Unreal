@@ -55,6 +55,8 @@ public static class UniqueClass
     public const string P4Environment = nameof(P4Environment);
     public const string UE4Build = nameof(UE4Build);
     public const string LocalizationProvider = nameof(LocalizationProvider);
+    public const string GlobalCommandLine = nameof(GlobalCommandLine);
+    public const string CommandLineArg = nameof(CommandLineArg);
 
     public static readonly List<string> SpeciallyConsideredClasses = new()
     {
@@ -174,46 +176,13 @@ public partial class UatGathering
                 .FirstOrDefault(cliName)
                 .EnsureIdentifierCompatibleName();
 
-            var documentation = "";
-
             var memberCandidate = from.PropertiesAndFields
                 .FirstOrDefault(m => m
                     .GetFieldOrPropertyName()
                     .MemberAssociable(csharpName)
                 );
-            
-            if (memberCandidate?.HasStructuredTrivia ?? false)
-            {
-                var doscSpan = memberCandidate.GetLeadingTrivia()
-                    .Where(t =>
-                        t.IsKind(SyntaxKind.SingleLineDocumentationCommentTrivia)
-                        || t.IsKind(SyntaxKind.MultiLineDocumentationCommentTrivia)
-                    )
-                    .FirstOrDefault()
-                    .FullSpan;
 
-                // TODO: get extra help from HelpAttribute
-
-                documentation = memberCandidate.SyntaxTree
-                    .GetText().GetSubText(doscSpan).ToString()
-                    .Replace("///", "")
-                    .Trim();
-
-                // Of course we have instances of malformed XML docs in UAT
-                if (documentation.StartsWithOrdinalIgnoreCase("<summary>") && !documentation.EndsWithOrdinalIgnoreCase("</summary>"))
-                {
-                    documentation += "</summary>";
-                }
-                if (!documentation.StartsWithOrdinalIgnoreCase("<summary>") && documentation.EndsWithOrdinalIgnoreCase("</summary>"))
-                {
-                    documentation = "<summary>" + documentation;
-                }
-                if (!documentation.StartsWith("<") && !documentation.EndsWith(">"))
-                {
-                    documentation = "<summary>" + SecurityElement.Escape(documentation) + "</summary>";
-                }
-            }
-
+            var documentation = memberCandidate.GetLeadingXmlDocs();
             
             var existing = from.AddArgument(
                 new ArgumentModel() {
@@ -274,6 +243,62 @@ public partial class UatGathering
             {
                 Log.Debug(context.Indent() + "{0} {1}", argument.CliName, argument.ConfigName);
             }
+        }
+    }
+
+    protected void GatherGlobalCommandLine(IGatheringContext context)
+    {
+        var globalArgDecls = Classes[UniqueClass.GlobalCommandLine]
+            .Declarations.SelectMany(d => d.Declaration.DescendantNodes())
+            .OfType<FieldDeclarationSyntax>()
+            .Where(f => f.Declaration.Type.ToString() == UniqueClass.CommandLineArg);
+
+        foreach(var field in globalArgDecls)
+        {
+            var csName = field.Declaration.Variables.Select(v => v.Identifier.Text).FirstOrDefault();
+            var cliName = field.Declaration.Variables
+                .SelectMany(v => v
+                    .DescendantNodes()
+                    .OfType<ObjectCreationExpressionSyntax>()
+                )
+                .SelectMany(v => v.ArgumentList.Arguments)
+                .SelectMany(a => a
+                    .DescendantNodes()
+                    .OfType<LiteralExpressionSyntax>()
+                    .Where(l => l.IsKind(SyntaxKind.StringLiteralExpression))
+                )
+                .Select(s => s.Token.Text)
+                .Where(s => !string.IsNullOrWhiteSpace(s))
+                .Select(s => s.TrimMatchingDoubleQuotes())
+                .FirstOrDefault();
+
+            if (!string.IsNullOrWhiteSpace(csName) && !string.IsNullOrWhiteSpace(cliName))
+            {
+                if (context is IHaveSubTools contextWithSubtools)
+                {
+                    var documentation = field.GetLeadingXmlDocs();
+                    var existing = contextWithSubtools.MainTool.AddArgument(
+                        new ArgumentModel() {
+                            ConfigName = csName,
+                            CliName = (cliName[0] == '-' ? "" : "-") + cliName,
+                            ArgumentType = ArgumentModelType.TextCollection
+                        }.AddRootlessXmlDocs(documentation)
+                    );
+                    if (existing == null)
+                    {
+                        Log.Debug(context.Indent() + "Global argument: {0} {1}", cliName, csName);
+                    }
+                }
+            }
+        }
+    }
+
+    protected void CopyAutomationArgumentsToGlobal(IGatheringContext context)
+    {
+        if (context is IHaveSubTools contextWithSubtools)
+        {
+            var automationSubtool = contextWithSubtools.SubTools.First(t => t.ConfigName == UniqueClass.Automation);
+            automationSubtool.Arguments.ForEach(a => contextWithSubtools.MainTool.AddArgument(a));
         }
     }
 
@@ -414,5 +439,9 @@ public partial class UatGathering
             }
         });
         context.DecreaseIndent();
+        
+        Log.Information(context.Indent() + "Placing commonly used arguments on top tool level");
+        CopyAutomationArgumentsToGlobal(context);
+        GatherGlobalCommandLine(context);
     }
 }

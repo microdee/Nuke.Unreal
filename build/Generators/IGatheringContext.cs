@@ -7,6 +7,7 @@ public interface IGatheringContext { }
 
 public interface IHaveSubTools
 {
+    ToolModel MainTool { get; }
     List<ToolModel> SubTools { get; }
 }
 
