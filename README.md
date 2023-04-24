@@ -65,6 +65,7 @@ class Build : UnrealBuild
     > nuke new-module --name MyModule
     etc...
     ```
+* Generated C# configurators for Unreal tools with gathered documentation. (UBT and UAT)
 * Pluggable way to define targets for reusable plugins and modules
 
 ## Breaking changes
@@ -183,7 +184,37 @@ This is especially useful for doing temporary debugging with UBT and the compile
 
 ### C# code generators for Unreal tools
 
-UBT already has some generated goodies, however the big feature announcement will come when I'm finished with UAT.
+![UAT coding](docs/UAT_Cook.gif)
+
+Nuke.Unreal provides builder pattern Unreal tool configurators in C# which yield a command line for the specified tool. TLDR: the syntax looks like this:
+
+```CSharp
+// For UBT:
+Unreal.BuildTool(GetEngineVersionFromProject(), _ => _
+    .Target(UnrealTargetType.Server)
+    .Platform(UnrealPlatform.LinuxAArch64)
+    .Configuration(UnrealConfig.Development)
+    .Project(ProjectPath)
+    .Append(MyExplicitArguments)
+)(workingDirectory: MyEnginePath);
+
+// For UAT:
+Unreal.AutomationTool(GetEngineVersionFromProject(), _ => _
+    .BuildPlugin(_ => _
+        .Plugin(PluginPath)
+        .Package(targetDir)
+        .StrictIncludes()
+        .Unversioned()
+    )
+    .Append(self.UatArgs.AsArguments())
+)(workingDirectory: MyEnginePath);
+```
+
+As the reader can see from the GIF this introduces a greater discoveribility to the vast functionality of both UAT and UBT which simply was not there before unless the developer followed some trails inside the source code of these tools. In fact the UAT configurator is generated from the actual source code using static code analysis and relying on semantical heuristics as the command line interpretation of UAT is very organic and inconsistent to say the least.
+
+UBT on the other hand had a more disciplined and consistent approach for interpreting the command line, that allowed to rely on purely reflection while gathering arguments with the added feature of typed parameter value input (like numbers, strings and enums). As of time of writing detecting parameter types in a reliable and meaningful way is not possible for UAT.
+
+**TODO:** add more details about the actual usage in Nuke.Unreal targets and some more info about implementation.
 
 ### Unreal boilerplate templates
 

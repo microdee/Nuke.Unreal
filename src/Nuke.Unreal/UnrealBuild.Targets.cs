@@ -132,7 +132,7 @@ namespace Nuke.Unreal
                         UatConfig(_
                             .BuildCookRun(_ => _
                                 .Project(ProjectPath)
-                                .Clientconfig(Config)
+                                .Clientconfig(config)
                                 .Skipstage()
                                 .Manifests()
                             )
