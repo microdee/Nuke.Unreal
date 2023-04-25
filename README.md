@@ -1,12 +1,12 @@
 # Nuke.Unreal
 
-<div style="position: relative; display: flex; align-items: center; flex-direction: column;">
+<span style="display: flex; align-items: center; flex-direction: column;">
 
 ![](docs/nu_logo-250.png)
 
 ![](https://badgen.net/nuget/v/md.Nuke.Unreal)
 
-</div>
+</span>
 
 Simplistic workflow for automating Unreal Engine project tasks embracing [Nuke](https://nuke.build), providing a consistent way to use UE4/5 tools and reducing chores they come with.
 
