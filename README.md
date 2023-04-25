@@ -1,12 +1,12 @@
 # Nuke.Unreal
 
-<p align="center">
+<div align="center">
 
 ![](docs/nu_logo-250.png)
 
 ![](https://badgen.net/nuget/v/md.Nuke.Unreal)
 
-</p>
+</div>
 
 Simplistic workflow for automating Unreal Engine project tasks embracing [Nuke](https://nuke.build), providing a consistent way to use UE4/5 tools and reducing chores they come with.
 
