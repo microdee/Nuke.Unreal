@@ -1,11 +1,14 @@
 # Nuke.Unreal
+
+<div style="position: relative; display: flex; align-items: center; flex-direction: column;">
+
 ![](docs/nu_logo-250.png)
 
 ![](https://badgen.net/nuget/v/md.Nuke.Unreal)
 
-Simplistic workflow for automating Unreal Engine project steps embracing [Nuke](https://nuke.build).
+</div>
 
-Nuke + Unreal Engine workflow provides a consistent way to work with UE4/5 tools reducing the chore it comes with 
+Simplistic workflow for automating Unreal Engine project tasks embracing [Nuke](https://nuke.build), providing a consistent way to use UE4/5 tools and reducing chores they come with.
 
 ## Usage
 
