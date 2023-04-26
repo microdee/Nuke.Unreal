@@ -32,7 +32,7 @@ public {{ tool.class_keywords }} class {{ tool.config_type.base }} : ToolConfig
     
     {{- for subtool in tool.subtools }}
     {{~ subtool.docs }}
-    public {{ tool.config_type.final }} {{ subtool.config_name }}(Action<{{ subtool.config_type.final }}> configurator = null)
+    public {{ tool.config_type.final }} {{ subtool.config_name }}(Action<{{ subtool.config_type.final }}> configurator)
     {
         configurator?.Invoke({{ subtool.config_name }}Storage);
         AppendSubtool({{ subtool.config_name }}Storage);

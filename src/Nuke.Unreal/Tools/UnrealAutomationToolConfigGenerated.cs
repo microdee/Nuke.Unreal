@@ -11709,7 +11709,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                 BenchmarkOptionsStorage,
             };
 
-    public UnrealAutomationToolConfig Program(Action<ProgramConfig> configurator = null)
+    public UnrealAutomationToolConfig Program(Action<ProgramConfig> configurator)
     {
         configurator?.Invoke(ProgramStorage);
         AppendSubtool(ProgramStorage);
@@ -11718,35 +11718,35 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>@"Executes scripted commands
 /// 
 /// AutomationTool.exe [-verbose] [-compileonly] [-p4] Command0 [-Arg0 -Arg1 -Arg2 ...] Command1 [-Arg0 -Arg1 ...] Command2 [-Arg0 ...] Commandn ... [EnvVar0=MyValue0 ... EnvVarn=MyValuen]"</summary>
-    public UnrealAutomationToolConfig Automation(Action<AutomationConfig> configurator = null)
+    public UnrealAutomationToolConfig Automation(Action<AutomationConfig> configurator)
     {
         configurator?.Invoke(AutomationStorage);
         AppendSubtool(AutomationStorage);
         return (UnrealAutomationToolConfig) this;
     }
 
-    public UnrealAutomationToolConfig CodeSign(Action<CodeSignConfig> configurator = null)
+    public UnrealAutomationToolConfig CodeSign(Action<CodeSignConfig> configurator)
     {
         configurator?.Invoke(CodeSignStorage);
         AppendSubtool(CodeSignStorage);
         return (UnrealAutomationToolConfig) this;
     }
 
-    public UnrealAutomationToolConfig McpConfigMapper(Action<McpConfigMapperConfig> configurator = null)
+    public UnrealAutomationToolConfig McpConfigMapper(Action<McpConfigMapperConfig> configurator)
     {
         configurator?.Invoke(McpConfigMapperStorage);
         AppendSubtool(McpConfigMapperStorage);
         return (UnrealAutomationToolConfig) this;
     }
 
-    public UnrealAutomationToolConfig P4Environment(Action<P4EnvironmentConfig> configurator = null)
+    public UnrealAutomationToolConfig P4Environment(Action<P4EnvironmentConfig> configurator)
     {
         configurator?.Invoke(P4EnvironmentStorage);
         AppendSubtool(P4EnvironmentStorage);
         return (UnrealAutomationToolConfig) this;
     }
 /// <summary>Auto-detects P4 settings based on the current path and creates a p4config file with the relevant settings.</summary>
-    public UnrealAutomationToolConfig P4WriteConfig(Action<P4WriteConfigConfig> configurator = null)
+    public UnrealAutomationToolConfig P4WriteConfig(Action<P4WriteConfigConfig> configurator)
     {
         configurator?.Invoke(P4WriteConfigStorage);
         AppendSubtool(P4WriteConfigStorage);
@@ -11754,14 +11754,14 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     }
 /// <summary>Iteratively cook from a shared cooked build
 /// Iteratively cook from a shared cooked build</summary>
-    public UnrealAutomationToolConfig ProjectParams(Action<ProjectParamsConfig> configurator = null)
+    public UnrealAutomationToolConfig ProjectParams(Action<ProjectParamsConfig> configurator)
     {
         configurator?.Invoke(ProjectParamsStorage);
         AppendSubtool(ProjectParamsStorage);
         return (UnrealAutomationToolConfig) this;
     }
 
-    public UnrealAutomationToolConfig UE4Build(Action<UE4BuildConfig> configurator = null)
+    public UnrealAutomationToolConfig UE4Build(Action<UE4BuildConfig> configurator)
     {
         configurator?.Invoke(UE4BuildStorage);
         AppendSubtool(UE4BuildStorage);
@@ -11770,63 +11770,63 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>Builds the specified targets and configurations for the specified project.
 /// Example BuildTarget -project=QAGame -target=Editor+Game -platform=PS4+XboxOne -configuration=Development.
 /// Note: Editor will only ever build for the current platform in a Development config and required tools will be included</summary>
-    public UnrealAutomationToolConfig BuildTarget(Action<BuildTargetConfig> configurator = null)
+    public UnrealAutomationToolConfig BuildTarget(Action<BuildTargetConfig> configurator)
     {
         configurator?.Invoke(BuildTargetStorage);
         AppendSubtool(BuildTargetStorage);
         return (UnrealAutomationToolConfig) this;
     }
 /// <summary>Tool for creating extensible build processes in UE4 which can be run locally or in parallel across a build farm.</summary>
-    public UnrealAutomationToolConfig BuildGraph(Action<BuildGraphConfig> configurator = null)
+    public UnrealAutomationToolConfig BuildGraph(Action<BuildGraphConfig> configurator)
     {
         configurator?.Invoke(BuildGraphStorage);
         AppendSubtool(BuildGraphStorage);
         return (UnrealAutomationToolConfig) this;
     }
 
-    public UnrealAutomationToolConfig Build(Action<BuildConfig> configurator = null)
+    public UnrealAutomationToolConfig Build(Action<BuildConfig> configurator)
     {
         configurator?.Invoke(BuildStorage);
         AppendSubtool(BuildStorage);
         return (UnrealAutomationToolConfig) this;
     }
 
-    public UnrealAutomationToolConfig TempStorageTests(Action<TempStorageTestsConfig> configurator = null)
+    public UnrealAutomationToolConfig TempStorageTests(Action<TempStorageTestsConfig> configurator)
     {
         configurator?.Invoke(TempStorageTestsStorage);
         AppendSubtool(TempStorageTestsStorage);
         return (UnrealAutomationToolConfig) this;
     }
 /// <summary>Removes folders in a given temp storage directory that are older than a certain time.</summary>
-    public UnrealAutomationToolConfig CleanTempStorage(Action<CleanTempStorageConfig> configurator = null)
+    public UnrealAutomationToolConfig CleanTempStorage(Action<CleanTempStorageConfig> configurator)
     {
         configurator?.Invoke(CleanTempStorageStorage);
         AppendSubtool(CleanTempStorageStorage);
         return (UnrealAutomationToolConfig) this;
     }
 
-    public UnrealAutomationToolConfig TestGauntlet(Action<TestGauntletConfig> configurator = null)
+    public UnrealAutomationToolConfig TestGauntlet(Action<TestGauntletConfig> configurator)
     {
         configurator?.Invoke(TestGauntletStorage);
         AppendSubtool(TestGauntletStorage);
         return (UnrealAutomationToolConfig) this;
     }
 
-    public UnrealAutomationToolConfig RunUnreal(Action<RunUnrealConfig> configurator = null)
+    public UnrealAutomationToolConfig RunUnreal(Action<RunUnrealConfig> configurator)
     {
         configurator?.Invoke(RunUnrealStorage);
         AppendSubtool(RunUnrealStorage);
         return (UnrealAutomationToolConfig) this;
     }
 /// <summary>@"Creates an IPA from an xarchive file"</summary>
-    public UnrealAutomationToolConfig ExportIPAFromArchive(Action<ExportIPAFromArchiveConfig> configurator = null)
+    public UnrealAutomationToolConfig ExportIPAFromArchive(Action<ExportIPAFromArchiveConfig> configurator)
     {
         configurator?.Invoke(ExportIPAFromArchiveStorage);
         AppendSubtool(ExportIPAFromArchiveStorage);
         return (UnrealAutomationToolConfig) this;
     }
 /// <summary>@"Creates an IPA from an xarchive file"</summary>
-    public UnrealAutomationToolConfig MakeIPA(Action<MakeIPAConfig> configurator = null)
+    public UnrealAutomationToolConfig MakeIPA(Action<MakeIPAConfig> configurator)
     {
         configurator?.Invoke(MakeIPAStorage);
         AppendSubtool(MakeIPAStorage);
@@ -11834,21 +11834,21 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     }
 /// <summary>@"Pulls a value from an ini file and inserts it into a plist."
 /// @"Note currently only looks at values irrespective of sections!"</summary>
-    public UnrealAutomationToolConfig WriteIniValueToPlist(Action<WriteIniValueToPlistConfig> configurator = null)
+    public UnrealAutomationToolConfig WriteIniValueToPlist(Action<WriteIniValueToPlistConfig> configurator)
     {
         configurator?.Invoke(WriteIniValueToPlistStorage);
         AppendSubtool(WriteIniValueToPlistStorage);
         return (UnrealAutomationToolConfig) this;
     }
 
-    public UnrealAutomationToolConfig OneSkyLocalizationProvider(Action<OneSkyLocalizationProviderConfig> configurator = null)
+    public UnrealAutomationToolConfig OneSkyLocalizationProvider(Action<OneSkyLocalizationProviderConfig> configurator)
     {
         configurator?.Invoke(OneSkyLocalizationProviderStorage);
         AppendSubtool(OneSkyLocalizationProviderStorage);
         return (UnrealAutomationToolConfig) this;
     }
 /// <summary>Analyzes third party libraries</summary>
-    public UnrealAutomationToolConfig AnalyzeThirdPartyLibs(Action<AnalyzeThirdPartyLibsConfig> configurator = null)
+    public UnrealAutomationToolConfig AnalyzeThirdPartyLibs(Action<AnalyzeThirdPartyLibsConfig> configurator)
     {
         configurator?.Invoke(AnalyzeThirdPartyLibsStorage);
         AppendSubtool(AnalyzeThirdPartyLibsStorage);
@@ -11856,35 +11856,35 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     }
 /// <summary>BlameKeyword command. Looks for the specified keywords in all files at the specified path and finds who added them based on P4 history</summary>
 /// <remarks>WARNING: This command might require Perforce</remarks>
-    public UnrealAutomationToolConfig BlameKeyword(Action<BlameKeywordConfig> configurator = null)
+    public UnrealAutomationToolConfig BlameKeyword(Action<BlameKeywordConfig> configurator)
     {
         configurator?.Invoke(BlameKeywordStorage);
         AppendSubtool(BlameKeywordStorage);
         return (UnrealAutomationToolConfig) this;
     }
 
-    public UnrealAutomationToolConfig XcodeTargetPlatform_IOS(Action<XcodeTargetPlatform_IOSConfig> configurator = null)
+    public UnrealAutomationToolConfig XcodeTargetPlatform_IOS(Action<XcodeTargetPlatform_IOSConfig> configurator)
     {
         configurator?.Invoke(XcodeTargetPlatform_IOSStorage);
         AppendSubtool(XcodeTargetPlatform_IOSStorage);
         return (UnrealAutomationToolConfig) this;
     }
 
-    public UnrealAutomationToolConfig MakefileTargetPlatform_IOS(Action<MakefileTargetPlatform_IOSConfig> configurator = null)
+    public UnrealAutomationToolConfig MakefileTargetPlatform_IOS(Action<MakefileTargetPlatform_IOSConfig> configurator)
     {
         configurator?.Invoke(MakefileTargetPlatform_IOSStorage);
         AppendSubtool(MakefileTargetPlatform_IOSStorage);
         return (UnrealAutomationToolConfig) this;
     }
 /// <summary>Builds common tools used by the engine which are not part of typical editor or game builds. Useful when syncing source-only on GitHub.</summary>
-    public UnrealAutomationToolConfig BuildCommonTools(Action<BuildCommonToolsConfig> configurator = null)
+    public UnrealAutomationToolConfig BuildCommonTools(Action<BuildCommonToolsConfig> configurator)
     {
         configurator?.Invoke(BuildCommonToolsStorage);
         AppendSubtool(BuildCommonToolsStorage);
         return (UnrealAutomationToolConfig) this;
     }
 
-    public UnrealAutomationToolConfig ZipProjectUp(Action<ZipProjectUpConfig> configurator = null)
+    public UnrealAutomationToolConfig ZipProjectUp(Action<ZipProjectUpConfig> configurator)
     {
         configurator?.Invoke(ZipProjectUpStorage);
         AppendSubtool(ZipProjectUpStorage);
@@ -11895,21 +11895,21 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// For non-uprojects project targets are discovered by compiling target rule files found in the project folder.
 /// If -map is not specified, the command looks for DefaultMap entry in the project's DefaultEngine.ini and if not found, in BaseEngine.ini.
 /// If no DefaultMap can be found, the command falls back to /Engine/Maps/Entry."</summary>
-    public UnrealAutomationToolConfig BuildCookRun(Action<BuildCookRunConfig> configurator = null)
+    public UnrealAutomationToolConfig BuildCookRun(Action<BuildCookRunConfig> configurator)
     {
         configurator?.Invoke(BuildCookRunStorage);
         AppendSubtool(BuildCookRunStorage);
         return (UnrealAutomationToolConfig) this;
     }
 
-    public UnrealAutomationToolConfig BuildDerivedDataCache(Action<BuildDerivedDataCacheConfig> configurator = null)
+    public UnrealAutomationToolConfig BuildDerivedDataCache(Action<BuildDerivedDataCacheConfig> configurator)
     {
         configurator?.Invoke(BuildDerivedDataCacheStorage);
         AppendSubtool(BuildDerivedDataCacheStorage);
         return (UnrealAutomationToolConfig) this;
     }
 /// <remarks>WARNING: This command might require Perforce</remarks>
-    public UnrealAutomationToolConfig BuildForUGS(Action<BuildForUGSConfig> configurator = null)
+    public UnrealAutomationToolConfig BuildForUGS(Action<BuildForUGSConfig> configurator)
     {
         configurator?.Invoke(BuildForUGSStorage);
         AppendSubtool(BuildForUGSStorage);
@@ -11917,77 +11917,77 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     }
 /// <summary>Builds Hlslcc using CMake build system.</summary>
 /// <remarks>WARNING: This command might require Perforce</remarks>
-    public UnrealAutomationToolConfig BuildHlslcc(Action<BuildHlslccConfig> configurator = null)
+    public UnrealAutomationToolConfig BuildHlslcc(Action<BuildHlslccConfig> configurator)
     {
         configurator?.Invoke(BuildHlslccStorage);
         AppendSubtool(BuildHlslccStorage);
         return (UnrealAutomationToolConfig) this;
     }
 
-    public UnrealAutomationToolConfig BuildPhysX_Android(Action<BuildPhysX_AndroidConfig> configurator = null)
+    public UnrealAutomationToolConfig BuildPhysX_Android(Action<BuildPhysX_AndroidConfig> configurator)
     {
         configurator?.Invoke(BuildPhysX_AndroidStorage);
         AppendSubtool(BuildPhysX_AndroidStorage);
         return (UnrealAutomationToolConfig) this;
     }
 
-    public UnrealAutomationToolConfig BuildPhysX_IOS(Action<BuildPhysX_IOSConfig> configurator = null)
+    public UnrealAutomationToolConfig BuildPhysX_IOS(Action<BuildPhysX_IOSConfig> configurator)
     {
         configurator?.Invoke(BuildPhysX_IOSStorage);
         AppendSubtool(BuildPhysX_IOSStorage);
         return (UnrealAutomationToolConfig) this;
     }
 
-    public UnrealAutomationToolConfig BuildPhysX_Linux(Action<BuildPhysX_LinuxConfig> configurator = null)
+    public UnrealAutomationToolConfig BuildPhysX_Linux(Action<BuildPhysX_LinuxConfig> configurator)
     {
         configurator?.Invoke(BuildPhysX_LinuxStorage);
         AppendSubtool(BuildPhysX_LinuxStorage);
         return (UnrealAutomationToolConfig) this;
     }
 
-    public UnrealAutomationToolConfig BuildPhysX_Mac_x86_64(Action<BuildPhysX_Mac_x86_64Config> configurator = null)
+    public UnrealAutomationToolConfig BuildPhysX_Mac_x86_64(Action<BuildPhysX_Mac_x86_64Config> configurator)
     {
         configurator?.Invoke(BuildPhysX_Mac_x86_64Storage);
         AppendSubtool(BuildPhysX_Mac_x86_64Storage);
         return (UnrealAutomationToolConfig) this;
     }
 
-    public UnrealAutomationToolConfig BuildPhysX_Mac_arm64(Action<BuildPhysX_Mac_arm64Config> configurator = null)
+    public UnrealAutomationToolConfig BuildPhysX_Mac_arm64(Action<BuildPhysX_Mac_arm64Config> configurator)
     {
         configurator?.Invoke(BuildPhysX_Mac_arm64Storage);
         AppendSubtool(BuildPhysX_Mac_arm64Storage);
         return (UnrealAutomationToolConfig) this;
     }
 
-    public UnrealAutomationToolConfig BuildPhysX_Mac(Action<BuildPhysX_MacConfig> configurator = null)
+    public UnrealAutomationToolConfig BuildPhysX_Mac(Action<BuildPhysX_MacConfig> configurator)
     {
         configurator?.Invoke(BuildPhysX_MacStorage);
         AppendSubtool(BuildPhysX_MacStorage);
         return (UnrealAutomationToolConfig) this;
     }
 
-    public UnrealAutomationToolConfig BuildPhysX_TVOS(Action<BuildPhysX_TVOSConfig> configurator = null)
+    public UnrealAutomationToolConfig BuildPhysX_TVOS(Action<BuildPhysX_TVOSConfig> configurator)
     {
         configurator?.Invoke(BuildPhysX_TVOSStorage);
         AppendSubtool(BuildPhysX_TVOSStorage);
         return (UnrealAutomationToolConfig) this;
     }
 
-    public UnrealAutomationToolConfig BuildPhysX_Win32(Action<BuildPhysX_Win32Config> configurator = null)
+    public UnrealAutomationToolConfig BuildPhysX_Win32(Action<BuildPhysX_Win32Config> configurator)
     {
         configurator?.Invoke(BuildPhysX_Win32Storage);
         AppendSubtool(BuildPhysX_Win32Storage);
         return (UnrealAutomationToolConfig) this;
     }
 
-    public UnrealAutomationToolConfig BuildPhysX_Win64(Action<BuildPhysX_Win64Config> configurator = null)
+    public UnrealAutomationToolConfig BuildPhysX_Win64(Action<BuildPhysX_Win64Config> configurator)
     {
         configurator?.Invoke(BuildPhysX_Win64Storage);
         AppendSubtool(BuildPhysX_Win64Storage);
         return (UnrealAutomationToolConfig) this;
     }
 /// <summary>Builds a plugin, and packages it for distribution</summary>
-    public UnrealAutomationToolConfig BuildPlugin(Action<BuildPluginConfig> configurator = null)
+    public UnrealAutomationToolConfig BuildPlugin(Action<BuildPluginConfig> configurator)
     {
         configurator?.Invoke(BuildPluginStorage);
         AppendSubtool(BuildPluginStorage);
@@ -11996,7 +11996,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>Builds the editor for the specified project.
 /// Example BuildEditor -project=QAGame
 /// Note: Editor will only ever build for the current platform in a Development config and required tools will be included</summary>
-    public UnrealAutomationToolConfig BuildEditor(Action<BuildEditorConfig> configurator = null)
+    public UnrealAutomationToolConfig BuildEditor(Action<BuildEditorConfig> configurator)
     {
         configurator?.Invoke(BuildEditorStorage);
         AppendSubtool(BuildEditorStorage);
@@ -12004,7 +12004,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     }
 /// <summary>Builds the game for the specified project.
 /// Example BuildGame -project=QAGame -platform=PS4+XboxOne -configuration=Development.</summary>
-    public UnrealAutomationToolConfig BuildGame(Action<BuildGameConfig> configurator = null)
+    public UnrealAutomationToolConfig BuildGame(Action<BuildGameConfig> configurator)
     {
         configurator?.Invoke(BuildGameStorage);
         AppendSubtool(BuildGameStorage);
@@ -12012,7 +12012,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     }
 /// <summary>Builds the server for the specified project.
 /// Example BuildServer -project=QAGame -platform=Win64 -configuration=Development.</summary>
-    public UnrealAutomationToolConfig BuildServer(Action<BuildServerConfig> configurator = null)
+    public UnrealAutomationToolConfig BuildServer(Action<BuildServerConfig> configurator)
     {
         configurator?.Invoke(BuildServerStorage);
         AppendSubtool(BuildServerStorage);
@@ -12020,21 +12020,21 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     }
 /// <summary>Builds third party libraries, and puts them all into a changelist</summary>
 /// <remarks>WARNING: This command might require Perforce</remarks>
-    public UnrealAutomationToolConfig BuildThirdPartyLibs(Action<BuildThirdPartyLibsConfig> configurator = null)
+    public UnrealAutomationToolConfig BuildThirdPartyLibs(Action<BuildThirdPartyLibsConfig> configurator)
     {
         configurator?.Invoke(BuildThirdPartyLibsStorage);
         AppendSubtool(BuildThirdPartyLibsStorage);
         return (UnrealAutomationToolConfig) this;
     }
 /// <summary>Checks that all source files have balanced macros for enabling/disabling optimization, warnings, etc...</summary>
-    public UnrealAutomationToolConfig CheckBalancedMacros(Action<CheckBalancedMacrosConfig> configurator = null)
+    public UnrealAutomationToolConfig CheckBalancedMacros(Action<CheckBalancedMacrosConfig> configurator)
     {
         configurator?.Invoke(CheckBalancedMacrosStorage);
         AppendSubtool(CheckBalancedMacrosStorage);
         return (UnrealAutomationToolConfig) this;
     }
 
-    public UnrealAutomationToolConfig CheckCsprojDotNetVersion(Action<CheckCsprojDotNetVersionConfig> configurator = null)
+    public UnrealAutomationToolConfig CheckCsprojDotNetVersion(Action<CheckCsprojDotNetVersionConfig> configurator)
     {
         configurator?.Invoke(CheckCsprojDotNetVersionStorage);
         AppendSubtool(CheckCsprojDotNetVersionStorage);
@@ -12043,7 +12043,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>Audits the current branch for comments denoting a hack that was not meant to leave another branch, following a given format (\"BEGIN XXXX HACK\", where XXXX is one or more tags separated by spaces).
 /// Allowed tags may be specified manually on the command line. At least one must match, otherwise it will print a warning.
 /// The current branch name and fragments of the branch path will also be added by default, so running from //UE4/Main will add \"//UE4/Main\", \"UE4\", and \"Main\".</summary>
-    public UnrealAutomationToolConfig CheckForHacks(Action<CheckForHacksConfig> configurator = null)
+    public UnrealAutomationToolConfig CheckForHacks(Action<CheckForHacksConfig> configurator)
     {
         configurator?.Invoke(CheckForHacksStorage);
         AppendSubtool(CheckForHacksStorage);
@@ -12051,49 +12051,49 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     }
 /// <summary>Checks that the casing of files within a path on a case-insensitive Perforce server is correct.</summary>
 /// <remarks>WARNING: This command might require Perforce</remarks>
-    public UnrealAutomationToolConfig CheckPerforceCase(Action<CheckPerforceCaseConfig> configurator = null)
+    public UnrealAutomationToolConfig CheckPerforceCase(Action<CheckPerforceCaseConfig> configurator)
     {
         configurator?.Invoke(CheckPerforceCaseStorage);
         AppendSubtool(CheckPerforceCaseStorage);
         return (UnrealAutomationToolConfig) this;
     }
 /// <summary>Checks a directory for folders which should not be distributed</summary>
-    public UnrealAutomationToolConfig CheckRestrictedFolders(Action<CheckRestrictedFoldersConfig> configurator = null)
+    public UnrealAutomationToolConfig CheckRestrictedFolders(Action<CheckRestrictedFoldersConfig> configurator)
     {
         configurator?.Invoke(CheckRestrictedFoldersStorage);
         AppendSubtool(CheckRestrictedFoldersStorage);
         return (UnrealAutomationToolConfig) this;
     }
 /// <summary>Checks that the given target exists, by looking for the relevant receipt.</summary>
-    public UnrealAutomationToolConfig CheckTargetExists(Action<CheckTargetExistsConfig> configurator = null)
+    public UnrealAutomationToolConfig CheckTargetExists(Action<CheckTargetExistsConfig> configurator)
     {
         configurator?.Invoke(CheckTargetExistsStorage);
         AppendSubtool(CheckTargetExistsStorage);
         return (UnrealAutomationToolConfig) this;
     }
 /// <summary>Checks that the installed Xcode version is the version specified.</summary>
-    public UnrealAutomationToolConfig CheckXcodeVersion(Action<CheckXcodeVersionConfig> configurator = null)
+    public UnrealAutomationToolConfig CheckXcodeVersion(Action<CheckXcodeVersionConfig> configurator)
     {
         configurator?.Invoke(CheckXcodeVersionStorage);
         AppendSubtool(CheckXcodeVersionStorage);
         return (UnrealAutomationToolConfig) this;
     }
 /// <summary>Removes folders in an automation report directory that are older than a certain time.</summary>
-    public UnrealAutomationToolConfig CleanAutomationReports(Action<CleanAutomationReportsConfig> configurator = null)
+    public UnrealAutomationToolConfig CleanAutomationReports(Action<CleanAutomationReportsConfig> configurator)
     {
         configurator?.Invoke(CleanAutomationReportsStorage);
         AppendSubtool(CleanAutomationReportsStorage);
         return (UnrealAutomationToolConfig) this;
     }
 /// <summary>Removes folders matching a pattern in a given directory that are older than a certain time.</summary>
-    public UnrealAutomationToolConfig CleanFormalBuilds(Action<CleanFormalBuildsConfig> configurator = null)
+    public UnrealAutomationToolConfig CleanFormalBuilds(Action<CleanFormalBuildsConfig> configurator)
     {
         configurator?.Invoke(CleanFormalBuildsStorage);
         AppendSubtool(CleanFormalBuildsStorage);
         return (UnrealAutomationToolConfig) this;
     }
 /// <summary>custom code to restructure C++ source code for the new stats system.</summary>
-    public UnrealAutomationToolConfig CodeSurgery(Action<CodeSurgeryConfig> configurator = null)
+    public UnrealAutomationToolConfig CodeSurgery(Action<CodeSurgeryConfig> configurator)
     {
         configurator?.Invoke(CodeSurgeryStorage);
         AppendSubtool(CodeSurgeryStorage);
@@ -12101,35 +12101,35 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     }
 /// <summary>Copies the current shared cooked build from the network to the local PC</summary>
 /// <remarks>WARNING: This command might require Perforce</remarks>
-    public UnrealAutomationToolConfig CopySharedCookedBuild(Action<CopySharedCookedBuildConfig> configurator = null)
+    public UnrealAutomationToolConfig CopySharedCookedBuild(Action<CopySharedCookedBuildConfig> configurator)
     {
         configurator?.Invoke(CopySharedCookedBuildStorage);
         AppendSubtool(CopySharedCookedBuildStorage);
         return (UnrealAutomationToolConfig) this;
     }
 
-    public UnrealAutomationToolConfig CopyUAT(Action<CopyUATConfig> configurator = null)
+    public UnrealAutomationToolConfig CopyUAT(Action<CopyUATConfig> configurator)
     {
         configurator?.Invoke(CopyUATStorage);
         AppendSubtool(CopyUATStorage);
         return (UnrealAutomationToolConfig) this;
     }
 
-    public UnrealAutomationToolConfig CryptoKeys(Action<CryptoKeysConfig> configurator = null)
+    public UnrealAutomationToolConfig CryptoKeys(Action<CryptoKeysConfig> configurator)
     {
         configurator?.Invoke(CryptoKeysStorage);
         AppendSubtool(CryptoKeysStorage);
         return (UnrealAutomationToolConfig) this;
     }
 
-    public UnrealAutomationToolConfig ExtractPaks(Action<ExtractPaksConfig> configurator = null)
+    public UnrealAutomationToolConfig ExtractPaks(Action<ExtractPaksConfig> configurator)
     {
         configurator?.Invoke(ExtractPaksStorage);
         AppendSubtool(ExtractPaksStorage);
         return (UnrealAutomationToolConfig) this;
     }
 /// <summary>Command to perform additional steps to prepare an installed build.</summary>
-    public UnrealAutomationToolConfig FinalizeInstalledBuild(Action<FinalizeInstalledBuildConfig> configurator = null)
+    public UnrealAutomationToolConfig FinalizeInstalledBuild(Action<FinalizeInstalledBuildConfig> configurator)
     {
         configurator?.Invoke(FinalizeInstalledBuildStorage);
         AppendSubtool(FinalizeInstalledBuildStorage);
@@ -12137,98 +12137,98 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     }
 /// <summary>Fixes the case of files on a case-insensitive Perforce server by removing and re-adding them.</summary>
 /// <remarks>WARNING: This command might require Perforce</remarks>
-    public UnrealAutomationToolConfig FixPerforceCase(Action<FixPerforceCaseConfig> configurator = null)
+    public UnrealAutomationToolConfig FixPerforceCase(Action<FixPerforceCaseConfig> configurator)
     {
         configurator?.Invoke(FixPerforceCaseStorage);
         AppendSubtool(FixPerforceCaseStorage);
         return (UnrealAutomationToolConfig) this;
     }
 
-    public UnrealAutomationToolConfig FixupRedirects(Action<FixupRedirectsConfig> configurator = null)
+    public UnrealAutomationToolConfig FixupRedirects(Action<FixupRedirectsConfig> configurator)
     {
         configurator?.Invoke(FixupRedirectsStorage);
         AppendSubtool(FixupRedirectsStorage);
         return (UnrealAutomationToolConfig) this;
     }
 /// <summary>@"Generates IOS debug symbols for a remote project."</summary>
-    public UnrealAutomationToolConfig GenerateDSYM(Action<GenerateDSYMConfig> configurator = null)
+    public UnrealAutomationToolConfig GenerateDSYM(Action<GenerateDSYMConfig> configurator)
     {
         configurator?.Invoke(GenerateDSYMStorage);
         AppendSubtool(GenerateDSYMStorage);
         return (UnrealAutomationToolConfig) this;
     }
 /// <summary>UAT command to call into the integrated IPhonePackager code</summary>
-    public UnrealAutomationToolConfig IPhonePackager(Action<IPhonePackagerConfig> configurator = null)
+    public UnrealAutomationToolConfig IPhonePackager(Action<IPhonePackagerConfig> configurator)
     {
         configurator?.Invoke(IPhonePackagerStorage);
         AppendSubtool(IPhonePackagerStorage);
         return (UnrealAutomationToolConfig) this;
     }
 
-    public UnrealAutomationToolConfig LauncherLocalization(Action<LauncherLocalizationConfig> configurator = null)
+    public UnrealAutomationToolConfig LauncherLocalization(Action<LauncherLocalizationConfig> configurator)
     {
         configurator?.Invoke(LauncherLocalizationStorage);
         AppendSubtool(LauncherLocalizationStorage);
         return (UnrealAutomationToolConfig) this;
     }
 
-    public UnrealAutomationToolConfig ListMobileDevices(Action<ListMobileDevicesConfig> configurator = null)
+    public UnrealAutomationToolConfig ListMobileDevices(Action<ListMobileDevicesConfig> configurator)
     {
         configurator?.Invoke(ListMobileDevicesStorage);
         AppendSubtool(ListMobileDevicesStorage);
         return (UnrealAutomationToolConfig) this;
     }
 /// <summary>Lists TPS files associated with any source used to build a specified target(s). Grabs TPS files associated with source modules, content, and engine shaders.</summary>
-    public UnrealAutomationToolConfig ListThirdPartySoftware(Action<ListThirdPartySoftwareConfig> configurator = null)
+    public UnrealAutomationToolConfig ListThirdPartySoftware(Action<ListThirdPartySoftwareConfig> configurator)
     {
         configurator?.Invoke(ListThirdPartySoftwareStorage);
         AppendSubtool(ListThirdPartySoftwareStorage);
         return (UnrealAutomationToolConfig) this;
     }
 /// <summary>Updates the external localization data using the arguments provided.</summary>
-    public UnrealAutomationToolConfig Localize(Action<LocalizeConfig> configurator = null)
+    public UnrealAutomationToolConfig Localize(Action<LocalizeConfig> configurator)
     {
         configurator?.Invoke(LocalizeStorage);
         AppendSubtool(LocalizeStorage);
         return (UnrealAutomationToolConfig) this;
     }
 
-    public UnrealAutomationToolConfig ExportMcpTemplates(Action<ExportMcpTemplatesConfig> configurator = null)
+    public UnrealAutomationToolConfig ExportMcpTemplates(Action<ExportMcpTemplatesConfig> configurator)
     {
         configurator?.Invoke(ExportMcpTemplatesStorage);
         AppendSubtool(ExportMcpTemplatesStorage);
         return (UnrealAutomationToolConfig) this;
     }
 
-    public UnrealAutomationToolConfig Localise(Action<LocaliseConfig> configurator = null)
+    public UnrealAutomationToolConfig Localise(Action<LocaliseConfig> configurator)
     {
         configurator?.Invoke(LocaliseStorage);
         AppendSubtool(LocaliseStorage);
         return (UnrealAutomationToolConfig) this;
     }
 /// <summary>Opens the specified project.</summary>
-    public UnrealAutomationToolConfig OpenEditor(Action<OpenEditorConfig> configurator = null)
+    public UnrealAutomationToolConfig OpenEditor(Action<OpenEditorConfig> configurator)
     {
         configurator?.Invoke(OpenEditorStorage);
         AppendSubtool(OpenEditorStorage);
         return (UnrealAutomationToolConfig) this;
     }
 /// <summary>Parses Visual C++ timing information (as generated by UBT with the -Timing flag), and converts it into JSON format which can be visualized using the chrome://tracing tab</summary>
-    public UnrealAutomationToolConfig ParseMsvcTimingInfo(Action<ParseMsvcTimingInfoConfig> configurator = null)
+    public UnrealAutomationToolConfig ParseMsvcTimingInfo(Action<ParseMsvcTimingInfoConfig> configurator)
     {
         configurator?.Invoke(ParseMsvcTimingInfoStorage);
         AppendSubtool(ParseMsvcTimingInfoStorage);
         return (UnrealAutomationToolConfig) this;
     }
 /// <summary>Rewrites include directives for headers in public include paths to make them relative to the 'Public' folder.</summary>
-    public UnrealAutomationToolConfig RebasePublicIncludePaths(Action<RebasePublicIncludePathsConfig> configurator = null)
+    public UnrealAutomationToolConfig RebasePublicIncludePaths(Action<RebasePublicIncludePathsConfig> configurator)
     {
         configurator?.Invoke(RebasePublicIncludePathsStorage);
         AppendSubtool(RebasePublicIncludePathsStorage);
         return (UnrealAutomationToolConfig) this;
     }
 /// <remarks>WARNING: This command might require Perforce</remarks>
-    public UnrealAutomationToolConfig RebuildHLOD(Action<RebuildHLODConfig> configurator = null)
+    public UnrealAutomationToolConfig RebuildHLOD(Action<RebuildHLODConfig> configurator)
     {
         configurator?.Invoke(RebuildHLODStorage);
         AppendSubtool(RebuildHLODStorage);
@@ -12236,70 +12236,70 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     }
 /// <summary>Helper command used for rebuilding a projects light maps</summary>
 /// <remarks>WARNING: This command might require Perforce</remarks>
-    public UnrealAutomationToolConfig RebuildLightMaps(Action<RebuildLightMapsConfig> configurator = null)
+    public UnrealAutomationToolConfig RebuildLightMaps(Action<RebuildLightMapsConfig> configurator)
     {
         configurator?.Invoke(RebuildLightMapsStorage);
         AppendSubtool(RebuildLightMapsStorage);
         return (UnrealAutomationToolConfig) this;
     }
 /// <summary>UAT command to run performance test demo using different RHIs and compare results</summary>
-    public UnrealAutomationToolConfig RecordPerformance(Action<RecordPerformanceConfig> configurator = null)
+    public UnrealAutomationToolConfig RecordPerformance(Action<RecordPerformanceConfig> configurator)
     {
         configurator?.Invoke(RecordPerformanceStorage);
         AppendSubtool(RecordPerformanceStorage);
         return (UnrealAutomationToolConfig) this;
     }
 
-    public UnrealAutomationToolConfig ReplaceAssetsUsingManifest(Action<ReplaceAssetsUsingManifestConfig> configurator = null)
+    public UnrealAutomationToolConfig ReplaceAssetsUsingManifest(Action<ReplaceAssetsUsingManifestConfig> configurator)
     {
         configurator?.Invoke(ReplaceAssetsUsingManifestStorage);
         AppendSubtool(ReplaceAssetsUsingManifestStorage);
         return (UnrealAutomationToolConfig) this;
     }
 /// <remarks>WARNING: This command might require Perforce</remarks>
-    public UnrealAutomationToolConfig ResavePackages(Action<ResavePackagesConfig> configurator = null)
+    public UnrealAutomationToolConfig ResavePackages(Action<ResavePackagesConfig> configurator)
     {
         configurator?.Invoke(ResavePackagesStorage);
         AppendSubtool(ResavePackagesStorage);
         return (UnrealAutomationToolConfig) this;
     }
 /// <summary>Re-save all the plugin descriptors under a given path, optionally applying standard metadata to them</summary>
-    public UnrealAutomationToolConfig ResavePluginDescriptors(Action<ResavePluginDescriptorsConfig> configurator = null)
+    public UnrealAutomationToolConfig ResavePluginDescriptors(Action<ResavePluginDescriptorsConfig> configurator)
     {
         configurator?.Invoke(ResavePluginDescriptorsStorage);
         AppendSubtool(ResavePluginDescriptorsStorage);
         return (UnrealAutomationToolConfig) this;
     }
 /// <summary>Re-save all the project descriptors under a given path</summary>
-    public UnrealAutomationToolConfig ResaveProjectDescriptors(Action<ResaveProjectDescriptorsConfig> configurator = null)
+    public UnrealAutomationToolConfig ResaveProjectDescriptors(Action<ResaveProjectDescriptorsConfig> configurator)
     {
         configurator?.Invoke(ResaveProjectDescriptorsStorage);
         AppendSubtool(ResaveProjectDescriptorsStorage);
         return (UnrealAutomationToolConfig) this;
     }
 /// <remarks>WARNING: This command might require Perforce</remarks>
-    public UnrealAutomationToolConfig RunP4Reconcile(Action<RunP4ReconcileConfig> configurator = null)
+    public UnrealAutomationToolConfig RunP4Reconcile(Action<RunP4ReconcileConfig> configurator)
     {
         configurator?.Invoke(RunP4ReconcileStorage);
         AppendSubtool(RunP4ReconcileStorage);
         return (UnrealAutomationToolConfig) this;
     }
 /// <summary>Copy all the binaries for a target into a different folder. Can be restored using the UnstashTarget command. Useful for A/B testing.</summary>
-    public UnrealAutomationToolConfig StashTarget(Action<StashTargetConfig> configurator = null)
+    public UnrealAutomationToolConfig StashTarget(Action<StashTargetConfig> configurator)
     {
         configurator?.Invoke(StashTargetStorage);
         AppendSubtool(StashTargetStorage);
         return (UnrealAutomationToolConfig) this;
     }
 /// <summary>Copy all the binaries from a target back into the root directory. Use in combination with the StashTarget command.</summary>
-    public UnrealAutomationToolConfig UnstashTarget(Action<UnstashTargetConfig> configurator = null)
+    public UnrealAutomationToolConfig UnstashTarget(Action<UnstashTargetConfig> configurator)
     {
         configurator?.Invoke(UnstashTargetStorage);
         AppendSubtool(UnstashTargetStorage);
         return (UnrealAutomationToolConfig) this;
     }
 /// <summary>Submits a generated Utilization report to EC</summary>
-    public UnrealAutomationToolConfig SubmitUtilizationReportToEC(Action<SubmitUtilizationReportToECConfig> configurator = null)
+    public UnrealAutomationToolConfig SubmitUtilizationReportToEC(Action<SubmitUtilizationReportToECConfig> configurator)
     {
         configurator?.Invoke(SubmitUtilizationReportToECStorage);
         AppendSubtool(SubmitUtilizationReportToECStorage);
@@ -12307,14 +12307,14 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     }
 /// <summary>Attempts to sync UGS binaries for the specified project at the currently synced CL of the project/engine folders</summary>
 /// <remarks>WARNING: This command might require Perforce</remarks>
-    public UnrealAutomationToolConfig SyncBinariesFromUGS(Action<SyncBinariesFromUGSConfig> configurator = null)
+    public UnrealAutomationToolConfig SyncBinariesFromUGS(Action<SyncBinariesFromUGSConfig> configurator)
     {
         configurator?.Invoke(SyncBinariesFromUGSStorage);
         AppendSubtool(SyncBinariesFromUGSStorage);
         return (UnrealAutomationToolConfig) this;
     }
 /// <summary>Merge one or more remote DDC shares into a local share, taking files with the newest timestamps and keeping the size below a certain limit</summary>
-    public UnrealAutomationToolConfig SyncDDC(Action<SyncDDCConfig> configurator = null)
+    public UnrealAutomationToolConfig SyncDDC(Action<SyncDDCConfig> configurator)
     {
         configurator?.Invoke(SyncDDCStorage);
         AppendSubtool(SyncDDCStorage);
@@ -12322,7 +12322,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     }
 /// <summary>Creates a temporary client and syncs a path from Perforce.</summary>
 /// <remarks>WARNING: This command might require Perforce</remarks>
-    public UnrealAutomationToolConfig SyncDepotPath(Action<SyncDepotPathConfig> configurator = null)
+    public UnrealAutomationToolConfig SyncDepotPath(Action<SyncDepotPathConfig> configurator)
     {
         configurator?.Invoke(SyncDepotPathStorage);
         AppendSubtool(SyncDepotPathStorage);
@@ -12330,7 +12330,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     }
 /// <summary>Syncs and builds all the binaries required for a project</summary>
 /// <remarks>WARNING: This command might require Perforce</remarks>
-    public UnrealAutomationToolConfig SyncProject(Action<SyncProjectConfig> configurator = null)
+    public UnrealAutomationToolConfig SyncProject(Action<SyncProjectConfig> configurator)
     {
         configurator?.Invoke(SyncProjectStorage);
         AppendSubtool(SyncProjectStorage);
@@ -12338,7 +12338,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     }
 /// <summary>Tests P4 functionality. Runs 'p4 info'.</summary>
 /// <remarks>WARNING: This command might require Perforce</remarks>
-    public UnrealAutomationToolConfig TestP4_Info(Action<TestP4_InfoConfig> configurator = null)
+    public UnrealAutomationToolConfig TestP4_Info(Action<TestP4_InfoConfig> configurator)
     {
         configurator?.Invoke(TestP4_InfoStorage);
         AppendSubtool(TestP4_InfoStorage);
@@ -12346,49 +12346,49 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     }
 /// <summary>GitPullRequest</summary>
 /// <remarks>WARNING: This command might require Perforce</remarks>
-    public UnrealAutomationToolConfig GitPullRequest(Action<GitPullRequestConfig> configurator = null)
+    public UnrealAutomationToolConfig GitPullRequest(Action<GitPullRequestConfig> configurator)
     {
         configurator?.Invoke(GitPullRequestStorage);
         AppendSubtool(GitPullRequestStorage);
         return (UnrealAutomationToolConfig) this;
     }
 /// <summary>Throws an automation exception.</summary>
-    public UnrealAutomationToolConfig TestFail(Action<TestFailConfig> configurator = null)
+    public UnrealAutomationToolConfig TestFail(Action<TestFailConfig> configurator)
     {
         configurator?.Invoke(TestFailStorage);
         AppendSubtool(TestFailStorage);
         return (UnrealAutomationToolConfig) this;
     }
 /// <summary>Prints a message and returns success.</summary>
-    public UnrealAutomationToolConfig TestSuccess(Action<TestSuccessConfig> configurator = null)
+    public UnrealAutomationToolConfig TestSuccess(Action<TestSuccessConfig> configurator)
     {
         configurator?.Invoke(TestSuccessStorage);
         AppendSubtool(TestSuccessStorage);
         return (UnrealAutomationToolConfig) this;
     }
 /// <summary>Prints a message and returns success.</summary>
-    public UnrealAutomationToolConfig TestMessage(Action<TestMessageConfig> configurator = null)
+    public UnrealAutomationToolConfig TestMessage(Action<TestMessageConfig> configurator)
     {
         configurator?.Invoke(TestMessageStorage);
         AppendSubtool(TestMessageStorage);
         return (UnrealAutomationToolConfig) this;
     }
 /// <summary>Calls UAT recursively with a given command line.</summary>
-    public UnrealAutomationToolConfig TestRecursion(Action<TestRecursionConfig> configurator = null)
+    public UnrealAutomationToolConfig TestRecursion(Action<TestRecursionConfig> configurator)
     {
         configurator?.Invoke(TestRecursionStorage);
         AppendSubtool(TestRecursionStorage);
         return (UnrealAutomationToolConfig) this;
     }
 /// <summary>Calls UAT recursively with a given command line.</summary>
-    public UnrealAutomationToolConfig TestRecursionAuto(Action<TestRecursionAutoConfig> configurator = null)
+    public UnrealAutomationToolConfig TestRecursionAuto(Action<TestRecursionAutoConfig> configurator)
     {
         configurator?.Invoke(TestRecursionAutoStorage);
         AppendSubtool(TestRecursionAutoStorage);
         return (UnrealAutomationToolConfig) this;
     }
 /// <summary>Makes a zip file in Rocket/QFE</summary>
-    public UnrealAutomationToolConfig TestMacZip(Action<TestMacZipConfig> configurator = null)
+    public UnrealAutomationToolConfig TestMacZip(Action<TestMacZipConfig> configurator)
     {
         configurator?.Invoke(TestMacZipStorage);
         AppendSubtool(TestMacZipStorage);
@@ -12396,70 +12396,70 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     }
 /// <summary>Tests P4 functionality. Creates a new changelist under the workspace %P4CLIENT%</summary>
 /// <remarks>WARNING: This command might require Perforce</remarks>
-    public UnrealAutomationToolConfig TestP4_CreateChangelist(Action<TestP4_CreateChangelistConfig> configurator = null)
+    public UnrealAutomationToolConfig TestP4_CreateChangelist(Action<TestP4_CreateChangelistConfig> configurator)
     {
         configurator?.Invoke(TestP4_CreateChangelistStorage);
         AppendSubtool(TestP4_CreateChangelistStorage);
         return (UnrealAutomationToolConfig) this;
     }
 /// <remarks>WARNING: This command might require Perforce</remarks>
-    public UnrealAutomationToolConfig TestP4_StrandCheckout(Action<TestP4_StrandCheckoutConfig> configurator = null)
+    public UnrealAutomationToolConfig TestP4_StrandCheckout(Action<TestP4_StrandCheckoutConfig> configurator)
     {
         configurator?.Invoke(TestP4_StrandCheckoutStorage);
         AppendSubtool(TestP4_StrandCheckoutStorage);
         return (UnrealAutomationToolConfig) this;
     }
 /// <remarks>WARNING: This command might require Perforce</remarks>
-    public UnrealAutomationToolConfig TestP4_LabelDescription(Action<TestP4_LabelDescriptionConfig> configurator = null)
+    public UnrealAutomationToolConfig TestP4_LabelDescription(Action<TestP4_LabelDescriptionConfig> configurator)
     {
         configurator?.Invoke(TestP4_LabelDescriptionStorage);
         AppendSubtool(TestP4_LabelDescriptionStorage);
         return (UnrealAutomationToolConfig) this;
     }
 /// <remarks>WARNING: This command might require Perforce</remarks>
-    public UnrealAutomationToolConfig TestP4_ClientOps(Action<TestP4_ClientOpsConfig> configurator = null)
+    public UnrealAutomationToolConfig TestP4_ClientOps(Action<TestP4_ClientOpsConfig> configurator)
     {
         configurator?.Invoke(TestP4_ClientOpsStorage);
         AppendSubtool(TestP4_ClientOpsStorage);
         return (UnrealAutomationToolConfig) this;
     }
 
-    public UnrealAutomationToolConfig CleanDDC(Action<CleanDDCConfig> configurator = null)
+    public UnrealAutomationToolConfig CleanDDC(Action<CleanDDCConfig> configurator)
     {
         configurator?.Invoke(CleanDDCStorage);
         AppendSubtool(CleanDDCStorage);
         return (UnrealAutomationToolConfig) this;
     }
 
-    public UnrealAutomationToolConfig TestTestFarm(Action<TestTestFarmConfig> configurator = null)
+    public UnrealAutomationToolConfig TestTestFarm(Action<TestTestFarmConfig> configurator)
     {
         configurator?.Invoke(TestTestFarmStorage);
         AppendSubtool(TestTestFarmStorage);
         return (UnrealAutomationToolConfig) this;
     }
 /// <summary>Test command line argument parsing functions.</summary>
-    public UnrealAutomationToolConfig TestArguments(Action<TestArgumentsConfig> configurator = null)
+    public UnrealAutomationToolConfig TestArguments(Action<TestArgumentsConfig> configurator)
     {
         configurator?.Invoke(TestArgumentsStorage);
         AppendSubtool(TestArgumentsStorage);
         return (UnrealAutomationToolConfig) this;
     }
 /// <summary>Checks if combine paths works as excpected</summary>
-    public UnrealAutomationToolConfig TestCombinePaths(Action<TestCombinePathsConfig> configurator = null)
+    public UnrealAutomationToolConfig TestCombinePaths(Action<TestCombinePathsConfig> configurator)
     {
         configurator?.Invoke(TestCombinePathsStorage);
         AppendSubtool(TestCombinePathsStorage);
         return (UnrealAutomationToolConfig) this;
     }
 /// <summary>Tests file utility functions.</summary>
-    public UnrealAutomationToolConfig TestFileUtility(Action<TestFileUtilityConfig> configurator = null)
+    public UnrealAutomationToolConfig TestFileUtility(Action<TestFileUtilityConfig> configurator)
     {
         configurator?.Invoke(TestFileUtilityStorage);
         AppendSubtool(TestFileUtilityStorage);
         return (UnrealAutomationToolConfig) this;
     }
 
-    public UnrealAutomationToolConfig TestLog(Action<TestLogConfig> configurator = null)
+    public UnrealAutomationToolConfig TestLog(Action<TestLogConfig> configurator)
     {
         configurator?.Invoke(TestLogStorage);
         AppendSubtool(TestLogStorage);
@@ -12467,28 +12467,28 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     }
 /// <summary>Tests P4 change filetype functionality.</summary>
 /// <remarks>WARNING: This command might require Perforce</remarks>
-    public UnrealAutomationToolConfig TestChangeFileType(Action<TestChangeFileTypeConfig> configurator = null)
+    public UnrealAutomationToolConfig TestChangeFileType(Action<TestChangeFileTypeConfig> configurator)
     {
         configurator?.Invoke(TestChangeFileTypeStorage);
         AppendSubtool(TestChangeFileTypeStorage);
         return (UnrealAutomationToolConfig) this;
     }
 /// <summary>Tests if UE4Build properly copies all relevent UAT build products to the Binaries folder.</summary>
-    public UnrealAutomationToolConfig TestUATBuildProducts(Action<TestUATBuildProductsConfig> configurator = null)
+    public UnrealAutomationToolConfig TestUATBuildProducts(Action<TestUATBuildProductsConfig> configurator)
     {
         configurator?.Invoke(TestUATBuildProductsStorage);
         AppendSubtool(TestUATBuildProductsStorage);
         return (UnrealAutomationToolConfig) this;
     }
 
-    public UnrealAutomationToolConfig TestOSSCommands(Action<TestOSSCommandsConfig> configurator = null)
+    public UnrealAutomationToolConfig TestOSSCommands(Action<TestOSSCommandsConfig> configurator)
     {
         configurator?.Invoke(TestOSSCommandsStorage);
         AppendSubtool(TestOSSCommandsStorage);
         return (UnrealAutomationToolConfig) this;
     }
 /// <summary>Builds a project using UBT. Syntax is similar to UBT with the exception of '-', i.e. UBT -QAGame -Development -Win32</summary>
-    public UnrealAutomationToolConfig UBT(Action<UBTConfig> configurator = null)
+    public UnrealAutomationToolConfig UBT(Action<UBTConfig> configurator)
     {
         configurator?.Invoke(UBTStorage);
         AppendSubtool(UBTStorage);
@@ -12496,35 +12496,35 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     }
 /// <summary>Helper command to sync only source code + engine files from P4.</summary>
 /// <remarks>WARNING: This command might require Perforce</remarks>
-    public UnrealAutomationToolConfig SyncSource(Action<SyncSourceConfig> configurator = null)
+    public UnrealAutomationToolConfig SyncSource(Action<SyncSourceConfig> configurator)
     {
         configurator?.Invoke(SyncSourceStorage);
         AppendSubtool(SyncSourceStorage);
         return (UnrealAutomationToolConfig) this;
     }
 /// <summary>Generates automation project based on a template.</summary>
-    public UnrealAutomationToolConfig GenerateAutomationProject(Action<GenerateAutomationProjectConfig> configurator = null)
+    public UnrealAutomationToolConfig GenerateAutomationProject(Action<GenerateAutomationProjectConfig> configurator)
     {
         configurator?.Invoke(GenerateAutomationProjectStorage);
         AppendSubtool(GenerateAutomationProjectStorage);
         return (UnrealAutomationToolConfig) this;
     }
 
-    public UnrealAutomationToolConfig DumpBranch(Action<DumpBranchConfig> configurator = null)
+    public UnrealAutomationToolConfig DumpBranch(Action<DumpBranchConfig> configurator)
     {
         configurator?.Invoke(DumpBranchStorage);
         AppendSubtool(DumpBranchStorage);
         return (UnrealAutomationToolConfig) this;
     }
 /// <summary>Sleeps for 20 seconds and then exits</summary>
-    public UnrealAutomationToolConfig DebugSleep(Action<DebugSleepConfig> configurator = null)
+    public UnrealAutomationToolConfig DebugSleep(Action<DebugSleepConfig> configurator)
     {
         configurator?.Invoke(DebugSleepStorage);
         AppendSubtool(DebugSleepStorage);
         return (UnrealAutomationToolConfig) this;
     }
 /// <summary>Tests if Mcp configs loaded properly.</summary>
-    public UnrealAutomationToolConfig TestMcpConfigs(Action<TestMcpConfigsConfig> configurator = null)
+    public UnrealAutomationToolConfig TestMcpConfigs(Action<TestMcpConfigsConfig> configurator)
     {
         configurator?.Invoke(TestMcpConfigsStorage);
         AppendSubtool(TestMcpConfigsStorage);
@@ -12532,7 +12532,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     }
 /// <summary>Test Blame P4 command.</summary>
 /// <remarks>WARNING: This command might require Perforce</remarks>
-    public UnrealAutomationToolConfig TestBlame(Action<TestBlameConfig> configurator = null)
+    public UnrealAutomationToolConfig TestBlame(Action<TestBlameConfig> configurator)
     {
         configurator?.Invoke(TestBlameStorage);
         AppendSubtool(TestBlameStorage);
@@ -12540,49 +12540,49 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     }
 /// <summary>Test P4 changes.</summary>
 /// <remarks>WARNING: This command might require Perforce</remarks>
-    public UnrealAutomationToolConfig TestChanges(Action<TestChangesConfig> configurator = null)
+    public UnrealAutomationToolConfig TestChanges(Action<TestChangesConfig> configurator)
     {
         configurator?.Invoke(TestChangesStorage);
         AppendSubtool(TestChangesStorage);
         return (UnrealAutomationToolConfig) this;
     }
 /// <summary>Spawns a process to test if UAT kills it automatically.</summary>
-    public UnrealAutomationToolConfig TestKillAll(Action<TestKillAllConfig> configurator = null)
+    public UnrealAutomationToolConfig TestKillAll(Action<TestKillAllConfig> configurator)
     {
         configurator?.Invoke(TestKillAllStorage);
         AppendSubtool(TestKillAllStorage);
         return (UnrealAutomationToolConfig) this;
     }
 /// <summary>Tests CleanFormalBuilds.</summary>
-    public UnrealAutomationToolConfig TestCleanFormalBuilds(Action<TestCleanFormalBuildsConfig> configurator = null)
+    public UnrealAutomationToolConfig TestCleanFormalBuilds(Action<TestCleanFormalBuildsConfig> configurator)
     {
         configurator?.Invoke(TestCleanFormalBuildsStorage);
         AppendSubtool(TestCleanFormalBuildsStorage);
         return (UnrealAutomationToolConfig) this;
     }
 /// <summary>Spawns a process to test if it can be killed.</summary>
-    public UnrealAutomationToolConfig TestStopProcess(Action<TestStopProcessConfig> configurator = null)
+    public UnrealAutomationToolConfig TestStopProcess(Action<TestStopProcessConfig> configurator)
     {
         configurator?.Invoke(TestStopProcessStorage);
         AppendSubtool(TestStopProcessStorage);
         return (UnrealAutomationToolConfig) this;
     }
 /// <summary>Looks through an XGE xml for overlapping obj files</summary>
-    public UnrealAutomationToolConfig LookForOverlappingBuildProducts(Action<LookForOverlappingBuildProductsConfig> configurator = null)
+    public UnrealAutomationToolConfig LookForOverlappingBuildProducts(Action<LookForOverlappingBuildProductsConfig> configurator)
     {
         configurator?.Invoke(LookForOverlappingBuildProductsStorage);
         AppendSubtool(LookForOverlappingBuildProductsStorage);
         return (UnrealAutomationToolConfig) this;
     }
 /// <summary>Copies all files from source directory to destination directory using ThreadedCopyFiles</summary>
-    public UnrealAutomationToolConfig TestThreadedCopyFiles(Action<TestThreadedCopyFilesConfig> configurator = null)
+    public UnrealAutomationToolConfig TestThreadedCopyFiles(Action<TestThreadedCopyFilesConfig> configurator)
     {
         configurator?.Invoke(TestThreadedCopyFilesStorage);
         AppendSubtool(TestThreadedCopyFilesStorage);
         return (UnrealAutomationToolConfig) this;
     }
 
-    public UnrealAutomationToolConfig UE4BuildUtilDummyBuildCommand(Action<UE4BuildUtilDummyBuildCommandConfig> configurator = null)
+    public UnrealAutomationToolConfig UE4BuildUtilDummyBuildCommand(Action<UE4BuildUtilDummyBuildCommandConfig> configurator)
     {
         configurator?.Invoke(UE4BuildUtilDummyBuildCommandStorage);
         AppendSubtool(UE4BuildUtilDummyBuildCommandStorage);
@@ -12590,21 +12590,21 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     }
 /// <summary>Updates your local versions based on your P4 sync</summary>
 /// <remarks>WARNING: This command might require Perforce</remarks>
-    public UnrealAutomationToolConfig UpdateLocalVersion(Action<UpdateLocalVersionConfig> configurator = null)
+    public UnrealAutomationToolConfig UpdateLocalVersion(Action<UpdateLocalVersionConfig> configurator)
     {
         configurator?.Invoke(UpdateLocalVersionStorage);
         AppendSubtool(UpdateLocalVersionStorage);
         return (UnrealAutomationToolConfig) this;
     }
 
-    public UnrealAutomationToolConfig UploadDDCToAWS(Action<UploadDDCToAWSConfig> configurator = null)
+    public UnrealAutomationToolConfig UploadDDCToAWS(Action<UploadDDCToAWSConfig> configurator)
     {
         configurator?.Invoke(UploadDDCToAWSStorage);
         AppendSubtool(UploadDDCToAWSStorage);
         return (UnrealAutomationToolConfig) this;
     }
 /// <summary>ZipUtils is used to zip/unzip (i.e:RunUAT.bat ZipUtils -archive=D:/Content.zip -add=D:/UE/Pojects/SampleGame/Content/) or (i.e:RunUAT.bat ZipUtils -archive=D:/Content.zip -extract=D:/UE/Pojects/SampleGame/Content/)</summary>
-    public UnrealAutomationToolConfig ZipUtils(Action<ZipUtilsConfig> configurator = null)
+    public UnrealAutomationToolConfig ZipUtils(Action<ZipUtilsConfig> configurator)
     {
         configurator?.Invoke(ZipUtilsStorage);
         AppendSubtool(ZipUtilsStorage);
@@ -12614,14 +12614,14 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// Example1: RunUAT BenchmarkBuild -all -project=UE4
 /// Example2: RunUAT BenchmarkBuild -allcompile -project=UE4+EngineTest -platform=PS4
 /// Example3: RunUAT BenchmarkBuild -editor -client -cook -cooknoshaderddc -cooknoddc -xge -noxge -singlecompile -nopcompile -project=UE4+QAGame+EngineTest -platform=WIn64+PS4+XboxOne+Switch -iterations=3</summary>
-    public UnrealAutomationToolConfig BenchmarkBuild(Action<BenchmarkBuildConfig> configurator = null)
+    public UnrealAutomationToolConfig BenchmarkBuild(Action<BenchmarkBuildConfig> configurator)
     {
         configurator?.Invoke(BenchmarkBuildStorage);
         AppendSubtool(BenchmarkBuildStorage);
         return (UnrealAutomationToolConfig) this;
     }
 
-    public UnrealAutomationToolConfig BenchmarkOptions(Action<BenchmarkOptionsConfig> configurator = null)
+    public UnrealAutomationToolConfig BenchmarkOptions(Action<BenchmarkOptionsConfig> configurator)
     {
         configurator?.Invoke(BenchmarkOptionsStorage);
         AppendSubtool(BenchmarkOptionsStorage);
