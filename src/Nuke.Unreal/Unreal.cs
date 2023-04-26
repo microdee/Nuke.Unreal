@@ -150,7 +150,9 @@ namespace Nuke.Unreal
         {
             var scriptExt = RuntimeInformation.IsOSPlatform(OSPlatform.Windows) ? "bat" : "sh";
             return ToolResolver.GetLocalTool(GetEnginePath(ofVersion) / "Engine" / "Build" / "BatchFiles" / $"RunUAT.{scriptExt}")
-                .WithSemanticLogging();
+                .WithSemanticLogging(filter: l =>
+                    !(l.Contains("Reading chunk manifest") && l.Contains("which contains 0 entries"))
+                );
         }
 
         public static Tool AutomationTool(EngineVersion ofVersion, Action<UnrealAutomationToolConfig> config)

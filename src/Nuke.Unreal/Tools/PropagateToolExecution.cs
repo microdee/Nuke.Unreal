@@ -96,9 +96,11 @@ public static class ToolExtensions
         outputFilter
     ));
 
-    public static Tool WithSemanticLogging(this Tool tool, Action<OutputType, string> normalOutputLogger = null) =>
+    public static Tool WithSemanticLogging(this Tool tool, Func<string, bool> filter = null, Action<OutputType, string> normalOutputLogger = null) =>
         tool.With(customLogger: (t, l) =>
         {
+            if (!(filter?.Invoke(l) ?? true)) return;
+
             if (l.ContainsAnyOrdinalIgnoreCase("success", "complete", "ready", "start", "***"))
             {
                 Log.Information(l);
