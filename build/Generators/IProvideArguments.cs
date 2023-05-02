@@ -30,6 +30,7 @@ public static class ArgumentProviderExtensions
         {
             otherArg.Enum ??= arg.Enum;
             otherArg.ValueSetter = arg.ValueSetter;
+            otherArg.Compatibility = otherArg.Compatibility.Union(arg.Compatibility).ToList();
             otherArg.MergeDocs(arg);
             existing = otherArg;
         }

@@ -12,6 +12,7 @@ using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Nuke.Common.Utilities.Collections;
 using Towel;
 using System.Security;
+using Nuke.Unreal;
 
 namespace build.Generators.UAT;
 
@@ -135,6 +136,7 @@ public partial class UatGathering
 
     protected void GatherFromCommandLineArgumentParsers(ClassInfo from, IGatheringContext context)
     {
+        var compatibility = (context as IHaveEngineCompatibility)?.Compatibility ?? UnrealCompatibility.All;
         var paramGetterInvocations = from.Declarations.SelectMany(c => c.Declaration
             .DescendantNodes().OfType<InvocationExpressionSyntax>()
             .Where(n => ParamGetterInvocationRegex().IsMatch(n.ToString()))
@@ -178,17 +180,19 @@ public partial class UatGathering
                 );
 
             var documentation = memberCandidate.GetLeadingXmlDocs();
+            var outCsharpName = csharpName.Replace("UE4", "Unreal");
             
             var existing = from.AddArgument(
                 new ArgumentModel() {
-                    ConfigName = csharpName,
+                    ConfigName = outCsharpName,
                     CliName = (cliName[0] == '-' ? "" : "-") + cliName,
-                    ArgumentType = ArgumentModelType.TextCollection
+                    ArgumentType = ArgumentModelType.TextCollection,
+                    Compatibility = new() { compatibility }
                 }.AddRootlessXmlDocs(documentation)
             );
             if (existing == null)
             {
-                Log.Debug(context.Indent() + "{0} {1}", cliName, csharpName);
+                Log.Debug(context.Indent() + "{0} {1}", cliName, outCsharpName);
             }
         }
     }
@@ -198,6 +202,7 @@ public partial class UatGathering
 
     protected void GatherFromHelpHeuristics(ClassInfo from, IGatheringContext context)
     {
+        var compatibility = (context as IHaveEngineCompatibility)?.Compatibility ?? UnrealCompatibility.All;
         var commandHelpAttributes = from.HelpAttributes
             .Where(a => a
                 .DescendantNodes()
@@ -226,12 +231,16 @@ public partial class UatGathering
             if (regexMatch?.Groups?["NAME"] == null) continue;
 
             var cliName = regexMatch.Groups["NAME"].Value;
+            var csharpName = regexMatch.Groups["NAME"].Value.Replace("-", "").EnsureIdentifierCompatibleName();
+            var outCsharpName = csharpName.Replace("UE4", "Unreal");
+
             var argument = new ArgumentModel()
             {
                 CliName = (cliName[0] == '-' ? "" : "-") + cliName,
-                ConfigName = regexMatch.Groups["NAME"].Value.Replace("-", "").EnsureIdentifierCompatibleName(),
+                ConfigName = outCsharpName,
                 ArgumentType = ArgumentModelType.TextCollection,
-                ValueSetter = regexMatch.Groups["SETTER"]?.Value ?? "="
+                ValueSetter = regexMatch.Groups["SETTER"]?.Value ?? "=",
+                Compatibility = new() { compatibility }
             }.AddSummary(arguments[1].Token.Text);
             var existing = from.AddArgument(argument);
             if (existing == null)
@@ -243,6 +252,7 @@ public partial class UatGathering
 
     protected void GatherGlobalCommandLine(IGatheringContext context)
     {
+        var compatibility = (context as IHaveEngineCompatibility)?.Compatibility ?? UnrealCompatibility.All;
         var globalArgDecls = Classes[UniqueClass.GlobalCommandLine]
             .Declarations.SelectMany(d => d.Declaration.DescendantNodes())
             .OfType<FieldDeclarationSyntax>()
@@ -269,19 +279,21 @@ public partial class UatGathering
 
             if (!string.IsNullOrWhiteSpace(csName) && !string.IsNullOrWhiteSpace(cliName))
             {
+                var outCsharpName = csName.Replace("UE4", "Unreal");
                 if (context is IHaveSubTools contextWithSubtools)
                 {
                     var documentation = field.GetLeadingXmlDocs();
                     var existing = contextWithSubtools.MainTool.AddArgument(
                         new ArgumentModel() {
-                            ConfigName = csName,
+                            ConfigName = outCsharpName,
                             CliName = (cliName[0] == '-' ? "" : "-") + cliName,
-                            ArgumentType = ArgumentModelType.TextCollection
+                            ArgumentType = ArgumentModelType.TextCollection,
+                            Compatibility = new() { compatibility }
                         }.AddRootlessXmlDocs(documentation)
                     );
                     if (existing == null)
                     {
-                        Log.Debug(context.Indent() + "Global argument: {0} {1}", cliName, csName);
+                        Log.Debug(context.Indent() + "Global argument: {0} {1}", cliName, outCsharpName);
                     }
                 }
             }
@@ -299,6 +311,7 @@ public partial class UatGathering
 
     protected ToolModel CreateSubtool(ClassInfo from, IGatheringContext context)
     {
+        var compatibility = (context as IHaveEngineCompatibility)?.Compatibility ?? UnrealCompatibility.All;
         var commandDescriptionHelpAttr = from.HelpAttributes
             .Where(a => a
                 .DescendantNodes()
@@ -314,10 +327,13 @@ public partial class UatGathering
             .Where(s => !string.IsNullOrWhiteSpace(s))
             .Select(s => s.TrimMatchingDoubleQuotes());
 
+        var outCsharpName = from.Name.Replace("UE4", "Unreal");
+
         var tool = new ToolModel {
-            ConfigName = from.Name,
-            ConfigType = new(from.Name + "Config", from.Name + "Config"),
+            ConfigName = outCsharpName,
+            ConfigType = new(outCsharpName + "Config", outCsharpName + "Config"),
             CliName = from.Implements(UniqueClass.BuildCommand) == null ? "" : from.Name,
+            Compatibility = new() { compatibility }
         };
 
         if (!commandDescriptionHelpAttr.IsNullOrEmpty())

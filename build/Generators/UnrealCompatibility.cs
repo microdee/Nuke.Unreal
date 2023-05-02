@@ -1,6 +1,6 @@
 using System;
 
-namespace Nuke.Unreal;
+namespace build.Generators;
 
 [Flags]
 public enum UnrealCompatibility

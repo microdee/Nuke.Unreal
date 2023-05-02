@@ -14,7 +14,10 @@ public static partial class GeneratorCommon
     private static readonly List<string> Reserved = new()
     {
         "Name",
-        "Arguments",
+        "CliName",
+        "Compatibility",
+        "UsingArguments",
+        "UsingSubtools",
         "Configs",
         "Append",
         "AppendArgument",

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using build.Generators.UAT;
 using Microsoft.CodeAnalysis.CSharp;
+using Nuke.Unreal;
 
 /*
 TODO:
@@ -32,41 +33,52 @@ TODO:
 */
 namespace build.Generators;
 
-public class UnrealAutomationToolGenerator
-    : ToolGenerator
-    , IGatheringContext
+public class UatGeneratorContext
+    : IGatheringContext
     , IHaveSubTools
     , IHaveLogDisplayInfo
+    , IHaveEngineCompatibility
+{
+    public int Indentation { get; set; } = 0;
+    public ToolModel MainTool { get; set; }
+    public List<ToolModel> SubTools { get; } = new();
+    public UnrealCompatibility Compatibility { get; set; } = UnrealCompatibility.All;
+}
+
+public class UnrealAutomationToolGenerator : ToolGenerator
 {
     public override string TemplateName => "UnrealAutomationToolConfigGenerated";
-
-    public List<ToolModel> SubTools { get; } = new();
     
     private record UatModel(ToolModel UnrealAutomationTool);
 
-    private object _model = null;
-    protected override object Model {
-        get
-        {
-            if (_model != null) return _model;
 
-            var uatRoot = Unreal.GetInstance(UnrealVersion).Location / "Engine" / "Source" / "Programs" / "AutomationTool";
-            var gatherer = new UatGathering(uatRoot);
+    protected override object GetFullModel(ToolModel tool) => new UatModel(tool);
+
+    private readonly Dictionary<string, ToolModel> _modelCahce = new();
+    protected override ToolModel GetToolModelForEngine(string engineVersion, UnrealCompatibility compatibility)
+    {
+        if (_modelCahce.TryGetValue(engineVersion, out var tool))
+        {
+            return tool;
+        }
+
+        var uatRoot = Unreal.GetInstance(engineVersion).Location / "Engine" / "Source" / "Programs" / "AutomationTool";
+        var gatherer = new UatGathering(uatRoot);
+        var context = new UatGeneratorContext
+        {
+            Compatibility = compatibility,
             MainTool = new ToolModel
             {
                 ConfigName = "UnrealAutomationTool",
-                CliName = "UnrealAutomationTool",
+                CliName = "",
                 ConfigType = new(TemplateName.Replace("Generated", ""), TemplateName),
-                ClassKeywords = "abstract"
-            }.AddSummary("Unreal Automation Tool is a vast collection of scripts solving all aspects of deploying a program made in Unreal Engine");
-            gatherer.Gather(this);
-            MainTool.Subtools.AddRange(SubTools);
+                ClassKeywords = "abstract",
+                Compatibility = new() { compatibility }
+            }.AddSummary("Unreal Automation Tool is a vast collection of scripts solving all aspects of deploying a program made in Unreal Engine")
+        };
 
-            _model = new UatModel(MainTool);
-            return _model;
-        }
+        gatherer.Gather(context);
+        context.MainTool.Subtools.AddRange(context.SubTools);
+        return context.MainTool;
     }
-    
-    public int Indentation { get; set; } = 0;
-    public ToolModel MainTool { get; private set; }
 }
