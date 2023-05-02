@@ -5,12 +5,21 @@ using System.Xml.Linq;
 using System.Threading.Tasks;
 using System.Xml;
 using System.Security;
+using Nuke.Unreal;
 
 namespace build.Generators;
 public abstract class CommandLineEntity
 {
     public string ConfigName { init; get; }
     public string CliName { init; get; }
+    public List<UnrealCompatibility> Compatibility { get; } = new();
+    
+    public string CompatibilityRender => string.Join(
+        " | ",
+        Compatibility
+            .Select(c => nameof(UnrealCompatibility) + "." + c.ToString())
+    );
+
     public XDocument DocsXml { get; set; } = XDocument.Parse("<r />");
     public string Docs =>
         string.Join(

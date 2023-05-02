@@ -8,23 +8,52 @@ namespace Nuke.Unreal.Tools;
 public abstract class ToolConfig
 {
     public abstract string Name { get; }
+    public abstract string CliName { get; }
+    public abstract UnrealCompatibility Compatibility { get; }
     
-    protected readonly List<string> Arguments = new();
+    protected readonly Dictionary<string, UnrealToolArgument> UsingArguments = new();
+    protected readonly Dictionary<string, ToolConfig> UsingSubtools = new();
 
     protected virtual ToolConfig[] Configs => Array.Empty<ToolConfig>();
 
+    public virtual void AppendArgument(UnrealToolArgument arg)
+    {
+        if (UsingArguments.ContainsKey(arg.Name))
+        {
+            UsingArguments[arg.Name] = arg;
+        }
+        else
+        {
+            UsingArguments.Add(arg.Name, arg);
+        }
+    }
+
     public virtual void AppendArgument(string arg)
     {
-        if (!string.IsNullOrWhiteSpace(arg))
-            Arguments.Add(arg);
+        AppendArgument(UnrealToolArgument.Parse(arg));
     }
 
     public virtual void AppendSubtool(ToolConfig subtool)
     {
-        AppendArgument(subtool.Gather());
+        UsingSubtools.TryAdd(subtool.Name, subtool);
     }
 
-    public virtual string Gather() => string.Join(' ', Arguments);
+    public virtual string Gather(EngineVersion ueVersion)
+    {
+        var compatibleName = ueVersion.SemanticalVersion.Major > 4
+            ? CliName.Replace("UE4", "Unreal")
+            : CliName;
+
+        var subtools = UsingSubtools.Values
+            .Where(v => ueVersion.IsCompatibleWith(v.Compatibility))
+            .Select(v => v.Gather(ueVersion));
+
+        var args = UsingArguments.Values
+            .Where(v => ueVersion.IsCompatibleWith(v.Compatibility))
+            .Select(v => v.Gather(ueVersion));
+
+        return (compatibleName + " " + string.Join(' ', subtools.Concat(args))).Trim();
+    }
 }
 
 public static class ToolConfigExtensions
