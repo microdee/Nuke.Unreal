@@ -46,11 +46,8 @@ namespace Nuke.Unreal
                 ? ""
                 : (leadingSpace ? " " : "") + string.Join(' ', input?.Select(ProcessArgument) ?? Enumerable.Empty<string>());
 
-        public static string DoubleQuoteIfNeeded(this object self) =>
-            " \t\n\f".Any(ws => self.ToString().Contains(ws)) ? self.ToString().DoubleQuote() : self.ToString();
-
         public static IEnumerable<string> DoubleQuoteIfNeeded(this IEnumerable<object> self) =>
-            self?.Select(DoubleQuoteIfNeeded) ?? Enumerable.Empty<string>();
+            self?.Select(s => s.ToString().DoubleQuoteIfNeeded()) ?? Enumerable.Empty<string>();
 
         public static AbsolutePath GetContentsFolder()
         {
