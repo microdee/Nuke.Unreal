@@ -6,13 +6,14 @@ using System.Threading.Tasks;
 using System.Xml;
 using System.Security;
 using Nuke.Unreal;
+using Nuke.Common.Utilities;
 
 namespace build.Generators;
 public abstract class CommandLineEntity
 {
     public string ConfigName { init; get; }
     public string CliName { init; get; }
-    public List<UnrealCompatibility> Compatibility { get; } = new();
+    public List<UnrealCompatibility> Compatibility { get; set; } = new();
     
     public string CompatibilityRender => string.Join(
         " | ",
@@ -75,5 +76,23 @@ public static class CommandLineEntityExtensions
     {
         if (string.IsNullOrWhiteSpace(xml)) return self;
         return self.AddXElementContents(XElement.Parse($"<r>{xml}</r>"));
+    }
+
+    public static T MergeDocs<T>(this T self, CommandLineEntity other) where T : CommandLineEntity
+    {
+        foreach(var el in other.DocsRoot.Elements())
+        {
+            var otherEl = self.DocsRoot.Element(el.Name);
+            if (otherEl == null)
+            {
+                self.DocsRoot.Add(el.Clone());
+            }
+            else
+            {
+                if (!otherEl.Value.Contains(el.Value))
+                    otherEl.Value += Environment.NewLine + el.Value;
+            }
+        }
+        return self;
     }
 }
