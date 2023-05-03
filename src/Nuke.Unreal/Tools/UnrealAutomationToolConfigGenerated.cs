@@ -10,12 +10,22 @@ namespace Nuke.Unreal.Tools;
 public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 {
     public override string Name => "UnrealAutomationTool";
+    public override string CliName => "";
+    public override UnrealCompatibility Compatibility => UnrealCompatibility.UE4;
     
         
 /// <summary>"Enables verbose logging"</summary>
         public virtual UnrealAutomationToolConfig Verbose(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-verbose=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-verbose");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-verbose",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealAutomationToolConfig) this;
         }
 
@@ -24,7 +34,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Disables Perforce functionality (default if not run on a build machine)"</summary>
         public virtual UnrealAutomationToolConfig Nop4(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-nop4=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-nop4");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-nop4",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealAutomationToolConfig) this;
         }
 
@@ -33,7 +51,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Enables Perforce functionality (default if run on a build machine)"</summary>
         public virtual UnrealAutomationToolConfig P4(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-p4=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-p4");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-p4",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealAutomationToolConfig) this;
         }
 
@@ -42,7 +68,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Does not run any commands, only compiles them"</summary>
         public virtual UnrealAutomationToolConfig Compileonly(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-compileonly=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-compileonly");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-compileonly",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealAutomationToolConfig) this;
         }
 
@@ -51,7 +85,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Dynamically compiles all commands (otherwise assumes they are already built)"</summary>
         public virtual UnrealAutomationToolConfig Compile(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-compile=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-compile");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-compile",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealAutomationToolConfig) this;
         }
 
@@ -60,7 +102,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Displays help"</summary>
         public virtual UnrealAutomationToolConfig Help(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-help=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-help");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-help",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealAutomationToolConfig) this;
         }
 
@@ -69,7 +119,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Lists all available commands"</summary>
         public virtual UnrealAutomationToolConfig List(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-list=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-list");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-list",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealAutomationToolConfig) this;
         }
 
@@ -78,7 +136,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Allows UAT command to submit changes"</summary>
         public virtual UnrealAutomationToolConfig Submit(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-submit=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-submit");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-submit",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealAutomationToolConfig) this;
         }
 
@@ -87,7 +153,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Prevents any submit attempts"</summary>
         public virtual UnrealAutomationToolConfig Nosubmit(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-nosubmit=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-nosubmit");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-nosubmit",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealAutomationToolConfig) this;
         }
 
@@ -96,7 +170,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Does not kill any spawned processes on exit"</summary>
         public virtual UnrealAutomationToolConfig Nokill(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-nokill=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-nokill");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-nokill",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealAutomationToolConfig) this;
         }
 
@@ -105,7 +187,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Prevents UBT from cleaning junk files"</summary>
         public virtual UnrealAutomationToolConfig Ignorejunk(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-ignorejunk" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-ignorejunk");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-ignorejunk",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealAutomationToolConfig) this;
         }
 
@@ -117,7 +207,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealAutomationToolConfig UseLocalBuildStorage(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-UseLocalBuildStorage=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-UseLocalBuildStorage");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-UseLocalBuildStorage",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealAutomationToolConfig) this;
         }
 
@@ -126,7 +224,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual UnrealAutomationToolConfig Telemetry(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-Telemetry=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-Telemetry");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Telemetry",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealAutomationToolConfig) this;
         }
 
@@ -135,7 +241,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual UnrealAutomationToolConfig Utf8output(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-Utf8output=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-Utf8output");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Utf8output",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealAutomationToolConfig) this;
         }
 
@@ -144,7 +258,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual UnrealAutomationToolConfig VeryVerbose(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-VeryVerbose=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-VeryVerbose");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-VeryVerbose",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealAutomationToolConfig) this;
         }
 
@@ -153,7 +275,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual UnrealAutomationToolConfig Timestamps(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-Timestamps=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-Timestamps");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Timestamps",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealAutomationToolConfig) this;
         }
 
@@ -162,7 +292,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"target platform for building, cooking and deployment (also -Platform)"</summary>
         public virtual UnrealAutomationToolConfig Targetplatform(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-targetplatform=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-targetplatform");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-targetplatform",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealAutomationToolConfig) this;
         }
 
@@ -171,7 +309,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"target platform for building, cooking and deployment of the dedicated server (also -ServerPlatform)"</summary>
         public virtual UnrealAutomationToolConfig Servertargetplatform(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-servertargetplatform=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-servertargetplatform");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-servertargetplatform",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealAutomationToolConfig) this;
         }
 
@@ -183,7 +329,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealAutomationToolConfig Foreign(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-foreign=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-foreign");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-foreign",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealAutomationToolConfig) this;
         }
 
@@ -195,7 +349,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealAutomationToolConfig Foreigncode(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-foreigncode=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-foreigncode");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-foreigncode",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealAutomationToolConfig) this;
         }
 
@@ -207,7 +369,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealAutomationToolConfig CrashReporter(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-CrashReporter=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-CrashReporter");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-CrashReporter",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealAutomationToolConfig) this;
         }
 
@@ -219,7 +389,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealAutomationToolConfig Cook(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-cook=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-cook");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-cook",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealAutomationToolConfig) this;
         }
 
@@ -231,7 +409,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealAutomationToolConfig Skipcook(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-skipcook=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-skipcook");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-skipcook",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealAutomationToolConfig) this;
         }
 
@@ -243,7 +429,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealAutomationToolConfig Skipcookonthefly(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-skipcookonthefly=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-skipcookonthefly");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-skipcookonthefly",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealAutomationToolConfig) this;
         }
 
@@ -255,7 +449,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealAutomationToolConfig Clean(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-clean=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-clean");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-clean",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealAutomationToolConfig) this;
         }
 
@@ -267,7 +469,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealAutomationToolConfig Unattended(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-unattended=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-unattended");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-unattended",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealAutomationToolConfig) this;
         }
 
@@ -280,7 +490,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealAutomationToolConfig Pak(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-pak=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-pak");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-pak",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealAutomationToolConfig) this;
         }
 
@@ -292,7 +510,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealAutomationToolConfig Iostore(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-iostore=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-iostore");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-iostore",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealAutomationToolConfig) this;
         }
 
@@ -301,7 +527,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"generate optimized config data during staging to improve loadtimes"</summary>
         public virtual UnrealAutomationToolConfig Makebinaryconfig(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-makebinaryconfig=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-makebinaryconfig");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-makebinaryconfig",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealAutomationToolConfig) this;
         }
 
@@ -313,7 +547,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealAutomationToolConfig Signpak(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-signpak=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-signpak");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-signpak",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealAutomationToolConfig) this;
         }
 
@@ -325,7 +567,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealAutomationToolConfig Prepak(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-prepak=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-prepak");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-prepak",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealAutomationToolConfig) this;
         }
 
@@ -334,7 +584,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"the game should expect to use a signed pak file."</summary>
         public virtual UnrealAutomationToolConfig Signed(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-signed" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-signed");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-signed",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealAutomationToolConfig) this;
         }
 
@@ -346,7 +604,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealAutomationToolConfig PakAlignForMemoryMapping(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-PakAlignForMemoryMapping=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-PakAlignForMemoryMapping");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-PakAlignForMemoryMapping",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealAutomationToolConfig) this;
         }
 
@@ -358,7 +624,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealAutomationToolConfig Skippak(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-skippak=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-skippak");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-skippak",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealAutomationToolConfig) this;
         }
 
@@ -370,7 +644,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealAutomationToolConfig Skipiostore(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-skipiostore=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-skipiostore");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-skipiostore",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealAutomationToolConfig) this;
         }
 
@@ -382,7 +664,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealAutomationToolConfig Stage(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-stage=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-stage");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-stage",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealAutomationToolConfig) this;
         }
 
@@ -394,7 +684,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealAutomationToolConfig Skipstage(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-skipstage=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-skipstage");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-skipstage",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealAutomationToolConfig) this;
         }
 
@@ -406,7 +704,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealAutomationToolConfig Manifests(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-manifests=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-manifests");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-manifests",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealAutomationToolConfig) this;
         }
 
@@ -418,7 +724,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealAutomationToolConfig Createchunkinstall(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-createchunkinstall=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-createchunkinstall");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-createchunkinstall",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealAutomationToolConfig) this;
         }
 
@@ -427,7 +741,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"skips encrypting pak files even if crypto keys are provided"</summary>
         public virtual UnrealAutomationToolConfig Skipencryption(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-skipencryption=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-skipencryption");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-skipencryption",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealAutomationToolConfig) this;
         }
 
@@ -436,7 +758,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Directory to copy the builds to, i.e. -stagingdirectory=C:\\Stage"</summary>
         public virtual UnrealAutomationToolConfig Stagingdirectory(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-stagingdirectory=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-stagingdirectory");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-stagingdirectory",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealAutomationToolConfig) this;
         }
 
@@ -445,7 +775,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Name of the UE4 Editor executable, i.e. -ue4exe=UE4Editor.exe"</summary>
         public virtual UnrealAutomationToolConfig Ue4exe(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-ue4exe=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-ue4exe");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-ue4exe",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealAutomationToolConfig) this;
         }
 
@@ -457,7 +795,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealAutomationToolConfig Archive(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-archive=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-archive");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-archive",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealAutomationToolConfig) this;
         }
 
@@ -466,7 +812,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Directory to archive the builds to, i.e. -archivedirectory=C:\\Archive"</summary>
         public virtual UnrealAutomationToolConfig Archivedirectory(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-archivedirectory=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-archivedirectory");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-archivedirectory",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealAutomationToolConfig) this;
         }
 
@@ -478,7 +832,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealAutomationToolConfig Archivemetadata(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-archivemetadata=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-archivemetadata");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-archivemetadata",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealAutomationToolConfig) this;
         }
 
@@ -490,7 +852,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealAutomationToolConfig Createappbundle(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-createappbundle=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-createappbundle");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-createappbundle",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealAutomationToolConfig) this;
         }
 
@@ -502,7 +872,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealAutomationToolConfig Build(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-build=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-build");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-build",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealAutomationToolConfig) this;
         }
 
@@ -515,7 +893,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// "Toggle to disable the distributed build process"</summary>
         public virtual UnrealAutomationToolConfig Noxge(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-noxge=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-noxge");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-noxge",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealAutomationToolConfig) this;
         }
 
@@ -527,7 +913,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealAutomationToolConfig CookPartialgc(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-CookPartialgc=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-CookPartialgc");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-CookPartialgc",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealAutomationToolConfig) this;
         }
 
@@ -539,7 +933,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealAutomationToolConfig CookInEditor(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-CookInEditor=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-CookInEditor");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-CookInEditor",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealAutomationToolConfig) this;
         }
 
@@ -552,7 +954,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealAutomationToolConfig Iterativecooking(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-iterativecooking=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-iterativecooking");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-iterativecooking",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealAutomationToolConfig) this;
         }
 
@@ -564,7 +974,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealAutomationToolConfig CookMapsOnly(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-CookMapsOnly=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-CookMapsOnly");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-CookMapsOnly",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealAutomationToolConfig) this;
         }
 
@@ -576,7 +994,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealAutomationToolConfig CookAll(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-CookAll=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-CookAll");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-CookAll",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealAutomationToolConfig) this;
         }
 
@@ -588,7 +1014,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealAutomationToolConfig SkipCookingEditorContent(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-SkipCookingEditorContent=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-SkipCookingEditorContent");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-SkipCookingEditorContent",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealAutomationToolConfig) this;
         }
 
@@ -597,7 +1031,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Uses fast cook path if supported by target"</summary>
         public virtual UnrealAutomationToolConfig FastCook(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-FastCook=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-FastCook");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-FastCook",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealAutomationToolConfig) this;
         }
 
@@ -609,7 +1051,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealAutomationToolConfig IgnoreCookErrors(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-IgnoreCookErrors=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-IgnoreCookErrors");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-IgnoreCookErrors",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealAutomationToolConfig) this;
         }
 
@@ -621,7 +1071,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealAutomationToolConfig Nodebuginfo(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-nodebuginfo=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-nodebuginfo");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-nodebuginfo",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealAutomationToolConfig) this;
         }
 
@@ -633,7 +1091,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealAutomationToolConfig Separatedebuginfo(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-separatedebuginfo=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-separatedebuginfo");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-separatedebuginfo",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealAutomationToolConfig) this;
         }
 
@@ -645,7 +1111,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealAutomationToolConfig MapFile(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-MapFile=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-MapFile");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-MapFile",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealAutomationToolConfig) this;
         }
 
@@ -657,7 +1131,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealAutomationToolConfig Nocleanstage(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-nocleanstage=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-nocleanstage");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-nocleanstage",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealAutomationToolConfig) this;
         }
 
@@ -666,7 +1148,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"command line to put into the stage in UE4CommandLine.txt"</summary>
         public virtual UnrealAutomationToolConfig Cmdline(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-cmdline=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-cmdline");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-cmdline",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealAutomationToolConfig) this;
         }
 
@@ -678,7 +1168,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealAutomationToolConfig Bundlename(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-bundlename=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-bundlename");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-bundlename",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealAutomationToolConfig) this;
         }
 
@@ -690,7 +1188,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealAutomationToolConfig Run(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-run=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-run");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-run",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealAutomationToolConfig) this;
         }
 
@@ -702,7 +1208,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealAutomationToolConfig Cookonthefly(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-cookonthefly=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-cookonthefly");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-cookonthefly",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealAutomationToolConfig) this;
         }
 
@@ -714,7 +1228,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealAutomationToolConfig Cookontheflystreaming(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-Cookontheflystreaming=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-Cookontheflystreaming");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Cookontheflystreaming",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealAutomationToolConfig) this;
         }
 
@@ -726,7 +1248,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealAutomationToolConfig Fileserver(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-fileserver=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-fileserver");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-fileserver",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealAutomationToolConfig) this;
         }
 
@@ -738,7 +1268,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealAutomationToolConfig Dedicatedserver(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-dedicatedserver=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-dedicatedserver");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-dedicatedserver",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealAutomationToolConfig) this;
         }
 
@@ -750,7 +1288,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealAutomationToolConfig Client(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-client=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-client");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-client",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealAutomationToolConfig) this;
         }
 
@@ -762,7 +1308,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealAutomationToolConfig Noclient(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-noclient=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-noclient");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-noclient",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealAutomationToolConfig) this;
         }
 
@@ -774,7 +1328,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealAutomationToolConfig Logwindow(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-logwindow=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-logwindow");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-logwindow",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealAutomationToolConfig) this;
         }
 
@@ -783,7 +1345,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"map to run the game with"</summary>
         public virtual UnrealAutomationToolConfig Map(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-map=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-map");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-map",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealAutomationToolConfig) this;
         }
 
@@ -795,7 +1365,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealAutomationToolConfig AdditionalServerMapParams(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-AdditionalServerMapParams=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-AdditionalServerMapParams");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-AdditionalServerMapParams",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealAutomationToolConfig) this;
         }
 
@@ -805,7 +1383,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// "Device names without the platform prefix to run the game on"</summary>
         public virtual UnrealAutomationToolConfig Device(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-device=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-device");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-device",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealAutomationToolConfig) this;
         }
 
@@ -817,7 +1403,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealAutomationToolConfig Serverdevice(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-serverdevice=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-serverdevice");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-serverdevice",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealAutomationToolConfig) this;
         }
 
@@ -829,7 +1423,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealAutomationToolConfig Skipserver(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-skipserver=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-skipserver");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-skipserver",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealAutomationToolConfig) this;
         }
 
@@ -841,7 +1443,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealAutomationToolConfig Numclients(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-numclients=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-numclients");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-numclients",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealAutomationToolConfig) this;
         }
 
@@ -850,7 +1460,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Additional command line arguments for the program"</summary>
         public virtual UnrealAutomationToolConfig Addcmdline(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-addcmdline=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-addcmdline");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-addcmdline",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealAutomationToolConfig) this;
         }
 
@@ -859,7 +1477,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Additional command line arguments for the program"</summary>
         public virtual UnrealAutomationToolConfig Servercmdline(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-servercmdline=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-servercmdline");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-servercmdline",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealAutomationToolConfig) this;
         }
 
@@ -868,7 +1494,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Override command line arguments to pass to the client"</summary>
         public virtual UnrealAutomationToolConfig Clientcmdline(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-clientcmdline=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-clientcmdline");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-clientcmdline",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealAutomationToolConfig) this;
         }
 
@@ -880,7 +1514,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealAutomationToolConfig Nullrhi(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-nullrhi=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-nullrhi");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-nullrhi",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealAutomationToolConfig) this;
         }
 
@@ -892,7 +1534,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealAutomationToolConfig Fakeclient(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-fakeclient=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-fakeclient");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-fakeclient",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealAutomationToolConfig) this;
         }
 
@@ -904,7 +1554,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealAutomationToolConfig Editortest(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-editortest=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-editortest");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-editortest",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealAutomationToolConfig) this;
         }
 
@@ -917,7 +1575,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealAutomationToolConfig RunAutomationTests(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-RunAutomationTests=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-RunAutomationTests");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-RunAutomationTests",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealAutomationToolConfig) this;
         }
 
@@ -926,7 +1592,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"when running -editortest or a client, adds commands like debug crash, debug rendercrash, etc based on index"</summary>
         public virtual UnrealAutomationToolConfig Crash(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-Crash=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-Crash");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Crash",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealAutomationToolConfig) this;
         }
 
@@ -935,7 +1609,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Linux username for unattended key genereation"</summary>
         public virtual UnrealAutomationToolConfig Deviceuser(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-deviceuser=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-deviceuser");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-deviceuser",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealAutomationToolConfig) this;
         }
 
@@ -944,7 +1626,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Linux password"</summary>
         public virtual UnrealAutomationToolConfig Devicepass(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-devicepass=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-devicepass");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-devicepass",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealAutomationToolConfig) this;
         }
 
@@ -954,7 +1644,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// "Determine whether data is packaged. This can be an iteration optimization for platforms that require packages for deployment"</summary>
         public virtual UnrealAutomationToolConfig Package(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-package=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-package");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-package",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealAutomationToolConfig) this;
         }
 
@@ -963,7 +1661,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Skips packaging the project for the target platform"</summary>
         public virtual UnrealAutomationToolConfig Skippackage(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-skippackage=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-skippackage");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-skippackage",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealAutomationToolConfig) this;
         }
 
@@ -972,7 +1678,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"package for distribution the project"</summary>
         public virtual UnrealAutomationToolConfig Distribution(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-distribution=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-distribution");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-distribution",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealAutomationToolConfig) this;
         }
 
@@ -981,7 +1695,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"stage prerequisites along with the project"</summary>
         public virtual UnrealAutomationToolConfig Prereqs(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-prereqs=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-prereqs");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-prereqs",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealAutomationToolConfig) this;
         }
 
@@ -990,7 +1712,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"location of prerequisites for applocal deployment"</summary>
         public virtual UnrealAutomationToolConfig Applocaldir(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-applocaldir" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-applocaldir");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-applocaldir",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealAutomationToolConfig) this;
         }
 
@@ -999,7 +1729,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"this is a prebuilt cooked and packaged build"</summary>
         public virtual UnrealAutomationToolConfig Prebuilt(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-Prebuilt=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-Prebuilt");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Prebuilt",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealAutomationToolConfig) this;
         }
 
@@ -1008,7 +1746,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"timeout to wait after we lunch the game"</summary>
         public virtual UnrealAutomationToolConfig RunTimeoutSeconds(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-RunTimeoutSeconds=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-RunTimeoutSeconds");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-RunTimeoutSeconds",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealAutomationToolConfig) this;
         }
 
@@ -1017,7 +1763,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Determine a specific Minimum OS"</summary>
         public virtual UnrealAutomationToolConfig SpecifiedArchitecture(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-SpecifiedArchitecture=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-SpecifiedArchitecture");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-SpecifiedArchitecture",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealAutomationToolConfig) this;
         }
 
@@ -1026,7 +1780,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"extra options to pass to ubt"</summary>
         public virtual UnrealAutomationToolConfig UbtArgs(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-UbtArgs=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-UbtArgs");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-UbtArgs",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealAutomationToolConfig) this;
         }
 
@@ -1035,7 +1797,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"extra options to pass to the platform's packager"</summary>
         public virtual UnrealAutomationToolConfig AdditionalPackageOptions(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-AdditionalPackageOptions=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-AdditionalPackageOptions");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-AdditionalPackageOptions",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealAutomationToolConfig) this;
         }
 
@@ -1045,7 +1815,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// "Location to deploy to on the target platform"</summary>
         public virtual UnrealAutomationToolConfig Deploy(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-deploy=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-deploy");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-deploy",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealAutomationToolConfig) this;
         }
 
@@ -1054,7 +1832,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"download file from target after successful run"</summary>
         public virtual UnrealAutomationToolConfig Getfile(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-getfile=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-getfile");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-getfile",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealAutomationToolConfig) this;
         }
 
@@ -1063,7 +1849,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"List of maps that need light maps rebuilding"</summary>
         public virtual UnrealAutomationToolConfig MapsToRebuildLightMaps(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-MapsToRebuildLightMaps=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-MapsToRebuildLightMaps");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-MapsToRebuildLightMaps",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealAutomationToolConfig) this;
         }
 
@@ -1072,7 +1866,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"List of maps that need HLOD rebuilding"</summary>
         public virtual UnrealAutomationToolConfig MapsToRebuildHLODMaps(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-MapsToRebuildHLODMaps=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-MapsToRebuildHLODMaps");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-MapsToRebuildHLODMaps",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealAutomationToolConfig) this;
         }
 
@@ -1081,7 +1883,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Whether Light Map errors should be treated as critical"</summary>
         public virtual UnrealAutomationToolConfig IgnoreLightMapErrors(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-IgnoreLightMapErrors" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-IgnoreLightMapErrors");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-IgnoreLightMapErrors",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealAutomationToolConfig) this;
         }
 
@@ -1090,7 +1900,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual UnrealAutomationToolConfig Cookflavor(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-cookflavor=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-cookflavor");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-cookflavor",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealAutomationToolConfig) this;
         }
 
@@ -1099,7 +1917,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual UnrealAutomationToolConfig Ddc(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-ddc=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-ddc");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-ddc",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealAutomationToolConfig) this;
         }
 
@@ -1108,7 +1934,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual UnrealAutomationToolConfig I18npreset(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-i18npreset=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-i18npreset");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-i18npreset",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealAutomationToolConfig) this;
         }
 
@@ -1117,7 +1951,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual UnrealAutomationToolConfig CookCultures(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-CookCultures=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-CookCultures");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-CookCultures",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealAutomationToolConfig) this;
         }
 
@@ -1126,7 +1968,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual UnrealAutomationToolConfig Skipbuild(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-skipbuild=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-skipbuild");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-skipbuild",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealAutomationToolConfig) this;
         }
 
@@ -1137,7 +1987,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealAutomationToolConfig SkipBuildClient(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-skipbuildclient=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-skipbuildclient");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-skipbuildclient",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealAutomationToolConfig) this;
         }
 
@@ -1148,7 +2006,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealAutomationToolConfig SkipBuildEditor(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-skipbuildeditor=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-skipbuildeditor");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-skipbuildeditor",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealAutomationToolConfig) this;
         }
 
@@ -1157,7 +2023,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual UnrealAutomationToolConfig Createreleaseversionroot(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-createreleaseversionroot=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-createreleaseversionroot");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-createreleaseversionroot",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealAutomationToolConfig) this;
         }
 
@@ -1166,7 +2040,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual UnrealAutomationToolConfig Basedonreleaseversionroot(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-basedonreleaseversionroot=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-basedonreleaseversionroot");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-basedonreleaseversionroot",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealAutomationToolConfig) this;
         }
 
@@ -1177,7 +2059,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealAutomationToolConfig OriginalReleaseVersion(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-originalreleaseversion=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-originalreleaseversion");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-originalreleaseversion",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealAutomationToolConfig) this;
         }
 
@@ -1188,7 +2078,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealAutomationToolConfig CreateReleaseVersion(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-createreleaseversion=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-createreleaseversion");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-createreleaseversion",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealAutomationToolConfig) this;
         }
 
@@ -1199,7 +2097,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealAutomationToolConfig BasedOnReleaseVersion(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-basedonreleaseversion=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-basedonreleaseversion");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-basedonreleaseversion",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealAutomationToolConfig) this;
         }
 
@@ -1212,7 +2118,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealAutomationToolConfig GeneratePatch(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-GeneratePatch=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-GeneratePatch");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-GeneratePatch",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealAutomationToolConfig) this;
         }
 
@@ -1221,7 +2135,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary></summary>
         public virtual UnrealAutomationToolConfig AddPatchLevel(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-AddPatchLevel=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-AddPatchLevel");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-AddPatchLevel",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealAutomationToolConfig) this;
         }
 
@@ -1231,7 +2153,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// Are we staging the unmodified pak files from the base release</summary>
         public virtual UnrealAutomationToolConfig StageBaseReleasePaks(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-StageBaseReleasePaks=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-StageBaseReleasePaks");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-StageBaseReleasePaks",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealAutomationToolConfig) this;
         }
 
@@ -1242,7 +2172,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealAutomationToolConfig DiscVersion(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-DiscVersion=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-DiscVersion");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-DiscVersion",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealAutomationToolConfig) this;
         }
 
@@ -1253,7 +2191,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealAutomationToolConfig AdditionalCookerOptions(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-AdditionalCookerOptions=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-AdditionalCookerOptions");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-AdditionalCookerOptions",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealAutomationToolConfig) this;
         }
 
@@ -1262,7 +2208,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual UnrealAutomationToolConfig DLCName(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-DLCName=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-DLCName");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-DLCName",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealAutomationToolConfig) this;
         }
 
@@ -1274,7 +2228,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealAutomationToolConfig DiffCookedContentPath(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-DiffCookedContentPath=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-DiffCookedContentPath");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-DiffCookedContentPath",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealAutomationToolConfig) this;
         }
 
@@ -1286,7 +2248,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealAutomationToolConfig DLCIncludeEngineContent(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-DLCIncludeEngineContent=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-DLCIncludeEngineContent");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-DLCIncludeEngineContent",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealAutomationToolConfig) this;
         }
 
@@ -1297,7 +2267,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealAutomationToolConfig DLCPakPluginFile(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-DLCPakPluginFile=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-DLCPakPluginFile");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-DLCPakPluginFile",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealAutomationToolConfig) this;
         }
 
@@ -1309,7 +2287,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealAutomationToolConfig DLCActLikePatch(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-DLCActLikePatch=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-DLCActLikePatch");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-DLCActLikePatch",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealAutomationToolConfig) this;
         }
 
@@ -1320,7 +2306,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealAutomationToolConfig SignedPak(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-signedpak=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-signedpak");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-signedpak",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealAutomationToolConfig) this;
         }
 
@@ -1331,7 +2325,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealAutomationToolConfig IgnorePaksFromDifferentCookSource(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-IgnorePaksFromDifferentCookSource=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-IgnorePaksFromDifferentCookSource");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-IgnorePaksFromDifferentCookSource",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealAutomationToolConfig) this;
         }
 
@@ -1342,7 +2344,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealAutomationToolConfig UnversionedCookedContent(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-UnversionedCookedContent=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-UnversionedCookedContent");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-UnversionedCookedContent",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealAutomationToolConfig) this;
         }
 
@@ -1353,7 +2363,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealAutomationToolConfig NumCookersToSpawn(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-NumCookersToSpawn=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-NumCookersToSpawn");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-NumCookersToSpawn",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealAutomationToolConfig) this;
         }
 
@@ -1364,7 +2382,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealAutomationToolConfig Compressed(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-compressed=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-compressed");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-compressed",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealAutomationToolConfig) this;
         }
 
@@ -1375,7 +2401,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealAutomationToolConfig ForceUncompressed(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-ForceUncompressed=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-ForceUncompressed");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-ForceUncompressed",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealAutomationToolConfig) this;
         }
 
@@ -1386,7 +2420,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealAutomationToolConfig AdditionalPakOptions(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-AdditionalPakOptions=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-AdditionalPakOptions");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-AdditionalPakOptions",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealAutomationToolConfig) this;
         }
 
@@ -1397,7 +2439,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealAutomationToolConfig AdditionalIoStoreOptions(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-AdditionalIoStoreOptions=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-AdditionalIoStoreOptions");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-AdditionalIoStoreOptions",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealAutomationToolConfig) this;
         }
 
@@ -1408,7 +2458,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealAutomationToolConfig Iteratesharedcookedbuild(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-iteratesharedcookedbuild=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-iteratesharedcookedbuild");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-iteratesharedcookedbuild",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealAutomationToolConfig) this;
         }
 
@@ -1419,7 +2477,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealAutomationToolConfig IterateSharedBuildUsePrecompiledExe(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-IterateSharedBuildUsePrecompiledExe=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-IterateSharedBuildUsePrecompiledExe");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-IterateSharedBuildUsePrecompiledExe",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealAutomationToolConfig) this;
         }
 
@@ -1430,7 +2496,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealAutomationToolConfig CookOutputDir(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-CookOutputDir=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-CookOutputDir");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-CookOutputDir",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealAutomationToolConfig) this;
         }
 
@@ -1439,7 +2513,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual UnrealAutomationToolConfig Target(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-target=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-target");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-target",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealAutomationToolConfig) this;
         }
 
@@ -1449,7 +2531,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealAutomationToolConfig ExtraTargetsToStageWithClient(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-ExtraTargetsToStageWithClient=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-ExtraTargetsToStageWithClient");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-ExtraTargetsToStageWithClient",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealAutomationToolConfig) this;
         }
 
@@ -1460,7 +2550,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealAutomationToolConfig CodeSign(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-CodeSign=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-CodeSign");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-CodeSign",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealAutomationToolConfig) this;
         }
 
@@ -1471,7 +2569,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealAutomationToolConfig TreatNonShippingBinariesAsDebugFiles(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-TreatNonShippingBinariesAsDebugFiles=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-TreatNonShippingBinariesAsDebugFiles");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-TreatNonShippingBinariesAsDebugFiles",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealAutomationToolConfig) this;
         }
 
@@ -1482,7 +2588,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealAutomationToolConfig UseExtraFlavor(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-UseExtraFlavor=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-UseExtraFlavor");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-UseExtraFlavor",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealAutomationToolConfig) this;
         }
 
@@ -1493,7 +2607,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealAutomationToolConfig ChunkInstallDirectory(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-chunkinstalldirectory=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-chunkinstalldirectory");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-chunkinstalldirectory",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealAutomationToolConfig) this;
         }
 
@@ -1502,7 +2624,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual UnrealAutomationToolConfig Chunkinstallversion(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-chunkinstallversion=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-chunkinstallversion");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-chunkinstallversion",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealAutomationToolConfig) this;
         }
 
@@ -1511,7 +2641,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual UnrealAutomationToolConfig Chunkinstallrelease(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-chunkinstallrelease=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-chunkinstallrelease");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-chunkinstallrelease",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealAutomationToolConfig) this;
         }
 
@@ -1520,7 +2658,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual UnrealAutomationToolConfig AppLocalDirectory(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-applocaldirectory=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-applocaldirectory");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-applocaldirectory",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealAutomationToolConfig) this;
         }
 
@@ -1532,7 +2678,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealAutomationToolConfig NoBootstrapExe(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-nobootstrapexe=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-nobootstrapexe");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-nobootstrapexe",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealAutomationToolConfig) this;
         }
 
@@ -1541,7 +2695,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual UnrealAutomationToolConfig ForcePackageData(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-forcepackagedata=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-forcepackagedata");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-forcepackagedata",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealAutomationToolConfig) this;
         }
 
@@ -1552,7 +2714,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealAutomationToolConfig IterativeDeploy(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-iterativedeploy=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-iterativedeploy");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-iterativedeploy",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealAutomationToolConfig) this;
         }
 
@@ -1563,7 +2733,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealAutomationToolConfig Provision(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-provision=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-provision");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-provision",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealAutomationToolConfig) this;
         }
 
@@ -1574,7 +2752,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealAutomationToolConfig Certificate(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-certificate=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-certificate");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-certificate",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealAutomationToolConfig) this;
         }
 
@@ -1585,7 +2771,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealAutomationToolConfig Team(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-team=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-team");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-team",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealAutomationToolConfig) this;
         }
 
@@ -1596,7 +2790,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealAutomationToolConfig AutomaticSigning(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-AutomaticSigning=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-AutomaticSigning");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-AutomaticSigning",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealAutomationToolConfig) this;
         }
 
@@ -1607,7 +2809,32 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealAutomationToolConfig RunAutomationTest(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-RunAutomationTest=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-RunAutomationTest");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-RunAutomationTest",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
+            return (UnrealAutomationToolConfig) this;
+        }
+
+        
+        
+    
+        public virtual UnrealAutomationToolConfig UnrealExe(params object[] values)
+        {
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-ue4exe",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealAutomationToolConfig) this;
         }
 
@@ -1616,7 +2843,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual UnrealAutomationToolConfig Clientconfig(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-clientconfig=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-clientconfig");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-clientconfig",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealAutomationToolConfig) this;
         }
 
@@ -1625,7 +2860,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual UnrealAutomationToolConfig Config(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-config=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-config");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-config",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealAutomationToolConfig) this;
         }
 
@@ -1634,7 +2877,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual UnrealAutomationToolConfig Configuration(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-configuration=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-configuration");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-configuration",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealAutomationToolConfig) this;
         }
 
@@ -1643,7 +2894,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual UnrealAutomationToolConfig Port(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-port=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-port");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-port",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealAutomationToolConfig) this;
         }
 
@@ -1654,7 +2913,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealAutomationToolConfig MapsToCook(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-MapsToCook=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-MapsToCook");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-MapsToCook",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealAutomationToolConfig) this;
         }
 
@@ -1665,7 +2932,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealAutomationToolConfig MapIniSectionsToCook(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-MapIniSectionsToCook=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-MapIniSectionsToCook");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-MapIniSectionsToCook",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealAutomationToolConfig) this;
         }
 
@@ -1676,7 +2951,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealAutomationToolConfig TitleID(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-TitleID=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-TitleID");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-TitleID",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealAutomationToolConfig) this;
         }
 
@@ -1685,7 +2968,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual UnrealAutomationToolConfig Serverconfig(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-serverconfig=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-serverconfig");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-serverconfig",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealAutomationToolConfig) this;
         }
 
@@ -1696,7 +2987,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealAutomationToolConfig CrashIndex(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-CrashIndex=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-CrashIndex");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-CrashIndex",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealAutomationToolConfig) this;
         }
 
@@ -1705,7 +3004,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual UnrealAutomationToolConfig IgnoreDependencies(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-IgnoreDependencies=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-IgnoreDependencies");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-IgnoreDependencies",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealAutomationToolConfig) this;
         }
 
@@ -1719,7 +3026,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealAutomationToolConfig NoCompileLegacyDontUse(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-NoCompile=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-NoCompile");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-NoCompile",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealAutomationToolConfig) this;
         }
 
@@ -1728,7 +3043,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual UnrealAutomationToolConfig NoCompileEditor(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-NoCompileEditor=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-NoCompileEditor");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-NoCompileEditor",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealAutomationToolConfig) this;
         }
 
@@ -1737,7 +3060,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual UnrealAutomationToolConfig AllowStdOutLogVerbosity(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-AllowStdOutLogVerbosity=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-AllowStdOutLogVerbosity");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-AllowStdOutLogVerbosity",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealAutomationToolConfig) this;
         }
 
@@ -1746,7 +3077,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual UnrealAutomationToolConfig NoAutoSDK(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-NoAutoSDK=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-NoAutoSDK");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-NoAutoSDK",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealAutomationToolConfig) this;
         }
 
@@ -1755,12 +3094,22 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     public  class ProgramConfig : ToolConfig
     {
         public override string Name => "Program";
+        public override string CliName => "";
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE4;
     
         
     
         public virtual ProgramConfig Utf8output(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-Utf8output=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-Utf8output");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Utf8output",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ProgramConfig) this;
         }
 
@@ -1769,7 +3118,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual ProgramConfig Verbose(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-Verbose=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-Verbose");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Verbose",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ProgramConfig) this;
         }
 
@@ -1778,7 +3135,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual ProgramConfig VeryVerbose(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-VeryVerbose=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-VeryVerbose");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-VeryVerbose",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ProgramConfig) this;
         }
 
@@ -1787,7 +3152,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual ProgramConfig Timestamps(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-Timestamps=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-Timestamps");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Timestamps",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ProgramConfig) this;
         }
     
@@ -1796,11 +3169,6 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
         protected override ToolConfig[] Configs => _configs ??= new ToolConfig[]
         {
         };
-    
-        public override string Gather()
-        {
-            return base.Gather();
-        }
     }
 
     protected readonly ProgramConfig ProgramStorage = new();
@@ -1811,12 +3179,22 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     public  class AutomationConfig : ToolConfig
     {
         public override string Name => "Automation";
+        public override string CliName => "";
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE4;
     
         
 /// <summary>"Enables verbose logging"</summary>
         public virtual AutomationConfig Verbose(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-verbose=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-verbose");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-verbose",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (AutomationConfig) this;
         }
 
@@ -1825,7 +3203,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Disables Perforce functionality (default if not run on a build machine)"</summary>
         public virtual AutomationConfig Nop4(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-nop4=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-nop4");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-nop4",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (AutomationConfig) this;
         }
 
@@ -1834,7 +3220,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Enables Perforce functionality (default if run on a build machine)"</summary>
         public virtual AutomationConfig P4(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-p4=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-p4");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-p4",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (AutomationConfig) this;
         }
 
@@ -1843,7 +3237,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Does not run any commands, only compiles them"</summary>
         public virtual AutomationConfig Compileonly(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-compileonly=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-compileonly");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-compileonly",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (AutomationConfig) this;
         }
 
@@ -1852,7 +3254,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Dynamically compiles all commands (otherwise assumes they are already built)"</summary>
         public virtual AutomationConfig Compile(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-compile=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-compile");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-compile",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (AutomationConfig) this;
         }
 
@@ -1861,7 +3271,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Displays help"</summary>
         public virtual AutomationConfig Help(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-help=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-help");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-help",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (AutomationConfig) this;
         }
 
@@ -1870,7 +3288,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Lists all available commands"</summary>
         public virtual AutomationConfig List(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-list=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-list");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-list",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (AutomationConfig) this;
         }
 
@@ -1879,7 +3305,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Allows UAT command to submit changes"</summary>
         public virtual AutomationConfig Submit(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-submit=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-submit");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-submit",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (AutomationConfig) this;
         }
 
@@ -1888,7 +3322,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Prevents any submit attempts"</summary>
         public virtual AutomationConfig Nosubmit(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-nosubmit=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-nosubmit");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-nosubmit",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (AutomationConfig) this;
         }
 
@@ -1897,7 +3339,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Does not kill any spawned processes on exit"</summary>
         public virtual AutomationConfig Nokill(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-nokill=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-nokill");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-nokill",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (AutomationConfig) this;
         }
 
@@ -1906,7 +3356,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Prevents UBT from cleaning junk files"</summary>
         public virtual AutomationConfig Ignorejunk(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-ignorejunk" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-ignorejunk");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-ignorejunk",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (AutomationConfig) this;
         }
 
@@ -1918,7 +3376,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual AutomationConfig UseLocalBuildStorage(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-UseLocalBuildStorage=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-UseLocalBuildStorage");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-UseLocalBuildStorage",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (AutomationConfig) this;
         }
 
@@ -1927,7 +3393,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual AutomationConfig Telemetry(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-Telemetry=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-Telemetry");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Telemetry",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (AutomationConfig) this;
         }
     
@@ -1936,11 +3410,6 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
         protected override ToolConfig[] Configs => _configs ??= new ToolConfig[]
         {
         };
-    
-        public override string Gather()
-        {
-            return base.Gather();
-        }
     }
 
     protected readonly AutomationConfig AutomationStorage = new();
@@ -1949,12 +3418,22 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     public  class CodeSignConfig : ToolConfig
     {
         public override string Name => "CodeSign";
+        public override string CliName => "";
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE4;
     
         
 /// <summary>"Skips signing of code/content files."</summary>
         public virtual CodeSignConfig NoSign(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-NoSign=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-NoSign");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-NoSign",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (CodeSignConfig) this;
         }
     
@@ -1963,11 +3442,6 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
         protected override ToolConfig[] Configs => _configs ??= new ToolConfig[]
         {
         };
-    
-        public override string Gather()
-        {
-            return base.Gather();
-        }
     }
 
     protected readonly CodeSignConfig CodeSignStorage = new();
@@ -1976,12 +3450,22 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     public  class McpConfigMapperConfig : ToolConfig
     {
         public override string Name => "McpConfigMapper";
+        public override string CliName => "";
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE4;
     
         
     
         public virtual McpConfigMapperConfig MCPConfig(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-MCPConfig=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-MCPConfig");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-MCPConfig",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (McpConfigMapperConfig) this;
         }
     
@@ -1990,11 +3474,6 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
         protected override ToolConfig[] Configs => _configs ??= new ToolConfig[]
         {
         };
-    
-        public override string Gather()
-        {
-            return base.Gather();
-        }
     }
 
     protected readonly McpConfigMapperConfig McpConfigMapperStorage = new();
@@ -2003,6 +3482,8 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     public  class P4EnvironmentConfig : ToolConfig
     {
         public override string Name => "P4Environment";
+        public override string CliName => "";
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE4;
     
         
 /// <summary>
@@ -2010,7 +3491,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual P4EnvironmentConfig P4port(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-p4port=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-p4port");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-p4port",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (P4EnvironmentConfig) this;
         }
 
@@ -2019,7 +3508,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual P4EnvironmentConfig P4user(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-p4user=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-p4user");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-p4user",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (P4EnvironmentConfig) this;
         }
     
@@ -2028,11 +3525,6 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
         protected override ToolConfig[] Configs => _configs ??= new ToolConfig[]
         {
         };
-    
-        public override string Gather()
-        {
-            return base.Gather();
-        }
     }
 
     protected readonly P4EnvironmentConfig P4EnvironmentStorage = new();
@@ -2041,12 +3533,22 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     public  class P4WriteConfigConfig : ToolConfig
     {
         public override string Name => "P4WriteConfig";
+        public override string CliName => "P4WriteConfig";
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE4;
     
         
 /// <summary>"Adds a P4IGNORE to the default file (Engine/Extras/Perforce/p4ignore)"</summary>
         public virtual P4WriteConfigConfig Setignore(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-setignore=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-setignore");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-setignore",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (P4WriteConfigConfig) this;
         }
 
@@ -2055,7 +3557,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Write to a path other than the current directory"</summary>
         public virtual P4WriteConfigConfig Path(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-path=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-path");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-path",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (P4WriteConfigConfig) this;
         }
 
@@ -2064,7 +3574,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Optional hint/override of the server to use during lookup"</summary>
         public virtual P4WriteConfigConfig P4port(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-p4port=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-p4port");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-p4port",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (P4WriteConfigConfig) this;
         }
 
@@ -2073,7 +3591,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Optional hint/override of the username to use during lookup"</summary>
         public virtual P4WriteConfigConfig P4user(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-p4user=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-p4user");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-p4user",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (P4WriteConfigConfig) this;
         }
 
@@ -2082,7 +3608,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual P4WriteConfigConfig Listonly(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-listonly=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-listonly");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-listonly",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (P4WriteConfigConfig) this;
         }
     
@@ -2091,11 +3625,6 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
         protected override ToolConfig[] Configs => _configs ??= new ToolConfig[]
         {
         };
-    
-        public override string Gather()
-        {
-            Arguments.Insert(0, "P4WriteConfig");return base.Gather();
-        }
     }
 
     protected readonly P4WriteConfigConfig P4WriteConfigStorage = new();
@@ -2105,12 +3634,22 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     public  class ProjectParamsConfig : ToolConfig
     {
         public override string Name => "ProjectParams";
+        public override string CliName => "";
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE4;
     
         
 /// <summary>"target platform for building, cooking and deployment (also -Platform)"</summary>
         public virtual ProjectParamsConfig Targetplatform(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-targetplatform=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-targetplatform");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-targetplatform",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ProjectParamsConfig) this;
         }
 
@@ -2119,7 +3658,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"target platform for building, cooking and deployment of the dedicated server (also -ServerPlatform)"</summary>
         public virtual ProjectParamsConfig Servertargetplatform(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-servertargetplatform=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-servertargetplatform");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-servertargetplatform",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ProjectParamsConfig) this;
         }
 
@@ -2131,7 +3678,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual ProjectParamsConfig Foreign(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-foreign=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-foreign");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-foreign",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ProjectParamsConfig) this;
         }
 
@@ -2143,7 +3698,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual ProjectParamsConfig Foreigncode(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-foreigncode=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-foreigncode");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-foreigncode",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ProjectParamsConfig) this;
         }
 
@@ -2155,7 +3718,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual ProjectParamsConfig CrashReporter(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-CrashReporter=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-CrashReporter");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-CrashReporter",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ProjectParamsConfig) this;
         }
 
@@ -2167,7 +3738,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual ProjectParamsConfig Cook(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-cook=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-cook");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-cook",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ProjectParamsConfig) this;
         }
 
@@ -2179,7 +3758,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual ProjectParamsConfig Skipcook(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-skipcook=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-skipcook");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-skipcook",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ProjectParamsConfig) this;
         }
 
@@ -2191,7 +3778,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual ProjectParamsConfig Skipcookonthefly(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-skipcookonthefly=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-skipcookonthefly");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-skipcookonthefly",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ProjectParamsConfig) this;
         }
 
@@ -2203,7 +3798,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual ProjectParamsConfig Clean(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-clean=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-clean");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-clean",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ProjectParamsConfig) this;
         }
 
@@ -2215,7 +3818,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual ProjectParamsConfig Unattended(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-unattended=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-unattended");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-unattended",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ProjectParamsConfig) this;
         }
 
@@ -2228,7 +3839,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual ProjectParamsConfig Pak(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-pak=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-pak");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-pak",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ProjectParamsConfig) this;
         }
 
@@ -2240,7 +3859,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual ProjectParamsConfig Iostore(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-iostore=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-iostore");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-iostore",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ProjectParamsConfig) this;
         }
 
@@ -2249,7 +3876,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"generate optimized config data during staging to improve loadtimes"</summary>
         public virtual ProjectParamsConfig Makebinaryconfig(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-makebinaryconfig=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-makebinaryconfig");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-makebinaryconfig",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ProjectParamsConfig) this;
         }
 
@@ -2261,7 +3896,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual ProjectParamsConfig Signpak(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-signpak=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-signpak");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-signpak",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ProjectParamsConfig) this;
         }
 
@@ -2273,7 +3916,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual ProjectParamsConfig Prepak(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-prepak=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-prepak");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-prepak",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ProjectParamsConfig) this;
         }
 
@@ -2282,7 +3933,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"the game should expect to use a signed pak file."</summary>
         public virtual ProjectParamsConfig Signed(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-signed" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-signed");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-signed",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ProjectParamsConfig) this;
         }
 
@@ -2294,7 +3953,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual ProjectParamsConfig PakAlignForMemoryMapping(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-PakAlignForMemoryMapping=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-PakAlignForMemoryMapping");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-PakAlignForMemoryMapping",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ProjectParamsConfig) this;
         }
 
@@ -2306,7 +3973,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual ProjectParamsConfig Skippak(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-skippak=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-skippak");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-skippak",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ProjectParamsConfig) this;
         }
 
@@ -2318,7 +3993,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual ProjectParamsConfig Skipiostore(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-skipiostore=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-skipiostore");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-skipiostore",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ProjectParamsConfig) this;
         }
 
@@ -2330,7 +4013,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual ProjectParamsConfig Stage(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-stage=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-stage");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-stage",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ProjectParamsConfig) this;
         }
 
@@ -2342,7 +4033,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual ProjectParamsConfig Skipstage(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-skipstage=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-skipstage");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-skipstage",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ProjectParamsConfig) this;
         }
 
@@ -2354,7 +4053,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual ProjectParamsConfig Manifests(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-manifests=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-manifests");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-manifests",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ProjectParamsConfig) this;
         }
 
@@ -2366,7 +4073,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual ProjectParamsConfig Createchunkinstall(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-createchunkinstall=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-createchunkinstall");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-createchunkinstall",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ProjectParamsConfig) this;
         }
 
@@ -2375,7 +4090,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"skips encrypting pak files even if crypto keys are provided"</summary>
         public virtual ProjectParamsConfig Skipencryption(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-skipencryption=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-skipencryption");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-skipencryption",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ProjectParamsConfig) this;
         }
 
@@ -2384,7 +4107,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Directory to copy the builds to, i.e. -stagingdirectory=C:\\Stage"</summary>
         public virtual ProjectParamsConfig Stagingdirectory(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-stagingdirectory=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-stagingdirectory");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-stagingdirectory",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ProjectParamsConfig) this;
         }
 
@@ -2393,7 +4124,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Name of the UE4 Editor executable, i.e. -ue4exe=UE4Editor.exe"</summary>
         public virtual ProjectParamsConfig Ue4exe(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-ue4exe=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-ue4exe");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-ue4exe",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ProjectParamsConfig) this;
         }
 
@@ -2405,7 +4144,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual ProjectParamsConfig Archive(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-archive=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-archive");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-archive",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ProjectParamsConfig) this;
         }
 
@@ -2414,7 +4161,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Directory to archive the builds to, i.e. -archivedirectory=C:\\Archive"</summary>
         public virtual ProjectParamsConfig Archivedirectory(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-archivedirectory=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-archivedirectory");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-archivedirectory",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ProjectParamsConfig) this;
         }
 
@@ -2426,7 +4181,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual ProjectParamsConfig Archivemetadata(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-archivemetadata=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-archivemetadata");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-archivemetadata",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ProjectParamsConfig) this;
         }
 
@@ -2438,7 +4201,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual ProjectParamsConfig Createappbundle(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-createappbundle=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-createappbundle");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-createappbundle",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ProjectParamsConfig) this;
         }
 
@@ -2450,7 +4221,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual ProjectParamsConfig Build(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-build=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-build");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-build",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ProjectParamsConfig) this;
         }
 
@@ -2463,7 +4242,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// "Toggle to disable the distributed build process"</summary>
         public virtual ProjectParamsConfig Noxge(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-noxge=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-noxge");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-noxge",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ProjectParamsConfig) this;
         }
 
@@ -2475,7 +4262,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual ProjectParamsConfig CookPartialgc(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-CookPartialgc=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-CookPartialgc");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-CookPartialgc",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ProjectParamsConfig) this;
         }
 
@@ -2487,7 +4282,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual ProjectParamsConfig CookInEditor(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-CookInEditor=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-CookInEditor");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-CookInEditor",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ProjectParamsConfig) this;
         }
 
@@ -2500,7 +4303,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual ProjectParamsConfig Iterativecooking(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-iterativecooking=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-iterativecooking");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-iterativecooking",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ProjectParamsConfig) this;
         }
 
@@ -2512,7 +4323,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual ProjectParamsConfig CookMapsOnly(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-CookMapsOnly=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-CookMapsOnly");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-CookMapsOnly",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ProjectParamsConfig) this;
         }
 
@@ -2524,7 +4343,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual ProjectParamsConfig CookAll(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-CookAll=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-CookAll");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-CookAll",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ProjectParamsConfig) this;
         }
 
@@ -2536,7 +4363,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual ProjectParamsConfig SkipCookingEditorContent(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-SkipCookingEditorContent=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-SkipCookingEditorContent");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-SkipCookingEditorContent",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ProjectParamsConfig) this;
         }
 
@@ -2545,7 +4380,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Uses fast cook path if supported by target"</summary>
         public virtual ProjectParamsConfig FastCook(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-FastCook=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-FastCook");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-FastCook",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ProjectParamsConfig) this;
         }
 
@@ -2557,7 +4400,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual ProjectParamsConfig IgnoreCookErrors(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-IgnoreCookErrors=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-IgnoreCookErrors");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-IgnoreCookErrors",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ProjectParamsConfig) this;
         }
 
@@ -2569,7 +4420,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual ProjectParamsConfig Nodebuginfo(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-nodebuginfo=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-nodebuginfo");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-nodebuginfo",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ProjectParamsConfig) this;
         }
 
@@ -2581,7 +4440,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual ProjectParamsConfig Separatedebuginfo(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-separatedebuginfo=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-separatedebuginfo");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-separatedebuginfo",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ProjectParamsConfig) this;
         }
 
@@ -2593,7 +4460,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual ProjectParamsConfig MapFile(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-MapFile=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-MapFile");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-MapFile",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ProjectParamsConfig) this;
         }
 
@@ -2605,7 +4480,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual ProjectParamsConfig Nocleanstage(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-nocleanstage=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-nocleanstage");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-nocleanstage",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ProjectParamsConfig) this;
         }
 
@@ -2614,7 +4497,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"command line to put into the stage in UE4CommandLine.txt"</summary>
         public virtual ProjectParamsConfig Cmdline(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-cmdline=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-cmdline");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-cmdline",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ProjectParamsConfig) this;
         }
 
@@ -2626,7 +4517,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual ProjectParamsConfig Bundlename(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-bundlename=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-bundlename");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-bundlename",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ProjectParamsConfig) this;
         }
 
@@ -2638,7 +4537,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual ProjectParamsConfig Run(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-run=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-run");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-run",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ProjectParamsConfig) this;
         }
 
@@ -2650,7 +4557,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual ProjectParamsConfig Cookonthefly(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-cookonthefly=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-cookonthefly");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-cookonthefly",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ProjectParamsConfig) this;
         }
 
@@ -2662,7 +4577,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual ProjectParamsConfig Cookontheflystreaming(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-Cookontheflystreaming=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-Cookontheflystreaming");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Cookontheflystreaming",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ProjectParamsConfig) this;
         }
 
@@ -2674,7 +4597,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual ProjectParamsConfig Fileserver(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-fileserver=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-fileserver");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-fileserver",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ProjectParamsConfig) this;
         }
 
@@ -2686,7 +4617,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual ProjectParamsConfig Dedicatedserver(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-dedicatedserver=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-dedicatedserver");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-dedicatedserver",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ProjectParamsConfig) this;
         }
 
@@ -2698,7 +4637,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual ProjectParamsConfig Client(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-client=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-client");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-client",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ProjectParamsConfig) this;
         }
 
@@ -2710,7 +4657,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual ProjectParamsConfig Noclient(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-noclient=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-noclient");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-noclient",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ProjectParamsConfig) this;
         }
 
@@ -2722,7 +4677,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual ProjectParamsConfig Logwindow(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-logwindow=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-logwindow");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-logwindow",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ProjectParamsConfig) this;
         }
 
@@ -2731,7 +4694,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"map to run the game with"</summary>
         public virtual ProjectParamsConfig Map(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-map=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-map");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-map",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ProjectParamsConfig) this;
         }
 
@@ -2743,7 +4714,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual ProjectParamsConfig AdditionalServerMapParams(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-AdditionalServerMapParams=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-AdditionalServerMapParams");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-AdditionalServerMapParams",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ProjectParamsConfig) this;
         }
 
@@ -2753,7 +4732,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// "Device names without the platform prefix to run the game on"</summary>
         public virtual ProjectParamsConfig Device(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-device=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-device");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-device",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ProjectParamsConfig) this;
         }
 
@@ -2765,7 +4752,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual ProjectParamsConfig Serverdevice(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-serverdevice=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-serverdevice");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-serverdevice",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ProjectParamsConfig) this;
         }
 
@@ -2777,7 +4772,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual ProjectParamsConfig Skipserver(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-skipserver=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-skipserver");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-skipserver",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ProjectParamsConfig) this;
         }
 
@@ -2789,7 +4792,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual ProjectParamsConfig Numclients(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-numclients=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-numclients");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-numclients",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ProjectParamsConfig) this;
         }
 
@@ -2798,7 +4809,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Additional command line arguments for the program"</summary>
         public virtual ProjectParamsConfig Addcmdline(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-addcmdline=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-addcmdline");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-addcmdline",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ProjectParamsConfig) this;
         }
 
@@ -2807,7 +4826,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Additional command line arguments for the program"</summary>
         public virtual ProjectParamsConfig Servercmdline(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-servercmdline=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-servercmdline");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-servercmdline",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ProjectParamsConfig) this;
         }
 
@@ -2816,7 +4843,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Override command line arguments to pass to the client"</summary>
         public virtual ProjectParamsConfig Clientcmdline(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-clientcmdline=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-clientcmdline");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-clientcmdline",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ProjectParamsConfig) this;
         }
 
@@ -2828,7 +4863,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual ProjectParamsConfig Nullrhi(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-nullrhi=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-nullrhi");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-nullrhi",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ProjectParamsConfig) this;
         }
 
@@ -2840,7 +4883,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual ProjectParamsConfig Fakeclient(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-fakeclient=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-fakeclient");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-fakeclient",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ProjectParamsConfig) this;
         }
 
@@ -2852,7 +4903,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual ProjectParamsConfig Editortest(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-editortest=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-editortest");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-editortest",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ProjectParamsConfig) this;
         }
 
@@ -2865,7 +4924,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual ProjectParamsConfig RunAutomationTests(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-RunAutomationTests=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-RunAutomationTests");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-RunAutomationTests",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ProjectParamsConfig) this;
         }
 
@@ -2874,7 +4941,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"when running -editortest or a client, adds commands like debug crash, debug rendercrash, etc based on index"</summary>
         public virtual ProjectParamsConfig Crash(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-Crash=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-Crash");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Crash",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ProjectParamsConfig) this;
         }
 
@@ -2883,7 +4958,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Linux username for unattended key genereation"</summary>
         public virtual ProjectParamsConfig Deviceuser(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-deviceuser=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-deviceuser");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-deviceuser",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ProjectParamsConfig) this;
         }
 
@@ -2892,7 +4975,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Linux password"</summary>
         public virtual ProjectParamsConfig Devicepass(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-devicepass=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-devicepass");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-devicepass",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ProjectParamsConfig) this;
         }
 
@@ -2902,7 +4993,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// "Determine whether data is packaged. This can be an iteration optimization for platforms that require packages for deployment"</summary>
         public virtual ProjectParamsConfig Package(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-package=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-package");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-package",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ProjectParamsConfig) this;
         }
 
@@ -2911,7 +5010,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Skips packaging the project for the target platform"</summary>
         public virtual ProjectParamsConfig Skippackage(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-skippackage=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-skippackage");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-skippackage",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ProjectParamsConfig) this;
         }
 
@@ -2920,7 +5027,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"package for distribution the project"</summary>
         public virtual ProjectParamsConfig Distribution(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-distribution=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-distribution");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-distribution",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ProjectParamsConfig) this;
         }
 
@@ -2929,7 +5044,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"stage prerequisites along with the project"</summary>
         public virtual ProjectParamsConfig Prereqs(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-prereqs=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-prereqs");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-prereqs",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ProjectParamsConfig) this;
         }
 
@@ -2938,7 +5061,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"location of prerequisites for applocal deployment"</summary>
         public virtual ProjectParamsConfig Applocaldir(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-applocaldir" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-applocaldir");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-applocaldir",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ProjectParamsConfig) this;
         }
 
@@ -2947,7 +5078,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"this is a prebuilt cooked and packaged build"</summary>
         public virtual ProjectParamsConfig Prebuilt(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-Prebuilt=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-Prebuilt");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Prebuilt",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ProjectParamsConfig) this;
         }
 
@@ -2956,7 +5095,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"timeout to wait after we lunch the game"</summary>
         public virtual ProjectParamsConfig RunTimeoutSeconds(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-RunTimeoutSeconds=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-RunTimeoutSeconds");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-RunTimeoutSeconds",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ProjectParamsConfig) this;
         }
 
@@ -2965,7 +5112,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Determine a specific Minimum OS"</summary>
         public virtual ProjectParamsConfig SpecifiedArchitecture(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-SpecifiedArchitecture=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-SpecifiedArchitecture");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-SpecifiedArchitecture",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ProjectParamsConfig) this;
         }
 
@@ -2974,7 +5129,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"extra options to pass to ubt"</summary>
         public virtual ProjectParamsConfig UbtArgs(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-UbtArgs=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-UbtArgs");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-UbtArgs",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ProjectParamsConfig) this;
         }
 
@@ -2983,7 +5146,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"extra options to pass to the platform's packager"</summary>
         public virtual ProjectParamsConfig AdditionalPackageOptions(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-AdditionalPackageOptions=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-AdditionalPackageOptions");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-AdditionalPackageOptions",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ProjectParamsConfig) this;
         }
 
@@ -2993,7 +5164,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// "Location to deploy to on the target platform"</summary>
         public virtual ProjectParamsConfig Deploy(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-deploy=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-deploy");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-deploy",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ProjectParamsConfig) this;
         }
 
@@ -3002,7 +5181,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"download file from target after successful run"</summary>
         public virtual ProjectParamsConfig Getfile(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-getfile=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-getfile");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-getfile",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ProjectParamsConfig) this;
         }
 
@@ -3011,7 +5198,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"List of maps that need light maps rebuilding"</summary>
         public virtual ProjectParamsConfig MapsToRebuildLightMaps(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-MapsToRebuildLightMaps=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-MapsToRebuildLightMaps");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-MapsToRebuildLightMaps",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ProjectParamsConfig) this;
         }
 
@@ -3020,7 +5215,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"List of maps that need HLOD rebuilding"</summary>
         public virtual ProjectParamsConfig MapsToRebuildHLODMaps(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-MapsToRebuildHLODMaps=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-MapsToRebuildHLODMaps");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-MapsToRebuildHLODMaps",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ProjectParamsConfig) this;
         }
 
@@ -3029,7 +5232,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Whether Light Map errors should be treated as critical"</summary>
         public virtual ProjectParamsConfig IgnoreLightMapErrors(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-IgnoreLightMapErrors" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-IgnoreLightMapErrors");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-IgnoreLightMapErrors",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ProjectParamsConfig) this;
         }
 
@@ -3038,7 +5249,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual ProjectParamsConfig Cookflavor(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-cookflavor=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-cookflavor");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-cookflavor",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ProjectParamsConfig) this;
         }
 
@@ -3047,7 +5266,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual ProjectParamsConfig Ddc(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-ddc=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-ddc");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-ddc",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ProjectParamsConfig) this;
         }
 
@@ -3056,7 +5283,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual ProjectParamsConfig I18npreset(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-i18npreset=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-i18npreset");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-i18npreset",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ProjectParamsConfig) this;
         }
 
@@ -3065,7 +5300,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual ProjectParamsConfig CookCultures(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-CookCultures=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-CookCultures");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-CookCultures",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ProjectParamsConfig) this;
         }
 
@@ -3074,7 +5317,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual ProjectParamsConfig Skipbuild(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-skipbuild=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-skipbuild");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-skipbuild",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ProjectParamsConfig) this;
         }
 
@@ -3085,7 +5336,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual ProjectParamsConfig SkipBuildClient(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-skipbuildclient=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-skipbuildclient");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-skipbuildclient",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ProjectParamsConfig) this;
         }
 
@@ -3096,7 +5355,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual ProjectParamsConfig SkipBuildEditor(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-skipbuildeditor=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-skipbuildeditor");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-skipbuildeditor",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ProjectParamsConfig) this;
         }
 
@@ -3105,7 +5372,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual ProjectParamsConfig Createreleaseversionroot(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-createreleaseversionroot=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-createreleaseversionroot");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-createreleaseversionroot",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ProjectParamsConfig) this;
         }
 
@@ -3114,7 +5389,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual ProjectParamsConfig Basedonreleaseversionroot(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-basedonreleaseversionroot=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-basedonreleaseversionroot");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-basedonreleaseversionroot",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ProjectParamsConfig) this;
         }
 
@@ -3125,7 +5408,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual ProjectParamsConfig OriginalReleaseVersion(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-originalreleaseversion=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-originalreleaseversion");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-originalreleaseversion",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ProjectParamsConfig) this;
         }
 
@@ -3136,7 +5427,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual ProjectParamsConfig CreateReleaseVersion(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-createreleaseversion=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-createreleaseversion");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-createreleaseversion",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ProjectParamsConfig) this;
         }
 
@@ -3147,7 +5446,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual ProjectParamsConfig BasedOnReleaseVersion(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-basedonreleaseversion=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-basedonreleaseversion");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-basedonreleaseversion",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ProjectParamsConfig) this;
         }
 
@@ -3160,7 +5467,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual ProjectParamsConfig GeneratePatch(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-GeneratePatch=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-GeneratePatch");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-GeneratePatch",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ProjectParamsConfig) this;
         }
 
@@ -3169,7 +5484,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary></summary>
         public virtual ProjectParamsConfig AddPatchLevel(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-AddPatchLevel=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-AddPatchLevel");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-AddPatchLevel",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ProjectParamsConfig) this;
         }
 
@@ -3179,7 +5502,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// Are we staging the unmodified pak files from the base release</summary>
         public virtual ProjectParamsConfig StageBaseReleasePaks(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-StageBaseReleasePaks=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-StageBaseReleasePaks");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-StageBaseReleasePaks",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ProjectParamsConfig) this;
         }
 
@@ -3190,7 +5521,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual ProjectParamsConfig DiscVersion(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-DiscVersion=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-DiscVersion");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-DiscVersion",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ProjectParamsConfig) this;
         }
 
@@ -3201,7 +5540,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual ProjectParamsConfig AdditionalCookerOptions(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-AdditionalCookerOptions=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-AdditionalCookerOptions");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-AdditionalCookerOptions",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ProjectParamsConfig) this;
         }
 
@@ -3210,7 +5557,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual ProjectParamsConfig DLCName(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-DLCName=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-DLCName");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-DLCName",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ProjectParamsConfig) this;
         }
 
@@ -3222,7 +5577,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual ProjectParamsConfig DiffCookedContentPath(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-DiffCookedContentPath=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-DiffCookedContentPath");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-DiffCookedContentPath",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ProjectParamsConfig) this;
         }
 
@@ -3234,7 +5597,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual ProjectParamsConfig DLCIncludeEngineContent(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-DLCIncludeEngineContent=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-DLCIncludeEngineContent");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-DLCIncludeEngineContent",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ProjectParamsConfig) this;
         }
 
@@ -3245,7 +5616,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual ProjectParamsConfig DLCPakPluginFile(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-DLCPakPluginFile=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-DLCPakPluginFile");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-DLCPakPluginFile",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ProjectParamsConfig) this;
         }
 
@@ -3257,7 +5636,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual ProjectParamsConfig DLCActLikePatch(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-DLCActLikePatch=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-DLCActLikePatch");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-DLCActLikePatch",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ProjectParamsConfig) this;
         }
 
@@ -3268,7 +5655,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual ProjectParamsConfig SignedPak(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-signedpak=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-signedpak");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-signedpak",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ProjectParamsConfig) this;
         }
 
@@ -3279,7 +5674,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual ProjectParamsConfig IgnorePaksFromDifferentCookSource(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-IgnorePaksFromDifferentCookSource=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-IgnorePaksFromDifferentCookSource");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-IgnorePaksFromDifferentCookSource",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ProjectParamsConfig) this;
         }
 
@@ -3290,7 +5693,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual ProjectParamsConfig UnversionedCookedContent(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-UnversionedCookedContent=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-UnversionedCookedContent");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-UnversionedCookedContent",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ProjectParamsConfig) this;
         }
 
@@ -3301,7 +5712,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual ProjectParamsConfig NumCookersToSpawn(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-NumCookersToSpawn=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-NumCookersToSpawn");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-NumCookersToSpawn",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ProjectParamsConfig) this;
         }
 
@@ -3312,7 +5731,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual ProjectParamsConfig Compressed(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-compressed=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-compressed");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-compressed",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ProjectParamsConfig) this;
         }
 
@@ -3323,7 +5750,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual ProjectParamsConfig ForceUncompressed(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-ForceUncompressed=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-ForceUncompressed");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-ForceUncompressed",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ProjectParamsConfig) this;
         }
 
@@ -3334,7 +5769,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual ProjectParamsConfig AdditionalPakOptions(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-AdditionalPakOptions=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-AdditionalPakOptions");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-AdditionalPakOptions",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ProjectParamsConfig) this;
         }
 
@@ -3345,7 +5788,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual ProjectParamsConfig AdditionalIoStoreOptions(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-AdditionalIoStoreOptions=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-AdditionalIoStoreOptions");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-AdditionalIoStoreOptions",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ProjectParamsConfig) this;
         }
 
@@ -3356,7 +5807,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual ProjectParamsConfig Iteratesharedcookedbuild(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-iteratesharedcookedbuild=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-iteratesharedcookedbuild");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-iteratesharedcookedbuild",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ProjectParamsConfig) this;
         }
 
@@ -3367,7 +5826,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual ProjectParamsConfig IterateSharedBuildUsePrecompiledExe(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-IterateSharedBuildUsePrecompiledExe=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-IterateSharedBuildUsePrecompiledExe");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-IterateSharedBuildUsePrecompiledExe",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ProjectParamsConfig) this;
         }
 
@@ -3378,7 +5845,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual ProjectParamsConfig CookOutputDir(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-CookOutputDir=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-CookOutputDir");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-CookOutputDir",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ProjectParamsConfig) this;
         }
 
@@ -3387,7 +5862,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual ProjectParamsConfig Target(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-target=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-target");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-target",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ProjectParamsConfig) this;
         }
 
@@ -3397,7 +5880,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual ProjectParamsConfig ExtraTargetsToStageWithClient(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-ExtraTargetsToStageWithClient=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-ExtraTargetsToStageWithClient");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-ExtraTargetsToStageWithClient",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ProjectParamsConfig) this;
         }
 
@@ -3408,7 +5899,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual ProjectParamsConfig CodeSign(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-CodeSign=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-CodeSign");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-CodeSign",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ProjectParamsConfig) this;
         }
 
@@ -3419,7 +5918,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual ProjectParamsConfig TreatNonShippingBinariesAsDebugFiles(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-TreatNonShippingBinariesAsDebugFiles=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-TreatNonShippingBinariesAsDebugFiles");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-TreatNonShippingBinariesAsDebugFiles",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ProjectParamsConfig) this;
         }
 
@@ -3430,7 +5937,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual ProjectParamsConfig UseExtraFlavor(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-UseExtraFlavor=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-UseExtraFlavor");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-UseExtraFlavor",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ProjectParamsConfig) this;
         }
 
@@ -3441,7 +5956,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual ProjectParamsConfig ChunkInstallDirectory(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-chunkinstalldirectory=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-chunkinstalldirectory");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-chunkinstalldirectory",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ProjectParamsConfig) this;
         }
 
@@ -3450,7 +5973,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual ProjectParamsConfig Chunkinstallversion(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-chunkinstallversion=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-chunkinstallversion");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-chunkinstallversion",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ProjectParamsConfig) this;
         }
 
@@ -3459,7 +5990,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual ProjectParamsConfig Chunkinstallrelease(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-chunkinstallrelease=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-chunkinstallrelease");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-chunkinstallrelease",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ProjectParamsConfig) this;
         }
 
@@ -3468,7 +6007,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual ProjectParamsConfig AppLocalDirectory(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-applocaldirectory=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-applocaldirectory");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-applocaldirectory",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ProjectParamsConfig) this;
         }
 
@@ -3480,7 +6027,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual ProjectParamsConfig NoBootstrapExe(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-nobootstrapexe=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-nobootstrapexe");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-nobootstrapexe",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ProjectParamsConfig) this;
         }
 
@@ -3489,7 +6044,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual ProjectParamsConfig ForcePackageData(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-forcepackagedata=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-forcepackagedata");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-forcepackagedata",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ProjectParamsConfig) this;
         }
 
@@ -3500,7 +6063,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual ProjectParamsConfig IterativeDeploy(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-iterativedeploy=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-iterativedeploy");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-iterativedeploy",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ProjectParamsConfig) this;
         }
 
@@ -3511,7 +6082,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual ProjectParamsConfig Provision(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-provision=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-provision");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-provision",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ProjectParamsConfig) this;
         }
 
@@ -3522,7 +6101,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual ProjectParamsConfig Certificate(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-certificate=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-certificate");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-certificate",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ProjectParamsConfig) this;
         }
 
@@ -3533,7 +6120,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual ProjectParamsConfig Team(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-team=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-team");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-team",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ProjectParamsConfig) this;
         }
 
@@ -3544,7 +6139,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual ProjectParamsConfig AutomaticSigning(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-AutomaticSigning=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-AutomaticSigning");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-AutomaticSigning",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ProjectParamsConfig) this;
         }
 
@@ -3555,7 +6158,32 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual ProjectParamsConfig RunAutomationTest(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-RunAutomationTest=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-RunAutomationTest");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-RunAutomationTest",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
+            return (ProjectParamsConfig) this;
+        }
+
+        
+        
+    
+        public virtual ProjectParamsConfig UnrealExe(params object[] values)
+        {
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-ue4exe",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ProjectParamsConfig) this;
         }
 
@@ -3564,7 +6192,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual ProjectParamsConfig Clientconfig(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-clientconfig=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-clientconfig");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-clientconfig",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ProjectParamsConfig) this;
         }
 
@@ -3573,7 +6209,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual ProjectParamsConfig Config(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-config=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-config");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-config",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ProjectParamsConfig) this;
         }
 
@@ -3582,7 +6226,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual ProjectParamsConfig Configuration(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-configuration=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-configuration");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-configuration",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ProjectParamsConfig) this;
         }
 
@@ -3591,7 +6243,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual ProjectParamsConfig Port(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-port=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-port");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-port",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ProjectParamsConfig) this;
         }
 
@@ -3602,7 +6262,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual ProjectParamsConfig MapsToCook(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-MapsToCook=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-MapsToCook");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-MapsToCook",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ProjectParamsConfig) this;
         }
 
@@ -3613,7 +6281,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual ProjectParamsConfig MapIniSectionsToCook(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-MapIniSectionsToCook=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-MapIniSectionsToCook");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-MapIniSectionsToCook",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ProjectParamsConfig) this;
         }
 
@@ -3624,7 +6300,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual ProjectParamsConfig TitleID(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-TitleID=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-TitleID");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-TitleID",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ProjectParamsConfig) this;
         }
 
@@ -3633,7 +6317,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual ProjectParamsConfig Serverconfig(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-serverconfig=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-serverconfig");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-serverconfig",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ProjectParamsConfig) this;
         }
 
@@ -3644,7 +6336,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual ProjectParamsConfig CrashIndex(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-CrashIndex=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-CrashIndex");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-CrashIndex",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ProjectParamsConfig) this;
         }
     
@@ -3653,107 +6353,184 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
         protected override ToolConfig[] Configs => _configs ??= new ToolConfig[]
         {
         };
-    
-        public override string Gather()
-        {
-            return base.Gather();
-        }
     }
 
     protected readonly ProjectParamsConfig ProjectParamsStorage = new();
         
     
-    public  class UE4BuildConfig : ToolConfig
+    public  class UnrealBuildConfig : ToolConfig
     {
-        public override string Name => "UE4Build";
+        public override string Name => "UnrealBuild";
+        public override string CliName => "";
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE4;
     
         
 /// <summary>"Toggle to combined the result into one executable"</summary>
-        public virtual UE4BuildConfig ForceMonolithic(params object[] values)
+        public virtual UnrealBuildConfig ForceMonolithic(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-ForceMonolithic" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-ForceMonolithic");
-            return (UE4BuildConfig) this;
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-ForceMonolithic",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
+            return (UnrealBuildConfig) this;
         }
 
         
         
 /// <summary>"Forces debug info even in development builds"</summary>
-        public virtual UE4BuildConfig ForceDebugInfo(params object[] values)
+        public virtual UnrealBuildConfig ForceDebugInfo(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-ForceDebugInfo" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-ForceDebugInfo");
-            return (UE4BuildConfig) this;
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-ForceDebugInfo",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
+            return (UnrealBuildConfig) this;
         }
 
         
         
 /// <summary>"Toggle to disable the distributed build process"</summary>
-        public virtual UE4BuildConfig NoXGE(params object[] values)
+        public virtual UnrealBuildConfig NoXGE(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-NoXGE=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-NoXGE");
-            return (UE4BuildConfig) this;
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-NoXGE",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
+            return (UnrealBuildConfig) this;
         }
 
         
         
 /// <summary>"Toggle to disable the unity build system"</summary>
-        public virtual UE4BuildConfig ForceNonUnity(params object[] values)
+        public virtual UnrealBuildConfig ForceNonUnity(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-ForceNonUnity" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-ForceNonUnity");
-            return (UE4BuildConfig) this;
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-ForceNonUnity",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
+            return (UnrealBuildConfig) this;
         }
 
         
         
 /// <summary>"Toggle to force enable the unity build system"</summary>
-        public virtual UE4BuildConfig ForceUnity(params object[] values)
+        public virtual UnrealBuildConfig ForceUnity(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-ForceUnity" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-ForceUnity");
-            return (UE4BuildConfig) this;
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-ForceUnity",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
+            return (UnrealBuildConfig) this;
         }
 
         
         
 /// <summary>"If set, this build is being compiled by a licensee"</summary>
-        public virtual UE4BuildConfig Licensee(params object[] values)
+        public virtual UnrealBuildConfig Licensee(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-Licensee=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-Licensee");
-            return (UE4BuildConfig) this;
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Licensee",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
+            return (UnrealBuildConfig) this;
         }
 
         
         
     
-        public virtual UE4BuildConfig Promoted(params object[] values)
+        public virtual UnrealBuildConfig Promoted(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-Promoted=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-Promoted");
-            return (UE4BuildConfig) this;
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Promoted",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
+            return (UnrealBuildConfig) this;
         }
 
         
         
     
-        public virtual UE4BuildConfig Branch(params object[] values)
+        public virtual UnrealBuildConfig Branch(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-Branch=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-Branch");
-            return (UE4BuildConfig) this;
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Branch",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
+            return (UnrealBuildConfig) this;
         }
 
         
         
     
-        public virtual UE4BuildConfig StopOnErrors(params object[] values)
+        public virtual UnrealBuildConfig StopOnErrors(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-StopOnErrors=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-StopOnErrors");
-            return (UE4BuildConfig) this;
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-StopOnErrors",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
+            return (UnrealBuildConfig) this;
         }
 
         
         
     
-        public virtual UE4BuildConfig Clean(params object[] values)
+        public virtual UnrealBuildConfig Clean(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-Clean=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-Clean");
-            return (UE4BuildConfig) this;
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Clean",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
+            return (UnrealBuildConfig) this;
         }
     
     
@@ -3761,14 +6538,9 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
         protected override ToolConfig[] Configs => _configs ??= new ToolConfig[]
         {
         };
-    
-        public override string Gather()
-        {
-            return base.Gather();
-        }
     }
 
-    protected readonly UE4BuildConfig UE4BuildStorage = new();
+    protected readonly UnrealBuildConfig UnrealBuildStorage = new();
         
 /// <summary>Builds the specified targets and configurations for the specified project.
 /// Example BuildTarget -project=QAGame -target=Editor+Game -platform=PS4+XboxOne -configuration=Development.
@@ -3776,12 +6548,22 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     public  class BuildTargetConfig : ToolConfig
     {
         public override string Name => "BuildTarget";
+        public override string CliName => "BuildTarget";
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE4;
     
         
 /// <summary>"Project to build. Will search current path and paths in ueprojectdirs. If omitted will build vanilla UE4Editor"</summary>
         public virtual BuildTargetConfig Project(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-project=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-project");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-project",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildTargetConfig) this;
         }
 
@@ -3793,7 +6575,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual BuildTargetConfig Platform(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-platform=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-platform");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-platform",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildTargetConfig) this;
         }
 
@@ -3802,7 +6592,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Configurations to build, join multiple configurations using +"</summary>
         public virtual BuildTargetConfig Configuration(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-configuration=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-configuration");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-configuration",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildTargetConfig) this;
         }
 
@@ -3811,7 +6609,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Targets to build, join multiple targets using +"</summary>
         public virtual BuildTargetConfig Target(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-target=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-target");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-target",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildTargetConfig) this;
         }
 
@@ -3820,7 +6626,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Don't build any tools (UnrealPak, Lightmass, ShaderCompiler, CrashReporter"</summary>
         public virtual BuildTargetConfig Notools(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-notools=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-notools");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-notools",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildTargetConfig) this;
         }
 
@@ -3832,7 +6646,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual BuildTargetConfig Clean(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-clean=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-clean");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-clean",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildTargetConfig) this;
         }
 
@@ -3841,7 +6663,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Toggle to disable the distributed build process"</summary>
         public virtual BuildTargetConfig NoXGE(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-NoXGE" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-NoXGE");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-NoXGE",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildTargetConfig) this;
         }
 
@@ -3850,7 +6680,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Toggle to disable the unity build system"</summary>
         public virtual BuildTargetConfig DisableUnity(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-DisableUnity" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-DisableUnity");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-DisableUnity",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildTargetConfig) this;
         }
 
@@ -3861,7 +6699,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual BuildTargetConfig UBTArgs(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-ubtargs=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-ubtargs");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-ubtargs",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildTargetConfig) this;
         }
 
@@ -3870,7 +6716,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual BuildTargetConfig Preview(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-preview=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-preview");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-preview",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildTargetConfig) this;
         }
     
@@ -3879,11 +6733,6 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
         protected override ToolConfig[] Configs => _configs ??= new ToolConfig[]
         {
         };
-    
-        public override string Gather()
-        {
-            Arguments.Insert(0, "BuildTarget");return base.Gather();
-        }
     }
 
     protected readonly BuildTargetConfig BuildTargetStorage = new();
@@ -3892,12 +6741,22 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     public  class BuildGraphConfig : ToolConfig
     {
         public override string Name => "BuildGraph";
+        public override string CliName => "BuildGraph";
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE4;
     
         
 /// <summary>"Path to the script describing the graph"</summary>
         public virtual BuildGraphConfig Script(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-Script=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-Script");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Script",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildGraphConfig) this;
         }
 
@@ -3906,7 +6765,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Name of the node or output tag to be built"</summary>
         public virtual BuildGraphConfig Target(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-Target=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-Target");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Target",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildGraphConfig) this;
         }
 
@@ -3916,7 +6783,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// "Generate a schema describing valid script documents, including all the known tasks"</summary>
         public virtual BuildGraphConfig Schema(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-Schema=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-Schema");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Schema",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildGraphConfig) this;
         }
 
@@ -3925,7 +6800,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Imports a schema from an existing schema file"</summary>
         public virtual BuildGraphConfig ImportSchema(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-ImportSchema=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-ImportSchema");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-ImportSchema",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildGraphConfig) this;
         }
 
@@ -3934,7 +6817,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Sets a named property to the given value"</summary>
         public virtual BuildGraphConfig Set(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-Set:" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-Set");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Set",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: ':',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildGraphConfig) this;
         }
 
@@ -3943,7 +6834,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Cleans all cached state of completed build nodes before running"</summary>
         public virtual BuildGraphConfig Clean(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-Clean" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-Clean");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Clean",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildGraphConfig) this;
         }
 
@@ -3952,7 +6851,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Cleans just the given nodes before running"</summary>
         public virtual BuildGraphConfig CleanNode(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-CleanNode=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-CleanNode");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-CleanNode",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildGraphConfig) this;
         }
 
@@ -3961,7 +6868,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Resumes a local build from the last node that completed successfully"</summary>
         public virtual BuildGraphConfig Resume(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-Resume=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-Resume");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Resume",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildGraphConfig) this;
         }
 
@@ -3970,7 +6885,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Shows the contents of the preprocessed graph, but does not execute it"</summary>
         public virtual BuildGraphConfig ListOnly(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-ListOnly=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-ListOnly");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-ListOnly",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildGraphConfig) this;
         }
 
@@ -3979,7 +6902,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"When running with -ListOnly, causes diagnostic messages entered when parsing the graph to be shown"</summary>
         public virtual BuildGraphConfig ShowDiagnostics(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-ShowDiagnostics=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-ShowDiagnostics");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-ShowDiagnostics",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildGraphConfig) this;
         }
 
@@ -3988,7 +6919,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Show node dependencies in the graph output"</summary>
         public virtual BuildGraphConfig ShowDeps(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-ShowDeps=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-ShowDeps");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-ShowDeps",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildGraphConfig) this;
         }
 
@@ -3997,7 +6936,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Show notifications that will be sent for each node in the output"</summary>
         public virtual BuildGraphConfig ShowNotifications(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-ShowNotifications=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-ShowNotifications");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-ShowNotifications",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildGraphConfig) this;
         }
 
@@ -4006,7 +6953,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Executes only nodes behind the given trigger"</summary>
         public virtual BuildGraphConfig Trigger(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-Trigger=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-Trigger");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Trigger",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildGraphConfig) this;
         }
 
@@ -4015,7 +6970,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Skips the given triggers, including all the nodes behind them in the graph"</summary>
         public virtual BuildGraphConfig SkipTrigger(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-SkipTrigger=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-SkipTrigger");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-SkipTrigger",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildGraphConfig) this;
         }
 
@@ -4024,7 +6987,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Skips all triggers"</summary>
         public virtual BuildGraphConfig SkipTriggers(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-SkipTriggers=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-SkipTriggers");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-SkipTriggers",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildGraphConfig) this;
         }
 
@@ -4033,7 +7004,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Specifies the signature identifying the current job, to be written to tokens for nodes that require them. Tokens are ignored if this parameter is not specified."</summary>
         public virtual BuildGraphConfig TokenSignature(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-TokenSignature=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-TokenSignature");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-TokenSignature",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildGraphConfig) this;
         }
 
@@ -4042,7 +7021,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Excludes targets which we can't acquire tokens for, rather than failing"</summary>
         public virtual BuildGraphConfig SkipTargetsWithoutTokens(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-SkipTargetsWithoutTokens=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-SkipTargetsWithoutTokens");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-SkipTargetsWithoutTokens",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildGraphConfig) this;
         }
 
@@ -4051,7 +7038,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Writes the preprocessed graph to the given file"</summary>
         public virtual BuildGraphConfig Preprocess(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-Preprocess=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-Preprocess");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Preprocess",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildGraphConfig) this;
         }
 
@@ -4060,7 +7055,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Exports a JSON file containing the preprocessed build graph, for use as part of a build system"</summary>
         public virtual BuildGraphConfig Export(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-Export=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-Export");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Export",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildGraphConfig) this;
         }
 
@@ -4069,7 +7072,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Exports a JSON file containing the full build graph for use by Horde."</summary>
         public virtual BuildGraphConfig HordeExport(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-HordeExport=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-HordeExport");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-HordeExport",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildGraphConfig) this;
         }
 
@@ -4078,7 +7089,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Only include built-in tasks in the schema, excluding any other UAT modules"</summary>
         public virtual BuildGraphConfig PublicTasksOnly(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-PublicTasksOnly=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-PublicTasksOnly");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-PublicTasksOnly",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildGraphConfig) this;
         }
 
@@ -4087,7 +7106,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Sets the directory to use to transfer build products between agents in a build farm"</summary>
         public virtual BuildGraphConfig SharedStorageDir(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-SharedStorageDir=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-SharedStorageDir");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-SharedStorageDir",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildGraphConfig) this;
         }
 
@@ -4096,7 +7123,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Run only the given node. Intended for use on a build system after running with -Export."</summary>
         public virtual BuildGraphConfig SingleNode(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-SingleNode=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-SingleNode");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-SingleNode",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildGraphConfig) this;
         }
 
@@ -4105,7 +7140,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Allow writing to shared storage. If not set, but -SharedStorageDir is specified, build products will read but not written"</summary>
         public virtual BuildGraphConfig WriteToSharedStorage(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-WriteToSharedStorage=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-WriteToSharedStorage");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-WriteToSharedStorage",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildGraphConfig) this;
         }
 
@@ -4114,7 +7157,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual BuildGraphConfig Documentation(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-Documentation=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-Documentation");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Documentation",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildGraphConfig) this;
         }
 
@@ -4123,7 +7174,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual BuildGraphConfig ReportName(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-ReportName=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-ReportName");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-ReportName",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildGraphConfig) this;
         }
     
@@ -4132,11 +7191,6 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
         protected override ToolConfig[] Configs => _configs ??= new ToolConfig[]
         {
         };
-    
-        public override string Gather()
-        {
-            Arguments.Insert(0, "BuildGraph");return base.Gather();
-        }
     }
 
     protected readonly BuildGraphConfig BuildGraphStorage = new();
@@ -4145,12 +7199,22 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     public  class BuildConfig : ToolConfig
     {
         public override string Name => "Build";
+        public override string CliName => "Build";
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE4;
     
         
 /// <summary>"Path to the script describing the graph"</summary>
         public virtual BuildConfig Script(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-Script=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-Script");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Script",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildConfig) this;
         }
 
@@ -4159,7 +7223,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Name of the node or output tag to be built"</summary>
         public virtual BuildConfig Target(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-Target=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-Target");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Target",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildConfig) this;
         }
 
@@ -4169,7 +7241,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// "Generate a schema describing valid script documents, including all the known tasks"</summary>
         public virtual BuildConfig Schema(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-Schema=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-Schema");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Schema",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildConfig) this;
         }
 
@@ -4178,7 +7258,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Imports a schema from an existing schema file"</summary>
         public virtual BuildConfig ImportSchema(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-ImportSchema=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-ImportSchema");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-ImportSchema",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildConfig) this;
         }
 
@@ -4187,7 +7275,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Sets a named property to the given value"</summary>
         public virtual BuildConfig Set(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-Set:" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-Set");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Set",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: ':',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildConfig) this;
         }
 
@@ -4196,7 +7292,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Cleans all cached state of completed build nodes before running"</summary>
         public virtual BuildConfig Clean(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-Clean" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-Clean");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Clean",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildConfig) this;
         }
 
@@ -4205,7 +7309,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Cleans just the given nodes before running"</summary>
         public virtual BuildConfig CleanNode(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-CleanNode=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-CleanNode");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-CleanNode",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildConfig) this;
         }
 
@@ -4214,7 +7326,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Resumes a local build from the last node that completed successfully"</summary>
         public virtual BuildConfig Resume(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-Resume=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-Resume");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Resume",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildConfig) this;
         }
 
@@ -4223,7 +7343,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Shows the contents of the preprocessed graph, but does not execute it"</summary>
         public virtual BuildConfig ListOnly(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-ListOnly=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-ListOnly");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-ListOnly",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildConfig) this;
         }
 
@@ -4232,7 +7360,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"When running with -ListOnly, causes diagnostic messages entered when parsing the graph to be shown"</summary>
         public virtual BuildConfig ShowDiagnostics(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-ShowDiagnostics=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-ShowDiagnostics");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-ShowDiagnostics",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildConfig) this;
         }
 
@@ -4241,7 +7377,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Show node dependencies in the graph output"</summary>
         public virtual BuildConfig ShowDeps(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-ShowDeps=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-ShowDeps");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-ShowDeps",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildConfig) this;
         }
 
@@ -4250,7 +7394,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Show notifications that will be sent for each node in the output"</summary>
         public virtual BuildConfig ShowNotifications(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-ShowNotifications=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-ShowNotifications");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-ShowNotifications",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildConfig) this;
         }
 
@@ -4259,7 +7411,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Executes only nodes behind the given trigger"</summary>
         public virtual BuildConfig Trigger(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-Trigger=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-Trigger");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Trigger",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildConfig) this;
         }
 
@@ -4268,7 +7428,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Skips the given triggers, including all the nodes behind them in the graph"</summary>
         public virtual BuildConfig SkipTrigger(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-SkipTrigger=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-SkipTrigger");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-SkipTrigger",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildConfig) this;
         }
 
@@ -4277,7 +7445,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Skips all triggers"</summary>
         public virtual BuildConfig SkipTriggers(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-SkipTriggers=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-SkipTriggers");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-SkipTriggers",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildConfig) this;
         }
 
@@ -4286,7 +7462,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Specifies the signature identifying the current job, to be written to tokens for nodes that require them. Tokens are ignored if this parameter is not specified."</summary>
         public virtual BuildConfig TokenSignature(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-TokenSignature=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-TokenSignature");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-TokenSignature",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildConfig) this;
         }
 
@@ -4295,7 +7479,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Excludes targets which we can't acquire tokens for, rather than failing"</summary>
         public virtual BuildConfig SkipTargetsWithoutTokens(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-SkipTargetsWithoutTokens=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-SkipTargetsWithoutTokens");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-SkipTargetsWithoutTokens",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildConfig) this;
         }
 
@@ -4304,7 +7496,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Writes the preprocessed graph to the given file"</summary>
         public virtual BuildConfig Preprocess(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-Preprocess=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-Preprocess");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Preprocess",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildConfig) this;
         }
 
@@ -4313,7 +7513,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Exports a JSON file containing the preprocessed build graph, for use as part of a build system"</summary>
         public virtual BuildConfig Export(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-Export=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-Export");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Export",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildConfig) this;
         }
 
@@ -4322,7 +7530,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Exports a JSON file containing the full build graph for use by Horde."</summary>
         public virtual BuildConfig HordeExport(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-HordeExport=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-HordeExport");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-HordeExport",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildConfig) this;
         }
 
@@ -4331,7 +7547,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Only include built-in tasks in the schema, excluding any other UAT modules"</summary>
         public virtual BuildConfig PublicTasksOnly(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-PublicTasksOnly=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-PublicTasksOnly");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-PublicTasksOnly",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildConfig) this;
         }
 
@@ -4340,7 +7564,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Sets the directory to use to transfer build products between agents in a build farm"</summary>
         public virtual BuildConfig SharedStorageDir(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-SharedStorageDir=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-SharedStorageDir");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-SharedStorageDir",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildConfig) this;
         }
 
@@ -4349,7 +7581,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Run only the given node. Intended for use on a build system after running with -Export."</summary>
         public virtual BuildConfig SingleNode(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-SingleNode=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-SingleNode");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-SingleNode",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildConfig) this;
         }
 
@@ -4358,7 +7598,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Allow writing to shared storage. If not set, but -SharedStorageDir is specified, build products will read but not written"</summary>
         public virtual BuildConfig WriteToSharedStorage(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-WriteToSharedStorage=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-WriteToSharedStorage");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-WriteToSharedStorage",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildConfig) this;
         }
 
@@ -4367,7 +7615,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual BuildConfig Documentation(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-Documentation=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-Documentation");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Documentation",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildConfig) this;
         }
 
@@ -4376,7 +7632,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual BuildConfig ReportName(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-ReportName=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-ReportName");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-ReportName",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildConfig) this;
         }
     
@@ -4385,11 +7649,6 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
         protected override ToolConfig[] Configs => _configs ??= new ToolConfig[]
         {
         };
-    
-        public override string Gather()
-        {
-            Arguments.Insert(0, "Build");return base.Gather();
-        }
     }
 
     protected readonly BuildConfig BuildStorage = new();
@@ -4398,16 +7657,13 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     public  class TempStorageTestsConfig : ToolConfig
     {
         public override string Name => "TempStorageTests";
+        public override string CliName => "TempStorageTests";
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE4;
     
         private ToolConfig[] _configs = null;
         protected override ToolConfig[] Configs => _configs ??= new ToolConfig[]
         {
         };
-    
-        public override string Gather()
-        {
-            Arguments.Insert(0, "TempStorageTests");return base.Gather();
-        }
     }
 
     protected readonly TempStorageTestsConfig TempStorageTestsStorage = new();
@@ -4416,12 +7672,22 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     public  class CleanTempStorageConfig : ToolConfig
     {
         public override string Name => "CleanTempStorage";
+        public override string CliName => "CleanTempStorage";
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE4;
     
         
 /// <summary>"Path to the root temp storage directory"</summary>
         public virtual CleanTempStorageConfig TempStorageDir(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-TempStorageDir=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-TempStorageDir");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-TempStorageDir",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (CleanTempStorageConfig) this;
         }
 
@@ -4430,7 +7696,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Number of days to keep in temp storage"</summary>
         public virtual CleanTempStorageConfig Days(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-Days=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-Days");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Days",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (CleanTempStorageConfig) this;
         }
     
@@ -4439,11 +7713,6 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
         protected override ToolConfig[] Configs => _configs ??= new ToolConfig[]
         {
         };
-    
-        public override string Gather()
-        {
-            Arguments.Insert(0, "CleanTempStorage");return base.Gather();
-        }
     }
 
     protected readonly CleanTempStorageConfig CleanTempStorageStorage = new();
@@ -4452,16 +7721,13 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     public  class TestGauntletConfig : ToolConfig
     {
         public override string Name => "TestGauntlet";
+        public override string CliName => "TestGauntlet";
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE4;
     
         private ToolConfig[] _configs = null;
         protected override ToolConfig[] Configs => _configs ??= new ToolConfig[]
         {
         };
-    
-        public override string Gather()
-        {
-            Arguments.Insert(0, "TestGauntlet");return base.Gather();
-        }
     }
 
     protected readonly TestGauntletConfig TestGauntletStorage = new();
@@ -4470,12 +7736,22 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     public  class RunUnrealConfig : ToolConfig
     {
         public override string Name => "RunUnreal";
+        public override string CliName => "RunUnreal";
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE4;
     
         
     
         public virtual RunUnrealConfig Log(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-log=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-log");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-log",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (RunUnrealConfig) this;
         }
 
@@ -4484,7 +7760,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual RunUnrealConfig Editor(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-editor=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-editor");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-editor",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (RunUnrealConfig) this;
         }
 
@@ -4493,7 +7777,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual RunUnrealConfig Skip(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-Skip=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-Skip");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Skip",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (RunUnrealConfig) this;
         }
 
@@ -4502,7 +7794,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual RunUnrealConfig Removedevices(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-removedevices=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-removedevices");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-removedevices",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (RunUnrealConfig) this;
         }
 
@@ -4511,7 +7811,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual RunUnrealConfig Clean(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-clean=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-clean");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-clean",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (RunUnrealConfig) this;
         }
 
@@ -4520,7 +7828,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual RunUnrealConfig Listargs(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-listargs=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-listargs");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-listargs",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (RunUnrealConfig) this;
         }
 
@@ -4529,7 +7845,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual RunUnrealConfig Listallargs(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-listallargs=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-listallargs");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-listallargs",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (RunUnrealConfig) this;
         }
     
@@ -4538,11 +7862,6 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
         protected override ToolConfig[] Configs => _configs ??= new ToolConfig[]
         {
         };
-    
-        public override string Gather()
-        {
-            Arguments.Insert(0, "RunUnreal");return base.Gather();
-        }
     }
 
     protected readonly RunUnrealConfig RunUnrealStorage = new();
@@ -4551,12 +7870,22 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     public  class ExportIPAFromArchiveConfig : ToolConfig
     {
         public override string Name => "ExportIPAFromArchive";
+        public override string CliName => "ExportIPAFromArchive";
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE4;
     
         
 /// <summary>@"Purpose of the IPA. (Development, Adhoc, Store)"</summary>
         public virtual ExportIPAFromArchiveConfig Method(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-method=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-method");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-method",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ExportIPAFromArchiveConfig) this;
         }
 
@@ -4565,7 +7894,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>@"Path to plist template that will be filled in based on other arguments. See ExportOptions.plist.template for an example"</summary>
         public virtual ExportIPAFromArchiveConfig TemplateFile(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-TemplateFile=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-TemplateFile");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-TemplateFile",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ExportIPAFromArchiveConfig) this;
         }
 
@@ -4574,7 +7911,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>@"Path to an XML file of options that we'll select from based on method. See ExportOptions.Values.xml for an example"</summary>
         public virtual ExportIPAFromArchiveConfig OptionsFile(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-OptionsFile=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-OptionsFile");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-OptionsFile",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ExportIPAFromArchiveConfig) this;
         }
 
@@ -4583,7 +7928,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>@"Name of this project (e.g ShooterGame, EngineTest)"</summary>
         public virtual ExportIPAFromArchiveConfig Project(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-Project=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-Project");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Project",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ExportIPAFromArchiveConfig) this;
         }
 
@@ -4592,7 +7945,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual ExportIPAFromArchiveConfig Archive(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-archive=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-archive");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-archive",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ExportIPAFromArchiveConfig) this;
         }
 
@@ -4601,7 +7962,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual ExportIPAFromArchiveConfig Output(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-output=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-output");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-output",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ExportIPAFromArchiveConfig) this;
         }
     
@@ -4610,11 +7979,6 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
         protected override ToolConfig[] Configs => _configs ??= new ToolConfig[]
         {
         };
-    
-        public override string Gather()
-        {
-            Arguments.Insert(0, "ExportIPAFromArchive");return base.Gather();
-        }
     }
 
     protected readonly ExportIPAFromArchiveConfig ExportIPAFromArchiveStorage = new();
@@ -4623,12 +7987,22 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     public  class MakeIPAConfig : ToolConfig
     {
         public override string Name => "MakeIPA";
+        public override string CliName => "MakeIPA";
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE4;
     
         
 /// <summary>@"Purpose of the IPA. (Development, Adhoc, Store)"</summary>
         public virtual MakeIPAConfig Method(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-method=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-method");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-method",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (MakeIPAConfig) this;
         }
 
@@ -4637,7 +8011,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>@"Path to plist template that will be filled in based on other arguments. See ExportOptions.plist.template for an example"</summary>
         public virtual MakeIPAConfig TemplateFile(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-TemplateFile=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-TemplateFile");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-TemplateFile",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (MakeIPAConfig) this;
         }
 
@@ -4646,7 +8028,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>@"Path to an XML file of options that we'll select from based on method. See ExportOptions.Values.xml for an example"</summary>
         public virtual MakeIPAConfig OptionsFile(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-OptionsFile=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-OptionsFile");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-OptionsFile",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (MakeIPAConfig) this;
         }
 
@@ -4655,7 +8045,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>@"Name of this project (e.g ShooterGame, EngineTest)"</summary>
         public virtual MakeIPAConfig Project(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-Project=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-Project");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Project",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (MakeIPAConfig) this;
         }
 
@@ -4664,7 +8062,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual MakeIPAConfig Archive(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-archive=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-archive");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-archive",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (MakeIPAConfig) this;
         }
 
@@ -4673,7 +8079,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual MakeIPAConfig Output(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-output=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-output");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-output",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (MakeIPAConfig) this;
         }
     
@@ -4682,11 +8096,6 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
         protected override ToolConfig[] Configs => _configs ??= new ToolConfig[]
         {
         };
-    
-        public override string Gather()
-        {
-            Arguments.Insert(0, "MakeIPA");return base.Gather();
-        }
     }
 
     protected readonly MakeIPAConfig MakeIPAStorage = new();
@@ -4696,6 +8105,8 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     public  class WriteIniValueToPlistConfig : ToolConfig
     {
         public override string Name => "WriteIniValueToPlist";
+        public override string CliName => "WriteIniValueToPlist";
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE4;
     
         
 /// <summary>@"Path to ini file to read from"
@@ -4704,7 +8115,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual WriteIniValueToPlistConfig IniFile(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-IniFile=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-IniFile");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-IniFile",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (WriteIniValueToPlistConfig) this;
         }
 
@@ -4716,7 +8135,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual WriteIniValueToPlistConfig IniProperty(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-IniProperty=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-IniProperty");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-IniProperty",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (WriteIniValueToPlistConfig) this;
         }
 
@@ -4728,7 +8155,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual WriteIniValueToPlistConfig PlistFile(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-PlistFile=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-PlistFile");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-PlistFile",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (WriteIniValueToPlistConfig) this;
         }
 
@@ -4740,7 +8175,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual WriteIniValueToPlistConfig PlistProperty(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-PlistProperty=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-PlistProperty");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-PlistProperty",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (WriteIniValueToPlistConfig) this;
         }
     
@@ -4749,11 +8192,6 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
         protected override ToolConfig[] Configs => _configs ??= new ToolConfig[]
         {
         };
-    
-        public override string Gather()
-        {
-            Arguments.Insert(0, "WriteIniValueToPlist");return base.Gather();
-        }
     }
 
     protected readonly WriteIniValueToPlistConfig WriteIniValueToPlistStorage = new();
@@ -4762,12 +8200,22 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     public  class OneSkyLocalizationProviderConfig : ToolConfig
     {
         public override string Name => "OneSkyLocalizationProvider";
+        public override string CliName => "";
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE4;
     
         
 /// <summary>"Name of the config data to use (see OneSkyConfigHelper)."</summary>
         public virtual OneSkyLocalizationProviderConfig OneSkyConfigName(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-OneSkyConfigName=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-OneSkyConfigName");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-OneSkyConfigName",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (OneSkyLocalizationProviderConfig) this;
         }
 
@@ -4776,7 +8224,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Name of the project group in OneSky."</summary>
         public virtual OneSkyLocalizationProviderConfig OneSkyProjectGroupName(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-OneSkyProjectGroupName=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-OneSkyProjectGroupName");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-OneSkyProjectGroupName",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (OneSkyLocalizationProviderConfig) this;
         }
     
@@ -4785,11 +8241,6 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
         protected override ToolConfig[] Configs => _configs ??= new ToolConfig[]
         {
         };
-    
-        public override string Gather()
-        {
-            return base.Gather();
-        }
     }
 
     protected readonly OneSkyLocalizationProviderConfig OneSkyLocalizationProviderStorage = new();
@@ -4798,12 +8249,22 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     public  class AnalyzeThirdPartyLibsConfig : ToolConfig
     {
         public override string Name => "AnalyzeThirdPartyLibs";
+        public override string CliName => "AnalyzeThirdPartyLibs";
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE4;
     
         
 /// <summary>"[Optional] + separated list of libraries to compile; if not specified this job will build all libraries it can find builder scripts for"</summary>
         public virtual AnalyzeThirdPartyLibsConfig Libs(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-Libs=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-Libs");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Libs",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (AnalyzeThirdPartyLibsConfig) this;
         }
 
@@ -4812,7 +8273,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"[Optional] a changelist to check out into; if not specified, a changelist will be created"</summary>
         public virtual AnalyzeThirdPartyLibsConfig Changelist(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-Changelist" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-Changelist");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Changelist",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (AnalyzeThirdPartyLibsConfig) this;
         }
     
@@ -4821,11 +8290,6 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
         protected override ToolConfig[] Configs => _configs ??= new ToolConfig[]
         {
         };
-    
-        public override string Gather()
-        {
-            Arguments.Insert(0, "AnalyzeThirdPartyLibs");return base.Gather();
-        }
     }
 
     protected readonly AnalyzeThirdPartyLibsConfig AnalyzeThirdPartyLibsStorage = new();
@@ -4835,12 +8299,22 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     public  class BlameKeywordConfig : ToolConfig
     {
         public override string Name => "BlameKeyword";
+        public override string CliName => "BlameKeyword";
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE4;
     
         
 /// <summary>"Local path to search (including subfolders)"</summary>
         public virtual BlameKeywordConfig Path(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-Path=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-Path");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Path",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BlameKeywordConfig) this;
         }
 
@@ -4849,7 +8323,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Comma separated list of keywords to search for"</summary>
         public virtual BlameKeywordConfig Keywords(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-Keywords=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-Keywords");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Keywords",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BlameKeywordConfig) this;
         }
 
@@ -4858,7 +8340,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"(Optional) If specified, uses full revision history (slow)"</summary>
         public virtual BlameKeywordConfig Timelapse(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-Timelapse=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-Timelapse");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Timelapse",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BlameKeywordConfig) this;
         }
 
@@ -4867,7 +8357,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual BlameKeywordConfig Out(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-Out=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-Out");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Out",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BlameKeywordConfig) this;
         }
     
@@ -4876,11 +8374,6 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
         protected override ToolConfig[] Configs => _configs ??= new ToolConfig[]
         {
         };
-    
-        public override string Gather()
-        {
-            Arguments.Insert(0, "BlameKeyword");return base.Gather();
-        }
     }
 
     protected readonly BlameKeywordConfig BlameKeywordStorage = new();
@@ -4889,16 +8382,13 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     public  class XcodeTargetPlatform_IOSConfig : ToolConfig
     {
         public override string Name => "XcodeTargetPlatform_IOS";
+        public override string CliName => "XcodeTargetPlatform_IOS";
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE4;
     
         private ToolConfig[] _configs = null;
         protected override ToolConfig[] Configs => _configs ??= new ToolConfig[]
         {
         };
-    
-        public override string Gather()
-        {
-            Arguments.Insert(0, "XcodeTargetPlatform_IOS");return base.Gather();
-        }
     }
 
     protected readonly XcodeTargetPlatform_IOSConfig XcodeTargetPlatform_IOSStorage = new();
@@ -4907,16 +8397,13 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     public  class MakefileTargetPlatform_IOSConfig : ToolConfig
     {
         public override string Name => "MakefileTargetPlatform_IOS";
+        public override string CliName => "MakefileTargetPlatform_IOS";
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE4;
     
         private ToolConfig[] _configs = null;
         protected override ToolConfig[] Configs => _configs ??= new ToolConfig[]
         {
         };
-    
-        public override string Gather()
-        {
-            Arguments.Insert(0, "MakefileTargetPlatform_IOS");return base.Gather();
-        }
     }
 
     protected readonly MakefileTargetPlatform_IOSConfig MakefileTargetPlatform_IOSStorage = new();
@@ -4925,12 +8412,22 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     public  class BuildCommonToolsConfig : ToolConfig
     {
         public override string Name => "BuildCommonTools";
+        public override string CliName => "BuildCommonTools";
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE4;
     
         
 /// <summary>"Specifies on or more platforms to build for (defaults to the current host platform)"</summary>
         public virtual BuildCommonToolsConfig Platforms(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-platforms=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-platforms");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-platforms",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildCommonToolsConfig) this;
         }
 
@@ -4939,7 +8436,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Writes a manifest of all the build products to the given path"</summary>
         public virtual BuildCommonToolsConfig Manifest(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-manifest=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-manifest");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-manifest",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildCommonToolsConfig) this;
         }
 
@@ -4948,7 +8453,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual BuildCommonToolsConfig Allplatforms(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-allplatforms=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-allplatforms");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-allplatforms",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildCommonToolsConfig) this;
         }
     
@@ -4957,11 +8470,6 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
         protected override ToolConfig[] Configs => _configs ??= new ToolConfig[]
         {
         };
-    
-        public override string Gather()
-        {
-            Arguments.Insert(0, "BuildCommonTools");return base.Gather();
-        }
     }
 
     protected readonly BuildCommonToolsConfig BuildCommonToolsStorage = new();
@@ -4970,12 +8478,22 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     public  class ZipProjectUpConfig : ToolConfig
     {
         public override string Name => "ZipProjectUp";
+        public override string CliName => "ZipProjectUp";
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE4;
     
         
     
         public virtual ZipProjectUpConfig Project(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-project=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-project");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-project",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ZipProjectUpConfig) this;
         }
 
@@ -4984,7 +8502,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual ZipProjectUpConfig Install(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-install=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-install");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-install",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ZipProjectUpConfig) this;
         }
     
@@ -4993,11 +8519,6 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
         protected override ToolConfig[] Configs => _configs ??= new ToolConfig[]
         {
         };
-    
-        public override string Gather()
-        {
-            Arguments.Insert(0, "ZipProjectUp");return base.Gather();
-        }
     }
 
     protected readonly ZipProjectUpConfig ZipProjectUpStorage = new();
@@ -5010,12 +8531,22 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     public  class BuildCookRunConfig : ToolConfig
     {
         public override string Name => "BuildCookRun";
+        public override string CliName => "BuildCookRun";
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE4;
     
         
 /// <summary>@"Project path (required), i.e: -project=QAGame, -project=Samples\BlackJack\BlackJack.uproject, -project=D:\Projects\MyProject.uproject"</summary>
         public virtual BuildCookRunConfig Project(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-project=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-project");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-project",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildCookRunConfig) this;
         }
 
@@ -5024,7 +8555,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Destination Sample name"</summary>
         public virtual BuildCookRunConfig Destsample(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-destsample=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-destsample");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-destsample",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildCookRunConfig) this;
         }
 
@@ -5033,7 +8572,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Foreign Destination"</summary>
         public virtual BuildCookRunConfig Foreigndest(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-foreigndest=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-foreigndest");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-foreigndest",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildCookRunConfig) this;
         }
 
@@ -5045,7 +8592,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual BuildCookRunConfig Foreign(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-foreign=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-foreign");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-foreign",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildCookRunConfig) this;
         }
 
@@ -5057,7 +8612,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual BuildCookRunConfig Foreigncode(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-foreigncode=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-foreigncode");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-foreigncode",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildCookRunConfig) this;
         }
 
@@ -5066,7 +8629,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual BuildCookRunConfig Cookdir(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-cookdir=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-cookdir");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-cookdir",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildCookRunConfig) this;
         }
 
@@ -5075,7 +8646,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual BuildCookRunConfig Ddc(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-ddc=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-ddc");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-ddc",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildCookRunConfig) this;
         }
 
@@ -5084,7 +8663,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual BuildCookRunConfig I18npreset(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-i18npreset=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-i18npreset");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-i18npreset",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildCookRunConfig) this;
         }
 
@@ -5093,7 +8680,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual BuildCookRunConfig Cookcultures(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-cookcultures=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-cookcultures");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-cookcultures",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildCookRunConfig) this;
         }
 
@@ -5102,7 +8697,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"target platform for building, cooking and deployment (also -Platform)"</summary>
         public virtual BuildCookRunConfig Targetplatform(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-targetplatform=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-targetplatform");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-targetplatform",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildCookRunConfig) this;
         }
 
@@ -5111,7 +8714,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"target platform for building, cooking and deployment of the dedicated server (also -ServerPlatform)"</summary>
         public virtual BuildCookRunConfig Servertargetplatform(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-servertargetplatform=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-servertargetplatform");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-servertargetplatform",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildCookRunConfig) this;
         }
 
@@ -5123,7 +8734,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual BuildCookRunConfig CrashReporter(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-CrashReporter=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-CrashReporter");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-CrashReporter",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildCookRunConfig) this;
         }
 
@@ -5135,7 +8754,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual BuildCookRunConfig Cook(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-cook=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-cook");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-cook",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildCookRunConfig) this;
         }
 
@@ -5147,7 +8774,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual BuildCookRunConfig Skipcook(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-skipcook=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-skipcook");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-skipcook",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildCookRunConfig) this;
         }
 
@@ -5159,7 +8794,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual BuildCookRunConfig Skipcookonthefly(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-skipcookonthefly=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-skipcookonthefly");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-skipcookonthefly",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildCookRunConfig) this;
         }
 
@@ -5171,7 +8814,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual BuildCookRunConfig Clean(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-clean=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-clean");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-clean",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildCookRunConfig) this;
         }
 
@@ -5183,7 +8834,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual BuildCookRunConfig Unattended(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-unattended=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-unattended");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-unattended",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildCookRunConfig) this;
         }
 
@@ -5196,7 +8855,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual BuildCookRunConfig Pak(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-pak=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-pak");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-pak",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildCookRunConfig) this;
         }
 
@@ -5208,7 +8875,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual BuildCookRunConfig Iostore(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-iostore=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-iostore");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-iostore",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildCookRunConfig) this;
         }
 
@@ -5217,7 +8892,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"generate optimized config data during staging to improve loadtimes"</summary>
         public virtual BuildCookRunConfig Makebinaryconfig(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-makebinaryconfig=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-makebinaryconfig");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-makebinaryconfig",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildCookRunConfig) this;
         }
 
@@ -5229,7 +8912,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual BuildCookRunConfig Signpak(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-signpak=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-signpak");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-signpak",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildCookRunConfig) this;
         }
 
@@ -5241,7 +8932,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual BuildCookRunConfig Prepak(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-prepak=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-prepak");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-prepak",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildCookRunConfig) this;
         }
 
@@ -5250,7 +8949,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"the game should expect to use a signed pak file."</summary>
         public virtual BuildCookRunConfig Signed(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-signed" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-signed");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-signed",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildCookRunConfig) this;
         }
 
@@ -5262,7 +8969,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual BuildCookRunConfig PakAlignForMemoryMapping(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-PakAlignForMemoryMapping=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-PakAlignForMemoryMapping");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-PakAlignForMemoryMapping",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildCookRunConfig) this;
         }
 
@@ -5274,7 +8989,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual BuildCookRunConfig Skippak(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-skippak=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-skippak");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-skippak",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildCookRunConfig) this;
         }
 
@@ -5286,7 +9009,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual BuildCookRunConfig Skipiostore(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-skipiostore=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-skipiostore");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-skipiostore",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildCookRunConfig) this;
         }
 
@@ -5298,7 +9029,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual BuildCookRunConfig Stage(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-stage=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-stage");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-stage",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildCookRunConfig) this;
         }
 
@@ -5310,7 +9049,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual BuildCookRunConfig Skipstage(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-skipstage=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-skipstage");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-skipstage",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildCookRunConfig) this;
         }
 
@@ -5322,7 +9069,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual BuildCookRunConfig Manifests(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-manifests=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-manifests");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-manifests",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildCookRunConfig) this;
         }
 
@@ -5334,7 +9089,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual BuildCookRunConfig Createchunkinstall(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-createchunkinstall=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-createchunkinstall");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-createchunkinstall",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildCookRunConfig) this;
         }
 
@@ -5343,7 +9106,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"skips encrypting pak files even if crypto keys are provided"</summary>
         public virtual BuildCookRunConfig Skipencryption(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-skipencryption=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-skipencryption");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-skipencryption",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildCookRunConfig) this;
         }
 
@@ -5352,7 +9123,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Directory to copy the builds to, i.e. -stagingdirectory=C:\\Stage"</summary>
         public virtual BuildCookRunConfig Stagingdirectory(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-stagingdirectory=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-stagingdirectory");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-stagingdirectory",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildCookRunConfig) this;
         }
 
@@ -5361,7 +9140,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Name of the UE4 Editor executable, i.e. -ue4exe=UE4Editor.exe"</summary>
         public virtual BuildCookRunConfig Ue4exe(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-ue4exe=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-ue4exe");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-ue4exe",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildCookRunConfig) this;
         }
 
@@ -5373,7 +9160,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual BuildCookRunConfig Archive(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-archive=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-archive");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-archive",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildCookRunConfig) this;
         }
 
@@ -5382,7 +9177,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Directory to archive the builds to, i.e. -archivedirectory=C:\\Archive"</summary>
         public virtual BuildCookRunConfig Archivedirectory(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-archivedirectory=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-archivedirectory");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-archivedirectory",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildCookRunConfig) this;
         }
 
@@ -5394,7 +9197,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual BuildCookRunConfig Archivemetadata(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-archivemetadata=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-archivemetadata");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-archivemetadata",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildCookRunConfig) this;
         }
 
@@ -5406,7 +9217,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual BuildCookRunConfig Createappbundle(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-createappbundle=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-createappbundle");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-createappbundle",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildCookRunConfig) this;
         }
 
@@ -5418,7 +9237,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual BuildCookRunConfig Build(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-build=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-build");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-build",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildCookRunConfig) this;
         }
 
@@ -5431,7 +9258,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// "Toggle to disable the distributed build process"</summary>
         public virtual BuildCookRunConfig Noxge(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-noxge=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-noxge");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-noxge",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildCookRunConfig) this;
         }
 
@@ -5443,7 +9278,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual BuildCookRunConfig CookPartialgc(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-CookPartialgc=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-CookPartialgc");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-CookPartialgc",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildCookRunConfig) this;
         }
 
@@ -5455,7 +9298,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual BuildCookRunConfig CookInEditor(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-CookInEditor=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-CookInEditor");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-CookInEditor",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildCookRunConfig) this;
         }
 
@@ -5468,7 +9319,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual BuildCookRunConfig Iterativecooking(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-iterativecooking=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-iterativecooking");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-iterativecooking",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildCookRunConfig) this;
         }
 
@@ -5480,7 +9339,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual BuildCookRunConfig CookMapsOnly(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-CookMapsOnly=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-CookMapsOnly");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-CookMapsOnly",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildCookRunConfig) this;
         }
 
@@ -5492,7 +9359,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual BuildCookRunConfig CookAll(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-CookAll=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-CookAll");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-CookAll",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildCookRunConfig) this;
         }
 
@@ -5504,7 +9379,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual BuildCookRunConfig SkipCookingEditorContent(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-SkipCookingEditorContent=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-SkipCookingEditorContent");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-SkipCookingEditorContent",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildCookRunConfig) this;
         }
 
@@ -5513,7 +9396,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Uses fast cook path if supported by target"</summary>
         public virtual BuildCookRunConfig FastCook(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-FastCook=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-FastCook");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-FastCook",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildCookRunConfig) this;
         }
 
@@ -5525,7 +9416,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual BuildCookRunConfig IgnoreCookErrors(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-IgnoreCookErrors=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-IgnoreCookErrors");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-IgnoreCookErrors",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildCookRunConfig) this;
         }
 
@@ -5537,7 +9436,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual BuildCookRunConfig Nodebuginfo(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-nodebuginfo=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-nodebuginfo");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-nodebuginfo",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildCookRunConfig) this;
         }
 
@@ -5549,7 +9456,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual BuildCookRunConfig Separatedebuginfo(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-separatedebuginfo=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-separatedebuginfo");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-separatedebuginfo",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildCookRunConfig) this;
         }
 
@@ -5561,7 +9476,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual BuildCookRunConfig MapFile(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-MapFile=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-MapFile");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-MapFile",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildCookRunConfig) this;
         }
 
@@ -5573,7 +9496,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual BuildCookRunConfig Nocleanstage(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-nocleanstage=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-nocleanstage");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-nocleanstage",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildCookRunConfig) this;
         }
 
@@ -5582,7 +9513,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"command line to put into the stage in UE4CommandLine.txt"</summary>
         public virtual BuildCookRunConfig Cmdline(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-cmdline=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-cmdline");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-cmdline",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildCookRunConfig) this;
         }
 
@@ -5594,7 +9533,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual BuildCookRunConfig Bundlename(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-bundlename=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-bundlename");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-bundlename",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildCookRunConfig) this;
         }
 
@@ -5606,7 +9553,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual BuildCookRunConfig Run(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-run=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-run");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-run",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildCookRunConfig) this;
         }
 
@@ -5618,7 +9573,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual BuildCookRunConfig Cookonthefly(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-cookonthefly=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-cookonthefly");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-cookonthefly",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildCookRunConfig) this;
         }
 
@@ -5630,7 +9593,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual BuildCookRunConfig Cookontheflystreaming(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-Cookontheflystreaming=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-Cookontheflystreaming");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Cookontheflystreaming",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildCookRunConfig) this;
         }
 
@@ -5642,7 +9613,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual BuildCookRunConfig Fileserver(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-fileserver=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-fileserver");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-fileserver",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildCookRunConfig) this;
         }
 
@@ -5654,7 +9633,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual BuildCookRunConfig Dedicatedserver(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-dedicatedserver=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-dedicatedserver");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-dedicatedserver",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildCookRunConfig) this;
         }
 
@@ -5666,7 +9653,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual BuildCookRunConfig Client(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-client=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-client");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-client",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildCookRunConfig) this;
         }
 
@@ -5678,7 +9673,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual BuildCookRunConfig Noclient(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-noclient=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-noclient");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-noclient",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildCookRunConfig) this;
         }
 
@@ -5690,7 +9693,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual BuildCookRunConfig Logwindow(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-logwindow=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-logwindow");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-logwindow",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildCookRunConfig) this;
         }
 
@@ -5699,7 +9710,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"map to run the game with"</summary>
         public virtual BuildCookRunConfig Map(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-map=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-map");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-map",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildCookRunConfig) this;
         }
 
@@ -5711,7 +9730,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual BuildCookRunConfig AdditionalServerMapParams(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-AdditionalServerMapParams=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-AdditionalServerMapParams");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-AdditionalServerMapParams",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildCookRunConfig) this;
         }
 
@@ -5721,7 +9748,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// "Device names without the platform prefix to run the game on"</summary>
         public virtual BuildCookRunConfig Device(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-device=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-device");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-device",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildCookRunConfig) this;
         }
 
@@ -5733,7 +9768,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual BuildCookRunConfig Serverdevice(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-serverdevice=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-serverdevice");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-serverdevice",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildCookRunConfig) this;
         }
 
@@ -5745,7 +9788,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual BuildCookRunConfig Skipserver(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-skipserver=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-skipserver");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-skipserver",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildCookRunConfig) this;
         }
 
@@ -5757,7 +9808,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual BuildCookRunConfig Numclients(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-numclients=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-numclients");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-numclients",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildCookRunConfig) this;
         }
 
@@ -5766,7 +9825,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Additional command line arguments for the program"</summary>
         public virtual BuildCookRunConfig Addcmdline(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-addcmdline=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-addcmdline");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-addcmdline",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildCookRunConfig) this;
         }
 
@@ -5775,7 +9842,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Additional command line arguments for the program"</summary>
         public virtual BuildCookRunConfig Servercmdline(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-servercmdline=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-servercmdline");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-servercmdline",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildCookRunConfig) this;
         }
 
@@ -5784,7 +9859,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Override command line arguments to pass to the client"</summary>
         public virtual BuildCookRunConfig Clientcmdline(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-clientcmdline=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-clientcmdline");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-clientcmdline",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildCookRunConfig) this;
         }
 
@@ -5796,7 +9879,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual BuildCookRunConfig Nullrhi(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-nullrhi=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-nullrhi");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-nullrhi",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildCookRunConfig) this;
         }
 
@@ -5808,7 +9899,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual BuildCookRunConfig Fakeclient(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-fakeclient=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-fakeclient");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-fakeclient",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildCookRunConfig) this;
         }
 
@@ -5820,7 +9919,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual BuildCookRunConfig Editortest(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-editortest=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-editortest");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-editortest",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildCookRunConfig) this;
         }
 
@@ -5833,7 +9940,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual BuildCookRunConfig RunAutomationTests(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-RunAutomationTests=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-RunAutomationTests");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-RunAutomationTests",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildCookRunConfig) this;
         }
 
@@ -5842,7 +9957,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"when running -editortest or a client, adds commands like debug crash, debug rendercrash, etc based on index"</summary>
         public virtual BuildCookRunConfig Crash(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-Crash=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-Crash");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Crash",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildCookRunConfig) this;
         }
 
@@ -5851,7 +9974,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Linux username for unattended key genereation"</summary>
         public virtual BuildCookRunConfig Deviceuser(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-deviceuser=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-deviceuser");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-deviceuser",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildCookRunConfig) this;
         }
 
@@ -5860,7 +9991,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Linux password"</summary>
         public virtual BuildCookRunConfig Devicepass(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-devicepass=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-devicepass");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-devicepass",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildCookRunConfig) this;
         }
 
@@ -5870,7 +10009,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// "Determine whether data is packaged. This can be an iteration optimization for platforms that require packages for deployment"</summary>
         public virtual BuildCookRunConfig Package(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-package=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-package");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-package",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildCookRunConfig) this;
         }
 
@@ -5879,7 +10026,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Skips packaging the project for the target platform"</summary>
         public virtual BuildCookRunConfig Skippackage(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-skippackage=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-skippackage");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-skippackage",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildCookRunConfig) this;
         }
 
@@ -5888,7 +10043,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"package for distribution the project"</summary>
         public virtual BuildCookRunConfig Distribution(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-distribution=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-distribution");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-distribution",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildCookRunConfig) this;
         }
 
@@ -5897,7 +10060,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"stage prerequisites along with the project"</summary>
         public virtual BuildCookRunConfig Prereqs(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-prereqs=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-prereqs");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-prereqs",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildCookRunConfig) this;
         }
 
@@ -5906,7 +10077,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"location of prerequisites for applocal deployment"</summary>
         public virtual BuildCookRunConfig Applocaldir(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-applocaldir" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-applocaldir");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-applocaldir",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildCookRunConfig) this;
         }
 
@@ -5915,7 +10094,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"this is a prebuilt cooked and packaged build"</summary>
         public virtual BuildCookRunConfig Prebuilt(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-Prebuilt=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-Prebuilt");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Prebuilt",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildCookRunConfig) this;
         }
 
@@ -5924,7 +10111,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"timeout to wait after we lunch the game"</summary>
         public virtual BuildCookRunConfig RunTimeoutSeconds(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-RunTimeoutSeconds=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-RunTimeoutSeconds");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-RunTimeoutSeconds",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildCookRunConfig) this;
         }
 
@@ -5933,7 +10128,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Determine a specific Minimum OS"</summary>
         public virtual BuildCookRunConfig SpecifiedArchitecture(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-SpecifiedArchitecture=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-SpecifiedArchitecture");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-SpecifiedArchitecture",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildCookRunConfig) this;
         }
 
@@ -5942,7 +10145,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"extra options to pass to ubt"</summary>
         public virtual BuildCookRunConfig UbtArgs(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-UbtArgs=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-UbtArgs");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-UbtArgs",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildCookRunConfig) this;
         }
 
@@ -5951,7 +10162,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"extra options to pass to the platform's packager"</summary>
         public virtual BuildCookRunConfig AdditionalPackageOptions(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-AdditionalPackageOptions=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-AdditionalPackageOptions");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-AdditionalPackageOptions",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildCookRunConfig) this;
         }
 
@@ -5961,7 +10180,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// "Location to deploy to on the target platform"</summary>
         public virtual BuildCookRunConfig Deploy(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-deploy=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-deploy");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-deploy",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildCookRunConfig) this;
         }
 
@@ -5970,7 +10197,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"download file from target after successful run"</summary>
         public virtual BuildCookRunConfig Getfile(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-getfile=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-getfile");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-getfile",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildCookRunConfig) this;
         }
 
@@ -5979,7 +10214,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"List of maps that need light maps rebuilding"</summary>
         public virtual BuildCookRunConfig MapsToRebuildLightMaps(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-MapsToRebuildLightMaps=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-MapsToRebuildLightMaps");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-MapsToRebuildLightMaps",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildCookRunConfig) this;
         }
 
@@ -5988,7 +10231,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"List of maps that need HLOD rebuilding"</summary>
         public virtual BuildCookRunConfig MapsToRebuildHLODMaps(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-MapsToRebuildHLODMaps=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-MapsToRebuildHLODMaps");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-MapsToRebuildHLODMaps",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildCookRunConfig) this;
         }
 
@@ -5997,7 +10248,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Whether Light Map errors should be treated as critical"</summary>
         public virtual BuildCookRunConfig IgnoreLightMapErrors(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-IgnoreLightMapErrors" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-IgnoreLightMapErrors");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-IgnoreLightMapErrors",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildCookRunConfig) this;
         }
 
@@ -6006,7 +10265,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual BuildCookRunConfig Cookflavor(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-cookflavor=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-cookflavor");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-cookflavor",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildCookRunConfig) this;
         }
 
@@ -6015,7 +10282,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual BuildCookRunConfig Skipbuild(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-skipbuild=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-skipbuild");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-skipbuild",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildCookRunConfig) this;
         }
 
@@ -6026,7 +10301,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual BuildCookRunConfig SkipBuildClient(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-skipbuildclient=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-skipbuildclient");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-skipbuildclient",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildCookRunConfig) this;
         }
 
@@ -6037,7 +10320,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual BuildCookRunConfig SkipBuildEditor(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-skipbuildeditor=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-skipbuildeditor");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-skipbuildeditor",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildCookRunConfig) this;
         }
 
@@ -6046,7 +10337,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual BuildCookRunConfig Createreleaseversionroot(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-createreleaseversionroot=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-createreleaseversionroot");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-createreleaseversionroot",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildCookRunConfig) this;
         }
 
@@ -6055,7 +10354,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual BuildCookRunConfig Basedonreleaseversionroot(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-basedonreleaseversionroot=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-basedonreleaseversionroot");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-basedonreleaseversionroot",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildCookRunConfig) this;
         }
 
@@ -6066,7 +10373,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual BuildCookRunConfig OriginalReleaseVersion(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-originalreleaseversion=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-originalreleaseversion");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-originalreleaseversion",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildCookRunConfig) this;
         }
 
@@ -6077,7 +10392,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual BuildCookRunConfig CreateReleaseVersion(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-createreleaseversion=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-createreleaseversion");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-createreleaseversion",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildCookRunConfig) this;
         }
 
@@ -6088,7 +10411,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual BuildCookRunConfig BasedOnReleaseVersion(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-basedonreleaseversion=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-basedonreleaseversion");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-basedonreleaseversion",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildCookRunConfig) this;
         }
 
@@ -6101,7 +10432,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual BuildCookRunConfig GeneratePatch(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-GeneratePatch=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-GeneratePatch");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-GeneratePatch",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildCookRunConfig) this;
         }
 
@@ -6110,7 +10449,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary></summary>
         public virtual BuildCookRunConfig AddPatchLevel(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-AddPatchLevel=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-AddPatchLevel");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-AddPatchLevel",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildCookRunConfig) this;
         }
 
@@ -6120,7 +10467,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// Are we staging the unmodified pak files from the base release</summary>
         public virtual BuildCookRunConfig StageBaseReleasePaks(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-StageBaseReleasePaks=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-StageBaseReleasePaks");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-StageBaseReleasePaks",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildCookRunConfig) this;
         }
 
@@ -6131,7 +10486,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual BuildCookRunConfig DiscVersion(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-DiscVersion=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-DiscVersion");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-DiscVersion",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildCookRunConfig) this;
         }
 
@@ -6142,7 +10505,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual BuildCookRunConfig AdditionalCookerOptions(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-AdditionalCookerOptions=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-AdditionalCookerOptions");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-AdditionalCookerOptions",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildCookRunConfig) this;
         }
 
@@ -6151,7 +10522,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual BuildCookRunConfig DLCName(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-DLCName=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-DLCName");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-DLCName",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildCookRunConfig) this;
         }
 
@@ -6163,7 +10542,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual BuildCookRunConfig DiffCookedContentPath(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-DiffCookedContentPath=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-DiffCookedContentPath");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-DiffCookedContentPath",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildCookRunConfig) this;
         }
 
@@ -6175,7 +10562,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual BuildCookRunConfig DLCIncludeEngineContent(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-DLCIncludeEngineContent=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-DLCIncludeEngineContent");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-DLCIncludeEngineContent",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildCookRunConfig) this;
         }
 
@@ -6186,7 +10581,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual BuildCookRunConfig DLCPakPluginFile(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-DLCPakPluginFile=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-DLCPakPluginFile");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-DLCPakPluginFile",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildCookRunConfig) this;
         }
 
@@ -6198,7 +10601,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual BuildCookRunConfig DLCActLikePatch(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-DLCActLikePatch=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-DLCActLikePatch");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-DLCActLikePatch",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildCookRunConfig) this;
         }
 
@@ -6209,7 +10620,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual BuildCookRunConfig SignedPak(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-signedpak=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-signedpak");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-signedpak",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildCookRunConfig) this;
         }
 
@@ -6220,7 +10639,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual BuildCookRunConfig IgnorePaksFromDifferentCookSource(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-IgnorePaksFromDifferentCookSource=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-IgnorePaksFromDifferentCookSource");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-IgnorePaksFromDifferentCookSource",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildCookRunConfig) this;
         }
 
@@ -6231,7 +10658,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual BuildCookRunConfig UnversionedCookedContent(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-UnversionedCookedContent=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-UnversionedCookedContent");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-UnversionedCookedContent",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildCookRunConfig) this;
         }
 
@@ -6242,7 +10677,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual BuildCookRunConfig NumCookersToSpawn(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-NumCookersToSpawn=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-NumCookersToSpawn");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-NumCookersToSpawn",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildCookRunConfig) this;
         }
 
@@ -6253,7 +10696,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual BuildCookRunConfig Compressed(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-compressed=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-compressed");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-compressed",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildCookRunConfig) this;
         }
 
@@ -6264,7 +10715,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual BuildCookRunConfig ForceUncompressed(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-ForceUncompressed=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-ForceUncompressed");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-ForceUncompressed",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildCookRunConfig) this;
         }
 
@@ -6275,7 +10734,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual BuildCookRunConfig AdditionalPakOptions(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-AdditionalPakOptions=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-AdditionalPakOptions");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-AdditionalPakOptions",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildCookRunConfig) this;
         }
 
@@ -6286,7 +10753,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual BuildCookRunConfig AdditionalIoStoreOptions(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-AdditionalIoStoreOptions=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-AdditionalIoStoreOptions");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-AdditionalIoStoreOptions",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildCookRunConfig) this;
         }
 
@@ -6297,7 +10772,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual BuildCookRunConfig Iteratesharedcookedbuild(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-iteratesharedcookedbuild=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-iteratesharedcookedbuild");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-iteratesharedcookedbuild",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildCookRunConfig) this;
         }
 
@@ -6308,7 +10791,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual BuildCookRunConfig IterateSharedBuildUsePrecompiledExe(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-IterateSharedBuildUsePrecompiledExe=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-IterateSharedBuildUsePrecompiledExe");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-IterateSharedBuildUsePrecompiledExe",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildCookRunConfig) this;
         }
 
@@ -6319,7 +10810,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual BuildCookRunConfig CookOutputDir(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-CookOutputDir=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-CookOutputDir");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-CookOutputDir",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildCookRunConfig) this;
         }
 
@@ -6328,7 +10827,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual BuildCookRunConfig Target(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-target=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-target");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-target",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildCookRunConfig) this;
         }
 
@@ -6338,7 +10845,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual BuildCookRunConfig ExtraTargetsToStageWithClient(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-ExtraTargetsToStageWithClient=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-ExtraTargetsToStageWithClient");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-ExtraTargetsToStageWithClient",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildCookRunConfig) this;
         }
 
@@ -6349,7 +10864,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual BuildCookRunConfig CodeSign(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-CodeSign=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-CodeSign");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-CodeSign",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildCookRunConfig) this;
         }
 
@@ -6360,7 +10883,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual BuildCookRunConfig TreatNonShippingBinariesAsDebugFiles(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-TreatNonShippingBinariesAsDebugFiles=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-TreatNonShippingBinariesAsDebugFiles");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-TreatNonShippingBinariesAsDebugFiles",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildCookRunConfig) this;
         }
 
@@ -6371,7 +10902,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual BuildCookRunConfig UseExtraFlavor(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-UseExtraFlavor=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-UseExtraFlavor");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-UseExtraFlavor",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildCookRunConfig) this;
         }
 
@@ -6382,7 +10921,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual BuildCookRunConfig ChunkInstallDirectory(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-chunkinstalldirectory=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-chunkinstalldirectory");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-chunkinstalldirectory",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildCookRunConfig) this;
         }
 
@@ -6391,7 +10938,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual BuildCookRunConfig Chunkinstallversion(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-chunkinstallversion=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-chunkinstallversion");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-chunkinstallversion",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildCookRunConfig) this;
         }
 
@@ -6400,7 +10955,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual BuildCookRunConfig Chunkinstallrelease(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-chunkinstallrelease=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-chunkinstallrelease");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-chunkinstallrelease",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildCookRunConfig) this;
         }
 
@@ -6409,7 +10972,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual BuildCookRunConfig AppLocalDirectory(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-applocaldirectory=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-applocaldirectory");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-applocaldirectory",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildCookRunConfig) this;
         }
 
@@ -6421,7 +10992,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual BuildCookRunConfig NoBootstrapExe(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-nobootstrapexe=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-nobootstrapexe");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-nobootstrapexe",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildCookRunConfig) this;
         }
 
@@ -6430,7 +11009,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual BuildCookRunConfig ForcePackageData(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-forcepackagedata=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-forcepackagedata");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-forcepackagedata",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildCookRunConfig) this;
         }
 
@@ -6441,7 +11028,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual BuildCookRunConfig IterativeDeploy(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-iterativedeploy=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-iterativedeploy");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-iterativedeploy",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildCookRunConfig) this;
         }
 
@@ -6452,7 +11047,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual BuildCookRunConfig Provision(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-provision=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-provision");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-provision",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildCookRunConfig) this;
         }
 
@@ -6463,7 +11066,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual BuildCookRunConfig Certificate(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-certificate=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-certificate");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-certificate",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildCookRunConfig) this;
         }
 
@@ -6474,7 +11085,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual BuildCookRunConfig Team(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-team=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-team");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-team",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildCookRunConfig) this;
         }
 
@@ -6485,7 +11104,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual BuildCookRunConfig AutomaticSigning(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-AutomaticSigning=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-AutomaticSigning");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-AutomaticSigning",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildCookRunConfig) this;
         }
 
@@ -6496,7 +11123,32 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual BuildCookRunConfig RunAutomationTest(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-RunAutomationTest=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-RunAutomationTest");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-RunAutomationTest",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
+            return (BuildCookRunConfig) this;
+        }
+
+        
+        
+    
+        public virtual BuildCookRunConfig UnrealExe(params object[] values)
+        {
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-ue4exe",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildCookRunConfig) this;
         }
 
@@ -6505,7 +11157,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual BuildCookRunConfig Clientconfig(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-clientconfig=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-clientconfig");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-clientconfig",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildCookRunConfig) this;
         }
 
@@ -6514,7 +11174,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual BuildCookRunConfig Config(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-config=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-config");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-config",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildCookRunConfig) this;
         }
 
@@ -6523,7 +11191,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual BuildCookRunConfig Configuration(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-configuration=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-configuration");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-configuration",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildCookRunConfig) this;
         }
 
@@ -6532,7 +11208,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual BuildCookRunConfig Port(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-port=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-port");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-port",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildCookRunConfig) this;
         }
 
@@ -6543,7 +11227,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual BuildCookRunConfig MapsToCook(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-MapsToCook=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-MapsToCook");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-MapsToCook",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildCookRunConfig) this;
         }
 
@@ -6554,7 +11246,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual BuildCookRunConfig MapIniSectionsToCook(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-MapIniSectionsToCook=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-MapIniSectionsToCook");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-MapIniSectionsToCook",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildCookRunConfig) this;
         }
 
@@ -6565,7 +11265,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual BuildCookRunConfig TitleID(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-TitleID=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-TitleID");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-TitleID",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildCookRunConfig) this;
         }
 
@@ -6574,7 +11282,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual BuildCookRunConfig Serverconfig(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-serverconfig=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-serverconfig");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-serverconfig",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildCookRunConfig) this;
         }
 
@@ -6585,7 +11301,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual BuildCookRunConfig CrashIndex(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-CrashIndex=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-CrashIndex");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-CrashIndex",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildCookRunConfig) this;
         }
 
@@ -6594,7 +11318,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Toggle to combined the result into one executable"</summary>
         public virtual BuildCookRunConfig ForceMonolithic(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-ForceMonolithic" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-ForceMonolithic");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-ForceMonolithic",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildCookRunConfig) this;
         }
 
@@ -6603,7 +11335,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Forces debug info even in development builds"</summary>
         public virtual BuildCookRunConfig ForceDebugInfo(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-ForceDebugInfo" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-ForceDebugInfo");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-ForceDebugInfo",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildCookRunConfig) this;
         }
 
@@ -6612,7 +11352,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Toggle to disable the unity build system"</summary>
         public virtual BuildCookRunConfig ForceNonUnity(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-ForceNonUnity" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-ForceNonUnity");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-ForceNonUnity",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildCookRunConfig) this;
         }
 
@@ -6621,7 +11369,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Toggle to force enable the unity build system"</summary>
         public virtual BuildCookRunConfig ForceUnity(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-ForceUnity" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-ForceUnity");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-ForceUnity",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildCookRunConfig) this;
         }
 
@@ -6630,7 +11386,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"If set, this build is being compiled by a licensee"</summary>
         public virtual BuildCookRunConfig Licensee(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-Licensee=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-Licensee");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Licensee",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildCookRunConfig) this;
         }
 
@@ -6639,7 +11403,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual BuildCookRunConfig Promoted(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-Promoted=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-Promoted");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Promoted",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildCookRunConfig) this;
         }
 
@@ -6648,7 +11420,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual BuildCookRunConfig Branch(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-Branch=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-Branch");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Branch",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildCookRunConfig) this;
         }
 
@@ -6657,7 +11437,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual BuildCookRunConfig StopOnErrors(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-StopOnErrors=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-StopOnErrors");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-StopOnErrors",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildCookRunConfig) this;
         }
 
@@ -6666,7 +11454,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Skips signing of code/content files."</summary>
         public virtual BuildCookRunConfig NoSign(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-NoSign=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-NoSign");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-NoSign",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildCookRunConfig) this;
         }
     
@@ -6675,11 +11471,6 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
         protected override ToolConfig[] Configs => _configs ??= new ToolConfig[]
         {
         };
-    
-        public override string Gather()
-        {
-            Arguments.Insert(0, "BuildCookRun");return base.Gather();
-        }
     }
 
     protected readonly BuildCookRunConfig BuildCookRunStorage = new();
@@ -6688,12 +11479,22 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     public  class BuildDerivedDataCacheConfig : ToolConfig
     {
         public override string Name => "BuildDerivedDataCache";
+        public override string CliName => "BuildDerivedDataCache";
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE4;
     
         
     
         public virtual BuildDerivedDataCacheConfig FeaturePacks(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-FeaturePacks=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-FeaturePacks");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-FeaturePacks",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildDerivedDataCacheConfig) this;
         }
 
@@ -6702,7 +11503,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual BuildDerivedDataCacheConfig TempDir(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-TempDir=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-TempDir");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-TempDir",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildDerivedDataCacheConfig) this;
         }
 
@@ -6711,7 +11520,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual BuildDerivedDataCacheConfig TargetPlatforms(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-TargetPlatforms=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-TargetPlatforms");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-TargetPlatforms",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildDerivedDataCacheConfig) this;
         }
 
@@ -6720,7 +11537,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual BuildDerivedDataCacheConfig SavedDir(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-SavedDir=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-SavedDir");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-SavedDir",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildDerivedDataCacheConfig) this;
         }
 
@@ -6729,7 +11554,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual BuildDerivedDataCacheConfig BackendName(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-BackendName=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-BackendName");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-BackendName",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildDerivedDataCacheConfig) this;
         }
 
@@ -6738,7 +11571,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual BuildDerivedDataCacheConfig RelativePakPath(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-RelativePakPath=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-RelativePakPath");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-RelativePakPath",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildDerivedDataCacheConfig) this;
         }
 
@@ -6747,7 +11588,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual BuildDerivedDataCacheConfig SkipEngine(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-SkipEngine=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-SkipEngine");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-SkipEngine",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildDerivedDataCacheConfig) this;
         }
     
@@ -6756,11 +11605,6 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
         protected override ToolConfig[] Configs => _configs ??= new ToolConfig[]
         {
         };
-    
-        public override string Gather()
-        {
-            Arguments.Insert(0, "BuildDerivedDataCache");return base.Gather();
-        }
     }
 
     protected readonly BuildDerivedDataCacheConfig BuildDerivedDataCacheStorage = new();
@@ -6769,12 +11613,22 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     public  class BuildForUGSConfig : ToolConfig
     {
         public override string Name => "BuildForUGS";
+        public override string CliName => "BuildForUGS";
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE4;
     
         
     
         public virtual BuildForUGSConfig Target(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-Target=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-Target");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Target",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildForUGSConfig) this;
         }
 
@@ -6783,7 +11637,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual BuildForUGSConfig Archive(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-Archive=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-Archive");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Archive",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildForUGSConfig) this;
         }
 
@@ -6792,7 +11654,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual BuildForUGSConfig Stream(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-Stream=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-Stream");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Stream",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildForUGSConfig) this;
         }
 
@@ -6801,7 +11671,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual BuildForUGSConfig WithUAT(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-WithUAT=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-WithUAT");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-WithUAT",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildForUGSConfig) this;
         }
 
@@ -6810,7 +11688,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual BuildForUGSConfig WithUBT(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-WithUBT=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-WithUBT");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-WithUBT",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildForUGSConfig) this;
         }
     
@@ -6819,11 +11705,6 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
         protected override ToolConfig[] Configs => _configs ??= new ToolConfig[]
         {
         };
-    
-        public override string Gather()
-        {
-            Arguments.Insert(0, "BuildForUGS");return base.Gather();
-        }
     }
 
     protected readonly BuildForUGSConfig BuildForUGSStorage = new();
@@ -6833,12 +11714,22 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     public  class BuildHlslccConfig : ToolConfig
     {
         public override string Name => "BuildHlslcc";
+        public override string CliName => "BuildHlslcc";
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE4;
     
         
 /// <summary>"Specify a list of target platforms to build, separated by '+' characters (eg. -TargetPlatforms=Win64+Linux+Mac). Architectures are specified with '-'. Default is Win64+Linux."</summary>
         public virtual BuildHlslccConfig TargetPlatforms(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-TargetPlatforms=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-TargetPlatforms");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-TargetPlatforms",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildHlslccConfig) this;
         }
 
@@ -6847,7 +11738,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Specify a list of configurations to build, separated by '+' characters (eg. -TargetConfigs=Debug+RelWithDebInfo). Default is Debug+RelWithDebInfo."</summary>
         public virtual BuildHlslccConfig TargetConfigs(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-TargetConfigs=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-TargetConfigs");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-TargetConfigs",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildHlslccConfig) this;
         }
 
@@ -6856,7 +11755,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Specify a list of target compilers to use when building for Windows, separated by '+' characters (eg. -TargetCompilers=VisualStudio2015+VisualStudio2017). Default is VisualStudio2015."</summary>
         public virtual BuildHlslccConfig TargetWindowsCompilers(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-TargetWindowsCompilers=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-TargetWindowsCompilers");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-TargetWindowsCompilers",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildHlslccConfig) this;
         }
 
@@ -6865,7 +11772,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Do not perform build step. If this argument is not supplied libraries will be built (in accordance with TargetLibs, TargetPlatforms and TargetWindowsCompilers)."</summary>
         public virtual BuildHlslccConfig SkipBuild(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-SkipBuild=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-SkipBuild");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-SkipBuild",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildHlslccConfig) this;
         }
 
@@ -6874,7 +11789,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Do not perform library deployment to the engine. If this argument is not supplied libraries will be copied into the engine."</summary>
         public virtual BuildHlslccConfig SkipDeployLibs(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-SkipDeployLibs" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-SkipDeployLibs");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-SkipDeployLibs",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildHlslccConfig) this;
         }
 
@@ -6883,7 +11806,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Do not perform source deployment to the engine. If this argument is not supplied source will be copied into the engine."</summary>
         public virtual BuildHlslccConfig SkipDeploySource(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-SkipDeploySource" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-SkipDeploySource");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-SkipDeploySource",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildHlslccConfig) this;
         }
 
@@ -6892,7 +11823,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Do not create a P4 changelist for source or libs. If this argument is not supplied source and libs will be added to a Perforce changelist."</summary>
         public virtual BuildHlslccConfig SkipCreateChangelist(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-SkipCreateChangelist=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-SkipCreateChangelist");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-SkipCreateChangelist",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildHlslccConfig) this;
         }
 
@@ -6901,7 +11840,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Do not perform P4 submit of source or libs. If this argument is not supplied source and libs will be automatically submitted to Perforce. If SkipCreateChangelist is specified, this argument applies by default."</summary>
         public virtual BuildHlslccConfig SkipSubmit(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-SkipSubmit=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-SkipSubmit");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-SkipSubmit",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildHlslccConfig) this;
         }
 
@@ -6910,7 +11857,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Which robomerge action to apply to the submission. If we're skipping submit, this is not used."</summary>
         public virtual BuildHlslccConfig Robomerge(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-Robomerge=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-Robomerge");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Robomerge",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildHlslccConfig) this;
         }
 
@@ -6919,7 +11874,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual BuildHlslccConfig SkipBuildSolutions(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-SkipBuildSolutions=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-SkipBuildSolutions");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-SkipBuildSolutions",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildHlslccConfig) this;
         }
     
@@ -6928,11 +11891,6 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
         protected override ToolConfig[] Configs => _configs ??= new ToolConfig[]
         {
         };
-    
-        public override string Gather()
-        {
-            Arguments.Insert(0, "BuildHlslcc");return base.Gather();
-        }
     }
 
     protected readonly BuildHlslccConfig BuildHlslccStorage = new();
@@ -6941,16 +11899,13 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     public  class BuildPhysX_AndroidConfig : ToolConfig
     {
         public override string Name => "BuildPhysX_Android";
+        public override string CliName => "BuildPhysX_Android";
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE4;
     
         private ToolConfig[] _configs = null;
         protected override ToolConfig[] Configs => _configs ??= new ToolConfig[]
         {
         };
-    
-        public override string Gather()
-        {
-            Arguments.Insert(0, "BuildPhysX_Android");return base.Gather();
-        }
     }
 
     protected readonly BuildPhysX_AndroidConfig BuildPhysX_AndroidStorage = new();
@@ -6959,16 +11914,13 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     public  class BuildPhysX_IOSConfig : ToolConfig
     {
         public override string Name => "BuildPhysX_IOS";
+        public override string CliName => "BuildPhysX_IOS";
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE4;
     
         private ToolConfig[] _configs = null;
         protected override ToolConfig[] Configs => _configs ??= new ToolConfig[]
         {
         };
-    
-        public override string Gather()
-        {
-            Arguments.Insert(0, "BuildPhysX_IOS");return base.Gather();
-        }
     }
 
     protected readonly BuildPhysX_IOSConfig BuildPhysX_IOSStorage = new();
@@ -6977,16 +11929,13 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     public  class BuildPhysX_LinuxConfig : ToolConfig
     {
         public override string Name => "BuildPhysX_Linux";
+        public override string CliName => "BuildPhysX_Linux";
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE4;
     
         private ToolConfig[] _configs = null;
         protected override ToolConfig[] Configs => _configs ??= new ToolConfig[]
         {
         };
-    
-        public override string Gather()
-        {
-            Arguments.Insert(0, "BuildPhysX_Linux");return base.Gather();
-        }
     }
 
     protected readonly BuildPhysX_LinuxConfig BuildPhysX_LinuxStorage = new();
@@ -6995,16 +11944,13 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     public  class BuildPhysX_Mac_x86_64Config : ToolConfig
     {
         public override string Name => "BuildPhysX_Mac_x86_64";
+        public override string CliName => "BuildPhysX_Mac_x86_64";
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE4;
     
         private ToolConfig[] _configs = null;
         protected override ToolConfig[] Configs => _configs ??= new ToolConfig[]
         {
         };
-    
-        public override string Gather()
-        {
-            Arguments.Insert(0, "BuildPhysX_Mac_x86_64");return base.Gather();
-        }
     }
 
     protected readonly BuildPhysX_Mac_x86_64Config BuildPhysX_Mac_x86_64Storage = new();
@@ -7013,16 +11959,13 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     public  class BuildPhysX_Mac_arm64Config : ToolConfig
     {
         public override string Name => "BuildPhysX_Mac_arm64";
+        public override string CliName => "BuildPhysX_Mac_arm64";
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE4;
     
         private ToolConfig[] _configs = null;
         protected override ToolConfig[] Configs => _configs ??= new ToolConfig[]
         {
         };
-    
-        public override string Gather()
-        {
-            Arguments.Insert(0, "BuildPhysX_Mac_arm64");return base.Gather();
-        }
     }
 
     protected readonly BuildPhysX_Mac_arm64Config BuildPhysX_Mac_arm64Storage = new();
@@ -7031,16 +11974,13 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     public  class BuildPhysX_MacConfig : ToolConfig
     {
         public override string Name => "BuildPhysX_Mac";
+        public override string CliName => "BuildPhysX_Mac";
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE4;
     
         private ToolConfig[] _configs = null;
         protected override ToolConfig[] Configs => _configs ??= new ToolConfig[]
         {
         };
-    
-        public override string Gather()
-        {
-            Arguments.Insert(0, "BuildPhysX_Mac");return base.Gather();
-        }
     }
 
     protected readonly BuildPhysX_MacConfig BuildPhysX_MacStorage = new();
@@ -7049,16 +11989,13 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     public  class BuildPhysX_TVOSConfig : ToolConfig
     {
         public override string Name => "BuildPhysX_TVOS";
+        public override string CliName => "BuildPhysX_TVOS";
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE4;
     
         private ToolConfig[] _configs = null;
         protected override ToolConfig[] Configs => _configs ??= new ToolConfig[]
         {
         };
-    
-        public override string Gather()
-        {
-            Arguments.Insert(0, "BuildPhysX_TVOS");return base.Gather();
-        }
     }
 
     protected readonly BuildPhysX_TVOSConfig BuildPhysX_TVOSStorage = new();
@@ -7067,16 +12004,13 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     public  class BuildPhysX_Win32Config : ToolConfig
     {
         public override string Name => "BuildPhysX_Win32";
+        public override string CliName => "BuildPhysX_Win32";
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE4;
     
         private ToolConfig[] _configs = null;
         protected override ToolConfig[] Configs => _configs ??= new ToolConfig[]
         {
         };
-    
-        public override string Gather()
-        {
-            Arguments.Insert(0, "BuildPhysX_Win32");return base.Gather();
-        }
     }
 
     protected readonly BuildPhysX_Win32Config BuildPhysX_Win32Storage = new();
@@ -7085,16 +12019,13 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     public  class BuildPhysX_Win64Config : ToolConfig
     {
         public override string Name => "BuildPhysX_Win64";
+        public override string CliName => "BuildPhysX_Win64";
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE4;
     
         private ToolConfig[] _configs = null;
         protected override ToolConfig[] Configs => _configs ??= new ToolConfig[]
         {
         };
-    
-        public override string Gather()
-        {
-            Arguments.Insert(0, "BuildPhysX_Win64");return base.Gather();
-        }
     }
 
     protected readonly BuildPhysX_Win64Config BuildPhysX_Win64Storage = new();
@@ -7103,12 +12034,22 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     public  class BuildPluginConfig : ToolConfig
     {
         public override string Name => "BuildPlugin";
+        public override string CliName => "BuildPlugin";
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE4;
     
         
 /// <summary>"Specify the path to the descriptor file for the plugin that should be packaged"</summary>
         public virtual BuildPluginConfig Plugin(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-Plugin=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-Plugin");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Plugin",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildPluginConfig) this;
         }
 
@@ -7117,7 +12058,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Prevent compiling for the editor platform on the host"</summary>
         public virtual BuildPluginConfig NoHostPlatform(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-NoHostPlatform=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-NoHostPlatform");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-NoHostPlatform",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildPluginConfig) this;
         }
 
@@ -7126,7 +12075,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Specify a list of target platforms to build, separated by '+' characters (eg. -TargetPlatforms=Win32+Win64). Default is all the Rocket target platforms."</summary>
         public virtual BuildPluginConfig TargetPlatforms(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-TargetPlatforms=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-TargetPlatforms");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-TargetPlatforms",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildPluginConfig) this;
         }
 
@@ -7135,7 +12092,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"The path which the build artifacts should be packaged to, ready for distribution."</summary>
         public virtual BuildPluginConfig Package(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-Package=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-Package");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Package",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildPluginConfig) this;
         }
 
@@ -7144,7 +12109,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Disables precompiled headers and unity build in order to check all source files have self-contained headers."</summary>
         public virtual BuildPluginConfig StrictIncludes(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-StrictIncludes=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-StrictIncludes");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-StrictIncludes",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildPluginConfig) this;
         }
 
@@ -7153,7 +12126,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Do not embed the current engine version into the descriptor"</summary>
         public virtual BuildPluginConfig Unversioned(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-Unversioned=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-Unversioned");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Unversioned",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildPluginConfig) this;
         }
 
@@ -7162,7 +12143,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual BuildPluginConfig VS2019(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-VS2019=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-VS2019");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-VS2019",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildPluginConfig) this;
         }
 
@@ -7171,7 +12160,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual BuildPluginConfig NoDeleteHostProject(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-NoDeleteHostProject=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-NoDeleteHostProject");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-NoDeleteHostProject",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildPluginConfig) this;
         }
 
@@ -7180,7 +12177,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual BuildPluginConfig NoTargetPlatforms(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-NoTargetPlatforms=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-NoTargetPlatforms");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-NoTargetPlatforms",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildPluginConfig) this;
         }
     
@@ -7189,11 +12194,6 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
         protected override ToolConfig[] Configs => _configs ??= new ToolConfig[]
         {
         };
-    
-        public override string Gather()
-        {
-            Arguments.Insert(0, "BuildPlugin");return base.Gather();
-        }
     }
 
     protected readonly BuildPluginConfig BuildPluginStorage = new();
@@ -7204,12 +12204,22 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     public  class BuildEditorConfig : ToolConfig
     {
         public override string Name => "BuildEditor";
+        public override string CliName => "BuildEditor";
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE4;
     
         
 /// <summary>"Project to build. Will search current path and paths in ueprojectdirs. If omitted will build vanilla UE4Editor"</summary>
         public virtual BuildEditorConfig Project(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-project=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-project");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-project",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildEditorConfig) this;
         }
 
@@ -7219,7 +12229,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// "Don't build any tools (UnrealPak, Lightmass, ShaderCompiler, CrashReporter"</summary>
         public virtual BuildEditorConfig Notools(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-notools=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-notools");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-notools",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildEditorConfig) this;
         }
 
@@ -7228,7 +12246,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual BuildEditorConfig Open(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-open=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-open");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-open",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildEditorConfig) this;
         }
 
@@ -7240,7 +12266,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual BuildEditorConfig Platform(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-platform=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-platform");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-platform",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildEditorConfig) this;
         }
 
@@ -7249,7 +12283,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Configurations to build, join multiple configurations using +"</summary>
         public virtual BuildEditorConfig Configuration(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-configuration=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-configuration");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-configuration",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildEditorConfig) this;
         }
 
@@ -7258,7 +12300,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Targets to build, join multiple targets using +"</summary>
         public virtual BuildEditorConfig Target(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-target=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-target");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-target",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildEditorConfig) this;
         }
 
@@ -7270,7 +12320,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual BuildEditorConfig Clean(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-clean=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-clean");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-clean",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildEditorConfig) this;
         }
 
@@ -7279,7 +12337,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Toggle to disable the distributed build process"</summary>
         public virtual BuildEditorConfig NoXGE(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-NoXGE" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-NoXGE");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-NoXGE",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildEditorConfig) this;
         }
 
@@ -7288,7 +12354,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Toggle to disable the unity build system"</summary>
         public virtual BuildEditorConfig DisableUnity(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-DisableUnity" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-DisableUnity");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-DisableUnity",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildEditorConfig) this;
         }
 
@@ -7299,7 +12373,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual BuildEditorConfig UBTArgs(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-ubtargs=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-ubtargs");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-ubtargs",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildEditorConfig) this;
         }
 
@@ -7308,7 +12390,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual BuildEditorConfig Preview(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-preview=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-preview");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-preview",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildEditorConfig) this;
         }
     
@@ -7317,11 +12407,6 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
         protected override ToolConfig[] Configs => _configs ??= new ToolConfig[]
         {
         };
-    
-        public override string Gather()
-        {
-            Arguments.Insert(0, "BuildEditor");return base.Gather();
-        }
     }
 
     protected readonly BuildEditorConfig BuildEditorStorage = new();
@@ -7331,13 +12416,23 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     public  class BuildGameConfig : ToolConfig
     {
         public override string Name => "BuildGame";
+        public override string CliName => "BuildGame";
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE4;
     
         
 /// <summary>"Project to build. Will search current path and paths in ueprojectdirs."
 /// "Project to build. Will search current path and paths in ueprojectdirs. If omitted will build vanilla UE4Editor"</summary>
         public virtual BuildGameConfig Project(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-project=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-project");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-project",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildGameConfig) this;
         }
 
@@ -7350,7 +12445,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual BuildGameConfig Platform(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-platform=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-platform");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-platform",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildGameConfig) this;
         }
 
@@ -7359,7 +12462,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Configurations to build, join multiple configurations using +"</summary>
         public virtual BuildGameConfig Configuration(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-configuration=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-configuration");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-configuration",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildGameConfig) this;
         }
 
@@ -7369,7 +12480,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// "Don't build any tools (UnrealPak, Lightmass, ShaderCompiler, CrashReporter"</summary>
         public virtual BuildGameConfig Notools(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-notools=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-notools");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-notools",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildGameConfig) this;
         }
 
@@ -7378,7 +12497,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Targets to build, join multiple targets using +"</summary>
         public virtual BuildGameConfig Target(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-target=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-target");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-target",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildGameConfig) this;
         }
 
@@ -7390,7 +12517,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual BuildGameConfig Clean(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-clean=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-clean");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-clean",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildGameConfig) this;
         }
 
@@ -7399,7 +12534,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Toggle to disable the distributed build process"</summary>
         public virtual BuildGameConfig NoXGE(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-NoXGE" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-NoXGE");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-NoXGE",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildGameConfig) this;
         }
 
@@ -7408,7 +12551,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Toggle to disable the unity build system"</summary>
         public virtual BuildGameConfig DisableUnity(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-DisableUnity" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-DisableUnity");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-DisableUnity",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildGameConfig) this;
         }
 
@@ -7419,7 +12570,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual BuildGameConfig UBTArgs(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-ubtargs=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-ubtargs");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-ubtargs",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildGameConfig) this;
         }
 
@@ -7428,7 +12587,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual BuildGameConfig Preview(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-preview=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-preview");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-preview",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildGameConfig) this;
         }
     
@@ -7437,11 +12604,6 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
         protected override ToolConfig[] Configs => _configs ??= new ToolConfig[]
         {
         };
-    
-        public override string Gather()
-        {
-            Arguments.Insert(0, "BuildGame");return base.Gather();
-        }
     }
 
     protected readonly BuildGameConfig BuildGameStorage = new();
@@ -7451,13 +12613,23 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     public  class BuildServerConfig : ToolConfig
     {
         public override string Name => "BuildServer";
+        public override string CliName => "BuildServer";
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE4;
     
         
 /// <summary>"Project to build. Will search current path and paths in ueprojectdirs."
 /// "Project to build. Will search current path and paths in ueprojectdirs. If omitted will build vanilla UE4Editor"</summary>
         public virtual BuildServerConfig Project(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-project=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-project");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-project",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildServerConfig) this;
         }
 
@@ -7470,7 +12642,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual BuildServerConfig Platform(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-platform=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-platform");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-platform",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildServerConfig) this;
         }
 
@@ -7479,7 +12659,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Configurations to build, join multiple configurations using +"</summary>
         public virtual BuildServerConfig Configuration(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-configuration=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-configuration");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-configuration",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildServerConfig) this;
         }
 
@@ -7489,7 +12677,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// "Don't build any tools (UnrealPak, Lightmass, ShaderCompiler, CrashReporter"</summary>
         public virtual BuildServerConfig Notools(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-notools=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-notools");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-notools",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildServerConfig) this;
         }
 
@@ -7498,7 +12694,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Targets to build, join multiple targets using +"</summary>
         public virtual BuildServerConfig Target(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-target=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-target");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-target",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildServerConfig) this;
         }
 
@@ -7510,7 +12714,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual BuildServerConfig Clean(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-clean=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-clean");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-clean",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildServerConfig) this;
         }
 
@@ -7519,7 +12731,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Toggle to disable the distributed build process"</summary>
         public virtual BuildServerConfig NoXGE(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-NoXGE" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-NoXGE");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-NoXGE",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildServerConfig) this;
         }
 
@@ -7528,7 +12748,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Toggle to disable the unity build system"</summary>
         public virtual BuildServerConfig DisableUnity(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-DisableUnity" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-DisableUnity");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-DisableUnity",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildServerConfig) this;
         }
 
@@ -7539,7 +12767,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual BuildServerConfig UBTArgs(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-ubtargs=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-ubtargs");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-ubtargs",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildServerConfig) this;
         }
 
@@ -7548,7 +12784,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual BuildServerConfig Preview(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-preview=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-preview");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-preview",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildServerConfig) this;
         }
     
@@ -7557,11 +12801,6 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
         protected override ToolConfig[] Configs => _configs ??= new ToolConfig[]
         {
         };
-    
-        public override string Gather()
-        {
-            Arguments.Insert(0, "BuildServer");return base.Gather();
-        }
     }
 
     protected readonly BuildServerConfig BuildServerStorage = new();
@@ -7571,12 +12810,22 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     public  class BuildThirdPartyLibsConfig : ToolConfig
     {
         public override string Name => "BuildThirdPartyLibs";
+        public override string CliName => "BuildThirdPartyLibs";
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE4;
     
         
 /// <summary>"[Optional] + separated list of libraries to compile; if not specified this job will build all libraries it can find builder scripts for"</summary>
         public virtual BuildThirdPartyLibsConfig Libs(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-Libs=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-Libs");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Libs",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildThirdPartyLibsConfig) this;
         }
 
@@ -7585,7 +12834,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"[Optional] a changelist to check out into; if not specified, a changelist will be created"</summary>
         public virtual BuildThirdPartyLibsConfig Changelist(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-Changelist=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-Changelist");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Changelist",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildThirdPartyLibsConfig) this;
         }
 
@@ -7594,7 +12851,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"[Optional] Directory to search for the specified Libs"</summary>
         public virtual BuildThirdPartyLibsConfig SearchDir(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-SearchDir=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-SearchDir");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-SearchDir",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BuildThirdPartyLibsConfig) this;
         }
     
@@ -7603,11 +12868,6 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
         protected override ToolConfig[] Configs => _configs ??= new ToolConfig[]
         {
         };
-    
-        public override string Gather()
-        {
-            Arguments.Insert(0, "BuildThirdPartyLibs");return base.Gather();
-        }
     }
 
     protected readonly BuildThirdPartyLibsConfig BuildThirdPartyLibsStorage = new();
@@ -7616,12 +12876,22 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     public  class CheckBalancedMacrosConfig : ToolConfig
     {
         public override string Name => "CheckBalancedMacros";
+        public override string CliName => "CheckBalancedMacros";
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE4;
     
         
 /// <summary>"Path to an additional project file to consider"</summary>
         public virtual CheckBalancedMacrosConfig Project(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-Project=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-Project");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Project",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (CheckBalancedMacrosConfig) this;
         }
 
@@ -7630,7 +12900,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Path to a file to parse in isolation, for testing"</summary>
         public virtual CheckBalancedMacrosConfig File(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-File=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-File");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-File",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (CheckBalancedMacrosConfig) this;
         }
 
@@ -7639,7 +12917,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"File name (without path) to exclude from testing"</summary>
         public virtual CheckBalancedMacrosConfig Ignore(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-Ignore=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-Ignore");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Ignore",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (CheckBalancedMacrosConfig) this;
         }
     
@@ -7648,11 +12934,6 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
         protected override ToolConfig[] Configs => _configs ??= new ToolConfig[]
         {
         };
-    
-        public override string Gather()
-        {
-            Arguments.Insert(0, "CheckBalancedMacros");return base.Gather();
-        }
     }
 
     protected readonly CheckBalancedMacrosConfig CheckBalancedMacrosStorage = new();
@@ -7661,12 +12942,22 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     public  class CheckCsprojDotNetVersionConfig : ToolConfig
     {
         public override string Name => "CheckCsprojDotNetVersion";
+        public override string CliName => "CheckCsprojDotNetVersion";
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE4;
     
         
     
         public virtual CheckCsprojDotNetVersionConfig TargetVersion(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-TargetVersion=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-TargetVersion");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-TargetVersion",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (CheckCsprojDotNetVersionConfig) this;
         }
     
@@ -7675,11 +12966,6 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
         protected override ToolConfig[] Configs => _configs ??= new ToolConfig[]
         {
         };
-    
-        public override string Gather()
-        {
-            Arguments.Insert(0, "CheckCsprojDotNetVersion");return base.Gather();
-        }
     }
 
     protected readonly CheckCsprojDotNetVersionConfig CheckCsprojDotNetVersionStorage = new();
@@ -7690,12 +12976,22 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     public  class CheckForHacksConfig : ToolConfig
     {
         public override string Name => "CheckForHacks";
+        public override string CliName => "CheckForHacks";
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE4;
     
         
 /// <summary>"Specifies additional tags which are allowed in the BEGIN ... HACK tag list"</summary>
         public virtual CheckForHacksConfig Allow(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-Allow=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-Allow");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Allow",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (CheckForHacksConfig) this;
         }
     
@@ -7704,11 +13000,6 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
         protected override ToolConfig[] Configs => _configs ??= new ToolConfig[]
         {
         };
-    
-        public override string Gather()
-        {
-            Arguments.Insert(0, "CheckForHacks");return base.Gather();
-        }
     }
 
     protected readonly CheckForHacksConfig CheckForHacksStorage = new();
@@ -7718,12 +13009,22 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     public  class CheckPerforceCaseConfig : ToolConfig
     {
         public override string Name => "CheckPerforceCase";
+        public override string CliName => "CheckPerforceCase";
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE4;
     
         
 /// <summary>"The path to query"</summary>
         public virtual CheckPerforceCaseConfig Path(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-Path" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-Path");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Path",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (CheckPerforceCaseConfig) this;
         }
     
@@ -7732,11 +13033,6 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
         protected override ToolConfig[] Configs => _configs ??= new ToolConfig[]
         {
         };
-    
-        public override string Gather()
-        {
-            Arguments.Insert(0, "CheckPerforceCase");return base.Gather();
-        }
     }
 
     protected readonly CheckPerforceCaseConfig CheckPerforceCaseStorage = new();
@@ -7745,12 +13041,22 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     public  class CheckRestrictedFoldersConfig : ToolConfig
     {
         public override string Name => "CheckRestrictedFolders";
+        public override string CliName => "CheckRestrictedFolders";
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE4;
     
         
 /// <summary>"Path to the base directory containing files to check"</summary>
         public virtual CheckRestrictedFoldersConfig BaseDir(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-BaseDir=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-BaseDir");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-BaseDir",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (CheckRestrictedFoldersConfig) this;
         }
 
@@ -7759,7 +13065,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Specify names of folders which should be excluded from the list"</summary>
         public virtual CheckRestrictedFoldersConfig Allow(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-Allow=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-Allow");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Allow",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (CheckRestrictedFoldersConfig) this;
         }
     
@@ -7768,11 +13082,6 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
         protected override ToolConfig[] Configs => _configs ??= new ToolConfig[]
         {
         };
-    
-        public override string Gather()
-        {
-            Arguments.Insert(0, "CheckRestrictedFolders");return base.Gather();
-        }
     }
 
     protected readonly CheckRestrictedFoldersConfig CheckRestrictedFoldersStorage = new();
@@ -7781,12 +13090,22 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     public  class CheckTargetExistsConfig : ToolConfig
     {
         public override string Name => "CheckTargetExists";
+        public override string CliName => "CheckTargetExists";
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE4;
     
         
 /// <summary>"Name of the target to check"</summary>
         public virtual CheckTargetExistsConfig Target(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-Target=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-Target");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Target",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (CheckTargetExistsConfig) this;
         }
 
@@ -7795,7 +13114,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Platform the target was built for"</summary>
         public virtual CheckTargetExistsConfig Platform(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-Platform=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-Platform");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Platform",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (CheckTargetExistsConfig) this;
         }
 
@@ -7804,7 +13131,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Configuration for the target"</summary>
         public virtual CheckTargetExistsConfig Configuration(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-Configuration=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-Configuration");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Configuration",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (CheckTargetExistsConfig) this;
         }
 
@@ -7813,7 +13148,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Architecture that the target was built for"</summary>
         public virtual CheckTargetExistsConfig Architecture(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-Architecture=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-Architecture");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Architecture",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (CheckTargetExistsConfig) this;
         }
 
@@ -7822,7 +13165,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Path to the project containing the target"</summary>
         public virtual CheckTargetExistsConfig Project(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-Project=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-Project");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Project",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (CheckTargetExistsConfig) this;
         }
     
@@ -7831,11 +13182,6 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
         protected override ToolConfig[] Configs => _configs ??= new ToolConfig[]
         {
         };
-    
-        public override string Gather()
-        {
-            Arguments.Insert(0, "CheckTargetExists");return base.Gather();
-        }
     }
 
     protected readonly CheckTargetExistsConfig CheckTargetExistsStorage = new();
@@ -7844,12 +13190,22 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     public  class CheckXcodeVersionConfig : ToolConfig
     {
         public override string Name => "CheckXcodeVersion";
+        public override string CliName => "CheckXcodeVersion";
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE4;
     
         
 /// <summary>"The expected version number"</summary>
         public virtual CheckXcodeVersionConfig Version(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-Version=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-Version");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Version",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (CheckXcodeVersionConfig) this;
         }
     
@@ -7858,11 +13214,6 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
         protected override ToolConfig[] Configs => _configs ??= new ToolConfig[]
         {
         };
-    
-        public override string Gather()
-        {
-            Arguments.Insert(0, "CheckXcodeVersion");return base.Gather();
-        }
     }
 
     protected readonly CheckXcodeVersionConfig CheckXcodeVersionStorage = new();
@@ -7871,12 +13222,22 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     public  class CleanAutomationReportsConfig : ToolConfig
     {
         public override string Name => "CleanAutomationReports";
+        public override string CliName => "CleanAutomationReports";
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE4;
     
         
 /// <summary>"Path to the root report directory"</summary>
         public virtual CleanAutomationReportsConfig ReportDir(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-ReportDir=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-ReportDir");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-ReportDir",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (CleanAutomationReportsConfig) this;
         }
 
@@ -7885,7 +13246,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Number of days to keep reports for"</summary>
         public virtual CleanAutomationReportsConfig Days(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-Days=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-Days");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Days",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (CleanAutomationReportsConfig) this;
         }
 
@@ -7894,7 +13263,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"How many subdirectories deep to clean, defaults to 0 (top level cleaning)."</summary>
         public virtual CleanAutomationReportsConfig Depth(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-Depth=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-Depth");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Depth",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (CleanAutomationReportsConfig) this;
         }
     
@@ -7903,11 +13280,6 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
         protected override ToolConfig[] Configs => _configs ??= new ToolConfig[]
         {
         };
-    
-        public override string Gather()
-        {
-            Arguments.Insert(0, "CleanAutomationReports");return base.Gather();
-        }
     }
 
     protected readonly CleanAutomationReportsConfig CleanAutomationReportsStorage = new();
@@ -7916,12 +13288,22 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     public  class CleanFormalBuildsConfig : ToolConfig
     {
         public override string Name => "CleanFormalBuilds";
+        public override string CliName => "CleanFormalBuilds";
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE4;
     
         
 /// <summary>"Path to the root directory"</summary>
         public virtual CleanFormalBuildsConfig ParentDir(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-ParentDir=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-ParentDir");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-ParentDir",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (CleanFormalBuildsConfig) this;
         }
 
@@ -7930,7 +13312,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Pattern to match against"</summary>
         public virtual CleanFormalBuildsConfig SearchPattern(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-SearchPattern=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-SearchPattern");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-SearchPattern",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (CleanFormalBuildsConfig) this;
         }
 
@@ -7939,7 +13329,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Number of days to keep in temp storage (optional - defaults to 4)"</summary>
         public virtual CleanFormalBuildsConfig Days(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-Days=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-Days");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Days",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (CleanFormalBuildsConfig) this;
         }
     
@@ -7948,11 +13346,6 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
         protected override ToolConfig[] Configs => _configs ??= new ToolConfig[]
         {
         };
-    
-        public override string Gather()
-        {
-            Arguments.Insert(0, "CleanFormalBuilds");return base.Gather();
-        }
     }
 
     protected readonly CleanFormalBuildsConfig CleanFormalBuildsStorage = new();
@@ -7961,16 +13354,13 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     public  class CodeSurgeryConfig : ToolConfig
     {
         public override string Name => "CodeSurgery";
+        public override string CliName => "CodeSurgery";
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE4;
     
         private ToolConfig[] _configs = null;
         protected override ToolConfig[] Configs => _configs ??= new ToolConfig[]
         {
         };
-    
-        public override string Gather()
-        {
-            Arguments.Insert(0, "CodeSurgery");return base.Gather();
-        }
     }
 
     protected readonly CodeSurgeryConfig CodeSurgeryStorage = new();
@@ -7980,12 +13370,22 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     public  class CopySharedCookedBuildConfig : ToolConfig
     {
         public override string Name => "CopySharedCookedBuild";
+        public override string CliName => "CopySharedCookedBuild";
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE4;
     
         
     
         public virtual CopySharedCookedBuildConfig Project(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-project=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-project");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-project",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (CopySharedCookedBuildConfig) this;
         }
 
@@ -7994,7 +13394,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual CopySharedCookedBuildConfig Platform(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-Platform=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-Platform");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Platform",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (CopySharedCookedBuildConfig) this;
         }
 
@@ -8003,7 +13411,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual CopySharedCookedBuildConfig Onlycopyassetregistry(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-onlycopyassetregistry=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-onlycopyassetregistry");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-onlycopyassetregistry",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (CopySharedCookedBuildConfig) this;
         }
 
@@ -8012,7 +13428,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual CopySharedCookedBuildConfig Buildcl(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-buildcl=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-buildcl");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-buildcl",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (CopySharedCookedBuildConfig) this;
         }
     
@@ -8021,11 +13445,6 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
         protected override ToolConfig[] Configs => _configs ??= new ToolConfig[]
         {
         };
-    
-        public override string Gather()
-        {
-            Arguments.Insert(0, "CopySharedCookedBuild");return base.Gather();
-        }
     }
 
     protected readonly CopySharedCookedBuildConfig CopySharedCookedBuildStorage = new();
@@ -8034,12 +13453,22 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     public  class CopyUATConfig : ToolConfig
     {
         public override string Name => "CopyUAT";
+        public override string CliName => "CopyUAT";
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE4;
     
         
     
         public virtual CopyUATConfig TargetDir(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-TargetDir=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-TargetDir");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-TargetDir",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (CopyUATConfig) this;
         }
 
@@ -8048,7 +13477,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual CopyUATConfig WithLauncher(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-WithLauncher=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-WithLauncher");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-WithLauncher",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (CopyUATConfig) this;
         }
     
@@ -8057,11 +13494,6 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
         protected override ToolConfig[] Configs => _configs ??= new ToolConfig[]
         {
         };
-    
-        public override string Gather()
-        {
-            Arguments.Insert(0, "CopyUAT");return base.Gather();
-        }
     }
 
     protected readonly CopyUATConfig CopyUATStorage = new();
@@ -8070,12 +13502,22 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     public  class CryptoKeysConfig : ToolConfig
     {
         public override string Name => "CryptoKeys";
+        public override string CliName => "CryptoKeys";
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE4;
     
         
     
         public virtual CryptoKeysConfig Updateallkeys(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-updateallkeys=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-updateallkeys");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-updateallkeys",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (CryptoKeysConfig) this;
         }
 
@@ -8084,7 +13526,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual CryptoKeysConfig Updateencryptionkey(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-updateencryptionkey=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-updateencryptionkey");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-updateencryptionkey",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (CryptoKeysConfig) this;
         }
 
@@ -8093,7 +13543,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual CryptoKeysConfig Updatesigningkey(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-updatesigningkey=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-updatesigningkey");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-updatesigningkey",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (CryptoKeysConfig) this;
         }
 
@@ -8102,7 +13560,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual CryptoKeysConfig Foreign(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-foreign=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-foreign");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-foreign",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (CryptoKeysConfig) this;
         }
 
@@ -8111,7 +13577,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual CryptoKeysConfig Foreigncode(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-foreigncode=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-foreigncode");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-foreigncode",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (CryptoKeysConfig) this;
         }
 
@@ -8120,7 +13594,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual CryptoKeysConfig DestSample(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-DestSample=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-DestSample");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-DestSample",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (CryptoKeysConfig) this;
         }
 
@@ -8129,7 +13611,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual CryptoKeysConfig ForeignDest(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-ForeignDest=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-ForeignDest");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-ForeignDest",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (CryptoKeysConfig) this;
         }
 
@@ -8138,7 +13628,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual CryptoKeysConfig Project(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-project=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-project");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-project",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (CryptoKeysConfig) this;
         }
     
@@ -8147,11 +13645,6 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
         protected override ToolConfig[] Configs => _configs ??= new ToolConfig[]
         {
         };
-    
-        public override string Gather()
-        {
-            Arguments.Insert(0, "CryptoKeys");return base.Gather();
-        }
     }
 
     protected readonly CryptoKeysConfig CryptoKeysStorage = new();
@@ -8160,12 +13653,22 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     public  class ExtractPaksConfig : ToolConfig
     {
         public override string Name => "ExtractPaks";
+        public override string CliName => "ExtractPaks";
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE4;
     
         
     
         public virtual ExtractPaksConfig Layered(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-layered=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-layered");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-layered",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ExtractPaksConfig) this;
         }
 
@@ -8174,7 +13677,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual ExtractPaksConfig Sourcedirectory(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-sourcedirectory=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-sourcedirectory");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-sourcedirectory",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ExtractPaksConfig) this;
         }
 
@@ -8183,7 +13694,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual ExtractPaksConfig Targetdirectory(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-targetdirectory=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-targetdirectory");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-targetdirectory",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ExtractPaksConfig) this;
         }
 
@@ -8192,7 +13711,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual ExtractPaksConfig Cryptokeysjson(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-cryptokeysjson=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-cryptokeysjson");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-cryptokeysjson",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ExtractPaksConfig) this;
         }
 
@@ -8201,7 +13728,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual ExtractPaksConfig Customcompressor(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-customcompressor=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-customcompressor");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-customcompressor",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ExtractPaksConfig) this;
         }
 
@@ -8210,7 +13745,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual ExtractPaksConfig Project(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-project=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-project");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-project",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ExtractPaksConfig) this;
         }
     
@@ -8219,11 +13762,6 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
         protected override ToolConfig[] Configs => _configs ??= new ToolConfig[]
         {
         };
-    
-        public override string Gather()
-        {
-            Arguments.Insert(0, "ExtractPaks");return base.Gather();
-        }
     }
 
     protected readonly ExtractPaksConfig ExtractPaksStorage = new();
@@ -8232,12 +13770,22 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     public  class FinalizeInstalledBuildConfig : ToolConfig
     {
         public override string Name => "FinalizeInstalledBuild";
+        public override string CliName => "FinalizeInstalledBuild";
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE4;
     
         
 /// <summary>"Root Directory of the installed build data (required)"</summary>
         public virtual FinalizeInstalledBuildConfig OutputDir(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-OutputDir=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-OutputDir");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-OutputDir",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (FinalizeInstalledBuildConfig) this;
         }
 
@@ -8246,7 +13794,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"List of platforms that should be marked as only supporting content projects (optional)"</summary>
         public virtual FinalizeInstalledBuildConfig ContentOnlyPlatforms(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-ContentOnlyPlatforms=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-ContentOnlyPlatforms");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-ContentOnlyPlatforms",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (FinalizeInstalledBuildConfig) this;
         }
 
@@ -8255,7 +13811,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"List of platforms to add"</summary>
         public virtual FinalizeInstalledBuildConfig Platforms(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-Platforms=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-Platforms");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Platforms",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (FinalizeInstalledBuildConfig) this;
         }
 
@@ -8265,7 +13829,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// "List of GPU architectures that are used for a given platform (optional)"</summary>
         public virtual FinalizeInstalledBuildConfig Platform(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-Platform" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-Platform");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Platform",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (FinalizeInstalledBuildConfig) this;
         }
 
@@ -8274,7 +13846,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Name to give this build for analytics purposes (optional)"</summary>
         public virtual FinalizeInstalledBuildConfig AnalyticsTypeOverride(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-AnalyticsTypeOverride=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-AnalyticsTypeOverride");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-AnalyticsTypeOverride",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (FinalizeInstalledBuildConfig) this;
         }
 
@@ -8283,7 +13863,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual FinalizeInstalledBuildConfig Project(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-Project=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-Project");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Project",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (FinalizeInstalledBuildConfig) this;
         }
 
@@ -8292,7 +13880,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual FinalizeInstalledBuildConfig Architectures(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-Architectures=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-Architectures");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Architectures",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (FinalizeInstalledBuildConfig) this;
         }
 
@@ -8301,7 +13897,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual FinalizeInstalledBuildConfig GPUArchitectures(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-GPUArchitectures=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-GPUArchitectures");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-GPUArchitectures",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (FinalizeInstalledBuildConfig) this;
         }
     
@@ -8310,11 +13914,6 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
         protected override ToolConfig[] Configs => _configs ??= new ToolConfig[]
         {
         };
-    
-        public override string Gather()
-        {
-            Arguments.Insert(0, "FinalizeInstalledBuild");return base.Gather();
-        }
     }
 
     protected readonly FinalizeInstalledBuildConfig FinalizeInstalledBuildStorage = new();
@@ -8324,12 +13923,22 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     public  class FixPerforceCaseConfig : ToolConfig
     {
         public override string Name => "FixPerforceCase";
+        public override string CliName => "FixPerforceCase";
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE4;
     
         
 /// <summary>"Pattern for source files to match. Should be a full depot path. May end with a wildcard."</summary>
         public virtual FixPerforceCaseConfig Source(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-Source" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-Source");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Source",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (FixPerforceCaseConfig) this;
         }
 
@@ -8338,7 +13947,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Pattern for target files. Should be identical to source, except for case."</summary>
         public virtual FixPerforceCaseConfig Target(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-Target" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-Target");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Target",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (FixPerforceCaseConfig) this;
         }
     
@@ -8347,11 +13964,6 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
         protected override ToolConfig[] Configs => _configs ??= new ToolConfig[]
         {
         };
-    
-        public override string Gather()
-        {
-            Arguments.Insert(0, "FixPerforceCase");return base.Gather();
-        }
     }
 
     protected readonly FixPerforceCaseConfig FixPerforceCaseStorage = new();
@@ -8360,12 +13972,22 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     public  class FixupRedirectsConfig : ToolConfig
     {
         public override string Name => "FixupRedirects";
+        public override string CliName => "FixupRedirects";
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE4;
     
         
     
         public virtual FixupRedirectsConfig Project(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-project=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-project");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-project",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (FixupRedirectsConfig) this;
         }
     
@@ -8374,11 +13996,6 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
         protected override ToolConfig[] Configs => _configs ??= new ToolConfig[]
         {
         };
-    
-        public override string Gather()
-        {
-            Arguments.Insert(0, "FixupRedirects");return base.Gather();
-        }
     }
 
     protected readonly FixupRedirectsConfig FixupRedirectsStorage = new();
@@ -8387,12 +14004,22 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     public  class GenerateDSYMConfig : ToolConfig
     {
         public override string Name => "GenerateDSYM";
+        public override string CliName => "GenerateDSYM";
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE4;
     
         
 /// <summary>@"Project name (required), i.e: -project=QAGame"</summary>
         public virtual GenerateDSYMConfig Project(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-project=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-project");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-project",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (GenerateDSYMConfig) this;
         }
 
@@ -8401,7 +14028,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>@"Project configuration (required), i.e: -config=Development"</summary>
         public virtual GenerateDSYMConfig Config(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-config=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-config");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-config",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (GenerateDSYMConfig) this;
         }
     
@@ -8410,11 +14045,6 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
         protected override ToolConfig[] Configs => _configs ??= new ToolConfig[]
         {
         };
-    
-        public override string Gather()
-        {
-            Arguments.Insert(0, "GenerateDSYM");return base.Gather();
-        }
     }
 
     protected readonly GenerateDSYMConfig GenerateDSYMStorage = new();
@@ -8423,12 +14053,22 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     public  class IPhonePackagerConfig : ToolConfig
     {
         public override string Name => "IPhonePackager";
+        public override string CliName => "IPhonePackager";
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE4;
     
         
     
         public virtual IPhonePackagerConfig Cmd(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-cmd=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-cmd");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-cmd",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (IPhonePackagerConfig) this;
         }
     
@@ -8437,11 +14077,6 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
         protected override ToolConfig[] Configs => _configs ??= new ToolConfig[]
         {
         };
-    
-        public override string Gather()
-        {
-            Arguments.Insert(0, "IPhonePackager");return base.Gather();
-        }
     }
 
     protected readonly IPhonePackagerConfig IPhonePackagerStorage = new();
@@ -8450,12 +14085,22 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     public  class LauncherLocalizationConfig : ToolConfig
     {
         public override string Name => "LauncherLocalization";
+        public override string CliName => "LauncherLocalization";
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE4;
     
         
     
         public virtual LauncherLocalizationConfig BuildEditor(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-BuildEditor=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-BuildEditor");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-BuildEditor",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (LauncherLocalizationConfig) this;
         }
     
@@ -8464,11 +14109,6 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
         protected override ToolConfig[] Configs => _configs ??= new ToolConfig[]
         {
         };
-    
-        public override string Gather()
-        {
-            Arguments.Insert(0, "LauncherLocalization");return base.Gather();
-        }
     }
 
     protected readonly LauncherLocalizationConfig LauncherLocalizationStorage = new();
@@ -8477,12 +14117,22 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     public  class ListMobileDevicesConfig : ToolConfig
     {
         public override string Name => "ListMobileDevices";
+        public override string CliName => "ListMobileDevices";
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE4;
     
         
     
         public virtual ListMobileDevicesConfig Android(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-android=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-android");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-android",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ListMobileDevicesConfig) this;
         }
 
@@ -8491,7 +14141,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual ListMobileDevicesConfig Ios(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-ios=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-ios");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-ios",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ListMobileDevicesConfig) this;
         }
     
@@ -8500,11 +14158,6 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
         protected override ToolConfig[] Configs => _configs ??= new ToolConfig[]
         {
         };
-    
-        public override string Gather()
-        {
-            Arguments.Insert(0, "ListMobileDevices");return base.Gather();
-        }
     }
 
     protected readonly ListMobileDevicesConfig ListMobileDevicesStorage = new();
@@ -8513,12 +14166,22 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     public  class ListThirdPartySoftwareConfig : ToolConfig
     {
         public override string Name => "ListThirdPartySoftware";
+        public override string CliName => "ListThirdPartySoftware";
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE4;
     
         
 /// <summary>"One or more UBT command lines to enumerate associated TPS files for (eg. UE4Game Win64 Development)."</summary>
         public virtual ListThirdPartySoftwareConfig Target(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-Target=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-Target");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Target",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ListThirdPartySoftwareConfig) this;
         }
 
@@ -8527,7 +14190,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual ListThirdPartySoftwareConfig Project(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-Project=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-Project");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Project",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ListThirdPartySoftwareConfig) this;
         }
     
@@ -8536,11 +14207,6 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
         protected override ToolConfig[] Configs => _configs ??= new ToolConfig[]
         {
         };
-    
-        public override string Gather()
-        {
-            Arguments.Insert(0, "ListThirdPartySoftware");return base.Gather();
-        }
     }
 
     protected readonly ListThirdPartySoftwareConfig ListThirdPartySoftwareStorage = new();
@@ -8549,12 +14215,22 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     public  class LocalizeConfig : ToolConfig
     {
         public override string Name => "Localize";
+        public override string CliName => "Localize";
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE4;
     
         
 /// <summary>"Optional root-path to the project we're gathering for (defaults to CmdEnv.LocalRoot if unset)."</summary>
         public virtual LocalizeConfig UEProjectRoot(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-UEProjectRoot=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-UEProjectRoot");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-UEProjectRoot",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (LocalizeConfig) this;
         }
 
@@ -8563,7 +14239,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Sub-path to the project we're gathering for (relative to UEProjectRoot)."</summary>
         public virtual LocalizeConfig UEProjectDirectory(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-UEProjectDirectory=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-UEProjectDirectory");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-UEProjectDirectory",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (LocalizeConfig) this;
         }
 
@@ -8572,7 +14256,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Optional name of the project we're gathering for (should match its .uproject file, eg QAGame)."</summary>
         public virtual LocalizeConfig UEProjectName(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-UEProjectName=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-UEProjectName");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-UEProjectName",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (LocalizeConfig) this;
         }
 
@@ -8581,7 +14273,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Comma separated list of the projects to gather text from."</summary>
         public virtual LocalizeConfig LocalizationProjectNames(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-LocalizationProjectNames=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-LocalizationProjectNames");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-LocalizationProjectNames",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (LocalizeConfig) this;
         }
 
@@ -8590,7 +14290,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Optional suffix to use when uploading the new data to the localization provider."</summary>
         public virtual LocalizeConfig LocalizationBranch(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-LocalizationBranch" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-LocalizationBranch");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-LocalizationBranch",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (LocalizeConfig) this;
         }
 
@@ -8599,7 +14307,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Optional localization provide override."</summary>
         public virtual LocalizeConfig LocalizationProvider(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-LocalizationProvider=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-LocalizationProvider");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-LocalizationProvider",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (LocalizeConfig) this;
         }
 
@@ -8608,7 +14324,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Optional comma separated list of localization steps to perform [Download, Gather, Import, Export, Compile, GenerateReports, Upload] (default is all). Only valid for projects using a modular config."</summary>
         public virtual LocalizeConfig LocalizationSteps(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-LocalizationSteps=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-LocalizationSteps");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-LocalizationSteps",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (LocalizeConfig) this;
         }
 
@@ -8617,7 +14341,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Optional flag to include plugins from within the given UEProjectDirectory as part of the gather. This may optionally specify a comma separated list of the specific plugins to gather (otherwise all plugins will be gathered)."</summary>
         public virtual LocalizeConfig IncludePlugins(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-IncludePlugins=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-IncludePlugins");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-IncludePlugins",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (LocalizeConfig) this;
         }
 
@@ -8626,7 +14358,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Optional comma separated list of plugins to exclude from the gather."</summary>
         public virtual LocalizeConfig ExcludePlugins(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-ExcludePlugins=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-ExcludePlugins");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-ExcludePlugins",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (LocalizeConfig) this;
         }
 
@@ -8635,7 +14375,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Optional flag to include platforms from within the given UEProjectDirectory as part of the gather."</summary>
         public virtual LocalizeConfig IncludePlatforms(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-IncludePlatforms=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-IncludePlatforms");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-IncludePlatforms",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (LocalizeConfig) this;
         }
 
@@ -8644,7 +14392,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Optional arguments to pass to the gather process."</summary>
         public virtual LocalizeConfig AdditionalCommandletArguments(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-AdditionalCommandletArguments=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-AdditionalCommandletArguments");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-AdditionalCommandletArguments",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (LocalizeConfig) this;
         }
 
@@ -8653,7 +14409,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Run the gather processes for a single batch in parallel rather than sequence."</summary>
         public virtual LocalizeConfig ParallelGather(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-ParallelGather=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-ParallelGather");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-ParallelGather",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (LocalizeConfig) this;
         }
     
@@ -8662,11 +14426,6 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
         protected override ToolConfig[] Configs => _configs ??= new ToolConfig[]
         {
         };
-    
-        public override string Gather()
-        {
-            Arguments.Insert(0, "Localize");return base.Gather();
-        }
     }
 
     protected readonly LocalizeConfig LocalizeStorage = new();
@@ -8675,12 +14434,22 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     public  class ExportMcpTemplatesConfig : ToolConfig
     {
         public override string Name => "ExportMcpTemplates";
+        public override string CliName => "ExportMcpTemplates";
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE4;
     
         
 /// <summary>"Optional.  Only submit generated loc files, do not submit any other generated file."</summary>
         public virtual ExportMcpTemplatesConfig OnlyLoc(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-OnlyLoc=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-OnlyLoc");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-OnlyLoc",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ExportMcpTemplatesConfig) this;
         }
 
@@ -8689,7 +14458,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Optional.  Do not include the markup in the CL description to allow robomerging to other branches."</summary>
         public virtual ExportMcpTemplatesConfig NoRobomerge(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-NoRobomerge=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-NoRobomerge");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-NoRobomerge",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ExportMcpTemplatesConfig) this;
         }
 
@@ -8698,7 +14475,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual ExportMcpTemplatesConfig ProjectName(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-ProjectName=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-ProjectName");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-ProjectName",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ExportMcpTemplatesConfig) this;
         }
 
@@ -8707,7 +14492,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual ExportMcpTemplatesConfig Commandlet(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-Commandlet=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-Commandlet");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Commandlet",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ExportMcpTemplatesConfig) this;
         }
     
@@ -8716,11 +14509,6 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
         protected override ToolConfig[] Configs => _configs ??= new ToolConfig[]
         {
         };
-    
-        public override string Gather()
-        {
-            Arguments.Insert(0, "ExportMcpTemplates");return base.Gather();
-        }
     }
 
     protected readonly ExportMcpTemplatesConfig ExportMcpTemplatesStorage = new();
@@ -8729,12 +14517,22 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     public  class LocaliseConfig : ToolConfig
     {
         public override string Name => "Localise";
+        public override string CliName => "Localise";
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE4;
     
         
 /// <summary>"Optional root-path to the project we're gathering for (defaults to CmdEnv.LocalRoot if unset)."</summary>
         public virtual LocaliseConfig UEProjectRoot(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-UEProjectRoot=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-UEProjectRoot");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-UEProjectRoot",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (LocaliseConfig) this;
         }
 
@@ -8743,7 +14541,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Sub-path to the project we're gathering for (relative to UEProjectRoot)."</summary>
         public virtual LocaliseConfig UEProjectDirectory(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-UEProjectDirectory=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-UEProjectDirectory");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-UEProjectDirectory",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (LocaliseConfig) this;
         }
 
@@ -8752,7 +14558,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Optional name of the project we're gathering for (should match its .uproject file, eg QAGame)."</summary>
         public virtual LocaliseConfig UEProjectName(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-UEProjectName=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-UEProjectName");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-UEProjectName",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (LocaliseConfig) this;
         }
 
@@ -8761,7 +14575,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Comma separated list of the projects to gather text from."</summary>
         public virtual LocaliseConfig LocalizationProjectNames(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-LocalizationProjectNames=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-LocalizationProjectNames");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-LocalizationProjectNames",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (LocaliseConfig) this;
         }
 
@@ -8770,7 +14592,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Optional suffix to use when uploading the new data to the localization provider."</summary>
         public virtual LocaliseConfig LocalizationBranch(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-LocalizationBranch" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-LocalizationBranch");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-LocalizationBranch",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (LocaliseConfig) this;
         }
 
@@ -8779,7 +14609,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Optional localization provide override."</summary>
         public virtual LocaliseConfig LocalizationProvider(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-LocalizationProvider=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-LocalizationProvider");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-LocalizationProvider",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (LocaliseConfig) this;
         }
 
@@ -8788,7 +14626,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Optional comma separated list of localization steps to perform [Download, Gather, Import, Export, Compile, GenerateReports, Upload] (default is all). Only valid for projects using a modular config."</summary>
         public virtual LocaliseConfig LocalizationSteps(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-LocalizationSteps=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-LocalizationSteps");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-LocalizationSteps",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (LocaliseConfig) this;
         }
 
@@ -8797,7 +14643,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Optional flag to include plugins from within the given UEProjectDirectory as part of the gather. This may optionally specify a comma separated list of the specific plugins to gather (otherwise all plugins will be gathered)."</summary>
         public virtual LocaliseConfig IncludePlugins(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-IncludePlugins=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-IncludePlugins");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-IncludePlugins",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (LocaliseConfig) this;
         }
 
@@ -8806,7 +14660,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Optional comma separated list of plugins to exclude from the gather."</summary>
         public virtual LocaliseConfig ExcludePlugins(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-ExcludePlugins=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-ExcludePlugins");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-ExcludePlugins",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (LocaliseConfig) this;
         }
 
@@ -8815,7 +14677,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Optional flag to include platforms from within the given UEProjectDirectory as part of the gather."</summary>
         public virtual LocaliseConfig IncludePlatforms(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-IncludePlatforms=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-IncludePlatforms");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-IncludePlatforms",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (LocaliseConfig) this;
         }
 
@@ -8824,7 +14694,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Optional arguments to pass to the gather process."</summary>
         public virtual LocaliseConfig AdditionalCommandletArguments(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-AdditionalCommandletArguments=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-AdditionalCommandletArguments");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-AdditionalCommandletArguments",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (LocaliseConfig) this;
         }
 
@@ -8833,7 +14711,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Run the gather processes for a single batch in parallel rather than sequence."</summary>
         public virtual LocaliseConfig ParallelGather(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-ParallelGather=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-ParallelGather");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-ParallelGather",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (LocaliseConfig) this;
         }
     
@@ -8842,11 +14728,6 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
         protected override ToolConfig[] Configs => _configs ??= new ToolConfig[]
         {
         };
-    
-        public override string Gather()
-        {
-            Arguments.Insert(0, "Localise");return base.Gather();
-        }
     }
 
     protected readonly LocaliseConfig LocaliseStorage = new();
@@ -8855,12 +14736,22 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     public  class OpenEditorConfig : ToolConfig
     {
         public override string Name => "OpenEditor";
+        public override string CliName => "OpenEditor";
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE4;
     
         
 /// <summary>"Project to open. Will search current path and paths in ueprojectdirs. If omitted will open vanilla UE4Editor"</summary>
         public virtual OpenEditorConfig Project(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-project=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-project");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-project",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (OpenEditorConfig) this;
         }
     
@@ -8869,11 +14760,6 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
         protected override ToolConfig[] Configs => _configs ??= new ToolConfig[]
         {
         };
-    
-        public override string Gather()
-        {
-            Arguments.Insert(0, "OpenEditor");return base.Gather();
-        }
     }
 
     protected readonly OpenEditorConfig OpenEditorStorage = new();
@@ -8882,12 +14768,22 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     public  class ParseMsvcTimingInfoConfig : ToolConfig
     {
         public override string Name => "ParseMsvcTimingInfo";
+        public override string CliName => "ParseMsvcTimingInfo";
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE4;
     
         
 /// <summary>"Path to the input file"</summary>
         public virtual ParseMsvcTimingInfoConfig File(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-File=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-File");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-File",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ParseMsvcTimingInfoConfig) this;
         }
     
@@ -8896,11 +14792,6 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
         protected override ToolConfig[] Configs => _configs ??= new ToolConfig[]
         {
         };
-    
-        public override string Gather()
-        {
-            Arguments.Insert(0, "ParseMsvcTimingInfo");return base.Gather();
-        }
     }
 
     protected readonly ParseMsvcTimingInfoConfig ParseMsvcTimingInfoStorage = new();
@@ -8909,12 +14800,22 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     public  class RebasePublicIncludePathsConfig : ToolConfig
     {
         public override string Name => "RebasePublicIncludePaths";
+        public override string CliName => "RebasePublicIncludePaths";
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE4;
     
         
 /// <summary>"Specifies a project to include in the scan for source files. May be specified multiple times."</summary>
         public virtual RebasePublicIncludePathsConfig Project(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-Project=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-Project");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Project",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (RebasePublicIncludePathsConfig) this;
         }
 
@@ -8923,7 +14824,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Specifies the directory containing files to update. This may be a project/engine directory, or a subfolder."</summary>
         public virtual RebasePublicIncludePathsConfig UpdateDir(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-UpdateDir=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-UpdateDir");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-UpdateDir",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (RebasePublicIncludePathsConfig) this;
         }
 
@@ -8932,7 +14841,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"If set, causes the modified files to be written. Files will be checked out from Perforce if possible."</summary>
         public virtual RebasePublicIncludePathsConfig Write(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-Write=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-Write");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Write",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (RebasePublicIncludePathsConfig) this;
         }
     
@@ -8941,11 +14858,6 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
         protected override ToolConfig[] Configs => _configs ??= new ToolConfig[]
         {
         };
-    
-        public override string Gather()
-        {
-            Arguments.Insert(0, "RebasePublicIncludePaths");return base.Gather();
-        }
     }
 
     protected readonly RebasePublicIncludePathsConfig RebasePublicIncludePathsStorage = new();
@@ -8954,12 +14866,22 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     public  class RebuildHLODConfig : ToolConfig
     {
         public override string Name => "RebuildHLOD";
+        public override string CliName => "RebuildHLOD";
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE4;
     
         
     
         public virtual RebuildHLODConfig DelaySubmission(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-DelaySubmission=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-DelaySubmission");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-DelaySubmission",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (RebuildHLODConfig) this;
         }
 
@@ -8968,7 +14890,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual RebuildHLODConfig Nobuild(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-nobuild=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-nobuild");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-nobuild",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (RebuildHLODConfig) this;
         }
 
@@ -8977,7 +14907,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual RebuildHLODConfig BuildOptions(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-BuildOptions=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-BuildOptions");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-BuildOptions",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (RebuildHLODConfig) this;
         }
 
@@ -8986,7 +14924,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual RebuildHLODConfig StakeholdersEmailAddresses(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-StakeholdersEmailAddresses=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-StakeholdersEmailAddresses");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-StakeholdersEmailAddresses",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (RebuildHLODConfig) this;
         }
 
@@ -8995,7 +14941,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual RebuildHLODConfig Robomerge(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-Robomerge=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-Robomerge");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Robomerge",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (RebuildHLODConfig) this;
         }
 
@@ -9004,7 +14958,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual RebuildHLODConfig CommandletTargetName(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-CommandletTargetName=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-CommandletTargetName");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-CommandletTargetName",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (RebuildHLODConfig) this;
         }
 
@@ -9013,7 +14975,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual RebuildHLODConfig Project(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-project=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-project");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-project",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (RebuildHLODConfig) this;
         }
     
@@ -9022,11 +14992,6 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
         protected override ToolConfig[] Configs => _configs ??= new ToolConfig[]
         {
         };
-    
-        public override string Gather()
-        {
-            Arguments.Insert(0, "RebuildHLOD");return base.Gather();
-        }
     }
 
     protected readonly RebuildHLODConfig RebuildHLODStorage = new();
@@ -9036,12 +15001,22 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     public  class RebuildLightMapsConfig : ToolConfig
     {
         public override string Name => "RebuildLightMaps";
+        public override string CliName => "RebuildLightMaps";
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE4;
     
         
 /// <summary>"Absolute path to a .uproject file"</summary>
         public virtual RebuildLightMapsConfig Project(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-Project=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-Project");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Project",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (RebuildLightMapsConfig) this;
         }
 
@@ -9050,7 +15025,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"A list of '+' delimited maps we wish to build lightmaps for."</summary>
         public virtual RebuildLightMapsConfig MapsToRebuildLightMaps(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-MapsToRebuildLightMaps" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-MapsToRebuildLightMaps");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-MapsToRebuildLightMaps",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (RebuildLightMapsConfig) this;
         }
 
@@ -9059,7 +15042,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"The Target used in running the commandlet"</summary>
         public virtual RebuildLightMapsConfig CommandletTargetName(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-CommandletTargetName=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-CommandletTargetName");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-CommandletTargetName",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (RebuildLightMapsConfig) this;
         }
 
@@ -9068,7 +15059,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Users to notify of completion"</summary>
         public virtual RebuildLightMapsConfig StakeholdersEmailAddresses(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-StakeholdersEmailAddresses=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-StakeholdersEmailAddresses");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-StakeholdersEmailAddresses",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (RebuildLightMapsConfig) this;
         }
 
@@ -9077,7 +15076,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual RebuildLightMapsConfig Nobuild(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-nobuild=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-nobuild");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-nobuild",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (RebuildLightMapsConfig) this;
         }
     
@@ -9086,11 +15093,6 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
         protected override ToolConfig[] Configs => _configs ??= new ToolConfig[]
         {
         };
-    
-        public override string Gather()
-        {
-            Arguments.Insert(0, "RebuildLightMaps");return base.Gather();
-        }
     }
 
     protected readonly RebuildLightMapsConfig RebuildLightMapsStorage = new();
@@ -9099,12 +15101,22 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     public  class RecordPerformanceConfig : ToolConfig
     {
         public override string Name => "RecordPerformance";
+        public override string CliName => "RecordPerformance";
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE4;
     
         
     
         public virtual RecordPerformanceConfig DemoIndex(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-DemoIndex=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-DemoIndex");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-DemoIndex",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (RecordPerformanceConfig) this;
         }
 
@@ -9113,7 +15125,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual RecordPerformanceConfig NumOfRuns(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-NumOfRuns=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-NumOfRuns");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-NumOfRuns",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (RecordPerformanceConfig) this;
         }
 
@@ -9122,7 +15142,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual RecordPerformanceConfig SkipBuild(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-SkipBuild=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-SkipBuild");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-SkipBuild",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (RecordPerformanceConfig) this;
         }
     
@@ -9131,11 +15159,6 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
         protected override ToolConfig[] Configs => _configs ??= new ToolConfig[]
         {
         };
-    
-        public override string Gather()
-        {
-            Arguments.Insert(0, "RecordPerformance");return base.Gather();
-        }
     }
 
     protected readonly RecordPerformanceConfig RecordPerformanceStorage = new();
@@ -9144,12 +15167,22 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     public  class ReplaceAssetsUsingManifestConfig : ToolConfig
     {
         public override string Name => "ReplaceAssetsUsingManifest";
+        public override string CliName => "ReplaceAssetsUsingManifest";
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE4;
     
         
     
         public virtual ReplaceAssetsUsingManifestConfig ProjectPath(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-ProjectPath=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-ProjectPath");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-ProjectPath",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ReplaceAssetsUsingManifestConfig) this;
         }
 
@@ -9158,16 +15191,32 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual ReplaceAssetsUsingManifestConfig ManifestFile(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-ManifestFile=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-ManifestFile");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-ManifestFile",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ReplaceAssetsUsingManifestConfig) this;
         }
 
         
         
     
-        public virtual ReplaceAssetsUsingManifestConfig UE4Exe(params object[] values)
+        public virtual ReplaceAssetsUsingManifestConfig UnrealExe(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-UE4Exe=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-UE4Exe");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-UE4Exe",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ReplaceAssetsUsingManifestConfig) this;
         }
 
@@ -9176,7 +15225,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual ReplaceAssetsUsingManifestConfig ReplacedPaths(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-ReplacedPaths=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-ReplacedPaths");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-ReplacedPaths",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ReplaceAssetsUsingManifestConfig) this;
         }
 
@@ -9185,7 +15242,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual ReplaceAssetsUsingManifestConfig ReplacedClasses(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-ReplacedClasses=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-ReplacedClasses");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-ReplacedClasses",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ReplaceAssetsUsingManifestConfig) this;
         }
 
@@ -9194,7 +15259,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual ReplaceAssetsUsingManifestConfig ExcludedPaths(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-ExcludedPaths=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-ExcludedPaths");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-ExcludedPaths",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ReplaceAssetsUsingManifestConfig) this;
         }
 
@@ -9203,7 +15276,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual ReplaceAssetsUsingManifestConfig ExcludedClasses(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-ExcludedClasses=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-ExcludedClasses");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-ExcludedClasses",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ReplaceAssetsUsingManifestConfig) this;
         }
 
@@ -9212,7 +15293,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual ReplaceAssetsUsingManifestConfig BaseDir(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-BaseDir=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-BaseDir");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-BaseDir",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ReplaceAssetsUsingManifestConfig) this;
         }
 
@@ -9221,7 +15310,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual ReplaceAssetsUsingManifestConfig AssetSourcePath(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-AssetSourcePath=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-AssetSourcePath");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-AssetSourcePath",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ReplaceAssetsUsingManifestConfig) this;
         }
 
@@ -9230,7 +15327,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual ReplaceAssetsUsingManifestConfig UseExistingManifest(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-UseExistingManifest=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-UseExistingManifest");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-UseExistingManifest",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ReplaceAssetsUsingManifestConfig) this;
         }
     
@@ -9239,11 +15344,6 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
         protected override ToolConfig[] Configs => _configs ??= new ToolConfig[]
         {
         };
-    
-        public override string Gather()
-        {
-            Arguments.Insert(0, "ReplaceAssetsUsingManifest");return base.Gather();
-        }
     }
 
     protected readonly ReplaceAssetsUsingManifestConfig ReplaceAssetsUsingManifestStorage = new();
@@ -9252,12 +15352,22 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     public  class ResavePackagesConfig : ToolConfig
     {
         public override string Name => "ResavePackages";
+        public override string CliName => "ResavePackages";
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE4;
     
         
     
         public virtual ResavePackagesConfig Nobuild(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-nobuild=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-nobuild");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-nobuild",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ResavePackagesConfig) this;
         }
 
@@ -9266,7 +15376,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual ResavePackagesConfig StakeholdersEmailAddresses(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-StakeholdersEmailAddresses=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-StakeholdersEmailAddresses");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-StakeholdersEmailAddresses",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ResavePackagesConfig) this;
         }
 
@@ -9275,7 +15393,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual ResavePackagesConfig CommandletTargetName(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-CommandletTargetName=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-CommandletTargetName");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-CommandletTargetName",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ResavePackagesConfig) this;
         }
 
@@ -9284,7 +15410,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual ResavePackagesConfig Project(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-project=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-project");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-project",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ResavePackagesConfig) this;
         }
     
@@ -9293,11 +15427,6 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
         protected override ToolConfig[] Configs => _configs ??= new ToolConfig[]
         {
         };
-    
-        public override string Gather()
-        {
-            Arguments.Insert(0, "ResavePackages");return base.Gather();
-        }
     }
 
     protected readonly ResavePackagesConfig ResavePackagesStorage = new();
@@ -9306,12 +15435,22 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     public  class ResavePluginDescriptorsConfig : ToolConfig
     {
         public override string Name => "ResavePluginDescriptors";
+        public override string CliName => "ResavePluginDescriptors";
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE4;
     
         
 /// <summary>"The root directory to enumerate plugins under"</summary>
         public virtual ResavePluginDescriptorsConfig RootDir(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-RootDir=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-RootDir");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-RootDir",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ResavePluginDescriptorsConfig) this;
         }
 
@@ -9320,7 +15459,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Author to specify in the 'Created By' field."</summary>
         public virtual ResavePluginDescriptorsConfig CreatedBy(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-CreatedBy=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-CreatedBy");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-CreatedBy",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ResavePluginDescriptorsConfig) this;
         }
 
@@ -9329,7 +15476,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"URL to link to for the 'Created By' field."</summary>
         public virtual ResavePluginDescriptorsConfig CreatedByUrl(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-CreatedByUrl=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-CreatedByUrl");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-CreatedByUrl",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ResavePluginDescriptorsConfig) this;
         }
 
@@ -9338,7 +15493,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Remove the read-only flag from output files"</summary>
         public virtual ResavePluginDescriptorsConfig Force(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-Force=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-Force");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Force",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ResavePluginDescriptorsConfig) this;
         }
     
@@ -9347,11 +15510,6 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
         protected override ToolConfig[] Configs => _configs ??= new ToolConfig[]
         {
         };
-    
-        public override string Gather()
-        {
-            Arguments.Insert(0, "ResavePluginDescriptors");return base.Gather();
-        }
     }
 
     protected readonly ResavePluginDescriptorsConfig ResavePluginDescriptorsStorage = new();
@@ -9360,12 +15518,22 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     public  class ResaveProjectDescriptorsConfig : ToolConfig
     {
         public override string Name => "ResaveProjectDescriptors";
+        public override string CliName => "ResaveProjectDescriptors";
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE4;
     
         
 /// <summary>"Sets the EngineAssociation field for each project"</summary>
         public virtual ResaveProjectDescriptorsConfig EngineAssociation(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-EngineAssociation=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-EngineAssociation");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-EngineAssociation",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ResaveProjectDescriptorsConfig) this;
         }
 
@@ -9374,7 +15542,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Remove the read-only flag from output files"</summary>
         public virtual ResaveProjectDescriptorsConfig Force(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-Force=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-Force");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Force",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ResaveProjectDescriptorsConfig) this;
         }
 
@@ -9383,7 +15559,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual ResaveProjectDescriptorsConfig RootDir(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-RootDir=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-RootDir");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-RootDir",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ResaveProjectDescriptorsConfig) this;
         }
     
@@ -9392,11 +15576,6 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
         protected override ToolConfig[] Configs => _configs ??= new ToolConfig[]
         {
         };
-    
-        public override string Gather()
-        {
-            Arguments.Insert(0, "ResaveProjectDescriptors");return base.Gather();
-        }
     }
 
     protected readonly ResaveProjectDescriptorsConfig ResaveProjectDescriptorsStorage = new();
@@ -9405,12 +15584,22 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     public  class RunP4ReconcileConfig : ToolConfig
     {
         public override string Name => "RunP4Reconcile";
+        public override string CliName => "RunP4Reconcile";
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE4;
     
         
     
         public virtual RunP4ReconcileConfig Paths(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-Paths=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-Paths");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Paths",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (RunP4ReconcileConfig) this;
         }
 
@@ -9419,7 +15608,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual RunP4ReconcileConfig Description(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-Description=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-Description");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Description",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (RunP4ReconcileConfig) this;
         }
 
@@ -9428,7 +15625,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual RunP4ReconcileConfig FileType(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-FileType=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-FileType");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-FileType",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (RunP4ReconcileConfig) this;
         }
     
@@ -9437,11 +15642,6 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
         protected override ToolConfig[] Configs => _configs ??= new ToolConfig[]
         {
         };
-    
-        public override string Gather()
-        {
-            Arguments.Insert(0, "RunP4Reconcile");return base.Gather();
-        }
     }
 
     protected readonly RunP4ReconcileConfig RunP4ReconcileStorage = new();
@@ -9450,12 +15650,22 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     public  class StashTargetConfig : ToolConfig
     {
         public override string Name => "StashTarget";
+        public override string CliName => "StashTarget";
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE4;
     
         
 /// <summary>"Name of the target"</summary>
         public virtual StashTargetConfig _Name(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-Name" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-Name");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Name",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (StashTargetConfig) this;
         }
 
@@ -9464,7 +15674,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Platform that the target was built for"</summary>
         public virtual StashTargetConfig Platform(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-Platform" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-Platform");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Platform",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (StashTargetConfig) this;
         }
 
@@ -9473,7 +15691,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Architecture that the target was built for"</summary>
         public virtual StashTargetConfig Configuration(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-Configuration" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-Configuration");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Configuration",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (StashTargetConfig) this;
         }
 
@@ -9482,7 +15708,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Architecture that the target was built for"</summary>
         public virtual StashTargetConfig Architecture(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-Architecture" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-Architecture");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Architecture",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (StashTargetConfig) this;
         }
 
@@ -9491,7 +15725,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Project file for the target"</summary>
         public virtual StashTargetConfig Project(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-Project" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-Project");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Project",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (StashTargetConfig) this;
         }
 
@@ -9500,7 +15742,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Output directory to store the stashed binaries"</summary>
         public virtual StashTargetConfig To(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-To" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-To");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-To",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (StashTargetConfig) this;
         }
     
@@ -9509,11 +15759,6 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
         protected override ToolConfig[] Configs => _configs ??= new ToolConfig[]
         {
         };
-    
-        public override string Gather()
-        {
-            Arguments.Insert(0, "StashTarget");return base.Gather();
-        }
     }
 
     protected readonly StashTargetConfig StashTargetStorage = new();
@@ -9522,12 +15767,22 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     public  class UnstashTargetConfig : ToolConfig
     {
         public override string Name => "UnstashTarget";
+        public override string CliName => "UnstashTarget";
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE4;
     
         
 /// <summary>"Directory to copy from"</summary>
         public virtual UnstashTargetConfig From(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-From" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-From");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-From",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnstashTargetConfig) this;
         }
     
@@ -9536,11 +15791,6 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
         protected override ToolConfig[] Configs => _configs ??= new ToolConfig[]
         {
         };
-    
-        public override string Gather()
-        {
-            Arguments.Insert(0, "UnstashTarget");return base.Gather();
-        }
     }
 
     protected readonly UnstashTargetConfig UnstashTargetStorage = new();
@@ -9549,12 +15799,22 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     public  class SubmitUtilizationReportToECConfig : ToolConfig
     {
         public override string Name => "SubmitUtilizationReportToEC";
+        public override string CliName => "SubmitUtilizationReportToEC";
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE4;
     
         
     
         public virtual SubmitUtilizationReportToECConfig Day(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-Day=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-Day");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Day",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (SubmitUtilizationReportToECConfig) this;
         }
 
@@ -9563,7 +15823,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual SubmitUtilizationReportToECConfig FileName(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-FileName=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-FileName");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-FileName",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (SubmitUtilizationReportToECConfig) this;
         }
     
@@ -9572,11 +15840,6 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
         protected override ToolConfig[] Configs => _configs ??= new ToolConfig[]
         {
         };
-    
-        public override string Gather()
-        {
-            Arguments.Insert(0, "SubmitUtilizationReportToEC");return base.Gather();
-        }
     }
 
     protected readonly SubmitUtilizationReportToECConfig SubmitUtilizationReportToECStorage = new();
@@ -9586,12 +15849,22 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     public  class SyncBinariesFromUGSConfig : ToolConfig
     {
         public override string Name => "SyncBinariesFromUGS";
+        public override string CliName => "SyncBinariesFromUGS";
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE4;
     
         
 /// <summary>"Project to sync. Will search current path and paths in ueprojectdirs."</summary>
         public virtual SyncBinariesFromUGSConfig Project(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-project=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-project");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-project",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (SyncBinariesFromUGSConfig) this;
         }
 
@@ -9603,7 +15876,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual SyncBinariesFromUGSConfig Preview(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-preview=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-preview");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-preview",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (SyncBinariesFromUGSConfig) this;
         }
     
@@ -9612,11 +15893,6 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
         protected override ToolConfig[] Configs => _configs ??= new ToolConfig[]
         {
         };
-    
-        public override string Gather()
-        {
-            Arguments.Insert(0, "SyncBinariesFromUGS");return base.Gather();
-        }
     }
 
     protected readonly SyncBinariesFromUGSConfig SyncBinariesFromUGSStorage = new();
@@ -9625,12 +15901,22 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     public  class SyncDDCConfig : ToolConfig
     {
         public override string Name => "SyncDDC";
+        public override string CliName => "SyncDDC";
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE4;
     
         
 /// <summary>"The local DDC directory to add/remove files from"</summary>
         public virtual SyncDDCConfig LocalDir(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-LocalDir=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-LocalDir");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-LocalDir",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (SyncDDCConfig) this;
         }
 
@@ -9639,7 +15925,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"The remote DDC directory to pull from. May be specified multiple times."</summary>
         public virtual SyncDDCConfig RemoteDir(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-RemoteDir=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-RemoteDir");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-RemoteDir",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (SyncDDCConfig) this;
         }
 
@@ -9648,7 +15942,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Maximum size of the local DDC directory. TB/MB/GB/KB units are allowed."</summary>
         public virtual SyncDDCConfig MaxSize(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-MaxSize=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-MaxSize");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-MaxSize",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (SyncDDCConfig) this;
         }
 
@@ -9657,7 +15959,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Only copies files with modified timestamps in the past number of days."</summary>
         public virtual SyncDDCConfig MaxDays(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-MaxDays=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-MaxDays");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-MaxDays",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (SyncDDCConfig) this;
         }
 
@@ -9666,7 +15976,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Maximum time to run for. h/m/s units are allowed."</summary>
         public virtual SyncDDCConfig TimeLimit(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-TimeLimit=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-TimeLimit");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-TimeLimit",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (SyncDDCConfig) this;
         }
 
@@ -9675,7 +15993,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual SyncDDCConfig Preview(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-Preview=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-Preview");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Preview",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (SyncDDCConfig) this;
         }
     
@@ -9684,11 +16010,6 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
         protected override ToolConfig[] Configs => _configs ??= new ToolConfig[]
         {
         };
-    
-        public override string Gather()
-        {
-            Arguments.Insert(0, "SyncDDC");return base.Gather();
-        }
     }
 
     protected readonly SyncDDCConfig SyncDDCStorage = new();
@@ -9698,12 +16019,22 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     public  class SyncDepotPathConfig : ToolConfig
     {
         public override string Name => "SyncDepotPath";
+        public override string CliName => "SyncDepotPath";
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE4;
     
         
     
         public virtual SyncDepotPathConfig DepotPath(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-DepotPath=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-DepotPath");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-DepotPath",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (SyncDepotPathConfig) this;
         }
 
@@ -9712,7 +16043,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual SyncDepotPathConfig OutputDir(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-OutputDir=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-OutputDir");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-OutputDir",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (SyncDepotPathConfig) this;
         }
     
@@ -9721,11 +16060,6 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
         protected override ToolConfig[] Configs => _configs ??= new ToolConfig[]
         {
         };
-    
-        public override string Gather()
-        {
-            Arguments.Insert(0, "SyncDepotPath");return base.Gather();
-        }
     }
 
     protected readonly SyncDepotPathConfig SyncDepotPathStorage = new();
@@ -9735,12 +16069,22 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     public  class SyncProjectConfig : ToolConfig
     {
         public override string Name => "SyncProject";
+        public override string CliName => "SyncProject";
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE4;
     
         
 /// <summary>"Project to sync. Will search current path and paths in ueprojectdirs. If omitted will sync projectdirs"</summary>
         public virtual SyncProjectConfig Project(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-project=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-project");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-project",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (SyncProjectConfig) this;
         }
 
@@ -9749,7 +16093,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"How many threads to use when syncing. Default=2. When &gt;1 all output happens first"</summary>
         public virtual SyncProjectConfig Threads(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-threads=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-threads");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-threads",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (SyncProjectConfig) this;
         }
 
@@ -9758,7 +16110,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Changelist to sync to. If omitted will sync to latest CL of the workspace path. 0 Will Remove files!"</summary>
         public virtual SyncProjectConfig Cl(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-cl=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-cl");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-cl",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (SyncProjectConfig) this;
         }
 
@@ -9767,7 +16127,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Clean old files before building"</summary>
         public virtual SyncProjectConfig Clean(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-clean=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-clean");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-clean",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (SyncProjectConfig) this;
         }
 
@@ -9776,7 +16144,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Build after syncing"</summary>
         public virtual SyncProjectConfig Build(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-build=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-build");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-build",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (SyncProjectConfig) this;
         }
 
@@ -9785,7 +16161,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Open project editor after syncing"</summary>
         public virtual SyncProjectConfig Open(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-open=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-open");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-open",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (SyncProjectConfig) this;
         }
 
@@ -9794,7 +16178,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Generate project files after syncing"</summary>
         public virtual SyncProjectConfig Generate(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-generate=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-generate");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-generate",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (SyncProjectConfig) this;
         }
 
@@ -9803,7 +16195,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"force sync files (files opened for edit will be untouched)"</summary>
         public virtual SyncProjectConfig Force(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-force=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-force");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-force",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (SyncProjectConfig) this;
         }
 
@@ -9812,7 +16212,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Shows commands that will be executed but performs no operations"</summary>
         public virtual SyncProjectConfig Preview(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-preview=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-preview");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-preview",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (SyncProjectConfig) this;
         }
 
@@ -9821,7 +16229,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Only sync the project"</summary>
         public virtual SyncProjectConfig Projectonly(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-projectonly=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-projectonly");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-projectonly",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (SyncProjectConfig) this;
         }
 
@@ -9830,7 +16246,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Only sync this path. Can be comma-separated list."</summary>
         public virtual SyncProjectConfig Paths(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-paths=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-paths");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-paths",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (SyncProjectConfig) this;
         }
 
@@ -9839,7 +16263,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Number of retries for a timed out file. Defaults to 3"</summary>
         public virtual SyncProjectConfig Retries(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-retries=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-retries");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-retries",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (SyncProjectConfig) this;
         }
 
@@ -9848,7 +16280,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Do not set an engine version after syncing"</summary>
         public virtual SyncProjectConfig Unversioned(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-unversioned=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-unversioned");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-unversioned",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (SyncProjectConfig) this;
         }
 
@@ -9857,7 +16297,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Only sync files that match this path. Can be comma-separated list."</summary>
         public virtual SyncProjectConfig Path(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-path" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-path");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-path",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (SyncProjectConfig) this;
         }
     
@@ -9866,11 +16314,6 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
         protected override ToolConfig[] Configs => _configs ??= new ToolConfig[]
         {
         };
-    
-        public override string Gather()
-        {
-            Arguments.Insert(0, "SyncProject");return base.Gather();
-        }
     }
 
     protected readonly SyncProjectConfig SyncProjectStorage = new();
@@ -9880,16 +16323,13 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     public  class TestP4_InfoConfig : ToolConfig
     {
         public override string Name => "TestP4_Info";
+        public override string CliName => "TestP4_Info";
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE4;
     
         private ToolConfig[] _configs = null;
         protected override ToolConfig[] Configs => _configs ??= new ToolConfig[]
         {
         };
-    
-        public override string Gather()
-        {
-            Arguments.Insert(0, "TestP4_Info");return base.Gather();
-        }
     }
 
     protected readonly TestP4_InfoConfig TestP4_InfoStorage = new();
@@ -9899,12 +16339,22 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     public  class GitPullRequestConfig : ToolConfig
     {
         public override string Name => "GitPullRequest";
+        public override string CliName => "GitPullRequest";
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE4;
     
         
 /// <summary>"Directory of the Git repo."</summary>
         public virtual GitPullRequestConfig Dir(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-Dir=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-Dir");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Dir",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (GitPullRequestConfig) this;
         }
 
@@ -9913,7 +16363,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"PR # to shelve, can use a range PR=5-25"</summary>
         public virtual GitPullRequestConfig PR(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-PR=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-PR");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-PR",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (GitPullRequestConfig) this;
         }
 
@@ -9922,7 +16380,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual GitPullRequestConfig UT(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-UT=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-UT");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-UT",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (GitPullRequestConfig) this;
         }
 
@@ -9931,7 +16397,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual GitPullRequestConfig Clean(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-Clean=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-Clean");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Clean",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (GitPullRequestConfig) this;
         }
     
@@ -9940,11 +16414,6 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
         protected override ToolConfig[] Configs => _configs ??= new ToolConfig[]
         {
         };
-    
-        public override string Gather()
-        {
-            Arguments.Insert(0, "GitPullRequest");return base.Gather();
-        }
     }
 
     protected readonly GitPullRequestConfig GitPullRequestStorage = new();
@@ -9953,16 +16422,13 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     public  class TestFailConfig : ToolConfig
     {
         public override string Name => "TestFail";
+        public override string CliName => "TestFail";
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE4;
     
         private ToolConfig[] _configs = null;
         protected override ToolConfig[] Configs => _configs ??= new ToolConfig[]
         {
         };
-    
-        public override string Gather()
-        {
-            Arguments.Insert(0, "TestFail");return base.Gather();
-        }
     }
 
     protected readonly TestFailConfig TestFailStorage = new();
@@ -9971,16 +16437,13 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     public  class TestSuccessConfig : ToolConfig
     {
         public override string Name => "TestSuccess";
+        public override string CliName => "TestSuccess";
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE4;
     
         private ToolConfig[] _configs = null;
         protected override ToolConfig[] Configs => _configs ??= new ToolConfig[]
         {
         };
-    
-        public override string Gather()
-        {
-            Arguments.Insert(0, "TestSuccess");return base.Gather();
-        }
     }
 
     protected readonly TestSuccessConfig TestSuccessStorage = new();
@@ -9989,16 +16452,13 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     public  class TestMessageConfig : ToolConfig
     {
         public override string Name => "TestMessage";
+        public override string CliName => "TestMessage";
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE4;
     
         private ToolConfig[] _configs = null;
         protected override ToolConfig[] Configs => _configs ??= new ToolConfig[]
         {
         };
-    
-        public override string Gather()
-        {
-            Arguments.Insert(0, "TestMessage");return base.Gather();
-        }
     }
 
     protected readonly TestMessageConfig TestMessageStorage = new();
@@ -10007,12 +16467,22 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     public  class TestRecursionConfig : ToolConfig
     {
         public override string Name => "TestRecursion";
+        public override string CliName => "TestRecursion";
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE4;
     
         
     
         public virtual TestRecursionConfig Cmd(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-Cmd=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-Cmd");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Cmd",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (TestRecursionConfig) this;
         }
     
@@ -10021,11 +16491,6 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
         protected override ToolConfig[] Configs => _configs ??= new ToolConfig[]
         {
         };
-    
-        public override string Gather()
-        {
-            Arguments.Insert(0, "TestRecursion");return base.Gather();
-        }
     }
 
     protected readonly TestRecursionConfig TestRecursionStorage = new();
@@ -10034,16 +16499,13 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     public  class TestRecursionAutoConfig : ToolConfig
     {
         public override string Name => "TestRecursionAuto";
+        public override string CliName => "TestRecursionAuto";
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE4;
     
         private ToolConfig[] _configs = null;
         protected override ToolConfig[] Configs => _configs ??= new ToolConfig[]
         {
         };
-    
-        public override string Gather()
-        {
-            Arguments.Insert(0, "TestRecursionAuto");return base.Gather();
-        }
     }
 
     protected readonly TestRecursionAutoConfig TestRecursionAutoStorage = new();
@@ -10052,16 +16514,13 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     public  class TestMacZipConfig : ToolConfig
     {
         public override string Name => "TestMacZip";
+        public override string CliName => "TestMacZip";
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE4;
     
         private ToolConfig[] _configs = null;
         protected override ToolConfig[] Configs => _configs ??= new ToolConfig[]
         {
         };
-    
-        public override string Gather()
-        {
-            Arguments.Insert(0, "TestMacZip");return base.Gather();
-        }
     }
 
     protected readonly TestMacZipConfig TestMacZipStorage = new();
@@ -10071,16 +16530,13 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     public  class TestP4_CreateChangelistConfig : ToolConfig
     {
         public override string Name => "TestP4_CreateChangelist";
+        public override string CliName => "TestP4_CreateChangelist";
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE4;
     
         private ToolConfig[] _configs = null;
         protected override ToolConfig[] Configs => _configs ??= new ToolConfig[]
         {
         };
-    
-        public override string Gather()
-        {
-            Arguments.Insert(0, "TestP4_CreateChangelist");return base.Gather();
-        }
     }
 
     protected readonly TestP4_CreateChangelistConfig TestP4_CreateChangelistStorage = new();
@@ -10089,16 +16545,13 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     public  class TestP4_StrandCheckoutConfig : ToolConfig
     {
         public override string Name => "TestP4_StrandCheckout";
+        public override string CliName => "TestP4_StrandCheckout";
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE4;
     
         private ToolConfig[] _configs = null;
         protected override ToolConfig[] Configs => _configs ??= new ToolConfig[]
         {
         };
-    
-        public override string Gather()
-        {
-            Arguments.Insert(0, "TestP4_StrandCheckout");return base.Gather();
-        }
     }
 
     protected readonly TestP4_StrandCheckoutConfig TestP4_StrandCheckoutStorage = new();
@@ -10107,16 +16560,13 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     public  class TestP4_LabelDescriptionConfig : ToolConfig
     {
         public override string Name => "TestP4_LabelDescription";
+        public override string CliName => "TestP4_LabelDescription";
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE4;
     
         private ToolConfig[] _configs = null;
         protected override ToolConfig[] Configs => _configs ??= new ToolConfig[]
         {
         };
-    
-        public override string Gather()
-        {
-            Arguments.Insert(0, "TestP4_LabelDescription");return base.Gather();
-        }
     }
 
     protected readonly TestP4_LabelDescriptionConfig TestP4_LabelDescriptionStorage = new();
@@ -10125,16 +16575,13 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     public  class TestP4_ClientOpsConfig : ToolConfig
     {
         public override string Name => "TestP4_ClientOps";
+        public override string CliName => "TestP4_ClientOps";
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE4;
     
         private ToolConfig[] _configs = null;
         protected override ToolConfig[] Configs => _configs ??= new ToolConfig[]
         {
         };
-    
-        public override string Gather()
-        {
-            Arguments.Insert(0, "TestP4_ClientOps");return base.Gather();
-        }
     }
 
     protected readonly TestP4_ClientOpsConfig TestP4_ClientOpsStorage = new();
@@ -10143,12 +16590,22 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     public  class CleanDDCConfig : ToolConfig
     {
         public override string Name => "CleanDDC";
+        public override string CliName => "CleanDDC";
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE4;
     
         
     
         public virtual CleanDDCConfig DoIt(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-DoIt=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-DoIt");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-DoIt",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (CleanDDCConfig) this;
         }
     
@@ -10157,11 +16614,6 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
         protected override ToolConfig[] Configs => _configs ??= new ToolConfig[]
         {
         };
-    
-        public override string Gather()
-        {
-            Arguments.Insert(0, "CleanDDC");return base.Gather();
-        }
     }
 
     protected readonly CleanDDCConfig CleanDDCStorage = new();
@@ -10170,16 +16622,13 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     public  class TestTestFarmConfig : ToolConfig
     {
         public override string Name => "TestTestFarm";
+        public override string CliName => "TestTestFarm";
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE4;
     
         private ToolConfig[] _configs = null;
         protected override ToolConfig[] Configs => _configs ??= new ToolConfig[]
         {
         };
-    
-        public override string Gather()
-        {
-            Arguments.Insert(0, "TestTestFarm");return base.Gather();
-        }
     }
 
     protected readonly TestTestFarmConfig TestTestFarmStorage = new();
@@ -10188,12 +16637,22 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     public  class TestArgumentsConfig : ToolConfig
     {
         public override string Name => "TestArguments";
+        public override string CliName => "TestArguments";
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE4;
     
         
     
         public virtual TestArgumentsConfig Noxge(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-noxge=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-noxge");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-noxge",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (TestArgumentsConfig) this;
         }
 
@@ -10202,7 +16661,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual TestArgumentsConfig Dude(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-Dude=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-Dude");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Dude",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (TestArgumentsConfig) this;
         }
 
@@ -10211,7 +16678,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual TestArgumentsConfig Stuff(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-Stuff=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-Stuff");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Stuff",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (TestArgumentsConfig) this;
         }
 
@@ -10220,7 +16695,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual TestArgumentsConfig Map(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-map=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-map");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-map",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (TestArgumentsConfig) this;
         }
 
@@ -10229,7 +16712,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual TestArgumentsConfig Run(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-run=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-run");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-run",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (TestArgumentsConfig) this;
         }
     
@@ -10238,11 +16729,6 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
         protected override ToolConfig[] Configs => _configs ??= new ToolConfig[]
         {
         };
-    
-        public override string Gather()
-        {
-            Arguments.Insert(0, "TestArguments");return base.Gather();
-        }
     }
 
     protected readonly TestArgumentsConfig TestArgumentsStorage = new();
@@ -10251,16 +16737,13 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     public  class TestCombinePathsConfig : ToolConfig
     {
         public override string Name => "TestCombinePaths";
+        public override string CliName => "TestCombinePaths";
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE4;
     
         private ToolConfig[] _configs = null;
         protected override ToolConfig[] Configs => _configs ??= new ToolConfig[]
         {
         };
-    
-        public override string Gather()
-        {
-            Arguments.Insert(0, "TestCombinePaths");return base.Gather();
-        }
     }
 
     protected readonly TestCombinePathsConfig TestCombinePathsStorage = new();
@@ -10269,12 +16752,22 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     public  class TestFileUtilityConfig : ToolConfig
     {
         public override string Name => "TestFileUtility";
+        public override string CliName => "TestFileUtility";
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE4;
     
         
 /// <summary>"Filename to perform the tests on."</summary>
         public virtual TestFileUtilityConfig File(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-file=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-file");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-file",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (TestFileUtilityConfig) this;
         }
     
@@ -10283,11 +16776,6 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
         protected override ToolConfig[] Configs => _configs ??= new ToolConfig[]
         {
         };
-    
-        public override string Gather()
-        {
-            Arguments.Insert(0, "TestFileUtility");return base.Gather();
-        }
     }
 
     protected readonly TestFileUtilityConfig TestFileUtilityStorage = new();
@@ -10296,12 +16784,22 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     public  class TestLogConfig : ToolConfig
     {
         public override string Name => "TestLog";
+        public override string CliName => "TestLog";
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE4;
     
         
     
         public virtual TestLogConfig Map(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-map=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-map");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-map",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (TestLogConfig) this;
         }
     
@@ -10310,11 +16808,6 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
         protected override ToolConfig[] Configs => _configs ??= new ToolConfig[]
         {
         };
-    
-        public override string Gather()
-        {
-            Arguments.Insert(0, "TestLog");return base.Gather();
-        }
     }
 
     protected readonly TestLogConfig TestLogStorage = new();
@@ -10324,12 +16817,22 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     public  class TestChangeFileTypeConfig : ToolConfig
     {
         public override string Name => "TestChangeFileType";
+        public override string CliName => "TestChangeFileType";
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE4;
     
         
 /// <summary>"Binary file to change the filetype to writeable"</summary>
         public virtual TestChangeFileTypeConfig File(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-File=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-File");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-File",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (TestChangeFileTypeConfig) this;
         }
     
@@ -10338,11 +16841,6 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
         protected override ToolConfig[] Configs => _configs ??= new ToolConfig[]
         {
         };
-    
-        public override string Gather()
-        {
-            Arguments.Insert(0, "TestChangeFileType");return base.Gather();
-        }
     }
 
     protected readonly TestChangeFileTypeConfig TestChangeFileTypeStorage = new();
@@ -10351,16 +16849,13 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     public  class TestUATBuildProductsConfig : ToolConfig
     {
         public override string Name => "TestUATBuildProducts";
+        public override string CliName => "TestUATBuildProducts";
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE4;
     
         private ToolConfig[] _configs = null;
         protected override ToolConfig[] Configs => _configs ??= new ToolConfig[]
         {
         };
-    
-        public override string Gather()
-        {
-            Arguments.Insert(0, "TestUATBuildProducts");return base.Gather();
-        }
     }
 
     protected readonly TestUATBuildProductsConfig TestUATBuildProductsStorage = new();
@@ -10369,16 +16864,13 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     public  class TestOSSCommandsConfig : ToolConfig
     {
         public override string Name => "TestOSSCommands";
+        public override string CliName => "TestOSSCommands";
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE4;
     
         private ToolConfig[] _configs = null;
         protected override ToolConfig[] Configs => _configs ??= new ToolConfig[]
         {
         };
-    
-        public override string Gather()
-        {
-            Arguments.Insert(0, "TestOSSCommands");return base.Gather();
-        }
     }
 
     protected readonly TestOSSCommandsConfig TestOSSCommandsStorage = new();
@@ -10387,12 +16879,22 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     public  class UBTConfig : ToolConfig
     {
         public override string Name => "UBT";
+        public override string CliName => "UBT";
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE4;
     
         
 /// <summary>"Disable XGE"</summary>
         public virtual UBTConfig NoXGE(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-NoXGE" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-NoXGE");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-NoXGE",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UBTConfig) this;
         }
 
@@ -10401,7 +16903,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Clean build products before building"</summary>
         public virtual UBTConfig Clean(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-Clean=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-Clean");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Clean",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UBTConfig) this;
         }
     
@@ -10410,11 +16920,6 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
         protected override ToolConfig[] Configs => _configs ??= new ToolConfig[]
         {
         };
-    
-        public override string Gather()
-        {
-            Arguments.Insert(0, "UBT");return base.Gather();
-        }
     }
 
     protected readonly UBTConfig UBTStorage = new();
@@ -10424,12 +16929,22 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     public  class SyncSourceConfig : ToolConfig
     {
         public override string Name => "SyncSource";
+        public override string CliName => "SyncSource";
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE4;
     
         
 /// <summary>"Optional branch depot path, default is: -Branch=//depot/UE4"</summary>
         public virtual SyncSourceConfig Branch(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-Branch=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-Branch");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Branch",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (SyncSourceConfig) this;
         }
 
@@ -10438,7 +16953,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Optional changelist to sync (default is latest), -CL=1234567"</summary>
         public virtual SyncSourceConfig CL(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-CL=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-CL");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-CL",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (SyncSourceConfig) this;
         }
 
@@ -10447,7 +16970,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Optional list of branch subforlders to always sync separated with '+', default is: -Sync=Engine/Binaries/ThirdParty+Engine/Content"</summary>
         public virtual SyncSourceConfig Sync(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-Sync=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-Sync");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Sync",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (SyncSourceConfig) this;
         }
 
@@ -10456,7 +16987,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Optional list of folder names to exclude from syncing, separated with '+', default is: -Exclude=Binaries+Content+Documentation+DataTables"</summary>
         public virtual SyncSourceConfig Exclude(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-Exclude=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-Exclude");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Exclude",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (SyncSourceConfig) this;
         }
     
@@ -10465,11 +17004,6 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
         protected override ToolConfig[] Configs => _configs ??= new ToolConfig[]
         {
         };
-    
-        public override string Gather()
-        {
-            Arguments.Insert(0, "SyncSource");return base.Gather();
-        }
     }
 
     protected readonly SyncSourceConfig SyncSourceStorage = new();
@@ -10478,12 +17012,22 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     public  class GenerateAutomationProjectConfig : ToolConfig
     {
         public override string Name => "GenerateAutomationProject";
+        public override string CliName => "GenerateAutomationProject";
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE4;
     
         
 /// <summary>"Short name of the project, i.e. QAGame"</summary>
         public virtual GenerateAutomationProjectConfig Project(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-project=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-project");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-project",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (GenerateAutomationProjectConfig) this;
         }
 
@@ -10492,7 +17036,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Absolute path to the project root directory, i.e. C:\\UE4\\QAGame"</summary>
         public virtual GenerateAutomationProjectConfig Path(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-path=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-path");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-path",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (GenerateAutomationProjectConfig) this;
         }
     
@@ -10501,11 +17053,6 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
         protected override ToolConfig[] Configs => _configs ??= new ToolConfig[]
         {
         };
-    
-        public override string Gather()
-        {
-            Arguments.Insert(0, "GenerateAutomationProject");return base.Gather();
-        }
     }
 
     protected readonly GenerateAutomationProjectConfig GenerateAutomationProjectStorage = new();
@@ -10514,16 +17061,13 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     public  class DumpBranchConfig : ToolConfig
     {
         public override string Name => "DumpBranch";
+        public override string CliName => "DumpBranch";
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE4;
     
         private ToolConfig[] _configs = null;
         protected override ToolConfig[] Configs => _configs ??= new ToolConfig[]
         {
         };
-    
-        public override string Gather()
-        {
-            Arguments.Insert(0, "DumpBranch");return base.Gather();
-        }
     }
 
     protected readonly DumpBranchConfig DumpBranchStorage = new();
@@ -10532,16 +17076,13 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     public  class DebugSleepConfig : ToolConfig
     {
         public override string Name => "DebugSleep";
+        public override string CliName => "DebugSleep";
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE4;
     
         private ToolConfig[] _configs = null;
         protected override ToolConfig[] Configs => _configs ??= new ToolConfig[]
         {
         };
-    
-        public override string Gather()
-        {
-            Arguments.Insert(0, "DebugSleep");return base.Gather();
-        }
     }
 
     protected readonly DebugSleepConfig DebugSleepStorage = new();
@@ -10550,16 +17091,13 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     public  class TestMcpConfigsConfig : ToolConfig
     {
         public override string Name => "TestMcpConfigs";
+        public override string CliName => "TestMcpConfigs";
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE4;
     
         private ToolConfig[] _configs = null;
         protected override ToolConfig[] Configs => _configs ??= new ToolConfig[]
         {
         };
-    
-        public override string Gather()
-        {
-            Arguments.Insert(0, "TestMcpConfigs");return base.Gather();
-        }
     }
 
     protected readonly TestMcpConfigsConfig TestMcpConfigsStorage = new();
@@ -10569,12 +17107,22 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     public  class TestBlameConfig : ToolConfig
     {
         public override string Name => "TestBlame";
+        public override string CliName => "TestBlame";
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE4;
     
         
 /// <summary>"(Optional) Filename of the file to produce a blame output for"</summary>
         public virtual TestBlameConfig File(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-File=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-File");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-File",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (TestBlameConfig) this;
         }
 
@@ -10583,7 +17131,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"(Optional) File to save the blame result to."</summary>
         public virtual TestBlameConfig Out(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-Out=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-Out");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Out",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (TestBlameConfig) this;
         }
 
@@ -10592,7 +17148,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"If specified, will use Timelapse command instead of Blame"</summary>
         public virtual TestBlameConfig Timelapse(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-Timelapse=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-Timelapse");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Timelapse",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (TestBlameConfig) this;
         }
     
@@ -10601,11 +17165,6 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
         protected override ToolConfig[] Configs => _configs ??= new ToolConfig[]
         {
         };
-    
-        public override string Gather()
-        {
-            Arguments.Insert(0, "TestBlame");return base.Gather();
-        }
     }
 
     protected readonly TestBlameConfig TestBlameStorage = new();
@@ -10615,12 +17174,22 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     public  class TestChangesConfig : ToolConfig
     {
         public override string Name => "TestChanges";
+        public override string CliName => "TestChanges";
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE4;
     
         
     
         public virtual TestChangesConfig CommandParam(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-CommandParam=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-CommandParam");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-CommandParam",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (TestChangesConfig) this;
         }
     
@@ -10629,11 +17198,6 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
         protected override ToolConfig[] Configs => _configs ??= new ToolConfig[]
         {
         };
-    
-        public override string Gather()
-        {
-            Arguments.Insert(0, "TestChanges");return base.Gather();
-        }
     }
 
     protected readonly TestChangesConfig TestChangesStorage = new();
@@ -10642,16 +17206,13 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     public  class TestKillAllConfig : ToolConfig
     {
         public override string Name => "TestKillAll";
+        public override string CliName => "TestKillAll";
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE4;
     
         private ToolConfig[] _configs = null;
         protected override ToolConfig[] Configs => _configs ??= new ToolConfig[]
         {
         };
-    
-        public override string Gather()
-        {
-            Arguments.Insert(0, "TestKillAll");return base.Gather();
-        }
     }
 
     protected readonly TestKillAllConfig TestKillAllStorage = new();
@@ -10660,12 +17221,22 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     public  class TestCleanFormalBuildsConfig : ToolConfig
     {
         public override string Name => "TestCleanFormalBuilds";
+        public override string CliName => "TestCleanFormalBuilds";
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE4;
     
         
     
         public virtual TestCleanFormalBuildsConfig Dir(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-Dir=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-Dir");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Dir",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (TestCleanFormalBuildsConfig) this;
         }
     
@@ -10674,11 +17245,6 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
         protected override ToolConfig[] Configs => _configs ??= new ToolConfig[]
         {
         };
-    
-        public override string Gather()
-        {
-            Arguments.Insert(0, "TestCleanFormalBuilds");return base.Gather();
-        }
     }
 
     protected readonly TestCleanFormalBuildsConfig TestCleanFormalBuildsStorage = new();
@@ -10687,16 +17253,13 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     public  class TestStopProcessConfig : ToolConfig
     {
         public override string Name => "TestStopProcess";
+        public override string CliName => "TestStopProcess";
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE4;
     
         private ToolConfig[] _configs = null;
         protected override ToolConfig[] Configs => _configs ??= new ToolConfig[]
         {
         };
-    
-        public override string Gather()
-        {
-            Arguments.Insert(0, "TestStopProcess");return base.Gather();
-        }
     }
 
     protected readonly TestStopProcessConfig TestStopProcessStorage = new();
@@ -10705,12 +17268,22 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     public  class LookForOverlappingBuildProductsConfig : ToolConfig
     {
         public override string Name => "LookForOverlappingBuildProducts";
+        public override string CliName => "LookForOverlappingBuildProducts";
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE4;
     
         
 /// <summary>"full path of xml to look at"</summary>
         public virtual LookForOverlappingBuildProductsConfig Source(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-Source" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-Source");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Source",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (LookForOverlappingBuildProductsConfig) this;
         }
 
@@ -10719,7 +17292,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual LookForOverlappingBuildProductsConfig Source_(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-Source==" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-Source=");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Source=",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (LookForOverlappingBuildProductsConfig) this;
         }
     
@@ -10728,11 +17309,6 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
         protected override ToolConfig[] Configs => _configs ??= new ToolConfig[]
         {
         };
-    
-        public override string Gather()
-        {
-            Arguments.Insert(0, "LookForOverlappingBuildProducts");return base.Gather();
-        }
     }
 
     protected readonly LookForOverlappingBuildProductsConfig LookForOverlappingBuildProductsStorage = new();
@@ -10741,12 +17317,22 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     public  class TestThreadedCopyFilesConfig : ToolConfig
     {
         public override string Name => "TestThreadedCopyFiles";
+        public override string CliName => "TestThreadedCopyFiles";
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE4;
     
         
 /// <summary>"Source path"</summary>
         public virtual TestThreadedCopyFilesConfig Source(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-Source" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-Source");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Source",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (TestThreadedCopyFilesConfig) this;
         }
 
@@ -10755,7 +17341,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Destination path"</summary>
         public virtual TestThreadedCopyFilesConfig Dest(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-Dest" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-Dest");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Dest",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (TestThreadedCopyFilesConfig) this;
         }
 
@@ -10764,7 +17358,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Number of threads used to copy files (64 by default)"</summary>
         public virtual TestThreadedCopyFilesConfig Threads(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-Threads" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-Threads");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Threads",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (TestThreadedCopyFilesConfig) this;
         }
 
@@ -10773,7 +17375,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual TestThreadedCopyFilesConfig Source_(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-Source==" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-Source=");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Source=",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (TestThreadedCopyFilesConfig) this;
         }
 
@@ -10782,7 +17392,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual TestThreadedCopyFilesConfig Dest_(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-Dest==" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-Dest=");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Dest=",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (TestThreadedCopyFilesConfig) this;
         }
 
@@ -10791,7 +17409,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual TestThreadedCopyFilesConfig Threads_(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-Threads==" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-Threads=");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Threads=",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (TestThreadedCopyFilesConfig) this;
         }
     
@@ -10800,44 +17426,46 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
         protected override ToolConfig[] Configs => _configs ??= new ToolConfig[]
         {
         };
-    
-        public override string Gather()
-        {
-            Arguments.Insert(0, "TestThreadedCopyFiles");return base.Gather();
-        }
     }
 
     protected readonly TestThreadedCopyFilesConfig TestThreadedCopyFilesStorage = new();
         
     
-    public  class UE4BuildUtilDummyBuildCommandConfig : ToolConfig
+    public  class UnrealBuildUtilDummyBuildCommandConfig : ToolConfig
     {
-        public override string Name => "UE4BuildUtilDummyBuildCommand";
+        public override string Name => "UnrealBuildUtilDummyBuildCommand";
+        public override string CliName => "UE4BuildUtilDummyBuildCommand";
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE4;
     
         private ToolConfig[] _configs = null;
         protected override ToolConfig[] Configs => _configs ??= new ToolConfig[]
         {
         };
-    
-        public override string Gather()
-        {
-            Arguments.Insert(0, "UE4BuildUtilDummyBuildCommand");return base.Gather();
-        }
     }
 
-    protected readonly UE4BuildUtilDummyBuildCommandConfig UE4BuildUtilDummyBuildCommandStorage = new();
+    protected readonly UnrealBuildUtilDummyBuildCommandConfig UnrealBuildUtilDummyBuildCommandStorage = new();
         
 /// <summary>Updates your local versions based on your P4 sync</summary>
 /// <remarks>WARNING: This command might require Perforce</remarks>
     public  class UpdateLocalVersionConfig : ToolConfig
     {
         public override string Name => "UpdateLocalVersion";
+        public override string CliName => "UpdateLocalVersion";
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE4;
     
         
 /// <summary>"Overrides the automatically disovered changelist number with the specified one"</summary>
         public virtual UpdateLocalVersionConfig CL(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-CL=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-CL");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-CL",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UpdateLocalVersionConfig) this;
         }
 
@@ -10846,7 +17474,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Overrides the changelist that the engine is API-compatible with"</summary>
         public virtual UpdateLocalVersionConfig CompatibleCL(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-CompatibleCL=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-CompatibleCL");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-CompatibleCL",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UpdateLocalVersionConfig) this;
         }
 
@@ -10855,7 +17491,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Value for whether this is a promoted build (defaults to 1)."</summary>
         public virtual UpdateLocalVersionConfig Promoted(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-Promoted" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-Promoted");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Promoted",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UpdateLocalVersionConfig) this;
         }
 
@@ -10864,7 +17508,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Overrides the branch string."</summary>
         public virtual UpdateLocalVersionConfig Branch(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-Branch" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-Branch");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Branch",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UpdateLocalVersionConfig) this;
         }
 
@@ -10873,7 +17525,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"When updating version files, store the changelist number in licensee format"</summary>
         public virtual UpdateLocalVersionConfig Licensee(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-Licensee" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-Licensee");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Licensee",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UpdateLocalVersionConfig) this;
         }
 
@@ -10882,7 +17542,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual UpdateLocalVersionConfig Build(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-Build=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-Build");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Build",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UpdateLocalVersionConfig) this;
         }
     
@@ -10891,11 +17559,6 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
         protected override ToolConfig[] Configs => _configs ??= new ToolConfig[]
         {
         };
-    
-        public override string Gather()
-        {
-            Arguments.Insert(0, "UpdateLocalVersion");return base.Gather();
-        }
     }
 
     protected readonly UpdateLocalVersionConfig UpdateLocalVersionStorage = new();
@@ -10904,12 +17567,22 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     public  class UploadDDCToAWSConfig : ToolConfig
     {
         public override string Name => "UploadDDCToAWS";
+        public override string CliName => "UploadDDCToAWS";
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE4;
     
         
     
         public virtual UploadDDCToAWSConfig Days(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-Days=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-Days");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Days",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UploadDDCToAWSConfig) this;
         }
 
@@ -10918,7 +17591,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual UploadDDCToAWSConfig MaxFileSize(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-MaxFileSize=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-MaxFileSize");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-MaxFileSize",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UploadDDCToAWSConfig) this;
         }
 
@@ -10927,7 +17608,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual UploadDDCToAWSConfig KeyPrefix(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-KeyPrefix=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-KeyPrefix");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-KeyPrefix",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UploadDDCToAWSConfig) this;
         }
 
@@ -10936,7 +17625,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual UploadDDCToAWSConfig Reset(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-Reset=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-Reset");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Reset",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UploadDDCToAWSConfig) this;
         }
     
@@ -10945,11 +17642,6 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
         protected override ToolConfig[] Configs => _configs ??= new ToolConfig[]
         {
         };
-    
-        public override string Gather()
-        {
-            Arguments.Insert(0, "UploadDDCToAWS");return base.Gather();
-        }
     }
 
     protected readonly UploadDDCToAWSConfig UploadDDCToAWSStorage = new();
@@ -10958,12 +17650,22 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     public  class ZipUtilsConfig : ToolConfig
     {
         public override string Name => "ZipUtils";
+        public override string CliName => "ZipUtils";
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE4;
     
         
 /// <summary>"Path to folder that should be add to the archive."</summary>
         public virtual ZipUtilsConfig Archive(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-archive=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-archive");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-archive",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ZipUtilsConfig) this;
         }
 
@@ -10972,7 +17674,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Path to folder that should be add to the archive."</summary>
         public virtual ZipUtilsConfig Add(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-add=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-add");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-add",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ZipUtilsConfig) this;
         }
 
@@ -10981,7 +17691,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Path to folder where the archive should be extracted"</summary>
         public virtual ZipUtilsConfig Extract(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-extract=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-extract");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-extract",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ZipUtilsConfig) this;
         }
 
@@ -10990,7 +17708,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Compression Level 0 - Copy  9-Best Compression"</summary>
         public virtual ZipUtilsConfig Compression(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-compression=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-compression");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-compression",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (ZipUtilsConfig) this;
         }
     
@@ -10999,11 +17725,6 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
         protected override ToolConfig[] Configs => _configs ??= new ToolConfig[]
         {
         };
-    
-        public override string Gather()
-        {
-            Arguments.Insert(0, "ZipUtils");return base.Gather();
-        }
     }
 
     protected readonly ZipUtilsConfig ZipUtilsStorage = new();
@@ -11015,12 +17736,22 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     public  class BenchmarkBuildConfig : ToolConfig
     {
         public override string Name => "BenchmarkBuild";
+        public override string CliName => "BenchmarkBuild";
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE4;
     
         
 /// <summary>"List everything that will run but don't do it"</summary>
         public virtual BenchmarkBuildConfig Preview(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-preview=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-preview");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-preview",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BenchmarkBuildConfig) this;
         }
 
@@ -11029,7 +17760,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Do tests on the specified projec(s)t. E.g. -project=UE4+FortniteGame+QAGame"</summary>
         public virtual BenchmarkBuildConfig Project(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-project=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-project");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-project",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BenchmarkBuildConfig) this;
         }
 
@@ -11038,7 +17777,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Run all the things (except noddc)"</summary>
         public virtual BenchmarkBuildConfig All(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-all=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-all");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-all",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BenchmarkBuildConfig) this;
         }
 
@@ -11047,7 +17794,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Run all the compile things"</summary>
         public virtual BenchmarkBuildConfig Allcompile(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-allcompile=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-allcompile");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-allcompile",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BenchmarkBuildConfig) this;
         }
 
@@ -11056,7 +17811,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Build an editor for compile tests"</summary>
         public virtual BenchmarkBuildConfig Editor(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-editor=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-editor");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-editor",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BenchmarkBuildConfig) this;
         }
 
@@ -11065,7 +17828,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Build a client for comple tests (see -platform)"</summary>
         public virtual BenchmarkBuildConfig Client(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-client=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-client");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-client",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BenchmarkBuildConfig) this;
         }
 
@@ -11074,7 +17845,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Specify the platform(s) to use for client compilation/cooking, if empty the local platform be used if -client or -cook is specified"</summary>
         public virtual BenchmarkBuildConfig Platform(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-platform=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-platform");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-platform",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BenchmarkBuildConfig) this;
         }
 
@@ -11083,7 +17862,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Do a compile with XGE / FASTBuild"</summary>
         public virtual BenchmarkBuildConfig Xge(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-xge=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-xge");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-xge",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BenchmarkBuildConfig) this;
         }
 
@@ -11092,7 +17879,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Do a compile without XGE / FASTBuild"</summary>
         public virtual BenchmarkBuildConfig Noxge(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-noxge=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-noxge");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-noxge",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BenchmarkBuildConfig) this;
         }
 
@@ -11101,7 +17896,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Do a single-file compile"</summary>
         public virtual BenchmarkBuildConfig Singlecompile(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-singlecompile=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-singlecompile");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-singlecompile",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BenchmarkBuildConfig) this;
         }
 
@@ -11110,7 +17913,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Do a nothing-needs-compiled compile"</summary>
         public virtual BenchmarkBuildConfig Nopcompile(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-nopcompile=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-nopcompile");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-nopcompile",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BenchmarkBuildConfig) this;
         }
 
@@ -11119,7 +17930,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Do noxge builds with these processor counts (default is Environment.ProcessorCount)"</summary>
         public virtual BenchmarkBuildConfig Cores(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-cores=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-cores");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-cores",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BenchmarkBuildConfig) this;
         }
 
@@ -11128,7 +17947,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Do a cook for the specified platform"</summary>
         public virtual BenchmarkBuildConfig Cook(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-cook=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-cook");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-cook",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BenchmarkBuildConfig) this;
         }
 
@@ -11137,7 +17964,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Launch the editor (only valid when -project is specified"</summary>
         public virtual BenchmarkBuildConfig Pie(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-pie=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-pie");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-pie",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BenchmarkBuildConfig) this;
         }
 
@@ -11146,7 +17981,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Map to PIE with (only valid when using a single project"</summary>
         public virtual BenchmarkBuildConfig Map(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-map=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-map");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-map",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BenchmarkBuildConfig) this;
         }
 
@@ -11155,7 +17998,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Cook / PIE with a warm DDC"</summary>
         public virtual BenchmarkBuildConfig Warmddc(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-warmddc=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-warmddc");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-warmddc",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BenchmarkBuildConfig) this;
         }
 
@@ -11164,7 +18015,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Cook / PIE with a hot local DDC (an untimed pre-run is performed)"</summary>
         public virtual BenchmarkBuildConfig Hotddc(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-hotddc=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-hotddc");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-hotddc",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BenchmarkBuildConfig) this;
         }
 
@@ -11173,7 +18032,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Cook / PIE with a cold local DDC (a temporary folder is used)"</summary>
         public virtual BenchmarkBuildConfig Coldddc(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-coldddc=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-coldddc");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-coldddc",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BenchmarkBuildConfig) this;
         }
 
@@ -11182,7 +18049,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Cook / PIE with no shaders in the DDC"</summary>
         public virtual BenchmarkBuildConfig Noshaderddc(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-noshaderddc=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-noshaderddc");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-noshaderddc",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BenchmarkBuildConfig) this;
         }
 
@@ -11191,7 +18066,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"How many times to perform each test)"</summary>
         public virtual BenchmarkBuildConfig Iterations(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-iterations=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-iterations");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-iterations",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BenchmarkBuildConfig) this;
         }
 
@@ -11200,7 +18083,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"How many seconds to wait between each test)"</summary>
         public virtual BenchmarkBuildConfig Wait(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-wait=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-wait");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-wait",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BenchmarkBuildConfig) this;
         }
 
@@ -11209,7 +18100,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Name/path of file to write CSV results to. If empty the local machine name will be used"</summary>
         public virtual BenchmarkBuildConfig Filename(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-filename=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-filename");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-filename",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BenchmarkBuildConfig) this;
         }
 
@@ -11218,7 +18117,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Don't build from clean. (Mostly just to speed things up when testing)"</summary>
         public virtual BenchmarkBuildConfig Noclean(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-noclean" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-noclean");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-noclean",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BenchmarkBuildConfig) this;
         }
 
@@ -11227,7 +18134,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Extra args to use when cooking. -CookArgs1=\"-foo\" -CookArgs2=\"-bar\" will run two cooks with each argument set"</summary>
         public virtual BenchmarkBuildConfig CookArgs(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-CookArgs=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-CookArgs");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-CookArgs",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BenchmarkBuildConfig) this;
         }
 
@@ -11236,7 +18151,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>"Extra args to use when running the editor. -PIEArgs1=\"-foo\" -PIEArgs2=\"-bar\" will run two PIE tests with each argument set"</summary>
         public virtual BenchmarkBuildConfig PIEArgs(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-PIEArgs=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-PIEArgs");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-PIEArgs",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BenchmarkBuildConfig) this;
         }
 
@@ -11245,7 +18168,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual BenchmarkBuildConfig Ue4(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-ue4=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-ue4");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-ue4",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BenchmarkBuildConfig) this;
         }
 
@@ -11254,7 +18185,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual BenchmarkBuildConfig Fastbuild(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-fastbuild=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-fastbuild");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-fastbuild",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BenchmarkBuildConfig) this;
         }
 
@@ -11263,7 +18202,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual BenchmarkBuildConfig Nofastbuild(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-nofastbuild=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-nofastbuild");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-nofastbuild",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BenchmarkBuildConfig) this;
         }
 
@@ -11272,7 +18219,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual BenchmarkBuildConfig Projects(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-projects=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-projects");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-projects",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BenchmarkBuildConfig) this;
         }
 
@@ -11281,7 +18236,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual BenchmarkBuildConfig Platforms(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-platforms=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-platforms");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-platforms",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BenchmarkBuildConfig) this;
         }
     
@@ -11290,11 +18253,6 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
         protected override ToolConfig[] Configs => _configs ??= new ToolConfig[]
         {
         };
-    
-        public override string Gather()
-        {
-            Arguments.Insert(0, "BenchmarkBuild");return base.Gather();
-        }
     }
 
     protected readonly BenchmarkBuildConfig BenchmarkBuildStorage = new();
@@ -11303,12 +18261,22 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     public  class BenchmarkOptionsConfig : ToolConfig
     {
         public override string Name => "BenchmarkOptions";
+        public override string CliName => "BenchmarkOptions";
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE4;
     
         
     
         public virtual BenchmarkOptionsConfig All(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-all=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-all");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-all",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BenchmarkOptionsConfig) this;
         }
 
@@ -11317,7 +18285,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual BenchmarkOptionsConfig Allcompile(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-allcompile=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-allcompile");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-allcompile",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BenchmarkOptionsConfig) this;
         }
 
@@ -11326,7 +18302,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual BenchmarkOptionsConfig Preview(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-preview=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-preview");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-preview",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BenchmarkOptionsConfig) this;
         }
 
@@ -11335,7 +18319,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual BenchmarkOptionsConfig Ue4(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-ue4=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-ue4");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-ue4",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BenchmarkOptionsConfig) this;
         }
 
@@ -11344,7 +18336,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual BenchmarkOptionsConfig Editor(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-editor=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-editor");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-editor",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BenchmarkOptionsConfig) this;
         }
 
@@ -11353,7 +18353,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual BenchmarkOptionsConfig Client(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-client=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-client");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-client",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BenchmarkOptionsConfig) this;
         }
 
@@ -11362,7 +18370,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual BenchmarkOptionsConfig Nopcompile(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-nopcompile=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-nopcompile");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-nopcompile",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BenchmarkOptionsConfig) this;
         }
 
@@ -11371,7 +18387,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual BenchmarkOptionsConfig Singlecompile(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-singlecompile=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-singlecompile");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-singlecompile",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BenchmarkOptionsConfig) this;
         }
 
@@ -11380,7 +18404,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual BenchmarkOptionsConfig Xge(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-xge=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-xge");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-xge",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BenchmarkOptionsConfig) this;
         }
 
@@ -11389,7 +18421,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual BenchmarkOptionsConfig Fastbuild(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-fastbuild=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-fastbuild");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-fastbuild",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BenchmarkOptionsConfig) this;
         }
 
@@ -11398,7 +18438,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual BenchmarkOptionsConfig Noxge(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-noxge=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-noxge");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-noxge",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BenchmarkOptionsConfig) this;
         }
 
@@ -11407,7 +18455,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual BenchmarkOptionsConfig Nofastbuild(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-nofastbuild=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-nofastbuild");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-nofastbuild",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BenchmarkOptionsConfig) this;
         }
 
@@ -11416,7 +18472,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual BenchmarkOptionsConfig Cook(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-cook=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-cook");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-cook",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BenchmarkOptionsConfig) this;
         }
 
@@ -11425,7 +18489,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual BenchmarkOptionsConfig Pie(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-pie=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-pie");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-pie",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BenchmarkOptionsConfig) this;
         }
 
@@ -11434,7 +18506,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual BenchmarkOptionsConfig Warmddc(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-warmddc=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-warmddc");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-warmddc",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BenchmarkOptionsConfig) this;
         }
 
@@ -11443,7 +18523,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual BenchmarkOptionsConfig Hotddc(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-hotddc=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-hotddc");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-hotddc",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BenchmarkOptionsConfig) this;
         }
 
@@ -11452,7 +18540,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual BenchmarkOptionsConfig Coldddc(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-coldddc=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-coldddc");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-coldddc",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BenchmarkOptionsConfig) this;
         }
 
@@ -11461,7 +18557,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual BenchmarkOptionsConfig Noshaderddc(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-noshaderddc=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-noshaderddc");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-noshaderddc",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BenchmarkOptionsConfig) this;
         }
 
@@ -11470,7 +18574,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual BenchmarkOptionsConfig Iterations(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-Iterations=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-Iterations");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Iterations",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BenchmarkOptionsConfig) this;
         }
 
@@ -11479,7 +18591,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual BenchmarkOptionsConfig Wait(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-Wait=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-Wait");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Wait",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BenchmarkOptionsConfig) this;
         }
 
@@ -11488,7 +18608,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual BenchmarkOptionsConfig CookArgs(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-CookArgs=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-CookArgs");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-CookArgs",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BenchmarkOptionsConfig) this;
         }
 
@@ -11497,7 +18625,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual BenchmarkOptionsConfig PIEArgs(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-PIEArgs=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-PIEArgs");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-PIEArgs",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BenchmarkOptionsConfig) this;
         }
 
@@ -11506,7 +18642,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual BenchmarkOptionsConfig FileName(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-filename=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-filename");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-filename",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BenchmarkOptionsConfig) this;
         }
 
@@ -11515,7 +18659,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual BenchmarkOptionsConfig Project(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-project=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-project");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-project",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BenchmarkOptionsConfig) this;
         }
 
@@ -11524,7 +18676,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual BenchmarkOptionsConfig Projects(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-projects=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-projects");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-projects",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BenchmarkOptionsConfig) this;
         }
 
@@ -11533,7 +18693,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual BenchmarkOptionsConfig Platform(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-platform=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-platform");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-platform",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BenchmarkOptionsConfig) this;
         }
 
@@ -11542,7 +18710,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual BenchmarkOptionsConfig Platforms(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-platforms=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-platforms");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-platforms",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BenchmarkOptionsConfig) this;
         }
 
@@ -11551,7 +18727,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual BenchmarkOptionsConfig Cores(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-cores=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-cores");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-cores",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BenchmarkOptionsConfig) this;
         }
 
@@ -11560,7 +18744,15 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
     
         public virtual BenchmarkOptionsConfig Map(params object[] values)
         {
-            AppendArgument(values != null && values.Length > 0 ? "-map=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-map");
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-map",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (BenchmarkOptionsConfig) this;
         }
     
@@ -11569,11 +18761,6 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
         protected override ToolConfig[] Configs => _configs ??= new ToolConfig[]
         {
         };
-    
-        public override string Gather()
-        {
-            Arguments.Insert(0, "BenchmarkOptions");return base.Gather();
-        }
     }
 
     protected readonly BenchmarkOptionsConfig BenchmarkOptionsStorage = new();
@@ -11588,7 +18775,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                 P4EnvironmentStorage,
                 P4WriteConfigStorage,
                 ProjectParamsStorage,
-                UE4BuildStorage,
+                UnrealBuildStorage,
                 BuildTargetStorage,
                 BuildGraphStorage,
                 BuildStorage,
@@ -11701,7 +18888,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                 TestStopProcessStorage,
                 LookForOverlappingBuildProductsStorage,
                 TestThreadedCopyFilesStorage,
-                UE4BuildUtilDummyBuildCommandStorage,
+                UnrealBuildUtilDummyBuildCommandStorage,
                 UpdateLocalVersionStorage,
                 UploadDDCToAWSStorage,
                 ZipUtilsStorage,
@@ -11761,10 +18948,10 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
         return (UnrealAutomationToolConfig) this;
     }
 
-    public UnrealAutomationToolConfig UE4Build(Action<UE4BuildConfig> configurator)
+    public UnrealAutomationToolConfig UnrealBuild(Action<UnrealBuildConfig> configurator)
     {
-        configurator?.Invoke(UE4BuildStorage);
-        AppendSubtool(UE4BuildStorage);
+        configurator?.Invoke(UnrealBuildStorage);
+        AppendSubtool(UnrealBuildStorage);
         return (UnrealAutomationToolConfig) this;
     }
 /// <summary>Builds the specified targets and configurations for the specified project.
@@ -12582,10 +19769,10 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
         return (UnrealAutomationToolConfig) this;
     }
 
-    public UnrealAutomationToolConfig UE4BuildUtilDummyBuildCommand(Action<UE4BuildUtilDummyBuildCommandConfig> configurator)
+    public UnrealAutomationToolConfig UnrealBuildUtilDummyBuildCommand(Action<UnrealBuildUtilDummyBuildCommandConfig> configurator)
     {
-        configurator?.Invoke(UE4BuildUtilDummyBuildCommandStorage);
-        AppendSubtool(UE4BuildUtilDummyBuildCommandStorage);
+        configurator?.Invoke(UnrealBuildUtilDummyBuildCommandStorage);
+        AppendSubtool(UnrealBuildUtilDummyBuildCommandStorage);
         return (UnrealAutomationToolConfig) this;
     }
 /// <summary>Updates your local versions based on your P4 sync</summary>
@@ -12626,10 +19813,5 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
         configurator?.Invoke(BenchmarkOptionsStorage);
         AppendSubtool(BenchmarkOptionsStorage);
         return (UnrealAutomationToolConfig) this;
-    }
-
-    public override string Gather()
-    {
-        Arguments.Insert(0, "UnrealAutomationTool");return base.Gather();
     }
 }

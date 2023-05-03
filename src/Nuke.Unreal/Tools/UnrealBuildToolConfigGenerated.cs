@@ -7,103 +7,67 @@ using System.Linq;
 using System.Threading.Tasks;
 namespace Nuke.Unreal.Tools;
 
-/// <summary>
-/// Specifies which language standard to use. This enum should be kept in order, so that toolchains can check whether the requested setting is &gt;= values that they support.
-/// </summary>
+
 public enum CppStandardVersion
 {
 
-    /// <summary>
-    /// Use the default standard version
-    /// </summary>
+    
     Default,
     
-    /// <summary>
-    /// Supports C++14
-    /// </summary>
+    
     Cpp14,
     
-    /// <summary>
-    /// Supports C++17
-    /// </summary>
+    
     Cpp17,
     
-    /// <summary>
-    /// Latest standard supported by the compiler
-    /// </summary>
+    
     Latest,
     }
 
 
 
-/// <summary>
-/// Available compiler toolchains on Windows platform
-/// </summary>
+
 public enum WindowsCompiler
 {
 
-    /// <summary>
-    /// Use the default compiler. A specific value will always be used outside of configuration classes.
-    /// </summary>
+    
     Default,
     
-    /// <summary>
-    /// Use Clang for Windows, using the clang-cl driver.
-    /// </summary>
+    
     Clang,
     
-    /// <summary>
-    /// Use the Intel C++ compiler
-    /// </summary>
+    
     Intel,
     
-    /// <summary>
-    /// Visual Studio 2015 (Visual C++ 14.0)
-    /// </summary>
+    
     VisualStudio2015_DEPRECATED,
     
-    /// <summary>
-    /// Visual Studio 2015 (Visual C++ 14.0)
-    /// </summary>
+    
     VisualStudio2015,
     
-    /// <summary>
-    /// Visual Studio 2017 (Visual C++ 15.0)
-    /// </summary>
+    
     VisualStudio2017,
     
-    /// <summary>
-    /// Visual Studio 2019 (Visual C++ 16.0)
-    /// </summary>
+    
     VisualStudio2019,
     
-    /// <summary>
-    /// Visual Studio 2022 (Visual C++ 17.0)
-    /// </summary>
+    
     VisualStudio2022,
     }
 
 
 
-/// <summary>
-/// Which static analyzer to use
-/// </summary>
+
 public enum WindowsStaticAnalyzer
 {
 
-    /// <summary>
-    /// Do not perform static analysis
-    /// </summary>
+    
     None,
     
-    /// <summary>
-    /// Use the built-in Visual C++ static analyzer
-    /// </summary>
+    
     VisualCpp,
     
-    /// <summary>
-    /// Use PVS-Studio for static analysis
-    /// </summary>
+    
     PVSStudio,
     }
 
@@ -121,20 +85,31 @@ public enum WindowsStaticAnalyzer
 
 
 
-/// <summary>
-/// Unreal Build Tool compiles the binaries of Unreal projects
-/// </summary>
+/// <summary>Unreal Build Tool compiles the binaries of Unreal projects</summary>
 public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 {
     public override string Name => "UnrealBuildTool";
+    public override string CliName => "";
+    public override UnrealCompatibility Compatibility => UnrealCompatibility.UE4;
     
         
 /// <summary>
 /// Enables address sanitizer (ASan).
+/// 
+/// 
+/// Enables address sanitizer (ASan)
 /// </summary>
         public virtual UnrealBuildToolConfig EnableASan(bool? val = null)
         {
-            AppendArgument(val == null ? "-EnableASan" : "-EnableASan=" + val.ToString());
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-EnableASan",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealBuildToolConfig) this;
         }
 
@@ -142,10 +117,21 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         
 /// <summary>
 /// Enables thread sanitizer (TSan).
+/// 
+/// 
+/// Enables thread sanitizer (TSan)
 /// </summary>
         public virtual UnrealBuildToolConfig EnableTSan(bool? val = null)
         {
-            AppendArgument(val == null ? "-EnableTSan" : "-EnableTSan=" + val.ToString());
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-EnableTSan",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealBuildToolConfig) this;
         }
 
@@ -153,10 +139,21 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         
 /// <summary>
 /// Enables undefined behavior sanitizer (UBSan).
+/// 
+/// 
+/// Enables undefined behavior sanitizer (UBSan)
 /// </summary>
         public virtual UnrealBuildToolConfig EnableUBSan(bool? val = null)
         {
-            AppendArgument(val == null ? "-EnableUBSan" : "-EnableUBSan=" + val.ToString());
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-EnableUBSan",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealBuildToolConfig) this;
         }
 
@@ -167,7 +164,15 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealBuildToolConfig IgnoreJunk(bool? val = null)
         {
-            AppendArgument(val == null ? "-IgnoreJunk" : "-IgnoreJunk=" + val.ToString());
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-IgnoreJunk",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealBuildToolConfig) this;
         }
 
@@ -178,7 +183,15 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealBuildToolConfig SkipBuild(bool? val = null)
         {
-            AppendArgument(val == null ? "-SkipBuild" : "-SkipBuild=" + val.ToString());
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-SkipBuild",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealBuildToolConfig) this;
         }
 
@@ -189,7 +202,15 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealBuildToolConfig SkipPreBuildTargets(bool? val = null)
         {
-            AppendArgument(val == null ? "-SkipPreBuildTargets" : "-SkipPreBuildTargets=" + val.ToString());
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-SkipPreBuildTargets",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealBuildToolConfig) this;
         }
 
@@ -200,7 +221,15 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealBuildToolConfig XGEExport(bool? val = null)
         {
-            AppendArgument(val == null ? "-XGEExport" : "-XGEExport=" + val.ToString());
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-XGEExport",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealBuildToolConfig) this;
         }
 
@@ -211,7 +240,15 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealBuildToolConfig NoEngineChanges(bool? val = null)
         {
-            AppendArgument(val == null ? "-NoEngineChanges" : "-NoEngineChanges=" + val.ToString());
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-NoEngineChanges",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealBuildToolConfig) this;
         }
 
@@ -222,7 +259,15 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealBuildToolConfig WriteOutdatedActions(object val = null)
         {
-            AppendArgument(string.IsNullOrWhiteSpace(val?.ToString()) ? "-WriteOutdatedActions" : "-WriteOutdatedActions=" + val.ToString().DoubleQuoteIfNeeded());
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-WriteOutdatedActions",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealBuildToolConfig) this;
         }
 
@@ -233,7 +278,15 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealBuildToolConfig Receipt(object val = null)
         {
-            AppendArgument(string.IsNullOrWhiteSpace(val?.ToString()) ? "-Receipt" : "-Receipt=" + val.ToString().DoubleQuoteIfNeeded());
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Receipt",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealBuildToolConfig) this;
         }
 
@@ -244,7 +297,15 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealBuildToolConfig Actions(object val = null)
         {
-            AppendArgument(string.IsNullOrWhiteSpace(val?.ToString()) ? "-Actions" : "-Actions=" + val.ToString().DoubleQuoteIfNeeded());
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Actions",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealBuildToolConfig) this;
         }
 
@@ -255,7 +316,15 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealBuildToolConfig ExecCodeGenActions(bool? val = null)
         {
-            AppendArgument(val == null ? "-ExecCodeGenActions" : "-ExecCodeGenActions=" + val.ToString());
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-ExecCodeGenActions",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealBuildToolConfig) this;
         }
 
@@ -266,7 +335,15 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealBuildToolConfig Plugin(object val = null)
         {
-            AppendArgument(string.IsNullOrWhiteSpace(val?.ToString()) ? "-Plugin" : "-Plugin=" + val.ToString().DoubleQuoteIfNeeded());
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Plugin",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealBuildToolConfig) this;
         }
 
@@ -277,7 +354,15 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealBuildToolConfig Module(object val = null)
         {
-            AppendArgument(string.IsNullOrWhiteSpace(val?.ToString()) ? "-Module" : "-Module=" + val.ToString().DoubleQuoteIfNeeded());
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Module",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealBuildToolConfig) this;
         }
 
@@ -288,7 +373,15 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealBuildToolConfig SingleFile(object val = null)
         {
-            AppendArgument(string.IsNullOrWhiteSpace(val?.ToString()) ? "-SingleFile" : "-SingleFile=" + val.ToString().DoubleQuoteIfNeeded());
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-SingleFile",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealBuildToolConfig) this;
         }
 
@@ -299,7 +392,15 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealBuildToolConfig NoHotReload(bool present = true)
         {
-            AppendArgument(present ? "-NoHotReload" : "");
+            if (present)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-NoHotReload",
+                    Value: null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealBuildToolConfig) this;
         }
 
@@ -310,7 +411,15 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealBuildToolConfig ForceHotReload(bool present = true)
         {
-            AppendArgument(present ? "-ForceHotReload" : "");
+            if (present)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-ForceHotReload",
+                    Value: null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealBuildToolConfig) this;
         }
 
@@ -321,7 +430,15 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealBuildToolConfig LiveCoding(bool present = true)
         {
-            AppendArgument(present ? "-LiveCoding" : "");
+            if (present)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-LiveCoding",
+                    Value: null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealBuildToolConfig) this;
         }
 
@@ -332,7 +449,15 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealBuildToolConfig WriteActions(object val = null)
         {
-            AppendArgument(string.IsNullOrWhiteSpace(val?.ToString()) ? "-WriteActions" : "-WriteActions=" + val.ToString().DoubleQuoteIfNeeded());
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-WriteActions",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealBuildToolConfig) this;
         }
 
@@ -343,7 +468,15 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealBuildToolConfig LiveCodingModules(object val = null)
         {
-            AppendArgument(string.IsNullOrWhiteSpace(val?.ToString()) ? "-LiveCodingModules" : "-LiveCodingModules=" + val.ToString().DoubleQuoteIfNeeded());
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-LiveCodingModules",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealBuildToolConfig) this;
         }
 
@@ -354,7 +487,15 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealBuildToolConfig LiveCodingManifest(object val = null)
         {
-            AppendArgument(string.IsNullOrWhiteSpace(val?.ToString()) ? "-LiveCodingManifest" : "-LiveCodingManifest=" + val.ToString().DoubleQuoteIfNeeded());
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-LiveCodingManifest",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealBuildToolConfig) this;
         }
 
@@ -365,7 +506,15 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealBuildToolConfig Quiet(bool? val = null)
         {
-            AppendArgument(val == null ? "-Quiet" : "-Quiet=" + val.ToString());
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Quiet",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealBuildToolConfig) this;
         }
 
@@ -374,7 +523,15 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
     
         public virtual UnrealBuildToolConfig Input(object val = null)
         {
-            AppendArgument(string.IsNullOrWhiteSpace(val?.ToString()) ? "-Input" : "-Input=" + val.ToString().DoubleQuoteIfNeeded());
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Input",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealBuildToolConfig) this;
         }
 
@@ -383,7 +540,15 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
     
         public virtual UnrealBuildToolConfig XmlConfigCache(object val = null)
         {
-            AppendArgument(string.IsNullOrWhiteSpace(val?.ToString()) ? "-XmlConfigCache" : "-XmlConfigCache=" + val.ToString().DoubleQuoteIfNeeded());
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-XmlConfigCache",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealBuildToolConfig) this;
         }
 
@@ -394,7 +559,15 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealBuildToolConfig AllModules(bool? val = null)
         {
-            AppendArgument(val == null ? "-AllModules" : "-AllModules=" + val.ToString());
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-AllModules",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealBuildToolConfig) this;
         }
 
@@ -405,7 +578,15 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealBuildToolConfig BuildPlugin(object val = null)
         {
-            AppendArgument(string.IsNullOrWhiteSpace(val?.ToString()) ? "-BuildPlugin" : "-BuildPlugin=" + val.ToString().DoubleQuoteIfNeeded());
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-BuildPlugin",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealBuildToolConfig) this;
         }
 
@@ -416,7 +597,15 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealBuildToolConfig EnablePlugin(object val = null)
         {
-            AppendArgument(string.IsNullOrWhiteSpace(val?.ToString()) ? "-EnablePlugin" : "-EnablePlugin=" + val.ToString().DoubleQuoteIfNeeded());
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-EnablePlugin",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealBuildToolConfig) this;
         }
 
@@ -428,7 +617,15 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealBuildToolConfig DisablePlugin(object val = null)
         {
-            AppendArgument(string.IsNullOrWhiteSpace(val?.ToString()) ? "-DisablePlugin" : "-DisablePlugin=" + val.ToString().DoubleQuoteIfNeeded());
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-DisablePlugin",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealBuildToolConfig) this;
         }
 
@@ -439,7 +636,15 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealBuildToolConfig CompileAsDll(bool? val = null)
         {
-            AppendArgument(val == null ? "-CompileAsDll" : "-CompileAsDll=" + val.ToString());
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-CompileAsDll",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealBuildToolConfig) this;
         }
 
@@ -450,7 +655,15 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealBuildToolConfig NoCompileChaos(bool present = true)
         {
-            AppendArgument(present ? "-NoCompileChaos" : "");
+            if (present)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-NoCompileChaos",
+                    Value: null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealBuildToolConfig) this;
         }
 
@@ -461,7 +674,15 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealBuildToolConfig CompileChaos(bool present = true)
         {
-            AppendArgument(present ? "-CompileChaos" : "");
+            if (present)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-CompileChaos",
+                    Value: null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealBuildToolConfig) this;
         }
 
@@ -472,7 +693,15 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealBuildToolConfig NoUseChaos(bool present = true)
         {
-            AppendArgument(present ? "-NoUseChaos" : "");
+            if (present)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-NoUseChaos",
+                    Value: null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealBuildToolConfig) this;
         }
 
@@ -483,7 +712,15 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealBuildToolConfig UseChaos(bool present = true)
         {
-            AppendArgument(present ? "-UseChaos" : "");
+            if (present)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-UseChaos",
+                    Value: null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealBuildToolConfig) this;
         }
 
@@ -494,7 +731,15 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealBuildToolConfig Rtti(bool? val = null)
         {
-            AppendArgument(val == null ? "-rtti" : "-rtti=" + val.ToString());
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-rtti",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealBuildToolConfig) this;
         }
 
@@ -505,7 +750,15 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealBuildToolConfig IWYU(bool? val = null)
         {
-            AppendArgument(val == null ? "-IWYU" : "-IWYU=" + val.ToString());
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-IWYU",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealBuildToolConfig) this;
         }
 
@@ -516,7 +769,15 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealBuildToolConfig Precompile(bool? val = null)
         {
-            AppendArgument(val == null ? "-Precompile" : "-Precompile=" + val.ToString());
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Precompile",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealBuildToolConfig) this;
         }
 
@@ -527,7 +788,15 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealBuildToolConfig DisableUnity(bool present = true)
         {
-            AppendArgument(present ? "-DisableUnity" : "");
+            if (present)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-DisableUnity",
+                    Value: null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealBuildToolConfig) this;
         }
 
@@ -538,7 +807,15 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealBuildToolConfig ForceUnity(bool? val = null)
         {
-            AppendArgument(val == null ? "-ForceUnity" : "-ForceUnity=" + val.ToString());
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-ForceUnity",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealBuildToolConfig) this;
         }
 
@@ -549,7 +826,15 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealBuildToolConfig ShadowVariableErrors(bool present = true)
         {
-            AppendArgument(present ? "-ShadowVariableErrors" : "");
+            if (present)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-ShadowVariableErrors",
+                    Value: null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealBuildToolConfig) this;
         }
 
@@ -560,7 +845,15 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealBuildToolConfig FastMonoCalls(bool present = true)
         {
-            AppendArgument(present ? "-FastMonoCalls" : "");
+            if (present)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-FastMonoCalls",
+                    Value: null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealBuildToolConfig) this;
         }
 
@@ -571,7 +864,15 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealBuildToolConfig NoFastMonoCalls(bool present = true)
         {
-            AppendArgument(present ? "-NoFastMonoCalls" : "");
+            if (present)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-NoFastMonoCalls",
+                    Value: null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealBuildToolConfig) this;
         }
 
@@ -582,7 +883,15 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealBuildToolConfig StressTestUnity(bool? val = null)
         {
-            AppendArgument(val == null ? "-StressTestUnity" : "-StressTestUnity=" + val.ToString());
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-StressTestUnity",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealBuildToolConfig) this;
         }
 
@@ -593,7 +902,15 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealBuildToolConfig ForceDebugInfo(bool? val = null)
         {
-            AppendArgument(val == null ? "-ForceDebugInfo" : "-ForceDebugInfo=" + val.ToString());
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-ForceDebugInfo",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealBuildToolConfig) this;
         }
 
@@ -604,7 +921,15 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealBuildToolConfig NoDebugInfo(bool? val = null)
         {
-            AppendArgument(val == null ? "-NoDebugInfo" : "-NoDebugInfo=" + val.ToString());
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-NoDebugInfo",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealBuildToolConfig) this;
         }
 
@@ -615,7 +940,15 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealBuildToolConfig NoPDB(bool present = true)
         {
-            AppendArgument(present ? "-NoPDB" : "");
+            if (present)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-NoPDB",
+                    Value: null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealBuildToolConfig) this;
         }
 
@@ -626,7 +959,15 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealBuildToolConfig NoPCH(bool present = true)
         {
-            AppendArgument(present ? "-NoPCH" : "");
+            if (present)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-NoPCH",
+                    Value: null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealBuildToolConfig) this;
         }
 
@@ -637,7 +978,15 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealBuildToolConfig Preprocess(bool? val = null)
         {
-            AppendArgument(val == null ? "-Preprocess" : "-Preprocess=" + val.ToString());
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Preprocess",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealBuildToolConfig) this;
         }
 
@@ -649,7 +998,15 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealBuildToolConfig IncrementalLinking(bool? val = null)
         {
-            AppendArgument(val == null ? "-IncrementalLinking" : "-IncrementalLinking=" + val.ToString());
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-IncrementalLinking",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealBuildToolConfig) this;
         }
 
@@ -661,7 +1018,15 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealBuildToolConfig NoIncrementalLinking(bool present = true)
         {
-            AppendArgument(present ? "-NoIncrementalLinking" : "");
+            if (present)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-NoIncrementalLinking",
+                    Value: null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealBuildToolConfig) this;
         }
 
@@ -672,7 +1037,15 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealBuildToolConfig LTCG(bool? val = null)
         {
-            AppendArgument(val == null ? "-LTCG" : "-LTCG=" + val.ToString());
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-LTCG",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealBuildToolConfig) this;
         }
 
@@ -683,7 +1056,15 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealBuildToolConfig PGOProfile(bool present = true)
         {
-            AppendArgument(present ? "-PGOProfile" : "");
+            if (present)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-PGOProfile",
+                    Value: null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealBuildToolConfig) this;
         }
 
@@ -694,7 +1075,15 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealBuildToolConfig PGOOptimize(bool present = true)
         {
-            AppendArgument(present ? "-PGOOptimize" : "");
+            if (present)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-PGOOptimize",
+                    Value: null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealBuildToolConfig) this;
         }
 
@@ -706,7 +1095,15 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealBuildToolConfig NoSharedPCH(bool present = true)
         {
-            AppendArgument(present ? "-NoSharedPCH" : "");
+            if (present)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-NoSharedPCH",
+                    Value: null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealBuildToolConfig) this;
         }
 
@@ -717,7 +1114,15 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealBuildToolConfig FastPDB(object val = null)
         {
-            AppendArgument(string.IsNullOrWhiteSpace(val?.ToString()) ? "-FastPDB" : "-FastPDB=" + val.ToString().DoubleQuoteIfNeeded());
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-FastPDB",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealBuildToolConfig) this;
         }
 
@@ -728,7 +1133,15 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealBuildToolConfig MapFile(bool? val = null)
         {
-            AppendArgument(val == null ? "-MapFile" : "-MapFile=" + val.ToString());
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-MapFile",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealBuildToolConfig) this;
         }
 
@@ -739,7 +1152,15 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealBuildToolConfig BundleVersion(object val = null)
         {
-            AppendArgument(string.IsNullOrWhiteSpace(val?.ToString()) ? "-BundleVersion" : "-BundleVersion=" + val.ToString().DoubleQuoteIfNeeded());
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-BundleVersion",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealBuildToolConfig) this;
         }
 
@@ -750,7 +1171,15 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealBuildToolConfig Deploy(bool? val = null)
         {
-            AppendArgument(val == null ? "-Deploy" : "-Deploy=" + val.ToString());
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Deploy",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealBuildToolConfig) this;
         }
 
@@ -761,7 +1190,15 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealBuildToolConfig NoLink(bool? val = null)
         {
-            AppendArgument(val == null ? "-NoLink" : "-NoLink=" + val.ToString());
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-NoLink",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealBuildToolConfig) this;
         }
 
@@ -774,7 +1211,15 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealBuildToolConfig Formal(bool? val = null)
         {
-            AppendArgument(val == null ? "-Formal" : "-Formal=" + val.ToString());
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Formal",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealBuildToolConfig) this;
         }
 
@@ -785,7 +1230,15 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealBuildToolConfig FlushMac(bool? val = null)
         {
-            AppendArgument(val == null ? "-FlushMac" : "-FlushMac=" + val.ToString());
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-FlushMac",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealBuildToolConfig) this;
         }
 
@@ -796,7 +1249,15 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealBuildToolConfig Timing(bool? val = null)
         {
-            AppendArgument(val == null ? "-Timing" : "-Timing=" + val.ToString());
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Timing",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealBuildToolConfig) this;
         }
 
@@ -807,7 +1268,15 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealBuildToolConfig Tracing(bool? val = null)
         {
-            AppendArgument(val == null ? "-Tracing" : "-Tracing=" + val.ToString());
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Tracing",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealBuildToolConfig) this;
         }
 
@@ -818,7 +1287,15 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealBuildToolConfig PublicSymbolsByDefault(bool? val = null)
         {
-            AppendArgument(val == null ? "-PublicSymbolsByDefault" : "-PublicSymbolsByDefault=" + val.ToString());
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-PublicSymbolsByDefault",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealBuildToolConfig) this;
         }
 
@@ -829,7 +1306,15 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealBuildToolConfig ToolChain(object val = null)
         {
-            AppendArgument(string.IsNullOrWhiteSpace(val?.ToString()) ? "-ToolChain" : "-ToolChain=" + val.ToString().DoubleQuoteIfNeeded());
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-ToolChain",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealBuildToolConfig) this;
         }
 
@@ -840,7 +1325,15 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealBuildToolConfig CppStd(CppStandardVersion? val = null)
         {
-            AppendArgument(val == null ? "-CppStd" : "-CppStd=" + val.ToString());
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-CppStd",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealBuildToolConfig) this;
         }
 
@@ -851,7 +1344,15 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealBuildToolConfig BuildVersion(object val = null)
         {
-            AppendArgument(string.IsNullOrWhiteSpace(val?.ToString()) ? "-BuildVersion" : "-BuildVersion=" + val.ToString().DoubleQuoteIfNeeded());
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-BuildVersion",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealBuildToolConfig) this;
         }
 
@@ -862,7 +1363,15 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealBuildToolConfig Define(object val = null)
         {
-            AppendArgument(string.IsNullOrWhiteSpace(val?.ToString()) ? "-Define" : "-Define:" + val.ToString().DoubleQuoteIfNeeded());
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Define",
+                    Value: val?.ToString(),
+                    Setter: ':',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealBuildToolConfig) this;
         }
 
@@ -873,7 +1382,15 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealBuildToolConfig ProjectDefine(object val = null)
         {
-            AppendArgument(string.IsNullOrWhiteSpace(val?.ToString()) ? "-ProjectDefine" : "-ProjectDefine:" + val.ToString().DoubleQuoteIfNeeded());
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-ProjectDefine",
+                    Value: val?.ToString(),
+                    Setter: ':',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealBuildToolConfig) this;
         }
 
@@ -884,7 +1401,15 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealBuildToolConfig Manifest(object val = null)
         {
-            AppendArgument(string.IsNullOrWhiteSpace(val?.ToString()) ? "-Manifest" : "-Manifest=" + val.ToString().DoubleQuoteIfNeeded());
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Manifest",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealBuildToolConfig) this;
         }
 
@@ -895,7 +1420,15 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealBuildToolConfig DependencyList(object val = null)
         {
-            AppendArgument(string.IsNullOrWhiteSpace(val?.ToString()) ? "-DependencyList" : "-DependencyList=" + val.ToString().DoubleQuoteIfNeeded());
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-DependencyList",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealBuildToolConfig) this;
         }
 
@@ -906,7 +1439,15 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealBuildToolConfig OverrideBuildEnvironment(bool? val = null)
         {
-            AppendArgument(val == null ? "-OverrideBuildEnvironment" : "-OverrideBuildEnvironment=" + val.ToString());
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-OverrideBuildEnvironment",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealBuildToolConfig) this;
         }
 
@@ -917,7 +1458,15 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealBuildToolConfig CompilerArguments(object val = null)
         {
-            AppendArgument(string.IsNullOrWhiteSpace(val?.ToString()) ? "-CompilerArguments" : "-CompilerArguments=" + val.ToString().DoubleQuoteIfNeeded());
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-CompilerArguments",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealBuildToolConfig) this;
         }
 
@@ -928,7 +1477,15 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealBuildToolConfig LinkerArguments(object val = null)
         {
-            AppendArgument(string.IsNullOrWhiteSpace(val?.ToString()) ? "-LinkerArguments" : "-LinkerArguments=" + val.ToString().DoubleQuoteIfNeeded());
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-LinkerArguments",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealBuildToolConfig) this;
         }
 
@@ -939,7 +1496,15 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealBuildToolConfig BuildAsFramework(bool? val = null)
         {
-            AppendArgument(val == null ? "-build-as-framework" : "-build-as-framework=" + val.ToString());
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-build-as-framework",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealBuildToolConfig) this;
         }
 
@@ -950,7 +1515,15 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealBuildToolConfig Generatedsymfile(bool? val = null)
         {
-            AppendArgument(val == null ? "-generatedsymfile" : "-generatedsymfile=" + val.ToString());
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-generatedsymfile",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealBuildToolConfig) this;
         }
 
@@ -961,7 +1534,15 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealBuildToolConfig Generatedsymbundle(bool? val = null)
         {
-            AppendArgument(val == null ? "-generatedsymbundle" : "-generatedsymbundle=" + val.ToString());
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-generatedsymbundle",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealBuildToolConfig) this;
         }
 
@@ -972,7 +1553,15 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealBuildToolConfig Architectures(object val = null)
         {
-            AppendArgument(string.IsNullOrWhiteSpace(val?.ToString()) ? "-Architectures" : "-Architectures=" + val.ToString().DoubleQuoteIfNeeded());
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Architectures",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealBuildToolConfig) this;
         }
 
@@ -983,7 +1572,15 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealBuildToolConfig GPUArchitectures(object val = null)
         {
-            AppendArgument(string.IsNullOrWhiteSpace(val?.ToString()) ? "-GPUArchitectures" : "-GPUArchitectures=" + val.ToString().DoubleQuoteIfNeeded());
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-GPUArchitectures",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealBuildToolConfig) this;
         }
 
@@ -994,7 +1591,15 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealBuildToolConfig ForceAPKGeneration(bool present = true)
         {
-            AppendArgument(present ? "-ForceAPKGeneration" : "");
+            if (present)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-ForceAPKGeneration",
+                    Value: null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealBuildToolConfig) this;
         }
 
@@ -1002,10 +1607,21 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         
 /// <summary>
 /// Version of the compiler toolchain to use on HoloLens. A value of "default" will be changed to a specific version at UBT startup.
+/// 
+/// 
+/// Version of the compiler toolchain to use on Windows platform. A value of "default" will be changed to a specific version at UBT start up.
 /// </summary>
         public virtual UnrealBuildToolConfig _2015(bool present = true)
         {
-            AppendArgument(present ? "-2015" : "");
+            if (present)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-2015",
+                    Value: null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealBuildToolConfig) this;
         }
 
@@ -1013,10 +1629,21 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         
 /// <summary>
 /// Version of the compiler toolchain to use on HoloLens. A value of "default" will be changed to a specific version at UBT startup.
+/// 
+/// 
+/// Version of the compiler toolchain to use on Windows platform. A value of "default" will be changed to a specific version at UBT start up.
 /// </summary>
         public virtual UnrealBuildToolConfig _2017(bool present = true)
         {
-            AppendArgument(present ? "-2017" : "");
+            if (present)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-2017",
+                    Value: null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealBuildToolConfig) this;
         }
 
@@ -1024,10 +1651,21 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         
 /// <summary>
 /// Version of the compiler toolchain to use on HoloLens. A value of "default" will be changed to a specific version at UBT startup.
+/// 
+/// 
+/// Version of the compiler toolchain to use on Windows platform. A value of "default" will be changed to a specific version at UBT start up.
 /// </summary>
         public virtual UnrealBuildToolConfig _2019(bool present = true)
         {
-            AppendArgument(present ? "-2019" : "");
+            if (present)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-2019",
+                    Value: null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealBuildToolConfig) this;
         }
 
@@ -1035,10 +1673,21 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         
 /// <summary>
 /// Version of the compiler toolchain to use on HoloLens. A value of "default" will be changed to a specific version at UBT startup.
+/// 
+/// 
+/// Version of the compiler toolchain to use on Windows platform. A value of "default" will be changed to a specific version at UBT start up.
 /// </summary>
         public virtual UnrealBuildToolConfig _2022(bool present = true)
         {
-            AppendArgument(present ? "-2022" : "");
+            if (present)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-2022",
+                    Value: null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealBuildToolConfig) this;
         }
 
@@ -1049,7 +1698,15 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealBuildToolConfig Stripsymbols(bool present = true)
         {
-            AppendArgument(present ? "-stripsymbols" : "");
+            if (present)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-stripsymbols",
+                    Value: null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealBuildToolConfig) this;
         }
 
@@ -1060,7 +1717,15 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealBuildToolConfig CreateStub(bool present = true)
         {
-            AppendArgument(present ? "-CreateStub" : "");
+            if (present)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-CreateStub",
+                    Value: null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealBuildToolConfig) this;
         }
 
@@ -1071,7 +1736,15 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealBuildToolConfig Alwaysgeneratedsym(bool present = true)
         {
-            AppendArgument(present ? "-alwaysgeneratedsym" : "");
+            if (present)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-alwaysgeneratedsym",
+                    Value: null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealBuildToolConfig) this;
         }
 
@@ -1082,7 +1755,15 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealBuildToolConfig Skipcrashlytics(bool? val = null)
         {
-            AppendArgument(val == null ? "-skipcrashlytics" : "-skipcrashlytics=" + val.ToString());
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-skipcrashlytics",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealBuildToolConfig) this;
         }
 
@@ -1090,10 +1771,21 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
         
 /// <summary>
 /// Mark the build for distribution
+/// 
+/// 
+/// If -distribution was passed on the commandline, this build is for distribution.
 /// </summary>
         public virtual UnrealBuildToolConfig Distribution(bool? val = null)
         {
-            AppendArgument(val == null ? "-distribution" : "-distribution=" + val.ToString());
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-distribution",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealBuildToolConfig) this;
         }
 
@@ -1104,7 +1796,15 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealBuildToolConfig ImportProvision(object val = null)
         {
-            AppendArgument(string.IsNullOrWhiteSpace(val?.ToString()) ? "-ImportProvision" : "-ImportProvision=" + val.ToString().DoubleQuoteIfNeeded());
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-ImportProvision",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealBuildToolConfig) this;
         }
 
@@ -1115,7 +1815,15 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealBuildToolConfig ImportCertificate(object val = null)
         {
-            AppendArgument(string.IsNullOrWhiteSpace(val?.ToString()) ? "-ImportCertificate" : "-ImportCertificate=" + val.ToString().DoubleQuoteIfNeeded());
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-ImportCertificate",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealBuildToolConfig) this;
         }
 
@@ -1126,7 +1834,15 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealBuildToolConfig ImportCertificatePassword(object val = null)
         {
-            AppendArgument(string.IsNullOrWhiteSpace(val?.ToString()) ? "-ImportCertificatePassword" : "-ImportCertificatePassword=" + val.ToString().DoubleQuoteIfNeeded());
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-ImportCertificatePassword",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealBuildToolConfig) this;
         }
 
@@ -1137,7 +1853,15 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealBuildToolConfig EnableMSan(bool? val = null)
         {
-            AppendArgument(val == null ? "-EnableMSan" : "-EnableMSan=" + val.ToString());
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-EnableMSan",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealBuildToolConfig) this;
         }
 
@@ -1148,7 +1872,15 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealBuildToolConfig ThinLTO(bool? val = null)
         {
-            AppendArgument(val == null ? "-ThinLTO" : "-ThinLTO=" + val.ToString());
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-ThinLTO",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealBuildToolConfig) this;
         }
 
@@ -1159,7 +1891,15 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealBuildToolConfig UsePrecompiled(bool? val = null)
         {
-            AppendArgument(val == null ? "-UsePrecompiled" : "-UsePrecompiled=" + val.ToString());
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-UsePrecompiled",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealBuildToolConfig) this;
         }
 
@@ -1170,7 +1910,15 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealBuildToolConfig NoXGE(bool present = true)
         {
-            AppendArgument(present ? "-NoXGE" : "");
+            if (present)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-NoXGE",
+                    Value: null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealBuildToolConfig) this;
         }
 
@@ -1181,7 +1929,15 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealBuildToolConfig NoFASTBuild(bool present = true)
         {
-            AppendArgument(present ? "-NoFASTBuild" : "");
+            if (present)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-NoFASTBuild",
+                    Value: null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealBuildToolConfig) this;
         }
 
@@ -1210,7 +1966,15 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealBuildToolConfig NoUBTMakefiles(bool present = true)
         {
-            AppendArgument(present ? "-NoUBTMakefiles" : "");
+            if (present)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-NoUBTMakefiles",
+                    Value: null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealBuildToolConfig) this;
         }
 
@@ -1222,7 +1986,15 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealBuildToolConfig MaxParallelActions(double? val = null)
         {
-            AppendArgument(val == null ? "-MaxParallelActions" : "-MaxParallelActions=" + val.ToString());
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-MaxParallelActions",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealBuildToolConfig) this;
         }
 
@@ -1233,7 +2005,15 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealBuildToolConfig ForceHeaderGeneration(bool? val = null)
         {
-            AppendArgument(val == null ? "-ForceHeaderGeneration" : "-ForceHeaderGeneration=" + val.ToString());
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-ForceHeaderGeneration",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealBuildToolConfig) this;
         }
 
@@ -1244,7 +2024,15 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealBuildToolConfig NoBuildUHT(bool? val = null)
         {
-            AppendArgument(val == null ? "-NoBuildUHT" : "-NoBuildUHT=" + val.ToString());
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-NoBuildUHT",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealBuildToolConfig) this;
         }
 
@@ -1255,7 +2043,15 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealBuildToolConfig FailIfGeneratedCodeChanges(bool? val = null)
         {
-            AppendArgument(val == null ? "-FailIfGeneratedCodeChanges" : "-FailIfGeneratedCodeChanges=" + val.ToString());
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-FailIfGeneratedCodeChanges",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealBuildToolConfig) this;
         }
 
@@ -1266,7 +2062,15 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealBuildToolConfig NoHotReloadFromIDE(bool present = true)
         {
-            AppendArgument(present ? "-NoHotReloadFromIDE" : "");
+            if (present)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-NoHotReloadFromIDE",
+                    Value: null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealBuildToolConfig) this;
         }
 
@@ -1277,7 +2081,15 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealBuildToolConfig SkipRulesCompile(bool? val = null)
         {
-            AppendArgument(val == null ? "-SkipRulesCompile" : "-SkipRulesCompile=" + val.ToString());
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-SkipRulesCompile",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealBuildToolConfig) this;
         }
 
@@ -1288,7 +2100,15 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealBuildToolConfig Compiler(WindowsCompiler? val = null)
         {
-            AppendArgument(val == null ? "-Compiler" : "-Compiler=" + val.ToString());
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Compiler",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealBuildToolConfig) this;
         }
 
@@ -1301,7 +2121,15 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealBuildToolConfig CompilerVersion(object val = null)
         {
-            AppendArgument(string.IsNullOrWhiteSpace(val?.ToString()) ? "-CompilerVersion" : "-CompilerVersion=" + val.ToString().DoubleQuoteIfNeeded());
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-CompilerVersion",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealBuildToolConfig) this;
         }
 
@@ -1312,7 +2140,15 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealBuildToolConfig StaticAnalyzer(WindowsStaticAnalyzer? val = null)
         {
-            AppendArgument(val == null ? "-StaticAnalyzer" : "-StaticAnalyzer=" + val.ToString());
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-StaticAnalyzer",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealBuildToolConfig) this;
         }
 
@@ -1323,7 +2159,15 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealBuildToolConfig ObjSrcMap(object val = null)
         {
-            AppendArgument(string.IsNullOrWhiteSpace(val?.ToString()) ? "-ObjSrcMap" : "-ObjSrcMap=" + val.ToString().DoubleQuoteIfNeeded());
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-ObjSrcMap",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealBuildToolConfig) this;
         }
 
@@ -1334,7 +2178,15 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealBuildToolConfig Strict(bool? val = null)
         {
-            AppendArgument(val == null ? "-Strict" : "-Strict=" + val.ToString());
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Strict",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealBuildToolConfig) this;
         }
 
@@ -1345,7 +2197,15 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealBuildToolConfig ShowIncludes(bool? val = null)
         {
-            AppendArgument(val == null ? "-ShowIncludes" : "-ShowIncludes=" + val.ToString());
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-ShowIncludes",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealBuildToolConfig) this;
         }
 
@@ -1356,7 +2216,15 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealBuildToolConfig Verbose(bool present = true)
         {
-            AppendArgument(present ? "-Verbose" : "");
+            if (present)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Verbose",
+                    Value: null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealBuildToolConfig) this;
         }
 
@@ -1367,7 +2235,15 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealBuildToolConfig VeryVerbose(bool present = true)
         {
-            AppendArgument(present ? "-VeryVerbose" : "");
+            if (present)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-VeryVerbose",
+                    Value: null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealBuildToolConfig) this;
         }
 
@@ -1378,7 +2254,15 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealBuildToolConfig Log(object val = null)
         {
-            AppendArgument(string.IsNullOrWhiteSpace(val?.ToString()) ? "-Log" : "-Log=" + val.ToString().DoubleQuoteIfNeeded());
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Log",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealBuildToolConfig) this;
         }
 
@@ -1389,7 +2273,15 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealBuildToolConfig Timestamps(bool? val = null)
         {
-            AppendArgument(val == null ? "-Timestamps" : "-Timestamps=" + val.ToString());
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Timestamps",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealBuildToolConfig) this;
         }
 
@@ -1400,7 +2292,15 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealBuildToolConfig FromMsBuild(bool? val = null)
         {
-            AppendArgument(val == null ? "-FromMsBuild" : "-FromMsBuild=" + val.ToString());
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-FromMsBuild",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealBuildToolConfig) this;
         }
 
@@ -1411,7 +2311,15 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealBuildToolConfig Progress(bool? val = null)
         {
-            AppendArgument(val == null ? "-Progress" : "-Progress=" + val.ToString());
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Progress",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealBuildToolConfig) this;
         }
 
@@ -1422,7 +2330,15 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealBuildToolConfig NoMutex(bool? val = null)
         {
-            AppendArgument(val == null ? "-NoMutex" : "-NoMutex=" + val.ToString());
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-NoMutex",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealBuildToolConfig) this;
         }
 
@@ -1433,7 +2349,15 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealBuildToolConfig WaitMutex(bool? val = null)
         {
-            AppendArgument(val == null ? "-WaitMutex" : "-WaitMutex=" + val.ToString());
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-WaitMutex",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealBuildToolConfig) this;
         }
 
@@ -1444,7 +2368,15 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealBuildToolConfig RemoteIni(object val = null)
         {
-            AppendArgument(string.IsNullOrWhiteSpace(val?.ToString()) ? "-RemoteIni" : "-RemoteIni=" + val.ToString().DoubleQuoteIfNeeded());
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-RemoteIni",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealBuildToolConfig) this;
         }
 
@@ -1455,7 +2387,15 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealBuildToolConfig Mode(object val = null)
         {
-            AppendArgument(string.IsNullOrWhiteSpace(val?.ToString()) ? "-Mode" : "-Mode=" + val.ToString().DoubleQuoteIfNeeded());
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Mode",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealBuildToolConfig) this;
         }
 
@@ -1466,7 +2406,15 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealBuildToolConfig Clean(bool present = true)
         {
-            AppendArgument(present ? "-Clean" : "");
+            if (present)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Clean",
+                    Value: null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealBuildToolConfig) this;
         }
 
@@ -1477,7 +2425,15 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealBuildToolConfig ProjectFiles(bool present = true)
         {
-            AppendArgument(present ? "-ProjectFiles" : "");
+            if (present)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-ProjectFiles",
+                    Value: null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealBuildToolConfig) this;
         }
 
@@ -1488,7 +2444,15 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealBuildToolConfig ProjectFileFormat(bool present = true)
         {
-            AppendArgument(present ? "-ProjectFileFormat" : "");
+            if (present)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-ProjectFileFormat",
+                    Value: null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealBuildToolConfig) this;
         }
 
@@ -1499,7 +2463,15 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealBuildToolConfig Makefile(bool present = true)
         {
-            AppendArgument(present ? "-Makefile" : "");
+            if (present)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Makefile",
+                    Value: null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealBuildToolConfig) this;
         }
 
@@ -1510,7 +2482,15 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealBuildToolConfig CMakefile(bool present = true)
         {
-            AppendArgument(present ? "-CMakefile" : "");
+            if (present)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-CMakefile",
+                    Value: null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealBuildToolConfig) this;
         }
 
@@ -1521,7 +2501,15 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealBuildToolConfig QMakefile(bool present = true)
         {
-            AppendArgument(present ? "-QMakefile" : "");
+            if (present)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-QMakefile",
+                    Value: null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealBuildToolConfig) this;
         }
 
@@ -1532,7 +2520,15 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealBuildToolConfig KDevelopfile(bool present = true)
         {
-            AppendArgument(present ? "-KDevelopfile" : "");
+            if (present)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-KDevelopfile",
+                    Value: null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealBuildToolConfig) this;
         }
 
@@ -1543,7 +2539,15 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealBuildToolConfig CodeliteFiles(bool present = true)
         {
-            AppendArgument(present ? "-CodeliteFiles" : "");
+            if (present)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-CodeliteFiles",
+                    Value: null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealBuildToolConfig) this;
         }
 
@@ -1554,7 +2558,15 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealBuildToolConfig XCodeProjectFiles(bool present = true)
         {
-            AppendArgument(present ? "-XCodeProjectFiles" : "");
+            if (present)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-XCodeProjectFiles",
+                    Value: null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealBuildToolConfig) this;
         }
 
@@ -1565,7 +2577,15 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealBuildToolConfig EdditProjectFiles(bool present = true)
         {
-            AppendArgument(present ? "-EdditProjectFiles" : "");
+            if (present)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-EdditProjectFiles",
+                    Value: null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealBuildToolConfig) this;
         }
 
@@ -1576,7 +2596,15 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealBuildToolConfig VSCode(bool present = true)
         {
-            AppendArgument(present ? "-VSCode" : "");
+            if (present)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-VSCode",
+                    Value: null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealBuildToolConfig) this;
         }
 
@@ -1587,7 +2615,15 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealBuildToolConfig VSMac(bool present = true)
         {
-            AppendArgument(present ? "-VSMac" : "");
+            if (present)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-VSMac",
+                    Value: null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealBuildToolConfig) this;
         }
 
@@ -1598,7 +2634,15 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealBuildToolConfig CLion(bool present = true)
         {
-            AppendArgument(present ? "-CLion" : "");
+            if (present)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-CLion",
+                    Value: null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealBuildToolConfig) this;
         }
 
@@ -1609,7 +2653,15 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// </summary>
         public virtual UnrealBuildToolConfig Rider(bool present = true)
         {
-            AppendArgument(present ? "-Rider" : "");
+            if (present)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Rider",
+                    Value: null,
+                    Setter: '=',
+                    Compatibility: UnrealCompatibility.UE4
+                ));
+            }
             return (UnrealBuildToolConfig) this;
         }
 
@@ -1620,17 +2672,13 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
     public  class BuildConfig : ToolConfig
     {
         public override string Name => "Build";
+        public override string CliName => "-Build";
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE4;
     
         private ToolConfig[] _configs = null;
         protected override ToolConfig[] Configs => _configs ??= new ToolConfig[]
         {
         };
-    
-        public override string Gather()
-        {
-            Arguments.Insert(0, "-Build");
-            return base.Gather();
-        }
     }
 
     protected readonly BuildConfig BuildStorage = new();
@@ -1642,17 +2690,13 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
     public  class CleanConfig : ToolConfig
     {
         public override string Name => "Clean";
+        public override string CliName => "-Clean";
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE4;
     
         private ToolConfig[] _configs = null;
         protected override ToolConfig[] Configs => _configs ??= new ToolConfig[]
         {
         };
-    
-        public override string Gather()
-        {
-            Arguments.Insert(0, "-Clean");
-            return base.Gather();
-        }
     }
 
     protected readonly CleanConfig CleanStorage = new();
@@ -1663,17 +2707,13 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
     public  class DeployConfig : ToolConfig
     {
         public override string Name => "Deploy";
+        public override string CliName => "-Deploy";
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE4;
     
         private ToolConfig[] _configs = null;
         protected override ToolConfig[] Configs => _configs ??= new ToolConfig[]
         {
         };
-    
-        public override string Gather()
-        {
-            Arguments.Insert(0, "-Deploy");
-            return base.Gather();
-        }
     }
 
     protected readonly DeployConfig DeployStorage = new();
@@ -1684,17 +2724,13 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
     public  class ExecuteConfig : ToolConfig
     {
         public override string Name => "Execute";
+        public override string CliName => "-Execute";
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE4;
     
         private ToolConfig[] _configs = null;
         protected override ToolConfig[] Configs => _configs ??= new ToolConfig[]
         {
         };
-    
-        public override string Gather()
-        {
-            Arguments.Insert(0, "-Execute");
-            return base.Gather();
-        }
     }
 
     protected readonly ExecuteConfig ExecuteStorage = new();
@@ -1705,17 +2741,13 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
     public  class JsonExportConfig : ToolConfig
     {
         public override string Name => "JsonExport";
+        public override string CliName => "-JsonExport";
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE4;
     
         private ToolConfig[] _configs = null;
         protected override ToolConfig[] Configs => _configs ??= new ToolConfig[]
         {
         };
-    
-        public override string Gather()
-        {
-            Arguments.Insert(0, "-JsonExport");
-            return base.Gather();
-        }
     }
 
     protected readonly JsonExportConfig JsonExportStorage = new();
@@ -1724,17 +2756,13 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
     public  class IOSPostBuildSyncConfig : ToolConfig
     {
         public override string Name => "IOSPostBuildSync";
+        public override string CliName => "-IOSPostBuildSync";
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE4;
     
         private ToolConfig[] _configs = null;
         protected override ToolConfig[] Configs => _configs ??= new ToolConfig[]
         {
         };
-    
-        public override string Gather()
-        {
-            Arguments.Insert(0, "-IOSPostBuildSync");
-            return base.Gather();
-        }
     }
 
     protected readonly IOSPostBuildSyncConfig IOSPostBuildSyncStorage = new();
@@ -1752,7 +2780,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// <summary>
 /// Builds a target
 /// </summary>
-    public UnrealBuildToolConfig Build(Action<BuildConfig> configurator = null)
+    public UnrealBuildToolConfig Build(Action<BuildConfig> configurator)
     {
         configurator?.Invoke(BuildStorage);
         AppendSubtool(BuildStorage);
@@ -1762,7 +2790,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// Cleans build products and intermediates for the target. This deletes files which are named consistently with the target being built
 /// (e.g. UE4Editor-Foo-Win64-Debug.dll) rather than an actual record of previous build products.
 /// </summary>
-    public UnrealBuildToolConfig Clean(Action<CleanConfig> configurator = null)
+    public UnrealBuildToolConfig Clean(Action<CleanConfig> configurator)
     {
         configurator?.Invoke(CleanStorage);
         AppendSubtool(CleanStorage);
@@ -1771,7 +2799,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// <summary>
 /// Invokes the deployment handler for a target.
 /// </summary>
-    public UnrealBuildToolConfig Deploy(Action<DeployConfig> configurator = null)
+    public UnrealBuildToolConfig Deploy(Action<DeployConfig> configurator)
     {
         configurator?.Invoke(DeployStorage);
         AppendSubtool(DeployStorage);
@@ -1780,7 +2808,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// <summary>
 /// Builds a target
 /// </summary>
-    public UnrealBuildToolConfig Execute(Action<ExecuteConfig> configurator = null)
+    public UnrealBuildToolConfig Execute(Action<ExecuteConfig> configurator)
     {
         configurator?.Invoke(ExecuteStorage);
         AppendSubtool(ExecuteStorage);
@@ -1789,23 +2817,17 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// <summary>
 /// Exports a target as a JSON file
 /// </summary>
-    public UnrealBuildToolConfig JsonExport(Action<JsonExportConfig> configurator = null)
+    public UnrealBuildToolConfig JsonExport(Action<JsonExportConfig> configurator)
     {
         configurator?.Invoke(JsonExportStorage);
         AppendSubtool(JsonExportStorage);
         return (UnrealBuildToolConfig) this;
     }
 
-    public UnrealBuildToolConfig IOSPostBuildSync(Action<IOSPostBuildSyncConfig> configurator = null)
+    public UnrealBuildToolConfig IOSPostBuildSync(Action<IOSPostBuildSyncConfig> configurator)
     {
         configurator?.Invoke(IOSPostBuildSyncStorage);
         AppendSubtool(IOSPostBuildSyncStorage);
         return (UnrealBuildToolConfig) this;
-    }
-
-    public override string Gather()
-    {
-        Arguments.Insert(0, "UnrealBuildTool");
-        return base.Gather();
     }
 }
