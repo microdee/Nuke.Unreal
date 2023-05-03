@@ -36,12 +36,10 @@ namespace build.Generators.UAT;
         - UE4Build (probably renamed in UE5 to UnrealBuild)
         - LocalizationProvider (+ implementations)
 
-        - Just completely ignore these because they're doing 100% runtime command line parsing, which
-          cannot be inferred from static code analysis. Developer should just invoke them through regular
-          tool invokation arguments
-            - MegaXGE
-
-    TODO: make sure all command line parsers are detected
+    Just completely ignore these because they're doing 100% runtime command line parsing, which
+    cannot be inferred from static code analysis. Developer should just invoke them through regular
+    tool invokation arguments
+        - MegaXGE
 */
 
 public static class UniqueClass
