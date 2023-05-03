@@ -5,7 +5,6 @@ using System.Xml.Linq;
 using System.Threading.Tasks;
 using System.Xml;
 using System.Security;
-using Nuke.Unreal;
 using Nuke.Common.Utilities;
 
 namespace build.Generators;

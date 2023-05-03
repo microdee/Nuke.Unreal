@@ -8,7 +8,6 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Nuke.Common;
 using Nuke.Common.IO;
-using Nuke.Unreal;
 using Scriban;
 using Serilog;
 
@@ -16,7 +15,7 @@ namespace build.Generators;
 
 public record ToolGeneratorUnrealArg(string EngineVersion, UnrealCompatibility Compatibility);
 
-public abstract class ToolGenerator
+public abstract partial class ToolGenerator
 {
     private static AbsolutePath GetTemplatesFolder([CallerFilePath] string sourcePath = null) =>
         ((AbsolutePath) sourcePath).Parent / "Templates";
@@ -29,10 +28,13 @@ public abstract class ToolGenerator
 
     protected virtual RelativePath OutputPath => (RelativePath) "src" / "Nuke.Unreal" / "Tools" / (TemplateName + ".cs");
 
+    [GeneratedRegex(@"\/\*\s+(?<INCLUDE>.*?\.sbncs)\s+\*\/")]
+    private static partial Regex IncludeRegex();
+
     private string ReadTemplate(AbsolutePath path, HashSet<AbsolutePath> previousIncludes = null)
     {
         var templateText = File.ReadAllText(path);
-        var includeMatches = Regex.Matches(templateText, @"\/\*\s+(?<INCLUDE>.*?\.sbncs)\s+\*\/");
+        var includeMatches = IncludeRegex().Matches(templateText);
         for (int i=0; i<includeMatches.Count; i++)
         {
             previousIncludes ??= new();

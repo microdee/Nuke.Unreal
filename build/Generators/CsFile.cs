@@ -9,7 +9,7 @@ using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Nuke.Common.IO;
 using Nuke.Common.Utilities.Collections;
 
-namespace build.Generators.UAT;
+namespace build.Generators;
 
 public record CsFile(AbsolutePath Path)
 {

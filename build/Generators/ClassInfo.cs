@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
-namespace build.Generators.UAT;
+namespace build.Generators;
 
 public class ClassInfo : IProvideArguments
 {

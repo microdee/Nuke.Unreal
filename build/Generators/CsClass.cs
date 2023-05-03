@@ -6,7 +6,7 @@ using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
-namespace build.Generators.UAT;
+namespace build.Generators;
 public record CsClass(ClassDeclarationSyntax Declaration)
 {
     private string _name;

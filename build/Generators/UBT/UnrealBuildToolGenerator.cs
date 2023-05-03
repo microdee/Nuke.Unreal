@@ -31,7 +31,7 @@ public partial class UnrealBuildToolGenerator : ToolGenerator
             return tool;
         }
 
-        var ueAssemblies = Unreal.GetInstance(engineVersion).Assemblies;
+        var ueAssemblies = Unreal.GetInstance(engineVersion, compatibility).Assemblies;
         var cmdLineAttrMapping = CommandLineAttribute.Mapping(ueAssemblies);
         var toolModeMapping = ToolMode.Mapping(ueAssemblies);
         var toolModeAttributeMapping = ToolModeAttribute.Mapping(ueAssemblies);

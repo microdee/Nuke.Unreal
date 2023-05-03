@@ -8,7 +8,7 @@ using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Nuke.Common.Utilities;
 
-namespace build.Generators.UAT;
+namespace build.Generators;
 public static class AnalysisCommon
 {
     public static bool MemberAssociable(this string a, string b)

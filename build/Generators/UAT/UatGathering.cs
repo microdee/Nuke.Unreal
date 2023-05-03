@@ -12,7 +12,6 @@ using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Nuke.Common.Utilities.Collections;
 using Towel;
 using System.Security;
-using Nuke.Unreal;
 
 namespace build.Generators.UAT;
 

@@ -5,7 +5,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using build.Generators.UAT;
 using Microsoft.CodeAnalysis.CSharp;
-using Nuke.Unreal;
 
 /*
 TODO:
@@ -62,7 +61,7 @@ public class UnrealAutomationToolGenerator : ToolGenerator
             return tool;
         }
 
-        var uatRoot = Unreal.GetInstance(engineVersion).Location / "Engine" / "Source" / "Programs" / "AutomationTool";
+        var uatRoot = Unreal.GetInstance(engineVersion, compatibility).Location / "Engine" / "Source" / "Programs" / "AutomationTool";
         var gatherer = new UatGathering(uatRoot);
         var context = new UatGeneratorContext
         {
