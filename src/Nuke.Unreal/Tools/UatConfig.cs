@@ -12,7 +12,9 @@ public class UatConfig : UatConfigGenerated
     /// </summary>
     public virtual UatConfig ScriptsForProject(params object[] values)
     {
-        AppendArgument(values != null && values.Length > 0 ? "-ScriptsForProject=" + string.Join("+", values.DoubleQuoteIfNeeded()) : "-ScriptsForProject");
+        AppendArgument(
+            new UnrealToolArgument("-ScriptsForProject", string.Join("+", values))
+        );
         return this;
     }
 }

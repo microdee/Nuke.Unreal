@@ -139,11 +139,11 @@ namespace Nuke.Unreal
             // TODO: Linux: "mono", $"\"{ubtPath}\" " + arguments
         }
 
-        public static Tool BuildTool(EngineVersion ofVersion, Action<UnrealBuildToolConfig> config)
+        public static Tool BuildTool(EngineVersion ofVersion, Action<UbtConfig> config)
         {
-            var toolConfig = new UnrealBuildToolConfig();
+            var toolConfig = new UbtConfig();
             config?.Invoke(toolConfig);
-            return BuildTool(ofVersion).With(arguments: toolConfig.Gather());
+            return BuildTool(ofVersion).With(arguments: toolConfig.Gather(ofVersion));
         }
 
         public static Tool AutomationTool(EngineVersion ofVersion)
@@ -155,11 +155,11 @@ namespace Nuke.Unreal
                 );
         }
 
-        public static Tool AutomationTool(EngineVersion ofVersion, Action<UnrealAutomationToolConfig> config)
+        public static Tool AutomationTool(EngineVersion ofVersion, Action<UatConfig> config)
         {
-            var toolConfig = new UnrealAutomationToolConfig();
+            var toolConfig = new UatConfig();
             config?.Invoke(toolConfig);
-            return AutomationTool(ofVersion).With(arguments: toolConfig.Gather());
+            return AutomationTool(ofVersion).With(arguments: toolConfig.Gather(ofVersion));
         }
 
         public static void ClearFolder(AbsolutePath folder)

@@ -19,13 +19,19 @@ public class UbtConfig : UbtConfigGenerated
 
     public UbtConfig Game(bool present = true)
     {
-        AppendArgument(present ? "-game" : "");
+        if (present)
+        {
+            AppendArgument(new UnrealToolArgument("-game"));
+        }
         return this;
     }
 
     public UbtConfig Engine(bool present = true)
     {
-        AppendArgument(present ? "-engine" : "");
+        if (present)
+        {
+            AppendArgument(new UnrealToolArgument("-engine"));
+        }
         return this;
     }
 
