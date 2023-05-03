@@ -46,9 +46,6 @@ class Build : NukeBuild
     [Parameter("Configuration to build - Default is 'Debug' (local) or 'Release' (server)")]
     readonly Configuration Configuration = IsLocalBuild ? Configuration.Debug : Configuration.Release;
 
-    [Parameter("Reference Unreal version")]
-    readonly string UnrealVersion = "4.27";
-
     const string MasterBranch = "master";
 
     record ProjectRecord(Project Project, bool PublishToNuget);
@@ -70,8 +67,13 @@ class Build : NukeBuild
     Target GenerateTools => _ => _
         .Executes(() =>
         {
-            new UnrealBuildToolGenerator { UnrealVersion = UnrealVersion }.Generate(this);
-            new UnrealAutomationToolGenerator { UnrealVersion = UnrealVersion }.Generate(this);
+            var engines = new ToolGeneratorUnrealArg[]
+            {
+                new("4.27", UnrealCompatibility.UE4),
+                new("5.1", UnrealCompatibility.UE5)
+            };
+            new UnrealBuildToolGenerator().Generate(this, engines);
+            new UnrealAutomationToolGenerator().Generate(this, engines);
         });
 
     Target Restore => _ => _
