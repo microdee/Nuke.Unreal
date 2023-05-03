@@ -32,6 +32,11 @@ public class CommandLineAttribute : Attribute
     public string Value = null;
 
     /// <summary>
+    /// Description of the operation.
+    /// </summary>
+    public string Description;
+
+    /// <summary>
     /// Whether this argument is required
     /// </summary>
     public bool Required;

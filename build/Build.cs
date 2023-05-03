@@ -70,7 +70,7 @@ class Build : NukeBuild
             var engines = new ToolGeneratorUnrealArg[]
             {
                 new("4.27", UnrealCompatibility.UE4),
-                new("5.1", UnrealCompatibility.UE5)
+                // new("5.1", UnrealCompatibility.UE5)
             };
             new UnrealBuildToolGenerator().Generate(this, engines);
             new UnrealAutomationToolGenerator().Generate(this, engines);
