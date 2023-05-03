@@ -76,47 +76,9 @@ public static class ExcludedClass
     public const string MegaXGE = nameof(MegaXGE);
 }
 
-public partial class UatGathering
+public partial class UatGathering : CSharpSourceGatherer
 {
-    public readonly UatSolution Solution;
-    public readonly Dictionary<string, ClassInfo> Classes = new();
-
-    public UatGathering(AbsolutePath automationToolRoot)
-    {
-        Solution = new(automationToolRoot);
-    }
-
-    protected void GatherClasses(IGatheringContext context)
-    {
-        context.IncreaseIndent();
-        Dictionary<string, string> baseClassRequests = new();
-        foreach(var csClass in Solution.Files.SelectMany(f => f.Classes))
-        {
-            Log.Debug(context.Indent() + "Gathered class: {0}", csClass.Name);
-            if (!Classes.TryGetValue(csClass.Name, out var classInfo))
-            {
-                classInfo = new() {
-                    Name = csClass.Name,
-                    IsPartial = csClass.IsPartial
-                };
-                Classes.Add(csClass.Name, classInfo);
-            }
-            classInfo.Declarations.Add(csClass);
-            if (!string.IsNullOrWhiteSpace(csClass.BaseClass))
-            {
-                baseClassRequests.TryAdd(classInfo.Name, csClass.BaseClass);
-            }
-        }
-        foreach(var (targetClassName, baseClassName) in baseClassRequests)
-        {
-            if (Classes.TryGetValue(targetClassName, out var targetClass) && Classes.TryGetValue(baseClassName, out var baseClass))
-            {
-                Log.Debug(context.Indent() + "Inheritance: {0}: {1}", targetClassName, baseClassName);
-                targetClass.BaseClass = baseClass;
-            }
-        }
-        context.DecreaseIndent();
-    }
+    public UatGathering(AbsolutePath root) : base(root) {}
 
     protected IEnumerable<ClassInfo> LocalizationProviderImplementations => Classes.Values
         .Where(c => c.Implements(UniqueClass.LocalizationProvider) != null);
