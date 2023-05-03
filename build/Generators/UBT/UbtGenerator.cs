@@ -15,11 +15,11 @@ using Towel;
 
 namespace build.Generators;
 
-public partial class UnrealBuildToolGenerator : ToolGenerator
+public partial class UbtGenerator : ToolGenerator
 {
-    public override string TemplateName => "UnrealBuildToolConfigGenerated";
+    public override string TemplateName => "UbtConfigGenerated";
 
-    private record UbtModel(ToolModel UnrealBuildTool);
+    private record UbtModel(ToolModel Ubt);
 
     protected override object GetFullModel(ToolModel tool) => new UbtModel(tool);
 
@@ -37,7 +37,7 @@ public partial class UnrealBuildToolGenerator : ToolGenerator
         var toolModeAttributeMapping = ToolModeAttribute.Mapping(ueAssemblies);
 
         var ubtTool = new ToolModel {
-            ConfigName = "UnrealBuildTool",
+            ConfigName = "Ubt",
             CliName = "",
             ConfigType = new(TemplateName.Replace("Generated", ""), TemplateName),
             ClassKeywords = "abstract",

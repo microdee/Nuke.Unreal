@@ -24,4 +24,4 @@ using System.Linq;
 using System.Threading.Tasks;
 namespace Nuke.Unreal.Tools;
 /* BuildTool.sbncs */
-{{ build_tool unreal_automation_tool }}
+{{ build_tool uat }}

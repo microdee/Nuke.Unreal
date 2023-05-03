@@ -7,15 +7,15 @@ using System.Linq;
 using System.Threading.Tasks;
 namespace Nuke.Unreal.Tools;
 /// <summary>Unreal Automation Tool is a vast collection of scripts solving all aspects of deploying a program made in Unreal Engine</summary>
-public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
+public abstract class UatConfigGenerated : ToolConfig
 {
-    public override string Name => "UnrealAutomationTool";
+    public override string Name => "Uat";
     public override string CliName => "";
     public override UnrealCompatibility Compatibility => UnrealCompatibility.UE4;
     
         
 /// <summary>"Enables verbose logging"</summary>
-        public virtual UnrealAutomationToolConfig Verbose(params object[] values)
+        public virtual UatConfig Verbose(params object[] values)
         {
             if (true)
             {
@@ -26,13 +26,13 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealAutomationToolConfig) this;
+            return (UatConfig) this;
         }
 
         
         
 /// <summary>"Disables Perforce functionality (default if not run on a build machine)"</summary>
-        public virtual UnrealAutomationToolConfig Nop4(params object[] values)
+        public virtual UatConfig Nop4(params object[] values)
         {
             if (true)
             {
@@ -43,13 +43,13 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealAutomationToolConfig) this;
+            return (UatConfig) this;
         }
 
         
         
 /// <summary>"Enables Perforce functionality (default if run on a build machine)"</summary>
-        public virtual UnrealAutomationToolConfig P4(params object[] values)
+        public virtual UatConfig P4(params object[] values)
         {
             if (true)
             {
@@ -60,13 +60,13 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealAutomationToolConfig) this;
+            return (UatConfig) this;
         }
 
         
         
 /// <summary>"Does not run any commands, only compiles them"</summary>
-        public virtual UnrealAutomationToolConfig Compileonly(params object[] values)
+        public virtual UatConfig Compileonly(params object[] values)
         {
             if (true)
             {
@@ -77,13 +77,13 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealAutomationToolConfig) this;
+            return (UatConfig) this;
         }
 
         
         
 /// <summary>"Dynamically compiles all commands (otherwise assumes they are already built)"</summary>
-        public virtual UnrealAutomationToolConfig Compile(params object[] values)
+        public virtual UatConfig Compile(params object[] values)
         {
             if (true)
             {
@@ -94,13 +94,13 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealAutomationToolConfig) this;
+            return (UatConfig) this;
         }
 
         
         
 /// <summary>"Displays help"</summary>
-        public virtual UnrealAutomationToolConfig Help(params object[] values)
+        public virtual UatConfig Help(params object[] values)
         {
             if (true)
             {
@@ -111,13 +111,13 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealAutomationToolConfig) this;
+            return (UatConfig) this;
         }
 
         
         
 /// <summary>"Lists all available commands"</summary>
-        public virtual UnrealAutomationToolConfig List(params object[] values)
+        public virtual UatConfig List(params object[] values)
         {
             if (true)
             {
@@ -128,13 +128,13 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealAutomationToolConfig) this;
+            return (UatConfig) this;
         }
 
         
         
 /// <summary>"Allows UAT command to submit changes"</summary>
-        public virtual UnrealAutomationToolConfig Submit(params object[] values)
+        public virtual UatConfig Submit(params object[] values)
         {
             if (true)
             {
@@ -145,13 +145,13 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealAutomationToolConfig) this;
+            return (UatConfig) this;
         }
 
         
         
 /// <summary>"Prevents any submit attempts"</summary>
-        public virtual UnrealAutomationToolConfig Nosubmit(params object[] values)
+        public virtual UatConfig Nosubmit(params object[] values)
         {
             if (true)
             {
@@ -162,13 +162,13 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealAutomationToolConfig) this;
+            return (UatConfig) this;
         }
 
         
         
 /// <summary>"Does not kill any spawned processes on exit"</summary>
-        public virtual UnrealAutomationToolConfig Nokill(params object[] values)
+        public virtual UatConfig Nokill(params object[] values)
         {
             if (true)
             {
@@ -179,13 +179,13 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealAutomationToolConfig) this;
+            return (UatConfig) this;
         }
 
         
         
 /// <summary>"Prevents UBT from cleaning junk files"</summary>
-        public virtual UnrealAutomationToolConfig Ignorejunk(params object[] values)
+        public virtual UatConfig Ignorejunk(params object[] values)
         {
             if (true)
             {
@@ -196,7 +196,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealAutomationToolConfig) this;
+            return (UatConfig) this;
         }
 
         
@@ -205,7 +205,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// 
 /// Allows you to use local storage for your root build storage dir (default of P:\Builds (on PC) is changed to Engine\Saved\LocalBuilds). Used for local testing.
 /// </summary>
-        public virtual UnrealAutomationToolConfig UseLocalBuildStorage(params object[] values)
+        public virtual UatConfig UseLocalBuildStorage(params object[] values)
         {
             if (true)
             {
@@ -216,13 +216,13 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealAutomationToolConfig) this;
+            return (UatConfig) this;
         }
 
         
         
     
-        public virtual UnrealAutomationToolConfig Telemetry(params object[] values)
+        public virtual UatConfig Telemetry(params object[] values)
         {
             if (true)
             {
@@ -233,13 +233,13 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealAutomationToolConfig) this;
+            return (UatConfig) this;
         }
 
         
         
     
-        public virtual UnrealAutomationToolConfig Utf8output(params object[] values)
+        public virtual UatConfig Utf8output(params object[] values)
         {
             if (true)
             {
@@ -250,13 +250,13 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealAutomationToolConfig) this;
+            return (UatConfig) this;
         }
 
         
         
     
-        public virtual UnrealAutomationToolConfig VeryVerbose(params object[] values)
+        public virtual UatConfig VeryVerbose(params object[] values)
         {
             if (true)
             {
@@ -267,13 +267,13 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealAutomationToolConfig) this;
+            return (UatConfig) this;
         }
 
         
         
     
-        public virtual UnrealAutomationToolConfig Timestamps(params object[] values)
+        public virtual UatConfig Timestamps(params object[] values)
         {
             if (true)
             {
@@ -284,13 +284,13 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealAutomationToolConfig) this;
+            return (UatConfig) this;
         }
 
         
         
 /// <summary>"target platform for building, cooking and deployment (also -Platform)"</summary>
-        public virtual UnrealAutomationToolConfig Targetplatform(params object[] values)
+        public virtual UatConfig Targetplatform(params object[] values)
         {
             if (true)
             {
@@ -301,13 +301,13 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealAutomationToolConfig) this;
+            return (UatConfig) this;
         }
 
         
         
 /// <summary>"target platform for building, cooking and deployment of the dedicated server (also -ServerPlatform)"</summary>
-        public virtual UnrealAutomationToolConfig Servertargetplatform(params object[] values)
+        public virtual UatConfig Servertargetplatform(params object[] values)
         {
             if (true)
             {
@@ -318,7 +318,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealAutomationToolConfig) this;
+            return (UatConfig) this;
         }
 
         
@@ -327,7 +327,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// 
 /// Shared: The current project is a foreign project, commandline: -foreign
 /// </summary>
-        public virtual UnrealAutomationToolConfig Foreign(params object[] values)
+        public virtual UatConfig Foreign(params object[] values)
         {
             if (true)
             {
@@ -338,7 +338,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealAutomationToolConfig) this;
+            return (UatConfig) this;
         }
 
         
@@ -347,7 +347,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// 
 /// Shared: The current project is a foreign project, commandline: -foreign
 /// </summary>
-        public virtual UnrealAutomationToolConfig Foreigncode(params object[] values)
+        public virtual UatConfig Foreigncode(params object[] values)
         {
             if (true)
             {
@@ -358,7 +358,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealAutomationToolConfig) this;
+            return (UatConfig) this;
         }
 
         
@@ -367,7 +367,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// 
 /// Shared: true if we should build crash reporter
 /// </summary>
-        public virtual UnrealAutomationToolConfig CrashReporter(params object[] values)
+        public virtual UatConfig CrashReporter(params object[] values)
         {
             if (true)
             {
@@ -378,7 +378,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealAutomationToolConfig) this;
+            return (UatConfig) this;
         }
 
         
@@ -387,7 +387,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// 
 /// Shared: Determines if the build is going to use cooked data, commandline: -cook, -cookonthefly
 /// </summary>
-        public virtual UnrealAutomationToolConfig Cook(params object[] values)
+        public virtual UatConfig Cook(params object[] values)
         {
             if (true)
             {
@@ -398,7 +398,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealAutomationToolConfig) this;
+            return (UatConfig) this;
         }
 
         
@@ -407,7 +407,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// 
 /// Shared: Determines if the build is going to use cooked data, commandline: -cook, -cookonthefly
 /// </summary>
-        public virtual UnrealAutomationToolConfig Skipcook(params object[] values)
+        public virtual UatConfig Skipcook(params object[] values)
         {
             if (true)
             {
@@ -418,7 +418,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealAutomationToolConfig) this;
+            return (UatConfig) this;
         }
 
         
@@ -427,7 +427,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// 
 /// Shared: In a cookonthefly build, used solely to pass information to the package step. This is necessary because you can't set cookonthefly and cook at the same time, and skipcook sets cook.
 /// </summary>
-        public virtual UnrealAutomationToolConfig Skipcookonthefly(params object[] values)
+        public virtual UatConfig Skipcookonthefly(params object[] values)
         {
             if (true)
             {
@@ -438,7 +438,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealAutomationToolConfig) this;
+            return (UatConfig) this;
         }
 
         
@@ -447,7 +447,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// 
 /// Shared: Determines if the intermediate folders will be wiped before building, commandline: -clean
 /// </summary>
-        public virtual UnrealAutomationToolConfig Clean(params object[] values)
+        public virtual UatConfig Clean(params object[] values)
         {
             if (true)
             {
@@ -458,7 +458,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealAutomationToolConfig) this;
+            return (UatConfig) this;
         }
 
         
@@ -467,7 +467,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// 
 /// Shared: Assumes no user is sitting at the console, so for example kills clients automatically, commandline: -Unattended
 /// </summary>
-        public virtual UnrealAutomationToolConfig Unattended(params object[] values)
+        public virtual UatConfig Unattended(params object[] values)
         {
             if (true)
             {
@@ -478,7 +478,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealAutomationToolConfig) this;
+            return (UatConfig) this;
         }
 
         
@@ -488,7 +488,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// 
 /// Shared: True if pak file should be generated.
 /// </summary>
-        public virtual UnrealAutomationToolConfig Pak(params object[] values)
+        public virtual UatConfig Pak(params object[] values)
         {
             if (true)
             {
@@ -499,7 +499,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealAutomationToolConfig) this;
+            return (UatConfig) this;
         }
 
         
@@ -508,7 +508,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// 
 /// Shared: True if container file(s) should be generated with ZenPak.
 /// </summary>
-        public virtual UnrealAutomationToolConfig Iostore(params object[] values)
+        public virtual UatConfig Iostore(params object[] values)
         {
             if (true)
             {
@@ -519,13 +519,13 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealAutomationToolConfig) this;
+            return (UatConfig) this;
         }
 
         
         
 /// <summary>"generate optimized config data during staging to improve loadtimes"</summary>
-        public virtual UnrealAutomationToolConfig Makebinaryconfig(params object[] values)
+        public virtual UatConfig Makebinaryconfig(params object[] values)
         {
             if (true)
             {
@@ -536,7 +536,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealAutomationToolConfig) this;
+            return (UatConfig) this;
         }
 
         
@@ -545,7 +545,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// 
 /// Shared: Encryption keys used for signing the pak file.
 /// </summary>
-        public virtual UnrealAutomationToolConfig Signpak(params object[] values)
+        public virtual UatConfig Signpak(params object[] values)
         {
             if (true)
             {
@@ -556,7 +556,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealAutomationToolConfig) this;
+            return (UatConfig) this;
         }
 
         
@@ -565,7 +565,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// 
 /// Shared: true if this build is staged, command line: -stage
 /// </summary>
-        public virtual UnrealAutomationToolConfig Prepak(params object[] values)
+        public virtual UatConfig Prepak(params object[] values)
         {
             if (true)
             {
@@ -576,13 +576,13 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealAutomationToolConfig) this;
+            return (UatConfig) this;
         }
 
         
         
 /// <summary>"the game should expect to use a signed pak file."</summary>
-        public virtual UnrealAutomationToolConfig Signed(params object[] values)
+        public virtual UatConfig Signed(params object[] values)
         {
             if (true)
             {
@@ -593,7 +593,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealAutomationToolConfig) this;
+            return (UatConfig) this;
         }
 
         
@@ -602,7 +602,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// 
 /// Shared: The game will be set up for memory mapping bulk data.
 /// </summary>
-        public virtual UnrealAutomationToolConfig PakAlignForMemoryMapping(params object[] values)
+        public virtual UatConfig PakAlignForMemoryMapping(params object[] values)
         {
             if (true)
             {
@@ -613,7 +613,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealAutomationToolConfig) this;
+            return (UatConfig) this;
         }
 
         
@@ -622,7 +622,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// 
 /// Shared: true if this build is staged, command line: -stage
 /// </summary>
-        public virtual UnrealAutomationToolConfig Skippak(params object[] values)
+        public virtual UatConfig Skippak(params object[] values)
         {
             if (true)
             {
@@ -633,7 +633,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealAutomationToolConfig) this;
+            return (UatConfig) this;
         }
 
         
@@ -642,7 +642,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// 
 /// Shared: true if we want to skip iostore, even if -iostore is specified
 /// </summary>
-        public virtual UnrealAutomationToolConfig Skipiostore(params object[] values)
+        public virtual UatConfig Skipiostore(params object[] values)
         {
             if (true)
             {
@@ -653,7 +653,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealAutomationToolConfig) this;
+            return (UatConfig) this;
         }
 
         
@@ -662,7 +662,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// 
 /// Shared: true if this build is staged, command line: -stage
 /// </summary>
-        public virtual UnrealAutomationToolConfig Stage(params object[] values)
+        public virtual UatConfig Stage(params object[] values)
         {
             if (true)
             {
@@ -673,7 +673,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealAutomationToolConfig) this;
+            return (UatConfig) this;
         }
 
         
@@ -682,7 +682,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// 
 /// Shared: true if this build is staged, command line: -stage
 /// </summary>
-        public virtual UnrealAutomationToolConfig Skipstage(params object[] values)
+        public virtual UatConfig Skipstage(params object[] values)
         {
             if (true)
             {
@@ -693,7 +693,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealAutomationToolConfig) this;
+            return (UatConfig) this;
         }
 
         
@@ -702,7 +702,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// 
 /// Shared: true if this build is using streaming install manifests, command line: -manifests
 /// </summary>
-        public virtual UnrealAutomationToolConfig Manifests(params object[] values)
+        public virtual UatConfig Manifests(params object[] values)
         {
             if (true)
             {
@@ -713,7 +713,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealAutomationToolConfig) this;
+            return (UatConfig) this;
         }
 
         
@@ -722,7 +722,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// 
 /// Shared: true if this build chunk install streaming install data, command line: -createchunkinstalldata
 /// </summary>
-        public virtual UnrealAutomationToolConfig Createchunkinstall(params object[] values)
+        public virtual UatConfig Createchunkinstall(params object[] values)
         {
             if (true)
             {
@@ -733,13 +733,13 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealAutomationToolConfig) this;
+            return (UatConfig) this;
         }
 
         
         
 /// <summary>"skips encrypting pak files even if crypto keys are provided"</summary>
-        public virtual UnrealAutomationToolConfig Skipencryption(params object[] values)
+        public virtual UatConfig Skipencryption(params object[] values)
         {
             if (true)
             {
@@ -750,13 +750,13 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealAutomationToolConfig) this;
+            return (UatConfig) this;
         }
 
         
         
 /// <summary>"Directory to copy the builds to, i.e. -stagingdirectory=C:\\Stage"</summary>
-        public virtual UnrealAutomationToolConfig Stagingdirectory(params object[] values)
+        public virtual UatConfig Stagingdirectory(params object[] values)
         {
             if (true)
             {
@@ -767,13 +767,13 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealAutomationToolConfig) this;
+            return (UatConfig) this;
         }
 
         
         
 /// <summary>"Name of the UE4 Editor executable, i.e. -ue4exe=UE4Editor.exe"</summary>
-        public virtual UnrealAutomationToolConfig Ue4exe(params object[] values)
+        public virtual UatConfig Ue4exe(params object[] values)
         {
             if (true)
             {
@@ -784,7 +784,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealAutomationToolConfig) this;
+            return (UatConfig) this;
         }
 
         
@@ -793,7 +793,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// 
 /// Shared: true if this build is archived, command line: -archive
 /// </summary>
-        public virtual UnrealAutomationToolConfig Archive(params object[] values)
+        public virtual UatConfig Archive(params object[] values)
         {
             if (true)
             {
@@ -804,13 +804,13 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealAutomationToolConfig) this;
+            return (UatConfig) this;
         }
 
         
         
 /// <summary>"Directory to archive the builds to, i.e. -archivedirectory=C:\\Archive"</summary>
-        public virtual UnrealAutomationToolConfig Archivedirectory(params object[] values)
+        public virtual UatConfig Archivedirectory(params object[] values)
         {
             if (true)
             {
@@ -821,7 +821,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealAutomationToolConfig) this;
+            return (UatConfig) this;
         }
 
         
@@ -830,7 +830,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// 
 /// Whether the project should use non monolithic staging
 /// </summary>
-        public virtual UnrealAutomationToolConfig Archivemetadata(params object[] values)
+        public virtual UatConfig Archivemetadata(params object[] values)
         {
             if (true)
             {
@@ -841,7 +841,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealAutomationToolConfig) this;
+            return (UatConfig) this;
         }
 
         
@@ -850,7 +850,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// 
 /// When archiving for Mac, set this to true to package it in a .app bundle instead of normal loose files
 /// </summary>
-        public virtual UnrealAutomationToolConfig Createappbundle(params object[] values)
+        public virtual UatConfig Createappbundle(params object[] values)
         {
             if (true)
             {
@@ -861,7 +861,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealAutomationToolConfig) this;
+            return (UatConfig) this;
         }
 
         
@@ -870,7 +870,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// 
 /// Build: True if build step should be executed, command: -build
 /// </summary>
-        public virtual UnrealAutomationToolConfig Build(params object[] values)
+        public virtual UatConfig Build(params object[] values)
         {
             if (true)
             {
@@ -881,7 +881,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealAutomationToolConfig) this;
+            return (UatConfig) this;
         }
 
         
@@ -891,7 +891,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// Build: True if XGE should NOT be used for building.
 /// 
 /// "Toggle to disable the distributed build process"</summary>
-        public virtual UnrealAutomationToolConfig Noxge(params object[] values)
+        public virtual UatConfig Noxge(params object[] values)
         {
             if (true)
             {
@@ -902,7 +902,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealAutomationToolConfig) this;
+            return (UatConfig) this;
         }
 
         
@@ -911,7 +911,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// 
 /// Cook: While cooking clean up packages as we go along rather then cleaning everything (and potentially having to reload some of it) when we run out of space
 /// </summary>
-        public virtual UnrealAutomationToolConfig CookPartialgc(params object[] values)
+        public virtual UatConfig CookPartialgc(params object[] values)
         {
             if (true)
             {
@@ -922,7 +922,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealAutomationToolConfig) this;
+            return (UatConfig) this;
         }
 
         
@@ -931,7 +931,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// 
 /// Stage: Did we cook in the editor instead of from UAT (cook in editor uses a different staging directory)
 /// </summary>
-        public virtual UnrealAutomationToolConfig CookInEditor(params object[] values)
+        public virtual UatConfig CookInEditor(params object[] values)
         {
             if (true)
             {
@@ -942,7 +942,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealAutomationToolConfig) this;
+            return (UatConfig) this;
         }
 
         
@@ -952,7 +952,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// 
 /// Cook: Uses the iterative cooking, command line: -iterativecooking or -iterate
 /// </summary>
-        public virtual UnrealAutomationToolConfig Iterativecooking(params object[] values)
+        public virtual UatConfig Iterativecooking(params object[] values)
         {
             if (true)
             {
@@ -963,7 +963,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealAutomationToolConfig) this;
+            return (UatConfig) this;
         }
 
         
@@ -972,7 +972,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// 
 /// Cook: Only cook maps (and referenced content) instead of cooking everything only affects -cookall flag
 /// </summary>
-        public virtual UnrealAutomationToolConfig CookMapsOnly(params object[] values)
+        public virtual UatConfig CookMapsOnly(params object[] values)
         {
             if (true)
             {
@@ -983,7 +983,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealAutomationToolConfig) this;
+            return (UatConfig) this;
         }
 
         
@@ -992,7 +992,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// 
 /// Cook: Only cook maps (and referenced content) instead of cooking everything only affects cookall flag
 /// </summary>
-        public virtual UnrealAutomationToolConfig CookAll(params object[] values)
+        public virtual UatConfig CookAll(params object[] values)
         {
             if (true)
             {
@@ -1003,7 +1003,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealAutomationToolConfig) this;
+            return (UatConfig) this;
         }
 
         
@@ -1012,7 +1012,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// 
 /// Cook: Skip cooking editor content
 /// </summary>
-        public virtual UnrealAutomationToolConfig SkipCookingEditorContent(params object[] values)
+        public virtual UatConfig SkipCookingEditorContent(params object[] values)
         {
             if (true)
             {
@@ -1023,13 +1023,13 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealAutomationToolConfig) this;
+            return (UatConfig) this;
         }
 
         
         
 /// <summary>"Uses fast cook path if supported by target"</summary>
-        public virtual UnrealAutomationToolConfig FastCook(params object[] values)
+        public virtual UatConfig FastCook(params object[] values)
         {
             if (true)
             {
@@ -1040,7 +1040,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealAutomationToolConfig) this;
+            return (UatConfig) this;
         }
 
         
@@ -1049,7 +1049,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// 
 /// Cook: Ignores cook errors and continues with packaging etc.
 /// </summary>
-        public virtual UnrealAutomationToolConfig IgnoreCookErrors(params object[] values)
+        public virtual UatConfig IgnoreCookErrors(params object[] values)
         {
             if (true)
             {
@@ -1060,7 +1060,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealAutomationToolConfig) this;
+            return (UatConfig) this;
         }
 
         
@@ -1069,7 +1069,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// 
 /// Stage: Commandline: -nodebuginfo
 /// </summary>
-        public virtual UnrealAutomationToolConfig Nodebuginfo(params object[] values)
+        public virtual UatConfig Nodebuginfo(params object[] values)
         {
             if (true)
             {
@@ -1080,7 +1080,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealAutomationToolConfig) this;
+            return (UatConfig) this;
         }
 
         
@@ -1089,7 +1089,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// 
 /// Stage: Commandline: -separatedebuginfo
 /// </summary>
-        public virtual UnrealAutomationToolConfig Separatedebuginfo(params object[] values)
+        public virtual UatConfig Separatedebuginfo(params object[] values)
         {
             if (true)
             {
@@ -1100,7 +1100,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealAutomationToolConfig) this;
+            return (UatConfig) this;
         }
 
         
@@ -1109,7 +1109,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// 
 /// Stage: Commandline: -mapfile
 /// </summary>
-        public virtual UnrealAutomationToolConfig MapFile(params object[] values)
+        public virtual UatConfig MapFile(params object[] values)
         {
             if (true)
             {
@@ -1120,7 +1120,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealAutomationToolConfig) this;
+            return (UatConfig) this;
         }
 
         
@@ -1129,7 +1129,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// 
 /// true if the staging directory is to be cleaned: -cleanstage (also true if -clean is specified)
 /// </summary>
-        public virtual UnrealAutomationToolConfig Nocleanstage(params object[] values)
+        public virtual UatConfig Nocleanstage(params object[] values)
         {
             if (true)
             {
@@ -1140,13 +1140,13 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealAutomationToolConfig) this;
+            return (UatConfig) this;
         }
 
         
         
 /// <summary>"command line to put into the stage in UE4CommandLine.txt"</summary>
-        public virtual UnrealAutomationToolConfig Cmdline(params object[] values)
+        public virtual UatConfig Cmdline(params object[] values)
         {
             if (true)
             {
@@ -1157,7 +1157,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealAutomationToolConfig) this;
+            return (UatConfig) this;
         }
 
         
@@ -1166,7 +1166,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// 
 /// Stage: If non-empty, the contents will be used for the bundle name
 /// </summary>
-        public virtual UnrealAutomationToolConfig Bundlename(params object[] values)
+        public virtual UatConfig Bundlename(params object[] values)
         {
             if (true)
             {
@@ -1177,7 +1177,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealAutomationToolConfig) this;
+            return (UatConfig) this;
         }
 
         
@@ -1186,7 +1186,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// 
 /// Run: True if the Run step should be executed, command: -run
 /// </summary>
-        public virtual UnrealAutomationToolConfig Run(params object[] values)
+        public virtual UatConfig Run(params object[] values)
         {
             if (true)
             {
@@ -1197,7 +1197,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealAutomationToolConfig) this;
+            return (UatConfig) this;
         }
 
         
@@ -1206,7 +1206,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// 
 /// Run: The client runs with cooked data provided by cook on the fly server, command line: -cookonthefly
 /// </summary>
-        public virtual UnrealAutomationToolConfig Cookonthefly(params object[] values)
+        public virtual UatConfig Cookonthefly(params object[] values)
         {
             if (true)
             {
@@ -1217,7 +1217,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealAutomationToolConfig) this;
+            return (UatConfig) this;
         }
 
         
@@ -1226,7 +1226,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// 
 /// Run: The client should run in streaming mode when connecting to cook on the fly server
 /// </summary>
-        public virtual UnrealAutomationToolConfig Cookontheflystreaming(params object[] values)
+        public virtual UatConfig Cookontheflystreaming(params object[] values)
         {
             if (true)
             {
@@ -1237,7 +1237,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealAutomationToolConfig) this;
+            return (UatConfig) this;
         }
 
         
@@ -1246,7 +1246,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// 
 /// Run: The client runs with cooked data provided by UnrealFileServer, command line: -fileserver
 /// </summary>
-        public virtual UnrealAutomationToolConfig Fileserver(params object[] values)
+        public virtual UatConfig Fileserver(params object[] values)
         {
             if (true)
             {
@@ -1257,7 +1257,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealAutomationToolConfig) this;
+            return (UatConfig) this;
         }
 
         
@@ -1266,7 +1266,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// 
 /// Run: The client connects to dedicated server to get data, command line: -dedicatedserver
 /// </summary>
-        public virtual UnrealAutomationToolConfig Dedicatedserver(params object[] values)
+        public virtual UatConfig Dedicatedserver(params object[] values)
         {
             if (true)
             {
@@ -1277,7 +1277,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealAutomationToolConfig) this;
+            return (UatConfig) this;
         }
 
         
@@ -1286,7 +1286,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// 
 /// Run: Uses a client target configuration, also implies -dedicatedserver, command line: -client
 /// </summary>
-        public virtual UnrealAutomationToolConfig Client(params object[] values)
+        public virtual UatConfig Client(params object[] values)
         {
             if (true)
             {
@@ -1297,7 +1297,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealAutomationToolConfig) this;
+            return (UatConfig) this;
         }
 
         
@@ -1306,7 +1306,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// 
 /// Run: Whether the client should start or not, command line (to disable): -noclient
 /// </summary>
-        public virtual UnrealAutomationToolConfig Noclient(params object[] values)
+        public virtual UatConfig Noclient(params object[] values)
         {
             if (true)
             {
@@ -1317,7 +1317,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealAutomationToolConfig) this;
+            return (UatConfig) this;
         }
 
         
@@ -1326,7 +1326,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// 
 /// Run: Client should create its own log window, command line: -logwindow
 /// </summary>
-        public virtual UnrealAutomationToolConfig Logwindow(params object[] values)
+        public virtual UatConfig Logwindow(params object[] values)
         {
             if (true)
             {
@@ -1337,13 +1337,13 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealAutomationToolConfig) this;
+            return (UatConfig) this;
         }
 
         
         
 /// <summary>"map to run the game with"</summary>
-        public virtual UnrealAutomationToolConfig Map(params object[] values)
+        public virtual UatConfig Map(params object[] values)
         {
             if (true)
             {
@@ -1354,7 +1354,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealAutomationToolConfig) this;
+            return (UatConfig) this;
         }
 
         
@@ -1363,7 +1363,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// 
 /// Run: Additional server map params.
 /// </summary>
-        public virtual UnrealAutomationToolConfig AdditionalServerMapParams(params object[] values)
+        public virtual UatConfig AdditionalServerMapParams(params object[] values)
         {
             if (true)
             {
@@ -1374,14 +1374,14 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealAutomationToolConfig) this;
+            return (UatConfig) this;
         }
 
         
         
 /// <summary>"Devices to run the game on"
 /// "Device names without the platform prefix to run the game on"</summary>
-        public virtual UnrealAutomationToolConfig Device(params object[] values)
+        public virtual UatConfig Device(params object[] values)
         {
             if (true)
             {
@@ -1392,7 +1392,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealAutomationToolConfig) this;
+            return (UatConfig) this;
         }
 
         
@@ -1401,7 +1401,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// 
 /// Run: the target device to run the server on
 /// </summary>
-        public virtual UnrealAutomationToolConfig Serverdevice(params object[] values)
+        public virtual UatConfig Serverdevice(params object[] values)
         {
             if (true)
             {
@@ -1412,7 +1412,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealAutomationToolConfig) this;
+            return (UatConfig) this;
         }
 
         
@@ -1421,7 +1421,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// 
 /// Run: The indicated server has already been started
 /// </summary>
-        public virtual UnrealAutomationToolConfig Skipserver(params object[] values)
+        public virtual UatConfig Skipserver(params object[] values)
         {
             if (true)
             {
@@ -1432,7 +1432,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealAutomationToolConfig) this;
+            return (UatConfig) this;
         }
 
         
@@ -1441,7 +1441,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// 
 /// Run: The indicated server has already been started
 /// </summary>
-        public virtual UnrealAutomationToolConfig Numclients(params object[] values)
+        public virtual UatConfig Numclients(params object[] values)
         {
             if (true)
             {
@@ -1452,13 +1452,13 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealAutomationToolConfig) this;
+            return (UatConfig) this;
         }
 
         
         
 /// <summary>"Additional command line arguments for the program"</summary>
-        public virtual UnrealAutomationToolConfig Addcmdline(params object[] values)
+        public virtual UatConfig Addcmdline(params object[] values)
         {
             if (true)
             {
@@ -1469,13 +1469,13 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealAutomationToolConfig) this;
+            return (UatConfig) this;
         }
 
         
         
 /// <summary>"Additional command line arguments for the program"</summary>
-        public virtual UnrealAutomationToolConfig Servercmdline(params object[] values)
+        public virtual UatConfig Servercmdline(params object[] values)
         {
             if (true)
             {
@@ -1486,13 +1486,13 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealAutomationToolConfig) this;
+            return (UatConfig) this;
         }
 
         
         
 /// <summary>"Override command line arguments to pass to the client"</summary>
-        public virtual UnrealAutomationToolConfig Clientcmdline(params object[] values)
+        public virtual UatConfig Clientcmdline(params object[] values)
         {
             if (true)
             {
@@ -1503,7 +1503,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealAutomationToolConfig) this;
+            return (UatConfig) this;
         }
 
         
@@ -1512,7 +1512,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// 
 /// Run:adds -nullrhi to the client commandline
 /// </summary>
-        public virtual UnrealAutomationToolConfig Nullrhi(params object[] values)
+        public virtual UatConfig Nullrhi(params object[] values)
         {
             if (true)
             {
@@ -1523,7 +1523,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealAutomationToolConfig) this;
+            return (UatConfig) this;
         }
 
         
@@ -1532,7 +1532,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// 
 /// Run:adds ?fake to the server URL
 /// </summary>
-        public virtual UnrealAutomationToolConfig Fakeclient(params object[] values)
+        public virtual UatConfig Fakeclient(params object[] values)
         {
             if (true)
             {
@@ -1543,7 +1543,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealAutomationToolConfig) this;
+            return (UatConfig) this;
         }
 
         
@@ -1552,7 +1552,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// 
 /// Run:adds ?fake to the server URL
 /// </summary>
-        public virtual UnrealAutomationToolConfig Editortest(params object[] values)
+        public virtual UatConfig Editortest(params object[] values)
         {
             if (true)
             {
@@ -1563,7 +1563,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealAutomationToolConfig) this;
+            return (UatConfig) this;
         }
 
         
@@ -1573,7 +1573,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// 
 /// Run:when running -editortest or a client, run all automation tests, not compatible with -server
 /// </summary>
-        public virtual UnrealAutomationToolConfig RunAutomationTests(params object[] values)
+        public virtual UatConfig RunAutomationTests(params object[] values)
         {
             if (true)
             {
@@ -1584,13 +1584,13 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealAutomationToolConfig) this;
+            return (UatConfig) this;
         }
 
         
         
 /// <summary>"when running -editortest or a client, adds commands like debug crash, debug rendercrash, etc based on index"</summary>
-        public virtual UnrealAutomationToolConfig Crash(params object[] values)
+        public virtual UatConfig Crash(params object[] values)
         {
             if (true)
             {
@@ -1601,13 +1601,13 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealAutomationToolConfig) this;
+            return (UatConfig) this;
         }
 
         
         
 /// <summary>"Linux username for unattended key genereation"</summary>
-        public virtual UnrealAutomationToolConfig Deviceuser(params object[] values)
+        public virtual UatConfig Deviceuser(params object[] values)
         {
             if (true)
             {
@@ -1618,13 +1618,13 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealAutomationToolConfig) this;
+            return (UatConfig) this;
         }
 
         
         
 /// <summary>"Linux password"</summary>
-        public virtual UnrealAutomationToolConfig Devicepass(params object[] values)
+        public virtual UatConfig Devicepass(params object[] values)
         {
             if (true)
             {
@@ -1635,14 +1635,14 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealAutomationToolConfig) this;
+            return (UatConfig) this;
         }
 
         
         
 /// <summary>"package the project for the target platform"
 /// "Determine whether data is packaged. This can be an iteration optimization for platforms that require packages for deployment"</summary>
-        public virtual UnrealAutomationToolConfig Package(params object[] values)
+        public virtual UatConfig Package(params object[] values)
         {
             if (true)
             {
@@ -1653,13 +1653,13 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealAutomationToolConfig) this;
+            return (UatConfig) this;
         }
 
         
         
 /// <summary>"Skips packaging the project for the target platform"</summary>
-        public virtual UnrealAutomationToolConfig Skippackage(params object[] values)
+        public virtual UatConfig Skippackage(params object[] values)
         {
             if (true)
             {
@@ -1670,13 +1670,13 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealAutomationToolConfig) this;
+            return (UatConfig) this;
         }
 
         
         
 /// <summary>"package for distribution the project"</summary>
-        public virtual UnrealAutomationToolConfig Distribution(params object[] values)
+        public virtual UatConfig Distribution(params object[] values)
         {
             if (true)
             {
@@ -1687,13 +1687,13 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealAutomationToolConfig) this;
+            return (UatConfig) this;
         }
 
         
         
 /// <summary>"stage prerequisites along with the project"</summary>
-        public virtual UnrealAutomationToolConfig Prereqs(params object[] values)
+        public virtual UatConfig Prereqs(params object[] values)
         {
             if (true)
             {
@@ -1704,13 +1704,13 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealAutomationToolConfig) this;
+            return (UatConfig) this;
         }
 
         
         
 /// <summary>"location of prerequisites for applocal deployment"</summary>
-        public virtual UnrealAutomationToolConfig Applocaldir(params object[] values)
+        public virtual UatConfig Applocaldir(params object[] values)
         {
             if (true)
             {
@@ -1721,13 +1721,13 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealAutomationToolConfig) this;
+            return (UatConfig) this;
         }
 
         
         
 /// <summary>"this is a prebuilt cooked and packaged build"</summary>
-        public virtual UnrealAutomationToolConfig Prebuilt(params object[] values)
+        public virtual UatConfig Prebuilt(params object[] values)
         {
             if (true)
             {
@@ -1738,13 +1738,13 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealAutomationToolConfig) this;
+            return (UatConfig) this;
         }
 
         
         
 /// <summary>"timeout to wait after we lunch the game"</summary>
-        public virtual UnrealAutomationToolConfig RunTimeoutSeconds(params object[] values)
+        public virtual UatConfig RunTimeoutSeconds(params object[] values)
         {
             if (true)
             {
@@ -1755,13 +1755,13 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealAutomationToolConfig) this;
+            return (UatConfig) this;
         }
 
         
         
 /// <summary>"Determine a specific Minimum OS"</summary>
-        public virtual UnrealAutomationToolConfig SpecifiedArchitecture(params object[] values)
+        public virtual UatConfig SpecifiedArchitecture(params object[] values)
         {
             if (true)
             {
@@ -1772,13 +1772,13 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealAutomationToolConfig) this;
+            return (UatConfig) this;
         }
 
         
         
 /// <summary>"extra options to pass to ubt"</summary>
-        public virtual UnrealAutomationToolConfig UbtArgs(params object[] values)
+        public virtual UatConfig UbtArgs(params object[] values)
         {
             if (true)
             {
@@ -1789,13 +1789,13 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealAutomationToolConfig) this;
+            return (UatConfig) this;
         }
 
         
         
 /// <summary>"extra options to pass to the platform's packager"</summary>
-        public virtual UnrealAutomationToolConfig AdditionalPackageOptions(params object[] values)
+        public virtual UatConfig AdditionalPackageOptions(params object[] values)
         {
             if (true)
             {
@@ -1806,14 +1806,14 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealAutomationToolConfig) this;
+            return (UatConfig) this;
         }
 
         
         
 /// <summary>"deploy the project for the target platform"
 /// "Location to deploy to on the target platform"</summary>
-        public virtual UnrealAutomationToolConfig Deploy(params object[] values)
+        public virtual UatConfig Deploy(params object[] values)
         {
             if (true)
             {
@@ -1824,13 +1824,13 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealAutomationToolConfig) this;
+            return (UatConfig) this;
         }
 
         
         
 /// <summary>"download file from target after successful run"</summary>
-        public virtual UnrealAutomationToolConfig Getfile(params object[] values)
+        public virtual UatConfig Getfile(params object[] values)
         {
             if (true)
             {
@@ -1841,13 +1841,13 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealAutomationToolConfig) this;
+            return (UatConfig) this;
         }
 
         
         
 /// <summary>"List of maps that need light maps rebuilding"</summary>
-        public virtual UnrealAutomationToolConfig MapsToRebuildLightMaps(params object[] values)
+        public virtual UatConfig MapsToRebuildLightMaps(params object[] values)
         {
             if (true)
             {
@@ -1858,13 +1858,13 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealAutomationToolConfig) this;
+            return (UatConfig) this;
         }
 
         
         
 /// <summary>"List of maps that need HLOD rebuilding"</summary>
-        public virtual UnrealAutomationToolConfig MapsToRebuildHLODMaps(params object[] values)
+        public virtual UatConfig MapsToRebuildHLODMaps(params object[] values)
         {
             if (true)
             {
@@ -1875,13 +1875,13 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealAutomationToolConfig) this;
+            return (UatConfig) this;
         }
 
         
         
 /// <summary>"Whether Light Map errors should be treated as critical"</summary>
-        public virtual UnrealAutomationToolConfig IgnoreLightMapErrors(params object[] values)
+        public virtual UatConfig IgnoreLightMapErrors(params object[] values)
         {
             if (true)
             {
@@ -1892,13 +1892,13 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealAutomationToolConfig) this;
+            return (UatConfig) this;
         }
 
         
         
     
-        public virtual UnrealAutomationToolConfig Cookflavor(params object[] values)
+        public virtual UatConfig Cookflavor(params object[] values)
         {
             if (true)
             {
@@ -1909,13 +1909,13 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealAutomationToolConfig) this;
+            return (UatConfig) this;
         }
 
         
         
     
-        public virtual UnrealAutomationToolConfig Ddc(params object[] values)
+        public virtual UatConfig Ddc(params object[] values)
         {
             if (true)
             {
@@ -1926,13 +1926,13 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealAutomationToolConfig) this;
+            return (UatConfig) this;
         }
 
         
         
     
-        public virtual UnrealAutomationToolConfig I18npreset(params object[] values)
+        public virtual UatConfig I18npreset(params object[] values)
         {
             if (true)
             {
@@ -1943,13 +1943,13 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealAutomationToolConfig) this;
+            return (UatConfig) this;
         }
 
         
         
     
-        public virtual UnrealAutomationToolConfig CookCultures(params object[] values)
+        public virtual UatConfig CookCultures(params object[] values)
         {
             if (true)
             {
@@ -1960,13 +1960,13 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealAutomationToolConfig) this;
+            return (UatConfig) this;
         }
 
         
         
     
-        public virtual UnrealAutomationToolConfig Skipbuild(params object[] values)
+        public virtual UatConfig Skipbuild(params object[] values)
         {
             if (true)
             {
@@ -1977,7 +1977,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealAutomationToolConfig) this;
+            return (UatConfig) this;
         }
 
         
@@ -1985,7 +1985,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>
 /// SkipBuildClient if true then don't build the client exe
 /// </summary>
-        public virtual UnrealAutomationToolConfig SkipBuildClient(params object[] values)
+        public virtual UatConfig SkipBuildClient(params object[] values)
         {
             if (true)
             {
@@ -1996,7 +1996,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealAutomationToolConfig) this;
+            return (UatConfig) this;
         }
 
         
@@ -2004,7 +2004,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>
 /// SkipBuildEditor if true then don't build the editor exe
 /// </summary>
-        public virtual UnrealAutomationToolConfig SkipBuildEditor(params object[] values)
+        public virtual UatConfig SkipBuildEditor(params object[] values)
         {
             if (true)
             {
@@ -2015,13 +2015,13 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealAutomationToolConfig) this;
+            return (UatConfig) this;
         }
 
         
         
     
-        public virtual UnrealAutomationToolConfig Createreleaseversionroot(params object[] values)
+        public virtual UatConfig Createreleaseversionroot(params object[] values)
         {
             if (true)
             {
@@ -2032,13 +2032,13 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealAutomationToolConfig) this;
+            return (UatConfig) this;
         }
 
         
         
     
-        public virtual UnrealAutomationToolConfig Basedonreleaseversionroot(params object[] values)
+        public virtual UatConfig Basedonreleaseversionroot(params object[] values)
         {
             if (true)
             {
@@ -2049,7 +2049,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealAutomationToolConfig) this;
+            return (UatConfig) this;
         }
 
         
@@ -2057,7 +2057,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>
 /// The version of the originally released build. This is required by some platforms when generating patches.
 /// </summary>
-        public virtual UnrealAutomationToolConfig OriginalReleaseVersion(params object[] values)
+        public virtual UatConfig OriginalReleaseVersion(params object[] values)
         {
             if (true)
             {
@@ -2068,7 +2068,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealAutomationToolConfig) this;
+            return (UatConfig) this;
         }
 
         
@@ -2076,7 +2076,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>
 /// Cook: Create a cooked release version.  Also, the version. e.g. 1.0
 /// </summary>
-        public virtual UnrealAutomationToolConfig CreateReleaseVersion(params object[] values)
+        public virtual UatConfig CreateReleaseVersion(params object[] values)
         {
             if (true)
             {
@@ -2087,7 +2087,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealAutomationToolConfig) this;
+            return (UatConfig) this;
         }
 
         
@@ -2095,7 +2095,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>
 /// Cook: Base this cook of a already released version of the cooked data
 /// </summary>
-        public virtual UnrealAutomationToolConfig BasedOnReleaseVersion(params object[] values)
+        public virtual UatConfig BasedOnReleaseVersion(params object[] values)
         {
             if (true)
             {
@@ -2106,7 +2106,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealAutomationToolConfig) this;
+            return (UatConfig) this;
         }
 
         
@@ -2116,7 +2116,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// this requires BasedOnReleaseVersion
 /// see also CreateReleaseVersion, BasedOnReleaseVersion
 /// </summary>
-        public virtual UnrealAutomationToolConfig GeneratePatch(params object[] values)
+        public virtual UatConfig GeneratePatch(params object[] values)
         {
             if (true)
             {
@@ -2127,13 +2127,13 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealAutomationToolConfig) this;
+            return (UatConfig) this;
         }
 
         
         
 /// <summary></summary>
-        public virtual UnrealAutomationToolConfig AddPatchLevel(params object[] values)
+        public virtual UatConfig AddPatchLevel(params object[] values)
         {
             if (true)
             {
@@ -2144,14 +2144,14 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealAutomationToolConfig) this;
+            return (UatConfig) this;
         }
 
         
         
 /// <summary>
 /// Are we staging the unmodified pak files from the base release</summary>
-        public virtual UnrealAutomationToolConfig StageBaseReleasePaks(params object[] values)
+        public virtual UatConfig StageBaseReleasePaks(params object[] values)
         {
             if (true)
             {
@@ -2162,7 +2162,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealAutomationToolConfig) this;
+            return (UatConfig) this;
         }
 
         
@@ -2170,7 +2170,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>
 /// Required when building remaster package
 /// </summary>
-        public virtual UnrealAutomationToolConfig DiscVersion(params object[] values)
+        public virtual UatConfig DiscVersion(params object[] values)
         {
             if (true)
             {
@@ -2181,7 +2181,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealAutomationToolConfig) this;
+            return (UatConfig) this;
         }
 
         
@@ -2189,7 +2189,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>
 /// Cook: Additional cooker options to include on the cooker commandline
 /// </summary>
-        public virtual UnrealAutomationToolConfig AdditionalCookerOptions(params object[] values)
+        public virtual UatConfig AdditionalCookerOptions(params object[] values)
         {
             if (true)
             {
@@ -2200,13 +2200,13 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealAutomationToolConfig) this;
+            return (UatConfig) this;
         }
 
         
         
     
-        public virtual UnrealAutomationToolConfig DLCName(params object[] values)
+        public virtual UatConfig DLCName(params object[] values)
         {
             if (true)
             {
@@ -2217,7 +2217,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealAutomationToolConfig) this;
+            return (UatConfig) this;
         }
 
         
@@ -2226,7 +2226,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// After cook completes diff the cooked content against another cooked content directory.
 /// report all errors to the log
 /// </summary>
-        public virtual UnrealAutomationToolConfig DiffCookedContentPath(params object[] values)
+        public virtual UatConfig DiffCookedContentPath(params object[] values)
         {
             if (true)
             {
@@ -2237,7 +2237,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealAutomationToolConfig) this;
+            return (UatConfig) this;
         }
 
         
@@ -2246,7 +2246,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// Enable cooking of engine content when cooking dlc
 /// not included in original release but is referenced by current cook
 /// </summary>
-        public virtual UnrealAutomationToolConfig DLCIncludeEngineContent(params object[] values)
+        public virtual UatConfig DLCIncludeEngineContent(params object[] values)
         {
             if (true)
             {
@@ -2257,7 +2257,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealAutomationToolConfig) this;
+            return (UatConfig) this;
         }
 
         
@@ -2265,7 +2265,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>
 /// Enable packaging up the uplugin file inside the dlc pak.  This is sometimes desired if you want the plugin to be standalone
 /// </summary>
-        public virtual UnrealAutomationToolConfig DLCPakPluginFile(params object[] values)
+        public virtual UatConfig DLCPakPluginFile(params object[] values)
         {
             if (true)
             {
@@ -2276,7 +2276,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealAutomationToolConfig) this;
+            return (UatConfig) this;
         }
 
         
@@ -2285,7 +2285,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// DLC will remap it's files to the game directory and act like a patch.  This is useful if you want to override content in the main game along side your main game.
 /// For example having different main game content in different DLCs
 /// </summary>
-        public virtual UnrealAutomationToolConfig DLCActLikePatch(params object[] values)
+        public virtual UatConfig DLCActLikePatch(params object[] values)
         {
             if (true)
             {
@@ -2296,7 +2296,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealAutomationToolConfig) this;
+            return (UatConfig) this;
         }
 
         
@@ -2304,7 +2304,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>
 /// Shared: the game will use only signed content.
 /// </summary>
-        public virtual UnrealAutomationToolConfig SignedPak(params object[] values)
+        public virtual UatConfig SignedPak(params object[] values)
         {
             if (true)
             {
@@ -2315,7 +2315,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealAutomationToolConfig) this;
+            return (UatConfig) this;
         }
 
         
@@ -2323,7 +2323,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>
 /// Stage: True if we should disable trying to re-use pak files from another staged build when we've specified a different cook source platform
 /// </summary>
-        public virtual UnrealAutomationToolConfig IgnorePaksFromDifferentCookSource(params object[] values)
+        public virtual UatConfig IgnorePaksFromDifferentCookSource(params object[] values)
         {
             if (true)
             {
@@ -2334,7 +2334,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealAutomationToolConfig) this;
+            return (UatConfig) this;
         }
 
         
@@ -2342,7 +2342,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>
 /// Cook: Do not include a version number in the cooked content
 /// </summary>
-        public virtual UnrealAutomationToolConfig UnversionedCookedContent(params object[] values)
+        public virtual UatConfig UnversionedCookedContent(params object[] values)
         {
             if (true)
             {
@@ -2353,7 +2353,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealAutomationToolConfig) this;
+            return (UatConfig) this;
         }
 
         
@@ -2361,7 +2361,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>
 /// Cook: number of additional cookers to spawn while cooking
 /// </summary>
-        public virtual UnrealAutomationToolConfig NumCookersToSpawn(params object[] values)
+        public virtual UatConfig NumCookersToSpawn(params object[] values)
         {
             if (true)
             {
@@ -2372,7 +2372,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealAutomationToolConfig) this;
+            return (UatConfig) this;
         }
 
         
@@ -2380,7 +2380,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>
 /// Compress packages during cook.
 /// </summary>
-        public virtual UnrealAutomationToolConfig Compressed(params object[] values)
+        public virtual UatConfig Compressed(params object[] values)
         {
             if (true)
             {
@@ -2391,7 +2391,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealAutomationToolConfig) this;
+            return (UatConfig) this;
         }
 
         
@@ -2399,7 +2399,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>
 /// Do not compress packages during cook, override game ProjectPackagingSettings to force it off
 /// </summary>
-        public virtual UnrealAutomationToolConfig ForceUncompressed(params object[] values)
+        public virtual UatConfig ForceUncompressed(params object[] values)
         {
             if (true)
             {
@@ -2410,7 +2410,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealAutomationToolConfig) this;
+            return (UatConfig) this;
         }
 
         
@@ -2418,7 +2418,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>
 /// Additional parameters when generating the PAK file
 /// </summary>
-        public virtual UnrealAutomationToolConfig AdditionalPakOptions(params object[] values)
+        public virtual UatConfig AdditionalPakOptions(params object[] values)
         {
             if (true)
             {
@@ -2429,7 +2429,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealAutomationToolConfig) this;
+            return (UatConfig) this;
         }
 
         
@@ -2437,7 +2437,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>
 /// Additional parameters when generating iostore container files
 /// </summary>
-        public virtual UnrealAutomationToolConfig AdditionalIoStoreOptions(params object[] values)
+        public virtual UatConfig AdditionalIoStoreOptions(params object[] values)
         {
             if (true)
             {
@@ -2448,7 +2448,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealAutomationToolConfig) this;
+            return (UatConfig) this;
         }
 
         
@@ -2456,7 +2456,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>
 /// Cook: Iterate from a build on the network
 /// </summary>
-        public virtual UnrealAutomationToolConfig Iteratesharedcookedbuild(params object[] values)
+        public virtual UatConfig Iteratesharedcookedbuild(params object[] values)
         {
             if (true)
             {
@@ -2467,7 +2467,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealAutomationToolConfig) this;
+            return (UatConfig) this;
         }
 
         
@@ -2475,7 +2475,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>
 /// Build: Don't build the game instead use the prebuild exe (requires iterate shared cooked build
 /// </summary>
-        public virtual UnrealAutomationToolConfig IterateSharedBuildUsePrecompiledExe(params object[] values)
+        public virtual UatConfig IterateSharedBuildUsePrecompiledExe(params object[] values)
         {
             if (true)
             {
@@ -2486,7 +2486,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealAutomationToolConfig) this;
+            return (UatConfig) this;
         }
 
         
@@ -2494,7 +2494,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>
 /// Cook: Output directory for cooked data
 /// </summary>
-        public virtual UnrealAutomationToolConfig CookOutputDir(params object[] values)
+        public virtual UatConfig CookOutputDir(params object[] values)
         {
             if (true)
             {
@@ -2505,13 +2505,13 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealAutomationToolConfig) this;
+            return (UatConfig) this;
         }
 
         
         
     
-        public virtual UnrealAutomationToolConfig Target(params object[] values)
+        public virtual UatConfig Target(params object[] values)
         {
             if (true)
             {
@@ -2522,14 +2522,14 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealAutomationToolConfig) this;
+            return (UatConfig) this;
         }
 
         
         
 /// <summary>Stage: Specifies a list of extra targets that should be staged along with a client
 /// </summary>
-        public virtual UnrealAutomationToolConfig ExtraTargetsToStageWithClient(params object[] values)
+        public virtual UatConfig ExtraTargetsToStageWithClient(params object[] values)
         {
             if (true)
             {
@@ -2540,7 +2540,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealAutomationToolConfig) this;
+            return (UatConfig) this;
         }
 
         
@@ -2548,7 +2548,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>
 /// By default we don't code sign unless it is required or requested
 /// </summary>
-        public virtual UnrealAutomationToolConfig CodeSign(params object[] values)
+        public virtual UatConfig CodeSign(params object[] values)
         {
             if (true)
             {
@@ -2559,7 +2559,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealAutomationToolConfig) this;
+            return (UatConfig) this;
         }
 
         
@@ -2567,7 +2567,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>
 /// If true, non-shipping binaries will be considered DebugUFS files and will appear on the debugfiles manifest
 /// </summary>
-        public virtual UnrealAutomationToolConfig TreatNonShippingBinariesAsDebugFiles(params object[] values)
+        public virtual UatConfig TreatNonShippingBinariesAsDebugFiles(params object[] values)
         {
             if (true)
             {
@@ -2578,7 +2578,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealAutomationToolConfig) this;
+            return (UatConfig) this;
         }
 
         
@@ -2586,7 +2586,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>
 /// If true, use chunk manifest files generated for extra flavor
 /// </summary>
-        public virtual UnrealAutomationToolConfig UseExtraFlavor(params object[] values)
+        public virtual UatConfig UseExtraFlavor(params object[] values)
         {
             if (true)
             {
@@ -2597,7 +2597,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealAutomationToolConfig) this;
+            return (UatConfig) this;
         }
 
         
@@ -2605,7 +2605,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>
 /// Shared: Directory to use for built chunk install data, command line: -chunkinstalldirectory=
 /// </summary>
-        public virtual UnrealAutomationToolConfig ChunkInstallDirectory(params object[] values)
+        public virtual UatConfig ChunkInstallDirectory(params object[] values)
         {
             if (true)
             {
@@ -2616,13 +2616,13 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealAutomationToolConfig) this;
+            return (UatConfig) this;
         }
 
         
         
     
-        public virtual UnrealAutomationToolConfig Chunkinstallversion(params object[] values)
+        public virtual UatConfig Chunkinstallversion(params object[] values)
         {
             if (true)
             {
@@ -2633,13 +2633,13 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealAutomationToolConfig) this;
+            return (UatConfig) this;
         }
 
         
         
     
-        public virtual UnrealAutomationToolConfig Chunkinstallrelease(params object[] values)
+        public virtual UatConfig Chunkinstallrelease(params object[] values)
         {
             if (true)
             {
@@ -2650,13 +2650,13 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealAutomationToolConfig) this;
+            return (UatConfig) this;
         }
 
         
         
     
-        public virtual UnrealAutomationToolConfig AppLocalDirectory(params object[] values)
+        public virtual UatConfig AppLocalDirectory(params object[] values)
         {
             if (true)
             {
@@ -2667,7 +2667,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealAutomationToolConfig) this;
+            return (UatConfig) this;
         }
 
         
@@ -2676,7 +2676,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// On Windows, adds an executable to the root of the staging directory which checks for prerequisites being
 /// installed and launches the game with a path to the .uproject file.
 /// </summary>
-        public virtual UnrealAutomationToolConfig NoBootstrapExe(params object[] values)
+        public virtual UatConfig NoBootstrapExe(params object[] values)
         {
             if (true)
             {
@@ -2687,13 +2687,13 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealAutomationToolConfig) this;
+            return (UatConfig) this;
         }
 
         
         
     
-        public virtual UnrealAutomationToolConfig ForcePackageData(params object[] values)
+        public virtual UatConfig ForcePackageData(params object[] values)
         {
             if (true)
             {
@@ -2704,7 +2704,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealAutomationToolConfig) this;
+            return (UatConfig) this;
         }
 
         
@@ -2712,7 +2712,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>
 /// Cook: Uses the iterative deploy, command line: -iterativedeploy or -iterate
 /// </summary>
-        public virtual UnrealAutomationToolConfig IterativeDeploy(params object[] values)
+        public virtual UatConfig IterativeDeploy(params object[] values)
         {
             if (true)
             {
@@ -2723,7 +2723,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealAutomationToolConfig) this;
+            return (UatConfig) this;
         }
 
         
@@ -2731,7 +2731,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>
 /// Provision to use
 /// </summary>
-        public virtual UnrealAutomationToolConfig Provision(params object[] values)
+        public virtual UatConfig Provision(params object[] values)
         {
             if (true)
             {
@@ -2742,7 +2742,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealAutomationToolConfig) this;
+            return (UatConfig) this;
         }
 
         
@@ -2750,7 +2750,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>
 /// Certificate to use
 /// </summary>
-        public virtual UnrealAutomationToolConfig Certificate(params object[] values)
+        public virtual UatConfig Certificate(params object[] values)
         {
             if (true)
             {
@@ -2761,7 +2761,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealAutomationToolConfig) this;
+            return (UatConfig) this;
         }
 
         
@@ -2769,7 +2769,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>
 /// Team ID to use
 /// </summary>
-        public virtual UnrealAutomationToolConfig Team(params object[] values)
+        public virtual UatConfig Team(params object[] values)
         {
             if (true)
             {
@@ -2780,7 +2780,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealAutomationToolConfig) this;
+            return (UatConfig) this;
         }
 
         
@@ -2788,7 +2788,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>
 /// true if provisioning is automatically managed
 /// </summary>
-        public virtual UnrealAutomationToolConfig AutomaticSigning(params object[] values)
+        public virtual UatConfig AutomaticSigning(params object[] values)
         {
             if (true)
             {
@@ -2799,7 +2799,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealAutomationToolConfig) this;
+            return (UatConfig) this;
         }
 
         
@@ -2807,7 +2807,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>
 /// Run:when running -editortest or a client, run all automation tests, not compatible with -server
 /// </summary>
-        public virtual UnrealAutomationToolConfig RunAutomationTest(params object[] values)
+        public virtual UatConfig RunAutomationTest(params object[] values)
         {
             if (true)
             {
@@ -2818,13 +2818,13 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealAutomationToolConfig) this;
+            return (UatConfig) this;
         }
 
         
         
     
-        public virtual UnrealAutomationToolConfig UnrealExe(params object[] values)
+        public virtual UatConfig UnrealExe(params object[] values)
         {
             if (true)
             {
@@ -2835,13 +2835,13 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealAutomationToolConfig) this;
+            return (UatConfig) this;
         }
 
         
         
     
-        public virtual UnrealAutomationToolConfig Clientconfig(params object[] values)
+        public virtual UatConfig Clientconfig(params object[] values)
         {
             if (true)
             {
@@ -2852,13 +2852,13 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealAutomationToolConfig) this;
+            return (UatConfig) this;
         }
 
         
         
     
-        public virtual UnrealAutomationToolConfig Config(params object[] values)
+        public virtual UatConfig Config(params object[] values)
         {
             if (true)
             {
@@ -2869,13 +2869,13 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealAutomationToolConfig) this;
+            return (UatConfig) this;
         }
 
         
         
     
-        public virtual UnrealAutomationToolConfig Configuration(params object[] values)
+        public virtual UatConfig Configuration(params object[] values)
         {
             if (true)
             {
@@ -2886,13 +2886,13 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealAutomationToolConfig) this;
+            return (UatConfig) this;
         }
 
         
         
     
-        public virtual UnrealAutomationToolConfig Port(params object[] values)
+        public virtual UatConfig Port(params object[] values)
         {
             if (true)
             {
@@ -2903,7 +2903,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealAutomationToolConfig) this;
+            return (UatConfig) this;
         }
 
         
@@ -2911,7 +2911,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>
 /// Cook: List of maps to cook.
 /// </summary>
-        public virtual UnrealAutomationToolConfig MapsToCook(params object[] values)
+        public virtual UatConfig MapsToCook(params object[] values)
         {
             if (true)
             {
@@ -2922,7 +2922,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealAutomationToolConfig) this;
+            return (UatConfig) this;
         }
 
         
@@ -2930,7 +2930,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>
 /// Cook: List of map inisections to cook (see allmaps)
 /// </summary>
-        public virtual UnrealAutomationToolConfig MapIniSectionsToCook(params object[] values)
+        public virtual UatConfig MapIniSectionsToCook(params object[] values)
         {
             if (true)
             {
@@ -2941,7 +2941,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealAutomationToolConfig) this;
+            return (UatConfig) this;
         }
 
         
@@ -2949,7 +2949,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>
 /// TitleID to package
 /// </summary>
-        public virtual UnrealAutomationToolConfig TitleID(params object[] values)
+        public virtual UatConfig TitleID(params object[] values)
         {
             if (true)
             {
@@ -2960,13 +2960,13 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealAutomationToolConfig) this;
+            return (UatConfig) this;
         }
 
         
         
     
-        public virtual UnrealAutomationToolConfig Serverconfig(params object[] values)
+        public virtual UatConfig Serverconfig(params object[] values)
         {
             if (true)
             {
@@ -2977,7 +2977,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealAutomationToolConfig) this;
+            return (UatConfig) this;
         }
 
         
@@ -2985,7 +2985,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// <summary>
 /// Run: Adds commands like debug crash, debug rendercrash, etc based on index
 /// </summary>
-        public virtual UnrealAutomationToolConfig CrashIndex(params object[] values)
+        public virtual UatConfig CrashIndex(params object[] values)
         {
             if (true)
             {
@@ -2996,13 +2996,13 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealAutomationToolConfig) this;
+            return (UatConfig) this;
         }
 
         
         
     
-        public virtual UnrealAutomationToolConfig IgnoreDependencies(params object[] values)
+        public virtual UatConfig IgnoreDependencies(params object[] values)
         {
             if (true)
             {
@@ -3013,7 +3013,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealAutomationToolConfig) this;
+            return (UatConfig) this;
         }
 
         
@@ -3024,7 +3024,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
 /// However, the batch file simply passes on all arguments, so UAT will choke when encountering -nocompile.
 /// Keep this CommandLineArg around so that doesn't happen.
 /// </summary>
-        public virtual UnrealAutomationToolConfig NoCompileLegacyDontUse(params object[] values)
+        public virtual UatConfig NoCompileLegacyDontUse(params object[] values)
         {
             if (true)
             {
@@ -3035,13 +3035,13 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealAutomationToolConfig) this;
+            return (UatConfig) this;
         }
 
         
         
     
-        public virtual UnrealAutomationToolConfig NoCompileEditor(params object[] values)
+        public virtual UatConfig NoCompileEditor(params object[] values)
         {
             if (true)
             {
@@ -3052,13 +3052,13 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealAutomationToolConfig) this;
+            return (UatConfig) this;
         }
 
         
         
     
-        public virtual UnrealAutomationToolConfig AllowStdOutLogVerbosity(params object[] values)
+        public virtual UatConfig AllowStdOutLogVerbosity(params object[] values)
         {
             if (true)
             {
@@ -3069,13 +3069,13 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealAutomationToolConfig) this;
+            return (UatConfig) this;
         }
 
         
         
     
-        public virtual UnrealAutomationToolConfig NoAutoSDK(params object[] values)
+        public virtual UatConfig NoAutoSDK(params object[] values)
         {
             if (true)
             {
@@ -3086,7 +3086,7 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealAutomationToolConfig) this;
+            return (UatConfig) this;
         }
 
         
@@ -18896,922 +18896,922 @@ public abstract class UnrealAutomationToolConfigGenerated : ToolConfig
                 BenchmarkOptionsStorage,
             };
 
-    public UnrealAutomationToolConfig Program(Action<ProgramConfig> configurator)
+    public UatConfig Program(Action<ProgramConfig> configurator)
     {
         configurator?.Invoke(ProgramStorage);
         AppendSubtool(ProgramStorage);
-        return (UnrealAutomationToolConfig) this;
+        return (UatConfig) this;
     }
 /// <summary>@"Executes scripted commands
 /// 
 /// AutomationTool.exe [-verbose] [-compileonly] [-p4] Command0 [-Arg0 -Arg1 -Arg2 ...] Command1 [-Arg0 -Arg1 ...] Command2 [-Arg0 ...] Commandn ... [EnvVar0=MyValue0 ... EnvVarn=MyValuen]"</summary>
-    public UnrealAutomationToolConfig Automation(Action<AutomationConfig> configurator)
+    public UatConfig Automation(Action<AutomationConfig> configurator)
     {
         configurator?.Invoke(AutomationStorage);
         AppendSubtool(AutomationStorage);
-        return (UnrealAutomationToolConfig) this;
+        return (UatConfig) this;
     }
 
-    public UnrealAutomationToolConfig CodeSign(Action<CodeSignConfig> configurator)
+    public UatConfig CodeSign(Action<CodeSignConfig> configurator)
     {
         configurator?.Invoke(CodeSignStorage);
         AppendSubtool(CodeSignStorage);
-        return (UnrealAutomationToolConfig) this;
+        return (UatConfig) this;
     }
 
-    public UnrealAutomationToolConfig McpConfigMapper(Action<McpConfigMapperConfig> configurator)
+    public UatConfig McpConfigMapper(Action<McpConfigMapperConfig> configurator)
     {
         configurator?.Invoke(McpConfigMapperStorage);
         AppendSubtool(McpConfigMapperStorage);
-        return (UnrealAutomationToolConfig) this;
+        return (UatConfig) this;
     }
 
-    public UnrealAutomationToolConfig P4Environment(Action<P4EnvironmentConfig> configurator)
+    public UatConfig P4Environment(Action<P4EnvironmentConfig> configurator)
     {
         configurator?.Invoke(P4EnvironmentStorage);
         AppendSubtool(P4EnvironmentStorage);
-        return (UnrealAutomationToolConfig) this;
+        return (UatConfig) this;
     }
 /// <summary>Auto-detects P4 settings based on the current path and creates a p4config file with the relevant settings.</summary>
-    public UnrealAutomationToolConfig P4WriteConfig(Action<P4WriteConfigConfig> configurator)
+    public UatConfig P4WriteConfig(Action<P4WriteConfigConfig> configurator)
     {
         configurator?.Invoke(P4WriteConfigStorage);
         AppendSubtool(P4WriteConfigStorage);
-        return (UnrealAutomationToolConfig) this;
+        return (UatConfig) this;
     }
 /// <summary>Iteratively cook from a shared cooked build
 /// Iteratively cook from a shared cooked build</summary>
-    public UnrealAutomationToolConfig ProjectParams(Action<ProjectParamsConfig> configurator)
+    public UatConfig ProjectParams(Action<ProjectParamsConfig> configurator)
     {
         configurator?.Invoke(ProjectParamsStorage);
         AppendSubtool(ProjectParamsStorage);
-        return (UnrealAutomationToolConfig) this;
+        return (UatConfig) this;
     }
 
-    public UnrealAutomationToolConfig UnrealBuild(Action<UnrealBuildConfig> configurator)
+    public UatConfig UnrealBuild(Action<UnrealBuildConfig> configurator)
     {
         configurator?.Invoke(UnrealBuildStorage);
         AppendSubtool(UnrealBuildStorage);
-        return (UnrealAutomationToolConfig) this;
+        return (UatConfig) this;
     }
 /// <summary>Builds the specified targets and configurations for the specified project.
 /// Example BuildTarget -project=QAGame -target=Editor+Game -platform=PS4+XboxOne -configuration=Development.
 /// Note: Editor will only ever build for the current platform in a Development config and required tools will be included</summary>
-    public UnrealAutomationToolConfig BuildTarget(Action<BuildTargetConfig> configurator)
+    public UatConfig BuildTarget(Action<BuildTargetConfig> configurator)
     {
         configurator?.Invoke(BuildTargetStorage);
         AppendSubtool(BuildTargetStorage);
-        return (UnrealAutomationToolConfig) this;
+        return (UatConfig) this;
     }
 /// <summary>Tool for creating extensible build processes in UE4 which can be run locally or in parallel across a build farm.</summary>
-    public UnrealAutomationToolConfig BuildGraph(Action<BuildGraphConfig> configurator)
+    public UatConfig BuildGraph(Action<BuildGraphConfig> configurator)
     {
         configurator?.Invoke(BuildGraphStorage);
         AppendSubtool(BuildGraphStorage);
-        return (UnrealAutomationToolConfig) this;
+        return (UatConfig) this;
     }
 
-    public UnrealAutomationToolConfig Build(Action<BuildConfig> configurator)
+    public UatConfig Build(Action<BuildConfig> configurator)
     {
         configurator?.Invoke(BuildStorage);
         AppendSubtool(BuildStorage);
-        return (UnrealAutomationToolConfig) this;
+        return (UatConfig) this;
     }
 
-    public UnrealAutomationToolConfig TempStorageTests(Action<TempStorageTestsConfig> configurator)
+    public UatConfig TempStorageTests(Action<TempStorageTestsConfig> configurator)
     {
         configurator?.Invoke(TempStorageTestsStorage);
         AppendSubtool(TempStorageTestsStorage);
-        return (UnrealAutomationToolConfig) this;
+        return (UatConfig) this;
     }
 /// <summary>Removes folders in a given temp storage directory that are older than a certain time.</summary>
-    public UnrealAutomationToolConfig CleanTempStorage(Action<CleanTempStorageConfig> configurator)
+    public UatConfig CleanTempStorage(Action<CleanTempStorageConfig> configurator)
     {
         configurator?.Invoke(CleanTempStorageStorage);
         AppendSubtool(CleanTempStorageStorage);
-        return (UnrealAutomationToolConfig) this;
+        return (UatConfig) this;
     }
 
-    public UnrealAutomationToolConfig TestGauntlet(Action<TestGauntletConfig> configurator)
+    public UatConfig TestGauntlet(Action<TestGauntletConfig> configurator)
     {
         configurator?.Invoke(TestGauntletStorage);
         AppendSubtool(TestGauntletStorage);
-        return (UnrealAutomationToolConfig) this;
+        return (UatConfig) this;
     }
 
-    public UnrealAutomationToolConfig RunUnreal(Action<RunUnrealConfig> configurator)
+    public UatConfig RunUnreal(Action<RunUnrealConfig> configurator)
     {
         configurator?.Invoke(RunUnrealStorage);
         AppendSubtool(RunUnrealStorage);
-        return (UnrealAutomationToolConfig) this;
+        return (UatConfig) this;
     }
 /// <summary>@"Creates an IPA from an xarchive file"</summary>
-    public UnrealAutomationToolConfig ExportIPAFromArchive(Action<ExportIPAFromArchiveConfig> configurator)
+    public UatConfig ExportIPAFromArchive(Action<ExportIPAFromArchiveConfig> configurator)
     {
         configurator?.Invoke(ExportIPAFromArchiveStorage);
         AppendSubtool(ExportIPAFromArchiveStorage);
-        return (UnrealAutomationToolConfig) this;
+        return (UatConfig) this;
     }
 /// <summary>@"Creates an IPA from an xarchive file"</summary>
-    public UnrealAutomationToolConfig MakeIPA(Action<MakeIPAConfig> configurator)
+    public UatConfig MakeIPA(Action<MakeIPAConfig> configurator)
     {
         configurator?.Invoke(MakeIPAStorage);
         AppendSubtool(MakeIPAStorage);
-        return (UnrealAutomationToolConfig) this;
+        return (UatConfig) this;
     }
 /// <summary>@"Pulls a value from an ini file and inserts it into a plist."
 /// @"Note currently only looks at values irrespective of sections!"</summary>
-    public UnrealAutomationToolConfig WriteIniValueToPlist(Action<WriteIniValueToPlistConfig> configurator)
+    public UatConfig WriteIniValueToPlist(Action<WriteIniValueToPlistConfig> configurator)
     {
         configurator?.Invoke(WriteIniValueToPlistStorage);
         AppendSubtool(WriteIniValueToPlistStorage);
-        return (UnrealAutomationToolConfig) this;
+        return (UatConfig) this;
     }
 
-    public UnrealAutomationToolConfig OneSkyLocalizationProvider(Action<OneSkyLocalizationProviderConfig> configurator)
+    public UatConfig OneSkyLocalizationProvider(Action<OneSkyLocalizationProviderConfig> configurator)
     {
         configurator?.Invoke(OneSkyLocalizationProviderStorage);
         AppendSubtool(OneSkyLocalizationProviderStorage);
-        return (UnrealAutomationToolConfig) this;
+        return (UatConfig) this;
     }
 /// <summary>Analyzes third party libraries</summary>
-    public UnrealAutomationToolConfig AnalyzeThirdPartyLibs(Action<AnalyzeThirdPartyLibsConfig> configurator)
+    public UatConfig AnalyzeThirdPartyLibs(Action<AnalyzeThirdPartyLibsConfig> configurator)
     {
         configurator?.Invoke(AnalyzeThirdPartyLibsStorage);
         AppendSubtool(AnalyzeThirdPartyLibsStorage);
-        return (UnrealAutomationToolConfig) this;
+        return (UatConfig) this;
     }
 /// <summary>BlameKeyword command. Looks for the specified keywords in all files at the specified path and finds who added them based on P4 history</summary>
 /// <remarks>WARNING: This command might require Perforce</remarks>
-    public UnrealAutomationToolConfig BlameKeyword(Action<BlameKeywordConfig> configurator)
+    public UatConfig BlameKeyword(Action<BlameKeywordConfig> configurator)
     {
         configurator?.Invoke(BlameKeywordStorage);
         AppendSubtool(BlameKeywordStorage);
-        return (UnrealAutomationToolConfig) this;
+        return (UatConfig) this;
     }
 
-    public UnrealAutomationToolConfig XcodeTargetPlatform_IOS(Action<XcodeTargetPlatform_IOSConfig> configurator)
+    public UatConfig XcodeTargetPlatform_IOS(Action<XcodeTargetPlatform_IOSConfig> configurator)
     {
         configurator?.Invoke(XcodeTargetPlatform_IOSStorage);
         AppendSubtool(XcodeTargetPlatform_IOSStorage);
-        return (UnrealAutomationToolConfig) this;
+        return (UatConfig) this;
     }
 
-    public UnrealAutomationToolConfig MakefileTargetPlatform_IOS(Action<MakefileTargetPlatform_IOSConfig> configurator)
+    public UatConfig MakefileTargetPlatform_IOS(Action<MakefileTargetPlatform_IOSConfig> configurator)
     {
         configurator?.Invoke(MakefileTargetPlatform_IOSStorage);
         AppendSubtool(MakefileTargetPlatform_IOSStorage);
-        return (UnrealAutomationToolConfig) this;
+        return (UatConfig) this;
     }
 /// <summary>Builds common tools used by the engine which are not part of typical editor or game builds. Useful when syncing source-only on GitHub.</summary>
-    public UnrealAutomationToolConfig BuildCommonTools(Action<BuildCommonToolsConfig> configurator)
+    public UatConfig BuildCommonTools(Action<BuildCommonToolsConfig> configurator)
     {
         configurator?.Invoke(BuildCommonToolsStorage);
         AppendSubtool(BuildCommonToolsStorage);
-        return (UnrealAutomationToolConfig) this;
+        return (UatConfig) this;
     }
 
-    public UnrealAutomationToolConfig ZipProjectUp(Action<ZipProjectUpConfig> configurator)
+    public UatConfig ZipProjectUp(Action<ZipProjectUpConfig> configurator)
     {
         configurator?.Invoke(ZipProjectUpStorage);
         AppendSubtool(ZipProjectUpStorage);
-        return (UnrealAutomationToolConfig) this;
+        return (UatConfig) this;
     }
 /// <summary>@"Builds/Cooks/Runs a project.
 /// 
 /// For non-uprojects project targets are discovered by compiling target rule files found in the project folder.
 /// If -map is not specified, the command looks for DefaultMap entry in the project's DefaultEngine.ini and if not found, in BaseEngine.ini.
 /// If no DefaultMap can be found, the command falls back to /Engine/Maps/Entry."</summary>
-    public UnrealAutomationToolConfig BuildCookRun(Action<BuildCookRunConfig> configurator)
+    public UatConfig BuildCookRun(Action<BuildCookRunConfig> configurator)
     {
         configurator?.Invoke(BuildCookRunStorage);
         AppendSubtool(BuildCookRunStorage);
-        return (UnrealAutomationToolConfig) this;
+        return (UatConfig) this;
     }
 
-    public UnrealAutomationToolConfig BuildDerivedDataCache(Action<BuildDerivedDataCacheConfig> configurator)
+    public UatConfig BuildDerivedDataCache(Action<BuildDerivedDataCacheConfig> configurator)
     {
         configurator?.Invoke(BuildDerivedDataCacheStorage);
         AppendSubtool(BuildDerivedDataCacheStorage);
-        return (UnrealAutomationToolConfig) this;
+        return (UatConfig) this;
     }
 /// <remarks>WARNING: This command might require Perforce</remarks>
-    public UnrealAutomationToolConfig BuildForUGS(Action<BuildForUGSConfig> configurator)
+    public UatConfig BuildForUGS(Action<BuildForUGSConfig> configurator)
     {
         configurator?.Invoke(BuildForUGSStorage);
         AppendSubtool(BuildForUGSStorage);
-        return (UnrealAutomationToolConfig) this;
+        return (UatConfig) this;
     }
 /// <summary>Builds Hlslcc using CMake build system.</summary>
 /// <remarks>WARNING: This command might require Perforce</remarks>
-    public UnrealAutomationToolConfig BuildHlslcc(Action<BuildHlslccConfig> configurator)
+    public UatConfig BuildHlslcc(Action<BuildHlslccConfig> configurator)
     {
         configurator?.Invoke(BuildHlslccStorage);
         AppendSubtool(BuildHlslccStorage);
-        return (UnrealAutomationToolConfig) this;
+        return (UatConfig) this;
     }
 
-    public UnrealAutomationToolConfig BuildPhysX_Android(Action<BuildPhysX_AndroidConfig> configurator)
+    public UatConfig BuildPhysX_Android(Action<BuildPhysX_AndroidConfig> configurator)
     {
         configurator?.Invoke(BuildPhysX_AndroidStorage);
         AppendSubtool(BuildPhysX_AndroidStorage);
-        return (UnrealAutomationToolConfig) this;
+        return (UatConfig) this;
     }
 
-    public UnrealAutomationToolConfig BuildPhysX_IOS(Action<BuildPhysX_IOSConfig> configurator)
+    public UatConfig BuildPhysX_IOS(Action<BuildPhysX_IOSConfig> configurator)
     {
         configurator?.Invoke(BuildPhysX_IOSStorage);
         AppendSubtool(BuildPhysX_IOSStorage);
-        return (UnrealAutomationToolConfig) this;
+        return (UatConfig) this;
     }
 
-    public UnrealAutomationToolConfig BuildPhysX_Linux(Action<BuildPhysX_LinuxConfig> configurator)
+    public UatConfig BuildPhysX_Linux(Action<BuildPhysX_LinuxConfig> configurator)
     {
         configurator?.Invoke(BuildPhysX_LinuxStorage);
         AppendSubtool(BuildPhysX_LinuxStorage);
-        return (UnrealAutomationToolConfig) this;
+        return (UatConfig) this;
     }
 
-    public UnrealAutomationToolConfig BuildPhysX_Mac_x86_64(Action<BuildPhysX_Mac_x86_64Config> configurator)
+    public UatConfig BuildPhysX_Mac_x86_64(Action<BuildPhysX_Mac_x86_64Config> configurator)
     {
         configurator?.Invoke(BuildPhysX_Mac_x86_64Storage);
         AppendSubtool(BuildPhysX_Mac_x86_64Storage);
-        return (UnrealAutomationToolConfig) this;
+        return (UatConfig) this;
     }
 
-    public UnrealAutomationToolConfig BuildPhysX_Mac_arm64(Action<BuildPhysX_Mac_arm64Config> configurator)
+    public UatConfig BuildPhysX_Mac_arm64(Action<BuildPhysX_Mac_arm64Config> configurator)
     {
         configurator?.Invoke(BuildPhysX_Mac_arm64Storage);
         AppendSubtool(BuildPhysX_Mac_arm64Storage);
-        return (UnrealAutomationToolConfig) this;
+        return (UatConfig) this;
     }
 
-    public UnrealAutomationToolConfig BuildPhysX_Mac(Action<BuildPhysX_MacConfig> configurator)
+    public UatConfig BuildPhysX_Mac(Action<BuildPhysX_MacConfig> configurator)
     {
         configurator?.Invoke(BuildPhysX_MacStorage);
         AppendSubtool(BuildPhysX_MacStorage);
-        return (UnrealAutomationToolConfig) this;
+        return (UatConfig) this;
     }
 
-    public UnrealAutomationToolConfig BuildPhysX_TVOS(Action<BuildPhysX_TVOSConfig> configurator)
+    public UatConfig BuildPhysX_TVOS(Action<BuildPhysX_TVOSConfig> configurator)
     {
         configurator?.Invoke(BuildPhysX_TVOSStorage);
         AppendSubtool(BuildPhysX_TVOSStorage);
-        return (UnrealAutomationToolConfig) this;
+        return (UatConfig) this;
     }
 
-    public UnrealAutomationToolConfig BuildPhysX_Win32(Action<BuildPhysX_Win32Config> configurator)
+    public UatConfig BuildPhysX_Win32(Action<BuildPhysX_Win32Config> configurator)
     {
         configurator?.Invoke(BuildPhysX_Win32Storage);
         AppendSubtool(BuildPhysX_Win32Storage);
-        return (UnrealAutomationToolConfig) this;
+        return (UatConfig) this;
     }
 
-    public UnrealAutomationToolConfig BuildPhysX_Win64(Action<BuildPhysX_Win64Config> configurator)
+    public UatConfig BuildPhysX_Win64(Action<BuildPhysX_Win64Config> configurator)
     {
         configurator?.Invoke(BuildPhysX_Win64Storage);
         AppendSubtool(BuildPhysX_Win64Storage);
-        return (UnrealAutomationToolConfig) this;
+        return (UatConfig) this;
     }
 /// <summary>Builds a plugin, and packages it for distribution</summary>
-    public UnrealAutomationToolConfig BuildPlugin(Action<BuildPluginConfig> configurator)
+    public UatConfig BuildPlugin(Action<BuildPluginConfig> configurator)
     {
         configurator?.Invoke(BuildPluginStorage);
         AppendSubtool(BuildPluginStorage);
-        return (UnrealAutomationToolConfig) this;
+        return (UatConfig) this;
     }
 /// <summary>Builds the editor for the specified project.
 /// Example BuildEditor -project=QAGame
 /// Note: Editor will only ever build for the current platform in a Development config and required tools will be included</summary>
-    public UnrealAutomationToolConfig BuildEditor(Action<BuildEditorConfig> configurator)
+    public UatConfig BuildEditor(Action<BuildEditorConfig> configurator)
     {
         configurator?.Invoke(BuildEditorStorage);
         AppendSubtool(BuildEditorStorage);
-        return (UnrealAutomationToolConfig) this;
+        return (UatConfig) this;
     }
 /// <summary>Builds the game for the specified project.
 /// Example BuildGame -project=QAGame -platform=PS4+XboxOne -configuration=Development.</summary>
-    public UnrealAutomationToolConfig BuildGame(Action<BuildGameConfig> configurator)
+    public UatConfig BuildGame(Action<BuildGameConfig> configurator)
     {
         configurator?.Invoke(BuildGameStorage);
         AppendSubtool(BuildGameStorage);
-        return (UnrealAutomationToolConfig) this;
+        return (UatConfig) this;
     }
 /// <summary>Builds the server for the specified project.
 /// Example BuildServer -project=QAGame -platform=Win64 -configuration=Development.</summary>
-    public UnrealAutomationToolConfig BuildServer(Action<BuildServerConfig> configurator)
+    public UatConfig BuildServer(Action<BuildServerConfig> configurator)
     {
         configurator?.Invoke(BuildServerStorage);
         AppendSubtool(BuildServerStorage);
-        return (UnrealAutomationToolConfig) this;
+        return (UatConfig) this;
     }
 /// <summary>Builds third party libraries, and puts them all into a changelist</summary>
 /// <remarks>WARNING: This command might require Perforce</remarks>
-    public UnrealAutomationToolConfig BuildThirdPartyLibs(Action<BuildThirdPartyLibsConfig> configurator)
+    public UatConfig BuildThirdPartyLibs(Action<BuildThirdPartyLibsConfig> configurator)
     {
         configurator?.Invoke(BuildThirdPartyLibsStorage);
         AppendSubtool(BuildThirdPartyLibsStorage);
-        return (UnrealAutomationToolConfig) this;
+        return (UatConfig) this;
     }
 /// <summary>Checks that all source files have balanced macros for enabling/disabling optimization, warnings, etc...</summary>
-    public UnrealAutomationToolConfig CheckBalancedMacros(Action<CheckBalancedMacrosConfig> configurator)
+    public UatConfig CheckBalancedMacros(Action<CheckBalancedMacrosConfig> configurator)
     {
         configurator?.Invoke(CheckBalancedMacrosStorage);
         AppendSubtool(CheckBalancedMacrosStorage);
-        return (UnrealAutomationToolConfig) this;
+        return (UatConfig) this;
     }
 
-    public UnrealAutomationToolConfig CheckCsprojDotNetVersion(Action<CheckCsprojDotNetVersionConfig> configurator)
+    public UatConfig CheckCsprojDotNetVersion(Action<CheckCsprojDotNetVersionConfig> configurator)
     {
         configurator?.Invoke(CheckCsprojDotNetVersionStorage);
         AppendSubtool(CheckCsprojDotNetVersionStorage);
-        return (UnrealAutomationToolConfig) this;
+        return (UatConfig) this;
     }
 /// <summary>Audits the current branch for comments denoting a hack that was not meant to leave another branch, following a given format (\"BEGIN XXXX HACK\", where XXXX is one or more tags separated by spaces).
 /// Allowed tags may be specified manually on the command line. At least one must match, otherwise it will print a warning.
 /// The current branch name and fragments of the branch path will also be added by default, so running from //UE4/Main will add \"//UE4/Main\", \"UE4\", and \"Main\".</summary>
-    public UnrealAutomationToolConfig CheckForHacks(Action<CheckForHacksConfig> configurator)
+    public UatConfig CheckForHacks(Action<CheckForHacksConfig> configurator)
     {
         configurator?.Invoke(CheckForHacksStorage);
         AppendSubtool(CheckForHacksStorage);
-        return (UnrealAutomationToolConfig) this;
+        return (UatConfig) this;
     }
 /// <summary>Checks that the casing of files within a path on a case-insensitive Perforce server is correct.</summary>
 /// <remarks>WARNING: This command might require Perforce</remarks>
-    public UnrealAutomationToolConfig CheckPerforceCase(Action<CheckPerforceCaseConfig> configurator)
+    public UatConfig CheckPerforceCase(Action<CheckPerforceCaseConfig> configurator)
     {
         configurator?.Invoke(CheckPerforceCaseStorage);
         AppendSubtool(CheckPerforceCaseStorage);
-        return (UnrealAutomationToolConfig) this;
+        return (UatConfig) this;
     }
 /// <summary>Checks a directory for folders which should not be distributed</summary>
-    public UnrealAutomationToolConfig CheckRestrictedFolders(Action<CheckRestrictedFoldersConfig> configurator)
+    public UatConfig CheckRestrictedFolders(Action<CheckRestrictedFoldersConfig> configurator)
     {
         configurator?.Invoke(CheckRestrictedFoldersStorage);
         AppendSubtool(CheckRestrictedFoldersStorage);
-        return (UnrealAutomationToolConfig) this;
+        return (UatConfig) this;
     }
 /// <summary>Checks that the given target exists, by looking for the relevant receipt.</summary>
-    public UnrealAutomationToolConfig CheckTargetExists(Action<CheckTargetExistsConfig> configurator)
+    public UatConfig CheckTargetExists(Action<CheckTargetExistsConfig> configurator)
     {
         configurator?.Invoke(CheckTargetExistsStorage);
         AppendSubtool(CheckTargetExistsStorage);
-        return (UnrealAutomationToolConfig) this;
+        return (UatConfig) this;
     }
 /// <summary>Checks that the installed Xcode version is the version specified.</summary>
-    public UnrealAutomationToolConfig CheckXcodeVersion(Action<CheckXcodeVersionConfig> configurator)
+    public UatConfig CheckXcodeVersion(Action<CheckXcodeVersionConfig> configurator)
     {
         configurator?.Invoke(CheckXcodeVersionStorage);
         AppendSubtool(CheckXcodeVersionStorage);
-        return (UnrealAutomationToolConfig) this;
+        return (UatConfig) this;
     }
 /// <summary>Removes folders in an automation report directory that are older than a certain time.</summary>
-    public UnrealAutomationToolConfig CleanAutomationReports(Action<CleanAutomationReportsConfig> configurator)
+    public UatConfig CleanAutomationReports(Action<CleanAutomationReportsConfig> configurator)
     {
         configurator?.Invoke(CleanAutomationReportsStorage);
         AppendSubtool(CleanAutomationReportsStorage);
-        return (UnrealAutomationToolConfig) this;
+        return (UatConfig) this;
     }
 /// <summary>Removes folders matching a pattern in a given directory that are older than a certain time.</summary>
-    public UnrealAutomationToolConfig CleanFormalBuilds(Action<CleanFormalBuildsConfig> configurator)
+    public UatConfig CleanFormalBuilds(Action<CleanFormalBuildsConfig> configurator)
     {
         configurator?.Invoke(CleanFormalBuildsStorage);
         AppendSubtool(CleanFormalBuildsStorage);
-        return (UnrealAutomationToolConfig) this;
+        return (UatConfig) this;
     }
 /// <summary>custom code to restructure C++ source code for the new stats system.</summary>
-    public UnrealAutomationToolConfig CodeSurgery(Action<CodeSurgeryConfig> configurator)
+    public UatConfig CodeSurgery(Action<CodeSurgeryConfig> configurator)
     {
         configurator?.Invoke(CodeSurgeryStorage);
         AppendSubtool(CodeSurgeryStorage);
-        return (UnrealAutomationToolConfig) this;
+        return (UatConfig) this;
     }
 /// <summary>Copies the current shared cooked build from the network to the local PC</summary>
 /// <remarks>WARNING: This command might require Perforce</remarks>
-    public UnrealAutomationToolConfig CopySharedCookedBuild(Action<CopySharedCookedBuildConfig> configurator)
+    public UatConfig CopySharedCookedBuild(Action<CopySharedCookedBuildConfig> configurator)
     {
         configurator?.Invoke(CopySharedCookedBuildStorage);
         AppendSubtool(CopySharedCookedBuildStorage);
-        return (UnrealAutomationToolConfig) this;
+        return (UatConfig) this;
     }
 
-    public UnrealAutomationToolConfig CopyUAT(Action<CopyUATConfig> configurator)
+    public UatConfig CopyUAT(Action<CopyUATConfig> configurator)
     {
         configurator?.Invoke(CopyUATStorage);
         AppendSubtool(CopyUATStorage);
-        return (UnrealAutomationToolConfig) this;
+        return (UatConfig) this;
     }
 
-    public UnrealAutomationToolConfig CryptoKeys(Action<CryptoKeysConfig> configurator)
+    public UatConfig CryptoKeys(Action<CryptoKeysConfig> configurator)
     {
         configurator?.Invoke(CryptoKeysStorage);
         AppendSubtool(CryptoKeysStorage);
-        return (UnrealAutomationToolConfig) this;
+        return (UatConfig) this;
     }
 
-    public UnrealAutomationToolConfig ExtractPaks(Action<ExtractPaksConfig> configurator)
+    public UatConfig ExtractPaks(Action<ExtractPaksConfig> configurator)
     {
         configurator?.Invoke(ExtractPaksStorage);
         AppendSubtool(ExtractPaksStorage);
-        return (UnrealAutomationToolConfig) this;
+        return (UatConfig) this;
     }
 /// <summary>Command to perform additional steps to prepare an installed build.</summary>
-    public UnrealAutomationToolConfig FinalizeInstalledBuild(Action<FinalizeInstalledBuildConfig> configurator)
+    public UatConfig FinalizeInstalledBuild(Action<FinalizeInstalledBuildConfig> configurator)
     {
         configurator?.Invoke(FinalizeInstalledBuildStorage);
         AppendSubtool(FinalizeInstalledBuildStorage);
-        return (UnrealAutomationToolConfig) this;
+        return (UatConfig) this;
     }
 /// <summary>Fixes the case of files on a case-insensitive Perforce server by removing and re-adding them.</summary>
 /// <remarks>WARNING: This command might require Perforce</remarks>
-    public UnrealAutomationToolConfig FixPerforceCase(Action<FixPerforceCaseConfig> configurator)
+    public UatConfig FixPerforceCase(Action<FixPerforceCaseConfig> configurator)
     {
         configurator?.Invoke(FixPerforceCaseStorage);
         AppendSubtool(FixPerforceCaseStorage);
-        return (UnrealAutomationToolConfig) this;
+        return (UatConfig) this;
     }
 
-    public UnrealAutomationToolConfig FixupRedirects(Action<FixupRedirectsConfig> configurator)
+    public UatConfig FixupRedirects(Action<FixupRedirectsConfig> configurator)
     {
         configurator?.Invoke(FixupRedirectsStorage);
         AppendSubtool(FixupRedirectsStorage);
-        return (UnrealAutomationToolConfig) this;
+        return (UatConfig) this;
     }
 /// <summary>@"Generates IOS debug symbols for a remote project."</summary>
-    public UnrealAutomationToolConfig GenerateDSYM(Action<GenerateDSYMConfig> configurator)
+    public UatConfig GenerateDSYM(Action<GenerateDSYMConfig> configurator)
     {
         configurator?.Invoke(GenerateDSYMStorage);
         AppendSubtool(GenerateDSYMStorage);
-        return (UnrealAutomationToolConfig) this;
+        return (UatConfig) this;
     }
 /// <summary>UAT command to call into the integrated IPhonePackager code</summary>
-    public UnrealAutomationToolConfig IPhonePackager(Action<IPhonePackagerConfig> configurator)
+    public UatConfig IPhonePackager(Action<IPhonePackagerConfig> configurator)
     {
         configurator?.Invoke(IPhonePackagerStorage);
         AppendSubtool(IPhonePackagerStorage);
-        return (UnrealAutomationToolConfig) this;
+        return (UatConfig) this;
     }
 
-    public UnrealAutomationToolConfig LauncherLocalization(Action<LauncherLocalizationConfig> configurator)
+    public UatConfig LauncherLocalization(Action<LauncherLocalizationConfig> configurator)
     {
         configurator?.Invoke(LauncherLocalizationStorage);
         AppendSubtool(LauncherLocalizationStorage);
-        return (UnrealAutomationToolConfig) this;
+        return (UatConfig) this;
     }
 
-    public UnrealAutomationToolConfig ListMobileDevices(Action<ListMobileDevicesConfig> configurator)
+    public UatConfig ListMobileDevices(Action<ListMobileDevicesConfig> configurator)
     {
         configurator?.Invoke(ListMobileDevicesStorage);
         AppendSubtool(ListMobileDevicesStorage);
-        return (UnrealAutomationToolConfig) this;
+        return (UatConfig) this;
     }
 /// <summary>Lists TPS files associated with any source used to build a specified target(s). Grabs TPS files associated with source modules, content, and engine shaders.</summary>
-    public UnrealAutomationToolConfig ListThirdPartySoftware(Action<ListThirdPartySoftwareConfig> configurator)
+    public UatConfig ListThirdPartySoftware(Action<ListThirdPartySoftwareConfig> configurator)
     {
         configurator?.Invoke(ListThirdPartySoftwareStorage);
         AppendSubtool(ListThirdPartySoftwareStorage);
-        return (UnrealAutomationToolConfig) this;
+        return (UatConfig) this;
     }
 /// <summary>Updates the external localization data using the arguments provided.</summary>
-    public UnrealAutomationToolConfig Localize(Action<LocalizeConfig> configurator)
+    public UatConfig Localize(Action<LocalizeConfig> configurator)
     {
         configurator?.Invoke(LocalizeStorage);
         AppendSubtool(LocalizeStorage);
-        return (UnrealAutomationToolConfig) this;
+        return (UatConfig) this;
     }
 
-    public UnrealAutomationToolConfig ExportMcpTemplates(Action<ExportMcpTemplatesConfig> configurator)
+    public UatConfig ExportMcpTemplates(Action<ExportMcpTemplatesConfig> configurator)
     {
         configurator?.Invoke(ExportMcpTemplatesStorage);
         AppendSubtool(ExportMcpTemplatesStorage);
-        return (UnrealAutomationToolConfig) this;
+        return (UatConfig) this;
     }
 
-    public UnrealAutomationToolConfig Localise(Action<LocaliseConfig> configurator)
+    public UatConfig Localise(Action<LocaliseConfig> configurator)
     {
         configurator?.Invoke(LocaliseStorage);
         AppendSubtool(LocaliseStorage);
-        return (UnrealAutomationToolConfig) this;
+        return (UatConfig) this;
     }
 /// <summary>Opens the specified project.</summary>
-    public UnrealAutomationToolConfig OpenEditor(Action<OpenEditorConfig> configurator)
+    public UatConfig OpenEditor(Action<OpenEditorConfig> configurator)
     {
         configurator?.Invoke(OpenEditorStorage);
         AppendSubtool(OpenEditorStorage);
-        return (UnrealAutomationToolConfig) this;
+        return (UatConfig) this;
     }
 /// <summary>Parses Visual C++ timing information (as generated by UBT with the -Timing flag), and converts it into JSON format which can be visualized using the chrome://tracing tab</summary>
-    public UnrealAutomationToolConfig ParseMsvcTimingInfo(Action<ParseMsvcTimingInfoConfig> configurator)
+    public UatConfig ParseMsvcTimingInfo(Action<ParseMsvcTimingInfoConfig> configurator)
     {
         configurator?.Invoke(ParseMsvcTimingInfoStorage);
         AppendSubtool(ParseMsvcTimingInfoStorage);
-        return (UnrealAutomationToolConfig) this;
+        return (UatConfig) this;
     }
 /// <summary>Rewrites include directives for headers in public include paths to make them relative to the 'Public' folder.</summary>
-    public UnrealAutomationToolConfig RebasePublicIncludePaths(Action<RebasePublicIncludePathsConfig> configurator)
+    public UatConfig RebasePublicIncludePaths(Action<RebasePublicIncludePathsConfig> configurator)
     {
         configurator?.Invoke(RebasePublicIncludePathsStorage);
         AppendSubtool(RebasePublicIncludePathsStorage);
-        return (UnrealAutomationToolConfig) this;
+        return (UatConfig) this;
     }
 /// <remarks>WARNING: This command might require Perforce</remarks>
-    public UnrealAutomationToolConfig RebuildHLOD(Action<RebuildHLODConfig> configurator)
+    public UatConfig RebuildHLOD(Action<RebuildHLODConfig> configurator)
     {
         configurator?.Invoke(RebuildHLODStorage);
         AppendSubtool(RebuildHLODStorage);
-        return (UnrealAutomationToolConfig) this;
+        return (UatConfig) this;
     }
 /// <summary>Helper command used for rebuilding a projects light maps</summary>
 /// <remarks>WARNING: This command might require Perforce</remarks>
-    public UnrealAutomationToolConfig RebuildLightMaps(Action<RebuildLightMapsConfig> configurator)
+    public UatConfig RebuildLightMaps(Action<RebuildLightMapsConfig> configurator)
     {
         configurator?.Invoke(RebuildLightMapsStorage);
         AppendSubtool(RebuildLightMapsStorage);
-        return (UnrealAutomationToolConfig) this;
+        return (UatConfig) this;
     }
 /// <summary>UAT command to run performance test demo using different RHIs and compare results</summary>
-    public UnrealAutomationToolConfig RecordPerformance(Action<RecordPerformanceConfig> configurator)
+    public UatConfig RecordPerformance(Action<RecordPerformanceConfig> configurator)
     {
         configurator?.Invoke(RecordPerformanceStorage);
         AppendSubtool(RecordPerformanceStorage);
-        return (UnrealAutomationToolConfig) this;
+        return (UatConfig) this;
     }
 
-    public UnrealAutomationToolConfig ReplaceAssetsUsingManifest(Action<ReplaceAssetsUsingManifestConfig> configurator)
+    public UatConfig ReplaceAssetsUsingManifest(Action<ReplaceAssetsUsingManifestConfig> configurator)
     {
         configurator?.Invoke(ReplaceAssetsUsingManifestStorage);
         AppendSubtool(ReplaceAssetsUsingManifestStorage);
-        return (UnrealAutomationToolConfig) this;
+        return (UatConfig) this;
     }
 /// <remarks>WARNING: This command might require Perforce</remarks>
-    public UnrealAutomationToolConfig ResavePackages(Action<ResavePackagesConfig> configurator)
+    public UatConfig ResavePackages(Action<ResavePackagesConfig> configurator)
     {
         configurator?.Invoke(ResavePackagesStorage);
         AppendSubtool(ResavePackagesStorage);
-        return (UnrealAutomationToolConfig) this;
+        return (UatConfig) this;
     }
 /// <summary>Re-save all the plugin descriptors under a given path, optionally applying standard metadata to them</summary>
-    public UnrealAutomationToolConfig ResavePluginDescriptors(Action<ResavePluginDescriptorsConfig> configurator)
+    public UatConfig ResavePluginDescriptors(Action<ResavePluginDescriptorsConfig> configurator)
     {
         configurator?.Invoke(ResavePluginDescriptorsStorage);
         AppendSubtool(ResavePluginDescriptorsStorage);
-        return (UnrealAutomationToolConfig) this;
+        return (UatConfig) this;
     }
 /// <summary>Re-save all the project descriptors under a given path</summary>
-    public UnrealAutomationToolConfig ResaveProjectDescriptors(Action<ResaveProjectDescriptorsConfig> configurator)
+    public UatConfig ResaveProjectDescriptors(Action<ResaveProjectDescriptorsConfig> configurator)
     {
         configurator?.Invoke(ResaveProjectDescriptorsStorage);
         AppendSubtool(ResaveProjectDescriptorsStorage);
-        return (UnrealAutomationToolConfig) this;
+        return (UatConfig) this;
     }
 /// <remarks>WARNING: This command might require Perforce</remarks>
-    public UnrealAutomationToolConfig RunP4Reconcile(Action<RunP4ReconcileConfig> configurator)
+    public UatConfig RunP4Reconcile(Action<RunP4ReconcileConfig> configurator)
     {
         configurator?.Invoke(RunP4ReconcileStorage);
         AppendSubtool(RunP4ReconcileStorage);
-        return (UnrealAutomationToolConfig) this;
+        return (UatConfig) this;
     }
 /// <summary>Copy all the binaries for a target into a different folder. Can be restored using the UnstashTarget command. Useful for A/B testing.</summary>
-    public UnrealAutomationToolConfig StashTarget(Action<StashTargetConfig> configurator)
+    public UatConfig StashTarget(Action<StashTargetConfig> configurator)
     {
         configurator?.Invoke(StashTargetStorage);
         AppendSubtool(StashTargetStorage);
-        return (UnrealAutomationToolConfig) this;
+        return (UatConfig) this;
     }
 /// <summary>Copy all the binaries from a target back into the root directory. Use in combination with the StashTarget command.</summary>
-    public UnrealAutomationToolConfig UnstashTarget(Action<UnstashTargetConfig> configurator)
+    public UatConfig UnstashTarget(Action<UnstashTargetConfig> configurator)
     {
         configurator?.Invoke(UnstashTargetStorage);
         AppendSubtool(UnstashTargetStorage);
-        return (UnrealAutomationToolConfig) this;
+        return (UatConfig) this;
     }
 /// <summary>Submits a generated Utilization report to EC</summary>
-    public UnrealAutomationToolConfig SubmitUtilizationReportToEC(Action<SubmitUtilizationReportToECConfig> configurator)
+    public UatConfig SubmitUtilizationReportToEC(Action<SubmitUtilizationReportToECConfig> configurator)
     {
         configurator?.Invoke(SubmitUtilizationReportToECStorage);
         AppendSubtool(SubmitUtilizationReportToECStorage);
-        return (UnrealAutomationToolConfig) this;
+        return (UatConfig) this;
     }
 /// <summary>Attempts to sync UGS binaries for the specified project at the currently synced CL of the project/engine folders</summary>
 /// <remarks>WARNING: This command might require Perforce</remarks>
-    public UnrealAutomationToolConfig SyncBinariesFromUGS(Action<SyncBinariesFromUGSConfig> configurator)
+    public UatConfig SyncBinariesFromUGS(Action<SyncBinariesFromUGSConfig> configurator)
     {
         configurator?.Invoke(SyncBinariesFromUGSStorage);
         AppendSubtool(SyncBinariesFromUGSStorage);
-        return (UnrealAutomationToolConfig) this;
+        return (UatConfig) this;
     }
 /// <summary>Merge one or more remote DDC shares into a local share, taking files with the newest timestamps and keeping the size below a certain limit</summary>
-    public UnrealAutomationToolConfig SyncDDC(Action<SyncDDCConfig> configurator)
+    public UatConfig SyncDDC(Action<SyncDDCConfig> configurator)
     {
         configurator?.Invoke(SyncDDCStorage);
         AppendSubtool(SyncDDCStorage);
-        return (UnrealAutomationToolConfig) this;
+        return (UatConfig) this;
     }
 /// <summary>Creates a temporary client and syncs a path from Perforce.</summary>
 /// <remarks>WARNING: This command might require Perforce</remarks>
-    public UnrealAutomationToolConfig SyncDepotPath(Action<SyncDepotPathConfig> configurator)
+    public UatConfig SyncDepotPath(Action<SyncDepotPathConfig> configurator)
     {
         configurator?.Invoke(SyncDepotPathStorage);
         AppendSubtool(SyncDepotPathStorage);
-        return (UnrealAutomationToolConfig) this;
+        return (UatConfig) this;
     }
 /// <summary>Syncs and builds all the binaries required for a project</summary>
 /// <remarks>WARNING: This command might require Perforce</remarks>
-    public UnrealAutomationToolConfig SyncProject(Action<SyncProjectConfig> configurator)
+    public UatConfig SyncProject(Action<SyncProjectConfig> configurator)
     {
         configurator?.Invoke(SyncProjectStorage);
         AppendSubtool(SyncProjectStorage);
-        return (UnrealAutomationToolConfig) this;
+        return (UatConfig) this;
     }
 /// <summary>Tests P4 functionality. Runs 'p4 info'.</summary>
 /// <remarks>WARNING: This command might require Perforce</remarks>
-    public UnrealAutomationToolConfig TestP4_Info(Action<TestP4_InfoConfig> configurator)
+    public UatConfig TestP4_Info(Action<TestP4_InfoConfig> configurator)
     {
         configurator?.Invoke(TestP4_InfoStorage);
         AppendSubtool(TestP4_InfoStorage);
-        return (UnrealAutomationToolConfig) this;
+        return (UatConfig) this;
     }
 /// <summary>GitPullRequest</summary>
 /// <remarks>WARNING: This command might require Perforce</remarks>
-    public UnrealAutomationToolConfig GitPullRequest(Action<GitPullRequestConfig> configurator)
+    public UatConfig GitPullRequest(Action<GitPullRequestConfig> configurator)
     {
         configurator?.Invoke(GitPullRequestStorage);
         AppendSubtool(GitPullRequestStorage);
-        return (UnrealAutomationToolConfig) this;
+        return (UatConfig) this;
     }
 /// <summary>Throws an automation exception.</summary>
-    public UnrealAutomationToolConfig TestFail(Action<TestFailConfig> configurator)
+    public UatConfig TestFail(Action<TestFailConfig> configurator)
     {
         configurator?.Invoke(TestFailStorage);
         AppendSubtool(TestFailStorage);
-        return (UnrealAutomationToolConfig) this;
+        return (UatConfig) this;
     }
 /// <summary>Prints a message and returns success.</summary>
-    public UnrealAutomationToolConfig TestSuccess(Action<TestSuccessConfig> configurator)
+    public UatConfig TestSuccess(Action<TestSuccessConfig> configurator)
     {
         configurator?.Invoke(TestSuccessStorage);
         AppendSubtool(TestSuccessStorage);
-        return (UnrealAutomationToolConfig) this;
+        return (UatConfig) this;
     }
 /// <summary>Prints a message and returns success.</summary>
-    public UnrealAutomationToolConfig TestMessage(Action<TestMessageConfig> configurator)
+    public UatConfig TestMessage(Action<TestMessageConfig> configurator)
     {
         configurator?.Invoke(TestMessageStorage);
         AppendSubtool(TestMessageStorage);
-        return (UnrealAutomationToolConfig) this;
+        return (UatConfig) this;
     }
 /// <summary>Calls UAT recursively with a given command line.</summary>
-    public UnrealAutomationToolConfig TestRecursion(Action<TestRecursionConfig> configurator)
+    public UatConfig TestRecursion(Action<TestRecursionConfig> configurator)
     {
         configurator?.Invoke(TestRecursionStorage);
         AppendSubtool(TestRecursionStorage);
-        return (UnrealAutomationToolConfig) this;
+        return (UatConfig) this;
     }
 /// <summary>Calls UAT recursively with a given command line.</summary>
-    public UnrealAutomationToolConfig TestRecursionAuto(Action<TestRecursionAutoConfig> configurator)
+    public UatConfig TestRecursionAuto(Action<TestRecursionAutoConfig> configurator)
     {
         configurator?.Invoke(TestRecursionAutoStorage);
         AppendSubtool(TestRecursionAutoStorage);
-        return (UnrealAutomationToolConfig) this;
+        return (UatConfig) this;
     }
 /// <summary>Makes a zip file in Rocket/QFE</summary>
-    public UnrealAutomationToolConfig TestMacZip(Action<TestMacZipConfig> configurator)
+    public UatConfig TestMacZip(Action<TestMacZipConfig> configurator)
     {
         configurator?.Invoke(TestMacZipStorage);
         AppendSubtool(TestMacZipStorage);
-        return (UnrealAutomationToolConfig) this;
+        return (UatConfig) this;
     }
 /// <summary>Tests P4 functionality. Creates a new changelist under the workspace %P4CLIENT%</summary>
 /// <remarks>WARNING: This command might require Perforce</remarks>
-    public UnrealAutomationToolConfig TestP4_CreateChangelist(Action<TestP4_CreateChangelistConfig> configurator)
+    public UatConfig TestP4_CreateChangelist(Action<TestP4_CreateChangelistConfig> configurator)
     {
         configurator?.Invoke(TestP4_CreateChangelistStorage);
         AppendSubtool(TestP4_CreateChangelistStorage);
-        return (UnrealAutomationToolConfig) this;
+        return (UatConfig) this;
     }
 /// <remarks>WARNING: This command might require Perforce</remarks>
-    public UnrealAutomationToolConfig TestP4_StrandCheckout(Action<TestP4_StrandCheckoutConfig> configurator)
+    public UatConfig TestP4_StrandCheckout(Action<TestP4_StrandCheckoutConfig> configurator)
     {
         configurator?.Invoke(TestP4_StrandCheckoutStorage);
         AppendSubtool(TestP4_StrandCheckoutStorage);
-        return (UnrealAutomationToolConfig) this;
+        return (UatConfig) this;
     }
 /// <remarks>WARNING: This command might require Perforce</remarks>
-    public UnrealAutomationToolConfig TestP4_LabelDescription(Action<TestP4_LabelDescriptionConfig> configurator)
+    public UatConfig TestP4_LabelDescription(Action<TestP4_LabelDescriptionConfig> configurator)
     {
         configurator?.Invoke(TestP4_LabelDescriptionStorage);
         AppendSubtool(TestP4_LabelDescriptionStorage);
-        return (UnrealAutomationToolConfig) this;
+        return (UatConfig) this;
     }
 /// <remarks>WARNING: This command might require Perforce</remarks>
-    public UnrealAutomationToolConfig TestP4_ClientOps(Action<TestP4_ClientOpsConfig> configurator)
+    public UatConfig TestP4_ClientOps(Action<TestP4_ClientOpsConfig> configurator)
     {
         configurator?.Invoke(TestP4_ClientOpsStorage);
         AppendSubtool(TestP4_ClientOpsStorage);
-        return (UnrealAutomationToolConfig) this;
+        return (UatConfig) this;
     }
 
-    public UnrealAutomationToolConfig CleanDDC(Action<CleanDDCConfig> configurator)
+    public UatConfig CleanDDC(Action<CleanDDCConfig> configurator)
     {
         configurator?.Invoke(CleanDDCStorage);
         AppendSubtool(CleanDDCStorage);
-        return (UnrealAutomationToolConfig) this;
+        return (UatConfig) this;
     }
 
-    public UnrealAutomationToolConfig TestTestFarm(Action<TestTestFarmConfig> configurator)
+    public UatConfig TestTestFarm(Action<TestTestFarmConfig> configurator)
     {
         configurator?.Invoke(TestTestFarmStorage);
         AppendSubtool(TestTestFarmStorage);
-        return (UnrealAutomationToolConfig) this;
+        return (UatConfig) this;
     }
 /// <summary>Test command line argument parsing functions.</summary>
-    public UnrealAutomationToolConfig TestArguments(Action<TestArgumentsConfig> configurator)
+    public UatConfig TestArguments(Action<TestArgumentsConfig> configurator)
     {
         configurator?.Invoke(TestArgumentsStorage);
         AppendSubtool(TestArgumentsStorage);
-        return (UnrealAutomationToolConfig) this;
+        return (UatConfig) this;
     }
 /// <summary>Checks if combine paths works as excpected</summary>
-    public UnrealAutomationToolConfig TestCombinePaths(Action<TestCombinePathsConfig> configurator)
+    public UatConfig TestCombinePaths(Action<TestCombinePathsConfig> configurator)
     {
         configurator?.Invoke(TestCombinePathsStorage);
         AppendSubtool(TestCombinePathsStorage);
-        return (UnrealAutomationToolConfig) this;
+        return (UatConfig) this;
     }
 /// <summary>Tests file utility functions.</summary>
-    public UnrealAutomationToolConfig TestFileUtility(Action<TestFileUtilityConfig> configurator)
+    public UatConfig TestFileUtility(Action<TestFileUtilityConfig> configurator)
     {
         configurator?.Invoke(TestFileUtilityStorage);
         AppendSubtool(TestFileUtilityStorage);
-        return (UnrealAutomationToolConfig) this;
+        return (UatConfig) this;
     }
 
-    public UnrealAutomationToolConfig TestLog(Action<TestLogConfig> configurator)
+    public UatConfig TestLog(Action<TestLogConfig> configurator)
     {
         configurator?.Invoke(TestLogStorage);
         AppendSubtool(TestLogStorage);
-        return (UnrealAutomationToolConfig) this;
+        return (UatConfig) this;
     }
 /// <summary>Tests P4 change filetype functionality.</summary>
 /// <remarks>WARNING: This command might require Perforce</remarks>
-    public UnrealAutomationToolConfig TestChangeFileType(Action<TestChangeFileTypeConfig> configurator)
+    public UatConfig TestChangeFileType(Action<TestChangeFileTypeConfig> configurator)
     {
         configurator?.Invoke(TestChangeFileTypeStorage);
         AppendSubtool(TestChangeFileTypeStorage);
-        return (UnrealAutomationToolConfig) this;
+        return (UatConfig) this;
     }
 /// <summary>Tests if UE4Build properly copies all relevent UAT build products to the Binaries folder.</summary>
-    public UnrealAutomationToolConfig TestUATBuildProducts(Action<TestUATBuildProductsConfig> configurator)
+    public UatConfig TestUATBuildProducts(Action<TestUATBuildProductsConfig> configurator)
     {
         configurator?.Invoke(TestUATBuildProductsStorage);
         AppendSubtool(TestUATBuildProductsStorage);
-        return (UnrealAutomationToolConfig) this;
+        return (UatConfig) this;
     }
 
-    public UnrealAutomationToolConfig TestOSSCommands(Action<TestOSSCommandsConfig> configurator)
+    public UatConfig TestOSSCommands(Action<TestOSSCommandsConfig> configurator)
     {
         configurator?.Invoke(TestOSSCommandsStorage);
         AppendSubtool(TestOSSCommandsStorage);
-        return (UnrealAutomationToolConfig) this;
+        return (UatConfig) this;
     }
 /// <summary>Builds a project using UBT. Syntax is similar to UBT with the exception of '-', i.e. UBT -QAGame -Development -Win32</summary>
-    public UnrealAutomationToolConfig UBT(Action<UBTConfig> configurator)
+    public UatConfig UBT(Action<UBTConfig> configurator)
     {
         configurator?.Invoke(UBTStorage);
         AppendSubtool(UBTStorage);
-        return (UnrealAutomationToolConfig) this;
+        return (UatConfig) this;
     }
 /// <summary>Helper command to sync only source code + engine files from P4.</summary>
 /// <remarks>WARNING: This command might require Perforce</remarks>
-    public UnrealAutomationToolConfig SyncSource(Action<SyncSourceConfig> configurator)
+    public UatConfig SyncSource(Action<SyncSourceConfig> configurator)
     {
         configurator?.Invoke(SyncSourceStorage);
         AppendSubtool(SyncSourceStorage);
-        return (UnrealAutomationToolConfig) this;
+        return (UatConfig) this;
     }
 /// <summary>Generates automation project based on a template.</summary>
-    public UnrealAutomationToolConfig GenerateAutomationProject(Action<GenerateAutomationProjectConfig> configurator)
+    public UatConfig GenerateAutomationProject(Action<GenerateAutomationProjectConfig> configurator)
     {
         configurator?.Invoke(GenerateAutomationProjectStorage);
         AppendSubtool(GenerateAutomationProjectStorage);
-        return (UnrealAutomationToolConfig) this;
+        return (UatConfig) this;
     }
 
-    public UnrealAutomationToolConfig DumpBranch(Action<DumpBranchConfig> configurator)
+    public UatConfig DumpBranch(Action<DumpBranchConfig> configurator)
     {
         configurator?.Invoke(DumpBranchStorage);
         AppendSubtool(DumpBranchStorage);
-        return (UnrealAutomationToolConfig) this;
+        return (UatConfig) this;
     }
 /// <summary>Sleeps for 20 seconds and then exits</summary>
-    public UnrealAutomationToolConfig DebugSleep(Action<DebugSleepConfig> configurator)
+    public UatConfig DebugSleep(Action<DebugSleepConfig> configurator)
     {
         configurator?.Invoke(DebugSleepStorage);
         AppendSubtool(DebugSleepStorage);
-        return (UnrealAutomationToolConfig) this;
+        return (UatConfig) this;
     }
 /// <summary>Tests if Mcp configs loaded properly.</summary>
-    public UnrealAutomationToolConfig TestMcpConfigs(Action<TestMcpConfigsConfig> configurator)
+    public UatConfig TestMcpConfigs(Action<TestMcpConfigsConfig> configurator)
     {
         configurator?.Invoke(TestMcpConfigsStorage);
         AppendSubtool(TestMcpConfigsStorage);
-        return (UnrealAutomationToolConfig) this;
+        return (UatConfig) this;
     }
 /// <summary>Test Blame P4 command.</summary>
 /// <remarks>WARNING: This command might require Perforce</remarks>
-    public UnrealAutomationToolConfig TestBlame(Action<TestBlameConfig> configurator)
+    public UatConfig TestBlame(Action<TestBlameConfig> configurator)
     {
         configurator?.Invoke(TestBlameStorage);
         AppendSubtool(TestBlameStorage);
-        return (UnrealAutomationToolConfig) this;
+        return (UatConfig) this;
     }
 /// <summary>Test P4 changes.</summary>
 /// <remarks>WARNING: This command might require Perforce</remarks>
-    public UnrealAutomationToolConfig TestChanges(Action<TestChangesConfig> configurator)
+    public UatConfig TestChanges(Action<TestChangesConfig> configurator)
     {
         configurator?.Invoke(TestChangesStorage);
         AppendSubtool(TestChangesStorage);
-        return (UnrealAutomationToolConfig) this;
+        return (UatConfig) this;
     }
 /// <summary>Spawns a process to test if UAT kills it automatically.</summary>
-    public UnrealAutomationToolConfig TestKillAll(Action<TestKillAllConfig> configurator)
+    public UatConfig TestKillAll(Action<TestKillAllConfig> configurator)
     {
         configurator?.Invoke(TestKillAllStorage);
         AppendSubtool(TestKillAllStorage);
-        return (UnrealAutomationToolConfig) this;
+        return (UatConfig) this;
     }
 /// <summary>Tests CleanFormalBuilds.</summary>
-    public UnrealAutomationToolConfig TestCleanFormalBuilds(Action<TestCleanFormalBuildsConfig> configurator)
+    public UatConfig TestCleanFormalBuilds(Action<TestCleanFormalBuildsConfig> configurator)
     {
         configurator?.Invoke(TestCleanFormalBuildsStorage);
         AppendSubtool(TestCleanFormalBuildsStorage);
-        return (UnrealAutomationToolConfig) this;
+        return (UatConfig) this;
     }
 /// <summary>Spawns a process to test if it can be killed.</summary>
-    public UnrealAutomationToolConfig TestStopProcess(Action<TestStopProcessConfig> configurator)
+    public UatConfig TestStopProcess(Action<TestStopProcessConfig> configurator)
     {
         configurator?.Invoke(TestStopProcessStorage);
         AppendSubtool(TestStopProcessStorage);
-        return (UnrealAutomationToolConfig) this;
+        return (UatConfig) this;
     }
 /// <summary>Looks through an XGE xml for overlapping obj files</summary>
-    public UnrealAutomationToolConfig LookForOverlappingBuildProducts(Action<LookForOverlappingBuildProductsConfig> configurator)
+    public UatConfig LookForOverlappingBuildProducts(Action<LookForOverlappingBuildProductsConfig> configurator)
     {
         configurator?.Invoke(LookForOverlappingBuildProductsStorage);
         AppendSubtool(LookForOverlappingBuildProductsStorage);
-        return (UnrealAutomationToolConfig) this;
+        return (UatConfig) this;
     }
 /// <summary>Copies all files from source directory to destination directory using ThreadedCopyFiles</summary>
-    public UnrealAutomationToolConfig TestThreadedCopyFiles(Action<TestThreadedCopyFilesConfig> configurator)
+    public UatConfig TestThreadedCopyFiles(Action<TestThreadedCopyFilesConfig> configurator)
     {
         configurator?.Invoke(TestThreadedCopyFilesStorage);
         AppendSubtool(TestThreadedCopyFilesStorage);
-        return (UnrealAutomationToolConfig) this;
+        return (UatConfig) this;
     }
 
-    public UnrealAutomationToolConfig UnrealBuildUtilDummyBuildCommand(Action<UnrealBuildUtilDummyBuildCommandConfig> configurator)
+    public UatConfig UnrealBuildUtilDummyBuildCommand(Action<UnrealBuildUtilDummyBuildCommandConfig> configurator)
     {
         configurator?.Invoke(UnrealBuildUtilDummyBuildCommandStorage);
         AppendSubtool(UnrealBuildUtilDummyBuildCommandStorage);
-        return (UnrealAutomationToolConfig) this;
+        return (UatConfig) this;
     }
 /// <summary>Updates your local versions based on your P4 sync</summary>
 /// <remarks>WARNING: This command might require Perforce</remarks>
-    public UnrealAutomationToolConfig UpdateLocalVersion(Action<UpdateLocalVersionConfig> configurator)
+    public UatConfig UpdateLocalVersion(Action<UpdateLocalVersionConfig> configurator)
     {
         configurator?.Invoke(UpdateLocalVersionStorage);
         AppendSubtool(UpdateLocalVersionStorage);
-        return (UnrealAutomationToolConfig) this;
+        return (UatConfig) this;
     }
 
-    public UnrealAutomationToolConfig UploadDDCToAWS(Action<UploadDDCToAWSConfig> configurator)
+    public UatConfig UploadDDCToAWS(Action<UploadDDCToAWSConfig> configurator)
     {
         configurator?.Invoke(UploadDDCToAWSStorage);
         AppendSubtool(UploadDDCToAWSStorage);
-        return (UnrealAutomationToolConfig) this;
+        return (UatConfig) this;
     }
 /// <summary>ZipUtils is used to zip/unzip (i.e:RunUAT.bat ZipUtils -archive=D:/Content.zip -add=D:/UE/Pojects/SampleGame/Content/) or (i.e:RunUAT.bat ZipUtils -archive=D:/Content.zip -extract=D:/UE/Pojects/SampleGame/Content/)</summary>
-    public UnrealAutomationToolConfig ZipUtils(Action<ZipUtilsConfig> configurator)
+    public UatConfig ZipUtils(Action<ZipUtilsConfig> configurator)
     {
         configurator?.Invoke(ZipUtilsStorage);
         AppendSubtool(ZipUtilsStorage);
-        return (UnrealAutomationToolConfig) this;
+        return (UatConfig) this;
     }
 /// <summary>Runs benchmarks and reports overall results
 /// Example1: RunUAT BenchmarkBuild -all -project=UE4
 /// Example2: RunUAT BenchmarkBuild -allcompile -project=UE4+EngineTest -platform=PS4
 /// Example3: RunUAT BenchmarkBuild -editor -client -cook -cooknoshaderddc -cooknoddc -xge -noxge -singlecompile -nopcompile -project=UE4+QAGame+EngineTest -platform=WIn64+PS4+XboxOne+Switch -iterations=3</summary>
-    public UnrealAutomationToolConfig BenchmarkBuild(Action<BenchmarkBuildConfig> configurator)
+    public UatConfig BenchmarkBuild(Action<BenchmarkBuildConfig> configurator)
     {
         configurator?.Invoke(BenchmarkBuildStorage);
         AppendSubtool(BenchmarkBuildStorage);
-        return (UnrealAutomationToolConfig) this;
+        return (UatConfig) this;
     }
 
-    public UnrealAutomationToolConfig BenchmarkOptions(Action<BenchmarkOptionsConfig> configurator)
+    public UatConfig BenchmarkOptions(Action<BenchmarkOptionsConfig> configurator)
     {
         configurator?.Invoke(BenchmarkOptionsStorage);
         AppendSubtool(BenchmarkOptionsStorage);
-        return (UnrealAutomationToolConfig) this;
+        return (UatConfig) this;
     }
 }

@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 
 namespace Nuke.Unreal.Tools;
 
-public class UnrealBuildToolConfig : UnrealBuildToolConfigGenerated
+public class UbtConfig : UbtConfigGenerated
 {
-    public UnrealBuildToolConfig Project(string project)
+    public UbtConfig Project(string project)
     {
         if (!project.EndsWith(".uproject", true, null))
         {
@@ -17,34 +17,34 @@ public class UnrealBuildToolConfig : UnrealBuildToolConfigGenerated
         return this;
     }
 
-    public UnrealBuildToolConfig Game(bool present = true)
+    public UbtConfig Game(bool present = true)
     {
         AppendArgument(present ? "-game" : "");
         return this;
     }
 
-    public UnrealBuildToolConfig Engine(bool present = true)
+    public UbtConfig Engine(bool present = true)
     {
         AppendArgument(present ? "-engine" : "");
         return this;
     }
 
-    public UnrealBuildToolConfig Target(params object[] target) => Target(target.AsEnumerable());
-    public UnrealBuildToolConfig Target(IEnumerable<object> target)
+    public UbtConfig Target(params object[] target) => Target(target.AsEnumerable());
+    public UbtConfig Target(IEnumerable<object> target)
     {
         AppendArgument(string.Join('+', target));
         return this;
     }
 
-    public UnrealBuildToolConfig Platform(params object[] platform) => Platform(platform.AsEnumerable());
-    public UnrealBuildToolConfig Platform(IEnumerable<object> platform)
+    public UbtConfig Platform(params object[] platform) => Platform(platform.AsEnumerable());
+    public UbtConfig Platform(IEnumerable<object> platform)
     {
         AppendArgument(string.Join('+', platform));
         return this;
     }
 
-    public UnrealBuildToolConfig Configuration(params object[] config) => Configuration(config.AsEnumerable());
-    public UnrealBuildToolConfig Configuration(IEnumerable<object> config)
+    public UbtConfig Configuration(params object[] config) => Configuration(config.AsEnumerable());
+    public UbtConfig Configuration(IEnumerable<object> config)
     {
         AppendArgument(string.Join('+', config));
         return this;

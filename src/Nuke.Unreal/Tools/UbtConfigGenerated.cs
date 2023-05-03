@@ -86,9 +86,9 @@ public enum WindowsStaticAnalyzer
 
 
 /// <summary>Unreal Build Tool compiles the binaries of Unreal projects</summary>
-public abstract class UnrealBuildToolConfigGenerated : ToolConfig
+public abstract class UbtConfigGenerated : ToolConfig
 {
-    public override string Name => "UnrealBuildTool";
+    public override string Name => "Ubt";
     public override string CliName => "";
     public override UnrealCompatibility Compatibility => UnrealCompatibility.UE4;
     
@@ -99,7 +99,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// 
 /// Enables address sanitizer (ASan)
 /// </summary>
-        public virtual UnrealBuildToolConfig EnableASan(bool? val = null)
+        public virtual UbtConfig EnableASan(bool? val = null)
         {
             if (true)
             {
@@ -110,7 +110,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealBuildToolConfig) this;
+            return (UbtConfig) this;
         }
 
         
@@ -121,7 +121,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// 
 /// Enables thread sanitizer (TSan)
 /// </summary>
-        public virtual UnrealBuildToolConfig EnableTSan(bool? val = null)
+        public virtual UbtConfig EnableTSan(bool? val = null)
         {
             if (true)
             {
@@ -132,7 +132,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealBuildToolConfig) this;
+            return (UbtConfig) this;
         }
 
         
@@ -143,7 +143,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// 
 /// Enables undefined behavior sanitizer (UBSan)
 /// </summary>
-        public virtual UnrealBuildToolConfig EnableUBSan(bool? val = null)
+        public virtual UbtConfig EnableUBSan(bool? val = null)
         {
             if (true)
             {
@@ -154,7 +154,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealBuildToolConfig) this;
+            return (UbtConfig) this;
         }
 
         
@@ -162,7 +162,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// <summary>
 /// Whether to skip checking for files identified by the junk manifest.
 /// </summary>
-        public virtual UnrealBuildToolConfig IgnoreJunk(bool? val = null)
+        public virtual UbtConfig IgnoreJunk(bool? val = null)
         {
             if (true)
             {
@@ -173,7 +173,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealBuildToolConfig) this;
+            return (UbtConfig) this;
         }
 
         
@@ -181,7 +181,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// <summary>
 /// Skip building; just do setup and terminate.
 /// </summary>
-        public virtual UnrealBuildToolConfig SkipBuild(bool? val = null)
+        public virtual UbtConfig SkipBuild(bool? val = null)
         {
             if (true)
             {
@@ -192,7 +192,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealBuildToolConfig) this;
+            return (UbtConfig) this;
         }
 
         
@@ -200,7 +200,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// <summary>
 /// Skip pre build targets; just do the main target.
 /// </summary>
-        public virtual UnrealBuildToolConfig SkipPreBuildTargets(bool? val = null)
+        public virtual UbtConfig SkipPreBuildTargets(bool? val = null)
         {
             if (true)
             {
@@ -211,7 +211,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealBuildToolConfig) this;
+            return (UbtConfig) this;
         }
 
         
@@ -219,7 +219,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// <summary>
 /// Whether we should just export the XGE XML and pretend it succeeded
 /// </summary>
-        public virtual UnrealBuildToolConfig XGEExport(bool? val = null)
+        public virtual UbtConfig XGEExport(bool? val = null)
         {
             if (true)
             {
@@ -230,7 +230,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealBuildToolConfig) this;
+            return (UbtConfig) this;
         }
 
         
@@ -238,7 +238,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// <summary>
 /// Do not allow any engine files to be output (used by compile on startup functionality)
 /// </summary>
-        public virtual UnrealBuildToolConfig NoEngineChanges(bool? val = null)
+        public virtual UbtConfig NoEngineChanges(bool? val = null)
         {
             if (true)
             {
@@ -249,7 +249,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealBuildToolConfig) this;
+            return (UbtConfig) this;
         }
 
         
@@ -257,7 +257,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// <summary>
 /// Whether we should just export the outdated actions list
 /// </summary>
-        public virtual UnrealBuildToolConfig WriteOutdatedActions(object val = null)
+        public virtual UbtConfig WriteOutdatedActions(object val = null)
         {
             if (true)
             {
@@ -268,7 +268,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealBuildToolConfig) this;
+            return (UbtConfig) this;
         }
 
         
@@ -276,7 +276,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// <summary>
 /// If we are just running the deployment step, specifies the path to the given deployment settings
 /// </summary>
-        public virtual UnrealBuildToolConfig Receipt(object val = null)
+        public virtual UbtConfig Receipt(object val = null)
         {
             if (true)
             {
@@ -287,7 +287,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealBuildToolConfig) this;
+            return (UbtConfig) this;
         }
 
         
@@ -295,7 +295,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// <summary>
 /// Whether we should just export the outdated actions list
 /// </summary>
-        public virtual UnrealBuildToolConfig Actions(object val = null)
+        public virtual UbtConfig Actions(object val = null)
         {
             if (true)
             {
@@ -306,7 +306,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealBuildToolConfig) this;
+            return (UbtConfig) this;
         }
 
         
@@ -314,7 +314,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// <summary>
 /// Execute any actions which result in code generation (eg. ISPC compilation)
 /// </summary>
-        public virtual UnrealBuildToolConfig ExecCodeGenActions(bool? val = null)
+        public virtual UbtConfig ExecCodeGenActions(bool? val = null)
         {
             if (true)
             {
@@ -325,7 +325,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealBuildToolConfig) this;
+            return (UbtConfig) this;
         }
 
         
@@ -333,7 +333,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// <summary>
 /// Foreign plugin to compile against this target
 /// </summary>
-        public virtual UnrealBuildToolConfig Plugin(object val = null)
+        public virtual UbtConfig Plugin(object val = null)
         {
             if (true)
             {
@@ -344,7 +344,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealBuildToolConfig) this;
+            return (UbtConfig) this;
         }
 
         
@@ -352,7 +352,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// <summary>
 /// Set of module names to compile.
 /// </summary>
-        public virtual UnrealBuildToolConfig Module(object val = null)
+        public virtual UbtConfig Module(object val = null)
         {
             if (true)
             {
@@ -363,7 +363,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealBuildToolConfig) this;
+            return (UbtConfig) this;
         }
 
         
@@ -371,7 +371,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// <summary>
 /// Individual file(s) to compile
 /// </summary>
-        public virtual UnrealBuildToolConfig SingleFile(object val = null)
+        public virtual UbtConfig SingleFile(object val = null)
         {
             if (true)
             {
@@ -382,7 +382,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealBuildToolConfig) this;
+            return (UbtConfig) this;
         }
 
         
@@ -390,7 +390,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// <summary>
 /// Whether to perform hot reload for this target
 /// </summary>
-        public virtual UnrealBuildToolConfig NoHotReload(bool present = true)
+        public virtual UbtConfig NoHotReload(bool present = true)
         {
             if (present)
             {
@@ -401,7 +401,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealBuildToolConfig) this;
+            return (UbtConfig) this;
         }
 
         
@@ -409,7 +409,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// <summary>
 /// Whether to perform hot reload for this target
 /// </summary>
-        public virtual UnrealBuildToolConfig ForceHotReload(bool present = true)
+        public virtual UbtConfig ForceHotReload(bool present = true)
         {
             if (present)
             {
@@ -420,7 +420,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealBuildToolConfig) this;
+            return (UbtConfig) this;
         }
 
         
@@ -428,7 +428,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// <summary>
 /// Whether to perform hot reload for this target
 /// </summary>
-        public virtual UnrealBuildToolConfig LiveCoding(bool present = true)
+        public virtual UbtConfig LiveCoding(bool present = true)
         {
             if (present)
             {
@@ -439,7 +439,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealBuildToolConfig) this;
+            return (UbtConfig) this;
         }
 
         
@@ -447,7 +447,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// <summary>
 /// Export the actions for the target to a file
 /// </summary>
-        public virtual UnrealBuildToolConfig WriteActions(object val = null)
+        public virtual UbtConfig WriteActions(object val = null)
         {
             if (true)
             {
@@ -458,7 +458,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealBuildToolConfig) this;
+            return (UbtConfig) this;
         }
 
         
@@ -466,7 +466,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// <summary>
 /// Path to a file containing a list of modules that may be modified for live coding.
 /// </summary>
-        public virtual UnrealBuildToolConfig LiveCodingModules(object val = null)
+        public virtual UbtConfig LiveCodingModules(object val = null)
         {
             if (true)
             {
@@ -477,7 +477,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealBuildToolConfig) this;
+            return (UbtConfig) this;
         }
 
         
@@ -485,7 +485,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// <summary>
 /// Path to the manifest for passing info about the output to live coding
 /// </summary>
-        public virtual UnrealBuildToolConfig LiveCodingManifest(object val = null)
+        public virtual UbtConfig LiveCodingManifest(object val = null)
         {
             if (true)
             {
@@ -496,7 +496,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealBuildToolConfig) this;
+            return (UbtConfig) this;
         }
 
         
@@ -504,7 +504,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// <summary>
 /// Suppress messages about building this target
 /// </summary>
-        public virtual UnrealBuildToolConfig Quiet(bool? val = null)
+        public virtual UbtConfig Quiet(bool? val = null)
         {
             if (true)
             {
@@ -515,13 +515,13 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealBuildToolConfig) this;
+            return (UbtConfig) this;
         }
 
         
         
     
-        public virtual UnrealBuildToolConfig Input(object val = null)
+        public virtual UbtConfig Input(object val = null)
         {
             if (true)
             {
@@ -532,13 +532,13 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealBuildToolConfig) this;
+            return (UbtConfig) this;
         }
 
         
         
     
-        public virtual UnrealBuildToolConfig XmlConfigCache(object val = null)
+        public virtual UbtConfig XmlConfigCache(object val = null)
         {
             if (true)
             {
@@ -549,7 +549,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealBuildToolConfig) this;
+            return (UbtConfig) this;
         }
 
         
@@ -557,7 +557,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// <summary>
 /// Build all the modules that are valid for this target type. Used for CIS and making installed engine builds.
 /// </summary>
-        public virtual UnrealBuildToolConfig AllModules(bool? val = null)
+        public virtual UbtConfig AllModules(bool? val = null)
         {
             if (true)
             {
@@ -568,7 +568,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealBuildToolConfig) this;
+            return (UbtConfig) this;
         }
 
         
@@ -576,7 +576,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// <summary>
 /// Additional plugins that are built for this target type but not enabled.
 /// </summary>
-        public virtual UnrealBuildToolConfig BuildPlugin(object val = null)
+        public virtual UbtConfig BuildPlugin(object val = null)
         {
             if (true)
             {
@@ -587,7 +587,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealBuildToolConfig) this;
+            return (UbtConfig) this;
         }
 
         
@@ -595,7 +595,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// <summary>
 /// Additional plugins that should be included for this target.
 /// </summary>
-        public virtual UnrealBuildToolConfig EnablePlugin(object val = null)
+        public virtual UbtConfig EnablePlugin(object val = null)
         {
             if (true)
             {
@@ -606,7 +606,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealBuildToolConfig) this;
+            return (UbtConfig) this;
         }
 
         
@@ -615,7 +615,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// List of plugins to be disabled for this target. Note that the project file may still reference them, so they should be marked
 /// as optional to avoid failing to find them at runtime.
 /// </summary>
-        public virtual UnrealBuildToolConfig DisablePlugin(object val = null)
+        public virtual UbtConfig DisablePlugin(object val = null)
         {
             if (true)
             {
@@ -626,7 +626,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealBuildToolConfig) this;
+            return (UbtConfig) this;
         }
 
         
@@ -634,7 +634,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// <summary>
 /// Whether this target should be compiled as a DLL.  Requires LinkType to be set to TargetLinkType.Monolithic.
 /// </summary>
-        public virtual UnrealBuildToolConfig CompileAsDll(bool? val = null)
+        public virtual UbtConfig CompileAsDll(bool? val = null)
         {
             if (true)
             {
@@ -645,7 +645,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealBuildToolConfig) this;
+            return (UbtConfig) this;
         }
 
         
@@ -653,7 +653,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// <summary>
 /// Whether to compile the Chaos physics plugin.
 /// </summary>
-        public virtual UnrealBuildToolConfig NoCompileChaos(bool present = true)
+        public virtual UbtConfig NoCompileChaos(bool present = true)
         {
             if (present)
             {
@@ -664,7 +664,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealBuildToolConfig) this;
+            return (UbtConfig) this;
         }
 
         
@@ -672,7 +672,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// <summary>
 /// Whether to compile the Chaos physics plugin.
 /// </summary>
-        public virtual UnrealBuildToolConfig CompileChaos(bool present = true)
+        public virtual UbtConfig CompileChaos(bool present = true)
         {
             if (present)
             {
@@ -683,7 +683,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealBuildToolConfig) this;
+            return (UbtConfig) this;
         }
 
         
@@ -691,7 +691,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// <summary>
 /// Whether to use the Chaos physics interface. This overrides the physx flags to disable APEX and NvCloth
 /// </summary>
-        public virtual UnrealBuildToolConfig NoUseChaos(bool present = true)
+        public virtual UbtConfig NoUseChaos(bool present = true)
         {
             if (present)
             {
@@ -702,7 +702,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealBuildToolConfig) this;
+            return (UbtConfig) this;
         }
 
         
@@ -710,7 +710,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// <summary>
 /// Whether to use the Chaos physics interface. This overrides the physx flags to disable APEX and NvCloth
 /// </summary>
-        public virtual UnrealBuildToolConfig UseChaos(bool present = true)
+        public virtual UbtConfig UseChaos(bool present = true)
         {
             if (present)
             {
@@ -721,7 +721,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealBuildToolConfig) this;
+            return (UbtConfig) this;
         }
 
         
@@ -729,7 +729,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// <summary>
 /// Enable RTTI for all modules.
 /// </summary>
-        public virtual UnrealBuildToolConfig Rtti(bool? val = null)
+        public virtual UbtConfig Rtti(bool? val = null)
         {
             if (true)
             {
@@ -740,7 +740,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealBuildToolConfig) this;
+            return (UbtConfig) this;
         }
 
         
@@ -748,7 +748,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// <summary>
 /// Enables "include what you use" by default for modules in this target. Changes the default PCH mode for any module in this project to PCHUsageMode.UseExplicitOrSharedPCHs.
 /// </summary>
-        public virtual UnrealBuildToolConfig IWYU(bool? val = null)
+        public virtual UbtConfig IWYU(bool? val = null)
         {
             if (true)
             {
@@ -759,7 +759,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealBuildToolConfig) this;
+            return (UbtConfig) this;
         }
 
         
@@ -767,7 +767,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// <summary>
 /// Make static libraries for all engine modules as intermediates for this target.
 /// </summary>
-        public virtual UnrealBuildToolConfig Precompile(bool? val = null)
+        public virtual UbtConfig Precompile(bool? val = null)
         {
             if (true)
             {
@@ -778,7 +778,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealBuildToolConfig) this;
+            return (UbtConfig) this;
         }
 
         
@@ -786,7 +786,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// <summary>
 /// Whether to unify C++ code into larger files for faster compilation.
 /// </summary>
-        public virtual UnrealBuildToolConfig DisableUnity(bool present = true)
+        public virtual UbtConfig DisableUnity(bool present = true)
         {
             if (present)
             {
@@ -797,7 +797,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealBuildToolConfig) this;
+            return (UbtConfig) this;
         }
 
         
@@ -805,7 +805,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// <summary>
 /// Whether to force C++ source files to be combined into larger files for faster compilation.
 /// </summary>
-        public virtual UnrealBuildToolConfig ForceUnity(bool? val = null)
+        public virtual UbtConfig ForceUnity(bool? val = null)
         {
             if (true)
             {
@@ -816,7 +816,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealBuildToolConfig) this;
+            return (UbtConfig) this;
         }
 
         
@@ -824,7 +824,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// <summary>
 /// Forces shadow variable warnings to be treated as errors on platforms that support it.
 /// </summary>
-        public virtual UnrealBuildToolConfig ShadowVariableErrors(bool present = true)
+        public virtual UbtConfig ShadowVariableErrors(bool present = true)
         {
             if (present)
             {
@@ -835,7 +835,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealBuildToolConfig) this;
+            return (UbtConfig) this;
         }
 
         
@@ -843,7 +843,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// <summary>
 /// New Monolithic Graphics drivers have optional "fast calls" replacing various D3d functions
 /// </summary>
-        public virtual UnrealBuildToolConfig FastMonoCalls(bool present = true)
+        public virtual UbtConfig FastMonoCalls(bool present = true)
         {
             if (present)
             {
@@ -854,7 +854,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealBuildToolConfig) this;
+            return (UbtConfig) this;
         }
 
         
@@ -862,7 +862,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// <summary>
 /// New Monolithic Graphics drivers have optional "fast calls" replacing various D3d functions
 /// </summary>
-        public virtual UnrealBuildToolConfig NoFastMonoCalls(bool present = true)
+        public virtual UbtConfig NoFastMonoCalls(bool present = true)
         {
             if (present)
             {
@@ -873,7 +873,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealBuildToolConfig) this;
+            return (UbtConfig) this;
         }
 
         
@@ -881,7 +881,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// <summary>
 /// Whether to stress test the C++ unity build robustness by including all C++ files files in a project from a single unified file.
 /// </summary>
-        public virtual UnrealBuildToolConfig StressTestUnity(bool? val = null)
+        public virtual UbtConfig StressTestUnity(bool? val = null)
         {
             if (true)
             {
@@ -892,7 +892,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealBuildToolConfig) this;
+            return (UbtConfig) this;
         }
 
         
@@ -900,7 +900,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// <summary>
 /// Whether to force debug info to be generated.
 /// </summary>
-        public virtual UnrealBuildToolConfig ForceDebugInfo(bool? val = null)
+        public virtual UbtConfig ForceDebugInfo(bool? val = null)
         {
             if (true)
             {
@@ -911,7 +911,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealBuildToolConfig) this;
+            return (UbtConfig) this;
         }
 
         
@@ -919,7 +919,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// <summary>
 /// Whether to globally disable debug info generation; see DebugInfoHeuristics.cs for per-config and per-platform options.
 /// </summary>
-        public virtual UnrealBuildToolConfig NoDebugInfo(bool? val = null)
+        public virtual UbtConfig NoDebugInfo(bool? val = null)
         {
             if (true)
             {
@@ -930,7 +930,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealBuildToolConfig) this;
+            return (UbtConfig) this;
         }
 
         
@@ -938,7 +938,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// <summary>
 /// Whether PDB files should be used for Visual C++ builds.
 /// </summary>
-        public virtual UnrealBuildToolConfig NoPDB(bool present = true)
+        public virtual UbtConfig NoPDB(bool present = true)
         {
             if (present)
             {
@@ -949,7 +949,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealBuildToolConfig) this;
+            return (UbtConfig) this;
         }
 
         
@@ -957,7 +957,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// <summary>
 /// Whether PCH files should be used.
 /// </summary>
-        public virtual UnrealBuildToolConfig NoPCH(bool present = true)
+        public virtual UbtConfig NoPCH(bool present = true)
         {
             if (present)
             {
@@ -968,7 +968,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealBuildToolConfig) this;
+            return (UbtConfig) this;
         }
 
         
@@ -976,7 +976,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// <summary>
 /// Whether to just preprocess source files for this target, and skip compilation
 /// </summary>
-        public virtual UnrealBuildToolConfig Preprocess(bool? val = null)
+        public virtual UbtConfig Preprocess(bool? val = null)
         {
             if (true)
             {
@@ -987,7 +987,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealBuildToolConfig) this;
+            return (UbtConfig) this;
         }
 
         
@@ -996,7 +996,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// Whether to use incremental linking or not. Incremental linking can yield faster iteration times when making small changes.
 /// Currently disabled by default because it tends to behave a bit buggy on some computers (PDB-related compile errors).
 /// </summary>
-        public virtual UnrealBuildToolConfig IncrementalLinking(bool? val = null)
+        public virtual UbtConfig IncrementalLinking(bool? val = null)
         {
             if (true)
             {
@@ -1007,7 +1007,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealBuildToolConfig) this;
+            return (UbtConfig) this;
         }
 
         
@@ -1016,7 +1016,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// Whether to use incremental linking or not. Incremental linking can yield faster iteration times when making small changes.
 /// Currently disabled by default because it tends to behave a bit buggy on some computers (PDB-related compile errors).
 /// </summary>
-        public virtual UnrealBuildToolConfig NoIncrementalLinking(bool present = true)
+        public virtual UbtConfig NoIncrementalLinking(bool present = true)
         {
             if (present)
             {
@@ -1027,7 +1027,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealBuildToolConfig) this;
+            return (UbtConfig) this;
         }
 
         
@@ -1035,7 +1035,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// <summary>
 /// Whether to allow the use of link time code generation (LTCG).
 /// </summary>
-        public virtual UnrealBuildToolConfig LTCG(bool? val = null)
+        public virtual UbtConfig LTCG(bool? val = null)
         {
             if (true)
             {
@@ -1046,7 +1046,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealBuildToolConfig) this;
+            return (UbtConfig) this;
         }
 
         
@@ -1054,7 +1054,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// <summary>
 /// Whether to enable Profile Guided Optimization (PGO) instrumentation in this build.
 /// </summary>
-        public virtual UnrealBuildToolConfig PGOProfile(bool present = true)
+        public virtual UbtConfig PGOProfile(bool present = true)
         {
             if (present)
             {
@@ -1065,7 +1065,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealBuildToolConfig) this;
+            return (UbtConfig) this;
         }
 
         
@@ -1073,7 +1073,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// <summary>
 /// Whether to optimize this build with Profile Guided Optimization (PGO).
 /// </summary>
-        public virtual UnrealBuildToolConfig PGOOptimize(bool present = true)
+        public virtual UbtConfig PGOOptimize(bool present = true)
         {
             if (present)
             {
@@ -1084,7 +1084,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealBuildToolConfig) this;
+            return (UbtConfig) this;
         }
 
         
@@ -1093,7 +1093,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// Enables "Shared PCHs", a feature which significantly speeds up compile times by attempting to
 /// share certain PCH files between modules that UBT detects is including those PCH's header files.
 /// </summary>
-        public virtual UnrealBuildToolConfig NoSharedPCH(bool present = true)
+        public virtual UbtConfig NoSharedPCH(bool present = true)
         {
             if (present)
             {
@@ -1104,7 +1104,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealBuildToolConfig) this;
+            return (UbtConfig) this;
         }
 
         
@@ -1112,7 +1112,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// <summary>
 /// Whether to use the :FASTLINK option when building with /DEBUG to create local PDBs on Windows. Fast, but currently seems to have problems finding symbols in the debugger.
 /// </summary>
-        public virtual UnrealBuildToolConfig FastPDB(object val = null)
+        public virtual UbtConfig FastPDB(object val = null)
         {
             if (true)
             {
@@ -1123,7 +1123,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealBuildToolConfig) this;
+            return (UbtConfig) this;
         }
 
         
@@ -1131,7 +1131,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// <summary>
 /// Outputs a map file as part of the build.
 /// </summary>
-        public virtual UnrealBuildToolConfig MapFile(bool? val = null)
+        public virtual UbtConfig MapFile(bool? val = null)
         {
             if (true)
             {
@@ -1142,7 +1142,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealBuildToolConfig) this;
+            return (UbtConfig) this;
         }
 
         
@@ -1150,7 +1150,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// <summary>
 /// Bundle version for Mac apps.
 /// </summary>
-        public virtual UnrealBuildToolConfig BundleVersion(object val = null)
+        public virtual UbtConfig BundleVersion(object val = null)
         {
             if (true)
             {
@@ -1161,7 +1161,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealBuildToolConfig) this;
+            return (UbtConfig) this;
         }
 
         
@@ -1169,7 +1169,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// <summary>
 /// Whether to deploy the executable after compilation on platforms that require deployment.
 /// </summary>
-        public virtual UnrealBuildToolConfig Deploy(bool? val = null)
+        public virtual UbtConfig Deploy(bool? val = null)
         {
             if (true)
             {
@@ -1180,7 +1180,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealBuildToolConfig) this;
+            return (UbtConfig) this;
         }
 
         
@@ -1188,7 +1188,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// <summary>
 /// Whether to disable linking for this target.
 /// </summary>
-        public virtual UnrealBuildToolConfig NoLink(bool? val = null)
+        public virtual UbtConfig NoLink(bool? val = null)
         {
             if (true)
             {
@@ -1199,7 +1199,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealBuildToolConfig) this;
+            return (UbtConfig) this;
         }
 
         
@@ -1209,7 +1209,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// The only behavior currently bound to this flag is to compile the default resource file separately for each binary so that the OriginalFilename field is set correctly.
 /// By default, we only compile the resource once to reduce build times.
 /// </summary>
-        public virtual UnrealBuildToolConfig Formal(bool? val = null)
+        public virtual UbtConfig Formal(bool? val = null)
         {
             if (true)
             {
@@ -1220,7 +1220,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealBuildToolConfig) this;
+            return (UbtConfig) this;
         }
 
         
@@ -1228,7 +1228,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// <summary>
 /// Whether to clean Builds directory on a remote Mac before building.
 /// </summary>
-        public virtual UnrealBuildToolConfig FlushMac(bool? val = null)
+        public virtual UbtConfig FlushMac(bool? val = null)
         {
             if (true)
             {
@@ -1239,7 +1239,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealBuildToolConfig) this;
+            return (UbtConfig) this;
         }
 
         
@@ -1247,7 +1247,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// <summary>
 /// Whether to write detailed timing info from the compiler and linker.
 /// </summary>
-        public virtual UnrealBuildToolConfig Timing(bool? val = null)
+        public virtual UbtConfig Timing(bool? val = null)
         {
             if (true)
             {
@@ -1258,7 +1258,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealBuildToolConfig) this;
+            return (UbtConfig) this;
         }
 
         
@@ -1266,7 +1266,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// <summary>
 /// Whether to parse timing data into a tracing file compatible with chrome://tracing.
 /// </summary>
-        public virtual UnrealBuildToolConfig Tracing(bool? val = null)
+        public virtual UbtConfig Tracing(bool? val = null)
         {
             if (true)
             {
@@ -1277,7 +1277,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealBuildToolConfig) this;
+            return (UbtConfig) this;
         }
 
         
@@ -1285,7 +1285,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// <summary>
 /// Whether to expose all symbols as public by default on POSIX platforms
 /// </summary>
-        public virtual UnrealBuildToolConfig PublicSymbolsByDefault(bool? val = null)
+        public virtual UbtConfig PublicSymbolsByDefault(bool? val = null)
         {
             if (true)
             {
@@ -1296,7 +1296,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealBuildToolConfig) this;
+            return (UbtConfig) this;
         }
 
         
@@ -1304,7 +1304,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// <summary>
 /// Allows overriding the toolchain to be created for this target. This must match the name of a class declared in the UnrealBuildTool assembly.
 /// </summary>
-        public virtual UnrealBuildToolConfig ToolChain(object val = null)
+        public virtual UbtConfig ToolChain(object val = null)
         {
             if (true)
             {
@@ -1315,7 +1315,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealBuildToolConfig) this;
+            return (UbtConfig) this;
         }
 
         
@@ -1323,7 +1323,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// <summary>
 /// Which C++ stanard to use for compiling this target
 /// </summary>
-        public virtual UnrealBuildToolConfig CppStd(CppStandardVersion? val = null)
+        public virtual UbtConfig CppStd(CppStandardVersion? val = null)
         {
             if (true)
             {
@@ -1334,7 +1334,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealBuildToolConfig) this;
+            return (UbtConfig) this;
         }
 
         
@@ -1342,7 +1342,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// <summary>
 /// The build version string
 /// </summary>
-        public virtual UnrealBuildToolConfig BuildVersion(object val = null)
+        public virtual UbtConfig BuildVersion(object val = null)
         {
             if (true)
             {
@@ -1353,7 +1353,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealBuildToolConfig) this;
+            return (UbtConfig) this;
         }
 
         
@@ -1361,7 +1361,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// <summary>
 /// Macros to define globally across the whole target.
 /// </summary>
-        public virtual UnrealBuildToolConfig Define(object val = null)
+        public virtual UbtConfig Define(object val = null)
         {
             if (true)
             {
@@ -1372,7 +1372,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealBuildToolConfig) this;
+            return (UbtConfig) this;
         }
 
         
@@ -1380,7 +1380,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// <summary>
 /// Macros to define across all macros in the project.
 /// </summary>
-        public virtual UnrealBuildToolConfig ProjectDefine(object val = null)
+        public virtual UbtConfig ProjectDefine(object val = null)
         {
             if (true)
             {
@@ -1391,7 +1391,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealBuildToolConfig) this;
+            return (UbtConfig) this;
         }
 
         
@@ -1399,7 +1399,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// <summary>
 /// Path to a manifest to output for this target
 /// </summary>
-        public virtual UnrealBuildToolConfig Manifest(object val = null)
+        public virtual UbtConfig Manifest(object val = null)
         {
             if (true)
             {
@@ -1410,7 +1410,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealBuildToolConfig) this;
+            return (UbtConfig) this;
         }
 
         
@@ -1418,7 +1418,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// <summary>
 /// Path to a list of dependencies for this target, when precompiling
 /// </summary>
-        public virtual UnrealBuildToolConfig DependencyList(object val = null)
+        public virtual UbtConfig DependencyList(object val = null)
         {
             if (true)
             {
@@ -1429,7 +1429,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealBuildToolConfig) this;
+            return (UbtConfig) this;
         }
 
         
@@ -1437,7 +1437,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// <summary>
 /// Whether to ignore violations to the shared build environment (eg. editor targets modifying definitions)
 /// </summary>
-        public virtual UnrealBuildToolConfig OverrideBuildEnvironment(bool? val = null)
+        public virtual UbtConfig OverrideBuildEnvironment(bool? val = null)
         {
             if (true)
             {
@@ -1448,7 +1448,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealBuildToolConfig) this;
+            return (UbtConfig) this;
         }
 
         
@@ -1456,7 +1456,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// <summary>
 /// Additional arguments to pass to the compiler
 /// </summary>
-        public virtual UnrealBuildToolConfig CompilerArguments(object val = null)
+        public virtual UbtConfig CompilerArguments(object val = null)
         {
             if (true)
             {
@@ -1467,7 +1467,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealBuildToolConfig) this;
+            return (UbtConfig) this;
         }
 
         
@@ -1475,7 +1475,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// <summary>
 /// Additional arguments to pass to the linker
 /// </summary>
-        public virtual UnrealBuildToolConfig LinkerArguments(object val = null)
+        public virtual UbtConfig LinkerArguments(object val = null)
         {
             if (true)
             {
@@ -1486,7 +1486,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealBuildToolConfig) this;
+            return (UbtConfig) this;
         }
 
         
@@ -1494,7 +1494,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// <summary>
 /// Whether to build the iOS project as a framework.
 /// </summary>
-        public virtual UnrealBuildToolConfig BuildAsFramework(bool? val = null)
+        public virtual UbtConfig BuildAsFramework(bool? val = null)
         {
             if (true)
             {
@@ -1505,7 +1505,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealBuildToolConfig) this;
+            return (UbtConfig) this;
         }
 
         
@@ -1513,7 +1513,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// <summary>
 /// Whether to generate a dSYM file or not.
 /// </summary>
-        public virtual UnrealBuildToolConfig Generatedsymfile(bool? val = null)
+        public virtual UbtConfig Generatedsymfile(bool? val = null)
         {
             if (true)
             {
@@ -1524,7 +1524,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealBuildToolConfig) this;
+            return (UbtConfig) this;
         }
 
         
@@ -1532,7 +1532,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// <summary>
 /// Whether to generate a dSYM bundle (as opposed to single file dSYM)
 /// </summary>
-        public virtual UnrealBuildToolConfig Generatedsymbundle(bool? val = null)
+        public virtual UbtConfig Generatedsymbundle(bool? val = null)
         {
             if (true)
             {
@@ -1543,7 +1543,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealBuildToolConfig) this;
+            return (UbtConfig) this;
         }
 
         
@@ -1551,7 +1551,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// <summary>
 /// Lists Architectures that you want to build
 /// </summary>
-        public virtual UnrealBuildToolConfig Architectures(object val = null)
+        public virtual UbtConfig Architectures(object val = null)
         {
             if (true)
             {
@@ -1562,7 +1562,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealBuildToolConfig) this;
+            return (UbtConfig) this;
         }
 
         
@@ -1570,7 +1570,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// <summary>
 /// Lists GPU Architectures that you want to build (mostly used for mobile etc.)
 /// </summary>
-        public virtual UnrealBuildToolConfig GPUArchitectures(object val = null)
+        public virtual UbtConfig GPUArchitectures(object val = null)
         {
             if (true)
             {
@@ -1581,7 +1581,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealBuildToolConfig) this;
+            return (UbtConfig) this;
         }
 
         
@@ -1589,7 +1589,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// <summary>
 /// Ignore AppBundle (AAB) generation setting if "-ForceAPKGeneration" specified
 /// </summary>
-        public virtual UnrealBuildToolConfig ForceAPKGeneration(bool present = true)
+        public virtual UbtConfig ForceAPKGeneration(bool present = true)
         {
             if (present)
             {
@@ -1600,7 +1600,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealBuildToolConfig) this;
+            return (UbtConfig) this;
         }
 
         
@@ -1611,7 +1611,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// 
 /// Version of the compiler toolchain to use on Windows platform. A value of "default" will be changed to a specific version at UBT start up.
 /// </summary>
-        public virtual UnrealBuildToolConfig _2015(bool present = true)
+        public virtual UbtConfig _2015(bool present = true)
         {
             if (present)
             {
@@ -1622,7 +1622,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealBuildToolConfig) this;
+            return (UbtConfig) this;
         }
 
         
@@ -1633,7 +1633,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// 
 /// Version of the compiler toolchain to use on Windows platform. A value of "default" will be changed to a specific version at UBT start up.
 /// </summary>
-        public virtual UnrealBuildToolConfig _2017(bool present = true)
+        public virtual UbtConfig _2017(bool present = true)
         {
             if (present)
             {
@@ -1644,7 +1644,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealBuildToolConfig) this;
+            return (UbtConfig) this;
         }
 
         
@@ -1655,7 +1655,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// 
 /// Version of the compiler toolchain to use on Windows platform. A value of "default" will be changed to a specific version at UBT start up.
 /// </summary>
-        public virtual UnrealBuildToolConfig _2019(bool present = true)
+        public virtual UbtConfig _2019(bool present = true)
         {
             if (present)
             {
@@ -1666,7 +1666,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealBuildToolConfig) this;
+            return (UbtConfig) this;
         }
 
         
@@ -1677,7 +1677,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// 
 /// Version of the compiler toolchain to use on Windows platform. A value of "default" will be changed to a specific version at UBT start up.
 /// </summary>
-        public virtual UnrealBuildToolConfig _2022(bool present = true)
+        public virtual UbtConfig _2022(bool present = true)
         {
             if (present)
             {
@@ -1688,7 +1688,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealBuildToolConfig) this;
+            return (UbtConfig) this;
         }
 
         
@@ -1696,7 +1696,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// <summary>
 /// Whether to strip iOS symbols or not (implied by Shipping config).
 /// </summary>
-        public virtual UnrealBuildToolConfig Stripsymbols(bool present = true)
+        public virtual UbtConfig Stripsymbols(bool present = true)
         {
             if (present)
             {
@@ -1707,7 +1707,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealBuildToolConfig) this;
+            return (UbtConfig) this;
         }
 
         
@@ -1715,7 +1715,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// <summary>
 /// If true, then a stub IPA will be generated when compiling is done (minimal files needed for a valid IPA).
 /// </summary>
-        public virtual UnrealBuildToolConfig CreateStub(bool present = true)
+        public virtual UbtConfig CreateStub(bool present = true)
         {
             if (present)
             {
@@ -1726,7 +1726,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealBuildToolConfig) this;
+            return (UbtConfig) this;
         }
 
         
@@ -1734,7 +1734,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// <summary>
 /// Don't generate crashlytics data
 /// </summary>
-        public virtual UnrealBuildToolConfig Alwaysgeneratedsym(bool present = true)
+        public virtual UbtConfig Alwaysgeneratedsym(bool present = true)
         {
             if (present)
             {
@@ -1745,7 +1745,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealBuildToolConfig) this;
+            return (UbtConfig) this;
         }
 
         
@@ -1753,7 +1753,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// <summary>
 /// Don't generate crashlytics data
 /// </summary>
-        public virtual UnrealBuildToolConfig Skipcrashlytics(bool? val = null)
+        public virtual UbtConfig Skipcrashlytics(bool? val = null)
         {
             if (true)
             {
@@ -1764,7 +1764,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealBuildToolConfig) this;
+            return (UbtConfig) this;
         }
 
         
@@ -1775,7 +1775,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// 
 /// If -distribution was passed on the commandline, this build is for distribution.
 /// </summary>
-        public virtual UnrealBuildToolConfig Distribution(bool? val = null)
+        public virtual UbtConfig Distribution(bool? val = null)
         {
             if (true)
             {
@@ -1786,7 +1786,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealBuildToolConfig) this;
+            return (UbtConfig) this;
         }
 
         
@@ -1794,7 +1794,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// <summary>
 /// Manual override for the provision to use. Should be a full path.
 /// </summary>
-        public virtual UnrealBuildToolConfig ImportProvision(object val = null)
+        public virtual UbtConfig ImportProvision(object val = null)
         {
             if (true)
             {
@@ -1805,7 +1805,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealBuildToolConfig) this;
+            return (UbtConfig) this;
         }
 
         
@@ -1813,7 +1813,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// <summary>
 /// Imports the given certificate (inc private key) into a temporary keychain before signing.
 /// </summary>
-        public virtual UnrealBuildToolConfig ImportCertificate(object val = null)
+        public virtual UbtConfig ImportCertificate(object val = null)
         {
             if (true)
             {
@@ -1824,7 +1824,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealBuildToolConfig) this;
+            return (UbtConfig) this;
         }
 
         
@@ -1832,7 +1832,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// <summary>
 /// Password for the imported certificate
 /// </summary>
-        public virtual UnrealBuildToolConfig ImportCertificatePassword(object val = null)
+        public virtual UbtConfig ImportCertificatePassword(object val = null)
         {
             if (true)
             {
@@ -1843,7 +1843,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealBuildToolConfig) this;
+            return (UbtConfig) this;
         }
 
         
@@ -1851,7 +1851,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// <summary>
 /// Enables memory sanitizer (MSan)
 /// </summary>
-        public virtual UnrealBuildToolConfig EnableMSan(bool? val = null)
+        public virtual UbtConfig EnableMSan(bool? val = null)
         {
             if (true)
             {
@@ -1862,7 +1862,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealBuildToolConfig) this;
+            return (UbtConfig) this;
         }
 
         
@@ -1870,7 +1870,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// <summary>
 /// Enables "thin" LTO
 /// </summary>
-        public virtual UnrealBuildToolConfig ThinLTO(bool? val = null)
+        public virtual UbtConfig ThinLTO(bool? val = null)
         {
             if (true)
             {
@@ -1881,7 +1881,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealBuildToolConfig) this;
+            return (UbtConfig) this;
         }
 
         
@@ -1889,7 +1889,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// <summary>
 /// Use existing static libraries for all engine modules in this target.
 /// </summary>
-        public virtual UnrealBuildToolConfig UsePrecompiled(bool? val = null)
+        public virtual UbtConfig UsePrecompiled(bool? val = null)
         {
             if (true)
             {
@@ -1900,7 +1900,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealBuildToolConfig) this;
+            return (UbtConfig) this;
         }
 
         
@@ -1908,7 +1908,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// <summary>
 /// Whether XGE may be used.
 /// </summary>
-        public virtual UnrealBuildToolConfig NoXGE(bool present = true)
+        public virtual UbtConfig NoXGE(bool present = true)
         {
             if (present)
             {
@@ -1919,7 +1919,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealBuildToolConfig) this;
+            return (UbtConfig) this;
         }
 
         
@@ -1927,7 +1927,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// <summary>
 /// Whether FASTBuild may be used.
 /// </summary>
-        public virtual UnrealBuildToolConfig NoFASTBuild(bool present = true)
+        public virtual UbtConfig NoFASTBuild(bool present = true)
         {
             if (present)
             {
@@ -1938,7 +1938,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealBuildToolConfig) this;
+            return (UbtConfig) this;
         }
 
         
@@ -1964,7 +1964,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// we only scan and cache indirect includes for after a dependent build product was already found to be out of date. During the
 /// next build, we will load those cached indirect includes and check for outdatedness.
 /// </summary>
-        public virtual UnrealBuildToolConfig NoUBTMakefiles(bool present = true)
+        public virtual UbtConfig NoUBTMakefiles(bool present = true)
         {
             if (present)
             {
@@ -1975,7 +1975,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealBuildToolConfig) this;
+            return (UbtConfig) this;
         }
 
         
@@ -1984,7 +1984,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// Number of actions that can be executed in parallel. If 0 then code will pick a default based
 /// on the number of cores available. Only applies to the ParallelExecutor
 /// </summary>
-        public virtual UnrealBuildToolConfig MaxParallelActions(double? val = null)
+        public virtual UbtConfig MaxParallelActions(double? val = null)
         {
             if (true)
             {
@@ -1995,7 +1995,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealBuildToolConfig) this;
+            return (UbtConfig) this;
         }
 
         
@@ -2003,7 +2003,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// <summary>
 /// If true, force header regeneration. Intended for the build machine.
 /// </summary>
-        public virtual UnrealBuildToolConfig ForceHeaderGeneration(bool? val = null)
+        public virtual UbtConfig ForceHeaderGeneration(bool? val = null)
         {
             if (true)
             {
@@ -2014,7 +2014,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealBuildToolConfig) this;
+            return (UbtConfig) this;
         }
 
         
@@ -2022,7 +2022,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// <summary>
 /// If true, do not build UHT, assume it is already built.
 /// </summary>
-        public virtual UnrealBuildToolConfig NoBuildUHT(bool? val = null)
+        public virtual UbtConfig NoBuildUHT(bool? val = null)
         {
             if (true)
             {
@@ -2033,7 +2033,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealBuildToolConfig) this;
+            return (UbtConfig) this;
         }
 
         
@@ -2041,7 +2041,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// <summary>
 /// If true, fail if any of the generated header files is out of date.
 /// </summary>
-        public virtual UnrealBuildToolConfig FailIfGeneratedCodeChanges(bool? val = null)
+        public virtual UbtConfig FailIfGeneratedCodeChanges(bool? val = null)
         {
             if (true)
             {
@@ -2052,7 +2052,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealBuildToolConfig) this;
+            return (UbtConfig) this;
         }
 
         
@@ -2060,7 +2060,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// <summary>
 /// True if hot-reload from IDE is allowed.
 /// </summary>
-        public virtual UnrealBuildToolConfig NoHotReloadFromIDE(bool present = true)
+        public virtual UbtConfig NoHotReloadFromIDE(bool present = true)
         {
             if (present)
             {
@@ -2071,7 +2071,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealBuildToolConfig) this;
+            return (UbtConfig) this;
         }
 
         
@@ -2079,7 +2079,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// <summary>
 /// Whether to skip compiling rules assemblies and just assume they are valid
 /// </summary>
-        public virtual UnrealBuildToolConfig SkipRulesCompile(bool? val = null)
+        public virtual UbtConfig SkipRulesCompile(bool? val = null)
         {
             if (true)
             {
@@ -2090,7 +2090,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealBuildToolConfig) this;
+            return (UbtConfig) this;
         }
 
         
@@ -2098,7 +2098,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// <summary>
 /// Version of the compiler toolchain to use on Windows platform. A value of "default" will be changed to a specific version at UBT start up.
 /// </summary>
-        public virtual UnrealBuildToolConfig Compiler(WindowsCompiler? val = null)
+        public virtual UbtConfig Compiler(WindowsCompiler? val = null)
         {
             if (true)
             {
@@ -2109,7 +2109,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealBuildToolConfig) this;
+            return (UbtConfig) this;
         }
 
         
@@ -2119,7 +2119,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// the string "Preview" to select the newest available preview version. By default, and if it is available, we use the toolchain version indicated by
 /// WindowsPlatform.DefaultToolChainVersion (otherwise, we use the latest version).
 /// </summary>
-        public virtual UnrealBuildToolConfig CompilerVersion(object val = null)
+        public virtual UbtConfig CompilerVersion(object val = null)
         {
             if (true)
             {
@@ -2130,7 +2130,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealBuildToolConfig) this;
+            return (UbtConfig) this;
         }
 
         
@@ -2138,7 +2138,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// <summary>
 /// The static analyzer to use.
 /// </summary>
-        public virtual UnrealBuildToolConfig StaticAnalyzer(WindowsStaticAnalyzer? val = null)
+        public virtual UbtConfig StaticAnalyzer(WindowsStaticAnalyzer? val = null)
         {
             if (true)
             {
@@ -2149,7 +2149,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealBuildToolConfig) this;
+            return (UbtConfig) this;
         }
 
         
@@ -2157,7 +2157,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// <summary>
 /// Whether we should export a file containing .obj to source file mappings.
 /// </summary>
-        public virtual UnrealBuildToolConfig ObjSrcMap(object val = null)
+        public virtual UbtConfig ObjSrcMap(object val = null)
         {
             if (true)
             {
@@ -2168,7 +2168,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealBuildToolConfig) this;
+            return (UbtConfig) this;
         }
 
         
@@ -2176,7 +2176,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// <summary>
 /// Enables strict standard conformance mode (/permissive-) in VS2017+.
 /// </summary>
-        public virtual UnrealBuildToolConfig Strict(bool? val = null)
+        public virtual UbtConfig Strict(bool? val = null)
         {
             if (true)
             {
@@ -2187,7 +2187,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealBuildToolConfig) this;
+            return (UbtConfig) this;
         }
 
         
@@ -2195,7 +2195,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// <summary>
 /// Print out files that are included by each source file
 /// </summary>
-        public virtual UnrealBuildToolConfig ShowIncludes(bool? val = null)
+        public virtual UbtConfig ShowIncludes(bool? val = null)
         {
             if (true)
             {
@@ -2206,7 +2206,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealBuildToolConfig) this;
+            return (UbtConfig) this;
         }
 
         
@@ -2214,7 +2214,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// <summary>
 /// The amount of detail to write to the log
 /// </summary>
-        public virtual UnrealBuildToolConfig Verbose(bool present = true)
+        public virtual UbtConfig Verbose(bool present = true)
         {
             if (present)
             {
@@ -2225,7 +2225,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealBuildToolConfig) this;
+            return (UbtConfig) this;
         }
 
         
@@ -2233,7 +2233,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// <summary>
 /// The amount of detail to write to the log
 /// </summary>
-        public virtual UnrealBuildToolConfig VeryVerbose(bool present = true)
+        public virtual UbtConfig VeryVerbose(bool present = true)
         {
             if (present)
             {
@@ -2244,7 +2244,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealBuildToolConfig) this;
+            return (UbtConfig) this;
         }
 
         
@@ -2252,7 +2252,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// <summary>
 /// Specifies the path to a log file to write. Note that the default mode (eg. building, generating project files) will create a log file by default if this not specified.
 /// </summary>
-        public virtual UnrealBuildToolConfig Log(object val = null)
+        public virtual UbtConfig Log(object val = null)
         {
             if (true)
             {
@@ -2263,7 +2263,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealBuildToolConfig) this;
+            return (UbtConfig) this;
         }
 
         
@@ -2271,7 +2271,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// <summary>
 /// Whether to include timestamps in the log
 /// </summary>
-        public virtual UnrealBuildToolConfig Timestamps(bool? val = null)
+        public virtual UbtConfig Timestamps(bool? val = null)
         {
             if (true)
             {
@@ -2282,7 +2282,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealBuildToolConfig) this;
+            return (UbtConfig) this;
         }
 
         
@@ -2290,7 +2290,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// <summary>
 /// Whether to format messages in MsBuild format
 /// </summary>
-        public virtual UnrealBuildToolConfig FromMsBuild(bool? val = null)
+        public virtual UbtConfig FromMsBuild(bool? val = null)
         {
             if (true)
             {
@@ -2301,7 +2301,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealBuildToolConfig) this;
+            return (UbtConfig) this;
         }
 
         
@@ -2309,7 +2309,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// <summary>
 /// Whether to write progress markup in a format that can be parsed by other programs
 /// </summary>
-        public virtual UnrealBuildToolConfig Progress(bool? val = null)
+        public virtual UbtConfig Progress(bool? val = null)
         {
             if (true)
             {
@@ -2320,7 +2320,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealBuildToolConfig) this;
+            return (UbtConfig) this;
         }
 
         
@@ -2328,7 +2328,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// <summary>
 /// Whether to ignore the mutex
 /// </summary>
-        public virtual UnrealBuildToolConfig NoMutex(bool? val = null)
+        public virtual UbtConfig NoMutex(bool? val = null)
         {
             if (true)
             {
@@ -2339,7 +2339,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealBuildToolConfig) this;
+            return (UbtConfig) this;
         }
 
         
@@ -2347,7 +2347,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// <summary>
 /// Whether to wait for the mutex rather than aborting immediately
 /// </summary>
-        public virtual UnrealBuildToolConfig WaitMutex(bool? val = null)
+        public virtual UbtConfig WaitMutex(bool? val = null)
         {
             if (true)
             {
@@ -2358,7 +2358,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealBuildToolConfig) this;
+            return (UbtConfig) this;
         }
 
         
@@ -2366,7 +2366,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// <summary>
 /// Whether to wait for the mutex rather than aborting immediately
 /// </summary>
-        public virtual UnrealBuildToolConfig RemoteIni(object val = null)
+        public virtual UbtConfig RemoteIni(object val = null)
         {
             if (true)
             {
@@ -2377,7 +2377,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealBuildToolConfig) this;
+            return (UbtConfig) this;
         }
 
         
@@ -2385,7 +2385,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// <summary>
 /// The mode to execute
 /// </summary>
-        public virtual UnrealBuildToolConfig Mode(object val = null)
+        public virtual UbtConfig Mode(object val = null)
         {
             if (true)
             {
@@ -2396,7 +2396,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealBuildToolConfig) this;
+            return (UbtConfig) this;
         }
 
         
@@ -2404,7 +2404,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// <summary>
 /// The mode to execute
 /// </summary>
-        public virtual UnrealBuildToolConfig Clean(bool present = true)
+        public virtual UbtConfig Clean(bool present = true)
         {
             if (present)
             {
@@ -2415,7 +2415,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealBuildToolConfig) this;
+            return (UbtConfig) this;
         }
 
         
@@ -2423,7 +2423,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// <summary>
 /// The mode to execute
 /// </summary>
-        public virtual UnrealBuildToolConfig ProjectFiles(bool present = true)
+        public virtual UbtConfig ProjectFiles(bool present = true)
         {
             if (present)
             {
@@ -2434,7 +2434,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealBuildToolConfig) this;
+            return (UbtConfig) this;
         }
 
         
@@ -2442,7 +2442,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// <summary>
 /// The mode to execute
 /// </summary>
-        public virtual UnrealBuildToolConfig ProjectFileFormat(bool present = true)
+        public virtual UbtConfig ProjectFileFormat(bool present = true)
         {
             if (present)
             {
@@ -2453,7 +2453,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealBuildToolConfig) this;
+            return (UbtConfig) this;
         }
 
         
@@ -2461,7 +2461,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// <summary>
 /// The mode to execute
 /// </summary>
-        public virtual UnrealBuildToolConfig Makefile(bool present = true)
+        public virtual UbtConfig Makefile(bool present = true)
         {
             if (present)
             {
@@ -2472,7 +2472,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealBuildToolConfig) this;
+            return (UbtConfig) this;
         }
 
         
@@ -2480,7 +2480,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// <summary>
 /// The mode to execute
 /// </summary>
-        public virtual UnrealBuildToolConfig CMakefile(bool present = true)
+        public virtual UbtConfig CMakefile(bool present = true)
         {
             if (present)
             {
@@ -2491,7 +2491,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealBuildToolConfig) this;
+            return (UbtConfig) this;
         }
 
         
@@ -2499,7 +2499,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// <summary>
 /// The mode to execute
 /// </summary>
-        public virtual UnrealBuildToolConfig QMakefile(bool present = true)
+        public virtual UbtConfig QMakefile(bool present = true)
         {
             if (present)
             {
@@ -2510,7 +2510,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealBuildToolConfig) this;
+            return (UbtConfig) this;
         }
 
         
@@ -2518,7 +2518,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// <summary>
 /// The mode to execute
 /// </summary>
-        public virtual UnrealBuildToolConfig KDevelopfile(bool present = true)
+        public virtual UbtConfig KDevelopfile(bool present = true)
         {
             if (present)
             {
@@ -2529,7 +2529,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealBuildToolConfig) this;
+            return (UbtConfig) this;
         }
 
         
@@ -2537,7 +2537,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// <summary>
 /// The mode to execute
 /// </summary>
-        public virtual UnrealBuildToolConfig CodeliteFiles(bool present = true)
+        public virtual UbtConfig CodeliteFiles(bool present = true)
         {
             if (present)
             {
@@ -2548,7 +2548,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealBuildToolConfig) this;
+            return (UbtConfig) this;
         }
 
         
@@ -2556,7 +2556,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// <summary>
 /// The mode to execute
 /// </summary>
-        public virtual UnrealBuildToolConfig XCodeProjectFiles(bool present = true)
+        public virtual UbtConfig XCodeProjectFiles(bool present = true)
         {
             if (present)
             {
@@ -2567,7 +2567,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealBuildToolConfig) this;
+            return (UbtConfig) this;
         }
 
         
@@ -2575,7 +2575,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// <summary>
 /// The mode to execute
 /// </summary>
-        public virtual UnrealBuildToolConfig EdditProjectFiles(bool present = true)
+        public virtual UbtConfig EdditProjectFiles(bool present = true)
         {
             if (present)
             {
@@ -2586,7 +2586,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealBuildToolConfig) this;
+            return (UbtConfig) this;
         }
 
         
@@ -2594,7 +2594,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// <summary>
 /// The mode to execute
 /// </summary>
-        public virtual UnrealBuildToolConfig VSCode(bool present = true)
+        public virtual UbtConfig VSCode(bool present = true)
         {
             if (present)
             {
@@ -2605,7 +2605,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealBuildToolConfig) this;
+            return (UbtConfig) this;
         }
 
         
@@ -2613,7 +2613,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// <summary>
 /// The mode to execute
 /// </summary>
-        public virtual UnrealBuildToolConfig VSMac(bool present = true)
+        public virtual UbtConfig VSMac(bool present = true)
         {
             if (present)
             {
@@ -2624,7 +2624,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealBuildToolConfig) this;
+            return (UbtConfig) this;
         }
 
         
@@ -2632,7 +2632,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// <summary>
 /// The mode to execute
 /// </summary>
-        public virtual UnrealBuildToolConfig CLion(bool present = true)
+        public virtual UbtConfig CLion(bool present = true)
         {
             if (present)
             {
@@ -2643,7 +2643,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealBuildToolConfig) this;
+            return (UbtConfig) this;
         }
 
         
@@ -2651,7 +2651,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// <summary>
 /// The mode to execute
 /// </summary>
-        public virtual UnrealBuildToolConfig Rider(bool present = true)
+        public virtual UbtConfig Rider(bool present = true)
         {
             if (present)
             {
@@ -2662,7 +2662,7 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
                     Compatibility: UnrealCompatibility.UE4
                 ));
             }
-            return (UnrealBuildToolConfig) this;
+            return (UbtConfig) this;
         }
 
         
@@ -2780,54 +2780,54 @@ public abstract class UnrealBuildToolConfigGenerated : ToolConfig
 /// <summary>
 /// Builds a target
 /// </summary>
-    public UnrealBuildToolConfig Build(Action<BuildConfig> configurator)
+    public UbtConfig Build(Action<BuildConfig> configurator)
     {
         configurator?.Invoke(BuildStorage);
         AppendSubtool(BuildStorage);
-        return (UnrealBuildToolConfig) this;
+        return (UbtConfig) this;
     }
 /// <summary>
 /// Cleans build products and intermediates for the target. This deletes files which are named consistently with the target being built
 /// (e.g. UE4Editor-Foo-Win64-Debug.dll) rather than an actual record of previous build products.
 /// </summary>
-    public UnrealBuildToolConfig Clean(Action<CleanConfig> configurator)
+    public UbtConfig Clean(Action<CleanConfig> configurator)
     {
         configurator?.Invoke(CleanStorage);
         AppendSubtool(CleanStorage);
-        return (UnrealBuildToolConfig) this;
+        return (UbtConfig) this;
     }
 /// <summary>
 /// Invokes the deployment handler for a target.
 /// </summary>
-    public UnrealBuildToolConfig Deploy(Action<DeployConfig> configurator)
+    public UbtConfig Deploy(Action<DeployConfig> configurator)
     {
         configurator?.Invoke(DeployStorage);
         AppendSubtool(DeployStorage);
-        return (UnrealBuildToolConfig) this;
+        return (UbtConfig) this;
     }
 /// <summary>
 /// Builds a target
 /// </summary>
-    public UnrealBuildToolConfig Execute(Action<ExecuteConfig> configurator)
+    public UbtConfig Execute(Action<ExecuteConfig> configurator)
     {
         configurator?.Invoke(ExecuteStorage);
         AppendSubtool(ExecuteStorage);
-        return (UnrealBuildToolConfig) this;
+        return (UbtConfig) this;
     }
 /// <summary>
 /// Exports a target as a JSON file
 /// </summary>
-    public UnrealBuildToolConfig JsonExport(Action<JsonExportConfig> configurator)
+    public UbtConfig JsonExport(Action<JsonExportConfig> configurator)
     {
         configurator?.Invoke(JsonExportStorage);
         AppendSubtool(JsonExportStorage);
-        return (UnrealBuildToolConfig) this;
+        return (UbtConfig) this;
     }
 
-    public UnrealBuildToolConfig IOSPostBuildSync(Action<IOSPostBuildSyncConfig> configurator)
+    public UbtConfig IOSPostBuildSync(Action<IOSPostBuildSyncConfig> configurator)
     {
         configurator?.Invoke(IOSPostBuildSyncStorage);
         AppendSubtool(IOSPostBuildSyncStorage);
-        return (UnrealBuildToolConfig) this;
+        return (UbtConfig) this;
     }
 }

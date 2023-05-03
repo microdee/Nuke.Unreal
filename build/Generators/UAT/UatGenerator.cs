@@ -44,11 +44,11 @@ public class UatGeneratorContext
     public UnrealCompatibility Compatibility { get; set; } = UnrealCompatibility.All;
 }
 
-public class UnrealAutomationToolGenerator : ToolGenerator
+public class UatGenerator : ToolGenerator
 {
-    public override string TemplateName => "UnrealAutomationToolConfigGenerated";
+    public override string TemplateName => "UatConfigGenerated";
     
-    private record UatModel(ToolModel UnrealAutomationTool);
+    private record UatModel(ToolModel Uat);
 
 
     protected override object GetFullModel(ToolModel tool) => new UatModel(tool);
@@ -68,7 +68,7 @@ public class UnrealAutomationToolGenerator : ToolGenerator
             Compatibility = compatibility,
             MainTool = new ToolModel
             {
-                ConfigName = "UnrealAutomationTool",
+                ConfigName = "Uat",
                 CliName = "",
                 ConfigType = new(TemplateName.Replace("Generated", ""), TemplateName),
                 ClassKeywords = "abstract",

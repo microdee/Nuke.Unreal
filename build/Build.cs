@@ -72,8 +72,8 @@ class Build : NukeBuild
                 new("4.27", UnrealCompatibility.UE4),
                 // new("5.1", UnrealCompatibility.UE5)
             };
-            new UnrealBuildToolGenerator().Generate(this, engines);
-            new UnrealAutomationToolGenerator().Generate(this, engines);
+            new UbtGenerator().Generate(this, engines);
+            new UatGenerator().Generate(this, engines);
         });
 
     Target Restore => _ => _
