@@ -33,8 +33,8 @@ namespace build.Generators.UAT;
         - CodeSign
         - McpConfigMapper
         - P4Environment
-        - UE4Build (probably renamed in UE5 to UnrealBuild)
-        - UE4Build (probably renamed in UE5 to UnrealBuild)
+        - UE4Build (in UE4)
+        - UnrealBuild (in UE5)
         - LocalizationProvider (+ implementations)
 
     Just completely ignore these because they're doing 100% runtime command line parsing, which
