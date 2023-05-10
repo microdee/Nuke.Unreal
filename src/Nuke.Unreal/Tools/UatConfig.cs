@@ -17,4 +17,21 @@ public class UatConfig : UatConfigGenerated
         );
         return this;
     }
+
+    public override UatConfig NoCompile(params object[] values)
+    {
+        // Overriding NoCompile, despite being flagged as deprecated in UE4, it's no longer
+        // deprecated in UE5. However to not confuse usage for UE4, here we override
+        // the argument compatibility.
+        if (true)
+        {
+            AppendArgument(new UnrealToolArgument(
+                "-NoCompile",
+                Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                Setter: '=',
+                Compatibility: UnrealCompatibility.All
+            ));
+        }
+        return this;
+    }
 }
