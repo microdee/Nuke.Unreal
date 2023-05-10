@@ -5,12 +5,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using build.Generators.UAT;
 using Microsoft.CodeAnalysis.CSharp;
-
-/*
-TODO:
-    * IMPORTANT: Add metadata for tools where 'UE4' became 'Unreal' and make a mechanism to know which one to use
-    * UAT has new ways of command line processing in UE 5, incorporate them.
-*/
 namespace build.Generators;
 
 public class UatGeneratorContext

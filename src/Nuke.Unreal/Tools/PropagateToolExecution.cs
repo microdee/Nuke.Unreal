@@ -24,8 +24,10 @@ public record ToolArguments(
     {
         var timeOut = Math.Max(a?.Timeout ?? -1, b?.Timeout ?? -1);
         return new() {
-            Arguments = string.Join(' ', new [] {a?.Arguments, b?.Arguments}
-                .Where(_ => !string.IsNullOrWhiteSpace(_))),
+            Arguments = string.Join(' ',
+                new [] {a?.Arguments, b?.Arguments}
+                    .Where(_ => !string.IsNullOrWhiteSpace(_))
+            ),
 
             WorkingDirectory = string.IsNullOrWhiteSpace(a?.WorkingDirectory)
                 ? b?.WorkingDirectory

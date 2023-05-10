@@ -8,7 +8,7 @@
             AppendArgument(new UnrealToolArgument(
                 "{{ arg.cli_name }}",
                 Value: {{ arg.command_line_renderer }},
-                Setter: '{{ arg.value_setter }}',
+                Setter: '{{ arg.value_setter == "" ? "=" : arg.value_setter }}',
                 Compatibility: {{ arg.compatibility_render }}
             ));
         }

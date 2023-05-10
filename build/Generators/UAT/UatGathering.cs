@@ -34,6 +34,7 @@ namespace build.Generators.UAT;
         - McpConfigMapper
         - P4Environment
         - UE4Build (probably renamed in UE5 to UnrealBuild)
+        - UE4Build (probably renamed in UE5 to UnrealBuild)
         - LocalizationProvider (+ implementations)
 
     Just completely ignore these because they're doing 100% runtime command line parsing, which
@@ -52,6 +53,7 @@ public static class UniqueClass
     public const string McpConfigMapper = nameof(McpConfigMapper);
     public const string P4Environment = nameof(P4Environment);
     public const string UE4Build = nameof(UE4Build);
+    public const string UnrealBuild = nameof(UnrealBuild);
     public const string LocalizationProvider = nameof(LocalizationProvider);
     public const string GlobalCommandLine = nameof(GlobalCommandLine);
     public const string CommandLineArg = nameof(CommandLineArg);
@@ -65,6 +67,7 @@ public static class UniqueClass
         McpConfigMapper,
         P4Environment,
         UE4Build,
+        UnrealBuild,
         LocalizationProvider
     };
 }
@@ -156,6 +159,73 @@ public partial class UatGathering : CSharpSourceGatherer
         }
     }
 
+    protected void GatherFromParsedCommandLineDictionaryInProgramClass(IGatheringContext context)
+    {
+        Log.Information(context.Indent() + "Gathering global arguments from Program class.");
+        var compatibility = (context as IHaveEngineCompatibility)?.Compatibility ?? UnrealCompatibility.All;
+        var program = Classes[UniqueClass.Program];
+
+        var parseCommandLineMethod = program.Declarations.SelectMany(c => c.Declaration
+            .DescendantNodes()
+            .OfType<MethodDeclarationSyntax>()
+            .Where(m => m.Identifier.Text == "ParseCommandLine")
+        )
+        .FirstOrDefault();
+        if (parseCommandLineMethod == null) return;
+
+        var paramDictionaryInitializers = parseCommandLineMethod
+            .DescendantNodes()
+            .OfType<ObjectCreationExpressionSyntax>()
+            .Where(o => o.Type.ToFullString().Trim() == "ParsedCommandLine")
+            .SelectMany(o => o
+                .DescendantNodes()
+                .OfType<ObjectCreationExpressionSyntax>()
+                .Where(d => d.Type.ToFullString().Trim() == "Dictionary<string, string>")
+            )
+            .SelectMany(d => d
+                .DescendantNodes()
+                .OfType<InitializerExpressionSyntax>()
+                .Where(i => i.IsKind(SyntaxKind.ComplexElementInitializerExpression))
+                .Where(i => i.Expressions.Count == 2)
+            );
+
+        context.IncreaseIndent();
+        foreach(var paramDeclarer in paramDictionaryInitializers)
+        {
+            var literals = paramDeclarer
+                .DescendantNodes()
+                .OfType<LiteralExpressionSyntax>()
+                .Where(l => l.IsKind(SyntaxKind.StringLiteralExpression))
+                .Select(l => l.Token.Text.TrimMatchingDoubleQuotes())
+                .ToArray();
+
+            if (literals.Length != 2)
+            {
+                Log.Error(context.Indent() + "Command line parameter declaring initializer didn't contain 2 arguments.");
+                continue;
+            }
+            
+            var cliName = literals[0];
+            var csharpName = cliName.Replace("-", "").EnsureIdentifierCompatibleName();
+            var docs = literals[1];
+            
+            var argument = new ArgumentModel()
+            {
+                CliName = cliName,
+                ConfigName = csharpName,
+                ArgumentType = ArgumentModelType.TextCollection,
+                ValueSetter = "=",
+                Compatibility = new() { compatibility }
+            }.AddSummary(docs);
+            var existing = program.AddArgument(argument);
+            if (existing == null)
+            {
+                Log.Debug(context.Indent() + "{0} {1}", argument.CliName, argument.ConfigName);
+            }
+        }
+        context.DecreaseIndent();
+    }
+
     [GeneratedRegex(@"(?<NAME>[\w-]+)((?<SETTER>[:=]).*)?")]
     private static partial Regex ArgumentFromHelp();
 
@@ -180,8 +250,8 @@ public partial class UatGathering : CSharpSourceGatherer
                 .OfType<AttributeArgumentSyntax>()
                 .SelectMany(a => a
                     .DescendantNodes()
+                    .OfType<LiteralExpressionSyntax>()
                     .Where(l => l.IsKind(SyntaxKind.StringLiteralExpression))
-                    .Cast<LiteralExpressionSyntax>()
                 )
                 .ToArray();
             if (arguments.Length != 2) continue;
@@ -383,6 +453,7 @@ public partial class UatGathering : CSharpSourceGatherer
         GatherClasses(context);
 
         var buildCommandCandidates = Classes.Values.Where(IsConsidered);
+        GatherFromParsedCommandLineDictionaryInProgramClass(context);
         
         Log.Information(context.Indent() + "Gathering parameters from all classes");
         context.IncreaseIndent();
