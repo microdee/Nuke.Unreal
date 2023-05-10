@@ -15,7 +15,7 @@ using Towel;
 
 namespace build.Generators;
 
-public partial class UbtGenerator : ToolGenerator
+public partial class UbtGeneratorFromReflection : ToolGenerator
 {
     public override string TemplateName => "UbtConfigGenerated";
 
