@@ -28,12 +28,24 @@ public static class AnalysisCommon
         _ => null
     };
 
-    public static string GetLeadingXmlDocs(this MemberDeclarationSyntax node)
+    public static string GetLeadingXmlDocs(this CSharpSyntaxNode node)
     {
-        string documentation = "";
-        if (node?.HasStructuredTrivia ?? false)
+        string documentation = null;
+        if (node == null) return documentation;
+        
+        var actualNode = node;
+        if (!node.HasStructuredTrivia)
         {
-            var doscSpan = node.GetLeadingTrivia()
+            var attributes = node
+                .ChildNodes()
+                .OfType<AttributeListSyntax>();
+
+            actualNode = attributes.FirstOrDefault(a => a.HasStructuredTrivia) ?? node;
+        }
+
+        if (actualNode.HasStructuredTrivia)
+        {
+            var doscSpan = actualNode.GetLeadingTrivia()
                 .Where(t =>
                     t.IsKind(SyntaxKind.SingleLineDocumentationCommentTrivia)
                     || t.IsKind(SyntaxKind.MultiLineDocumentationCommentTrivia)
@@ -41,7 +53,7 @@ public static class AnalysisCommon
                 .FirstOrDefault()
                 .FullSpan;
 
-            documentation = node.SyntaxTree
+            documentation = actualNode.SyntaxTree
                 .GetText().GetSubText(doscSpan).ToString()
                 .Replace("///", "")
                 .Trim();
