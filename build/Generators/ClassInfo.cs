@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Serilog;
 
 namespace build.Generators;
 
@@ -13,15 +14,22 @@ public class ClassInfo : IProvideArguments
     public readonly HashSet<CsClass> Declarations = new();
     public ClassInfo BaseClass;
 
-    public ClassInfo Implements(string baseType)
+    public ClassInfo Implements(string baseType, List<ClassInfo> chain = null)
     {
         if (BaseClass == null) return null;
-        
-        if (BaseClass.Name.Equals(baseType))
+        if (BaseClass.Name == baseType) return BaseClass;
+
+        chain ??= new();
+        var candidate = chain.FirstOrDefault(c => c.Name == baseType);
+        if (candidate != null) return candidate;
+        if (chain.Any(c => c.Name == Name))
         {
-            return BaseClass;
+            Log.Verbose("Self referencing inheritance chain: {0}", string.Join(" -> ", chain.Select(c => c.Name)));
+            return null;
         }
-        return BaseClass?.Implements(baseType);
+        chain.Add(this);
+
+        return BaseClass?.Implements(baseType, chain);
     }
     
     public List<ArgumentModel> Arguments { get; set; } = new();
