@@ -79,7 +79,7 @@ public static class ExcludedClass
 
 public partial class UatGathering : CSharpSourceGatherer
 {
-    public UatGathering(AbsolutePath root) : base(root) {}
+    public UatGathering(params AbsolutePath[] root) : base(root) {}
 
     protected IEnumerable<ClassInfo> LocalizationProviderImplementations => Classes.Values
         .Where(c => c.Implements(UniqueClass.LocalizationProvider) != null);
@@ -109,15 +109,16 @@ public partial class UatGathering : CSharpSourceGatherer
             Log.Debug(context.Indent() + "Using commandline argument parsers.");
         }
 
+        using var indent = new Indentation(context);
+
         foreach(var invocation in paramGetterInvocations)
         {
             var cliName = invocation.ArgumentList.Arguments.SelectMany(i => i.DescendantNodes())
                 .OfType<LiteralExpressionSyntax>()
                 .Where(n => n.IsKind(SyntaxKind.StringLiteralExpression))
-                .Select(n => n.Token.Text)
+                .Select(n => n.Token.ValueText)
                 .Where(n => !string.IsNullOrWhiteSpace(n))
-                .FirstOrDefault()
-                ?.TrimMatchingDoubleQuotes();
+                .FirstOrDefault();
             
             if (string.IsNullOrWhiteSpace(cliName))
                 continue;
@@ -137,7 +138,7 @@ public partial class UatGathering : CSharpSourceGatherer
 
             var memberCandidate = from.PropertiesAndFields
                 .FirstOrDefault(m => m
-                    .GetFieldOrPropertyName()
+                    .GetMemberName()
                     .MemberAssociable(csharpName)
                 );
 
@@ -154,7 +155,7 @@ public partial class UatGathering : CSharpSourceGatherer
             );
             if (existing == null)
             {
-                Log.Debug(context.Indent() + "{0} {1}", cliName, outCsharpName);
+                Log.Debug(indent >> "{0} {1}", cliName, outCsharpName);
             }
         }
     }
@@ -189,19 +190,19 @@ public partial class UatGathering : CSharpSourceGatherer
                 .Where(i => i.Expressions.Count == 2)
             );
 
-        context.IncreaseIndent();
+        using var indent = new Indentation(context);
         foreach(var paramDeclarer in paramDictionaryInitializers)
         {
             var literals = paramDeclarer
                 .DescendantNodes()
                 .OfType<LiteralExpressionSyntax>()
                 .Where(l => l.IsKind(SyntaxKind.StringLiteralExpression))
-                .Select(l => l.Token.Text.TrimMatchingDoubleQuotes())
+                .Select(l => l.Token.ValueText)
                 .ToArray();
 
             if (literals.Length != 2)
             {
-                Log.Error(context.Indent() + "Command line parameter declaring initializer didn't contain 2 arguments.");
+                Log.Error(indent >> "Command line parameter declaring initializer didn't contain 2 arguments.");
                 continue;
             }
             
@@ -220,10 +221,9 @@ public partial class UatGathering : CSharpSourceGatherer
             var existing = program.AddArgument(argument);
             if (existing == null)
             {
-                Log.Debug(context.Indent() + "{0} {1}", argument.CliName, argument.ConfigName);
+                Log.Debug(indent >> "{0} {1}", argument.CliName, argument.ConfigName);
             }
         }
-        context.DecreaseIndent();
     }
 
     [GeneratedRegex(@"(?<NAME>[\w-]+)((?<SETTER>[:=]).*)?")]
@@ -243,6 +243,8 @@ public partial class UatGathering : CSharpSourceGatherer
         {
             Log.Debug(context.Indent() + "Using Help attribute heuristics");
         }
+
+        using var indent = new Indentation(context);
         foreach(var attr in commandHelpAttributes)
         {
             var arguments = attr
@@ -256,7 +258,7 @@ public partial class UatGathering : CSharpSourceGatherer
                 .ToArray();
             if (arguments.Length != 2) continue;
 
-            var regexMatch = ArgumentFromHelp().Match(arguments[0].Token.Text);
+            var regexMatch = ArgumentFromHelp().Match(arguments[0].Token.ValueText);
             if (regexMatch?.Groups?["NAME"] == null) continue;
 
             var cliName = regexMatch.Groups["NAME"].Value;
@@ -270,11 +272,11 @@ public partial class UatGathering : CSharpSourceGatherer
                 ArgumentType = ArgumentModelType.TextCollection,
                 ValueSetter = regexMatch.Groups["SETTER"]?.Value ?? "=",
                 Compatibility = new() { compatibility }
-            }.AddSummary(arguments[1].Token.Text);
+            }.AddSummary(arguments[1].Token.ValueText);
             var existing = from.AddArgument(argument);
             if (existing == null)
             {
-                Log.Debug(context.Indent() + "{0} {1}", argument.CliName, argument.ConfigName);
+                Log.Debug(indent >> "{0} {1}", argument.CliName, argument.ConfigName);
             }
         }
     }
@@ -287,6 +289,12 @@ public partial class UatGathering : CSharpSourceGatherer
             .OfType<FieldDeclarationSyntax>()
             .Where(f => f.Declaration.Type.ToString() == UniqueClass.CommandLineArg);
 
+        if (!globalArgDecls.IsNullOrEmpty())
+        {
+            Log.Debug(context.Indent() + "Gathering from GlobalCommandLine");
+        }
+
+        using var indent = new Indentation(context);
         foreach(var field in globalArgDecls)
         {
             var csName = field.Declaration.Variables.Select(v => v.Identifier.Text).FirstOrDefault();
@@ -301,9 +309,8 @@ public partial class UatGathering : CSharpSourceGatherer
                     .OfType<LiteralExpressionSyntax>()
                     .Where(l => l.IsKind(SyntaxKind.StringLiteralExpression))
                 )
-                .Select(s => s.Token.Text)
+                .Select(s => s.Token.ValueText)
                 .Where(s => !string.IsNullOrWhiteSpace(s))
-                .Select(s => s.TrimMatchingDoubleQuotes())
                 .FirstOrDefault();
 
             if (!string.IsNullOrWhiteSpace(csName) && !string.IsNullOrWhiteSpace(cliName))
@@ -322,7 +329,7 @@ public partial class UatGathering : CSharpSourceGatherer
                     );
                     if (existing == null)
                     {
-                        Log.Debug(context.Indent() + "Global argument: {0} {1}", cliName, outCsharpName);
+                        Log.Debug(indent >> "Global argument: {0} {1}", cliName, outCsharpName);
                     }
                 }
             }
@@ -333,8 +340,9 @@ public partial class UatGathering : CSharpSourceGatherer
     {
         if (context is IHaveSubTools contextWithSubtools)
         {
-            var automationSubtool = contextWithSubtools.SubTools.First(t => t.ConfigName == className);
-            automationSubtool.Arguments.ForEach(a => contextWithSubtools.MainTool.AddArgument(a));
+            Log.Debug(context.Indent() + "from {0}", className);
+            var automationSubtool = contextWithSubtools.SubTools.FirstOrDefault(t => t.ConfigName == className);
+            automationSubtool?.Arguments?.ForEach(a => contextWithSubtools.MainTool.AddArgument(a));
         }
     }
 
@@ -352,9 +360,8 @@ public partial class UatGathering : CSharpSourceGatherer
                 .Where(l => l.IsKind(SyntaxKind.StringLiteralExpression))
                 .Cast<LiteralExpressionSyntax>()
             )
-            .Select(s => s.Token.Text)
-            .Where(s => !string.IsNullOrWhiteSpace(s))
-            .Select(s => s.TrimMatchingDoubleQuotes());
+            .Select(s => s.Token.ValueText)
+            .Where(s => !string.IsNullOrWhiteSpace(s));
 
         var outCsharpName = from.Name.Replace("UE4", "Unreal");
 
@@ -406,16 +413,15 @@ public partial class UatGathering : CSharpSourceGatherer
         if (!typeImportsFromHelp.IsNullOrEmpty())
         {
             Log.Debug(context.Indent() + "Help(type(T)) above {0}", currentClass.Name);
-            context.IncreaseIndent();
+            using var indent = new Indentation(context);
             foreach(var import in typeImportsFromHelp)
             {
                 if (Classes.TryGetValue(import, out var classInfo))
                 {
-                    Log.Debug(context.Indent() + "{0}", classInfo.Name);
+                    Log.Debug(indent >> "{0}", classInfo.Name);
                     ImportArgs(classInfo, tool, context);
                 }
             }
-            context.DecreaseIndent();
         }
 
         // From class inheritance
@@ -437,13 +443,12 @@ public partial class UatGathering : CSharpSourceGatherer
         if (!members.IsNullOrEmpty())
         {
             Log.Information(context.Indent() + "Importing members of {0}", currentClass.Name);
-            context.IncreaseIndent();
+            using var indent = new Indentation(context);
             foreach(var member in members)
             {
-                Log.Debug(context.Indent() + "{0}", member.Name);
+                Log.Debug(indent >> "{0}", member.Name);
                 ImportArgs(member, tool, context);
             }
-            context.DecreaseIndent();
         }
     }
 
@@ -454,37 +459,38 @@ public partial class UatGathering : CSharpSourceGatherer
 
         var buildCommandCandidates = Classes.Values.Where(IsConsidered);
         GatherFromParsedCommandLineDictionaryInProgramClass(context);
+        GatherGlobalCommandLine(context);
         
         Log.Information(context.Indent() + "Gathering parameters from all classes");
-        context.IncreaseIndent();
-        buildCommandCandidates.ForEach(c =>
-        {
-            Log.Debug(context.Indent() + "from {0}", c.Name);
-            context.IncreaseIndent();
-            GatherFromHelpHeuristics(c, context);
-            GatherFromCommandLineArgumentParsers(c, context);
-            context.DecreaseIndent();
-        });
-        context.DecreaseIndent();
+        using(var indentA = new Indentation(context))
+            buildCommandCandidates.ForEach(c =>
+            {
+                Log.Debug(indentA >> "from {0}", c.Name);
+                using var indentB = new Indentation(context);
+                GatherFromHelpHeuristics(c, context);
+                GatherFromCommandLineArgumentParsers(c, context);
+            });
         
         Log.Information(context.Indent() + "Extrapolating tools from the relations of gathered classes");
-        context.IncreaseIndent();
-        buildCommandCandidates.ForEach(c =>
-        {
-            Log.Debug(context.Indent() + "from {0}", c.Name);
-            var tool = CreateSubtool(c, context);
-            ImportArgs(c, tool, context);
-            if (context is IHaveSubTools contextSubtools)
+        using(var indentA = new Indentation(context))
+            buildCommandCandidates.ForEach(c =>
             {
-                contextSubtools.SubTools.Add(tool);
-            }
-        });
-        context.DecreaseIndent();
+                Log.Debug(indentA >> "from {0}", c.Name);
+                var tool = CreateSubtool(c, context);
+                ImportArgs(c, tool, context);
+                if (context is IHaveSubTools contextSubtools)
+                {
+                    contextSubtools.SubTools.Add(tool);
+                }
+            });
 
         Log.Information(context.Indent() + "Placing commonly used arguments on top tool level");
-        CopyArgumentsToGlobal(UniqueClass.Automation, context);
-        CopyArgumentsToGlobal(UniqueClass.Program, context);
-        CopyArgumentsToGlobal(UniqueClass.ProjectParams, context);
-        GatherGlobalCommandLine(context);
+        using(var indentA = new Indentation(context))
+        {
+            CopyArgumentsToGlobal(UniqueClass.Automation, context);
+            CopyArgumentsToGlobal(UniqueClass.Program, context);
+            CopyArgumentsToGlobal(UniqueClass.ProjectParams, context);
+            CopyArgumentsToGlobal(UniqueClass.GlobalCommandLine, context);
+        }
     }
 }

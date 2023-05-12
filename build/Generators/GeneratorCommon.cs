@@ -25,6 +25,7 @@ public static partial class GeneratorCommon
         "Gather",
         "If",
 
+        "Type",
         "abstract",
         "as",
         "base",

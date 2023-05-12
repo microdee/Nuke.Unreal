@@ -1,6 +1,7 @@
 using Towel;
 using Towel.DataStructures;
 using System.Collections.Generic;
+using System;
 
 namespace build.Generators;
 public interface IGatheringContext { }
@@ -43,4 +44,18 @@ public static class LogDisplayInfoExtensions
         }
         return 0;
     }
+}
+
+public sealed class Indentation : IDisposable
+{
+    private IGatheringContext _context;
+    public Indentation(IGatheringContext context)
+    {
+        _context = context;
+        _context.IncreaseIndent();
+    }
+
+    public static string operator >>(Indentation a, string b) => a._context.Indent() + b;
+
+    public void Dispose() => _context.DecreaseIndent();
 }

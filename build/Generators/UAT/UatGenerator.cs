@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using build.Generators.UAT;
-using Microsoft.CodeAnalysis.CSharp;
-namespace build.Generators;
+using Nuke.Common.IO;
+
+namespace build.Generators.UAT;
 
 public class UatGeneratorContext
     : IGatheringContext
@@ -19,7 +19,7 @@ public class UatGeneratorContext
     public UnrealCompatibility Compatibility { get; set; } = UnrealCompatibility.All;
 }
 
-public class UatGenerator : ToolGenerator
+public class UatGenerator : GeneratorFromSource
 {
     public override string TemplateName => "UatConfigGenerated";
     
@@ -27,17 +27,18 @@ public class UatGenerator : ToolGenerator
 
 
     protected override object GetFullModel(ToolModel tool) => new UatModel(tool);
+    protected override AbsolutePath[] GetRoots(string engineVersion, UnrealCompatibility compatibility) =>
+        new []
+        {
+            Unreal.GetInstance(engineVersion, compatibility).Location / Programs / "AutomationTool"
+        };
 
-    private readonly Dictionary<string, ToolModel> _modelCahce = new();
     protected override ToolModel GetToolModelForEngine(string engineVersion, UnrealCompatibility compatibility)
     {
-        if (_modelCahce.TryGetValue(engineVersion, out var tool))
-        {
-            return tool;
-        }
+        var tool = base.GetToolModelForEngine(engineVersion, compatibility);
+        if (tool != null) return tool;
 
-        var uatRoot = Unreal.GetInstance(engineVersion, compatibility).Location / "Engine" / "Source" / "Programs" / "AutomationTool";
-        var gatherer = new UatGathering(uatRoot);
+        var gatherer = new UatGathering(GetRoots(engineVersion, compatibility));
         var context = new UatGeneratorContext
         {
             Compatibility = compatibility,
