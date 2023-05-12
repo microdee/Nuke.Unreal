@@ -32,15 +32,23 @@ public abstract class CommandLineEntity
 
     public void AddDocsTag(string tag, string text)
     {
+        text = text.Trim();
         text = SecurityElement.Escape(text);
         var summaryElement = DocsRoot.Element(tag);
         if (summaryElement == null)
         {
             DocsRoot.Add(XElement.Parse($"<{tag}>{text}</{tag}>"));
         }
-        else
+        else if(!summaryElement.Value.Contains(text))
         {
             summaryElement.Value += Environment.NewLine + text;
+            summaryElement.Value = string.Join(
+                Environment.NewLine,
+                summaryElement.Value
+                    .Split(Environment.NewLine)
+                    .Select(l => l.Trim())
+                    .Distinct()
+            );
         }
     }
 }
@@ -88,8 +96,18 @@ public static class CommandLineEntityExtensions
             }
             else
             {
-                if (!otherEl.Value.Contains(el.Value))
-                    otherEl.Value += Environment.NewLine + el.Value;
+                var text = el.Value.Trim();
+                if (!otherEl.Value.Contains(text))
+                {
+                    otherEl.Value += Environment.NewLine + text;
+                    otherEl.Value = string.Join(
+                        Environment.NewLine,
+                        otherEl.Value
+                            .Split(Environment.NewLine)
+                            .Select(l => l.Trim())
+                            .Distinct()
+                    );
+                }
             }
         }
         return self;

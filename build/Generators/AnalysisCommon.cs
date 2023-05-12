@@ -140,6 +140,11 @@ public static class AnalysisCommon
                 documentation = "<summary>" + SecurityElement.Escape(documentation) + "</summary>";
             }
         }
-        return documentation;
+        return documentation == null ? null : string.Join(
+            Environment.NewLine,
+            documentation
+                .Split(Environment.NewLine)
+                .Select(s => s.Trim())
+        );
     }
 }
