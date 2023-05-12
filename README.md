@@ -73,6 +73,9 @@ class Build : UnrealBuild
 
 ## Breaking changes
 
+### 1.1 → 1.2
+* **TODO:**
+
 ### 1.0 → 1.1
 * `ToProject` and `ToPlugin` → `ProjectPath` and `PluginPath`
 * `TargetPlatform` → `Platform`
@@ -167,7 +170,7 @@ class Build : UnrealBuild, IPackageTargets, IMyModuleTargets, IMyPluginTargets
 
 While discovering plugin targets, C# projects inside a `Nuke.Targets` folder neighbouring a `.nuke` folder will be ignored.
 
-### Custom UBT or UAT arguments
+### Custom UBT or UAT arguments from command line
 
 Nuke.Unreal supports passing custom arguments to UBT or UAT via `--ubt-args` or `--uat-args`. These are regular array properties exposed as Nuke target parameters. This means however that doing `--ubt-args -DisableUnity` wouldn't actually add `-DisableUnity` to the argument list. This happens because Nuke stops parsing the array argument when it hits a `-` character. For this reason Nuke.Unreal has a special escape mechanism where `~-` is replaced with `-`, or if the argument starts with `~` then that's also replaced with a `-`.
 
@@ -186,7 +189,7 @@ This is especially useful for doing temporary debugging with UBT and the compile
 
 ### C# code generators for Unreal tools
 
-![UAT coding](docs/UAT_Cook.gif)
+**TODO:** record a new fancy gif with newest updates
 
 Nuke.Unreal provides builder pattern Unreal tool configurators in C# which yield a command line for the specified tool. TLDR: the syntax looks like this:
 
