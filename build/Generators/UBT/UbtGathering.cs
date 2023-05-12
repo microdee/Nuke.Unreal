@@ -148,11 +148,13 @@ public partial class UbtGathering : CSharpSourceGatherer
                     {
                         enumData = new(
                             enumTypeName,
-                            enumType.GetLeadingXmlDocs(),
+                            enumType.GetLeadingXmlDocs()
+                                ?.PadLinesLeft("/// "),
                             enumType.Members
                                 .Select(f => new EnumEntry(
                                     f.Identifier.Text,
                                     f.GetLeadingXmlDocs()
+                                        ?.PadLinesLeft("/// ")
                                 ))
                                 .SelectMany(f => f.Name.Contains("UE4")
                                     ? new EnumEntry[] { f, f with { Name = f.Name.Replace("UE4", "Unreal") }}
