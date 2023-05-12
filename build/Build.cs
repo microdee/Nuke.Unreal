@@ -68,13 +68,13 @@ class Build : NukeBuild
     [Parameter]
     NuGetPublishTarget[] PublishTo = new [] { IsLocalBuild ? NuGetPublishTarget.Github : NuGetPublishTarget.NugetOrg };
 
-    Version CurrentVersion => Version.Parse(NukeUnreal.First().Project.GetProperty("Version"));
-
     Target Info => _ => _
         .Description("Print information about the current state of the environment")
         .Executes(() =>
         {
             Log.Information("GitVersion: {0}", GitVersion.FullSemVer);
+            Log.Information("NugetVersion: {0}", GitVersion.NuGetVersion);
+            Log.Information("NugetVersionV2: {0}", GitVersion.NuGetVersionV2);
         });
 
     Target GenerateTools => _ => _
@@ -104,19 +104,17 @@ class Build : NukeBuild
         .DependsOn(Restore)
         .Executes(() =>
         {
-            var currentVersion = CurrentVersion;
-            foreach(var project in NukeUnreal)
+            foreach(var (project, publishToNuget) in NukeUnreal)
             {
-                var newVersion = new Version(currentVersion.Major, currentVersion.Minor, currentVersion.Build + 1);
-                var nukeUnrealMsBuild = project.Project.GetMSBuildProject();
-                nukeUnrealMsBuild.SetProperty("Version", newVersion.ToString(3));
+                var nukeUnrealMsBuild = project.GetMSBuildProject();
+                nukeUnrealMsBuild.SetProperty("Version", GitVersion.NuGetVersion);
                 nukeUnrealMsBuild.Save();
 
                 DotNetBuild(s => s
                     .SetNoRestore(true)
-                    .SetProjectFile(project.Project)
-                    .SetVersion(newVersion.ToString())
-                    .SetAssemblyVersion(newVersion.ToString())
+                    .SetProjectFile(project)
+                    .SetVersion(GitVersion.NuGetVersion)
+                    .SetAssemblyVersion(GitVersion.MajorMinorPatch)
                 );
             }
         });
@@ -135,7 +133,6 @@ class Build : NukeBuild
         .Requires(() => PublishTo)
         .Executes(() =>
         {
-            var currentVersion = CurrentVersion;
             for (int i=0; i<PublishTo.Length; i++)
             {
                 foreach(var project in NukeUnreal)
@@ -149,7 +146,7 @@ class Build : NukeBuild
 
                     var packageId = project.Project.GetProperty("PackageId");
                     DotNetNuGetPush(s => s
-                        .SetTargetPath(project.Project.Directory / "bin" / Configuration / $"{packageId}.{currentVersion.ToString(3)}.symbols.nupkg")
+                        .SetTargetPath(project.Project.Directory / "bin" / Configuration / $"{packageId}.{GitVersion.NuGetVersion}.symbols.nupkg")
                         .SetApiKey(apiKey)
                         .SetSource(source)
                     );
