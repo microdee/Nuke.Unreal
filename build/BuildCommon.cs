@@ -61,6 +61,15 @@ public static class BuildCommon
             select sd
         );
 
+    public static IEnumerable<AbsolutePath> GlobDirectoriesRecursive(this AbsolutePath origin, params string[] patterns) =>
+        origin.DescendantsAndSelf(d =>
+            from sd in d.GlobDirectories(patterns)
+            select sd
+        );
+
+    public static IEnumerable<AbsolutePath> GlobFilesRecursive(this AbsolutePath origin, params string[] patterns) =>
+        origin.GlobDirectoriesRecursive("*").SelectMany(d => d.GlobFiles(patterns));
+
     public static string DocsXmlComment(this string xml) => string.IsNullOrWhiteSpace(xml)
         ? ""
         : string.Join(Environment.NewLine, xml.Trim().SplitLineBreaks().Select(_ => "/// " + _.Trim()));

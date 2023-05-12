@@ -7,8 +7,11 @@ using Serilog;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Nuke.Common;
-using static Nuke.Common.IO.FileSystemTasks;
 using System.Collections.Generic;
+using Nuke.Unreal.Tools;
+using Nuke.Common.Tooling;
+
+using static Nuke.Common.IO.FileSystemTasks;
 
 namespace Nuke.Unreal
 {
@@ -131,13 +134,16 @@ namespace Nuke.Unreal
                 if(File.Exists(targetDir.Parent / archiveFileName))
                     DeleteFile(targetDir.Parent / archiveFileName);
 
-                Unreal.AutomationTool(self.GetEngineVersionFromProject())(
-                    "BuildPlugin"
-                    + $" -Plugin=\"{PluginPath}\""
-                    + $" -Package=\"{targetDir}\""
-                    + " -CreateSubFolder"
-                    + self.UatArgs.AppendAsArguments()
-                );
+                Unreal.AutomationTool(self.GetEngineVersionFromProject(), _ => _
+                    .BuildPlugin(_ => _
+                        .Plugin(PluginPath)
+                        .Package(targetDir)
+                        .StrictIncludes()
+                        .Unversioned()
+                    )
+                    .Apply(self.UatGlobal)
+                    .Append(self.UatArgs.AsArguments())
+                )();
 
                 Log.Information($"Archiving release: {packageName}");
                 ZipFile.CreateFromDirectory(targetDir, targetDir.Parent / archiveFileName);

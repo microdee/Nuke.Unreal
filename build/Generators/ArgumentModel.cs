@@ -26,6 +26,8 @@ public class ArgumentModel : CommandLineEntity
     public string CollectionSeparator { get; set; } = "+";
     public string ValueSetter { get; set; } = "=";
     public EnumData Enum { get; set; }
+    public bool IsCollectionMultipleArgs { get; set; }
+    public bool IsCollection => ArgumentType >= ArgumentModelType.ScalarCollection;
     public string ParametersRenderer => ArgumentType switch
     {
         ArgumentModelType.Switch => "bool present = true",
@@ -41,23 +43,26 @@ public class ArgumentModel : CommandLineEntity
 
     public string CommandLineRenderer => ArgumentType switch
     {
-        ArgumentModelType.Switch => $"present ? \"{CliName}\" : \"\"",
-        ArgumentModelType.Bool => $"val == null ? \"{CliName}\" : \"{CliName}{ValueSetter}\" + val.ToString()",
-        ArgumentModelType.Scalar => $"val == null ? \"{CliName}\" : \"{CliName}{ValueSetter}\" + val.ToString()",
-        ArgumentModelType.Enum => $"val == null ? \"{CliName}\" : \"{CliName}{ValueSetter}\" + val.ToString()",
-        ArgumentModelType.Text => $"string.IsNullOrWhiteSpace(val?.ToString()) ? \"{CliName}\" : \"{CliName}{ValueSetter}\" + val.ToString().DoubleQuoteIfNeeded()",
-        ArgumentModelType.ScalarCollection =>
-            "values != null && values.Length > 0"
-            + $" ? \"{CliName}{ValueSetter}\" + string.Join(\"{CollectionSeparator}\", values)"
-            + $" : \"{CliName}\"",
-        ArgumentModelType.EnumCollection =>
-            "values != null && values.Length > 0"
-            + $" ? \"{CliName}{ValueSetter}\" + string.Join(\"{CollectionSeparator}\", values)"
-            + $" : \"{CliName}\"",
+        ArgumentModelType.Switch => "null",
+        
+        ArgumentModelType.Bool or
+        ArgumentModelType.Scalar or
+        ArgumentModelType.Enum or
+        ArgumentModelType.Text => $"val?.ToString()",
+
+        ArgumentModelType.ScalarCollection or
+        ArgumentModelType.EnumCollection or
         ArgumentModelType.TextCollection =>
             "values != null && values.Length > 0"
-            + $" ? \"{CliName}{ValueSetter}\" + string.Join(\"{CollectionSeparator}\", values.DoubleQuoteIfNeeded())"
-            + $" : \"{CliName}\"",
+            + $" ? string.Join(\"{CollectionSeparator}\", values)"
+            + $" : null",
+
         _ => throw new NotImplementedException()
+    };
+
+    public string Condition => ArgumentType switch
+    {
+        ArgumentModelType.Switch => "present",
+        _ => "true"
     };
 }

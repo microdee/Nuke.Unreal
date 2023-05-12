@@ -139,18 +139,27 @@ namespace Nuke.Unreal
             // TODO: Linux: "mono", $"\"{ubtPath}\" " + arguments
         }
 
-        public static Tool BuildTool(EngineVersion ofVersion, Action<UnrealBuildToolConfig> config)
+        public static Tool BuildTool(EngineVersion ofVersion, Action<UbtConfig> config)
         {
-            var toolConfig = new UnrealBuildToolConfig();
+            var toolConfig = new UbtConfig();
             config?.Invoke(toolConfig);
-            return BuildTool(ofVersion).With(arguments: toolConfig.Gather());
+            return BuildTool(ofVersion).With(arguments: toolConfig.Gather(ofVersion));
         }
 
         public static Tool AutomationTool(EngineVersion ofVersion)
         {
             var scriptExt = RuntimeInformation.IsOSPlatform(OSPlatform.Windows) ? "bat" : "sh";
             return ToolResolver.GetLocalTool(GetEnginePath(ofVersion) / "Engine" / "Build" / "BatchFiles" / $"RunUAT.{scriptExt}")
-                .WithSemanticLogging();
+                .WithSemanticLogging(filter: l =>
+                    !(l.Contains("Reading chunk manifest") && l.Contains("which contains 0 entries"))
+                );
+        }
+
+        public static Tool AutomationTool(EngineVersion ofVersion, Action<UatConfig> config)
+        {
+            var toolConfig = new UatConfig();
+            config?.Invoke(toolConfig);
+            return AutomationTool(ofVersion).With(arguments: toolConfig.Gather(ofVersion));
         }
 
         public static void ClearFolder(AbsolutePath folder)

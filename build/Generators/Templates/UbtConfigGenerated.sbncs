@@ -22,5 +22,5 @@ using System.Threading.Tasks;
 namespace Nuke.Unreal.Tools;
 /* BuildEnum.sbncs */
 /* BuildTool.sbncs */
-{{ build_enums unreal_build_tool }}
-{{ build_tool unreal_build_tool }}
+{{- for enum_data in ubt.all_enums; build_enum enum_data; end }}
+{{ build_tool ubt }}

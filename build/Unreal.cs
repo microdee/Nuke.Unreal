@@ -7,41 +7,59 @@ using Nuke.Common.IO;
 using System.Collections.Concurrent;
 using System.Reflection;
 using System.IO;
+using build.Generators;
+using System.Runtime.Loader;
 
 namespace build;
 
 public class UnrealDotnetAssemblies
 {
-    public class Dlls
+    public interface IDlls
     {
-        public Dlls(AbsolutePath location) => _engineDotnetPath = location / "Engine" / "Binaries" / "DotNET";
+        AbsolutePath DotNETUtilities { get; }
+        AbsolutePath UnrealBuildTool { get; }
+    }
+    public class Dlls4 : IDlls
+    {
+        public Dlls4(AbsolutePath location) => _engineDotnetPath = location / "Engine" / "Binaries" / "DotNET";
 
         private readonly AbsolutePath _engineDotnetPath;
     
-        public AbsolutePath DotNETUtilities                    => _engineDotnetPath / "DotNETUtilities.dll";
-        public AbsolutePath AutomationUtilsAutomation          => _engineDotnetPath / "AutomationUtils.Automation.dll";
-        public AbsolutePath UnrealBuildTool                    => _engineDotnetPath / "UnrealBuildTool.exe";
-        public AbsolutePath AutomationScriptsAutomationScripts => _engineDotnetPath / "AutomationScripts" / "AutomationScripts.Automation.dll";
-        public AbsolutePath AutomationScriptsBuildGraph        => _engineDotnetPath / "AutomationScripts" / "BuildGraph.Automation.dll";
-        public AbsolutePath AutomationScriptsGauntlet          => _engineDotnetPath / "AutomationScripts" / "Gauntlet.Automation.dll";
-        public AbsolutePath AutomationScriptsLocalization      => _engineDotnetPath / "AutomationScripts" / "Localization.Automation.dll";
-        public AbsolutePath AutomationScriptsWin               => _engineDotnetPath / "AutomationScripts" / "Win.Automation.dll";
-        public AbsolutePath AutomationScriptsXLocLocalization  => _engineDotnetPath / "AutomationScripts" / "XLocLocalization.Automation.dll";
-        public AbsolutePath AutomationScriptsAllDesktop        => _engineDotnetPath / "AutomationScripts" / "AllDesktop" / "AllDesktop.Automation.dll";
-        public AbsolutePath AutomationScriptsAndroid           => _engineDotnetPath / "AutomationScripts" / "Android"    / "Android.Automation.dll";
-        public AbsolutePath AutomationScriptsHoloLens          => _engineDotnetPath / "AutomationScripts" / "HoloLens"   / "HoloLens.Automation.dll";
-        public AbsolutePath AutomationScriptsIOS               => _engineDotnetPath / "AutomationScripts" / "IOS"        / "IOS.Automation.dll";
-        public AbsolutePath AutomationScriptsLinux             => _engineDotnetPath / "AutomationScripts" / "Linux"      / "Linux.Automation.dll";
-        public AbsolutePath AutomationScriptsMac               => _engineDotnetPath / "AutomationScripts" / "Mac"        / "Mac.Automation.dll";
+        public AbsolutePath DotNETUtilities => _engineDotnetPath / "DotNETUtilities.dll";
+        public AbsolutePath UnrealBuildTool => _engineDotnetPath / "UnrealBuildTool.exe";
     }
 
-    public UnrealDotnetAssemblies(AbsolutePath location) => DllPaths = new(location);
+    public class Dlls5 : IDlls
+    {
+        public Dlls5(AbsolutePath location) => _engineDotnetPath = location / "Engine" / "Binaries" / "DotNET";
 
-    public readonly Dlls DllPaths;
+        private readonly AbsolutePath _engineDotnetPath;
+    
+        public AbsolutePath DotNETUtilities => _engineDotnetPath / "UnrealBuildTool" / "EpicGames.Core.dll";
+        public AbsolutePath UnrealBuildTool => _engineDotnetPath / "UnrealBuildTool" / "UnrealBuildTool.dll";
+    }
+
+    public UnrealDotnetAssemblies(AbsolutePath location, UnrealCompatibility compatibility)
+    {
+        if((compatibility & UnrealCompatibility.UE5) > 0)
+        {
+            DllPaths = new Dlls5(location);
+        }
+        else
+        {
+            DllPaths = new Dlls4(location);
+        }
+        Context = new AssemblyLoadContext(compatibility.ToString(), true);
+    }
+
+    public readonly IDlls DllPaths;
+
+    public readonly AssemblyLoadContext Context;
 
     private Assembly LoadAssembly(AbsolutePath file)
     {
-        var result = Assembly.LoadFrom(file);
+        var result = Context.LoadFromAssemblyPath(file);
+        // var result = Assembly.LoadFrom(file);
         var xmlPath = file.Parent / (file.NameWithoutExtension + ".xml");
         if (xmlPath.Exists())
         {
@@ -51,35 +69,9 @@ public class UnrealDotnetAssemblies
     }
     
     private Assembly _dotNetUtilities;
-    public  Assembly  DotNETUtilities                    => _dotNetUtilities ??= LoadAssembly(DllPaths.DotNETUtilities);
-    private Assembly _automationUtilsAutomation;
-    public  Assembly  AutomationUtilsAutomation          => _automationUtilsAutomation ??= LoadAssembly(DllPaths.AutomationUtilsAutomation);
+    public  Assembly  DotNETUtilities  => _dotNetUtilities ??= LoadAssembly(DllPaths.DotNETUtilities);
     private Assembly _unrealBuildTool;
-    public  Assembly  UnrealBuildTool                    => _unrealBuildTool ??= LoadAssembly(DllPaths.UnrealBuildTool);
-    private Assembly _automationScriptsAutomationScripts;
-    public  Assembly  AutomationScriptsAutomationScripts => _automationScriptsAutomationScripts ??= LoadAssembly(DllPaths.AutomationScriptsAutomationScripts);
-    private Assembly _automationScriptsBuildGraph;
-    public  Assembly  AutomationScriptsBuildGraph        => _automationScriptsBuildGraph ??= LoadAssembly(DllPaths.AutomationScriptsBuildGraph);
-    private Assembly _automationScriptsGauntlet;
-    public  Assembly  AutomationScriptsGauntlet          => _automationScriptsGauntlet ??= LoadAssembly(DllPaths.AutomationScriptsGauntlet);
-    private Assembly _automationScriptsLocalization;
-    public  Assembly  AutomationScriptsLocalization      => _automationScriptsLocalization ??= LoadAssembly(DllPaths.AutomationScriptsLocalization);
-    private Assembly _automationScriptsWin;
-    public  Assembly  AutomationScriptsWin               => _automationScriptsWin ??= LoadAssembly(DllPaths.AutomationScriptsWin);
-    private Assembly _automationScriptsXLocLocalization;
-    public  Assembly  AutomationScriptsXLocLocalization  => _automationScriptsXLocLocalization ??= LoadAssembly(DllPaths.AutomationScriptsXLocLocalization);
-    private Assembly _automationScriptsAllDesktop;
-    public  Assembly  AutomationScriptsAllDesktop        => _automationScriptsAllDesktop ??= LoadAssembly(DllPaths.AutomationScriptsAllDesktop);
-    private Assembly _automationScriptsAndroid;
-    public  Assembly  AutomationScriptsAndroid           => _automationScriptsAndroid ??= LoadAssembly(DllPaths.AutomationScriptsAndroid);
-    private Assembly _automationScriptsHoloLens;
-    public  Assembly  AutomationScriptsHoloLens          => _automationScriptsHoloLens ??= LoadAssembly(DllPaths.AutomationScriptsHoloLens);
-    private Assembly _automationScriptsIos;
-    public  Assembly  AutomationScriptsIOS               => _automationScriptsIos ??= LoadAssembly(DllPaths.AutomationScriptsIOS);
-    private Assembly _automationScriptsLinux;
-    public  Assembly  AutomationScriptsLinux             => _automationScriptsLinux ??= LoadAssembly(DllPaths.AutomationScriptsLinux);
-    private Assembly _automationScriptsMac;
-    public  Assembly  AutomationScriptsMac               => _automationScriptsMac ??= LoadAssembly(DllPaths.AutomationScriptsMac);
+    public  Assembly  UnrealBuildTool  => _unrealBuildTool ??= LoadAssembly(DllPaths.UnrealBuildTool);
 }
 
 public record UnrealEngineInstance(string Version, AbsolutePath Location, UnrealDotnetAssemblies Assemblies);
@@ -94,9 +86,11 @@ public static class Unreal
 
     private static readonly ConcurrentDictionary<string, UnrealEngineInstance> Instances = new();
 
-    public static UnrealEngineInstance GetInstance(string version) => Instances.GetOrAdd(version, v =>
+    public static UnrealEngineInstance GetInstance(string version, UnrealCompatibility compatibility) => Instances.GetOrAdd(version, v =>
     {
-        var location = (AbsolutePath) Locator(v, logOutput: false).Single().Text;
-        return new(v, location, new(location));
+        var location = Directory.Exists(version)
+            ? (AbsolutePath) version
+            : (AbsolutePath) Locator(v, logOutput: false).Single().Text;
+        return new(v, location, new(location, compatibility));
     });
 }

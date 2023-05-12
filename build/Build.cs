@@ -20,6 +20,8 @@ using static Nuke.Common.Tools.DotNet.DotNetTasks;
 using static Nuke.Common.Tools.NuGet.NuGetTasks;
 using System.Xml.Linq;
 using build.Generators;
+using build.Generators.UAT;
+using build.Generators.UBT;
 
 namespace build;
 
@@ -46,9 +48,6 @@ class Build : NukeBuild
     [Parameter("Configuration to build - Default is 'Debug' (local) or 'Release' (server)")]
     readonly Configuration Configuration = IsLocalBuild ? Configuration.Debug : Configuration.Release;
 
-    [Parameter("Reference Unreal version")]
-    readonly string UnrealVersion = "4.27";
-
     const string MasterBranch = "master";
 
     record ProjectRecord(Project Project, bool PublishToNuget);
@@ -70,13 +69,13 @@ class Build : NukeBuild
     Target GenerateTools => _ => _
         .Executes(() =>
         {
-            // var generator = new UnrealBuildToolGenerator
-            // {
-            //     UnrealVersion = UnrealVersion
-            // };
-            // generator.Generate(this);
-
-            new UnrealAutomationToolGenerator().Test();
+            var engines = new ToolGeneratorUnrealArg[]
+            {
+                new("4.27", UnrealCompatibility.UE4),
+                new("5.1", UnrealCompatibility.UE5)
+            };
+            new UbtGeneratorFromSource().Generate(this, engines);
+            new UatGenerator().Generate(this, engines);
         });
 
     Target Restore => _ => _

@@ -30,19 +30,8 @@ public static class ArgumentProviderExtensions
         {
             otherArg.Enum ??= arg.Enum;
             otherArg.ValueSetter = arg.ValueSetter;
-            foreach(var el in arg.DocsRoot.Elements())
-            {
-                var otherEl = otherArg.DocsRoot.Element(el.Name);
-                if (otherEl == null)
-                {
-                    otherArg.DocsRoot.Add(el.Clone());
-                }
-                else
-                {
-                    if (!otherEl.Value.Contains(el.Value))
-                        otherEl.Value += Environment.NewLine + el.Value;
-                }
-            }
+            otherArg.Compatibility = otherArg.Compatibility.Union(arg.Compatibility).ToList();
+            otherArg.MergeDocs(arg);
             existing = otherArg;
         }
         if (existing == null)
