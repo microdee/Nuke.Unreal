@@ -12,8 +12,10 @@
                             "{{ arg.cli_name }}",
                             Value: val.ToString(),
                             Setter: '{{ arg.value_setter == "" ? "=" : arg.value_setter }}',
-                            Compatibility: {{ arg.compatibility_render }},
-                            AllowMultiple: true
+                            Meta: new(
+                                Compatibility: {{ arg.compatibility_render }},
+                                AllowMultiple: true
+                            )
                         ));
                     }
             {{- else }}
@@ -21,8 +23,10 @@
                     "{{ arg.cli_name }}",
                     Value: {{ arg.command_line_renderer }},
                     Setter: '{{ arg.value_setter == "" ? "=" : arg.value_setter }}',
-                    Compatibility: {{ arg.compatibility_render }},
-                    AllowMultiple: {{ arg.is_collection }}
+                    Meta: new(
+                        Compatibility: {{ arg.compatibility_render }},
+                        AllowMultiple: {{ arg.is_collection }}
+                    )
                 ));
             {{- end }}
         }

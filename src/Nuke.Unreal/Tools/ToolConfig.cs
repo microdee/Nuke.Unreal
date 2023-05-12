@@ -19,7 +19,9 @@ public abstract class ToolConfig
 
     public virtual void AppendArgument(UnrealToolArgument arg)
     {
-        if (!arg.AllowMultiple)
+        var meta = arg.GetMeta();
+        bool allowMultiple = meta.AllowMultiple || meta.IsRawText;
+        if (!allowMultiple)
         {
             UsingArguments = UsingArguments
                 .Where(a => !a.Name.EqualsOrdinalIgnoreCase(arg.Name))
@@ -28,9 +30,9 @@ public abstract class ToolConfig
         UsingArguments.Add(arg);
     }
 
-    public virtual void AppendArgument(string arg, UnrealCompatibility compatibility = UnrealCompatibility.All, bool allowMultiple = false)
+    public virtual void AppendArgument(string arg, UnrealToolArgumentMeta meta = null)
     {
-        AppendArgument(UnrealToolArgument.Parse(arg, compatibility, allowMultiple));
+        AppendArgument(UnrealToolArgument.Parse(arg, meta));
     }
 
     public virtual void AppendSubtool(ToolConfig subtool)
@@ -49,7 +51,7 @@ public abstract class ToolConfig
             .Select(v => v.Gather(ueVersion));
 
         var args = UsingArguments
-            .Where(v => ueVersion.IsCompatibleWith(v.Compatibility))
+            .Where(v => ueVersion.IsCompatibleWith(v.GetMeta().Compatibility))
             .Select(v => v.Gather(ueVersion));
 
         return (compatibleName + " " + string.Join(' ', subtools.Concat(args))).Trim();
@@ -73,6 +75,21 @@ public static class ToolConfigExtensions
         foreach(var arg in arguments)
         {
             config.AppendArgument(arg);
+        }
+        return config;
+    }
+
+    public static T AppendRaw<T>(this T config, params string[] arguments) where T : ToolConfig =>
+        AppendRaw(config, arguments.AsEnumerable());
+
+    public static T AppendRaw<T>(this T config, IEnumerable<string> arguments) where T : ToolConfig
+    {
+        foreach(var arg in arguments)
+        {
+            config.AppendArgument(new UnrealToolArgument(
+                Name: arg,
+                Meta: new(IsRawText: true)
+            ));
         }
         return config;
     }
