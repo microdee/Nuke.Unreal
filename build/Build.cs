@@ -22,6 +22,7 @@ using System.Xml.Linq;
 using build.Generators;
 using build.Generators.UAT;
 using build.Generators.UBT;
+using Nuke.Common.Tools.GitVersion;
 
 namespace build;
 
@@ -42,7 +43,7 @@ class Build : NukeBuild
 
     private readonly string _msbuildXmlns = "http://schemas.microsoft.com/developer/msbuild/2003";
 
-    public static int Main () => Execute<Build>(x => x.Compile);
+    public static int Main () => Execute<Build>(x => x.Info);
     protected override void OnBuildCreated() => NoLogo = true;
 
     [Parameter("Configuration to build - Default is 'Debug' (local) or 'Release' (server)")]
@@ -57,6 +58,9 @@ class Build : NukeBuild
     ProjectRecord[] NukeUnreal => new [] { MainProject, IniProject };
 
     [Solution] readonly Solution Solution;
+    
+    [GitVersion]
+    readonly GitVersion GitVersion;
 
     [Parameter]
     string[] NugetApiKeys;
@@ -65,6 +69,13 @@ class Build : NukeBuild
     NuGetPublishTarget[] PublishTo = new [] { IsLocalBuild ? NuGetPublishTarget.Github : NuGetPublishTarget.NugetOrg };
 
     Version CurrentVersion => Version.Parse(NukeUnreal.First().Project.GetProperty("Version"));
+
+    Target Info => _ => _
+        .Description("Print information about the current state of the environment")
+        .Executes(() =>
+        {
+            Log.Information("GitVersion: {0}", GitVersion.FullSemVer);
+        });
 
     Target GenerateTools => _ => _
         .Executes(() =>

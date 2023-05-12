@@ -1,0 +1,7 @@
+mode: Mainline
+tag-prefix: ""
+branches:
+  main:
+    regex: ^main$
+    is-release-branch: true
+    is-mainline: true
