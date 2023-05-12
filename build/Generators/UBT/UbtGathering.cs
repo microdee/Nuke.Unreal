@@ -236,7 +236,7 @@ public partial class UbtGathering : CSharpSourceGatherer
 
         if (!docs.IsEmpty())
         {
-            tool.AddSummary(string.Join('\n', docs));
+            tool.AddRootlessXmlDocs(string.Join('\n', docs));
         }
 
         return tool;

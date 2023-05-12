@@ -2390,7 +2390,7 @@ public abstract class UbtConfigGenerated : ToolConfig
         }
 
         
-/// <summary>&lt;summary&gt;&lt;/summary&gt;</summary>
+/// <summary></summary>
     public  class UnrealBuildToolConfig : ToolConfig
     {
         public override string Name => "UnrealBuildTool";
@@ -2405,9 +2405,9 @@ public abstract class UbtConfigGenerated : ToolConfig
 
     protected readonly UnrealBuildToolConfig UnrealBuildToolStorage = new();
         
-/// <summary>&lt;summary&gt;
+/// <summary>
 /// Global options for UBT (any modes)
-/// &lt;/summary&gt;</summary>
+/// </summary>
     public  class GlobalOptionsConfig : ToolConfig
     {
         public override string Name => "GlobalOptions";
@@ -2911,9 +2911,9 @@ public abstract class UbtConfigGenerated : ToolConfig
 
     protected readonly GlobalOptionsConfig GlobalOptionsStorage = new();
         
-/// <summary>&lt;summary&gt;
+/// <summary>
 /// Global settings for building. Should not contain any target-specific settings.
-/// &lt;/summary&gt;</summary>
+/// </summary>
     public  class BuildConfigurationConfig : ToolConfig
     {
         public override string Name => "BuildConfiguration";
@@ -3273,9 +3273,9 @@ public abstract class UbtConfigGenerated : ToolConfig
 
     protected readonly BuildConfigurationConfig BuildConfigurationStorage = new();
         
-/// <summary>&lt;summary&gt;
+/// <summary>
 /// Describes all of the information needed to initialize a UEBuildTarget object
-/// &lt;/summary&gt;</summary>
+/// </summary>
     public  class TargetDescriptorConfig : ToolConfig
     {
         public override string Name => "TargetDescriptor";
@@ -3576,12 +3576,12 @@ public abstract class UbtConfigGenerated : ToolConfig
 
     protected readonly TargetDescriptorConfig TargetDescriptorStorage = new();
         
-/// <summary>&lt;summary&gt;
+/// <summary>
 /// Aggregates parsed Visual C++ timing information files together into one monolithic breakdown file.
-/// &lt;/summary&gt;
-/// &lt;summary&gt;
+/// </summary>
+/// <summary>
 /// Aggregates parsed Visual C++ timing information files together into one monolithic breakdown file.
-/// &lt;/summary&gt;</summary>
+/// </summary>
     public  class AggregateParsedTimingInfoConfig : ToolConfig
     {
         public override string Name => "AggregateParsedTimingInfo";
@@ -3596,9 +3596,9 @@ public abstract class UbtConfigGenerated : ToolConfig
 
     protected readonly AggregateParsedTimingInfoConfig AggregateParsedTimingInfoStorage = new();
         
-/// <summary>&lt;summary&gt;
+/// <summary>
 /// Builds a target
-/// &lt;/summary&gt;</summary>
+/// </summary>
     public  class BuildConfig : ToolConfig
     {
         public override string Name => "Build";
@@ -3746,14 +3746,10 @@ public abstract class UbtConfigGenerated : ToolConfig
 
     protected readonly BuildConfig BuildStorage = new();
         
-/// <summary>&lt;summary&gt;
-/// Cleans build products and intermediates for the target. This deletes files which are named consistently with the target being built
+/// <summary>Cleans build products and intermediates for the target. This deletes files which are named consistently with the target being built
 /// (e.g. UE4Editor-Foo-Win64-Debug.dll) rather than an actual record of previous build products.
-/// &lt;/summary&gt;
-/// &lt;summary&gt;
 /// Cleans build products and intermediates for the target. This deletes files which are named consistently with the target being built
-/// (e.g. UnrealEditor-Foo-Win64-Debug.dll) rather than an actual record of previous build products.
-/// &lt;/summary&gt;</summary>
+/// (e.g. UnrealEditor-Foo-Win64-Debug.dll) rather than an actual record of previous build products.</summary>
     public  class CleanConfig : ToolConfig
     {
         public override string Name => "Clean";
@@ -3806,9 +3802,9 @@ public abstract class UbtConfigGenerated : ToolConfig
 
     protected readonly CleanConfig CleanStorage = new();
         
-/// <summary>&lt;summary&gt;
+/// <summary>
 /// Invokes the deployment handler for a target.
-/// &lt;/summary&gt;</summary>
+/// </summary>
     public  class DeployConfig : ToolConfig
     {
         public override string Name => "Deploy";
@@ -3842,9 +3838,9 @@ public abstract class UbtConfigGenerated : ToolConfig
 
     protected readonly DeployConfig DeployStorage = new();
         
-/// <summary>&lt;summary&gt;
+/// <summary>
 /// Builds a target
-/// &lt;/summary&gt;</summary>
+/// </summary>
     public  class ExecuteConfig : ToolConfig
     {
         public override string Name => "Execute";
@@ -3878,9 +3874,9 @@ public abstract class UbtConfigGenerated : ToolConfig
 
     protected readonly ExecuteConfig ExecuteStorage = new();
         
-/// <summary>&lt;summary&gt;
+/// <summary>
 /// Generate a clang compile_commands file for a target
-/// &lt;/summary&gt;</summary>
+/// </summary>
     public  class GenerateClangDatabaseConfig : ToolConfig
     {
         public override string Name => "GenerateClangDatabase";
@@ -3937,9 +3933,9 @@ public abstract class UbtConfigGenerated : ToolConfig
 
     protected readonly GenerateClangDatabaseConfig GenerateClangDatabaseStorage = new();
         
-/// <summary>&lt;summary&gt;
+/// <summary>
 /// Generates project files for one or more projects
-/// &lt;/summary&gt;</summary>
+/// </summary>
     public  class GenerateProjectFilesConfig : ToolConfig
     {
         public override string Name => "GenerateProjectFiles";
@@ -4387,9 +4383,9 @@ public abstract class UbtConfigGenerated : ToolConfig
 
     protected readonly GenerateProjectFilesConfig GenerateProjectFilesStorage = new();
         
-/// <summary>&lt;summary&gt;
+/// <summary>
 /// Exports a target as a JSON file
-/// &lt;/summary&gt;</summary>
+/// </summary>
     public  class JsonExportConfig : ToolConfig
     {
         public override string Name => "JsonExport";
@@ -4423,14 +4419,14 @@ public abstract class UbtConfigGenerated : ToolConfig
 
     protected readonly JsonExportConfig JsonExportStorage = new();
         
-/// <summary>&lt;summary&gt;
+/// <summary>
 /// Parses an MSVC timing info file generated from cl-filter to turn it into a form that can be used by other tooling.
 /// This is implemented as a separate mode to allow it to be done as part of the action graph.
-/// &lt;/summary&gt;
-/// &lt;summary&gt;
+/// </summary>
+/// <summary>
 /// Parses an MSVC timing info file generated from cl-filter to turn it into a form that can be used by other tooling.
 /// This is implemented as a separate mode to allow it to be done as part of the action graph.
-/// &lt;/summary&gt;</summary>
+/// </summary>
     public  class ParseMsvcTimingInfoConfig : ToolConfig
     {
         public override string Name => "ParseMsvcTimingInfo";
@@ -4445,9 +4441,9 @@ public abstract class UbtConfigGenerated : ToolConfig
 
     protected readonly ParseMsvcTimingInfoConfig ParseMsvcTimingInfoStorage = new();
         
-/// <summary>&lt;summary&gt;
+/// <summary>
 /// Queries information about the targets supported by a project
-/// &lt;/summary&gt;</summary>
+/// </summary>
     public  class QueryTargetsConfig : ToolConfig
     {
         public override string Name => "QueryTargets";
@@ -4500,9 +4496,9 @@ public abstract class UbtConfigGenerated : ToolConfig
 
     protected readonly QueryTargetsConfig QueryTargetsStorage = new();
         
-/// <summary>&lt;summary&gt;
+/// <summary>
 /// Register all platforms (and in the process, configure all autosdks)
-/// &lt;/summary&gt;</summary>
+/// </summary>
     public  class SetupPlatformsConfig : ToolConfig
     {
         public override string Name => "SetupPlatforms";
@@ -4517,9 +4513,9 @@ public abstract class UbtConfigGenerated : ToolConfig
 
     protected readonly SetupPlatformsConfig SetupPlatformsStorage = new();
         
-/// <summary>&lt;summary&gt;
+/// <summary>
 /// Validates the various platforms to determine if they are ready for building
-/// &lt;/summary&gt;</summary>
+/// </summary>
     public  class ValidatePlatformsConfig : ToolConfig
     {
         public override string Name => "ValidatePlatforms";
@@ -4595,9 +4591,9 @@ public abstract class UbtConfigGenerated : ToolConfig
 
     protected readonly ValidatePlatformsConfig ValidatePlatformsStorage = new();
         
-/// <summary>&lt;summary&gt;
+/// <summary>
 /// Generates documentation from reflection data
-/// &lt;/summary&gt;</summary>
+/// </summary>
     public  class WriteDocumentationConfig : ToolConfig
     {
         public override string Name => "WriteDocumentation";
@@ -4650,9 +4646,9 @@ public abstract class UbtConfigGenerated : ToolConfig
 
     protected readonly WriteDocumentationConfig WriteDocumentationStorage = new();
         
-/// <summary>&lt;summary&gt;
+/// <summary>
 /// Writes all metadata files at the end of a build (receipts, version files, etc...). This is implemented as a separate mode to allow it to be done as part of the action graph.
-/// &lt;/summary&gt;</summary>
+/// </summary>
     public  class WriteMetadataConfig : ToolConfig
     {
         public override string Name => "WriteMetadata";
@@ -4667,7 +4663,7 @@ public abstract class UbtConfigGenerated : ToolConfig
 
     protected readonly WriteMetadataConfig WriteMetadataStorage = new();
         
-/// <summary>&lt;summary&gt;&lt;/summary&gt;</summary>
+/// <summary></summary>
     public  class AndroidToolChainConfig : ToolConfig
     {
         public override string Name => "AndroidToolChain";
@@ -4705,9 +4701,9 @@ public abstract class UbtConfigGenerated : ToolConfig
 
     protected readonly AndroidToolChainConfig AndroidToolChainStorage = new();
         
-/// <summary>&lt;summary&gt;
+/// <summary>
 /// Android-specific target settings
-/// &lt;/summary&gt;</summary>
+/// </summary>
     public  class AndroidTargetRulesConfig : ToolConfig
     {
         public override string Name => "AndroidTargetRules";
@@ -4843,7 +4839,7 @@ public abstract class UbtConfigGenerated : ToolConfig
 
     protected readonly AndroidTargetRulesConfig AndroidTargetRulesStorage = new();
         
-/// <summary>&lt;summary&gt;&lt;/summary&gt;</summary>
+/// <summary></summary>
     public  class UEDeployAndroidConfig : ToolConfig
     {
         public override string Name => "UEDeployAndroid";
@@ -4896,9 +4892,9 @@ public abstract class UbtConfigGenerated : ToolConfig
 
     protected readonly UEDeployAndroidConfig UEDeployAndroidStorage = new();
         
-/// <summary>&lt;summary&gt;
+/// <summary>
 /// HoloLens-specific target settings
-/// &lt;/summary&gt;</summary>
+/// </summary>
     public  class HoloLensTargetRulesConfig : ToolConfig
     {
         public override string Name => "HoloLensTargetRules";
@@ -5034,9 +5030,9 @@ public abstract class UbtConfigGenerated : ToolConfig
 
     protected readonly IOSPostBuildSyncConfig IOSPostBuildSyncStorage = new();
         
-/// <summary>&lt;summary&gt;
+/// <summary>
 /// IOS-specific target settings
-/// &lt;/summary&gt;</summary>
+/// </summary>
     public  class IOSTargetRulesConfig : ToolConfig
     {
         public override string Name => "IOSTargetRules";
@@ -5277,9 +5273,9 @@ public abstract class UbtConfigGenerated : ToolConfig
 
     protected readonly IOSTargetRulesConfig IOSTargetRulesStorage = new();
         
-/// <summary>&lt;summary&gt;
+/// <summary>
 /// Stores project-specific IOS settings. Instances of this object are cached by IOSPlatform.
-/// &lt;/summary&gt;</summary>
+/// </summary>
     public  class IOSProjectSettingsConfig : ToolConfig
     {
         public override string Name => "IOSProjectSettings";
@@ -5351,9 +5347,9 @@ public abstract class UbtConfigGenerated : ToolConfig
 
     protected readonly IOSProjectSettingsConfig IOSProjectSettingsStorage = new();
         
-/// <summary>&lt;summary&gt;
+/// <summary>
 /// Linux-specific target settings
-/// &lt;/summary&gt;</summary>
+/// </summary>
     public  class LinuxTargetRulesConfig : ToolConfig
     {
         public override string Name => "LinuxTargetRules";
@@ -5480,7 +5476,7 @@ public abstract class UbtConfigGenerated : ToolConfig
 
     protected readonly LinuxTargetRulesConfig LinuxTargetRulesStorage = new();
         
-/// <summary>&lt;summary&gt;&lt;/summary&gt;</summary>
+/// <summary></summary>
     public  class LuminToolChainConfig : ToolConfig
     {
         public override string Name => "LuminToolChain";
@@ -5516,9 +5512,9 @@ public abstract class UbtConfigGenerated : ToolConfig
 
     protected readonly LuminToolChainConfig LuminToolChainStorage = new();
         
-/// <summary>&lt;summary&gt;
+/// <summary>
 /// Lumin-specific target settings
-/// &lt;/summary&gt;</summary>
+/// </summary>
     public  class LuminTargetRulesConfig : ToolConfig
     {
         public override string Name => "LuminTargetRules";
@@ -5575,9 +5571,9 @@ public abstract class UbtConfigGenerated : ToolConfig
 
     protected readonly LuminTargetRulesConfig LuminTargetRulesStorage = new();
         
-/// <summary>&lt;summary&gt;
+/// <summary>
 /// Mac-specific target settings
-/// &lt;/summary&gt;</summary>
+/// </summary>
     public  class MacTargetRulesConfig : ToolConfig
     {
         public override string Name => "MacTargetRules";
@@ -5687,9 +5683,9 @@ public abstract class UbtConfigGenerated : ToolConfig
 
     protected readonly MacTargetRulesConfig MacTargetRulesStorage = new();
         
-/// <summary>&lt;summary&gt;
+/// <summary>
 /// Special mode for gathering all the messages into a single output file
-/// &lt;/summary&gt;</summary>
+/// </summary>
     public  class PVSGatherConfig : ToolConfig
     {
         public override string Name => "PVSGather";
@@ -5742,9 +5738,9 @@ public abstract class UbtConfigGenerated : ToolConfig
 
     protected readonly PVSGatherConfig PVSGatherStorage = new();
         
-/// <summary>&lt;summary&gt;
+/// <summary>
 /// Windows-specific target settings
-/// &lt;/summary&gt;</summary>
+/// </summary>
     public  class WindowsTargetRulesConfig : ToolConfig
     {
         public override string Name => "WindowsTargetRules";
@@ -6064,7 +6060,7 @@ public abstract class UbtConfigGenerated : ToolConfig
 
     protected readonly WindowsTargetRulesConfig WindowsTargetRulesStorage = new();
         
-/// <summary>&lt;summary&gt;&lt;/summary&gt;</summary>
+/// <summary></summary>
     public  class RiderProjectFileGeneratorConfig : ToolConfig
     {
         public override string Name => "RiderProjectFileGenerator";
@@ -6210,9 +6206,9 @@ public abstract class UbtConfigGenerated : ToolConfig
 
     protected readonly RiderProjectFileGeneratorConfig RiderProjectFileGeneratorStorage = new();
         
-/// <summary>&lt;summary&gt;
+/// <summary>
 /// Aggregates clang timing information files together into one monolithic breakdown file.
-/// &lt;/summary&gt;</summary>
+/// </summary>
     public  class AggregateClangTimingInfoConfig : ToolConfig
     {
         public override string Name => "AggregateClangTimingInfo";
@@ -6227,9 +6223,9 @@ public abstract class UbtConfigGenerated : ToolConfig
 
     protected readonly AggregateClangTimingInfoConfig AggregateClangTimingInfoStorage = new();
         
-/// <summary>&lt;summary&gt;
+/// <summary>
 /// Outputs information about the given target, including a module dependecy graph (in .gefx format and list of module references)
-/// &lt;/summary&gt;</summary>
+/// </summary>
     public  class AnalyzeConfig : ToolConfig
     {
         public override string Name => "Analyze";
@@ -6244,9 +6240,9 @@ public abstract class UbtConfigGenerated : ToolConfig
 
     protected readonly AnalyzeConfig AnalyzeStorage = new();
         
-/// <summary>&lt;summary&gt;
+/// <summary>
 /// Fixes the include paths found in a header and source file
-/// &lt;/summary&gt;</summary>
+/// </summary>
     public  class FixIncludePathsConfig : ToolConfig
     {
         public override string Name => "FixIncludePaths";
@@ -6333,9 +6329,9 @@ public abstract class UbtConfigGenerated : ToolConfig
 
     protected readonly FixIncludePathsConfig FixIncludePathsStorage = new();
         
-/// <summary>&lt;summary&gt;
+/// <summary>
 /// Generate a clang compile_commands file for a target
-/// &lt;/summary&gt;</summary>
+/// </summary>
     public  class InlineGeneratedCppsConfig : ToolConfig
     {
         public override string Name => "InlineGeneratedCpps";
@@ -6405,9 +6401,9 @@ public abstract class UbtConfigGenerated : ToolConfig
 
     protected readonly InlineGeneratedCppsConfig InlineGeneratedCppsStorage = new();
         
-/// <summary>&lt;summary&gt;
+/// <summary>
 /// Generate a clang compile_commands file for a target
-/// &lt;/summary&gt;</summary>
+/// </summary>
     public  class PrintBuildGraphInfoConfig : ToolConfig
     {
         public override string Name => "PrintBuildGraphInfo";
@@ -6422,9 +6418,9 @@ public abstract class UbtConfigGenerated : ToolConfig
 
     protected readonly PrintBuildGraphInfoConfig PrintBuildGraphInfoStorage = new();
         
-/// <summary>&lt;summary&gt;
+/// <summary>
 /// Builds low level tests on one or more targets.
-/// &lt;/summary&gt;</summary>
+/// </summary>
     public  class TestConfig : ToolConfig
     {
         public override string Name => "Test";
@@ -6439,9 +6435,9 @@ public abstract class UbtConfigGenerated : ToolConfig
 
     protected readonly TestConfig TestStorage = new();
         
-/// <summary>&lt;summary&gt;
+/// <summary>
 /// Global options for UBT (any modes)
-/// &lt;/summary&gt;</summary>
+/// </summary>
     public  class UhtGlobalOptionsConfig : ToolConfig
     {
         public override string Name => "UhtGlobalOptions";
@@ -6717,9 +6713,9 @@ public abstract class UbtConfigGenerated : ToolConfig
 
     protected readonly UhtGlobalOptionsConfig UhtGlobalOptionsStorage = new();
         
-/// <summary>&lt;summary&gt;
+/// <summary>
 /// Invoke UHT
-/// &lt;/summary&gt;</summary>
+/// </summary>
     public  class UnrealHeaderToolConfig : ToolConfig
     {
         public override string Name => "UnrealHeaderTool";
@@ -6778,205 +6774,201 @@ public abstract class UbtConfigGenerated : ToolConfig
                 UhtGlobalOptionsStorage,
                 UnrealHeaderToolStorage,
             };
-/// <summary>&lt;summary&gt;&lt;/summary&gt;</summary>
+/// <summary></summary>
     public UbtConfig UnrealBuildTool(Action<UnrealBuildToolConfig> configurator)
     {
         configurator?.Invoke(UnrealBuildToolStorage);
         AppendSubtool(UnrealBuildToolStorage);
         return (UbtConfig) this;
     }
-/// <summary>&lt;summary&gt;
+/// <summary>
 /// Global options for UBT (any modes)
-/// &lt;/summary&gt;</summary>
+/// </summary>
     public UbtConfig GlobalOptions(Action<GlobalOptionsConfig> configurator)
     {
         configurator?.Invoke(GlobalOptionsStorage);
         AppendSubtool(GlobalOptionsStorage);
         return (UbtConfig) this;
     }
-/// <summary>&lt;summary&gt;
+/// <summary>
 /// Global settings for building. Should not contain any target-specific settings.
-/// &lt;/summary&gt;</summary>
+/// </summary>
     public UbtConfig BuildConfiguration(Action<BuildConfigurationConfig> configurator)
     {
         configurator?.Invoke(BuildConfigurationStorage);
         AppendSubtool(BuildConfigurationStorage);
         return (UbtConfig) this;
     }
-/// <summary>&lt;summary&gt;
+/// <summary>
 /// Describes all of the information needed to initialize a UEBuildTarget object
-/// &lt;/summary&gt;</summary>
+/// </summary>
     public UbtConfig TargetDescriptor(Action<TargetDescriptorConfig> configurator)
     {
         configurator?.Invoke(TargetDescriptorStorage);
         AppendSubtool(TargetDescriptorStorage);
         return (UbtConfig) this;
     }
-/// <summary>&lt;summary&gt;
+/// <summary>
 /// Aggregates parsed Visual C++ timing information files together into one monolithic breakdown file.
-/// &lt;/summary&gt;
-/// &lt;summary&gt;
+/// </summary>
+/// <summary>
 /// Aggregates parsed Visual C++ timing information files together into one monolithic breakdown file.
-/// &lt;/summary&gt;</summary>
+/// </summary>
     public UbtConfig AggregateParsedTimingInfo(Action<AggregateParsedTimingInfoConfig> configurator)
     {
         configurator?.Invoke(AggregateParsedTimingInfoStorage);
         AppendSubtool(AggregateParsedTimingInfoStorage);
         return (UbtConfig) this;
     }
-/// <summary>&lt;summary&gt;
+/// <summary>
 /// Builds a target
-/// &lt;/summary&gt;</summary>
+/// </summary>
     public UbtConfig Build(Action<BuildConfig> configurator)
     {
         configurator?.Invoke(BuildStorage);
         AppendSubtool(BuildStorage);
         return (UbtConfig) this;
     }
-/// <summary>&lt;summary&gt;
-/// Cleans build products and intermediates for the target. This deletes files which are named consistently with the target being built
+/// <summary>Cleans build products and intermediates for the target. This deletes files which are named consistently with the target being built
 /// (e.g. UE4Editor-Foo-Win64-Debug.dll) rather than an actual record of previous build products.
-/// &lt;/summary&gt;
-/// &lt;summary&gt;
 /// Cleans build products and intermediates for the target. This deletes files which are named consistently with the target being built
-/// (e.g. UnrealEditor-Foo-Win64-Debug.dll) rather than an actual record of previous build products.
-/// &lt;/summary&gt;</summary>
+/// (e.g. UnrealEditor-Foo-Win64-Debug.dll) rather than an actual record of previous build products.</summary>
     public UbtConfig Clean(Action<CleanConfig> configurator)
     {
         configurator?.Invoke(CleanStorage);
         AppendSubtool(CleanStorage);
         return (UbtConfig) this;
     }
-/// <summary>&lt;summary&gt;
+/// <summary>
 /// Invokes the deployment handler for a target.
-/// &lt;/summary&gt;</summary>
+/// </summary>
     public UbtConfig Deploy(Action<DeployConfig> configurator)
     {
         configurator?.Invoke(DeployStorage);
         AppendSubtool(DeployStorage);
         return (UbtConfig) this;
     }
-/// <summary>&lt;summary&gt;
+/// <summary>
 /// Builds a target
-/// &lt;/summary&gt;</summary>
+/// </summary>
     public UbtConfig Execute(Action<ExecuteConfig> configurator)
     {
         configurator?.Invoke(ExecuteStorage);
         AppendSubtool(ExecuteStorage);
         return (UbtConfig) this;
     }
-/// <summary>&lt;summary&gt;
+/// <summary>
 /// Generate a clang compile_commands file for a target
-/// &lt;/summary&gt;</summary>
+/// </summary>
     public UbtConfig GenerateClangDatabase(Action<GenerateClangDatabaseConfig> configurator)
     {
         configurator?.Invoke(GenerateClangDatabaseStorage);
         AppendSubtool(GenerateClangDatabaseStorage);
         return (UbtConfig) this;
     }
-/// <summary>&lt;summary&gt;
+/// <summary>
 /// Generates project files for one or more projects
-/// &lt;/summary&gt;</summary>
+/// </summary>
     public UbtConfig GenerateProjectFiles(Action<GenerateProjectFilesConfig> configurator)
     {
         configurator?.Invoke(GenerateProjectFilesStorage);
         AppendSubtool(GenerateProjectFilesStorage);
         return (UbtConfig) this;
     }
-/// <summary>&lt;summary&gt;
+/// <summary>
 /// Exports a target as a JSON file
-/// &lt;/summary&gt;</summary>
+/// </summary>
     public UbtConfig JsonExport(Action<JsonExportConfig> configurator)
     {
         configurator?.Invoke(JsonExportStorage);
         AppendSubtool(JsonExportStorage);
         return (UbtConfig) this;
     }
-/// <summary>&lt;summary&gt;
+/// <summary>
 /// Parses an MSVC timing info file generated from cl-filter to turn it into a form that can be used by other tooling.
 /// This is implemented as a separate mode to allow it to be done as part of the action graph.
-/// &lt;/summary&gt;
-/// &lt;summary&gt;
+/// </summary>
+/// <summary>
 /// Parses an MSVC timing info file generated from cl-filter to turn it into a form that can be used by other tooling.
 /// This is implemented as a separate mode to allow it to be done as part of the action graph.
-/// &lt;/summary&gt;</summary>
+/// </summary>
     public UbtConfig ParseMsvcTimingInfo(Action<ParseMsvcTimingInfoConfig> configurator)
     {
         configurator?.Invoke(ParseMsvcTimingInfoStorage);
         AppendSubtool(ParseMsvcTimingInfoStorage);
         return (UbtConfig) this;
     }
-/// <summary>&lt;summary&gt;
+/// <summary>
 /// Queries information about the targets supported by a project
-/// &lt;/summary&gt;</summary>
+/// </summary>
     public UbtConfig QueryTargets(Action<QueryTargetsConfig> configurator)
     {
         configurator?.Invoke(QueryTargetsStorage);
         AppendSubtool(QueryTargetsStorage);
         return (UbtConfig) this;
     }
-/// <summary>&lt;summary&gt;
+/// <summary>
 /// Register all platforms (and in the process, configure all autosdks)
-/// &lt;/summary&gt;</summary>
+/// </summary>
     public UbtConfig SetupPlatforms(Action<SetupPlatformsConfig> configurator)
     {
         configurator?.Invoke(SetupPlatformsStorage);
         AppendSubtool(SetupPlatformsStorage);
         return (UbtConfig) this;
     }
-/// <summary>&lt;summary&gt;
+/// <summary>
 /// Validates the various platforms to determine if they are ready for building
-/// &lt;/summary&gt;</summary>
+/// </summary>
     public UbtConfig ValidatePlatforms(Action<ValidatePlatformsConfig> configurator)
     {
         configurator?.Invoke(ValidatePlatformsStorage);
         AppendSubtool(ValidatePlatformsStorage);
         return (UbtConfig) this;
     }
-/// <summary>&lt;summary&gt;
+/// <summary>
 /// Generates documentation from reflection data
-/// &lt;/summary&gt;</summary>
+/// </summary>
     public UbtConfig WriteDocumentation(Action<WriteDocumentationConfig> configurator)
     {
         configurator?.Invoke(WriteDocumentationStorage);
         AppendSubtool(WriteDocumentationStorage);
         return (UbtConfig) this;
     }
-/// <summary>&lt;summary&gt;
+/// <summary>
 /// Writes all metadata files at the end of a build (receipts, version files, etc...). This is implemented as a separate mode to allow it to be done as part of the action graph.
-/// &lt;/summary&gt;</summary>
+/// </summary>
     public UbtConfig WriteMetadata(Action<WriteMetadataConfig> configurator)
     {
         configurator?.Invoke(WriteMetadataStorage);
         AppendSubtool(WriteMetadataStorage);
         return (UbtConfig) this;
     }
-/// <summary>&lt;summary&gt;&lt;/summary&gt;</summary>
+/// <summary></summary>
     public UbtConfig AndroidToolChain(Action<AndroidToolChainConfig> configurator)
     {
         configurator?.Invoke(AndroidToolChainStorage);
         AppendSubtool(AndroidToolChainStorage);
         return (UbtConfig) this;
     }
-/// <summary>&lt;summary&gt;
+/// <summary>
 /// Android-specific target settings
-/// &lt;/summary&gt;</summary>
+/// </summary>
     public UbtConfig AndroidTargetRules(Action<AndroidTargetRulesConfig> configurator)
     {
         configurator?.Invoke(AndroidTargetRulesStorage);
         AppendSubtool(AndroidTargetRulesStorage);
         return (UbtConfig) this;
     }
-/// <summary>&lt;summary&gt;&lt;/summary&gt;</summary>
+/// <summary></summary>
     public UbtConfig UEDeployAndroid(Action<UEDeployAndroidConfig> configurator)
     {
         configurator?.Invoke(UEDeployAndroidStorage);
         AppendSubtool(UEDeployAndroidStorage);
         return (UbtConfig) this;
     }
-/// <summary>&lt;summary&gt;
+/// <summary>
 /// HoloLens-specific target settings
-/// &lt;/summary&gt;</summary>
+/// </summary>
     public UbtConfig HoloLensTargetRules(Action<HoloLensTargetRulesConfig> configurator)
     {
         configurator?.Invoke(HoloLensTargetRulesStorage);
@@ -6990,149 +6982,149 @@ public abstract class UbtConfigGenerated : ToolConfig
         AppendSubtool(IOSPostBuildSyncStorage);
         return (UbtConfig) this;
     }
-/// <summary>&lt;summary&gt;
+/// <summary>
 /// IOS-specific target settings
-/// &lt;/summary&gt;</summary>
+/// </summary>
     public UbtConfig IOSTargetRules(Action<IOSTargetRulesConfig> configurator)
     {
         configurator?.Invoke(IOSTargetRulesStorage);
         AppendSubtool(IOSTargetRulesStorage);
         return (UbtConfig) this;
     }
-/// <summary>&lt;summary&gt;
+/// <summary>
 /// Stores project-specific IOS settings. Instances of this object are cached by IOSPlatform.
-/// &lt;/summary&gt;</summary>
+/// </summary>
     public UbtConfig IOSProjectSettings(Action<IOSProjectSettingsConfig> configurator)
     {
         configurator?.Invoke(IOSProjectSettingsStorage);
         AppendSubtool(IOSProjectSettingsStorage);
         return (UbtConfig) this;
     }
-/// <summary>&lt;summary&gt;
+/// <summary>
 /// Linux-specific target settings
-/// &lt;/summary&gt;</summary>
+/// </summary>
     public UbtConfig LinuxTargetRules(Action<LinuxTargetRulesConfig> configurator)
     {
         configurator?.Invoke(LinuxTargetRulesStorage);
         AppendSubtool(LinuxTargetRulesStorage);
         return (UbtConfig) this;
     }
-/// <summary>&lt;summary&gt;&lt;/summary&gt;</summary>
+/// <summary></summary>
     public UbtConfig LuminToolChain(Action<LuminToolChainConfig> configurator)
     {
         configurator?.Invoke(LuminToolChainStorage);
         AppendSubtool(LuminToolChainStorage);
         return (UbtConfig) this;
     }
-/// <summary>&lt;summary&gt;
+/// <summary>
 /// Lumin-specific target settings
-/// &lt;/summary&gt;</summary>
+/// </summary>
     public UbtConfig LuminTargetRules(Action<LuminTargetRulesConfig> configurator)
     {
         configurator?.Invoke(LuminTargetRulesStorage);
         AppendSubtool(LuminTargetRulesStorage);
         return (UbtConfig) this;
     }
-/// <summary>&lt;summary&gt;
+/// <summary>
 /// Mac-specific target settings
-/// &lt;/summary&gt;</summary>
+/// </summary>
     public UbtConfig MacTargetRules(Action<MacTargetRulesConfig> configurator)
     {
         configurator?.Invoke(MacTargetRulesStorage);
         AppendSubtool(MacTargetRulesStorage);
         return (UbtConfig) this;
     }
-/// <summary>&lt;summary&gt;
+/// <summary>
 /// Special mode for gathering all the messages into a single output file
-/// &lt;/summary&gt;</summary>
+/// </summary>
     public UbtConfig PVSGather(Action<PVSGatherConfig> configurator)
     {
         configurator?.Invoke(PVSGatherStorage);
         AppendSubtool(PVSGatherStorage);
         return (UbtConfig) this;
     }
-/// <summary>&lt;summary&gt;
+/// <summary>
 /// Windows-specific target settings
-/// &lt;/summary&gt;</summary>
+/// </summary>
     public UbtConfig WindowsTargetRules(Action<WindowsTargetRulesConfig> configurator)
     {
         configurator?.Invoke(WindowsTargetRulesStorage);
         AppendSubtool(WindowsTargetRulesStorage);
         return (UbtConfig) this;
     }
-/// <summary>&lt;summary&gt;&lt;/summary&gt;</summary>
+/// <summary></summary>
     public UbtConfig RiderProjectFileGenerator(Action<RiderProjectFileGeneratorConfig> configurator)
     {
         configurator?.Invoke(RiderProjectFileGeneratorStorage);
         AppendSubtool(RiderProjectFileGeneratorStorage);
         return (UbtConfig) this;
     }
-/// <summary>&lt;summary&gt;
+/// <summary>
 /// Aggregates clang timing information files together into one monolithic breakdown file.
-/// &lt;/summary&gt;</summary>
+/// </summary>
     public UbtConfig AggregateClangTimingInfo(Action<AggregateClangTimingInfoConfig> configurator)
     {
         configurator?.Invoke(AggregateClangTimingInfoStorage);
         AppendSubtool(AggregateClangTimingInfoStorage);
         return (UbtConfig) this;
     }
-/// <summary>&lt;summary&gt;
+/// <summary>
 /// Outputs information about the given target, including a module dependecy graph (in .gefx format and list of module references)
-/// &lt;/summary&gt;</summary>
+/// </summary>
     public UbtConfig Analyze(Action<AnalyzeConfig> configurator)
     {
         configurator?.Invoke(AnalyzeStorage);
         AppendSubtool(AnalyzeStorage);
         return (UbtConfig) this;
     }
-/// <summary>&lt;summary&gt;
+/// <summary>
 /// Fixes the include paths found in a header and source file
-/// &lt;/summary&gt;</summary>
+/// </summary>
     public UbtConfig FixIncludePaths(Action<FixIncludePathsConfig> configurator)
     {
         configurator?.Invoke(FixIncludePathsStorage);
         AppendSubtool(FixIncludePathsStorage);
         return (UbtConfig) this;
     }
-/// <summary>&lt;summary&gt;
+/// <summary>
 /// Generate a clang compile_commands file for a target
-/// &lt;/summary&gt;</summary>
+/// </summary>
     public UbtConfig InlineGeneratedCpps(Action<InlineGeneratedCppsConfig> configurator)
     {
         configurator?.Invoke(InlineGeneratedCppsStorage);
         AppendSubtool(InlineGeneratedCppsStorage);
         return (UbtConfig) this;
     }
-/// <summary>&lt;summary&gt;
+/// <summary>
 /// Generate a clang compile_commands file for a target
-/// &lt;/summary&gt;</summary>
+/// </summary>
     public UbtConfig PrintBuildGraphInfo(Action<PrintBuildGraphInfoConfig> configurator)
     {
         configurator?.Invoke(PrintBuildGraphInfoStorage);
         AppendSubtool(PrintBuildGraphInfoStorage);
         return (UbtConfig) this;
     }
-/// <summary>&lt;summary&gt;
+/// <summary>
 /// Builds low level tests on one or more targets.
-/// &lt;/summary&gt;</summary>
+/// </summary>
     public UbtConfig Test(Action<TestConfig> configurator)
     {
         configurator?.Invoke(TestStorage);
         AppendSubtool(TestStorage);
         return (UbtConfig) this;
     }
-/// <summary>&lt;summary&gt;
+/// <summary>
 /// Global options for UBT (any modes)
-/// &lt;/summary&gt;</summary>
+/// </summary>
     public UbtConfig UhtGlobalOptions(Action<UhtGlobalOptionsConfig> configurator)
     {
         configurator?.Invoke(UhtGlobalOptionsStorage);
         AppendSubtool(UhtGlobalOptionsStorage);
         return (UbtConfig) this;
     }
-/// <summary>&lt;summary&gt;
+/// <summary>
 /// Invoke UHT
-/// &lt;/summary&gt;</summary>
+/// </summary>
     public UbtConfig UnrealHeaderTool(Action<UnrealHeaderToolConfig> configurator)
     {
         configurator?.Invoke(UnrealHeaderToolStorage);
