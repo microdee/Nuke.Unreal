@@ -310,9 +310,7 @@ public abstract class UatConfigGenerated : ToolConfig
         }
 
         
-/// <summary>
-/// Allows you to use local storage for your root build storage dir (default of P:\Builds (on PC) is changed to Engine\Saved\LocalBuilds). Used for local testing.
-/// 
+/// <summary>Allows you to use local storage for your root build storage dir (default of P:\Builds (on PC) is changed to Engine\Saved\LocalBuilds). Used for local testing.
 /// Allows you to use local storage for your root build storage dir {default of P:\Builds {on PC} is changed to Engine\Saved\LocalBuilds}. Used for local testing.</summary>
         public virtual UatConfig UseLocalBuildStorage(params object[] values)
         {
@@ -416,9 +414,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>Generate a foreign uproject from blankproject and use that
-/// 
-/// Shared: The current project is a foreign project, commandline: -foreign
-/// </summary>
+/// Shared: The current project is a foreign project, commandline: -foreign</summary>
         public virtual UatConfig Foreign(params object[] values)
         {
             if (true)
@@ -436,9 +432,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>Generate a foreign code uproject from platformergame and use that
-/// 
-/// Shared: The current project is a foreign project, commandline: -foreign
-/// </summary>
+/// Shared: The current project is a foreign project, commandline: -foreign</summary>
         public virtual UatConfig Foreigncode(params object[] values)
         {
             if (true)
@@ -456,9 +450,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>true if we should build crash reporter
-/// 
-/// Shared: true if we should build crash reporter
-/// </summary>
+/// Shared: true if we should build crash reporter</summary>
         public virtual UatConfig CrashReporter(params object[] values)
         {
             if (true)
@@ -476,9 +468,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>Determines if the build is going to use cooked data
-/// 
-/// Shared: Determines if the build is going to use cooked data, commandline: -cook, -cookonthefly
-/// </summary>
+/// Shared: Determines if the build is going to use cooked data, commandline: -cook, -cookonthefly</summary>
         public virtual UatConfig Cook(params object[] values)
         {
             if (true)
@@ -496,9 +486,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>use a cooked build, but we assume the cooked data is up to date and where it belongs, implies -cook
-/// 
-/// Shared: Determines if the build is going to use cooked data, commandline: -cook, -cookonthefly
-/// </summary>
+/// Shared: Determines if the build is going to use cooked data, commandline: -cook, -cookonthefly</summary>
         public virtual UatConfig Skipcook(params object[] values)
         {
             if (true)
@@ -516,9 +504,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>in a cookonthefly build, used solely to pass information to the package step
-/// 
-/// Shared: In a cookonthefly build, used solely to pass information to the package step. This is necessary because you can't set cookonthefly and cook at the same time, and skipcook sets cook.
-/// </summary>
+/// Shared: In a cookonthefly build, used solely to pass information to the package step. This is necessary because you can't set cookonthefly and cook at the same time, and skipcook sets cook.</summary>
         public virtual UatConfig Skipcookonthefly(params object[] values)
         {
             if (true)
@@ -536,9 +522,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>wipe intermediate folders before building
-/// 
-/// Shared: Determines if the intermediate folders will be wiped before building, commandline: -clean
-/// </summary>
+/// Shared: Determines if the intermediate folders will be wiped before building, commandline: -clean</summary>
         public virtual UatConfig Clean(params object[] values)
         {
             if (true)
@@ -556,9 +540,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>assumes no operator is present, always terminates without waiting for something.
-/// 
-/// Shared: Assumes no user is sitting at the console, so for example kills clients automatically, commandline: -Unattended
-/// </summary>
+/// Shared: Assumes no user is sitting at the console, so for example kills clients automatically, commandline: -Unattended</summary>
         public virtual UatConfig Unattended(params object[] values)
         {
             if (true)
@@ -577,9 +559,7 @@ public abstract class UatConfigGenerated : ToolConfig
         
 /// <summary>generate a pak file
 /// disable reuse of pak files from the alternate cook source folder, if specified
-/// 
-/// Shared: True if pak file should be generated.
-/// </summary>
+/// Shared: True if pak file should be generated.</summary>
         public virtual UatConfig Pak(params object[] values)
         {
             if (true)
@@ -597,9 +577,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>generate I/O store container file(s)
-/// 
-/// Shared: True if container file(s) should be generated with ZenPak.
-/// </summary>
+/// Shared: True if container file(s) should be generated with ZenPak.</summary>
         public virtual UatConfig Iostore(params object[] values)
         {
             if (true)
@@ -634,9 +612,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>sign the generated pak file with the specified key, i.e. -signpak=C:\Encryption.keys. Also implies -signedpak.
-/// 
-/// Shared: Encryption keys used for signing the pak file.
-/// </summary>
+/// Shared: Encryption keys used for signing the pak file.</summary>
         public virtual UatConfig Signpak(params object[] values)
         {
             if (true)
@@ -654,9 +630,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>attempt to avoid cooking and instead pull pak files from the network, implies pak and skipcook
-/// 
-/// Shared: true if this build is staged, command line: -stage
-/// </summary>
+/// Shared: true if this build is staged, command line: -stage</summary>
         public virtual UatConfig Prepak(params object[] values)
         {
             if (true)
@@ -691,9 +665,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>The game will be set up for memory mapping bulk data.
-/// 
-/// Shared: The game will be set up for memory mapping bulk data.
-/// </summary>
+/// Shared: The game will be set up for memory mapping bulk data.</summary>
         public virtual UatConfig PakAlignForMemoryMapping(params object[] values)
         {
             if (true)
@@ -711,9 +683,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>use a pak file, but assume it is already built, implies pak
-/// 
-/// Shared: true if this build is staged, command line: -stage
-/// </summary>
+/// Shared: true if this build is staged, command line: -stage</summary>
         public virtual UatConfig Skippak(params object[] values)
         {
             if (true)
@@ -731,9 +701,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>override the -iostore commandline option to not run it
-/// 
-/// Shared: true if we want to skip iostore, even if -iostore is specified
-/// </summary>
+/// Shared: true if we want to skip iostore, even if -iostore is specified</summary>
         public virtual UatConfig Skipiostore(params object[] values)
         {
             if (true)
@@ -751,9 +719,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>put this build in a stage directory
-/// 
-/// Shared: true if this build is staged, command line: -stage
-/// </summary>
+/// Shared: true if this build is staged, command line: -stage</summary>
         public virtual UatConfig Stage(params object[] values)
         {
             if (true)
@@ -771,9 +737,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>uses a stage directory, but assumes everything is already there, implies -stage
-/// 
-/// Shared: true if this build is staged, command line: -stage
-/// </summary>
+/// Shared: true if this build is staged, command line: -stage</summary>
         public virtual UatConfig Skipstage(params object[] values)
         {
             if (true)
@@ -791,9 +755,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>generate streaming install manifests when cooking data
-/// 
-/// Shared: true if this build is using streaming install manifests, command line: -manifests
-/// </summary>
+/// Shared: true if this build is using streaming install manifests, command line: -manifests</summary>
         public virtual UatConfig Manifests(params object[] values)
         {
             if (true)
@@ -811,9 +773,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>generate streaming install data from manifest when cooking data, requires -stage &amp; -manifests
-/// 
-/// Shared: true if this build chunk install streaming install data, command line: -createchunkinstalldata
-/// </summary>
+/// Shared: true if this build chunk install streaming install data, command line: -createchunkinstalldata</summary>
         public virtual UatConfig Createchunkinstall(params object[] values)
         {
             if (true)
@@ -882,9 +842,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>put this build in an archive directory
-/// 
-/// Shared: true if this build is archived, command line: -archive
-/// </summary>
+/// Shared: true if this build is archived, command line: -archive</summary>
         public virtual UatConfig Archive(params object[] values)
         {
             if (true)
@@ -919,9 +877,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>Archive extra metadata files in addition to the build (e.g. build.properties)
-/// 
-/// Whether the project should use non monolithic staging
-/// </summary>
+/// Whether the project should use non monolithic staging</summary>
         public virtual UatConfig Archivemetadata(params object[] values)
         {
             if (true)
@@ -938,10 +894,7 @@ public abstract class UatConfigGenerated : ToolConfig
         }
 
         
-/// <summary>When archiving for Mac, set this to true to package it in a .app bundle instead of normal loose files
-/// 
-/// When archiving for Mac, set this to true to package it in a .app bundle instead of normal loose files
-/// </summary>
+/// <summary>When archiving for Mac, set this to true to package it in a .app bundle instead of normal loose files</summary>
         public virtual UatConfig Createappbundle(params object[] values)
         {
             if (true)
@@ -959,9 +912,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>True if build step should be executed
-/// 
-/// Build: True if build step should be executed, command: -build
-/// </summary>
+/// Build: True if build step should be executed, command: -build</summary>
         public virtual UatConfig Build(params object[] values)
         {
             if (true)
@@ -979,9 +930,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>True if XGE should NOT be used for building
-/// 
 /// Build: True if XGE should NOT be used for building.
-/// 
 /// Toggle to disable the distributed build process</summary>
         public virtual UatConfig Noxge(params object[] values)
         {
@@ -1000,9 +949,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>while cooking clean up packages as we are done with them rather then cleaning everything up when we run out of space
-/// 
-/// Cook: While cooking clean up packages as we go along rather then cleaning everything (and potentially having to reload some of it) when we run out of space
-/// </summary>
+/// Cook: While cooking clean up packages as we go along rather then cleaning everything (and potentially having to reload some of it) when we run out of space</summary>
         public virtual UatConfig CookPartialgc(params object[] values)
         {
             if (true)
@@ -1020,9 +967,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>Did we cook in the editor instead of in UAT
-/// 
-/// Stage: Did we cook in the editor instead of from UAT (cook in editor uses a different staging directory)
-/// </summary>
+/// Stage: Did we cook in the editor instead of from UAT (cook in editor uses a different staging directory)</summary>
         public virtual UatConfig CookInEditor(params object[] values)
         {
             if (true)
@@ -1041,9 +986,7 @@ public abstract class UatConfigGenerated : ToolConfig
         
 /// <summary>Uses the iterative cooking, command line: -iterativecooking or -iterate
 /// Uses the iterative cooking, command line: -iterativedeploy or -iterate
-/// 
-/// Cook: Uses the iterative cooking, command line: -iterativecooking or -iterate
-/// </summary>
+/// Cook: Uses the iterative cooking, command line: -iterativecooking or -iterate</summary>
         public virtual UatConfig Iterativecooking(params object[] values)
         {
             if (true)
@@ -1061,9 +1004,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>Cook only maps this only affects usage of -cookall the flag
-/// 
-/// Cook: Only cook maps (and referenced content) instead of cooking everything only affects -cookall flag
-/// </summary>
+/// Cook: Only cook maps (and referenced content) instead of cooking everything only affects -cookall flag</summary>
         public virtual UatConfig CookMapsOnly(params object[] values)
         {
             if (true)
@@ -1081,9 +1022,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>Cook all the things in the content directory for this project
-/// 
-/// Cook: Only cook maps (and referenced content) instead of cooking everything only affects cookall flag
-/// </summary>
+/// Cook: Only cook maps (and referenced content) instead of cooking everything only affects cookall flag</summary>
         public virtual UatConfig CookAll(params object[] values)
         {
             if (true)
@@ -1101,9 +1040,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>Skips content under /Engine/Editor when cooking
-/// 
-/// Cook: Skip cooking editor content
-/// </summary>
+/// Cook: Skip cooking editor content</summary>
         public virtual UatConfig SkipCookingEditorContent(params object[] values)
         {
             if (true)
@@ -1138,9 +1075,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>Ignores cook errors and continues with packaging etc
-/// 
-/// Cook: Ignores cook errors and continues with packaging etc.
-/// </summary>
+/// Cook: Ignores cook errors and continues with packaging etc.</summary>
         public virtual UatConfig IgnoreCookErrors(params object[] values)
         {
             if (true)
@@ -1158,9 +1093,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>do not copy debug files to the stage
-/// 
-/// Stage: Commandline: -nodebuginfo
-/// </summary>
+/// Stage: Commandline: -nodebuginfo</summary>
         public virtual UatConfig Nodebuginfo(params object[] values)
         {
             if (true)
@@ -1178,9 +1111,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>output debug info to a separate directory
-/// 
-/// Stage: Commandline: -separatedebuginfo
-/// </summary>
+/// Stage: Commandline: -separatedebuginfo</summary>
         public virtual UatConfig Separatedebuginfo(params object[] values)
         {
             if (true)
@@ -1198,9 +1129,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>generates a *.map file
-/// 
-/// Stage: Commandline: -mapfile
-/// </summary>
+/// Stage: Commandline: -mapfile</summary>
         public virtual UatConfig MapFile(params object[] values)
         {
             if (true)
@@ -1218,9 +1147,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>skip cleaning the stage directory
-/// 
-/// true if the staging directory is to be cleaned: -cleanstage (also true if -clean is specified)
-/// </summary>
+/// true if the staging directory is to be cleaned: -cleanstage (also true if -clean is specified)</summary>
         public virtual UatConfig Nocleanstage(params object[] values)
         {
             if (true)
@@ -1256,9 +1183,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>string to use as the bundle name when deploying to mobile device
-/// 
-/// Stage: If non-empty, the contents will be used for the bundle name
-/// </summary>
+/// Stage: If non-empty, the contents will be used for the bundle name</summary>
         public virtual UatConfig Bundlename(params object[] values)
         {
             if (true)
@@ -1276,9 +1201,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>run the game after it is built (including server, if -server)
-/// 
-/// Run: True if the Run step should be executed, command: -run
-/// </summary>
+/// Run: True if the Run step should be executed, command: -run</summary>
         public virtual UatConfig Run(params object[] values)
         {
             if (true)
@@ -1296,9 +1219,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>run the client with cooked data provided by cook on the fly server
-/// 
-/// Run: The client runs with cooked data provided by cook on the fly server, command line: -cookonthefly
-/// </summary>
+/// Run: The client runs with cooked data provided by cook on the fly server, command line: -cookonthefly</summary>
         public virtual UatConfig Cookonthefly(params object[] values)
         {
             if (true)
@@ -1316,9 +1237,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>run the client in streaming cook on the fly mode (don't cache files locally instead force reget from server each file load)
-/// 
-/// Run: The client should run in streaming mode when connecting to cook on the fly server
-/// </summary>
+/// Run: The client should run in streaming mode when connecting to cook on the fly server</summary>
         public virtual UatConfig Cookontheflystreaming(params object[] values)
         {
             if (true)
@@ -1336,9 +1255,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>run the client with cooked data provided by UnrealFileServer
-/// 
-/// Run: The client runs with cooked data provided by UnrealFileServer, command line: -fileserver
-/// </summary>
+/// Run: The client runs with cooked data provided by UnrealFileServer, command line: -fileserver</summary>
         public virtual UatConfig Fileserver(params object[] values)
         {
             if (true)
@@ -1356,9 +1273,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>build, cook and run both a client and a server (also -server)
-/// 
-/// Run: The client connects to dedicated server to get data, command line: -dedicatedserver
-/// </summary>
+/// Run: The client connects to dedicated server to get data, command line: -dedicatedserver</summary>
         public virtual UatConfig Dedicatedserver(params object[] values)
         {
             if (true)
@@ -1376,9 +1291,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>build, cook and run a client and a server, uses client target configuration
-/// 
-/// Run: Uses a client target configuration, also implies -dedicatedserver, command line: -client
-/// </summary>
+/// Run: Uses a client target configuration, also implies -dedicatedserver, command line: -client</summary>
         public virtual UatConfig Client(params object[] values)
         {
             if (true)
@@ -1396,9 +1309,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>do not run the client, just run the server
-/// 
-/// Run: Whether the client should start or not, command line (to disable): -noclient
-/// </summary>
+/// Run: Whether the client should start or not, command line (to disable): -noclient</summary>
         public virtual UatConfig Noclient(params object[] values)
         {
             if (true)
@@ -1416,9 +1327,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>create a log window for the client
-/// 
-/// Run: Client should create its own log window, command line: -logwindow
-/// </summary>
+/// Run: Client should create its own log window, command line: -logwindow</summary>
         public virtual UatConfig Logwindow(params object[] values)
         {
             if (true)
@@ -1453,9 +1362,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>Additional server map params, i.e ?param=value
-/// 
-/// Run: Additional server map params.
-/// </summary>
+/// Run: Additional server map params.</summary>
         public virtual UatConfig AdditionalServerMapParams(params object[] values)
         {
             if (true)
@@ -1491,9 +1398,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>Device to run the server on
-/// 
-/// Run: the target device to run the server on
-/// </summary>
+/// Run: the target device to run the server on</summary>
         public virtual UatConfig Serverdevice(params object[] values)
         {
             if (true)
@@ -1511,9 +1416,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>Skip starting the server
-/// 
-/// Run: The indicated server has already been started
-/// </summary>
+/// Run: The indicated server has already been started</summary>
         public virtual UatConfig Skipserver(params object[] values)
         {
             if (true)
@@ -1531,9 +1434,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>Start extra clients, n should be 2 or more
-/// 
-/// Run: The indicated server has already been started
-/// </summary>
+/// Run: The indicated server has already been started</summary>
         public virtual UatConfig Numclients(params object[] values)
         {
             if (true)
@@ -1602,9 +1503,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>add -nullrhi to the client commandlines
-/// 
-/// Run:adds -nullrhi to the client commandline
-/// </summary>
+/// Run:adds -nullrhi to the client commandline</summary>
         public virtual UatConfig Nullrhi(params object[] values)
         {
             if (true)
@@ -1622,9 +1521,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>adds ?fake to the server URL
-/// 
-/// Run:adds ?fake to the server URL
-/// </summary>
+/// Run:adds ?fake to the server URL</summary>
         public virtual UatConfig Fakeclient(params object[] values)
         {
             if (true)
@@ -1642,9 +1539,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>rather than running a client, run the editor instead
-/// 
-/// Run:adds ?fake to the server URL
-/// </summary>
+/// Run:adds ?fake to the server URL</summary>
         public virtual UatConfig Editortest(params object[] values)
         {
             if (true)
@@ -1663,9 +1558,7 @@ public abstract class UatConfigGenerated : ToolConfig
         
 /// <summary>when running -editortest or a client, run all automation tests, not compatible with -server
 /// when running -editortest or a client, run a specific automation tests, not compatible with -server
-/// 
-/// Run:when running -editortest or a client, run all automation tests, not compatible with -server
-/// </summary>
+/// Run:when running -editortest or a client, run all automation tests, not compatible with -server</summary>
         public virtual UatConfig RunAutomationTests(params object[] values)
         {
             if (true)
@@ -2243,10 +2136,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>
-/// Are we staging the unmodified pak files from the base release
-/// 
-/// Are we staging the unmodified pak files from the base release
-/// </summary>
+/// Are we staging the unmodified pak files from the base release</summary>
         public virtual UatConfig StageBaseReleasePaks(params object[] values)
         {
             if (true)
@@ -2624,9 +2514,6 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>Stage: Specifies a list of extra targets that should be staged along with a client
-/// 
-/// 
-/// Stage: Specifies a list of extra targets that should be staged along with a client
 /// </summary>
         public virtual UatConfig ExtraTargetsToStageWithClient(params object[] values)
         {
@@ -3186,9 +3073,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>generate I/O store container file(s)
-/// 
-/// Shared: True if the cooker should write directly to container file(s)
-/// </summary>
+/// Shared: True if the cooker should write directly to container file(s)</summary>
         public virtual UatConfig Cook4iostore(params object[] values)
         {
             if (true)
@@ -3206,9 +3091,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>save cooked output data to the Zen storage server
-/// 
-/// Shared: True if the cooker should store the cooked output to the Zen storage server
-/// </summary>
+/// Shared: True if the cooker should store the cooked output to the Zen storage server</summary>
         public virtual UatConfig Zenstore(params object[] values)
         {
             if (true)
@@ -3226,9 +3109,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>URL to a running Zen server
-/// 
-/// Shared: URL to a running Zen server
-/// </summary>
+/// Shared: URL to a running Zen server</summary>
         public virtual UatConfig Nozenautolaunch(params object[] values)
         {
             if (true)
@@ -3246,9 +3127,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>Should virtualized assets be rehydrated?
-/// 
-/// Shared: true if we want to rehydrate virtualized assets when staging.
-/// </summary>
+/// Shared: true if we want to rehydrate virtualized assets when staging.</summary>
         public virtual UatConfig Rehydrateassets(params object[] values)
         {
             if (true)
@@ -4381,9 +4260,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>Generate a foreign uproject from blankproject and use that
-/// 
-/// Shared: The current project is a foreign project, commandline: -foreign
-/// </summary>
+/// Shared: The current project is a foreign project, commandline: -foreign</summary>
         public virtual ProjectParamsConfig Foreign(params object[] values)
         {
             if (true)
@@ -4401,9 +4278,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>Generate a foreign code uproject from platformergame and use that
-/// 
-/// Shared: The current project is a foreign project, commandline: -foreign
-/// </summary>
+/// Shared: The current project is a foreign project, commandline: -foreign</summary>
         public virtual ProjectParamsConfig Foreigncode(params object[] values)
         {
             if (true)
@@ -4421,9 +4296,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>true if we should build crash reporter
-/// 
-/// Shared: true if we should build crash reporter
-/// </summary>
+/// Shared: true if we should build crash reporter</summary>
         public virtual ProjectParamsConfig CrashReporter(params object[] values)
         {
             if (true)
@@ -4441,9 +4314,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>Determines if the build is going to use cooked data
-/// 
-/// Shared: Determines if the build is going to use cooked data, commandline: -cook, -cookonthefly
-/// </summary>
+/// Shared: Determines if the build is going to use cooked data, commandline: -cook, -cookonthefly</summary>
         public virtual ProjectParamsConfig Cook(params object[] values)
         {
             if (true)
@@ -4461,9 +4332,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>use a cooked build, but we assume the cooked data is up to date and where it belongs, implies -cook
-/// 
-/// Shared: Determines if the build is going to use cooked data, commandline: -cook, -cookonthefly
-/// </summary>
+/// Shared: Determines if the build is going to use cooked data, commandline: -cook, -cookonthefly</summary>
         public virtual ProjectParamsConfig Skipcook(params object[] values)
         {
             if (true)
@@ -4481,9 +4350,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>in a cookonthefly build, used solely to pass information to the package step
-/// 
-/// Shared: In a cookonthefly build, used solely to pass information to the package step. This is necessary because you can't set cookonthefly and cook at the same time, and skipcook sets cook.
-/// </summary>
+/// Shared: In a cookonthefly build, used solely to pass information to the package step. This is necessary because you can't set cookonthefly and cook at the same time, and skipcook sets cook.</summary>
         public virtual ProjectParamsConfig Skipcookonthefly(params object[] values)
         {
             if (true)
@@ -4501,9 +4368,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>wipe intermediate folders before building
-/// 
-/// Shared: Determines if the intermediate folders will be wiped before building, commandline: -clean
-/// </summary>
+/// Shared: Determines if the intermediate folders will be wiped before building, commandline: -clean</summary>
         public virtual ProjectParamsConfig Clean(params object[] values)
         {
             if (true)
@@ -4521,9 +4386,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>assumes no operator is present, always terminates without waiting for something.
-/// 
-/// Shared: Assumes no user is sitting at the console, so for example kills clients automatically, commandline: -Unattended
-/// </summary>
+/// Shared: Assumes no user is sitting at the console, so for example kills clients automatically, commandline: -Unattended</summary>
         public virtual ProjectParamsConfig Unattended(params object[] values)
         {
             if (true)
@@ -4542,9 +4405,7 @@ public abstract class UatConfigGenerated : ToolConfig
         
 /// <summary>generate a pak file
 /// disable reuse of pak files from the alternate cook source folder, if specified
-/// 
-/// Shared: True if pak file should be generated.
-/// </summary>
+/// Shared: True if pak file should be generated.</summary>
         public virtual ProjectParamsConfig Pak(params object[] values)
         {
             if (true)
@@ -4562,9 +4423,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>generate I/O store container file(s)
-/// 
-/// Shared: True if container file(s) should be generated with ZenPak.
-/// </summary>
+/// Shared: True if container file(s) should be generated with ZenPak.</summary>
         public virtual ProjectParamsConfig Iostore(params object[] values)
         {
             if (true)
@@ -4599,9 +4458,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>sign the generated pak file with the specified key, i.e. -signpak=C:\Encryption.keys. Also implies -signedpak.
-/// 
-/// Shared: Encryption keys used for signing the pak file.
-/// </summary>
+/// Shared: Encryption keys used for signing the pak file.</summary>
         public virtual ProjectParamsConfig Signpak(params object[] values)
         {
             if (true)
@@ -4619,9 +4476,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>attempt to avoid cooking and instead pull pak files from the network, implies pak and skipcook
-/// 
-/// Shared: true if this build is staged, command line: -stage
-/// </summary>
+/// Shared: true if this build is staged, command line: -stage</summary>
         public virtual ProjectParamsConfig Prepak(params object[] values)
         {
             if (true)
@@ -4656,9 +4511,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>The game will be set up for memory mapping bulk data.
-/// 
-/// Shared: The game will be set up for memory mapping bulk data.
-/// </summary>
+/// Shared: The game will be set up for memory mapping bulk data.</summary>
         public virtual ProjectParamsConfig PakAlignForMemoryMapping(params object[] values)
         {
             if (true)
@@ -4676,9 +4529,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>use a pak file, but assume it is already built, implies pak
-/// 
-/// Shared: true if this build is staged, command line: -stage
-/// </summary>
+/// Shared: true if this build is staged, command line: -stage</summary>
         public virtual ProjectParamsConfig Skippak(params object[] values)
         {
             if (true)
@@ -4696,9 +4547,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>override the -iostore commandline option to not run it
-/// 
-/// Shared: true if we want to skip iostore, even if -iostore is specified
-/// </summary>
+/// Shared: true if we want to skip iostore, even if -iostore is specified</summary>
         public virtual ProjectParamsConfig Skipiostore(params object[] values)
         {
             if (true)
@@ -4716,9 +4565,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>put this build in a stage directory
-/// 
-/// Shared: true if this build is staged, command line: -stage
-/// </summary>
+/// Shared: true if this build is staged, command line: -stage</summary>
         public virtual ProjectParamsConfig Stage(params object[] values)
         {
             if (true)
@@ -4736,9 +4583,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>uses a stage directory, but assumes everything is already there, implies -stage
-/// 
-/// Shared: true if this build is staged, command line: -stage
-/// </summary>
+/// Shared: true if this build is staged, command line: -stage</summary>
         public virtual ProjectParamsConfig Skipstage(params object[] values)
         {
             if (true)
@@ -4756,9 +4601,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>generate streaming install manifests when cooking data
-/// 
-/// Shared: true if this build is using streaming install manifests, command line: -manifests
-/// </summary>
+/// Shared: true if this build is using streaming install manifests, command line: -manifests</summary>
         public virtual ProjectParamsConfig Manifests(params object[] values)
         {
             if (true)
@@ -4776,9 +4619,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>generate streaming install data from manifest when cooking data, requires -stage &amp; -manifests
-/// 
-/// Shared: true if this build chunk install streaming install data, command line: -createchunkinstalldata
-/// </summary>
+/// Shared: true if this build chunk install streaming install data, command line: -createchunkinstalldata</summary>
         public virtual ProjectParamsConfig Createchunkinstall(params object[] values)
         {
             if (true)
@@ -4847,9 +4688,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>put this build in an archive directory
-/// 
-/// Shared: true if this build is archived, command line: -archive
-/// </summary>
+/// Shared: true if this build is archived, command line: -archive</summary>
         public virtual ProjectParamsConfig Archive(params object[] values)
         {
             if (true)
@@ -4884,9 +4723,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>Archive extra metadata files in addition to the build (e.g. build.properties)
-/// 
-/// Whether the project should use non monolithic staging
-/// </summary>
+/// Whether the project should use non monolithic staging</summary>
         public virtual ProjectParamsConfig Archivemetadata(params object[] values)
         {
             if (true)
@@ -4903,10 +4740,7 @@ public abstract class UatConfigGenerated : ToolConfig
         }
 
         
-/// <summary>When archiving for Mac, set this to true to package it in a .app bundle instead of normal loose files
-/// 
-/// When archiving for Mac, set this to true to package it in a .app bundle instead of normal loose files
-/// </summary>
+/// <summary>When archiving for Mac, set this to true to package it in a .app bundle instead of normal loose files</summary>
         public virtual ProjectParamsConfig Createappbundle(params object[] values)
         {
             if (true)
@@ -4924,9 +4758,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>True if build step should be executed
-/// 
-/// Build: True if build step should be executed, command: -build
-/// </summary>
+/// Build: True if build step should be executed, command: -build</summary>
         public virtual ProjectParamsConfig Build(params object[] values)
         {
             if (true)
@@ -4944,9 +4776,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>True if XGE should NOT be used for building
-/// 
 /// Build: True if XGE should NOT be used for building.
-/// 
 /// Toggle to disable the distributed build process</summary>
         public virtual ProjectParamsConfig Noxge(params object[] values)
         {
@@ -4965,9 +4795,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>while cooking clean up packages as we are done with them rather then cleaning everything up when we run out of space
-/// 
-/// Cook: While cooking clean up packages as we go along rather then cleaning everything (and potentially having to reload some of it) when we run out of space
-/// </summary>
+/// Cook: While cooking clean up packages as we go along rather then cleaning everything (and potentially having to reload some of it) when we run out of space</summary>
         public virtual ProjectParamsConfig CookPartialgc(params object[] values)
         {
             if (true)
@@ -4985,9 +4813,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>Did we cook in the editor instead of in UAT
-/// 
-/// Stage: Did we cook in the editor instead of from UAT (cook in editor uses a different staging directory)
-/// </summary>
+/// Stage: Did we cook in the editor instead of from UAT (cook in editor uses a different staging directory)</summary>
         public virtual ProjectParamsConfig CookInEditor(params object[] values)
         {
             if (true)
@@ -5006,9 +4832,7 @@ public abstract class UatConfigGenerated : ToolConfig
         
 /// <summary>Uses the iterative cooking, command line: -iterativecooking or -iterate
 /// Uses the iterative cooking, command line: -iterativedeploy or -iterate
-/// 
-/// Cook: Uses the iterative cooking, command line: -iterativecooking or -iterate
-/// </summary>
+/// Cook: Uses the iterative cooking, command line: -iterativecooking or -iterate</summary>
         public virtual ProjectParamsConfig Iterativecooking(params object[] values)
         {
             if (true)
@@ -5026,9 +4850,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>Cook only maps this only affects usage of -cookall the flag
-/// 
-/// Cook: Only cook maps (and referenced content) instead of cooking everything only affects -cookall flag
-/// </summary>
+/// Cook: Only cook maps (and referenced content) instead of cooking everything only affects -cookall flag</summary>
         public virtual ProjectParamsConfig CookMapsOnly(params object[] values)
         {
             if (true)
@@ -5046,9 +4868,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>Cook all the things in the content directory for this project
-/// 
-/// Cook: Only cook maps (and referenced content) instead of cooking everything only affects cookall flag
-/// </summary>
+/// Cook: Only cook maps (and referenced content) instead of cooking everything only affects cookall flag</summary>
         public virtual ProjectParamsConfig CookAll(params object[] values)
         {
             if (true)
@@ -5066,9 +4886,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>Skips content under /Engine/Editor when cooking
-/// 
-/// Cook: Skip cooking editor content
-/// </summary>
+/// Cook: Skip cooking editor content</summary>
         public virtual ProjectParamsConfig SkipCookingEditorContent(params object[] values)
         {
             if (true)
@@ -5103,9 +4921,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>Ignores cook errors and continues with packaging etc
-/// 
-/// Cook: Ignores cook errors and continues with packaging etc.
-/// </summary>
+/// Cook: Ignores cook errors and continues with packaging etc.</summary>
         public virtual ProjectParamsConfig IgnoreCookErrors(params object[] values)
         {
             if (true)
@@ -5123,9 +4939,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>do not copy debug files to the stage
-/// 
-/// Stage: Commandline: -nodebuginfo
-/// </summary>
+/// Stage: Commandline: -nodebuginfo</summary>
         public virtual ProjectParamsConfig Nodebuginfo(params object[] values)
         {
             if (true)
@@ -5143,9 +4957,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>output debug info to a separate directory
-/// 
-/// Stage: Commandline: -separatedebuginfo
-/// </summary>
+/// Stage: Commandline: -separatedebuginfo</summary>
         public virtual ProjectParamsConfig Separatedebuginfo(params object[] values)
         {
             if (true)
@@ -5163,9 +4975,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>generates a *.map file
-/// 
-/// Stage: Commandline: -mapfile
-/// </summary>
+/// Stage: Commandline: -mapfile</summary>
         public virtual ProjectParamsConfig MapFile(params object[] values)
         {
             if (true)
@@ -5183,9 +4993,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>skip cleaning the stage directory
-/// 
-/// true if the staging directory is to be cleaned: -cleanstage (also true if -clean is specified)
-/// </summary>
+/// true if the staging directory is to be cleaned: -cleanstage (also true if -clean is specified)</summary>
         public virtual ProjectParamsConfig Nocleanstage(params object[] values)
         {
             if (true)
@@ -5221,9 +5029,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>string to use as the bundle name when deploying to mobile device
-/// 
-/// Stage: If non-empty, the contents will be used for the bundle name
-/// </summary>
+/// Stage: If non-empty, the contents will be used for the bundle name</summary>
         public virtual ProjectParamsConfig Bundlename(params object[] values)
         {
             if (true)
@@ -5241,9 +5047,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>run the game after it is built (including server, if -server)
-/// 
-/// Run: True if the Run step should be executed, command: -run
-/// </summary>
+/// Run: True if the Run step should be executed, command: -run</summary>
         public virtual ProjectParamsConfig Run(params object[] values)
         {
             if (true)
@@ -5261,9 +5065,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>run the client with cooked data provided by cook on the fly server
-/// 
-/// Run: The client runs with cooked data provided by cook on the fly server, command line: -cookonthefly
-/// </summary>
+/// Run: The client runs with cooked data provided by cook on the fly server, command line: -cookonthefly</summary>
         public virtual ProjectParamsConfig Cookonthefly(params object[] values)
         {
             if (true)
@@ -5281,9 +5083,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>run the client in streaming cook on the fly mode (don't cache files locally instead force reget from server each file load)
-/// 
-/// Run: The client should run in streaming mode when connecting to cook on the fly server
-/// </summary>
+/// Run: The client should run in streaming mode when connecting to cook on the fly server</summary>
         public virtual ProjectParamsConfig Cookontheflystreaming(params object[] values)
         {
             if (true)
@@ -5301,9 +5101,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>run the client with cooked data provided by UnrealFileServer
-/// 
-/// Run: The client runs with cooked data provided by UnrealFileServer, command line: -fileserver
-/// </summary>
+/// Run: The client runs with cooked data provided by UnrealFileServer, command line: -fileserver</summary>
         public virtual ProjectParamsConfig Fileserver(params object[] values)
         {
             if (true)
@@ -5321,9 +5119,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>build, cook and run both a client and a server (also -server)
-/// 
-/// Run: The client connects to dedicated server to get data, command line: -dedicatedserver
-/// </summary>
+/// Run: The client connects to dedicated server to get data, command line: -dedicatedserver</summary>
         public virtual ProjectParamsConfig Dedicatedserver(params object[] values)
         {
             if (true)
@@ -5341,9 +5137,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>build, cook and run a client and a server, uses client target configuration
-/// 
-/// Run: Uses a client target configuration, also implies -dedicatedserver, command line: -client
-/// </summary>
+/// Run: Uses a client target configuration, also implies -dedicatedserver, command line: -client</summary>
         public virtual ProjectParamsConfig Client(params object[] values)
         {
             if (true)
@@ -5361,9 +5155,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>do not run the client, just run the server
-/// 
-/// Run: Whether the client should start or not, command line (to disable): -noclient
-/// </summary>
+/// Run: Whether the client should start or not, command line (to disable): -noclient</summary>
         public virtual ProjectParamsConfig Noclient(params object[] values)
         {
             if (true)
@@ -5381,9 +5173,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>create a log window for the client
-/// 
-/// Run: Client should create its own log window, command line: -logwindow
-/// </summary>
+/// Run: Client should create its own log window, command line: -logwindow</summary>
         public virtual ProjectParamsConfig Logwindow(params object[] values)
         {
             if (true)
@@ -5418,9 +5208,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>Additional server map params, i.e ?param=value
-/// 
-/// Run: Additional server map params.
-/// </summary>
+/// Run: Additional server map params.</summary>
         public virtual ProjectParamsConfig AdditionalServerMapParams(params object[] values)
         {
             if (true)
@@ -5456,9 +5244,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>Device to run the server on
-/// 
-/// Run: the target device to run the server on
-/// </summary>
+/// Run: the target device to run the server on</summary>
         public virtual ProjectParamsConfig Serverdevice(params object[] values)
         {
             if (true)
@@ -5476,9 +5262,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>Skip starting the server
-/// 
-/// Run: The indicated server has already been started
-/// </summary>
+/// Run: The indicated server has already been started</summary>
         public virtual ProjectParamsConfig Skipserver(params object[] values)
         {
             if (true)
@@ -5496,9 +5280,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>Start extra clients, n should be 2 or more
-/// 
-/// Run: The indicated server has already been started
-/// </summary>
+/// Run: The indicated server has already been started</summary>
         public virtual ProjectParamsConfig Numclients(params object[] values)
         {
             if (true)
@@ -5567,9 +5349,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>add -nullrhi to the client commandlines
-/// 
-/// Run:adds -nullrhi to the client commandline
-/// </summary>
+/// Run:adds -nullrhi to the client commandline</summary>
         public virtual ProjectParamsConfig Nullrhi(params object[] values)
         {
             if (true)
@@ -5587,9 +5367,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>adds ?fake to the server URL
-/// 
-/// Run:adds ?fake to the server URL
-/// </summary>
+/// Run:adds ?fake to the server URL</summary>
         public virtual ProjectParamsConfig Fakeclient(params object[] values)
         {
             if (true)
@@ -5607,9 +5385,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>rather than running a client, run the editor instead
-/// 
-/// Run:adds ?fake to the server URL
-/// </summary>
+/// Run:adds ?fake to the server URL</summary>
         public virtual ProjectParamsConfig Editortest(params object[] values)
         {
             if (true)
@@ -5628,9 +5404,7 @@ public abstract class UatConfigGenerated : ToolConfig
         
 /// <summary>when running -editortest or a client, run all automation tests, not compatible with -server
 /// when running -editortest or a client, run a specific automation tests, not compatible with -server
-/// 
-/// Run:when running -editortest or a client, run all automation tests, not compatible with -server
-/// </summary>
+/// Run:when running -editortest or a client, run all automation tests, not compatible with -server</summary>
         public virtual ProjectParamsConfig RunAutomationTests(params object[] values)
         {
             if (true)
@@ -6208,10 +5982,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>
-/// Are we staging the unmodified pak files from the base release
-/// 
-/// Are we staging the unmodified pak files from the base release
-/// </summary>
+/// Are we staging the unmodified pak files from the base release</summary>
         public virtual ProjectParamsConfig StageBaseReleasePaks(params object[] values)
         {
             if (true)
@@ -6589,9 +6360,6 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>Stage: Specifies a list of extra targets that should be staged along with a client
-/// 
-/// 
-/// Stage: Specifies a list of extra targets that should be staged along with a client
 /// </summary>
         public virtual ProjectParamsConfig ExtraTargetsToStageWithClient(params object[] values)
         {
@@ -7066,9 +6834,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>generate I/O store container file(s)
-/// 
-/// Shared: True if the cooker should write directly to container file(s)
-/// </summary>
+/// Shared: True if the cooker should write directly to container file(s)</summary>
         public virtual ProjectParamsConfig Cook4iostore(params object[] values)
         {
             if (true)
@@ -7086,9 +6852,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>save cooked output data to the Zen storage server
-/// 
-/// Shared: True if the cooker should store the cooked output to the Zen storage server
-/// </summary>
+/// Shared: True if the cooker should store the cooked output to the Zen storage server</summary>
         public virtual ProjectParamsConfig Zenstore(params object[] values)
         {
             if (true)
@@ -7106,9 +6870,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>URL to a running Zen server
-/// 
-/// Shared: URL to a running Zen server
-/// </summary>
+/// Shared: URL to a running Zen server</summary>
         public virtual ProjectParamsConfig Nozenautolaunch(params object[] values)
         {
             if (true)
@@ -7126,9 +6888,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>Should virtualized assets be rehydrated?
-/// 
-/// Shared: true if we want to rehydrate virtualized assets when staging.
-/// </summary>
+/// Shared: true if we want to rehydrate virtualized assets when staging.</summary>
         public virtual ProjectParamsConfig Rehydrateassets(params object[] values)
         {
             if (true)
@@ -7617,9 +7377,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>Platforms to build, join multiple platforms using +
-/// 
-/// Platform to build
-/// </summary>
+/// Platform to build</summary>
         public virtual BuildTargetConfig Platform(params object[] values)
         {
             if (true)
@@ -7688,9 +7446,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>Do a clean build
-/// 
-/// Whether to clean this target. If not specified, the target will be cleaned if -Clean is on the command line.
-/// </summary>
+/// Whether to clean this target. If not specified, the target will be cleaned if -Clean is on the command line.</summary>
         public virtual BuildTargetConfig Clean(params object[] values)
         {
             if (true)
@@ -9260,9 +9016,7 @@ public abstract class UatConfigGenerated : ToolConfig
         public override UnrealCompatibility Compatibility => UnrealCompatibility.UE4 | UnrealCompatibility.UE5;
     
 /// <summary>Path to ini file to read from
-/// 
-/// Path to the ini file to be read
-/// </summary>
+/// Path to the ini file to be read</summary>
         public virtual WriteIniValueToPlistConfig IniFile(params object[] values)
         {
             if (true)
@@ -9280,9 +9034,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>Name of the ini property to read. E.g. 'Version' for 'Version=12.0'
-/// 
-/// Ini property to read
-/// </summary>
+/// Ini property to read</summary>
         public virtual WriteIniValueToPlistConfig IniProperty(params object[] values)
         {
             if (true)
@@ -9300,9 +9052,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>Path to plist file to update
-/// 
-/// Path to the plist file to be updated
-/// </summary>
+/// Path to the plist file to be updated</summary>
         public virtual WriteIniValueToPlistConfig PlistFile(params object[] values)
         {
             if (true)
@@ -9319,10 +9069,7 @@ public abstract class UatConfigGenerated : ToolConfig
         }
 
         
-/// <summary>Plist property to update. E.g. CFBundleShortVersionString
-/// 
-/// Plist property to update
-/// </summary>
+/// <summary>Plist property to update. E.g. CFBundleShortVersionString</summary>
         public virtual WriteIniValueToPlistConfig PlistProperty(params object[] values)
         {
             if (true)
@@ -9737,9 +9484,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>Generate a foreign uproject from blankproject and use that
-/// 
-/// Shared: The current project is a foreign project, commandline: -foreign
-/// </summary>
+/// Shared: The current project is a foreign project, commandline: -foreign</summary>
         public virtual BuildCookRunConfig Foreign(params object[] values)
         {
             if (true)
@@ -9757,9 +9502,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>Generate a foreign code uproject from platformergame and use that
-/// 
-/// Shared: The current project is a foreign project, commandline: -foreign
-/// </summary>
+/// Shared: The current project is a foreign project, commandline: -foreign</summary>
         public virtual BuildCookRunConfig Foreigncode(params object[] values)
         {
             if (true)
@@ -9879,9 +9622,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>true if we should build crash reporter
-/// 
-/// Shared: true if we should build crash reporter
-/// </summary>
+/// Shared: true if we should build crash reporter</summary>
         public virtual BuildCookRunConfig CrashReporter(params object[] values)
         {
             if (true)
@@ -9899,9 +9640,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>Determines if the build is going to use cooked data
-/// 
-/// Shared: Determines if the build is going to use cooked data, commandline: -cook, -cookonthefly
-/// </summary>
+/// Shared: Determines if the build is going to use cooked data, commandline: -cook, -cookonthefly</summary>
         public virtual BuildCookRunConfig Cook(params object[] values)
         {
             if (true)
@@ -9919,9 +9658,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>use a cooked build, but we assume the cooked data is up to date and where it belongs, implies -cook
-/// 
-/// Shared: Determines if the build is going to use cooked data, commandline: -cook, -cookonthefly
-/// </summary>
+/// Shared: Determines if the build is going to use cooked data, commandline: -cook, -cookonthefly</summary>
         public virtual BuildCookRunConfig Skipcook(params object[] values)
         {
             if (true)
@@ -9939,9 +9676,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>in a cookonthefly build, used solely to pass information to the package step
-/// 
-/// Shared: In a cookonthefly build, used solely to pass information to the package step. This is necessary because you can't set cookonthefly and cook at the same time, and skipcook sets cook.
-/// </summary>
+/// Shared: In a cookonthefly build, used solely to pass information to the package step. This is necessary because you can't set cookonthefly and cook at the same time, and skipcook sets cook.</summary>
         public virtual BuildCookRunConfig Skipcookonthefly(params object[] values)
         {
             if (true)
@@ -9959,9 +9694,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>wipe intermediate folders before building
-/// 
-/// Shared: Determines if the intermediate folders will be wiped before building, commandline: -clean
-/// </summary>
+/// Shared: Determines if the intermediate folders will be wiped before building, commandline: -clean</summary>
         public virtual BuildCookRunConfig Clean(params object[] values)
         {
             if (true)
@@ -9979,9 +9712,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>assumes no operator is present, always terminates without waiting for something.
-/// 
-/// Shared: Assumes no user is sitting at the console, so for example kills clients automatically, commandline: -Unattended
-/// </summary>
+/// Shared: Assumes no user is sitting at the console, so for example kills clients automatically, commandline: -Unattended</summary>
         public virtual BuildCookRunConfig Unattended(params object[] values)
         {
             if (true)
@@ -10000,9 +9731,7 @@ public abstract class UatConfigGenerated : ToolConfig
         
 /// <summary>generate a pak file
 /// disable reuse of pak files from the alternate cook source folder, if specified
-/// 
-/// Shared: True if pak file should be generated.
-/// </summary>
+/// Shared: True if pak file should be generated.</summary>
         public virtual BuildCookRunConfig Pak(params object[] values)
         {
             if (true)
@@ -10020,9 +9749,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>generate I/O store container file(s)
-/// 
-/// Shared: True if container file(s) should be generated with ZenPak.
-/// </summary>
+/// Shared: True if container file(s) should be generated with ZenPak.</summary>
         public virtual BuildCookRunConfig Iostore(params object[] values)
         {
             if (true)
@@ -10057,9 +9784,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>sign the generated pak file with the specified key, i.e. -signpak=C:\Encryption.keys. Also implies -signedpak.
-/// 
-/// Shared: Encryption keys used for signing the pak file.
-/// </summary>
+/// Shared: Encryption keys used for signing the pak file.</summary>
         public virtual BuildCookRunConfig Signpak(params object[] values)
         {
             if (true)
@@ -10077,9 +9802,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>attempt to avoid cooking and instead pull pak files from the network, implies pak and skipcook
-/// 
-/// Shared: true if this build is staged, command line: -stage
-/// </summary>
+/// Shared: true if this build is staged, command line: -stage</summary>
         public virtual BuildCookRunConfig Prepak(params object[] values)
         {
             if (true)
@@ -10114,9 +9837,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>The game will be set up for memory mapping bulk data.
-/// 
-/// Shared: The game will be set up for memory mapping bulk data.
-/// </summary>
+/// Shared: The game will be set up for memory mapping bulk data.</summary>
         public virtual BuildCookRunConfig PakAlignForMemoryMapping(params object[] values)
         {
             if (true)
@@ -10134,9 +9855,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>use a pak file, but assume it is already built, implies pak
-/// 
-/// Shared: true if this build is staged, command line: -stage
-/// </summary>
+/// Shared: true if this build is staged, command line: -stage</summary>
         public virtual BuildCookRunConfig Skippak(params object[] values)
         {
             if (true)
@@ -10154,9 +9873,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>override the -iostore commandline option to not run it
-/// 
-/// Shared: true if we want to skip iostore, even if -iostore is specified
-/// </summary>
+/// Shared: true if we want to skip iostore, even if -iostore is specified</summary>
         public virtual BuildCookRunConfig Skipiostore(params object[] values)
         {
             if (true)
@@ -10174,9 +9891,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>put this build in a stage directory
-/// 
-/// Shared: true if this build is staged, command line: -stage
-/// </summary>
+/// Shared: true if this build is staged, command line: -stage</summary>
         public virtual BuildCookRunConfig Stage(params object[] values)
         {
             if (true)
@@ -10194,9 +9909,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>uses a stage directory, but assumes everything is already there, implies -stage
-/// 
-/// Shared: true if this build is staged, command line: -stage
-/// </summary>
+/// Shared: true if this build is staged, command line: -stage</summary>
         public virtual BuildCookRunConfig Skipstage(params object[] values)
         {
             if (true)
@@ -10214,9 +9927,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>generate streaming install manifests when cooking data
-/// 
-/// Shared: true if this build is using streaming install manifests, command line: -manifests
-/// </summary>
+/// Shared: true if this build is using streaming install manifests, command line: -manifests</summary>
         public virtual BuildCookRunConfig Manifests(params object[] values)
         {
             if (true)
@@ -10234,9 +9945,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>generate streaming install data from manifest when cooking data, requires -stage &amp; -manifests
-/// 
-/// Shared: true if this build chunk install streaming install data, command line: -createchunkinstalldata
-/// </summary>
+/// Shared: true if this build chunk install streaming install data, command line: -createchunkinstalldata</summary>
         public virtual BuildCookRunConfig Createchunkinstall(params object[] values)
         {
             if (true)
@@ -10305,9 +10014,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>put this build in an archive directory
-/// 
-/// Shared: true if this build is archived, command line: -archive
-/// </summary>
+/// Shared: true if this build is archived, command line: -archive</summary>
         public virtual BuildCookRunConfig Archive(params object[] values)
         {
             if (true)
@@ -10342,9 +10049,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>Archive extra metadata files in addition to the build (e.g. build.properties)
-/// 
-/// Whether the project should use non monolithic staging
-/// </summary>
+/// Whether the project should use non monolithic staging</summary>
         public virtual BuildCookRunConfig Archivemetadata(params object[] values)
         {
             if (true)
@@ -10361,10 +10066,7 @@ public abstract class UatConfigGenerated : ToolConfig
         }
 
         
-/// <summary>When archiving for Mac, set this to true to package it in a .app bundle instead of normal loose files
-/// 
-/// When archiving for Mac, set this to true to package it in a .app bundle instead of normal loose files
-/// </summary>
+/// <summary>When archiving for Mac, set this to true to package it in a .app bundle instead of normal loose files</summary>
         public virtual BuildCookRunConfig Createappbundle(params object[] values)
         {
             if (true)
@@ -10382,9 +10084,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>True if build step should be executed
-/// 
-/// Build: True if build step should be executed, command: -build
-/// </summary>
+/// Build: True if build step should be executed, command: -build</summary>
         public virtual BuildCookRunConfig Build(params object[] values)
         {
             if (true)
@@ -10402,9 +10102,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>True if XGE should NOT be used for building
-/// 
 /// Build: True if XGE should NOT be used for building.
-/// 
 /// Toggle to disable the distributed build process</summary>
         public virtual BuildCookRunConfig Noxge(params object[] values)
         {
@@ -10423,9 +10121,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>while cooking clean up packages as we are done with them rather then cleaning everything up when we run out of space
-/// 
-/// Cook: While cooking clean up packages as we go along rather then cleaning everything (and potentially having to reload some of it) when we run out of space
-/// </summary>
+/// Cook: While cooking clean up packages as we go along rather then cleaning everything (and potentially having to reload some of it) when we run out of space</summary>
         public virtual BuildCookRunConfig CookPartialgc(params object[] values)
         {
             if (true)
@@ -10443,9 +10139,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>Did we cook in the editor instead of in UAT
-/// 
-/// Stage: Did we cook in the editor instead of from UAT (cook in editor uses a different staging directory)
-/// </summary>
+/// Stage: Did we cook in the editor instead of from UAT (cook in editor uses a different staging directory)</summary>
         public virtual BuildCookRunConfig CookInEditor(params object[] values)
         {
             if (true)
@@ -10464,9 +10158,7 @@ public abstract class UatConfigGenerated : ToolConfig
         
 /// <summary>Uses the iterative cooking, command line: -iterativecooking or -iterate
 /// Uses the iterative cooking, command line: -iterativedeploy or -iterate
-/// 
-/// Cook: Uses the iterative cooking, command line: -iterativecooking or -iterate
-/// </summary>
+/// Cook: Uses the iterative cooking, command line: -iterativecooking or -iterate</summary>
         public virtual BuildCookRunConfig Iterativecooking(params object[] values)
         {
             if (true)
@@ -10484,9 +10176,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>Cook only maps this only affects usage of -cookall the flag
-/// 
-/// Cook: Only cook maps (and referenced content) instead of cooking everything only affects -cookall flag
-/// </summary>
+/// Cook: Only cook maps (and referenced content) instead of cooking everything only affects -cookall flag</summary>
         public virtual BuildCookRunConfig CookMapsOnly(params object[] values)
         {
             if (true)
@@ -10504,9 +10194,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>Cook all the things in the content directory for this project
-/// 
-/// Cook: Only cook maps (and referenced content) instead of cooking everything only affects cookall flag
-/// </summary>
+/// Cook: Only cook maps (and referenced content) instead of cooking everything only affects cookall flag</summary>
         public virtual BuildCookRunConfig CookAll(params object[] values)
         {
             if (true)
@@ -10524,9 +10212,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>Skips content under /Engine/Editor when cooking
-/// 
-/// Cook: Skip cooking editor content
-/// </summary>
+/// Cook: Skip cooking editor content</summary>
         public virtual BuildCookRunConfig SkipCookingEditorContent(params object[] values)
         {
             if (true)
@@ -10561,9 +10247,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>Ignores cook errors and continues with packaging etc
-/// 
-/// Cook: Ignores cook errors and continues with packaging etc.
-/// </summary>
+/// Cook: Ignores cook errors and continues with packaging etc.</summary>
         public virtual BuildCookRunConfig IgnoreCookErrors(params object[] values)
         {
             if (true)
@@ -10581,9 +10265,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>do not copy debug files to the stage
-/// 
-/// Stage: Commandline: -nodebuginfo
-/// </summary>
+/// Stage: Commandline: -nodebuginfo</summary>
         public virtual BuildCookRunConfig Nodebuginfo(params object[] values)
         {
             if (true)
@@ -10601,9 +10283,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>output debug info to a separate directory
-/// 
-/// Stage: Commandline: -separatedebuginfo
-/// </summary>
+/// Stage: Commandline: -separatedebuginfo</summary>
         public virtual BuildCookRunConfig Separatedebuginfo(params object[] values)
         {
             if (true)
@@ -10621,9 +10301,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>generates a *.map file
-/// 
-/// Stage: Commandline: -mapfile
-/// </summary>
+/// Stage: Commandline: -mapfile</summary>
         public virtual BuildCookRunConfig MapFile(params object[] values)
         {
             if (true)
@@ -10641,9 +10319,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>skip cleaning the stage directory
-/// 
-/// true if the staging directory is to be cleaned: -cleanstage (also true if -clean is specified)
-/// </summary>
+/// true if the staging directory is to be cleaned: -cleanstage (also true if -clean is specified)</summary>
         public virtual BuildCookRunConfig Nocleanstage(params object[] values)
         {
             if (true)
@@ -10679,9 +10355,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>string to use as the bundle name when deploying to mobile device
-/// 
-/// Stage: If non-empty, the contents will be used for the bundle name
-/// </summary>
+/// Stage: If non-empty, the contents will be used for the bundle name</summary>
         public virtual BuildCookRunConfig Bundlename(params object[] values)
         {
             if (true)
@@ -10699,9 +10373,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>run the game after it is built (including server, if -server)
-/// 
-/// Run: True if the Run step should be executed, command: -run
-/// </summary>
+/// Run: True if the Run step should be executed, command: -run</summary>
         public virtual BuildCookRunConfig Run(params object[] values)
         {
             if (true)
@@ -10719,9 +10391,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>run the client with cooked data provided by cook on the fly server
-/// 
-/// Run: The client runs with cooked data provided by cook on the fly server, command line: -cookonthefly
-/// </summary>
+/// Run: The client runs with cooked data provided by cook on the fly server, command line: -cookonthefly</summary>
         public virtual BuildCookRunConfig Cookonthefly(params object[] values)
         {
             if (true)
@@ -10739,9 +10409,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>run the client in streaming cook on the fly mode (don't cache files locally instead force reget from server each file load)
-/// 
-/// Run: The client should run in streaming mode when connecting to cook on the fly server
-/// </summary>
+/// Run: The client should run in streaming mode when connecting to cook on the fly server</summary>
         public virtual BuildCookRunConfig Cookontheflystreaming(params object[] values)
         {
             if (true)
@@ -10759,9 +10427,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>run the client with cooked data provided by UnrealFileServer
-/// 
-/// Run: The client runs with cooked data provided by UnrealFileServer, command line: -fileserver
-/// </summary>
+/// Run: The client runs with cooked data provided by UnrealFileServer, command line: -fileserver</summary>
         public virtual BuildCookRunConfig Fileserver(params object[] values)
         {
             if (true)
@@ -10779,9 +10445,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>build, cook and run both a client and a server (also -server)
-/// 
-/// Run: The client connects to dedicated server to get data, command line: -dedicatedserver
-/// </summary>
+/// Run: The client connects to dedicated server to get data, command line: -dedicatedserver</summary>
         public virtual BuildCookRunConfig Dedicatedserver(params object[] values)
         {
             if (true)
@@ -10799,9 +10463,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>build, cook and run a client and a server, uses client target configuration
-/// 
-/// Run: Uses a client target configuration, also implies -dedicatedserver, command line: -client
-/// </summary>
+/// Run: Uses a client target configuration, also implies -dedicatedserver, command line: -client</summary>
         public virtual BuildCookRunConfig Client(params object[] values)
         {
             if (true)
@@ -10819,9 +10481,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>do not run the client, just run the server
-/// 
-/// Run: Whether the client should start or not, command line (to disable): -noclient
-/// </summary>
+/// Run: Whether the client should start or not, command line (to disable): -noclient</summary>
         public virtual BuildCookRunConfig Noclient(params object[] values)
         {
             if (true)
@@ -10839,9 +10499,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>create a log window for the client
-/// 
-/// Run: Client should create its own log window, command line: -logwindow
-/// </summary>
+/// Run: Client should create its own log window, command line: -logwindow</summary>
         public virtual BuildCookRunConfig Logwindow(params object[] values)
         {
             if (true)
@@ -10876,9 +10534,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>Additional server map params, i.e ?param=value
-/// 
-/// Run: Additional server map params.
-/// </summary>
+/// Run: Additional server map params.</summary>
         public virtual BuildCookRunConfig AdditionalServerMapParams(params object[] values)
         {
             if (true)
@@ -10914,9 +10570,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>Device to run the server on
-/// 
-/// Run: the target device to run the server on
-/// </summary>
+/// Run: the target device to run the server on</summary>
         public virtual BuildCookRunConfig Serverdevice(params object[] values)
         {
             if (true)
@@ -10934,9 +10588,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>Skip starting the server
-/// 
-/// Run: The indicated server has already been started
-/// </summary>
+/// Run: The indicated server has already been started</summary>
         public virtual BuildCookRunConfig Skipserver(params object[] values)
         {
             if (true)
@@ -10954,9 +10606,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>Start extra clients, n should be 2 or more
-/// 
-/// Run: The indicated server has already been started
-/// </summary>
+/// Run: The indicated server has already been started</summary>
         public virtual BuildCookRunConfig Numclients(params object[] values)
         {
             if (true)
@@ -11025,9 +10675,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>add -nullrhi to the client commandlines
-/// 
-/// Run:adds -nullrhi to the client commandline
-/// </summary>
+/// Run:adds -nullrhi to the client commandline</summary>
         public virtual BuildCookRunConfig Nullrhi(params object[] values)
         {
             if (true)
@@ -11045,9 +10693,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>adds ?fake to the server URL
-/// 
-/// Run:adds ?fake to the server URL
-/// </summary>
+/// Run:adds ?fake to the server URL</summary>
         public virtual BuildCookRunConfig Fakeclient(params object[] values)
         {
             if (true)
@@ -11065,9 +10711,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>rather than running a client, run the editor instead
-/// 
-/// Run:adds ?fake to the server URL
-/// </summary>
+/// Run:adds ?fake to the server URL</summary>
         public virtual BuildCookRunConfig Editortest(params object[] values)
         {
             if (true)
@@ -11086,9 +10730,7 @@ public abstract class UatConfigGenerated : ToolConfig
         
 /// <summary>when running -editortest or a client, run all automation tests, not compatible with -server
 /// when running -editortest or a client, run a specific automation tests, not compatible with -server
-/// 
-/// Run:when running -editortest or a client, run all automation tests, not compatible with -server
-/// </summary>
+/// Run:when running -editortest or a client, run all automation tests, not compatible with -server</summary>
         public virtual BuildCookRunConfig RunAutomationTests(params object[] values)
         {
             if (true)
@@ -11615,10 +11257,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>
-/// Are we staging the unmodified pak files from the base release
-/// 
-/// Are we staging the unmodified pak files from the base release
-/// </summary>
+/// Are we staging the unmodified pak files from the base release</summary>
         public virtual BuildCookRunConfig StageBaseReleasePaks(params object[] values)
         {
             if (true)
@@ -11996,9 +11635,6 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>Stage: Specifies a list of extra targets that should be staged along with a client
-/// 
-/// 
-/// Stage: Specifies a list of extra targets that should be staged along with a client
 /// </summary>
         public virtual BuildCookRunConfig ExtraTargetsToStageWithClient(params object[] values)
         {
@@ -12665,9 +12301,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>generate I/O store container file(s)
-/// 
-/// Shared: True if the cooker should write directly to container file(s)
-/// </summary>
+/// Shared: True if the cooker should write directly to container file(s)</summary>
         public virtual BuildCookRunConfig Cook4iostore(params object[] values)
         {
             if (true)
@@ -12685,9 +12319,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>save cooked output data to the Zen storage server
-/// 
-/// Shared: True if the cooker should store the cooked output to the Zen storage server
-/// </summary>
+/// Shared: True if the cooker should store the cooked output to the Zen storage server</summary>
         public virtual BuildCookRunConfig Zenstore(params object[] values)
         {
             if (true)
@@ -12705,9 +12337,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>URL to a running Zen server
-/// 
-/// Shared: URL to a running Zen server
-/// </summary>
+/// Shared: URL to a running Zen server</summary>
         public virtual BuildCookRunConfig Nozenautolaunch(params object[] values)
         {
             if (true)
@@ -12725,9 +12355,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>Should virtualized assets be rehydrated?
-/// 
-/// Shared: true if we want to rehydrate virtualized assets when staging.
-/// </summary>
+/// Shared: true if we want to rehydrate virtualized assets when staging.</summary>
         public virtual BuildCookRunConfig Rehydrateassets(params object[] values)
         {
             if (true)
@@ -13748,9 +13376,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>Platforms to build, join multiple platforms using +
-/// 
-/// Platform to build
-/// </summary>
+/// Platform to build</summary>
         public virtual BuildEditorConfig Platform(params object[] values)
         {
             if (true)
@@ -13802,9 +13428,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>Do a clean build
-/// 
-/// Whether to clean this target. If not specified, the target will be cleaned if -Clean is on the command line.
-/// </summary>
+/// Whether to clean this target. If not specified, the target will be cleaned if -Clean is on the command line.</summary>
         public virtual BuildEditorConfig Clean(params object[] values)
         {
             if (true)
@@ -13911,7 +13535,6 @@ public abstract class UatConfigGenerated : ToolConfig
     
 /// <summary>Project to build. Will search current path and paths in ueprojectdirs.
 /// Project to build. Will search current path and paths in ueprojectdirs. If omitted will build vanilla UE4Editor
-/// Project to build. Will search current path and paths in ueprojectdirs.
 /// Project to build. Will search current path and paths in ueprojectdirs. If omitted will build vanilla UnrealEditor</summary>
         public virtual BuildGameConfig Project(params object[] values)
         {
@@ -13930,10 +13553,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>Platforms to build, join multiple platforms using +
-/// Platforms to build, join multiple platforms using +
-/// 
-/// Platform to build
-/// </summary>
+/// Platform to build</summary>
         public virtual BuildGameConfig Platform(params object[] values)
         {
             if (true)
@@ -14003,9 +13623,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>Do a clean build
-/// 
-/// Whether to clean this target. If not specified, the target will be cleaned if -Clean is on the command line.
-/// </summary>
+/// Whether to clean this target. If not specified, the target will be cleaned if -Clean is on the command line.</summary>
         public virtual BuildGameConfig Clean(params object[] values)
         {
             if (true)
@@ -14110,7 +13728,6 @@ public abstract class UatConfigGenerated : ToolConfig
     
 /// <summary>Project to build. Will search current path and paths in ueprojectdirs.
 /// Project to build. Will search current path and paths in ueprojectdirs. If omitted will build vanilla UE4Editor
-/// Project to build. Will search current path and paths in ueprojectdirs.
 /// Project to build. Will search current path and paths in ueprojectdirs. If omitted will build vanilla UnrealEditor</summary>
         public virtual BuildServerConfig Project(params object[] values)
         {
@@ -14129,10 +13746,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>Platforms to build, join multiple platforms using +
-/// Platforms to build, join multiple platforms using +
-/// 
-/// Platform to build
-/// </summary>
+/// Platform to build</summary>
         public virtual BuildServerConfig Platform(params object[] values)
         {
             if (true)
@@ -14202,9 +13816,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>Do a clean build
-/// 
-/// Whether to clean this target. If not specified, the target will be cleaned if -Clean is on the command line.
-/// </summary>
+/// Whether to clean this target. If not specified, the target will be cleaned if -Clean is on the command line.</summary>
         public virtual BuildServerConfig Clean(params object[] values)
         {
             if (true)
@@ -17471,9 +17083,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
         
 /// <summary>If specified show actions but do not perform them.
-/// 
-/// If true no actions will be performed
-/// </summary>
+/// If true no actions will be performed</summary>
         public virtual SyncBinariesFromUGSConfig Preview(params object[] values)
         {
             if (true)
@@ -19966,7 +19576,7 @@ public abstract class UatConfigGenerated : ToolConfig
         }
 
         
-/// <summary>Map to Launch/PIE with (only valid when using a single project. Same as setting editor-pie=m1+m2, editor-startup=m1+m2 individually </summary>
+/// <summary>Map to Launch/PIE with (only valid when using a single project. Same as setting editor-pie=m1+m2, editor-startup=m1+m2 individually</summary>
         public virtual BenchmarkBuildConfig Editormaps(params object[] values)
         {
             if (true)
@@ -20017,7 +19627,7 @@ public abstract class UatConfigGenerated : ToolConfig
         }
 
         
-/// <summary>Cook / PIE with a cold local DDC and no shared ddc </summary>
+/// <summary>Cook / PIE with a cold local DDC and no shared ddc</summary>
         public virtual BenchmarkBuildConfig Coldddcnoshared(params object[] values)
         {
             if (true)
@@ -22851,7 +22461,7 @@ public abstract class UatConfigGenerated : ToolConfig
 
     protected readonly CreatePlatformExtensionConfig CreatePlatformExtensionStorage = new();
         
-/// <summary>Downloads a build from Jupiter </summary>
+/// <summary>Downloads a build from Jupiter</summary>
     public  class DownloadJupiterBuildConfig : ToolConfig
     {
         public override string Name => "DownloadJupiterBuild";
@@ -24517,7 +24127,7 @@ public abstract class UatConfigGenerated : ToolConfig
         AppendSubtool(CreatePlatformExtensionStorage);
         return (UatConfig) this;
     }
-/// <summary>Downloads a build from Jupiter </summary>
+/// <summary>Downloads a build from Jupiter</summary>
     public UatConfig DownloadJupiterBuild(Action<DownloadJupiterBuildConfig> configurator)
     {
         configurator?.Invoke(DownloadJupiterBuildStorage);

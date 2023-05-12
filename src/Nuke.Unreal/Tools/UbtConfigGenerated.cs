@@ -6,7 +6,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 namespace Nuke.Unreal.Tools;
-
+/// <summary>
+/// The current hot reload mode
+/// </summary>
 public enum HotReloadMode
 {
     
@@ -21,80 +23,145 @@ public enum HotReloadMode
     LiveCoding,
 }
 
-
+/// <summary>
+/// Available compiler toolchains on Windows platform
+/// </summary>
 public enum WindowsCompiler
 {
-    
+    /// <summary>
+    /// Use the default compiler. A specific value will always be used outside of configuration classes.
+    /// </summary>
     Default,
-    
+    /// <summary>
+    /// Use Clang for Windows, using the clang-cl driver.
+    /// </summary>
     Clang,
-    
+    /// <summary>
+    /// Use the Intel C++ compiler
+    /// </summary>
     Intel,
-    
+    /// <summary>
+    /// Visual Studio 2015 (Visual C++ 14.0)
+    /// </summary>
     VisualStudio2015_DEPRECATED,
-    
+    /// <summary>
+    /// Visual Studio 2015 (Visual C++ 14.0)
+    /// </summary>
     VisualStudio2015,
-    
+    /// <summary>
+    /// Visual Studio 2017 (Visual C++ 15.0)
+    /// </summary>
     VisualStudio2017,
-    
+    /// <summary>
+    /// Visual Studio 2019 (Visual C++ 16.0)
+    /// </summary>
     VisualStudio2019,
-    
+    /// <summary>
+    /// Visual Studio 2022 (Visual C++ 17.0)
+    /// </summary>
     VisualStudio2022,
 }
 
-
+/// <summary>
+/// Which static analyzer to use
+/// </summary>
 public enum WindowsStaticAnalyzer
 {
-    
+    /// <summary>
+    /// Do not perform static analysis
+    /// </summary>
     None,
-    
+    /// <summary>
+    /// Use the built-in Visual C++ static analyzer
+    /// </summary>
     VisualCpp,
-    
+    /// <summary>
+    /// Use PVS-Studio for static analysis
+    /// </summary>
     PVSStudio,
 }
 
-
+/// <summary>
+/// The type of target
+/// </summary>
 public enum TargetType
 {
-    
+    /// <summary>
+    /// Cooked monolithic game executable (GameName.exe).  Also used for a game-agnostic engine executable (UE4Game.exe or RocketGame.exe)
+    /// </summary>
     Game,
-    
+    /// <summary>
+    /// Uncooked modular editor executable and DLLs (UE4Editor.exe, UE4Editor*.dll, GameName*.dll)
+    /// </summary>
     Editor,
-    
+    /// <summary>
+    /// Cooked monolithic game client executable (GameNameClient.exe, but no server code)
+    /// </summary>
     Client,
-    
+    /// <summary>
+    /// Cooked monolithic game server executable (GameNameServer.exe, but no client code)
+    /// </summary>
     Server,
-    
+    /// <summary>
+    /// Program (standalone program, e.g. ShaderCompileWorker.exe, can be modular or monolithic depending on the program)
+    /// </summary>
     Program,
 }
 
-
+/// <summary>
+/// The type of configuration a target can be built for
+/// </summary>
 public enum UnrealTargetConfiguration
 {
-    
+    /// <summary>
+    /// Unknown
+    /// </summary>
     Unknown,
-    
+    /// <summary>
+    /// Debug configuration
+    /// </summary>
     Debug,
-    
+    /// <summary>
+    /// DebugGame configuration; equivalent to development, but with optimization disabled for game modules
+    /// </summary>
     DebugGame,
-    
+    /// <summary>
+    /// Development configuration
+    /// </summary>
     Development,
-    
+    /// <summary>
+    /// Shipping configuration
+    /// </summary>
     Shipping,
-    
+    /// <summary>
+    /// Test configuration
+    /// </summary>
     Test,
 }
 
-
+/// <summary>
+/// Output type for the static analyzer. This currently only works for the Clang static analyzer.
+/// The Clang static analyzer can do either Text, which prints the analysis to stdout, or
+/// html, where it writes out a navigable HTML page for each issue that it finds, per file.
+/// The HTML is output in the same directory as the object fil that would otherwise have
+/// been generated.
+/// All other analyzers default automatically to Text.
+/// </summary>
 public enum WindowsStaticAnalyzerOutputType
 {
-    
+    /// <summary>
+    /// Output the analysis to stdout.
+    /// </summary>
     Text,
-    
+    /// <summary>
+    /// Output the analysis to an HTML file in the object folder.
+    /// </summary>
     Html,
 }
 
-
+/// <summary>
+/// The type of project files to generate
+/// </summary>
 public enum ProjectFileFormat
 {
     
@@ -135,7 +202,9 @@ public enum ProjectFileFormat
     Rider,
 }
 
-
+/// <summary>
+/// Enum for the type of documentation to generate
+/// </summary>
 public enum DocumentationType
 {
     
@@ -154,16 +223,7 @@ public abstract class UbtConfigGenerated : ToolConfig
     public override string CliName => "";
     public override UnrealCompatibility Compatibility => UnrealCompatibility.UE4 | UnrealCompatibility.UE5;
     
-/// <summary>
-/// The amount of detail to write to the log
-/// 
-/// 
-/// The amount of detail to write to the log
-/// 
-/// Increase output verbosity
-/// 
-/// The amount of detail to write to the log
-/// 
+/// <summary>The amount of detail to write to the log
 /// Increase output verbosity</summary>
         public virtual UbtConfig Verbose(bool present = true)
         {
@@ -181,16 +241,7 @@ public abstract class UbtConfigGenerated : ToolConfig
         }
 
         
-/// <summary>
-/// The amount of detail to write to the log
-/// 
-/// 
-/// The amount of detail to write to the log
-/// 
-/// Increase output verbosity more
-/// 
-/// The amount of detail to write to the log
-/// 
+/// <summary>The amount of detail to write to the log
 /// Increase output verbosity more</summary>
         public virtual UbtConfig VeryVerbose(bool present = true)
         {
@@ -208,16 +259,8 @@ public abstract class UbtConfigGenerated : ToolConfig
         }
 
         
-/// <summary>
-/// Specifies the path to a log file to write. Note that the default mode (eg. building, generating project files) will create a log file by default if this not specified.
-/// 
-/// 
-/// Specifies the path to a log file to write. Note that the default mode (eg. building, generating project files) will create a log file by default if this not specified.
-/// 
+/// <summary>Specifies the path to a log file to write. Note that the default mode (eg. building, generating project files) will create a log file by default if this not specified.
 /// Specify a log file location instead of the default Engine/Programs/UnrealBuildTool/Log.txt
-/// 
-/// Specifies the path to a log file to write. Note that the default mode (eg. building, generating project files) will create a log file by default if this not specified.
-/// 
 /// Specify a log file location instead of the default Engine/Programs/UnrealHeaderTool/Saved/Logs/UnrealHeaderTool.log</summary>
         public virtual UbtConfig Log(object val = null)
         {
@@ -235,16 +278,7 @@ public abstract class UbtConfigGenerated : ToolConfig
         }
 
         
-/// <summary>
-/// Whether to include timestamps in the log
-/// 
-/// 
-/// Whether to include timestamps in the log
-/// 
-/// Include timestamps in the log
-/// 
-/// Whether to include timestamps in the log
-/// 
+/// <summary>Whether to include timestamps in the log
 /// Include timestamps in the log</summary>
         public virtual UbtConfig Timestamps(bool? val = null)
         {
@@ -262,16 +296,7 @@ public abstract class UbtConfigGenerated : ToolConfig
         }
 
         
-/// <summary>
-/// Whether to format messages in MsBuild format
-/// 
-/// 
-/// Whether to format messages in MsBuild format
-/// 
-/// Format messages for msbuild
-/// 
-/// Whether to format messages in MsBuild format
-/// 
+/// <summary>Whether to format messages in MsBuild format
 /// Format messages for msbuild</summary>
         public virtual UbtConfig FromMsBuild(bool? val = null)
         {
@@ -289,12 +314,7 @@ public abstract class UbtConfigGenerated : ToolConfig
         }
 
         
-/// <summary>
-/// Whether to write progress markup in a format that can be parsed by other programs
-/// 
-/// 
-/// Whether to write progress markup in a format that can be parsed by other programs
-/// 
+/// <summary>Whether to write progress markup in a format that can be parsed by other programs
 /// Write progress messages in a format that can be parsed by other programs</summary>
         public virtual UbtConfig Progress(bool? val = null)
         {
@@ -312,12 +332,7 @@ public abstract class UbtConfigGenerated : ToolConfig
         }
 
         
-/// <summary>
-/// Whether to ignore the mutex
-/// 
-/// 
-/// Whether to ignore the mutex
-/// 
+/// <summary>Whether to ignore the mutex
 /// Allow more than one instance of the program to run at once</summary>
         public virtual UbtConfig NoMutex(bool? val = null)
         {
@@ -335,12 +350,7 @@ public abstract class UbtConfigGenerated : ToolConfig
         }
 
         
-/// <summary>
-/// Whether to wait for the mutex rather than aborting immediately
-/// 
-/// 
-/// Whether to wait for the mutex rather than aborting immediately
-/// 
+/// <summary>Whether to wait for the mutex rather than aborting immediately
 /// Wait for another instance to finish and then start, rather than aborting immediately</summary>
         public virtual UbtConfig WaitMutex(bool? val = null)
         {
@@ -358,10 +368,7 @@ public abstract class UbtConfigGenerated : ToolConfig
         }
 
         
-/// <summary>
-/// Whether to wait for the mutex rather than aborting immediately
-/// 
-/// 
+/// <summary>Whether to wait for the mutex rather than aborting immediately
 /// Remote tool ini directory</summary>
         public virtual UbtConfig RemoteIni(object val = null)
         {
@@ -398,12 +405,7 @@ public abstract class UbtConfigGenerated : ToolConfig
         }
 
         
-/// <summary>
-/// The mode to execute
-/// 
-/// 
-/// The mode to execute
-/// 
+/// <summary>The mode to execute
 /// Clean build products. Equivalent to -Mode=Clean</summary>
         public virtual UbtConfig Clean(bool present = true)
         {
@@ -421,12 +423,7 @@ public abstract class UbtConfigGenerated : ToolConfig
         }
 
         
-/// <summary>
-/// The mode to execute
-/// 
-/// 
-/// The mode to execute
-/// 
+/// <summary>The mode to execute
 /// Generate project files based on IDE preference. Equivalent to -Mode=GenerateProjectFiles</summary>
         public virtual UbtConfig ProjectFiles(bool present = true)
         {
@@ -444,12 +441,7 @@ public abstract class UbtConfigGenerated : ToolConfig
         }
 
         
-/// <summary>
-/// The mode to execute
-/// 
-/// 
-/// The mode to execute
-/// 
+/// <summary>The mode to execute
 /// Generate project files in specified format. May be used multiple times.</summary>
         public virtual UbtConfig ProjectFileFormat(bool present = true)
         {
@@ -467,12 +459,7 @@ public abstract class UbtConfigGenerated : ToolConfig
         }
 
         
-/// <summary>
-/// The mode to execute
-/// 
-/// 
-/// The mode to execute
-/// 
+/// <summary>The mode to execute
 /// Generate Linux Makefile</summary>
         public virtual UbtConfig Makefile(bool present = true)
         {
@@ -490,12 +477,7 @@ public abstract class UbtConfigGenerated : ToolConfig
         }
 
         
-/// <summary>
-/// The mode to execute
-/// 
-/// 
-/// The mode to execute
-/// 
+/// <summary>The mode to execute
 /// Generate project files for CMake</summary>
         public virtual UbtConfig CMakefile(bool present = true)
         {
@@ -513,12 +495,7 @@ public abstract class UbtConfigGenerated : ToolConfig
         }
 
         
-/// <summary>
-/// The mode to execute
-/// 
-/// 
-/// The mode to execute
-/// 
+/// <summary>The mode to execute
 /// Generate project files for QMake</summary>
         public virtual UbtConfig QMakefile(bool present = true)
         {
@@ -536,12 +513,7 @@ public abstract class UbtConfigGenerated : ToolConfig
         }
 
         
-/// <summary>
-/// The mode to execute
-/// 
-/// 
-/// The mode to execute
-/// 
+/// <summary>The mode to execute
 /// Generate project files for KDevelop</summary>
         public virtual UbtConfig KDevelopfile(bool present = true)
         {
@@ -559,12 +531,7 @@ public abstract class UbtConfigGenerated : ToolConfig
         }
 
         
-/// <summary>
-/// The mode to execute
-/// 
-/// 
-/// The mode to execute
-/// 
+/// <summary>The mode to execute
 /// Generate project files for Codelite</summary>
         public virtual UbtConfig CodeliteFiles(bool present = true)
         {
@@ -582,12 +549,7 @@ public abstract class UbtConfigGenerated : ToolConfig
         }
 
         
-/// <summary>
-/// The mode to execute
-/// 
-/// 
-/// The mode to execute
-/// 
+/// <summary>The mode to execute
 /// Generate project files for XCode</summary>
         public virtual UbtConfig XCodeProjectFiles(bool present = true)
         {
@@ -624,12 +586,7 @@ public abstract class UbtConfigGenerated : ToolConfig
         }
 
         
-/// <summary>
-/// The mode to execute
-/// 
-/// 
-/// The mode to execute
-/// 
+/// <summary>The mode to execute
 /// Generate project files for Visual Studio Code</summary>
         public virtual UbtConfig VSCode(bool present = true)
         {
@@ -647,12 +604,7 @@ public abstract class UbtConfigGenerated : ToolConfig
         }
 
         
-/// <summary>
-/// The mode to execute
-/// 
-/// 
-/// The mode to execute
-/// 
+/// <summary>The mode to execute
 /// Generate project files for Visual Studio Mac</summary>
         public virtual UbtConfig VSMac(bool present = true)
         {
@@ -670,12 +622,7 @@ public abstract class UbtConfigGenerated : ToolConfig
         }
 
         
-/// <summary>
-/// The mode to execute
-/// 
-/// 
-/// The mode to execute
-/// 
+/// <summary>The mode to execute
 /// Generate project files for CLion</summary>
         public virtual UbtConfig CLion(bool present = true)
         {
@@ -693,12 +640,7 @@ public abstract class UbtConfigGenerated : ToolConfig
         }
 
         
-/// <summary>
-/// The mode to execute
-/// 
-/// 
-/// The mode to execute
-/// 
+/// <summary>The mode to execute
 /// Generate project files for Rider</summary>
         public virtual UbtConfig Rider(bool present = true)
         {
@@ -810,14 +752,10 @@ public abstract class UbtConfigGenerated : ToolConfig
         }
 
         
-/// <summary>
-/// Number of actions that can be executed in parallel. If 0 then code will pick a default based
+/// <summary>Number of actions that can be executed in parallel. If 0 then code will pick a default based
 /// on the number of cores available. Only applies to the ParallelExecutor
-/// 
-/// 
 /// Number of actions that can be executed in parallel. If 0 then code will pick a default based
-/// on the number of cores and memory available. Applies to the ParallelExecutor, HybridExecutor, and LocalExecutor
-/// </summary>
+/// on the number of cores and memory available. Applies to the ParallelExecutor, HybridExecutor, and LocalExecutor</summary>
         public virtual UbtConfig MaxParallelActions(double? val = null)
         {
             if (true)
@@ -872,12 +810,7 @@ public abstract class UbtConfigGenerated : ToolConfig
         }
 
         
-/// <summary>
-/// If true, fail if any of the generated header files is out of date.
-/// 
-/// 
-/// If true, fail if any of the generated header files is out of date.
-/// 
+/// <summary>If true, fail if any of the generated header files is out of date.
 /// Consider any changes to output files as being an error</summary>
         public virtual UbtConfig FailIfGeneratedCodeChanges(bool? val = null)
         {
@@ -1200,12 +1133,8 @@ public abstract class UbtConfigGenerated : ToolConfig
         }
 
         
-/// <summary>
-/// Version of the compiler toolchain to use on HoloLens. A value of "default" will be changed to a specific version at UBT startup.
-/// 
-/// 
-/// Version of the compiler toolchain to use on Windows platform. A value of "default" will be changed to a specific version at UBT start up.
-/// </summary>
+/// <summary>Version of the compiler toolchain to use on HoloLens. A value of "default" will be changed to a specific version at UBT startup.
+/// Version of the compiler toolchain to use on Windows platform. A value of "default" will be changed to a specific version at UBT start up.</summary>
         public virtual UbtConfig _2015(bool present = true)
         {
             if (present)
@@ -1222,12 +1151,8 @@ public abstract class UbtConfigGenerated : ToolConfig
         }
 
         
-/// <summary>
-/// Version of the compiler toolchain to use on HoloLens. A value of "default" will be changed to a specific version at UBT startup.
-/// 
-/// 
-/// Version of the compiler toolchain to use on Windows platform. A value of "default" will be changed to a specific version at UBT start up.
-/// </summary>
+/// <summary>Version of the compiler toolchain to use on HoloLens. A value of "default" will be changed to a specific version at UBT startup.
+/// Version of the compiler toolchain to use on Windows platform. A value of "default" will be changed to a specific version at UBT start up.</summary>
         public virtual UbtConfig _2017(WindowsCompiler? val = null)
         {
             if (true)
@@ -1244,12 +1169,8 @@ public abstract class UbtConfigGenerated : ToolConfig
         }
 
         
-/// <summary>
-/// Version of the compiler toolchain to use on HoloLens. A value of "default" will be changed to a specific version at UBT startup.
-/// 
-/// 
-/// Version of the compiler toolchain to use on Windows platform. A value of "default" will be changed to a specific version at UBT start up.
-/// </summary>
+/// <summary>Version of the compiler toolchain to use on HoloLens. A value of "default" will be changed to a specific version at UBT startup.
+/// Version of the compiler toolchain to use on Windows platform. A value of "default" will be changed to a specific version at UBT start up.</summary>
         public virtual UbtConfig _2019(WindowsCompiler? val = null)
         {
             if (true)
@@ -1266,12 +1187,8 @@ public abstract class UbtConfigGenerated : ToolConfig
         }
 
         
-/// <summary>
-/// Version of the compiler toolchain to use on HoloLens. A value of "default" will be changed to a specific version at UBT startup.
-/// 
-/// 
-/// Version of the compiler toolchain to use on Windows platform. A value of "default" will be changed to a specific version at UBT start up.
-/// </summary>
+/// <summary>Version of the compiler toolchain to use on HoloLens. A value of "default" will be changed to a specific version at UBT startup.
+/// Version of the compiler toolchain to use on Windows platform. A value of "default" will be changed to a specific version at UBT start up.</summary>
         public virtual UbtConfig _2022(WindowsCompiler? val = null)
         {
             if (true)
@@ -1364,12 +1281,8 @@ public abstract class UbtConfigGenerated : ToolConfig
         }
 
         
-/// <summary>
-/// Mark the build for distribution
-/// 
-/// 
-/// If -distribution was passed on the commandline, this build is for distribution.
-/// </summary>
+/// <summary>Mark the build for distribution
+/// If -distribution was passed on the commandline, this build is for distribution.</summary>
         public virtual UbtConfig Distribution(bool? val = null)
         {
             if (true)
@@ -1500,21 +1413,9 @@ public abstract class UbtConfigGenerated : ToolConfig
         }
 
         
-/// <summary>
-/// Enables address sanitizer (ASan)
-/// 
-/// 
+/// <summary>Enables address sanitizer (ASan)
 /// Enables address sanitizer (ASan).
-/// 
-/// 
-/// Enables address sanitizer (ASan)
-/// 
-/// 
-/// Enables address sanitizer (ASan).
-/// 
-/// 
-/// Enables address sanitizer (ASan). Only supported for Visual Studio 2019 16.7.0 and up.
-/// </summary>
+/// Enables address sanitizer (ASan). Only supported for Visual Studio 2019 16.7.0 and up.</summary>
         public virtual UbtConfig EnableASan(bool? val = null)
         {
             if (true)
@@ -1531,12 +1432,8 @@ public abstract class UbtConfigGenerated : ToolConfig
         }
 
         
-/// <summary>
-/// Enables thread sanitizer (TSan)
-/// 
-/// 
-/// Enables thread sanitizer (TSan).
-/// </summary>
+/// <summary>Enables thread sanitizer (TSan)
+/// Enables thread sanitizer (TSan).</summary>
         public virtual UbtConfig EnableTSan(bool? val = null)
         {
             if (true)
@@ -1553,12 +1450,8 @@ public abstract class UbtConfigGenerated : ToolConfig
         }
 
         
-/// <summary>
-/// Enables undefined behavior sanitizer (UBSan)
-/// 
-/// 
-/// Enables undefined behavior sanitizer (UBSan).
-/// </summary>
+/// <summary>Enables undefined behavior sanitizer (UBSan)
+/// Enables undefined behavior sanitizer (UBSan).</summary>
         public virtual UbtConfig EnableUBSan(bool? val = null)
         {
             if (true)
@@ -1691,12 +1584,8 @@ public abstract class UbtConfigGenerated : ToolConfig
         }
 
         
-/// <summary>
-/// Enables strict standard conformance mode (/permissive-) in VS2017+.
-/// 
-/// 
-/// Enables strict standard conformance mode (/permissive-).
-/// </summary>
+/// <summary>Enables strict standard conformance mode (/permissive-) in VS2017+.
+/// Enables strict standard conformance mode (/permissive-).</summary>
         public virtual UbtConfig Strict(bool? val = null)
         {
             if (true)
@@ -1843,9 +1732,7 @@ public abstract class UbtConfigGenerated : ToolConfig
         }
 
         
-/// <summary>
-/// Log all attempts to write to the specified file
-/// 
+/// <summary>Log all attempts to write to the specified file
 /// Trace writes requested to the specified file</summary>
         public virtual UbtConfig TraceWrites(object val = null)
         {
@@ -1863,9 +1750,7 @@ public abstract class UbtConfigGenerated : ToolConfig
         }
 
         
-/// <summary>
-/// Whether or not to suppress warnings of missing SDKs from warnings to LogEventType.Log in UEBuildPlatformSDK.cs
-/// 
+/// <summary>Whether or not to suppress warnings of missing SDKs from warnings to LogEventType.Log in UEBuildPlatformSDK.cs
 /// Missing SDKs error verbosity level will be reduced from warning to log</summary>
         public virtual UbtConfig SuppressSDKWarnings(bool? val = null)
         {
@@ -1883,9 +1768,7 @@ public abstract class UbtConfigGenerated : ToolConfig
         }
 
         
-/// <summary>
-/// The mode to execute
-/// 
+/// <summary>The mode to execute
 /// Generate project files for Eddie</summary>
         public virtual UbtConfig EddieProjectFiles(bool present = true)
         {
@@ -2124,9 +2007,7 @@ public abstract class UbtConfigGenerated : ToolConfig
         }
 
         
-/// <summary>
-/// Disables all logging including the default log location
-/// 
+/// <summary>Disables all logging including the default log location
 /// Disable log file creation including the default log file</summary>
         public virtual UbtConfig NoLog(bool? val = null)
         {
@@ -2533,16 +2414,7 @@ public abstract class UbtConfigGenerated : ToolConfig
         public override string CliName => "";
         public override UnrealCompatibility Compatibility => UnrealCompatibility.UE4 | UnrealCompatibility.UE5;
     
-/// <summary>
-/// The amount of detail to write to the log
-/// 
-/// 
-/// The amount of detail to write to the log
-/// 
-/// Increase output verbosity
-/// 
-/// The amount of detail to write to the log
-/// 
+/// <summary>The amount of detail to write to the log
 /// Increase output verbosity</summary>
         public virtual GlobalOptionsConfig Verbose(bool present = true)
         {
@@ -2560,16 +2432,7 @@ public abstract class UbtConfigGenerated : ToolConfig
         }
 
         
-/// <summary>
-/// The amount of detail to write to the log
-/// 
-/// 
-/// The amount of detail to write to the log
-/// 
-/// Increase output verbosity more
-/// 
-/// The amount of detail to write to the log
-/// 
+/// <summary>The amount of detail to write to the log
 /// Increase output verbosity more</summary>
         public virtual GlobalOptionsConfig VeryVerbose(bool present = true)
         {
@@ -2587,16 +2450,8 @@ public abstract class UbtConfigGenerated : ToolConfig
         }
 
         
-/// <summary>
-/// Specifies the path to a log file to write. Note that the default mode (eg. building, generating project files) will create a log file by default if this not specified.
-/// 
-/// 
-/// Specifies the path to a log file to write. Note that the default mode (eg. building, generating project files) will create a log file by default if this not specified.
-/// 
+/// <summary>Specifies the path to a log file to write. Note that the default mode (eg. building, generating project files) will create a log file by default if this not specified.
 /// Specify a log file location instead of the default Engine/Programs/UnrealBuildTool/Log.txt
-/// 
-/// Specifies the path to a log file to write. Note that the default mode (eg. building, generating project files) will create a log file by default if this not specified.
-/// 
 /// Specify a log file location instead of the default Engine/Programs/UnrealHeaderTool/Saved/Logs/UnrealHeaderTool.log</summary>
         public virtual GlobalOptionsConfig Log(object val = null)
         {
@@ -2614,16 +2469,7 @@ public abstract class UbtConfigGenerated : ToolConfig
         }
 
         
-/// <summary>
-/// Whether to include timestamps in the log
-/// 
-/// 
-/// Whether to include timestamps in the log
-/// 
-/// Include timestamps in the log
-/// 
-/// Whether to include timestamps in the log
-/// 
+/// <summary>Whether to include timestamps in the log
 /// Include timestamps in the log</summary>
         public virtual GlobalOptionsConfig Timestamps(bool? val = null)
         {
@@ -2641,16 +2487,7 @@ public abstract class UbtConfigGenerated : ToolConfig
         }
 
         
-/// <summary>
-/// Whether to format messages in MsBuild format
-/// 
-/// 
-/// Whether to format messages in MsBuild format
-/// 
-/// Format messages for msbuild
-/// 
-/// Whether to format messages in MsBuild format
-/// 
+/// <summary>Whether to format messages in MsBuild format
 /// Format messages for msbuild</summary>
         public virtual GlobalOptionsConfig FromMsBuild(bool? val = null)
         {
@@ -2668,12 +2505,7 @@ public abstract class UbtConfigGenerated : ToolConfig
         }
 
         
-/// <summary>
-/// Whether to write progress markup in a format that can be parsed by other programs
-/// 
-/// 
-/// Whether to write progress markup in a format that can be parsed by other programs
-/// 
+/// <summary>Whether to write progress markup in a format that can be parsed by other programs
 /// Write progress messages in a format that can be parsed by other programs</summary>
         public virtual GlobalOptionsConfig Progress(bool? val = null)
         {
@@ -2691,12 +2523,7 @@ public abstract class UbtConfigGenerated : ToolConfig
         }
 
         
-/// <summary>
-/// Whether to ignore the mutex
-/// 
-/// 
-/// Whether to ignore the mutex
-/// 
+/// <summary>Whether to ignore the mutex
 /// Allow more than one instance of the program to run at once</summary>
         public virtual GlobalOptionsConfig NoMutex(bool? val = null)
         {
@@ -2714,12 +2541,7 @@ public abstract class UbtConfigGenerated : ToolConfig
         }
 
         
-/// <summary>
-/// Whether to wait for the mutex rather than aborting immediately
-/// 
-/// 
-/// Whether to wait for the mutex rather than aborting immediately
-/// 
+/// <summary>Whether to wait for the mutex rather than aborting immediately
 /// Wait for another instance to finish and then start, rather than aborting immediately</summary>
         public virtual GlobalOptionsConfig WaitMutex(bool? val = null)
         {
@@ -2737,10 +2559,7 @@ public abstract class UbtConfigGenerated : ToolConfig
         }
 
         
-/// <summary>
-/// Whether to wait for the mutex rather than aborting immediately
-/// 
-/// 
+/// <summary>Whether to wait for the mutex rather than aborting immediately
 /// Remote tool ini directory</summary>
         public virtual GlobalOptionsConfig RemoteIni(object val = null)
         {
@@ -2777,12 +2596,7 @@ public abstract class UbtConfigGenerated : ToolConfig
         }
 
         
-/// <summary>
-/// The mode to execute
-/// 
-/// 
-/// The mode to execute
-/// 
+/// <summary>The mode to execute
 /// Clean build products. Equivalent to -Mode=Clean</summary>
         public virtual GlobalOptionsConfig Clean(bool present = true)
         {
@@ -2800,12 +2614,7 @@ public abstract class UbtConfigGenerated : ToolConfig
         }
 
         
-/// <summary>
-/// The mode to execute
-/// 
-/// 
-/// The mode to execute
-/// 
+/// <summary>The mode to execute
 /// Generate project files based on IDE preference. Equivalent to -Mode=GenerateProjectFiles</summary>
         public virtual GlobalOptionsConfig ProjectFiles(bool present = true)
         {
@@ -2823,12 +2632,7 @@ public abstract class UbtConfigGenerated : ToolConfig
         }
 
         
-/// <summary>
-/// The mode to execute
-/// 
-/// 
-/// The mode to execute
-/// 
+/// <summary>The mode to execute
 /// Generate project files in specified format. May be used multiple times.</summary>
         public virtual GlobalOptionsConfig ProjectFileFormat(bool present = true)
         {
@@ -2846,12 +2650,7 @@ public abstract class UbtConfigGenerated : ToolConfig
         }
 
         
-/// <summary>
-/// The mode to execute
-/// 
-/// 
-/// The mode to execute
-/// 
+/// <summary>The mode to execute
 /// Generate Linux Makefile</summary>
         public virtual GlobalOptionsConfig Makefile(bool present = true)
         {
@@ -2869,12 +2668,7 @@ public abstract class UbtConfigGenerated : ToolConfig
         }
 
         
-/// <summary>
-/// The mode to execute
-/// 
-/// 
-/// The mode to execute
-/// 
+/// <summary>The mode to execute
 /// Generate project files for CMake</summary>
         public virtual GlobalOptionsConfig CMakefile(bool present = true)
         {
@@ -2892,12 +2686,7 @@ public abstract class UbtConfigGenerated : ToolConfig
         }
 
         
-/// <summary>
-/// The mode to execute
-/// 
-/// 
-/// The mode to execute
-/// 
+/// <summary>The mode to execute
 /// Generate project files for QMake</summary>
         public virtual GlobalOptionsConfig QMakefile(bool present = true)
         {
@@ -2915,12 +2704,7 @@ public abstract class UbtConfigGenerated : ToolConfig
         }
 
         
-/// <summary>
-/// The mode to execute
-/// 
-/// 
-/// The mode to execute
-/// 
+/// <summary>The mode to execute
 /// Generate project files for KDevelop</summary>
         public virtual GlobalOptionsConfig KDevelopfile(bool present = true)
         {
@@ -2938,12 +2722,7 @@ public abstract class UbtConfigGenerated : ToolConfig
         }
 
         
-/// <summary>
-/// The mode to execute
-/// 
-/// 
-/// The mode to execute
-/// 
+/// <summary>The mode to execute
 /// Generate project files for Codelite</summary>
         public virtual GlobalOptionsConfig CodeliteFiles(bool present = true)
         {
@@ -2961,12 +2740,7 @@ public abstract class UbtConfigGenerated : ToolConfig
         }
 
         
-/// <summary>
-/// The mode to execute
-/// 
-/// 
-/// The mode to execute
-/// 
+/// <summary>The mode to execute
 /// Generate project files for XCode</summary>
         public virtual GlobalOptionsConfig XCodeProjectFiles(bool present = true)
         {
@@ -3003,12 +2777,7 @@ public abstract class UbtConfigGenerated : ToolConfig
         }
 
         
-/// <summary>
-/// The mode to execute
-/// 
-/// 
-/// The mode to execute
-/// 
+/// <summary>The mode to execute
 /// Generate project files for Visual Studio Code</summary>
         public virtual GlobalOptionsConfig VSCode(bool present = true)
         {
@@ -3026,12 +2795,7 @@ public abstract class UbtConfigGenerated : ToolConfig
         }
 
         
-/// <summary>
-/// The mode to execute
-/// 
-/// 
-/// The mode to execute
-/// 
+/// <summary>The mode to execute
 /// Generate project files for Visual Studio Mac</summary>
         public virtual GlobalOptionsConfig VSMac(bool present = true)
         {
@@ -3049,12 +2813,7 @@ public abstract class UbtConfigGenerated : ToolConfig
         }
 
         
-/// <summary>
-/// The mode to execute
-/// 
-/// 
-/// The mode to execute
-/// 
+/// <summary>The mode to execute
 /// Generate project files for CLion</summary>
         public virtual GlobalOptionsConfig CLion(bool present = true)
         {
@@ -3072,12 +2831,7 @@ public abstract class UbtConfigGenerated : ToolConfig
         }
 
         
-/// <summary>
-/// The mode to execute
-/// 
-/// 
-/// The mode to execute
-/// 
+/// <summary>The mode to execute
 /// Generate project files for Rider</summary>
         public virtual GlobalOptionsConfig Rider(bool present = true)
         {
@@ -3095,9 +2849,7 @@ public abstract class UbtConfigGenerated : ToolConfig
         }
 
         
-/// <summary>
-/// Log all attempts to write to the specified file
-/// 
+/// <summary>Log all attempts to write to the specified file
 /// Trace writes requested to the specified file</summary>
         public virtual GlobalOptionsConfig TraceWrites(object val = null)
         {
@@ -3115,9 +2867,7 @@ public abstract class UbtConfigGenerated : ToolConfig
         }
 
         
-/// <summary>
-/// Whether or not to suppress warnings of missing SDKs from warnings to LogEventType.Log in UEBuildPlatformSDK.cs
-/// 
+/// <summary>Whether or not to suppress warnings of missing SDKs from warnings to LogEventType.Log in UEBuildPlatformSDK.cs
 /// Missing SDKs error verbosity level will be reduced from warning to log</summary>
         public virtual GlobalOptionsConfig SuppressSDKWarnings(bool? val = null)
         {
@@ -3135,9 +2885,7 @@ public abstract class UbtConfigGenerated : ToolConfig
         }
 
         
-/// <summary>
-/// The mode to execute
-/// 
+/// <summary>The mode to execute
 /// Generate project files for Eddie</summary>
         public virtual GlobalOptionsConfig EddieProjectFiles(bool present = true)
         {
@@ -3266,14 +3014,10 @@ public abstract class UbtConfigGenerated : ToolConfig
         }
 
         
-/// <summary>
-/// Number of actions that can be executed in parallel. If 0 then code will pick a default based
+/// <summary>Number of actions that can be executed in parallel. If 0 then code will pick a default based
 /// on the number of cores available. Only applies to the ParallelExecutor
-/// 
-/// 
 /// Number of actions that can be executed in parallel. If 0 then code will pick a default based
-/// on the number of cores and memory available. Applies to the ParallelExecutor, HybridExecutor, and LocalExecutor
-/// </summary>
+/// on the number of cores and memory available. Applies to the ParallelExecutor, HybridExecutor, and LocalExecutor</summary>
         public virtual BuildConfigurationConfig MaxParallelActions(double? val = null)
         {
             if (true)
@@ -3328,12 +3072,7 @@ public abstract class UbtConfigGenerated : ToolConfig
         }
 
         
-/// <summary>
-/// If true, fail if any of the generated header files is out of date.
-/// 
-/// 
-/// If true, fail if any of the generated header files is out of date.
-/// 
+/// <summary>If true, fail if any of the generated header files is out of date.
 /// Consider any changes to output files as being an error</summary>
         public virtual BuildConfigurationConfig FailIfGeneratedCodeChanges(bool? val = null)
         {
@@ -5021,15 +4760,9 @@ public abstract class UbtConfigGenerated : ToolConfig
         }
 
         
-/// <summary>
-/// Enables address sanitizer (ASan)
-/// 
-/// 
+/// <summary>Enables address sanitizer (ASan)
 /// Enables address sanitizer (ASan).
-/// 
-/// 
-/// Enables address sanitizer (ASan). Only supported for Visual Studio 2019 16.7.0 and up.
-/// </summary>
+/// Enables address sanitizer (ASan). Only supported for Visual Studio 2019 16.7.0 and up.</summary>
         public virtual AndroidTargetRulesConfig EnableASan(bool? val = null)
         {
             if (true)
@@ -5065,12 +4798,8 @@ public abstract class UbtConfigGenerated : ToolConfig
         }
 
         
-/// <summary>
-/// Enables undefined behavior sanitizer (UBSan)
-/// 
-/// 
-/// Enables undefined behavior sanitizer (UBSan).
-/// </summary>
+/// <summary>Enables undefined behavior sanitizer (UBSan)
+/// Enables undefined behavior sanitizer (UBSan).</summary>
         public virtual AndroidTargetRulesConfig EnableUBSan(bool? val = null)
         {
             if (true)
@@ -5176,12 +4905,8 @@ public abstract class UbtConfigGenerated : ToolConfig
         public override string CliName => "";
         public override UnrealCompatibility Compatibility => UnrealCompatibility.UE4;
     
-/// <summary>
-/// Version of the compiler toolchain to use on HoloLens. A value of "default" will be changed to a specific version at UBT startup.
-/// 
-/// 
-/// Version of the compiler toolchain to use on Windows platform. A value of "default" will be changed to a specific version at UBT start up.
-/// </summary>
+/// <summary>Version of the compiler toolchain to use on HoloLens. A value of "default" will be changed to a specific version at UBT startup.
+/// Version of the compiler toolchain to use on Windows platform. A value of "default" will be changed to a specific version at UBT start up.</summary>
         public virtual HoloLensTargetRulesConfig _2015(bool present = true)
         {
             if (present)
@@ -5198,12 +4923,8 @@ public abstract class UbtConfigGenerated : ToolConfig
         }
 
         
-/// <summary>
-/// Version of the compiler toolchain to use on HoloLens. A value of "default" will be changed to a specific version at UBT startup.
-/// 
-/// 
-/// Version of the compiler toolchain to use on Windows platform. A value of "default" will be changed to a specific version at UBT start up.
-/// </summary>
+/// <summary>Version of the compiler toolchain to use on HoloLens. A value of "default" will be changed to a specific version at UBT startup.
+/// Version of the compiler toolchain to use on Windows platform. A value of "default" will be changed to a specific version at UBT start up.</summary>
         public virtual HoloLensTargetRulesConfig _2017(WindowsCompiler? val = null)
         {
             if (true)
@@ -5220,12 +4941,8 @@ public abstract class UbtConfigGenerated : ToolConfig
         }
 
         
-/// <summary>
-/// Version of the compiler toolchain to use on HoloLens. A value of "default" will be changed to a specific version at UBT startup.
-/// 
-/// 
-/// Version of the compiler toolchain to use on Windows platform. A value of "default" will be changed to a specific version at UBT start up.
-/// </summary>
+/// <summary>Version of the compiler toolchain to use on HoloLens. A value of "default" will be changed to a specific version at UBT startup.
+/// Version of the compiler toolchain to use on Windows platform. A value of "default" will be changed to a specific version at UBT start up.</summary>
         public virtual HoloLensTargetRulesConfig _2019(WindowsCompiler? val = null)
         {
             if (true)
@@ -5242,12 +4959,8 @@ public abstract class UbtConfigGenerated : ToolConfig
         }
 
         
-/// <summary>
-/// Version of the compiler toolchain to use on HoloLens. A value of "default" will be changed to a specific version at UBT startup.
-/// 
-/// 
-/// Version of the compiler toolchain to use on Windows platform. A value of "default" will be changed to a specific version at UBT start up.
-/// </summary>
+/// <summary>Version of the compiler toolchain to use on HoloLens. A value of "default" will be changed to a specific version at UBT startup.
+/// Version of the compiler toolchain to use on Windows platform. A value of "default" will be changed to a specific version at UBT start up.</summary>
         public virtual HoloLensTargetRulesConfig _2022(WindowsCompiler? val = null)
         {
             if (true)
@@ -5406,12 +5119,8 @@ public abstract class UbtConfigGenerated : ToolConfig
         }
 
         
-/// <summary>
-/// Mark the build for distribution
-/// 
-/// 
-/// If -distribution was passed on the commandline, this build is for distribution.
-/// </summary>
+/// <summary>Mark the build for distribution
+/// If -distribution was passed on the commandline, this build is for distribution.</summary>
         public virtual IOSTargetRulesConfig Distribution(bool? val = null)
         {
             if (true)
@@ -5523,12 +5232,8 @@ public abstract class UbtConfigGenerated : ToolConfig
         }
 
         
-/// <summary>
-/// Enables thread sanitizer (TSan)
-/// 
-/// 
-/// Enables thread sanitizer (TSan).
-/// </summary>
+/// <summary>Enables thread sanitizer (TSan)
+/// Enables thread sanitizer (TSan).</summary>
         public virtual IOSTargetRulesConfig EnableTSan(bool? val = null)
         {
             if (true)
@@ -5655,21 +5360,9 @@ public abstract class UbtConfigGenerated : ToolConfig
         public override string CliName => "";
         public override UnrealCompatibility Compatibility => UnrealCompatibility.UE4 | UnrealCompatibility.UE5;
     
-/// <summary>
-/// Enables address sanitizer (ASan)
-/// 
-/// 
+/// <summary>Enables address sanitizer (ASan)
 /// Enables address sanitizer (ASan).
-/// 
-/// 
-/// Enables address sanitizer (ASan)
-/// 
-/// 
-/// Enables address sanitizer (ASan).
-/// 
-/// 
-/// Enables address sanitizer (ASan). Only supported for Visual Studio 2019 16.7.0 and up.
-/// </summary>
+/// Enables address sanitizer (ASan). Only supported for Visual Studio 2019 16.7.0 and up.</summary>
         public virtual LinuxTargetRulesConfig EnableASan(bool? val = null)
         {
             if (true)
@@ -5686,12 +5379,8 @@ public abstract class UbtConfigGenerated : ToolConfig
         }
 
         
-/// <summary>
-/// Enables thread sanitizer (TSan)
-/// 
-/// 
-/// Enables thread sanitizer (TSan).
-/// </summary>
+/// <summary>Enables thread sanitizer (TSan)
+/// Enables thread sanitizer (TSan).</summary>
         public virtual LinuxTargetRulesConfig EnableTSan(bool? val = null)
         {
             if (true)
@@ -5708,12 +5397,8 @@ public abstract class UbtConfigGenerated : ToolConfig
         }
 
         
-/// <summary>
-/// Enables undefined behavior sanitizer (UBSan)
-/// 
-/// 
-/// Enables undefined behavior sanitizer (UBSan).
-/// </summary>
+/// <summary>Enables undefined behavior sanitizer (UBSan)
+/// Enables undefined behavior sanitizer (UBSan).</summary>
         public virtual LinuxTargetRulesConfig EnableUBSan(bool? val = null)
         {
             if (true)
@@ -6220,12 +5905,8 @@ public abstract class UbtConfigGenerated : ToolConfig
         }
 
         
-/// <summary>
-/// Enables strict standard conformance mode (/permissive-) in VS2017+.
-/// 
-/// 
-/// Enables strict standard conformance mode (/permissive-).
-/// </summary>
+/// <summary>Enables strict standard conformance mode (/permissive-) in VS2017+.
+/// Enables strict standard conformance mode (/permissive-).</summary>
         public virtual WindowsTargetRulesConfig Strict(bool? val = null)
         {
             if (true)
@@ -6767,9 +6448,7 @@ public abstract class UbtConfigGenerated : ToolConfig
         public override string CliName => "";
         public override UnrealCompatibility Compatibility => UnrealCompatibility.UE5;
     
-/// <summary>
-/// The amount of detail to write to the log
-/// 
+/// <summary>The amount of detail to write to the log
 /// Increase output verbosity</summary>
         public virtual UhtGlobalOptionsConfig Verbose(bool present = true)
         {
@@ -6787,9 +6466,7 @@ public abstract class UbtConfigGenerated : ToolConfig
         }
 
         
-/// <summary>
-/// The amount of detail to write to the log
-/// 
+/// <summary>The amount of detail to write to the log
 /// Increase output verbosity more</summary>
         public virtual UhtGlobalOptionsConfig VeryVerbose(bool present = true)
         {
@@ -6807,9 +6484,7 @@ public abstract class UbtConfigGenerated : ToolConfig
         }
 
         
-/// <summary>
-/// Specifies the path to a log file to write. Note that the default mode (eg. building, generating project files) will create a log file by default if this not specified.
-/// 
+/// <summary>Specifies the path to a log file to write. Note that the default mode (eg. building, generating project files) will create a log file by default if this not specified.
 /// Specify a log file location instead of the default Engine/Programs/UnrealHeaderTool/Saved/Logs/UnrealHeaderTool.log</summary>
         public virtual UhtGlobalOptionsConfig Log(object val = null)
         {
@@ -6827,9 +6502,7 @@ public abstract class UbtConfigGenerated : ToolConfig
         }
 
         
-/// <summary>
-/// Whether to include timestamps in the log
-/// 
+/// <summary>Whether to include timestamps in the log
 /// Include timestamps in the log</summary>
         public virtual UhtGlobalOptionsConfig Timestamps(bool? val = null)
         {
@@ -6847,9 +6520,7 @@ public abstract class UbtConfigGenerated : ToolConfig
         }
 
         
-/// <summary>
-/// Whether to format messages in MsBuild format
-/// 
+/// <summary>Whether to format messages in MsBuild format
 /// Format messages for msbuild</summary>
         public virtual UhtGlobalOptionsConfig FromMsBuild(bool? val = null)
         {
@@ -6867,9 +6538,7 @@ public abstract class UbtConfigGenerated : ToolConfig
         }
 
         
-/// <summary>
-/// Disables all logging including the default log location
-/// 
+/// <summary>Disables all logging including the default log location
 /// Disable log file creation including the default log file</summary>
         public virtual UhtGlobalOptionsConfig NoLog(bool? val = null)
         {
