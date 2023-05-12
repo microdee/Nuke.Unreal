@@ -58,8 +58,8 @@ namespace Nuke.Unreal
         
         public virtual UbtConfig UbtGlobal(UbtConfig _) => _;
         public virtual UatConfig UatGlobal(UatConfig _) => _
-            .Utf8output()
-            .Nop4();
+            .UTF8Output()
+            .NoP4();
 
         [Parameter("Extra arguments passed to UAT. It's recommended to use it only from command line, do not override.")]
         public virtual string[] UatArgs { get; set; }
