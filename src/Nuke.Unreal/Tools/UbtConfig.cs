@@ -5,6 +5,11 @@ using System.Threading.Tasks;
 
 namespace Nuke.Unreal.Tools;
 
+
+/// <summary>
+/// Unreal Build Tool defines the Unreal project structure and provides unified source
+/// building utilities over multiple platforms
+/// </summary>
 public class UbtConfig : UbtConfigGenerated
 {
     public UbtConfig Project(string project)

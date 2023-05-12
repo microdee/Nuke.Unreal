@@ -5,6 +5,10 @@ using System.Threading.Tasks;
 
 namespace Nuke.Unreal.Tools;
 
+/// <summary>
+/// Unreal Automation Tool is a vast collection of scripts solving all aspects of deploying
+/// a program made in Unreal Engine
+/// </summary>
 public class UatConfig : UatConfigGenerated
 {
     /// <summary>
