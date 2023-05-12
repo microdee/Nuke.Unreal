@@ -17,7 +17,7 @@ public static class AnalysisCommon
             || a.TrimStart("b").EqualsOrdinalIgnoreCase(b);
     }
 
-    public static string GetFieldOrPropertyName(this MemberDeclarationSyntax member) => member switch
+    public static string GetMemberName(this MemberDeclarationSyntax member) => member switch
     {
         PropertyDeclarationSyntax prop => prop.Identifier.Text,
         FieldDeclarationSyntax field => field
@@ -28,17 +28,85 @@ public static class AnalysisCommon
         _ => null
     };
 
+    public static TypeSyntax GetMemberType(this MemberDeclarationSyntax member) => member switch
+    {
+        PropertyDeclarationSyntax prop => prop.Type,
+        FieldDeclarationSyntax field => field
+            .ChildNodes()
+            .OfType<VariableDeclarationSyntax>()
+            .SelectMany(v => v
+                .ChildNodes()
+                .OfType<TypeSyntax>()
+            )
+            .FirstOrDefault(),
+        _ => null
+    };
+
+    public static string GetRootName(this TypeSyntax type) => type switch
+    {
+        ArrayTypeSyntax array => array.ElementType.GetRootName(),
+        NullableTypeSyntax nullable => nullable.ElementType.GetRootName(),
+        GenericNameSyntax generic => generic.Identifier.Text,
+        PredefinedTypeSyntax predefined => predefined.Keyword.Text,
+        SimpleNameSyntax regular => regular.Identifier.Text,
+        _ => type.ToString()
+    };
+
+    public static bool IsScalarType(this TypeSyntax type) => type switch
+    {
+        NullableTypeSyntax nullable => nullable.ElementType.IsScalarType(),
+        PredefinedTypeSyntax predefined => 
+            new [] {
+                "short",
+                "int",
+                "long",
+                "ushort",
+                "uint",
+                "ulong",
+                "float",
+                "double",
+                "decimal"
+            }.Any(t => t == predefined.Keyword.Text),
+        _ => false
+    };
+
+    public static IEnumerable<string> GetLiteralStringValues(this IEnumerable<AttributeArgumentSyntax> args) => args
+            .SelectMany(a => a
+                .DescendantNodes()
+                .OfType<LiteralExpressionSyntax>()
+                .Where(l => l.IsKind(SyntaxKind.StringLiteralExpression))
+            )
+            .Select(l => l.Token.ValueText);
+
+    public static string GetNamedAttributeArgument(this AttributeSyntax attr, string key) =>
+        attr?.ArgumentList?.Arguments
+            .Where(a => a
+                .DescendantNodes()
+                .OfType<NameEqualsSyntax>()
+                .Any(n => n.Name.ToString() == key)
+            )
+            .GetLiteralStringValues()
+            ?.FirstOrDefault();
+
+    public static IEnumerable<string> GetImplicitAttributeArguments(this AttributeSyntax attr) =>
+        attr?.ArgumentList?.Arguments
+            .Where(a => a
+                .ChildNodes().Count() == 1
+            )
+            .GetLiteralStringValues();
+
     public static string GetLeadingXmlDocs(this CSharpSyntaxNode node)
     {
         string documentation = null;
         if (node == null) return documentation;
         
-        var actualNode = node;
+        SyntaxNode actualNode = node;
         if (!node.HasStructuredTrivia)
         {
             var attributes = node
                 .ChildNodes()
-                .OfType<AttributeListSyntax>();
+                .OfType<AttributeListSyntax>()
+                .SelectMany(a => a.DescendantNodesAndSelf());
 
             actualNode = attributes.FirstOrDefault(a => a.HasStructuredTrivia) ?? node;
         }
