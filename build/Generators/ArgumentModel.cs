@@ -26,6 +26,8 @@ public class ArgumentModel : CommandLineEntity
     public string CollectionSeparator { get; set; } = "+";
     public string ValueSetter { get; set; } = "=";
     public EnumData Enum { get; set; }
+    public bool IsCollectionMultipleArgs { get; set; }
+    public bool IsCollection => ArgumentType >= ArgumentModelType.ScalarCollection;
     public string ParametersRenderer => ArgumentType switch
     {
         ArgumentModelType.Switch => "bool present = true",

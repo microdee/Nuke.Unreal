@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Nuke.Common.Utilities;
 
 namespace Nuke.Unreal.Tools;
 
@@ -11,26 +12,25 @@ public abstract class ToolConfig
     public abstract string CliName { get; }
     public abstract UnrealCompatibility Compatibility { get; }
     
-    protected readonly Dictionary<string, UnrealToolArgument> UsingArguments = new();
+    protected List<UnrealToolArgument> UsingArguments = new();
     protected readonly Dictionary<string, ToolConfig> UsingSubtools = new();
 
     protected virtual ToolConfig[] Configs => Array.Empty<ToolConfig>();
 
     public virtual void AppendArgument(UnrealToolArgument arg)
     {
-        if (UsingArguments.ContainsKey(arg.Name))
+        if (!arg.AllowMultiple)
         {
-            UsingArguments[arg.Name] = arg;
+            UsingArguments = UsingArguments
+                .Where(a => !a.Name.EqualsOrdinalIgnoreCase(arg.Name))
+                .ToList();
         }
-        else
-        {
-            UsingArguments.Add(arg.Name, arg);
-        }
+        UsingArguments.Add(arg);
     }
 
-    public virtual void AppendArgument(string arg)
+    public virtual void AppendArgument(string arg, UnrealCompatibility compatibility = UnrealCompatibility.All, bool allowMultiple = false)
     {
-        AppendArgument(UnrealToolArgument.Parse(arg));
+        AppendArgument(UnrealToolArgument.Parse(arg, compatibility, allowMultiple));
     }
 
     public virtual void AppendSubtool(ToolConfig subtool)
@@ -48,7 +48,7 @@ public abstract class ToolConfig
             .Where(v => ueVersion.IsCompatibleWith(v.Compatibility))
             .Select(v => v.Gather(ueVersion));
 
-        var args = UsingArguments.Values
+        var args = UsingArguments
             .Where(v => ueVersion.IsCompatibleWith(v.Compatibility))
             .Select(v => v.Gather(ueVersion));
 

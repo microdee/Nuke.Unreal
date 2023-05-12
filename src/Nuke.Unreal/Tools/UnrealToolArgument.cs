@@ -17,12 +17,13 @@ public record UnrealToolArgument(
     string Name,
     string Value = "",
     char Setter = '=',
-    UnrealCompatibility Compatibility = UnrealCompatibility.All
+    UnrealCompatibility Compatibility = UnrealCompatibility.All,
+    bool AllowMultiple = false
 ) {
     public override string ToString() => string.IsNullOrWhiteSpace(Value)
         ? Name : (Name + Setter + Value).DoubleQuoteIfNeeded();
     
-    public static UnrealToolArgument Parse(string input, UnrealCompatibility compatibility = UnrealCompatibility.All)
+    public static UnrealToolArgument Parse(string input, UnrealCompatibility compatibility = UnrealCompatibility.All, bool allowMultiple = false)
     {
         var groups = Regex.Match(input, @"^(?<NAME>.*?)((?<SETTER>[:=])(?<VALUE>.*))?$")?.Groups;
         return groups?["NAME"] == null
@@ -31,7 +32,8 @@ public record UnrealToolArgument(
                 groups?["NAME"]?.Value,
                 groups?["VALUE"]?.Value,
                 (groups?["SETTER"]?.Value ?? "=")[0],
-                compatibility
+                compatibility,
+                AllowMultiple: allowMultiple
             );
     }
 
