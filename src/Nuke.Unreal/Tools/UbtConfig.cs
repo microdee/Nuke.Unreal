@@ -43,21 +43,21 @@ public class UbtConfig : UbtConfigGenerated
     public UbtConfig Target(params object[] target) => Target(target.AsEnumerable());
     public UbtConfig Target(IEnumerable<object> target)
     {
-        AppendArgument(string.Join('+', target));
+        AppendArgument(string.Join('+', target), new(IsRawText: true));
         return this;
     }
 
     public UbtConfig Platform(params object[] platform) => Platform(platform.AsEnumerable());
     public UbtConfig Platform(IEnumerable<object> platform)
     {
-        AppendArgument(string.Join('+', platform));
+        AppendArgument(string.Join('+', platform), new(IsRawText: true));
         return this;
     }
 
     public UbtConfig Configuration(params object[] config) => Configuration(config.AsEnumerable());
     public UbtConfig Configuration(IEnumerable<object> config)
     {
-        AppendArgument(string.Join('+', config));
+        AppendArgument(string.Join('+', config), new(IsRawText: true));
         return this;
     }
 }

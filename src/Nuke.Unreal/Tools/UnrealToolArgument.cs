@@ -76,7 +76,7 @@ public record UnrealToolArgument(
             : new(
                 groups?["NAME"]?.Value,
                 groups?["VALUE"]?.Value,
-                (groups?["SETTER"]?.Value ?? "=")[0],
+                (groups?["SETTER"]?.Value ?? "=").FirstOrDefault('='),
                 Meta: meta
             );
     }

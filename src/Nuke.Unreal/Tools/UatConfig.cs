@@ -33,7 +33,9 @@ public class UatConfig : UatConfigGenerated
                 "-NoCompile",
                 Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
                 Setter: '=',
-                Compatibility: UnrealCompatibility.All
+                Meta: new(
+                    Compatibility: UnrealCompatibility.All
+                )
             ));
         }
         return this;

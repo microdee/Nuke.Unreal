@@ -10,27 +10,27 @@ public class UnrealToolConfigTests
     [Fact]
     public void UbtGenerate()
     {
-        var result = new UnrealBuildToolConfig()
+        var result = new UbtConfig()
             .ProjectFiles()
             .Project("A:/path.uproject")
             .Game()
             .Progress()
-            .Gather();
+            .Gather(new EngineVersion("4.27"));
         Assert.Equal("-ProjectFiles A:/path.uproject -game -Progress", result);
         Assert.Throws<ArgumentException>(() => {
-            var faulty = new UnrealBuildToolConfig()
+            var faulty = new UbtConfig()
                 .ProjectFiles()
                 .Project("A:/path")
                 .Game()
                 .Progress()
-                .Gather();
+                .Gather(new EngineVersion("4.27"));
         });
     }
 
     [Fact]
     public void UbtBuild()
     {
-        var result = new UnrealBuildToolConfig()
+        var result = new UbtConfig()
             .Target("RW1", "RW1" + UnrealTargetType.Editor, "SomeOther")
             .Platform(UnrealPlatform.Win64, UnrealPlatform.Android)
             .Configuration(
@@ -39,9 +39,12 @@ public class UnrealToolConfigTests
                 UnrealConfig.Shipping
             )
             .Project("A:/path.uproject")
-            .Gather();
+            .Append("-Key=Value with spaces", "-OtherKey")
+            .AppendRaw("-just -some--raw -arguments", "-more -here")
+            .Gather(new EngineVersion("4.27"));
         Assert.Equal(
-            "RW1+RW1Editor+SomeOther Win64+Android Development+DebugGame+Shipping A:/path.uproject",
+            "RW1+RW1Editor+SomeOther Win64+Android Development+DebugGame+Shipping A:/path.uproject"
+            + " \"-Key=Value with spaces\" -OtherKey -just -some--raw -arguments -more -here",
             result
         );
     }
