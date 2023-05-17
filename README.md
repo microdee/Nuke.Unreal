@@ -74,7 +74,12 @@ class Build : UnrealBuild
 ## Breaking changes
 
 ### 1.1 → 1.2
-* **TODO:**
+* `UnrealBuild.CookArguments` has been replaced with `UnrealBuild.UatGlobal` and `UnrealBuild.UatCook` using the tool configurator instead of just an `IEnumerable` of strings
+* `UnrealBuild.CookAll` has been removed, `UnrealBuild.UatCook` override should be used instead.
+* `IPackageTargets.PackageArguments` has been replaced with `IPackageTargets.UatPackage` using the tool configurator instead of just an `IEnumerable` of strings
+* `IPackageTargets.PackagePak` has been removed, `IPackageTargets.PackageArguments` override should be used instead.
+* `UnrealBuild.UbtConfig` → `UnrealBuild.UbtGlobal`
+* `UnrealBuildToolConfig` → `UbtConfig`
 
 ### 1.0 → 1.1
 * `ToProject` and `ToPlugin` → `ProjectPath` and `PluginPath`
