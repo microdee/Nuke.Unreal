@@ -53,6 +53,7 @@ public class ConfigIni
 
     public static ConfigIni? Parse(string input)
     {
+        if (string.IsNullOrWhiteSpace(input)) return null;
         ConfigSession? currentSession = null;
         var ini = new ConfigIni();
         int order = 0;

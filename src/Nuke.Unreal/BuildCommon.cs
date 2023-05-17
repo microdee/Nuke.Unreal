@@ -10,6 +10,7 @@ using Nuke.Common.Utilities;
 using System.IO;
 using System.Reflection;
 using Serilog;
+using System.Text.RegularExpressions;
 
 namespace Nuke.Unreal
 {
@@ -115,6 +116,38 @@ namespace Nuke.Unreal
                     }
                 }
             return false;
+        }
+
+        public static Func<string, string> Parse(this string input, string pattern)
+        {
+            if (input == null) return i => null;
+            
+            var groups = Regex.Matches(input, pattern)?.FirstOrDefault()?.Groups;
+            return i => groups?[i]?.Value;
+        }
+
+        public static AbsolutePath GetVersionSubfolder(this AbsolutePath root, string version)
+        {
+            if (Path.IsPathRooted(version))
+            {
+                return (AbsolutePath) version;
+            }
+            if ((root / version).DirectoryExists())
+            {
+                return root / version;
+            }
+            version = version.Contains('.') ? version : version + ".0";
+            if (Version.TryParse(version, out var semVersion))
+            {
+                var majorMinorPatch = $"{semVersion.Major}.{semVersion.Minor}.{semVersion.Build}".Replace("-1", "0");
+                var majorMinor = $"{semVersion.Major}.{semVersion.Minor}".Replace("-1", "0");
+                var candidate =
+                    root.GlobDirectories("*").FirstOrDefault(d => d.Name.Contains(majorMinorPatch))
+                    ?? root.GlobDirectories("*").FirstOrDefault(d => d.Name.Contains(majorMinor))
+                    ?? root.GlobDirectories("*").FirstOrDefault(d => d.Name.Contains(semVersion.Major.ToString()));
+                return candidate;
+            }
+            return null;
         }
     }
 }
