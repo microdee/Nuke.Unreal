@@ -86,6 +86,69 @@ namespace Nuke.Unreal
         AbsolutePath BuildTools
     );
 
+    public record AndroidSdkNdkUserSettings(
+        string SdkPath,
+        string NdkPath,
+        string JavaPath,
+        string SdkApiLevel,
+        string NdkApiLevel
+    ) {
+        
+        public static readonly string SdkUserSettingsSection = "/Script/AndroidPlatformEditor.AndroidSDKSettings";
+
+        public static string GetConfig(ConfigIni from, string key) =>
+            from?[SdkUserSettingsSection]?[key].FirstOrDefault().Value;
+
+        public static string GetConfigPath(ConfigIni from, string key) =>
+            GetConfig(from, key)?.Parse(@"Path=""(?<PATH>.*)""")("PATH");
+
+        public static void SetConfig(ConfigIni to, string key, string value)
+        {
+            to.FindOrAdd(SdkUserSettingsSection).Set(key, value);
+        }
+
+        public static void SetConfigPath(ConfigIni to, string key, string value)
+        {
+            to.FindOrAdd(SdkUserSettingsSection).Set(key, $"(Path=\"{value}\")");
+        }
+
+        public static AndroidSdkNdkUserSettings From(ConfigIni ini) => new(
+            GetConfigPath(ini, "SDKPath"),
+            GetConfigPath(ini, "NDKPath"),
+            GetConfigPath(ini, "JavaPath"),
+            GetConfig(ini, "SDKAPILevel"),
+            GetConfig(ini, "NDKAPILevel")
+        );
+
+        public bool IsEmpty =>
+            SdkPath == null
+            && NdkPath == null
+            && JavaPath == null
+            && SdkApiLevel == null
+            && NdkApiLevel == null;
+
+        public ConfigIni ToConfig()
+        {
+            var result = new ConfigIni();
+            SetConfigPath(result, "SDKPath", SdkPath);
+            SetConfigPath(result, "NDKPath", NdkPath);
+            SetConfigPath(result, "JavaPath", JavaPath);
+            SetConfig(result, "SDKAPILevel", SdkApiLevel);
+            SetConfig(result, "NDKAPILevel", NdkApiLevel);
+            return result;
+        }
+
+        public override string ToString() => IsEmpty ? null : ToConfig().Serialize().Trim();
+
+        public AndroidSdkNdkUserSettings Merge(AndroidSdkNdkUserSettings from) => this with {
+            SdkPath = from?.SdkPath ?? SdkPath,
+            NdkPath = from?.NdkPath ?? NdkPath,
+            JavaPath = from?.JavaPath ?? JavaPath,
+            SdkApiLevel = from?.SdkApiLevel ?? SdkApiLevel,
+            NdkApiLevel = from?.NdkApiLevel ?? NdkApiLevel
+        };
+    }
+
     [ParameterPrefix("Android")]
     public interface IAndroidTargets : INukeBuild
     {
@@ -125,16 +188,33 @@ namespace Nuke.Unreal
         [Parameter("Specify version of the Android build tools to use. Latest will be used by default, or when the specified version is not found")]
         int BuildToolVersion => GetParameter(() => BuildToolVersion);
 
-        Target CleanIntermediateAndroid => _ => _
-            .Description("Clean up the Android folder inside Intermediate")
-            .OnlyWhenStatic(() => IsAndroidPlatform())
-            .DependentFor<UnrealBuild>(ub => ub.Build)
-            .DependentFor<IPackageTargets>(p => p.Package)
-            .Executes(() =>
-            {
-                var self = Self<UnrealBuild>();
-                DeleteDirectory(self.ProjectFolder / "Intermediate" / "Android");
-            });
+        [Parameter("Android SDK version or path. If not specified a local cache will be used. If that doesn't exist the global user settings will be used")]
+        AbsolutePath SdkPath => GetParameter(() => SdkPath);
+
+        [Parameter("Android NDK version or path. If not specified a local cache will be used. If that doesn't exist the global user settings will be used")]
+        string NdkVersion => GetParameter(() => NdkVersion);
+
+        [Parameter("Absolute path to Android Java. If not specified a local cache will be used. If that doesn't exist the global user settings will be used")]
+        string JavaPath => GetParameter(() => JavaPath);
+
+        [Parameter("If not specified a local cache will be used. If that doesn't exist the global user settings will be used")]
+        string SdkApiLevel => GetParameter(() => SdkApiLevel);
+
+        [Parameter("If not specified a local cache will be used. If that doesn't exist the global user settings will be used")]
+        string NdkApiLevel => GetParameter(() => NdkApiLevel);
+
+        AbsolutePath UserEngineIniPath => (AbsolutePath)
+            EnvironmentInfo.SpecialFolder(SpecialFolders.LocalApplicationData)
+            / "Unreal Engine" / "Engine" / "Config" / "UserEngine.ini";
+
+        AbsolutePath UserEngineIniCache => TemporaryDirectory
+            / "Config" / "UserEngine.ini";
+
+        AbsolutePath AndroidHome => (AbsolutePath)
+            EnvironmentInfo.SpecialFolder(SpecialFolders.LocalApplicationData) / "Android" / "Sdk";
+
+        AbsolutePath AndroidNdkRoot => AndroidHome / "ndk";
+        AbsolutePath AndroidBuildToolsRoot => AndroidHome / "build-tools";
 
         AndroidBuildEnvironment AndroidBoilerplate()
         {
@@ -149,30 +229,26 @@ namespace Nuke.Unreal
                 $"{artifactFolder} doesn't exist. Did packaging go wrong?"
             );
 
-            var androidHome = (AbsolutePath) EnvironmentInfo.SpecialFolder(SpecialFolders.LocalApplicationData) / "Android" / "Sdk";
-            var ndkFolderParent = androidHome / "ndk";
-
             Assert.DirectoryExists(
-                ndkFolderParent,
-                $"{ndkFolderParent} doesn't exist. Please configure your Android development environment"
+                AndroidNdkRoot,
+                $"{AndroidNdkRoot} doesn't exist. Please configure your Android development environment"
             );
 
-            var ndkFolder = (AbsolutePath) Directory.EnumerateDirectories(ndkFolderParent).FirstOrDefault();
+            var ndkFolder = (AbsolutePath) Directory.EnumerateDirectories(AndroidNdkRoot).FirstOrDefault();
             
             Assert.NotNull(
                 ndkFolder,
                 "There are no NDK subfolders. Please configure your Android development environment"
             );
 
-            var buildToolsParent = androidHome / "build-tools";
-            var buildToolsCandidates = buildToolsParent.GlobDirectories($"{BuildToolVersion}.*");
+            var buildToolsCandidates = AndroidBuildToolsRoot.GlobDirectories($"{BuildToolVersion}.*");
             if (buildToolsCandidates.IsEmpty())
             {
-                buildToolsCandidates = buildToolsParent.GlobDirectories("*");
+                buildToolsCandidates = AndroidBuildToolsRoot.GlobDirectories("*");
             }
             var buildTools = buildToolsCandidates.Last();
 
-            return new(artifactFolder, androidHome, ndkFolder, buildTools);
+            return new(artifactFolder, AndroidHome, ndkFolder, buildTools);
         }
 
         string GetApkName()
@@ -188,6 +264,77 @@ namespace Nuke.Unreal
             var self = Self<UnrealBuild>();
             return self.ProjectFolder / "Binaries" / "Android" / (GetApkName() + ".apk");
         }
+
+        Target ApplySdkUserSettings => _ => _
+            .Description(
+                "For some cursed reason Epic decided to store crucial project breaking build settings"
+                + " in a user scoped shared location (AppData/Local). This target attempts to make"
+                + " it less shared info, so one project compilation doesn't break the other one."
+            )
+            .OnlyWhenStatic(() => IsAndroidPlatform())
+            .DependentFor<UnrealBuild>(ub => ub.Build, ub => ub.Cook)
+            .DependentFor<IPackageTargets>(p => p.Package)
+            .Executes(() =>
+            {
+                string cachedIniContent = UserEngineIniCache.FileExists() ? File.ReadAllText(UserEngineIniCache) : null;
+                string sharedIniContent = UserEngineIniPath.FileExists() ? File.ReadAllText(UserEngineIniPath) : null;
+                var cachedIni = ConfigIni.Parse(cachedIniContent);
+                var sharedIni = ConfigIni.Parse(sharedIniContent);
+
+                var cached = AndroidSdkNdkUserSettings.From(cachedIni);
+                var shared = AndroidSdkNdkUserSettings.From(sharedIni);
+
+                string AppendPrefix(string input) =>
+                    input?.StartsWithOrdinalIgnoreCase("android-") ?? true ? input : "android-" + input;
+
+                var input = new AndroidSdkNdkUserSettings(
+                    SdkPath,
+                    NdkVersion == null ? null : AndroidNdkRoot.GetVersionSubfolder(NdkVersion),
+                    JavaPath,
+                    AppendPrefix(SdkApiLevel),
+                    AppendPrefix(NdkApiLevel)
+                );
+
+                if (input.IsEmpty && cached.IsEmpty)
+                {
+                    Log.Information("No local change is requested");
+                    if (!shared.IsEmpty)
+                    {
+                        Log.Information("User scoped configuration is:\n" + shared.ToString());
+                    }
+                    return;
+                }
+
+                Log.Debug("SDK User settings are");
+                Log.Debug("User Scoped:\n" + (shared.ToString() ?? "none"));
+                Log.Debug("Cached:\n" + (cached.ToString() ?? "none"));
+                Log.Debug("Command Line:\n" + (input.ToString() ?? "none"));
+
+                var result = shared.Merge(cached).Merge(input);
+
+                Log.Information("Result:\n" + (result.ToString() ?? "none"));
+
+                if (!result.IsEmpty)
+                {
+                    Log.Information("Writing configuration to cache");
+                    Directory.CreateDirectory(UserEngineIniCache.Parent);
+                    File.WriteAllText(UserEngineIniCache, result.ToString());
+                    Log.Information("Writing configuration to User shared settings");
+                    Directory.CreateDirectory(UserEngineIniPath.Parent);
+                    File.WriteAllText(UserEngineIniPath, result.ToString());
+                }
+            });
+
+        Target CleanIntermediateAndroid => _ => _
+            .Description("Clean up the Android folder inside Intermediate")
+            .OnlyWhenStatic(() => IsAndroidPlatform())
+            .DependentFor<UnrealBuild>(ub => ub.Build)
+            .DependentFor<IPackageTargets>(p => p.Package)
+            .Executes(() =>
+            {
+                var self = Self<UnrealBuild>();
+                DeleteDirectory(self.ProjectFolder / "Intermediate" / "Android");
+            });
 
         Target SignApk => _ => _
             .Description("Sign the output APK")

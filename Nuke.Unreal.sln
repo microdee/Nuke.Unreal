@@ -7,8 +7,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{CF273417-589
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nuke.Unreal", "src\Nuke.Unreal\Nuke.Unreal.csproj", "{98AB7F3D-791C-48A6-A1B7-61E7956C301F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nuke.Unreal.ToolGenerators", "src\Nuke.Unreal.ToolGenerators\Nuke.Unreal.ToolGenerators.csproj", "{792409CE-0FB6-4885-89C0-5ECE639DE618}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "_build", "build\_build.csproj", "{9F00CDF8-6FC4-48C7-B8C6-8F7920D5F48B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nuke.Unreal.Tests", "src\Nuke.Unreal.Tests\Nuke.Unreal.Tests.csproj", "{FCD0931E-7D8A-4DE8-8193-7B82BF1D0416}"
