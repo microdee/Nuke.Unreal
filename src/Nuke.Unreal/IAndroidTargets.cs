@@ -284,12 +284,15 @@ namespace Nuke.Unreal
                 var cached = AndroidSdkNdkUserSettings.From(cachedIni);
                 var shared = AndroidSdkNdkUserSettings.From(sharedIni);
 
+                string AppendPrefix(string input) =>
+                    input?.StartsWithOrdinalIgnoreCase("android-") ?? true ? input : "android-" + input;
+
                 var input = new AndroidSdkNdkUserSettings(
                     SdkPath,
-                    AndroidNdkRoot.GetVersionSubfolder(NdkVersion),
+                    NdkVersion == null ? null : AndroidNdkRoot.GetVersionSubfolder(NdkVersion),
                     JavaPath,
-                    SdkApiLevel,
-                    NdkApiLevel
+                    AppendPrefix(SdkApiLevel),
+                    AppendPrefix(NdkApiLevel)
                 );
 
                 if (input.IsEmpty && cached.IsEmpty)
