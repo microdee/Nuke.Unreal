@@ -78,6 +78,7 @@ namespace Nuke.Unreal
             string shortName,
             IniHierarchyLevel lowestLevel = IniHierarchyLevel.Base,
             IniHierarchyLevel highestLevel = IniHierarchyLevel.Saved,
+            bool considerPlugins = true,
             IEnumerable<string> extraConfigSubfolder = null
         ) {
             var resultIni = new ConfigIni();
