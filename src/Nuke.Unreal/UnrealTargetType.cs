@@ -10,11 +10,11 @@ namespace Nuke.Unreal
     [TypeConverter(typeof(TypeConverter<UnrealTargetType>))]
     public class UnrealTargetType : Enumeration
     {
-        public static UnrealTargetType Game = new() { Value = nameof(Game) };
-        public static UnrealTargetType Editor = new() { Value = nameof(Editor) };
-        public static UnrealTargetType Client = new() { Value = nameof(Client) };
-        public static UnrealTargetType Server = new() { Value = nameof(Server) };
-        public static UnrealTargetType Program = new() { Value = nameof(Program) };
+        public static readonly UnrealTargetType Game = new() { Value = nameof(Game) };
+        public static readonly UnrealTargetType Editor = new() { Value = nameof(Editor) };
+        public static readonly UnrealTargetType Client = new() { Value = nameof(Client) };
+        public static readonly UnrealTargetType Server = new() { Value = nameof(Server) };
+        public static readonly UnrealTargetType Program = new() { Value = nameof(Program) };
 
         public static implicit operator string(UnrealTargetType configuration)
         {

@@ -43,7 +43,7 @@ namespace Nuke.Unreal.BoilerplateGenerators
                 .Replace("private", "", true, null)
                 .Trim('.').Trim('/');
 
-            if(!FileSystemTasks.DirectoryExists(templatesPath / TemplateSubfolder))
+            if(!(templatesPath / TemplateSubfolder).DirectoryExists())
                 templatesPath = DefaultTemplateFolder;
             
             var sourceTemplateDir = templatesPath / TemplateSubfolder;

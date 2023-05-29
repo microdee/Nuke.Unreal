@@ -41,8 +41,6 @@ class Build : NukeBuild
     ///   - Microsoft VisualStudio     https://nuke.build/visualstudio
     ///   - Microsoft VSCode           https://nuke.build/vscode
 
-    private readonly string _msbuildXmlns = "http://schemas.microsoft.com/developer/msbuild/2003";
-
     public static int Main () => Execute<Build>(x => x.Info);
     protected override void OnBuildCreated() => NoLogo = true;
 

@@ -82,7 +82,7 @@ public static class Unreal
     public static AbsolutePath LocatorPath => _locatorPath ??= BuildCommon.GetContentsFolder() / "UnrealLocator" / "UnrealLocator.exe";
 
     private static Tool _locator = null;
-    public static Tool Locator => _locator ??= ToolResolver.GetLocalTool(LocatorPath);
+    public static Tool Locator => _locator ??= ToolResolver.GetTool(LocatorPath);
 
     private static readonly ConcurrentDictionary<string, UnrealEngineInstance> Instances = new();
 

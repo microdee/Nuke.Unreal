@@ -9,6 +9,6 @@ namespace Nuke.Unreal.BoilerplateGenerators
         {
         }
 
-        protected override bool FilePredicate(string f) => f.EndsWith(".build.cs", true, null);
+        protected override bool FilePredicate(AbsolutePath f) => f.Name.EndsWith(".build.cs", true, null);
     }
 }
