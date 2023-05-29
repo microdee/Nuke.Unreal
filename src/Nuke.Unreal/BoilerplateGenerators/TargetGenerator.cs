@@ -40,7 +40,9 @@ namespace Nuke.Unreal.BoilerplateGenerators
             var srcFolder = currentFolder / "Source";
             Directory.CreateDirectory(srcFolder);
 
-            new ModuleGenerator().Generate(templatesPath, srcFolder, name);
+            new ModuleGenerator()
+                .SetAddToTarget(true)
+                .Generate(templatesPath, srcFolder, name);
         }
 
         protected void CheckInsideSourceFolder(AbsolutePath currentFolder)
