@@ -57,7 +57,7 @@ namespace Nuke.Unreal
                         .Stage()
                         .Package()
                         .Archive()
-                        .Archivedirectory(self.OutPath)
+                        .Archivedirectory(self.Output)
                         .If(InvokedTargets.Contains(self.Cook),
                             _ => _.Skipcook(),
                             _ => _.Cook()

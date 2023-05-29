@@ -122,7 +122,7 @@ namespace Nuke.Unreal
                 var self = Self<UnrealBuild>();
 
                 var packageName = $"{PluginName}-{self.Platform}-{PluginVersion}.{self.GetEngineVersionFromProject().FullVersionName}-PreBuilt";
-                var targetDir = self.OutPath / packageName;
+                var targetDir = self.Output / packageName;
                 var archiveFileName = $"{packageName}.zip";
 
                 Log.Information($"Packaging plugin: {packageName}");
@@ -155,7 +155,7 @@ namespace Nuke.Unreal
                 var self = Self<UnrealBuild>();
 
                 var packageName = $"{PluginName}-{self.Platform}-{PluginVersion}.{self.GetEngineVersionFromProject().FullVersionName}-Source";
-                var targetDir = self.OutPath / packageName;
+                var targetDir = self.Output / packageName;
                 var archiveFileName = $"{packageName}.zip";
 
                 Log.Information($"Gathering Marketplace release: {packageName}");

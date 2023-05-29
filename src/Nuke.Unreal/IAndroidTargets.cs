@@ -217,10 +217,10 @@ namespace Nuke.Unreal
         AndroidBuildEnvironment AndroidBoilerplate()
         {
             var self = Self<UnrealBuild>();
-            var artifactFolder = self.OutPath / $"Android_{TextureMode[0]}";
+            var artifactFolder = self.Output / $"Android_{TextureMode[0]}";
             if (!artifactFolder.DirectoryExists())
             {
-                artifactFolder = self.OutPath / "Android";
+                artifactFolder = self.Output / "Android";
             }
             Assert.DirectoryExists(
                 artifactFolder,
