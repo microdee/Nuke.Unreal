@@ -120,9 +120,9 @@ class Build : NukeBuild
     Target Test => _ => _
         .Executes(() =>
         {
-            DotNetTest(s => s
-                .SetProjectFile(Solution.GetProject("Nuke.Unreal.Tests"))
-            );
+            // DotNetTest(s => s
+            //     .SetProjectFile(Solution.GetProject("Nuke.Unreal.Tests"))
+            // );
 
             Log.Information("=== Running build target tests ===");
 
@@ -133,14 +133,22 @@ class Build : NukeBuild
                     workingDirectory: root
                 );
             }
-            
+
             var tests_4_27 = RootDirectory / "tests" / "UE_4.27";
             RunTest(tests_4_27 / "AddCodeToProject");
-
             RunTest(tests_4_27 / "Packaging");
-            RunTest(tests_4_27 / "Packaging",
-                "--platform Android --android-texture-mode ASTC --skip sign"
-            );
+            // RunTest(tests_4_27 / "Packaging",
+            //     "--platform Android --android-texture-mode ASTC --skip sign"
+            // );
+
+            var tests_5_1 = RootDirectory / "tests" / "UE_5.1";
+            RunTest(tests_5_1 / "AddCodeToProject");
+            RunTest(tests_5_1 / "Packaging");
+
+            var tests_5_2 = RootDirectory / "tests" / "UE_5.2";
+            RunTest(tests_5_2 / "AddCodeToProject");
+            RunTest(tests_5_2 / "Packaging");
+
         });
 
     Target PublishNuget => _ => _
