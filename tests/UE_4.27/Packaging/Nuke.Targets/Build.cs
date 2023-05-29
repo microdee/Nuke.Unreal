@@ -24,37 +24,44 @@ class Build : UnrealBuildTest, IPackageTargets
 
     public static int Main () => Execute<Build>(x => x.Test);
 
+    AbsolutePath PlatformBinariesFolder => ProjectFolder / "Binaries" / Unreal.GetDefaultPlatform().ToString();
+
     Target Test => _ => _
         .Triggers(Generate);
 
     Target CheckGenerate => _ => _
         .TriggeredBy(Generate)
-        .Triggers(Build)
+        .Triggers(Cook)
         .Executes(() =>
         {
             Assert.FileExists(ProjectFolder / (ProjectName + ".sln"));
         });
 
-    Target CheckBuild => _ => _
-        .TriggeredBy(Build)
-        .Triggers(Cook)
+    Target CheckBuildEditor => _ => _
+        .TriggeredBy(BuildEditor)
         .Executes(() =>
         {
-            // TODO: check
+            Assert.NotEmpty(PlatformBinariesFolder.GlobFiles($"*Editor-{ProjectName}*"));
+        });
+
+    Target CheckBuild => _ => _
+        .TriggeredBy(Build)
+        .Executes(() =>
+        {
+            Assert.NotEmpty(PlatformBinariesFolder.GlobFiles($"{ProjectName}*"));
         });
 
     Target CheckCook => _ => _
         .TriggeredBy(Cook)
-        .Triggers<IPackageTargets>(p => p.Package)
-        .Executes(() =>
-        {
-            // TODO: check
-        });
+        .Triggers<IPackageTargets>(p => p.Package);
 
     Target CheckPackage => _ => _
         .TriggeredBy<IPackageTargets>(p => p.Package)
         .Executes(() =>
         {
-            // TODO: check
+            if (Platform == UnrealPlatform.Win64)
+            {
+                Assert.FileExists(Output / "WindowsNoEditor" / $"{ProjectName}.exe");
+            }
         });
 }
