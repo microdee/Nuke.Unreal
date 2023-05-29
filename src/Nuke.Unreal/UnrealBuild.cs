@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Linq.Expressions;
 using Nuke.Common;
 using Nuke.Common.IO;
 using Nuke.Common.Utilities;
@@ -19,8 +20,10 @@ namespace Nuke.Unreal
 {
     public abstract partial class UnrealBuild : NukeBuild
     {
-        T Self<T>() where T : INukeBuild => (T)(object)this;
-        T SelfAs<T>() where T : class, INukeBuild => (object)this as T;
+        protected T Self<T>() where T : INukeBuild => (T)(object)this;
+        protected T SelfAs<T>() where T : class, INukeBuild => (object)this as T;
+
+        protected T GetParam<T>(Expression<Func<T>> e) where T : class => Self<INukeBuild>().TryGetValue(e);
 
         /// <summary>
         /// Most targets read the desired UE4 version from the project file.
@@ -41,7 +44,7 @@ namespace Nuke.Unreal
         }
         
         [Parameter("Specify the output working directory for artifacts")]
-        public virtual AbsolutePath Output { get; set; } = RootDirectory / ".deploy";
+        public virtual AbsolutePath Output => GetParam(() => Output) ?? ProjectFolder / "Intermediate" / "Output";
 
         [Parameter("Set platform for running targets")]
         public virtual UnrealPlatform Platform { get; set; } = UnrealPlatform.FromFlag(Unreal.GetDefaultPlatform());
