@@ -61,7 +61,7 @@ class Build : UnrealBuildTest, IPackageTargets
         {
             if (Platform == UnrealPlatform.Win64)
             {
-                Assert.FileExists(Output / "WindowsNoEditor" / $"{ProjectName}.exe");
+                Assert.FileExists(Output / "Windows" / $"{ProjectName}.exe");
             }
         });
 }
