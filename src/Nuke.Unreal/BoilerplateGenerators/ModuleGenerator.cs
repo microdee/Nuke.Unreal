@@ -67,7 +67,7 @@ namespace Nuke.Unreal.BoilerplateGenerators
             {
                 unitJson.Add("Modules", new JArray());
             }
-            else if (unitJson["Modules"] is JArray modulesArray)
+            if (unitJson["Modules"] is JArray modulesArray)
             {
                 if(!modulesArray.Any(t => t["Name"]?.ToString().Equals(name, StringComparison.InvariantCultureIgnoreCase) ?? false))
                 {
