@@ -6,17 +6,31 @@
     "build": {
       "type": "object",
       "properties": {
-        "Configuration": {
-          "type": "string",
-          "description": "Configuration to build - Default is 'Debug' (local) or 'Release' (server)",
-          "enum": [
-            "Debug",
-            "Release"
-          ]
+        "AddToTarget": {
+          "type": "boolean",
+          "description": "Explicitly add new module to project target"
+        },
+        "Config": {
+          "type": "array",
+          "description": "The target configuration for building or packaging the project",
+          "items": {
+            "type": "string",
+            "enum": [
+              "Debug",
+              "DebugGame",
+              "Development",
+              "Shipping",
+              "Test"
+            ]
+          }
         },
         "Continue": {
           "type": "boolean",
           "description": "Indicates to continue a previously failed build attempt"
+        },
+        "CustomEnginePath": {
+          "type": "string",
+          "description": "Specify a path to a custom engine version (eg.: built from source)"
         },
         "Help": {
           "type": "boolean",
@@ -43,9 +57,20 @@
             "VSCode"
           ]
         },
+        "Name": {
+          "type": "array",
+          "description": "Name parameter for boilerplate generators",
+          "items": {
+            "type": "string"
+          }
+        },
         "NoLogo": {
           "type": "boolean",
           "description": "Disables displaying the NUKE logo"
+        },
+        "OutPath": {
+          "type": "string",
+          "description": "Specify the output working directory for artifacts"
         },
         "Partition": {
           "type": "string",
@@ -54,6 +79,20 @@
         "Plan": {
           "type": "boolean",
           "description": "Shows the execution plan (HTML)"
+        },
+        "Platform": {
+          "type": "string",
+          "description": "Set platform for running targets",
+          "enum": [
+            "Android",
+            "HoloLens",
+            "IOS",
+            "Linux",
+            "LinuxAArch64",
+            "Mac",
+            "Win32",
+            "Win64"
+          ]
         },
         "Profile": {
           "type": "array",
@@ -72,9 +111,24 @@
           "items": {
             "type": "string",
             "enum": [
+              "AddCode",
+              "Build",
+              "BuildEditor",
               "Clean",
-              "Compile",
-              "Restore"
+              "CleanDeployment",
+              "CleanPlugins",
+              "CleanProject",
+              "Cook",
+              "DiscoverPluginTargets",
+              "Generate",
+              "NewActor",
+              "NewInterface",
+              "NewModule",
+              "NewObject",
+              "NewPlugin",
+              "NewSpec",
+              "NewStruct",
+              "Test"
             ]
           }
         },
@@ -84,11 +138,62 @@
           "items": {
             "type": "string",
             "enum": [
+              "AddCode",
+              "Build",
+              "BuildEditor",
               "Clean",
-              "Compile",
-              "Restore"
+              "CleanDeployment",
+              "CleanPlugins",
+              "CleanProject",
+              "Cook",
+              "DiscoverPluginTargets",
+              "Generate",
+              "NewActor",
+              "NewInterface",
+              "NewModule",
+              "NewObject",
+              "NewPlugin",
+              "NewSpec",
+              "NewStruct",
+              "Test"
             ]
           }
+        },
+        "TargetType": {
+          "type": "array",
+          "description": "The Unreal target type for building the project",
+          "items": {
+            "type": "string",
+            "enum": [
+              "Client",
+              "Editor",
+              "Game",
+              "Program",
+              "Server"
+            ]
+          }
+        },
+        "TemplatesPath": {
+          "type": "string",
+          "description": "Specify a folder containing generator specific folders for Scriban scaffolding and templates"
+        },
+        "UatArgs": {
+          "type": "array",
+          "description": "Extra arguments passed to UAT. It's recommended to use it only from command line, do not override",
+          "items": {
+            "type": "string"
+          }
+        },
+        "UbtArgs": {
+          "type": "array",
+          "description": "Extra arguments passed to UBT. It's recommended to use it only from command line, do not override",
+          "items": {
+            "type": "string"
+          }
+        },
+        "UnrealVersion": {
+          "type": "string",
+          "description": "Specify the target Unreal Engine version. By default only used by the Checkout target. Everything else should infer engine version from the project file"
         },
         "Verbosity": {
           "type": "string",

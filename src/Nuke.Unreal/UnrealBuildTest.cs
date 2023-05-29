@@ -12,7 +12,7 @@ public class UnrealBuildTest : UnrealBuild
     protected virtual void Cleanup()
     {
         GitTasks.Git("clean -xdf -e Nuke.Targets/ -e .nuke/", workingDirectory: ProjectFolder);
-        GitTasks.Git("restore . -- ':!Nuke.Targets/' ':!.nuke/*'", workingDirectory: ProjectFolder);
+        GitTasks.Git("restore . -- :(exclude)Nuke.Targets/ :(exclude).nuke/", workingDirectory: ProjectFolder);
     }
 
     protected virtual void PostBuildCheck() {}
