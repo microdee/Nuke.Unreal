@@ -123,6 +123,24 @@ class Build : NukeBuild
             DotNetTest(s => s
                 .SetProjectFile(Solution.GetProject("Nuke.Unreal.Tests"))
             );
+
+            Log.Information("=== Running build target tests ===");
+
+            static void RunTest(AbsolutePath root, string args = "")
+            {
+                ToolResolver.GetTool(root / "build.cmd")(
+                    args,
+                    workingDirectory: root
+                );
+            }
+            
+            var tests_4_27 = RootDirectory / "tests" / "UE_4.27";
+            RunTest(tests_4_27 / "AddCodeToProject");
+
+            RunTest(tests_4_27 / "Packaging");
+            RunTest(tests_4_27 / "Packaging",
+                "--platform Android --android-texture-mode ASTC --skip sign"
+            );
         });
 
     Target PublishNuget => _ => _

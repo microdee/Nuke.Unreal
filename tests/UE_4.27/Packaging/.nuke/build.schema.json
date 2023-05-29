@@ -68,7 +68,7 @@
           "type": "boolean",
           "description": "Disables displaying the NUKE logo"
         },
-        "OutPath": {
+        "Output": {
           "type": "string",
           "description": "Specify the output working directory for artifacts"
         },
@@ -114,6 +114,11 @@
               "AddCode",
               "Build",
               "BuildEditor",
+              "CheckBuild",
+              "CheckBuildEditor",
+              "CheckCook",
+              "CheckGenerate",
+              "CheckPackage",
               "Clean",
               "CleanDeployment",
               "CleanPlugins",
@@ -128,6 +133,7 @@
               "NewPlugin",
               "NewSpec",
               "NewStruct",
+              "Package",
               "Test"
             ]
           }
@@ -141,6 +147,11 @@
               "AddCode",
               "Build",
               "BuildEditor",
+              "CheckBuild",
+              "CheckBuildEditor",
+              "CheckCook",
+              "CheckGenerate",
+              "CheckPackage",
               "Clean",
               "CleanDeployment",
               "CleanPlugins",
@@ -155,6 +166,7 @@
               "NewPlugin",
               "NewSpec",
               "NewStruct",
+              "Package",
               "Test"
             ]
           }

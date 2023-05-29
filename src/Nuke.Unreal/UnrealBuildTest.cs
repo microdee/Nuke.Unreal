@@ -9,6 +9,12 @@ namespace Nuke.Unreal;
 
 public class UnrealBuildTest : UnrealBuild
 {
+    protected override void OnBuildCreated()
+    {
+        base.OnBuildCreated();
+        NoLogo = true;
+    }
+    
     protected virtual void Cleanup()
     {
         GitTasks.Git("clean -xdf -e Nuke.Targets/ -e .nuke/", workingDirectory: ProjectFolder);
