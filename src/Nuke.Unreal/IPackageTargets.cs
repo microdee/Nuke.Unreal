@@ -72,7 +72,7 @@ namespace Nuke.Unreal
                         .Apply(self.UatCook)
                         .Apply(self.UatGlobal)
                         .Append(self.UatArgs.AsArguments())
-                    )(workingDirectory: self.UnrealEnginePath);
+                    )("", workingDirectory: self.UnrealEnginePath);
                 });
             });
     }
