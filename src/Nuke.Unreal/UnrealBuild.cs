@@ -126,6 +126,13 @@ namespace Nuke.Unreal
                 var configFolder = ProjectFolder / "Config";
                 GatherInis(configFolder, resultIni);
             }
+            if (lowestLevel <= IniHierarchyLevel.Default && highestLevel >= IniHierarchyLevel.Default && considerPlugins)
+            {
+                foreach (var pluginConfigFolder in (ProjectFolder / "Plugins").GlobDirectories("**/Config"))
+                {
+                    GatherInis(pluginConfigFolder, resultIni);
+                }
+            }
             if (lowestLevel <= IniHierarchyLevel.Saved && highestLevel >= IniHierarchyLevel.Saved)
             {
                 var configFolder = ProjectFolder / "Saved" / "Config";
