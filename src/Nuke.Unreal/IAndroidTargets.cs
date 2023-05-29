@@ -18,7 +18,6 @@ using Serilog;
 using GlobExpressions;
 using System.Linq.Expressions;
 using System.Text.RegularExpressions;
-using Microsoft.Azure.KeyVault.Models;
 using System.Threading;
 using System.Runtime.InteropServices;
 

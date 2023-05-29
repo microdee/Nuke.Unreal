@@ -47,7 +47,7 @@ namespace Nuke.Unreal
         T Self<T>() where T : INukeBuild => (T)(object)this;
 
         [Parameter("Make marketplace compliant archives")]
-        bool? ForMarketplace => EnvironmentInfo.GetParameter(() => ForMarketplace) ?? false;
+        bool ForMarketplace => TryGetValue<bool?>(() => ForMarketplace) ?? false;
 
         string PluginVersion => "1.0.0";
         
@@ -127,12 +127,9 @@ namespace Nuke.Unreal
 
                 Log.Information($"Packaging plugin: {packageName}");
 
-                if(Directory.Exists(targetDir))
-                    DeleteDirectory(targetDir);
+                targetDir.DeleteDirectory();
                 Directory.CreateDirectory(targetDir);
-
-                if(File.Exists(targetDir.Parent / archiveFileName))
-                    DeleteFile(targetDir.Parent / archiveFileName);
+                (targetDir.Parent / archiveFileName).DeleteFile();
 
                 Unreal.AutomationTool(self.GetEngineVersionFromProject(), _ => _
                     .BuildPlugin(_ => _
@@ -143,7 +140,7 @@ namespace Nuke.Unreal
                     )
                     .Apply(self.UatGlobal)
                     .Append(self.UatArgs.AsArguments())
-                )();
+                )("");
 
                 Log.Information($"Archiving release: {packageName}");
                 ZipFile.CreateFromDirectory(targetDir, targetDir.Parent / archiveFileName);
@@ -152,7 +149,7 @@ namespace Nuke.Unreal
         public virtual Target MakeMarketplaceRelease => _ => _
             .Description("Prepare a Marketplace complaint archive from the plugin. This target only executes when --for-marketplace is also present. This yields zip archives in the deployment path specified in OutPath (.deploy by default)")
             .DependsOn(Checkout)
-            .OnlyWhenStatic(() => ForMarketplace ?? false)
+            .OnlyWhenStatic(() => ForMarketplace)
             .Executes(() =>
             {
                 var self = Self<UnrealBuild>();
@@ -163,12 +160,9 @@ namespace Nuke.Unreal
 
                 Log.Information($"Gathering Marketplace release: {packageName}");
 
-                if(Directory.Exists(targetDir))
-                    DeleteDirectory(targetDir);
+                targetDir.DeleteDirectory();
                 Directory.CreateDirectory(targetDir);
-
-                if(File.Exists(targetDir.Parent / archiveFileName))
-                    DeleteFile(targetDir.Parent / archiveFileName);
+                (targetDir.Parent / archiveFileName).DeleteFile();
 
                 CopyFileToDirectory(
                     PluginPath, targetDir,
