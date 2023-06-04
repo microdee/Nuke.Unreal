@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Nuke.Common.Utilities;
+using Serilog;
 
 namespace Nuke.Unreal.Tools;
 
@@ -72,9 +73,30 @@ public abstract class ToolConfig
             .Where(v => ueVersion.IsCompatibleWith(v.Compatibility))
             .Select(v => v.Gather(ueVersion));
 
+        foreach (var subtool in UsingSubtools.Values.Where(v => !ueVersion.IsCompatibleWith(v.Compatibility)))
+        {
+            Log.Warning(
+                "The tool {0} ({1}) is only compatible with {2} therefore it is ignored (current compatibility: {3})",
+                subtool.Name,
+                subtool.CliName,
+                subtool.Compatibility,
+                ueVersion.Compatibility
+            );
+        }
+
         var args = UsingArguments
             .Where(v => ueVersion.IsCompatibleWith(v.GetMeta().Compatibility))
             .Select(v => v.Gather(ueVersion));
+
+        foreach (var arg in UsingArguments.Where(v => !ueVersion.IsCompatibleWith(v.GetMeta().Compatibility)))
+        {
+            Log.Warning(
+                "The argument {0} is only compatible with {1} therefore it is ignored (current compatibility: {2})",
+                arg.Name,
+                arg.GetMeta().Compatibility,
+                ueVersion.Compatibility
+            );
+        }
 
         return (compatibleName + " " + string.Join(' ', subtools.Concat(args))).Trim();
     }
