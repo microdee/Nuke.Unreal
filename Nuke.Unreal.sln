@@ -5,13 +5,13 @@ VisualStudioVersion = 15.0.26124.0
 MinimumVisualStudioVersion = 15.0.26124.0
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{CF273417-5891-44C4-8458-A8EAC00029B3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nuke.Unreal", "src\Nuke.Unreal\Nuke.Unreal.csproj", "{98AB7F3D-791C-48A6-A1B7-61E7956C301F}"
+Project("{C191453F-42D6-4A89-9127-5D534A4A3BAE}") = "Nuke.Unreal", "src\Nuke.Unreal\Nuke.Unreal.csproj", "{98AB7F3D-791C-48A6-A1B7-61E7956C301F}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "_build", "build\_build.csproj", "{9F00CDF8-6FC4-48C7-B8C6-8F7920D5F48B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nuke.Unreal.Tests", "src\Nuke.Unreal.Tests\Nuke.Unreal.Tests.csproj", "{FCD0931E-7D8A-4DE8-8193-7B82BF1D0416}"
+Project("{F075CD81-1E1A-41B1-8A75-2A813BD8C58E}") = "Nuke.Unreal.Tests", "src\Nuke.Unreal.Tests\Nuke.Unreal.Tests.csproj", "{FCD0931E-7D8A-4DE8-8193-7B82BF1D0416}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nuke.Unreal.Ini", "src\Nuke.Unreal.Ini\Nuke.Unreal.Ini.csproj", "{F702BAC0-4B96-4A2C-B679-7F722508AE0A}"
+Project("{9D252F19-40C8-48F0-86BA-18EB301F4902}") = "Nuke.Unreal.Ini", "src\Nuke.Unreal.Ini\Nuke.Unreal.Ini.csproj", "{F702BAC0-4B96-4A2C-B679-7F722508AE0A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

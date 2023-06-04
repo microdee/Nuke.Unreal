@@ -51,8 +51,10 @@ class Build : NukeBuild
 
     record ProjectRecord(Project Project, bool PublishToNuget);
 
-    ProjectRecord MainProject => new (Solution.GetProject("Nuke.Unreal") , true);
-    ProjectRecord IniProject => new (Solution.GetProject("Nuke.Unreal.Ini") , true);
+    Project GetSlnProject(string name) => Solution.GetAllProjects(name).SingleOrDefault();
+
+    ProjectRecord MainProject => new (GetSlnProject("Nuke.Unreal") , true);
+    ProjectRecord IniProject => new (GetSlnProject("Nuke.Unreal.Ini") , true);
     ProjectRecord[] NukeUnreal => new [] { MainProject, IniProject };
 
     [Solution] readonly Solution Solution;
@@ -73,6 +75,10 @@ class Build : NukeBuild
             Log.Information("GitVersion: {0}", GitVersion.FullSemVer);
             Log.Information("NugetVersion: {0}", GitVersion.NuGetVersion);
             Log.Information("NugetVersionV2: {0}", GitVersion.NuGetVersionV2);
+            foreach(var project in NukeUnreal)
+            {
+                Log.Information(project.Project.Name);
+            }
         });
 
     Target GenerateTools => _ => _
@@ -120,9 +126,9 @@ class Build : NukeBuild
     Target Test => _ => _
         .Executes(() =>
         {
-            // DotNetTest(s => s
-            //     .SetProjectFile(Solution.GetProject("Nuke.Unreal.Tests"))
-            // );
+            DotNetTest(s => s
+                .SetProjectFile(GetSlnProject("Nuke.Unreal.Tests"))
+            );
 
             Log.Information("=== Running build target tests ===");
 
