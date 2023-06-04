@@ -113,6 +113,8 @@ namespace Nuke.Unreal
             .Triggers(MakeMarketplaceRelease)
             .Triggers(PackPlugin);
 
+        UatConfig UatPackPlugin(UatConfig _) => _;
+
         Target PackPlugin => _ => _
             .Description("Make a prebuilt release of the target plugin for current version. This yields zip archives in the deployment path specified in OutPath (.deploy by default)")
             .DependsOn(Checkout)
@@ -138,6 +140,7 @@ namespace Nuke.Unreal
                         .StrictIncludes()
                         .Unversioned()
                     )
+                    .Apply(UatPackPlugin)
                     .Apply(self.UatGlobal)
                     .Append(self.UatArgs.AsArguments())
                 )("");
