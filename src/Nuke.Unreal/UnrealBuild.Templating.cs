@@ -20,6 +20,7 @@ namespace Nuke.Unreal
 
         public Target NewModule => _ => _
             .Description("Create new module in the owning project or plugin (depending on working directory)")
+            .Before(Generate)
             .Requires(() => Name)
             .Executes(() =>
                 Name.ForEach(n => 
@@ -34,6 +35,7 @@ namespace Nuke.Unreal
             );
         public Target AddCode => _ => _
             .Description("Add C++ code to a project which doesn't have one yet.")
+            .Before(Generate)
             .Executes(() => 
                 new TargetGenerator().Generate(
                     TemplatesPath,
@@ -44,6 +46,7 @@ namespace Nuke.Unreal
 
         public Target NewPlugin => _ => _
             .Description("Create a new project plugin.")
+            .Before(Generate)
             .Requires(() => Name)
             .Executes(() => 
                 Name.ForEach(n => 
@@ -57,6 +60,7 @@ namespace Nuke.Unreal
 
         public Target NewActor => _ => _
             .Description("Create new Unreal Actor in current directory")
+            .Before(Generate)
             .Requires(() => Name)
             .Executes(() =>
                 Name.ForEach(n => 
@@ -70,6 +74,7 @@ namespace Nuke.Unreal
 
         public Target NewInterface => _ => _
             .Description("Create new Unreal Interface in current directory")
+            .Before(Generate)
             .Requires(() => Name)
             .Executes(() =>
                 Name.ForEach(n => 
@@ -83,6 +88,7 @@ namespace Nuke.Unreal
 
         public Target NewObject => _ => _
             .Description("Create new Unreal Object in current directory")
+            .Before(Generate)
             .Requires(() => Name)
             .Executes(() => 
                 Name.ForEach(n => 
@@ -96,6 +102,7 @@ namespace Nuke.Unreal
 
         public Target NewStruct => _ => _
             .Description("Create new Unreal Struct in current directory")
+            .Before(Generate)
             .Requires(() => Name)
             .Executes(() => 
                 Name.ForEach(n => 
@@ -109,6 +116,7 @@ namespace Nuke.Unreal
 
         public Target NewSpec => _ => _
             .Description("Create new Unreal Automation Spec in current directory")
+            .Before(Generate)
             .Requires(() => Name)
             .Executes(() => 
                 Name.ForEach(n => 

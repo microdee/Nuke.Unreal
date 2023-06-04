@@ -20,8 +20,8 @@ namespace Nuke.Unreal.Tools;
 /// <param name="Timeout"></param>
 /// <param name="LogOutput"></param>
 /// <param name="LogInvocation"></param>
-/// <param name="CustomLogger"></param>
-/// <param name="OutputFilter"></param>
+/// <param name="Logger"></param>
+/// <param name="ExitHandler"></param>
 public record ToolArguments(
     string Arguments = null,
     string WorkingDirectory = null,
@@ -29,8 +29,8 @@ public record ToolArguments(
     int? Timeout = null,
     bool? LogOutput = null,
     bool? LogInvocation = null,
-    Action<OutputType, string> CustomLogger = null,
-    Func<string, string> OutputFilter = null
+    Action<OutputType, string> Logger = null,
+    Action<IProcess> ExitHandler = null
 ) {
 
     /// <summary>
@@ -46,8 +46,7 @@ public record ToolArguments(
     /// <item><term>TimeOut </term><description> will be maxed</description></item>
     /// <item><term>LogOutput </term><description> is OR-ed</description></item>
     /// <item><term>LogInvocation </term><description> is OR-ed</description></item>
-    /// <item><term>Custom Logger </term><description> B overrides the one from A but not when B doesn't have one</description></item>
-    /// <item><term>Output filters </term><description> are chained and AND-ed together. A() &amp;&amp; B()</description></item>
+    /// <item><term>Logger / ExitHandler </term><description> A + B is invoked</description></item>
     /// </list>
     /// </remarks>
     public static ToolArguments operator | (ToolArguments a, ToolArguments b)
@@ -79,13 +78,9 @@ public record ToolArguments(
                 ? null
                 : (a?.LogInvocation ?? false) || (b?.LogInvocation ?? false),
 
-            CustomLogger = (a?.CustomLogger == null && b?.CustomLogger == null)
-                ? null
-                : b?.CustomLogger ?? a?.CustomLogger,
+            Logger = a?.Logger + b?.Logger,
 
-            OutputFilter = (a?.OutputFilter == null && b?.OutputFilter == null)
-                ? null
-                : _ => a?.OutputFilter?.Invoke(b?.OutputFilter?.Invoke(_))
+            ExitHandler = a?.ExitHandler + b?.ExitHandler
         };
     }
 }
@@ -105,8 +100,8 @@ public static class ToolExtensions
             args.Timeout,
             args.LogOutput,
             args.LogInvocation,
-            args.CustomLogger,
-            args.OutputFilter
+            args.Logger,
+            args.ExitHandler
         );
 
     /// <summary>
@@ -122,8 +117,7 @@ public static class ToolExtensions
     /// <item><term>TimeOut </term><description> will be maxed</description></item>
     /// <item><term>LogOutput </term><description> is OR-ed</description></item>
     /// <item><term>LogInvocation </term><description> is OR-ed</description></item>
-    /// <item><term>Custom Logger </term><description> B overrides the one from A but not when B doesn't have one</description></item>
-    /// <item><term>Output filters </term><description> are chained and AND-ed together. A() &amp;&amp; B()</description></item>
+    /// <item><term>Logger / ExitHandler </term><description>A + B is invoked</description></item>
     /// </list>
     /// </remarks>
     public static Tool With(this Tool tool, ToolArguments args) =>
@@ -139,8 +133,8 @@ public static class ToolExtensions
     /// <param name="timeout"></param>
     /// <param name="logOutput"></param>
     /// <param name="logInvocation"></param>
-    /// <param name="customLogger"></param>
-    /// <param name="outputFilter"></param>
+    /// <param name="logger"></param>
+    /// <param name="exitHandler"></param>
     /// <remarks>
     /// <list>
     /// <item><term>Arguments </term><description> will be concatenated</description></item>
@@ -149,29 +143,28 @@ public static class ToolExtensions
     /// <item><term>TimeOut </term><description> will be maxed</description></item>
     /// <item><term>LogOutput </term><description> is OR-ed</description></item>
     /// <item><term>LogInvocation </term><description> is OR-ed</description></item>
-    /// <item><term>Custom Logger </term><description> B overrides the one from A but not when B doesn't have one</description></item>
-    /// <item><term>Output filters </term><description> are chained and AND-ed together. A() &amp;&amp; B()</description></item>
+    /// <item><term>Logger / ExitHandler </term><description>A + B is invoked</description></item>
     /// </list>
     /// </remarks>
     public static Tool With(
         this Tool tool,
-        string arguments = null,
+        ArgumentStringHandler arguments = default,
         string workingDirectory = null,
         IReadOnlyDictionary<string, string> environmentVariables = null,
         int? timeout = null,
         bool? logOutput = null,
         bool? logInvocation = null,
-        Action<OutputType, string> customLogger = null,
-        Func<string, string> outputFilter = null
+        Action<OutputType, string> logger = null,
+        Action<IProcess> exitHandler = null
     ) => tool.With(new ToolArguments(
-        arguments,
+        arguments.ToStringAndClear(),
         workingDirectory,
         environmentVariables,
         timeout,
         logOutput,
         logInvocation,
-        customLogger,
-        outputFilter
+        logger,
+        exitHandler
     ));
 
     /// <summary>
@@ -182,7 +175,7 @@ public static class ToolExtensions
     /// <param name="filter"></param>
     /// <param name="normalOutputLogger"></param>
     public static Tool WithSemanticLogging(this Tool tool, Func<string, bool> filter = null, Action<OutputType, string> normalOutputLogger = null) =>
-        tool.With(customLogger: (t, l) =>
+        tool.With(logger: (t, l) =>
         {
             if (!(filter?.Invoke(l) ?? true)) return;
 
@@ -218,24 +211,24 @@ public static class ToolExtensions
 public record PropagateToolExecution(Tool Target, ToolArguments PropagateArguments = null)
 {
     public IReadOnlyCollection<Output> Execute(
-        string arguments = null,
+        ArgumentStringHandler arguments = default,
         string workingDirectory = null,
         IReadOnlyDictionary<string, string> environmentVariables = null,
         int? timeout = null,
         bool? logOutput = null,
         bool? logInvocation = null,
-        Action<OutputType, string> customLogger = null,
-        Func<string, string> outputFilter = null
+        Action<OutputType, string> logger = null,
+        Action<IProcess> exitHandler = null
     ) => Target.ExecuteWith(
         PropagateArguments | new ToolArguments(
-            arguments,
+            arguments.ToStringAndClear(),
             workingDirectory,
             environmentVariables,
             timeout,
             logOutput,
             logInvocation,
-            customLogger,
-            outputFilter
+            logger,
+            exitHandler
         )
     );
 }

@@ -80,7 +80,7 @@ namespace Nuke.Unreal
             throw new ApplicationException("Trying to get unreal locator on an unsupported platform.");
         }
 
-        public static Tool UnrealLocator => ToolResolver.GetLocalTool(GetUnrealLocatorPath());
+        public static Tool UnrealLocator => ToolResolver.GetTool(GetUnrealLocatorPath());
 
         public static AbsolutePath GetEnginePath(string engineAssociation)
         {
@@ -133,7 +133,7 @@ namespace Nuke.Unreal
                 ? GetEnginePath(ofVersion) / "Engine" / "Binaries" / "DotNET" / "UnrealBuildTool" / "UnrealBuildTool.exe"
                 : GetEnginePath(ofVersion) / "Engine" / "Binaries" / "DotNET" / "UnrealBuildTool.exe";
             
-            return ToolResolver.GetLocalTool(ubtPath).WithSemanticLogging();
+            return ToolResolver.GetTool(ubtPath).WithSemanticLogging();
 
             // TODO: MacOS: "sh", $"\"{MacRunMono(ofVersion)}\" \"{ubtPath}\" " + arguments
             // TODO: Linux: "mono", $"\"{ubtPath}\" " + arguments
@@ -149,7 +149,7 @@ namespace Nuke.Unreal
         public static Tool AutomationTool(EngineVersion ofVersion)
         {
             var scriptExt = RuntimeInformation.IsOSPlatform(OSPlatform.Windows) ? "bat" : "sh";
-            return ToolResolver.GetLocalTool(GetEnginePath(ofVersion) / "Engine" / "Build" / "BatchFiles" / $"RunUAT.{scriptExt}")
+            return ToolResolver.GetTool(GetEnginePath(ofVersion) / "Engine" / "Build" / "BatchFiles" / $"RunUAT.{scriptExt}")
                 .WithSemanticLogging(filter: l =>
                     !(l.Contains("Reading chunk manifest") && l.Contains("which contains 0 entries"))
                 );
@@ -164,14 +164,9 @@ namespace Nuke.Unreal
 
         public static void ClearFolder(AbsolutePath folder)
         {
-            if(Directory.Exists(folder / "Intermediate"))
-                DeleteDirectory(folder / "Intermediate");
-
-            if(Directory.Exists(folder / "Binaries"))
-                DeleteDirectory(folder / "Binaries");
-
-            if(Directory.Exists(folder / "DerivedDataCache"))
-                DeleteDirectory(folder / "DerivedDataCache");
+            (folder / "Intermediate").DeleteDirectory();
+            (folder / "Binaries").DeleteDirectory();
+            (folder / "DerivedDataCache").DeleteDirectory();
         }
 
         public static string ReadCopyrightFromProject(AbsolutePath projectFolder)

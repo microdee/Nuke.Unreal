@@ -18,7 +18,6 @@ using Serilog;
 using GlobExpressions;
 using System.Linq.Expressions;
 using System.Text.RegularExpressions;
-using Microsoft.Azure.KeyVault.Models;
 using System.Threading;
 using System.Runtime.InteropServices;
 
@@ -153,12 +152,11 @@ namespace Nuke.Unreal
     public interface IAndroidTargets : INukeBuild
     {
         T Self<T>() where T : INukeBuild => (T)(object)this;
-        T GetParameter<T>(Expression<Func<T>> expression) => EnvironmentInfo.GetParameter(expression);
         bool IsAndroidPlatform() => Self<UnrealBuild>().Platform == UnrealPlatform.Android;
 
         [Parameter("Select texture compression mode for Android")]
         AndroidCookFlavor[] TextureMode
-            => GetParameter(() => TextureMode)
+            => TryGetValue(() => TextureMode)
             ?? new [] {AndroidCookFlavor.Multi};
 
         string GetAppNameFromConfig()
@@ -174,34 +172,34 @@ namespace Nuke.Unreal
 
         [Parameter("Specify the full qualified android app name")]
         string AppName
-            => GetParameter(() => AppName)
+            => TryGetValue(() => AppName)
             ?? GetAppNameFromConfig();
 
         [Parameter("Processor architecture of your target hardware")]
         AndroidProcessorArchitecture Cpu
-            => GetParameter(() => Cpu)
+            => TryGetValue(() => Cpu)
             ?? AndroidProcessorArchitecture.Arm64;
 
         [Parameter("Processor architecture of your target hardware")]
-        bool NoUninstall => GetParameter(() => NoUninstall);
+        bool NoUninstall => TryGetValue<bool?>(() => NoUninstall) ?? false;
 
         [Parameter("Specify version of the Android build tools to use. Latest will be used by default, or when the specified version is not found")]
-        int BuildToolVersion => GetParameter(() => BuildToolVersion);
+        int? BuildToolVersion => TryGetValue<int?>(() => BuildToolVersion);
 
         [Parameter("Android SDK version or path. If not specified a local cache will be used. If that doesn't exist the global user settings will be used")]
-        AbsolutePath SdkPath => GetParameter(() => SdkPath);
+        AbsolutePath SdkPath => TryGetValue(() => SdkPath);
 
         [Parameter("Android NDK version or path. If not specified a local cache will be used. If that doesn't exist the global user settings will be used")]
-        string NdkVersion => GetParameter(() => NdkVersion);
+        string NdkVersion => TryGetValue(() => NdkVersion);
 
         [Parameter("Absolute path to Android Java. If not specified a local cache will be used. If that doesn't exist the global user settings will be used")]
-        string JavaPath => GetParameter(() => JavaPath);
+        string JavaPath => TryGetValue(() => JavaPath);
 
         [Parameter("If not specified a local cache will be used. If that doesn't exist the global user settings will be used")]
-        string SdkApiLevel => GetParameter(() => SdkApiLevel);
+        string SdkApiLevel => TryGetValue(() => SdkApiLevel);
 
         [Parameter("If not specified a local cache will be used. If that doesn't exist the global user settings will be used")]
-        string NdkApiLevel => GetParameter(() => NdkApiLevel);
+        string NdkApiLevel => TryGetValue(() => NdkApiLevel);
 
         AbsolutePath UserEngineIniPath => (AbsolutePath)
             EnvironmentInfo.SpecialFolder(SpecialFolders.LocalApplicationData)
@@ -219,10 +217,10 @@ namespace Nuke.Unreal
         AndroidBuildEnvironment AndroidBoilerplate()
         {
             var self = Self<UnrealBuild>();
-            var artifactFolder = self.OutPath / $"Android_{TextureMode[0]}";
+            var artifactFolder = self.Output / $"Android_{TextureMode[0]}";
             if (!artifactFolder.DirectoryExists())
             {
-                artifactFolder = self.OutPath / "Android";
+                artifactFolder = self.Output / "Android";
             }
             Assert.DirectoryExists(
                 artifactFolder,
@@ -241,7 +239,10 @@ namespace Nuke.Unreal
                 "There are no NDK subfolders. Please configure your Android development environment"
             );
 
-            var buildToolsCandidates = AndroidBuildToolsRoot.GlobDirectories($"{BuildToolVersion}.*");
+            var buildToolsCandidates = BuildToolVersion == null
+                ? AndroidBuildToolsRoot.GlobDirectories("*")
+                : AndroidBuildToolsRoot.GlobDirectories($"{BuildToolVersion}.*");
+
             if (buildToolsCandidates.IsEmpty())
             {
                 buildToolsCandidates = AndroidBuildToolsRoot.GlobDirectories("*");
@@ -333,7 +334,7 @@ namespace Nuke.Unreal
             .Executes(() =>
             {
                 var self = Self<UnrealBuild>();
-                DeleteDirectory(self.ProjectFolder / "Intermediate" / "Android");
+                (self.ProjectFolder / "Intermediate" / "Android").DeleteDirectory();
             });
 
         Target SignApk => _ => _
@@ -367,7 +368,7 @@ namespace Nuke.Unreal
                 File.WriteAllText(kspassFile, password);
 
                 var androidEnv = AndroidBoilerplate();
-                var apkSignerBat = ToolResolver.GetLocalTool(androidEnv.BuildTools / "apksigner.bat");
+                var apkSignerBat = ToolResolver.GetTool(androidEnv.BuildTools / "apksigner.bat");
                 apkSignerBat(
                     $"sign --ks \"{keystorePath}\" --ks-pass \"file:{kspassFile}\" \"{GetApkFile()}\""
                 );
@@ -570,8 +571,8 @@ namespace Nuke.Unreal
                 );
 
                 watcher.Deleted += (s, e) => FileSystemEventBody(s, e, true,
-                    (p, t) => DeleteDirectory(t),
-                    (p, t) => DeleteFile(t)
+                    (p, t) => t.DeleteDirectory(),
+                    (p, t) => t.DeleteFile()
                 );
 
                 watcher.Changed += (s, e) => FileSystemEventBody(s, e, true,

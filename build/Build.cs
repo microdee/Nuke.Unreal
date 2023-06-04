@@ -41,8 +41,6 @@ class Build : NukeBuild
     ///   - Microsoft VisualStudio     https://nuke.build/visualstudio
     ///   - Microsoft VSCode           https://nuke.build/vscode
 
-    private readonly string _msbuildXmlns = "http://schemas.microsoft.com/developer/msbuild/2003";
-
     public static int Main () => Execute<Build>(x => x.Info);
     protected override void OnBuildCreated() => NoLogo = true;
 
@@ -122,9 +120,35 @@ class Build : NukeBuild
     Target Test => _ => _
         .Executes(() =>
         {
-            DotNetTest(s => s
-                .SetProjectFile(Solution.GetProject("Nuke.Unreal.Tests"))
-            );
+            // DotNetTest(s => s
+            //     .SetProjectFile(Solution.GetProject("Nuke.Unreal.Tests"))
+            // );
+
+            Log.Information("=== Running build target tests ===");
+
+            static void RunTest(AbsolutePath root, string args = "")
+            {
+                ToolResolver.GetTool(root / "build.cmd")(
+                    args,
+                    workingDirectory: root
+                );
+            }
+
+            var tests_4_27 = RootDirectory / "tests" / "UE_4.27";
+            RunTest(tests_4_27 / "AddCodeToProject");
+            RunTest(tests_4_27 / "Packaging");
+            // RunTest(tests_4_27 / "Packaging",
+            //     "--platform Android --android-texture-mode ASTC --skip sign"
+            // );
+
+            var tests_5_1 = RootDirectory / "tests" / "UE_5.1";
+            RunTest(tests_5_1 / "AddCodeToProject");
+            RunTest(tests_5_1 / "Packaging");
+
+            var tests_5_2 = RootDirectory / "tests" / "UE_5.2";
+            RunTest(tests_5_2 / "AddCodeToProject");
+            RunTest(tests_5_2 / "Packaging");
+
         });
 
     Target PublishNuget => _ => _

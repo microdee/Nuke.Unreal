@@ -57,7 +57,7 @@ namespace Nuke.Unreal
                         .Stage()
                         .Package()
                         .Archive()
-                        .Archivedirectory(self.OutPath)
+                        .Archivedirectory(self.Output)
                         .If(InvokedTargets.Contains(self.Cook),
                             _ => _.Skipcook(),
                             _ => _.Cook()
@@ -72,7 +72,7 @@ namespace Nuke.Unreal
                         .Apply(self.UatCook)
                         .Apply(self.UatGlobal)
                         .Append(self.UatArgs.AsArguments())
-                    )(workingDirectory: self.UnrealEnginePath);
+                    )("", workingDirectory: self.UnrealEnginePath);
                 });
             });
     }

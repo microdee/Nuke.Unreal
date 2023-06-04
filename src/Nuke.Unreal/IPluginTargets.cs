@@ -47,7 +47,7 @@ namespace Nuke.Unreal
         T Self<T>() where T : INukeBuild => (T)(object)this;
 
         [Parameter("Make marketplace compliant archives")]
-        bool? ForMarketplace => EnvironmentInfo.GetParameter(() => ForMarketplace) ?? false;
+        bool ForMarketplace => TryGetValue<bool?>(() => ForMarketplace) ?? false;
 
         string PluginVersion => "1.0.0";
         
@@ -122,17 +122,14 @@ namespace Nuke.Unreal
                 var self = Self<UnrealBuild>();
 
                 var packageName = $"{PluginName}-{self.Platform}-{PluginVersion}.{self.GetEngineVersionFromProject().FullVersionName}-PreBuilt";
-                var targetDir = self.OutPath / packageName;
+                var targetDir = self.Output / packageName;
                 var archiveFileName = $"{packageName}.zip";
 
                 Log.Information($"Packaging plugin: {packageName}");
 
-                if(Directory.Exists(targetDir))
-                    DeleteDirectory(targetDir);
+                targetDir.DeleteDirectory();
                 Directory.CreateDirectory(targetDir);
-
-                if(File.Exists(targetDir.Parent / archiveFileName))
-                    DeleteFile(targetDir.Parent / archiveFileName);
+                (targetDir.Parent / archiveFileName).DeleteFile();
 
                 Unreal.AutomationTool(self.GetEngineVersionFromProject(), _ => _
                     .BuildPlugin(_ => _
@@ -143,7 +140,7 @@ namespace Nuke.Unreal
                     )
                     .Apply(self.UatGlobal)
                     .Append(self.UatArgs.AsArguments())
-                )();
+                )("");
 
                 Log.Information($"Archiving release: {packageName}");
                 ZipFile.CreateFromDirectory(targetDir, targetDir.Parent / archiveFileName);
@@ -152,23 +149,20 @@ namespace Nuke.Unreal
         public virtual Target MakeMarketplaceRelease => _ => _
             .Description("Prepare a Marketplace complaint archive from the plugin. This target only executes when --for-marketplace is also present. This yields zip archives in the deployment path specified in OutPath (.deploy by default)")
             .DependsOn(Checkout)
-            .OnlyWhenStatic(() => ForMarketplace ?? false)
+            .OnlyWhenStatic(() => ForMarketplace)
             .Executes(() =>
             {
                 var self = Self<UnrealBuild>();
 
                 var packageName = $"{PluginName}-{self.Platform}-{PluginVersion}.{self.GetEngineVersionFromProject().FullVersionName}-Source";
-                var targetDir = self.OutPath / packageName;
+                var targetDir = self.Output / packageName;
                 var archiveFileName = $"{packageName}.zip";
 
                 Log.Information($"Gathering Marketplace release: {packageName}");
 
-                if(Directory.Exists(targetDir))
-                    DeleteDirectory(targetDir);
+                targetDir.DeleteDirectory();
                 Directory.CreateDirectory(targetDir);
-
-                if(File.Exists(targetDir.Parent / archiveFileName))
-                    DeleteFile(targetDir.Parent / archiveFileName);
+                (targetDir.Parent / archiveFileName).DeleteFile();
 
                 CopyFileToDirectory(
                     PluginPath, targetDir,

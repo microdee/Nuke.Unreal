@@ -29,42 +29,42 @@ namespace Nuke.Unreal
     [TypeConverter(typeof(TypeConverter<UnrealPlatform>))]
     public class UnrealPlatform : Enumeration
     {
-        public static UnrealPlatform Win64 = new()
+        public static readonly UnrealPlatform Win64 = new()
         {
             Value = nameof(Win64),
             Flag = UnrealPlatformFlag.Win64
         };
-        public static UnrealPlatform Win32 = new()
+        public static readonly UnrealPlatform Win32 = new()
         {
             Value = nameof(Win32),
             Flag = UnrealPlatformFlag.Win32
         };
-        public static UnrealPlatform HoloLens = new()
+        public static readonly UnrealPlatform HoloLens = new()
         {
             Value = nameof(HoloLens),
             Flag = UnrealPlatformFlag.HoloLens
         };
-        public static UnrealPlatform Mac = new()
+        public static readonly UnrealPlatform Mac = new()
         {
             Value = nameof(Mac),
             Flag = UnrealPlatformFlag.Mac
         };
-        public static UnrealPlatform Linux = new()
+        public static readonly UnrealPlatform Linux = new()
         {
             Value = nameof(Linux),
             Flag = UnrealPlatformFlag.Linux
         };
-        public static UnrealPlatform LinuxAArch64 = new()
+        public static readonly UnrealPlatform LinuxAArch64 = new()
         {
             Value = nameof(LinuxAArch64),
             Flag = UnrealPlatformFlag.LinuxAArch64
         };
-        public static UnrealPlatform Android = new()
+        public static readonly UnrealPlatform Android = new()
         {
             Value = nameof(Android),
             Flag = UnrealPlatformFlag.Android
         };
-        public static UnrealPlatform IOS = new()
+        public static readonly UnrealPlatform IOS = new()
         {
             Value = nameof(IOS),
             Flag = UnrealPlatformFlag.IOS

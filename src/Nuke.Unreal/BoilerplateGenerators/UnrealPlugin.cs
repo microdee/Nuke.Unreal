@@ -9,6 +9,6 @@ namespace Nuke.Unreal.BoilerplateGenerators
         {
         }
 
-        protected override bool FilePredicate(string f) => f.EndsWith(".uplugin", true, null);
+        protected override bool FilePredicate(AbsolutePath f) => f.Name.EndsWith(".uplugin", true, null);
     }
 }

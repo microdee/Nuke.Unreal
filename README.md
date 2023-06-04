@@ -80,6 +80,8 @@ class Build : UnrealBuild
 * `IPackageTargets.PackagePak` has been removed, `IPackageTargets.PackageArguments` override should be used instead.
 * `UnrealBuild.UbtConfig` → `UnrealBuild.UbtGlobal`
 * `UnrealBuildToolConfig` → `UbtConfig`
+* `OutPath` → `Output`
+  * and the default output is changed from `RootDirectory / ".deploy"` to `ProjectFolder / "Intermediate" / "Output"`
 
 ### 1.0 → 1.1
 * `ToProject` and `ToPlugin` → `ProjectPath` and `PluginPath`

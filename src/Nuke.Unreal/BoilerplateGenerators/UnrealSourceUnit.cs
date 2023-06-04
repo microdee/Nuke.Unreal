@@ -7,17 +7,14 @@ namespace Nuke.Unreal.BoilerplateGenerators
 {
     public abstract class UnrealSourceUnit
     {
-        public readonly string Folder;
+        public readonly AbsolutePath Folder;
         public readonly string Name;
 
         public readonly bool IsValid = false;
 
         public UnrealSourceUnit(AbsolutePath currentFolder, string throwIfNotFound = null)
         {
-            Folder = FileSystemTasks.FindParentDirectory(
-                currentFolder,
-                d => d.GetFiles().Any(f => FilePredicate(f.FullName))
-            );
+            Folder = currentFolder.FindParentOrSelf(d => d.GetFiles().Any(f => FilePredicate(f)));
             if(throwIfNotFound != null && Folder == null)
             {
                 IsValid = false;
@@ -28,16 +25,16 @@ namespace Nuke.Unreal.BoilerplateGenerators
                 IsValid = false;
                 return;
             }
-            var unitFile = Directory.EnumerateFiles(Folder)
+            var unitFile = Folder.GlobFiles("*")
                 .Where(FilePredicate)
-                .Select(f => Path.GetFileName(f))
+                .Select(f => f.Name)
                 .First(); // it should fail when despite our efforts before it didn't find the module file anyway
 
             Name = GetNameFromFileName(unitFile);
             IsValid = true;
         }
 
-        protected abstract bool FilePredicate(string f);
+        protected abstract bool FilePredicate(AbsolutePath f);
         protected virtual string GetNameFromFileName(string f) => f.Split('.').First();
     }
 }

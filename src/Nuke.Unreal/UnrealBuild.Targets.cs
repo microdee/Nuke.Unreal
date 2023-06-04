@@ -23,7 +23,7 @@ namespace Nuke.Unreal
     {
         public Target CleanDeployment => _ => _
             .Description("Removes previous deployment folder")
-            .Executes(() => DeleteDirectory(OutPath));
+            .Executes(() =>Output.DeleteDirectory());
 
         public Target CleanProject => _ => _
             .Description("Removes auto generated folders of Unreal Engine from the project")
@@ -73,7 +73,7 @@ namespace Nuke.Unreal
                     .Game()
                     .Progress()
                     .Append(UbtArgs.AsArguments())
-                )();
+                )("");
             });
 
         public virtual Target BuildEditor => _ => _
@@ -87,7 +87,7 @@ namespace Nuke.Unreal
                     .Project(ProjectPath)
                     .Apply(UbtGlobal)
                     .Append(UbtArgs.AsArguments())
-                )();
+                )("");
             });
 
         public virtual Target Build => _ => _
@@ -107,7 +107,7 @@ namespace Nuke.Unreal
                     .Project(ProjectPath)
                     .Apply(UbtGlobal)
                     .Append(UbtArgs.AsArguments())
-                )();
+                )("");
             });
 
         public virtual bool CookAll => false;
@@ -144,7 +144,7 @@ namespace Nuke.Unreal
                         .Apply(UatCook)
                         .Apply(UatGlobal)
                         .Append(UatArgs.AsArguments())
-                    )(workingDirectory: UnrealEnginePath);
+                    )("", workingDirectory: UnrealEnginePath);
                 });
             });
         

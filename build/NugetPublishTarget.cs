@@ -6,13 +6,13 @@ using Nuke.Common.Tooling;
 [TypeConverter(typeof(TypeConverter<NuGetPublishTarget>))]
 public class NuGetPublishTarget : Enumeration
 {
-    public static NuGetPublishTarget NugetOrg = new()
+    public static readonly NuGetPublishTarget NugetOrg = new()
     {
         Value = nameof(NugetOrg),
         Source = "https://api.nuget.org/v3/index.json"
     };
 
-    public static NuGetPublishTarget Github = new()
+    public static readonly NuGetPublishTarget Github = new()
     {
         Value = nameof(Github),
         Source = "https://nuget.pkg.github.com/microdee/index.json"
