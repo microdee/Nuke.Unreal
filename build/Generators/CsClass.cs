@@ -14,19 +14,22 @@ public record CsClass(ClassDeclarationSyntax Declaration)
 
     private bool? _isPartial;
     public bool IsPartial => _isPartial ??= Declaration
-        .DescendantNodesAndTokens()
-        .OfType<SyntaxToken>()
+        .ChildTokens()
         .Any(t => t.IsKind(SyntaxKind.PartialKeyword));
     
     public bool? _isAbstract = null;
     public bool IsAbstract => _isAbstract ??= Declaration
-        .DescendantTokens()
+        .ChildTokens()
         .Any(t => t.IsKind(SyntaxKind.AbstractKeyword));
 
     private string _baseClass;
     public string BaseClass => _baseClass ??= Declaration
-        .DescendantNodes()
-        .OfType<SimpleBaseTypeSyntax>()
+        .ChildNodes()
+        .OfType<BaseListSyntax>()
+        .SelectMany(b => b
+            .DescendantNodes()
+            .OfType<SimpleBaseTypeSyntax>()
+        )
         .SelectMany(s => s
             .DescendantNodes(n => n is not GenericNameSyntax)
             .OfType<IdentifierNameSyntax>()

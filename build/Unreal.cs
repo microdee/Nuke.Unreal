@@ -41,7 +41,7 @@ public class UnrealDotnetAssemblies
 
     public UnrealDotnetAssemblies(AbsolutePath location, UnrealCompatibility compatibility)
     {
-        if((compatibility & UnrealCompatibility.UE5) > 0)
+        if((compatibility & UnrealCompatibility.UE_5) > 0)
         {
             DllPaths = new Dlls5(location);
         }

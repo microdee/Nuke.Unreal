@@ -457,7 +457,7 @@ public partial class UatGathering : CSharpSourceGatherer
         Log.Information(context.Indent() + "Gathering all classes in UAT");
         GatherClasses(context);
 
-        var buildCommandCandidates = Classes.Values.Where(IsConsidered);
+        var buildCommandCandidates = Classes.Values.Where(IsConsidered).ToList();
         GatherFromParsedCommandLineDictionaryInProgramClass(context);
         GatherGlobalCommandLine(context);
         

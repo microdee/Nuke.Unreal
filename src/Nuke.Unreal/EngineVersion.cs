@@ -103,9 +103,10 @@ namespace Nuke.Unreal
         public Guid EngineSourceId;
         public string EngineAssociation;
 
-        public UnrealCompatibility Compatibility => SemanticalVersion.Major > 4
-            ? UnrealCompatibility.UE5
-            : UnrealCompatibility.UE4;
+        private int CompatibilityBaseExponent => SemanticalVersion.Major > 4 ? 32 : 0;
+        private ulong CompatibilityFlag => 1UL << (CompatibilityBaseExponent + SemanticalVersion.Minor);
+
+        public UnrealCompatibility Compatibility => (UnrealCompatibility)CompatibilityFlag;
 
         public bool IsCompatibleWith(UnrealCompatibility compatibility)
         {
