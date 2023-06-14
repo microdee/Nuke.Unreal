@@ -61,7 +61,7 @@ public class UnrealDotnetAssemblies
         var result = Context.LoadFromAssemblyPath(file);
         // var result = Assembly.LoadFrom(file);
         var xmlPath = file.Parent / (file.NameWithoutExtension + ".xml");
-        if (xmlPath.Exists())
+        if (xmlPath.FileExists())
         {
             Towel.Meta.LoadXmlDocumentation(File.ReadAllText(xmlPath));
         }

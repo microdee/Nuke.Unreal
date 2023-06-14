@@ -55,7 +55,7 @@ namespace Nuke.Unreal
                 if(enginePath != null)
                 {
                     var buildVersionPath = enginePath / "Engine" / "Build" / "Build.version";
-                    if(buildVersionPath.Exists())
+                    if(buildVersionPath.FileExists())
                     {
                         var buildVersion = JObject.Parse(File.ReadAllText(buildVersionPath));
                         SemanticalVersion = new(
@@ -66,6 +66,11 @@ namespace Nuke.Unreal
 
                         PureVersionName = $"{SemanticalVersion.Major}.{SemanticalVersion.Minor}";
                         PureVersionNamePatch = $"{SemanticalVersion.Major}.{SemanticalVersion.Minor}.{SemanticalVersion.Build}";
+                    }
+                    else
+                    {
+                        Log.Warning("{0} didn't exist", buildVersionPath);
+                        Log.Warning("Couldn't determine version of engine from its path");
                     }
                 }
                 return;
