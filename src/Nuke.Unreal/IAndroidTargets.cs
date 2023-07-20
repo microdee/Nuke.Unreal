@@ -20,6 +20,7 @@ using System.Linq.Expressions;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Runtime.InteropServices;
+using Nuke.Cola;
 
 namespace Nuke.Unreal
 {

@@ -16,6 +16,7 @@ using System.Security.Cryptography;
 using Nuke.Unreal.Tools;
 using Nuke.Common.Tooling;
 using System.Reflection;
+using Nuke.Cola;
 
 namespace Nuke.Unreal
 {

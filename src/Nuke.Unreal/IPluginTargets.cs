@@ -12,6 +12,7 @@ using Nuke.Unreal.Tools;
 using Nuke.Common.Tooling;
 
 using static Nuke.Common.IO.FileSystemTasks;
+using Nuke.Cola;
 
 namespace Nuke.Unreal
 {
