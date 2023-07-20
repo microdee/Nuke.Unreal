@@ -16,20 +16,21 @@ using System.Security.Cryptography;
 using Nuke.Unreal.Tools;
 using Nuke.Common.Tooling;
 using System.Reflection;
+using Nuke.Cola;
 
 namespace Nuke.Unreal
 {
     public abstract partial class UnrealBuild : NukeBuild
     {
-        public Target CleanDeployment => _ => _
+        public virtual Target CleanDeployment => _ => _
             .Description("Removes previous deployment folder")
             .Executes(() =>Output.DeleteDirectory());
 
-        public Target CleanProject => _ => _
+        public virtual Target CleanProject => _ => _
             .Description("Removes auto generated folders of Unreal Engine from the project")
             .Executes(() => Unreal.ClearFolder(ProjectFolder));
 
-        public Target CleanPlugins => _ => _
+        public virtual Target CleanPlugins => _ => _
             .Description("Removes auto generated folders of Unreal Engine from the plugins")
             .Executes(() =>
             {
@@ -58,7 +59,7 @@ namespace Nuke.Unreal
                 }
             });
 
-        public Target Clean => _ => _
+        public virtual Target Clean => _ => _
             .Description("Removes auto generated folders of Unreal Engine")
             .DependsOn(CleanProject)
             .DependsOn(CleanPlugins);
@@ -71,6 +72,9 @@ namespace Nuke.Unreal
                     .ProjectFiles()
                     .Project(ProjectPath)
                     .Game()
+                    .If(GetEngineVersionFromProject().IsEngineSource, _ => _
+                        .Engine()
+                    )
                     .Progress()
                     .Append(UbtArgs.AsArguments())
                 )("");
