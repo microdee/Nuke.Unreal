@@ -151,48 +151,5 @@ namespace Nuke.Unreal
                     )("", workingDirectory: UnrealEnginePath);
                 });
             });
-        
-        public virtual Target DiscoverPluginTargets => _ => _
-            .Description(
-                "Discover other C# projects which may contain additional Nuke targets, and add them to the main build project."
-                + " However after discovery they still need to be added to the main Build class."
-                // TODO: add them automatically via Roslyn
-            )
-            .Executes(() =>
-            {
-                var buildProject = ProjectModelTasks.ParseProject(BuildProjectFile);
-                var pluginProjectFiles = RootDirectory.SubTreeProject()
-                    .Where(sd =>  Directory.Exists(sd / "Nuke.Targets"))
-                    .Where(sd => !Directory.Exists(sd / ".nuke"))
-                    .Select(sd => Glob.Files(sd / "Nuke.Targets", "*.csproj", GlobOptions.CaseInsensitive)
-                        .Where(f => sd / "Nuke.Targets" / f != BuildProjectFile)
-                        .Select(f => sd / "Nuke.Targets" / f)
-                        .FirstOrDefault()
-                    )
-                    .WhereNotNull();
-                
-                if (pluginProjectFiles.IsEmpty())
-                {
-                    Log.Information("No plugin targets have been found.");
-                    return;
-                }
-                
-                foreach(var pluginTargetsProject in pluginProjectFiles)
-                {
-                    var relativeToBuildProject = BuildProjectDirectory.GetRelativePathTo(pluginTargetsProject);
-
-                    if (buildProject.GetItems("ProjectReference").Any(
-                        i => i.EvaluatedInclude.Contains(Path.GetFileName(pluginTargetsProject))
-                    )) {
-                        Log.Information($"Plugin project was already included {relativeToBuildProject}");
-                        continue;
-                    }
-                    Log.Information($"Found plugin project at {relativeToBuildProject}");
-
-                    buildProject.AddItem("ProjectReference", relativeToBuildProject);
-                }
-
-                buildProject.Save();
-            });
     }
 }
