@@ -23,6 +23,7 @@ using build.Generators;
 using build.Generators.UAT;
 using build.Generators.UBT;
 using Nuke.Common.Tools.GitVersion;
+using Nuke.Cola;
 
 namespace build;
 
@@ -33,7 +34,7 @@ namespace build;
     OnPushBranches = new[] { MasterBranch },
     OnPullRequestBranches = new[] { MasterBranch }
 )]
-class Build : NukeBuild
+class Build : NukeBuild, IPublishNugets
 {
     /// Support plugins are available for:
     ///   - JetBrains ReSharper        https://nuke.build/resharper
@@ -49,13 +50,10 @@ class Build : NukeBuild
 
     const string MasterBranch = "master";
 
-    record ProjectRecord(Project Project, bool PublishToNuget);
-
     Project GetSlnProject(string name) => Solution.GetAllProjects(name).SingleOrDefault();
 
     ProjectRecord MainProject => new (GetSlnProject("Nuke.Unreal") , true);
     ProjectRecord IniProject => new (GetSlnProject("Nuke.Unreal.Ini") , true);
-    ProjectRecord[] NukeUnreal => new [] { MainProject, IniProject };
 
     [Solution] readonly Solution Solution;
     
@@ -68,6 +66,14 @@ class Build : NukeBuild
     [Parameter]
     NuGetPublishTarget[] PublishTo = new [] { IsLocalBuild ? NuGetPublishTarget.Github : NuGetPublishTarget.NugetOrg };
 
+    public string VersionForNuget => GitVersion.NuGetVersion;
+
+    public ProjectRecord[] PublishProjects => new [] { MainProject, IniProject };
+
+    public NugetSource[] NugetSources => NugetSource.CombineFrom(
+        PublishTo.Select(p => p.Source).ToArray(), NugetApiKeys
+    ).ToArray();
+
     Target Info => _ => _
         .Description("Print information about the current state of the environment")
         .Executes(() =>
@@ -75,7 +81,7 @@ class Build : NukeBuild
             Log.Information("GitVersion: {0}", GitVersion.FullSemVer);
             Log.Information("NugetVersion: {0}", GitVersion.NuGetVersion);
             Log.Information("NugetVersionV2: {0}", GitVersion.NuGetVersionV2);
-            foreach(var project in NukeUnreal)
+            foreach(var project in PublishProjects)
             {
                 Log.Information(project.Project.Name);
             }
@@ -98,7 +104,7 @@ class Build : NukeBuild
     Target Restore => _ => _
         .Executes(() =>
         {
-            foreach(var project in NukeUnreal)
+            foreach(var project in PublishProjects)
             {
                 DotNetRestore(s => s
                     .SetProjectFile(project.Project)
@@ -110,11 +116,11 @@ class Build : NukeBuild
         .DependsOn(Restore)
         .Executes(() =>
         {
-            foreach(var (project, publishToNuget) in NukeUnreal)
+            foreach(var (project, publishToNuget) in PublishProjects)
             {
-                var nukeUnrealMsBuild = project.GetMSBuildProject();
-                nukeUnrealMsBuild.SetProperty("Version", GitVersion.NuGetVersion);
-                nukeUnrealMsBuild.Save();
+                var projectMsBuild = project.GetMSBuildProject();
+                projectMsBuild.SetProperty("Version", GitVersion.NuGetVersion);
+                projectMsBuild.Save();
 
                 DotNetBuild(s => s
                     .SetNoRestore(true)
@@ -156,34 +162,5 @@ class Build : NukeBuild
             var tests_5_2 = RootDirectory / "tests" / "UE_5.2";
             RunTest(tests_5_2 / "AddCodeToProject");
             RunTest(tests_5_2 / "Packaging");
-
         });
-
-    Target PublishNuget => _ => _
-        .DependsOn(Compile, Test)
-        .Requires(() => NugetApiKeys)
-        .Requires(() => PublishTo)
-        .Executes(() =>
-        {
-            for (int i=0; i<PublishTo.Length; i++)
-            {
-                foreach(var project in NukeUnreal)
-                {
-                    if (!project.PublishToNuget) continue;
-
-                    var source = PublishTo[i].Source;
-                    var apiKey = NugetApiKeys[i % NugetApiKeys.Length];
-
-                    Log.Information("Publishing nuget package to {0}", source);
-
-                    var packageId = project.Project.GetProperty("PackageId");
-                    DotNetNuGetPush(s => s
-                        .SetTargetPath(project.Project.Directory / "bin" / Configuration / $"{packageId}.{GitVersion.NuGetVersion}.symbols.nupkg")
-                        .SetApiKey(apiKey)
-                        .SetSource(source)
-                    );
-                }
-            }
-        });
-
 }
