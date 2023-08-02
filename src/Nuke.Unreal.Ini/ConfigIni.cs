@@ -57,9 +57,11 @@ public class ConfigIni
         ConfigSession? currentSession = null;
         var ini = new ConfigIni();
         int order = 0;
-        foreach(var line in input.Split(new [] { Environment.NewLine }, StringSplitOptions.None))
+        foreach(var lineIn in input.Split(new [] { Environment.NewLine, "\n" }, StringSplitOptions.None))
         {
-            if (string.IsNullOrWhiteSpace(line)) continue;
+            if (string.IsNullOrWhiteSpace(lineIn)) continue;
+            var line = lineIn.Trim();
+            
             if (line.StartsWith("[") && line.EndsWith("]"))
             {
                 var sessionName = line.TrimStart('[').TrimEnd(']');
