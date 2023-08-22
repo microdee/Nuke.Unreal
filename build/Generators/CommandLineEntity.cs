@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Xml;
 using System.Security;
 using Nuke.Common.Utilities;
+using Serilog;
 
 namespace build.Generators;
 public abstract class CommandLineEntity
@@ -82,7 +83,16 @@ public static class CommandLineEntityExtensions
     public static T AddRootlessXmlDocs<T>(this T self, string xml) where T : CommandLineEntity
     {
         if (string.IsNullOrWhiteSpace(xml)) return self;
-        return self.AddXElementContents(XElement.Parse($"<r>{xml}</r>"));
+        try
+        {
+            return self.AddXElementContents(XElement.Parse($"<r>{xml}</r>"));
+        }
+        catch(Exception e)
+        {
+            Log.Warning(e, "Input XML document was malformed. Documentation will be ignored");
+            Log.Debug("Invalid input XML was:\n\n{0}\n", xml);
+            return self;
+        }
     }
 
     public static T MergeDocs<T>(this T self, CommandLineEntity other) where T : CommandLineEntity
