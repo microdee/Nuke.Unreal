@@ -163,5 +163,9 @@ class Build : NukeBuild, IPublishNugets
             var tests_5_2 = RootDirectory / "tests" / "UE_5.2";
             RunTest(tests_5_2 / "AddCodeToProject");
             RunTest(tests_5_2 / "Packaging");
+
+            var tests_5_3 = RootDirectory / "tests" / "UE_5.3";
+            RunTest(tests_5_3 / "AddCodeToProject");
+            RunTest(tests_5_3 / "Packaging");
         });
 }
