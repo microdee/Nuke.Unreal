@@ -24,7 +24,7 @@ namespace Nuke.Unreal
     {
         public virtual Target CleanDeployment => _ => _
             .Description("Removes previous deployment folder")
-            .Executes(() =>Output.DeleteDirectory());
+            .Executes(() => GetOutput().DeleteDirectory());
 
         public virtual Target CleanProject => _ => _
             .Description("Removes auto generated folders of Unreal Engine from the project")
@@ -68,11 +68,11 @@ namespace Nuke.Unreal
             .Description("Generate project files for the default IDE of the current platform (Visual Studio or XCode)")
             .Executes(() =>
             {
-                Unreal.BuildTool(GetEngineVersionFromProject(), _ => _
+                Unreal.BuildTool(this, _ => _
                     .ProjectFiles()
                     .Project(ProjectPath)
                     .Game()
-                    .If(GetEngineVersionFromProject().IsEngineSource, _ => _
+                    .If(Unreal.Version(this).IsEngineSource, _ => _
                         .Engine()
                     )
                     .Progress()
@@ -84,7 +84,7 @@ namespace Nuke.Unreal
             .Description("Build the editor binaries so this project can be opened properly in the Unreal editor")
             .Executes(() =>
             {
-                Unreal.BuildTool(GetEngineVersionFromProject(), _ => _
+                Unreal.BuildTool(this, _ => _
                     .Target(ProjectName + UnrealTargetType.Editor)
                     .Platform(Unreal.GetDefaultPlatform())
                     .Configuration(UnrealConfig.Development)
@@ -99,7 +99,7 @@ namespace Nuke.Unreal
             .After(Cook) // Android needs Cook to happen before building the APK, so OBB files can be included in the APK
             .Executes(() =>
             {
-                Unreal.BuildTool(GetEngineVersionFromProject(), _ => _
+                Unreal.BuildTool(this, _ => _
                     .Target(
                         TargetType.Select(tt => tt == UnrealTargetType.Game
                             ? ProjectName
@@ -129,7 +129,7 @@ namespace Nuke.Unreal
 
                 Config.ForEach(config =>
                 {
-                    Unreal.AutomationTool(GetEngineVersionFromProject(), _ => _
+                    Unreal.AutomationTool(this, _ => _
                         .BuildCookRun(_ => _
                             .Project(ProjectPath)
                             .Clientconfig(config)
