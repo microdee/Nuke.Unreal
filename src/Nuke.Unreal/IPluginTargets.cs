@@ -94,7 +94,7 @@ namespace Nuke.Unreal
 
                 Log.Information($"Checking out targeting UE {self.UnrealVersion} on platform {self.Platform}");
 
-                PluginObject["EngineVersion"] = self.EngineVersion.FullVersionName;
+                PluginObject["EngineVersion"] = self.EngineVersion.VersionName;
                 PluginObject["VersionName"] = PluginVersion;
 
                 foreach (var module in PluginObject["Modules"])
@@ -115,6 +115,7 @@ namespace Nuke.Unreal
             .Triggers(PackPlugin);
 
         UatConfig UatPackPlugin(UatConfig _) => _;
+        UatConfig UatBuildEditorPlugin(UatConfig _) => _;
 
         Target PackPlugin => _ => _
             .Description("Make a prebuilt release of the target plugin for current version. This yields zip archives in the deployment path specified in OutPath (.deploy by default)")
@@ -124,8 +125,8 @@ namespace Nuke.Unreal
             {
                 var self = Self<UnrealBuild>();
 
-                var packageName = $"{PluginName}-{self.Platform}-{PluginVersion}.{self.GetEngineVersionFromProject().FullVersionName}-PreBuilt";
-                var targetDir = self.Output / packageName;
+                var packageName = $"{PluginName}-{self.Platform}-{PluginVersion}.{Unreal.Version(self).VersionName}-PreBuilt";
+                var targetDir = self.GetOutput() / packageName;
                 var archiveFileName = $"{packageName}.zip";
 
                 Log.Information($"Packaging plugin: {packageName}");
@@ -134,10 +135,15 @@ namespace Nuke.Unreal
                 Directory.CreateDirectory(targetDir);
                 (targetDir.Parent / archiveFileName).DeleteFile();
 
-                Unreal.AutomationTool(self.GetEngineVersionFromProject(), _ => _
+                Unreal.AutomationTool(self, _ => _
                     .BuildPlugin(_ => _
                         .Plugin(PluginPath)
                         .Package(targetDir)
+                        .NoHostPlatform()
+                        .TargetPlatforms(self.Platform)
+                        .If(Unreal.Is4(self), _ => _
+                            .VS2019()
+                        )
                         .StrictIncludes()
                         .Unversioned()
                     )
@@ -158,8 +164,8 @@ namespace Nuke.Unreal
             {
                 var self = Self<UnrealBuild>();
 
-                var packageName = $"{PluginName}-{self.Platform}-{PluginVersion}.{self.GetEngineVersionFromProject().FullVersionName}-Source";
-                var targetDir = self.Output / packageName;
+                var packageName = $"{PluginName}-{self.Platform}-{PluginVersion}.{Unreal.Version(self).VersionName}-Source";
+                var targetDir = self.GetOutput() / packageName;
                 var archiveFileName = $"{packageName}.zip";
 
                 Log.Information($"Gathering Marketplace release: {packageName}");
