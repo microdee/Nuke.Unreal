@@ -127,6 +127,7 @@ namespace Nuke.Unreal
 
                 var packageName = $"{PluginName}-{self.Platform}-{PluginVersion}.{Unreal.Version(self).VersionName}-PreBuilt";
                 var targetDir = self.GetOutput() / packageName;
+                var hostProjectDir = targetDir / "HostProject";
                 var archiveFileName = $"{packageName}.zip";
 
                 Log.Information($"Packaging plugin: {packageName}");
@@ -139,11 +140,11 @@ namespace Nuke.Unreal
                     .BuildPlugin(_ => _
                         .Plugin(PluginPath)
                         .Package(targetDir)
-                        .NoHostPlatform()
                         .TargetPlatforms(self.Platform)
                         .If(Unreal.Is4(self), _ => _
                             .VS2019()
                         )
+                        .NoDeleteHostProject()
                         .StrictIncludes()
                         .Unversioned()
                     )
@@ -151,6 +152,7 @@ namespace Nuke.Unreal
                     .Apply(self.UatGlobal)
                     .Append(self.UatArgs.AsArguments())
                 )("");
+                hostProjectDir.DeleteDirectory();
 
                 Log.Information($"Archiving release: {packageName}");
                 ZipFile.CreateFromDirectory(targetDir, targetDir.Parent / archiveFileName);
