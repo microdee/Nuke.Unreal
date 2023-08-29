@@ -57,7 +57,7 @@ public class ConfigIni
         ConfigSession? currentSession = null;
         var ini = new ConfigIni();
         int order = 0;
-        foreach(var lineIn in input.Split(new [] { Environment.NewLine, "\n" }, StringSplitOptions.None))
+        foreach(var lineIn in input.Split(new [] { "\r", "\n" }, StringSplitOptions.None))
         {
             if (string.IsNullOrWhiteSpace(lineIn)) continue;
             var line = lineIn.Trim();

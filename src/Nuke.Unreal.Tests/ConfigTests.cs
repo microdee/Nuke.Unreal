@@ -2,8 +2,17 @@ using Xunit;
 using Nuke.Unreal.Ini;
 using System.Linq;
 using System;
+using Nuke.Common.IO;
+using System.Runtime.CompilerServices;
+using System.IO;
 
 namespace Nuke.Unreal.Tests;
+
+file static class ThisFile
+{
+    public static AbsolutePath Path([CallerFilePath] string? path = null) => path ?? "C:\\";
+    public static AbsolutePath Folder() => Path().Parent;
+}
 
 public class ConfigTests
 {
@@ -119,5 +128,21 @@ Foo=Bar";
         
         mainIni.FindOrAdd("NewSection").Set("NewEntry", "yo");
         Assert.Equal("yo", mainIni["NewSection"].GetFirst("NewEntry").Value);
+    }
+
+    [Fact]
+    public void LineEndings()
+    {
+        var mainIni = ConfigIni.Parse(File.ReadAllText(ThisFile.Folder() / "DefaultEngine_LF.ini"));
+        Assert.NotNull(mainIni);
+        Assert.Equal("False", mainIni["/Script/Engine.RendererSettings"]?.GetFirst("r.ClearCoatNormal").Value);
+
+        mainIni = ConfigIni.Parse(File.ReadAllText(ThisFile.Folder() / "DefaultEngine_UTF16LE.ini"));
+        Assert.NotNull(mainIni);
+        Assert.Equal("False", mainIni["/Script/Engine.RendererSettings"]?.GetFirst("r.ClearCoatNormal").Value);
+
+        mainIni = ConfigIni.Parse(File.ReadAllText(ThisFile.Folder() / "DefaultEngine_UTF16BE.ini"));
+        Assert.NotNull(mainIni);
+        Assert.Equal("True", mainIni["/Script/NavigationSystem.NavigationSystemV1"]?.GetFirst("bAllowClientSideNavigation").Value);
     }
 }
