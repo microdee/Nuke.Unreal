@@ -95,7 +95,8 @@ class Build : NukeBuild, IPublishNugets
                 new("4.27", UnrealCompatibility.UE_4),
                 new("5.0", UnrealCompatibility.UE_5_0),
                 new("5.1", UnrealCompatibility.UE_5_1),
-                new("5.2", UnrealCompatibility.UE_5_Latest),
+                new("5.2", UnrealCompatibility.UE_5_2),
+                new("5.3", UnrealCompatibility.UE_5_Latest),
             };
             new UbtGeneratorFromSource().Generate(this, engines);
             new UatGenerator().Generate(this, engines);
@@ -162,5 +163,9 @@ class Build : NukeBuild, IPublishNugets
             var tests_5_2 = RootDirectory / "tests" / "UE_5.2";
             RunTest(tests_5_2 / "AddCodeToProject");
             RunTest(tests_5_2 / "Packaging");
+
+            var tests_5_3 = RootDirectory / "tests" / "UE_5.3";
+            RunTest(tests_5_3 / "AddCodeToProject");
+            RunTest(tests_5_3 / "Packaging");
         });
 }

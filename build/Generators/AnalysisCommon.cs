@@ -127,11 +127,11 @@ public static class AnalysisCommon
                 .Trim();
 
             // Of course we have instances of malformed XML docs in UAT
-            if (documentation.StartsWithOrdinalIgnoreCase("<summary>") && !documentation.EndsWithOrdinalIgnoreCase("</summary>"))
+            if (documentation.ContainsOrdinalIgnoreCase("<summary>") && !documentation.ContainsOrdinalIgnoreCase("</summary>"))
             {
                 documentation += "</summary>";
             }
-            if (!documentation.StartsWithOrdinalIgnoreCase("<summary>") && documentation.EndsWithOrdinalIgnoreCase("</summary>"))
+            if (!documentation.ContainsOrdinalIgnoreCase("<summary>") && documentation.ContainsOrdinalIgnoreCase("</summary>"))
             {
                 documentation = "<summary>" + documentation;
             }

@@ -98,6 +98,11 @@ namespace Nuke.Unreal
 
             throw new FileNotFoundException("No Unreal Engine installation could be found.");
         }
+        
+        public static EngineVersion Version(UnrealBuild build) => build.GetEngineVersionFromProject();
+
+        public static bool Is4(UnrealBuild build) => Version(build).SemanticalVersion.Major == 4;
+        public static bool Is5(UnrealBuild build) => Version(build).SemanticalVersion.Major == 5;
 
         public static AbsolutePath GetEnginePath(EngineVersion ofVersion)
         {
@@ -110,6 +115,7 @@ namespace Nuke.Unreal
 
             throw new FileNotFoundException("No Unreal Engine installation could be found.");
         }
+        public static AbsolutePath GetEnginePath(UnrealBuild build) => GetEnginePath(Version(build));
 
         public static UnrealPlatformFlag GetDefaultPlatform()
         {
@@ -147,6 +153,10 @@ namespace Nuke.Unreal
             return BuildTool(ofVersion).With(arguments: toolConfig.Gather(ofVersion));
         }
 
+        public static Tool BuildTool(UnrealBuild build) => BuildTool(Version(build));
+
+        public static Tool BuildTool(UnrealBuild build, Action<UbtConfig> config) => BuildTool(Version(build), config);
+
         public static Tool AutomationTool(EngineVersion ofVersion)
         {
             var scriptExt = RuntimeInformation.IsOSPlatform(OSPlatform.Windows) ? "bat" : "sh";
@@ -162,6 +172,10 @@ namespace Nuke.Unreal
             config?.Invoke(toolConfig);
             return AutomationTool(ofVersion).With(arguments: toolConfig.Gather(ofVersion));
         }
+
+        public static Tool AutomationTool(UnrealBuild build) => AutomationTool(Version(build));
+
+        public static Tool AutomationTool(UnrealBuild build, Action<UatConfig> config) => AutomationTool(Version(build), config);
 
         public static void ClearFolder(AbsolutePath folder)
         {

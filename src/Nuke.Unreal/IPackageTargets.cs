@@ -44,7 +44,7 @@ namespace Nuke.Unreal
                 var appLocalDir = self.UnrealEnginePath / "Engine" / "Binaries" / "ThirdParty" / "AppLocalDependencies";
                 self.Config.ForEach(config =>
                 {
-                    Unreal.AutomationTool(self.GetEngineVersionFromProject(), _ => _
+                    Unreal.AutomationTool(self, _ => _
                         .BuildCookRun(_ => _
                             .Project(self.ProjectPath)
                             .Target(self.ProjectName)

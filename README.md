@@ -82,6 +82,7 @@ class Build : UnrealBuild
 * `UnrealBuildToolConfig` → `UbtConfig`
 * `OutPath` → `Output`
   * and the default output is changed from `RootDirectory / ".deploy"` to `ProjectFolder / "Intermediate" / "Output"`
+  * In Build scripts only access output via `GetOutput()` method
 
 ### 1.0 → 1.1
 * `ToProject` and `ToPlugin` → `ProjectPath` and `PluginPath`
@@ -202,7 +203,7 @@ Nuke.Unreal provides builder pattern Unreal tool configurators in C# which yield
 
 ```CSharp
 // For UBT:
-Unreal.BuildTool(GetEngineVersionFromProject(), _ => _
+Unreal.BuildTool(this, _ => _
     .Target(UnrealTargetType.Server)
     .Platform(UnrealPlatform.LinuxAArch64)
     .Configuration(UnrealConfig.Development)
@@ -211,7 +212,7 @@ Unreal.BuildTool(GetEngineVersionFromProject(), _ => _
 )(workingDirectory: MyEnginePath);
 
 // For UAT:
-Unreal.AutomationTool(GetEngineVersionFromProject(), _ => _
+Unreal.AutomationTool(this, _ => _
     .BuildPlugin(_ => _
         .Plugin(PluginPath)
         .Package(targetDir)

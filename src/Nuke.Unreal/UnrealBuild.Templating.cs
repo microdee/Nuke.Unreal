@@ -53,7 +53,7 @@ namespace Nuke.Unreal
                     new PluginGenerator().Generate(
                         TemplatesPath,
                         (AbsolutePath) Environment.CurrentDirectory,
-                        n, GetEngineVersionFromProject()
+                        n, Unreal.Version(this)
                     )
                 )
             );
