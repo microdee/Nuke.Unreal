@@ -114,6 +114,7 @@ class Build : NukeBuild, IPublishNugets
         });
 
     Target Compile => _ => _
+        .DependentFor<IPublishNugets>(_ => _.PublishNuget)
         .DependsOn(Restore)
         .Executes(() =>
         {
