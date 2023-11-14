@@ -145,7 +145,6 @@ namespace Nuke.Unreal
                             .VS2019()
                         )
                         .NoDeleteHostProject()
-                        .StrictIncludes()
                         .Unversioned()
                     )
                     .Apply(UatPackPlugin)

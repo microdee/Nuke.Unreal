@@ -150,7 +150,11 @@ namespace Nuke.Unreal
         {
             var toolConfig = new UbtConfig();
             config?.Invoke(toolConfig);
-            return BuildTool(ofVersion).With(arguments: toolConfig.Gather(ofVersion), logInvocation: true);
+            return BuildTool(ofVersion).With(
+                arguments: toolConfig.Gather(ofVersion),
+                workingDirectory: GetEnginePath(ofVersion) / "Engine" / "Source",
+                logInvocation: true
+            );
         }
 
         public static Tool BuildTool(UnrealBuild build) => BuildTool(Version(build));
@@ -170,7 +174,11 @@ namespace Nuke.Unreal
         {
             var toolConfig = new UatConfig();
             config?.Invoke(toolConfig);
-            return AutomationTool(ofVersion).With(arguments: toolConfig.Gather(ofVersion), logInvocation: true);
+            return AutomationTool(ofVersion).With(
+                arguments: toolConfig.Gather(ofVersion),
+                workingDirectory: GetEnginePath(ofVersion) / "Engine" / "Source",
+                logInvocation: true
+            );
         }
 
         public static Tool AutomationTool(UnrealBuild build) => AutomationTool(Version(build));
