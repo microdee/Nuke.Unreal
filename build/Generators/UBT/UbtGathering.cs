@@ -39,11 +39,8 @@ public partial class UbtGathering : CSharpSourceGatherer
         )
         .Any(a => a.Name.ToString() == "CommandLine");
 
-    protected static bool IsConsidered(ClassInfo classInfo) => !classInfo.IsAbstract
-        && (
-            classInfo.Implements(UniqueClass.ToolMode) != null
-            || ContainsCommandLineArg(classInfo)
-        );
+    protected static bool IsConsidered(ClassInfo classInfo) =>
+            classInfo.Implements(UniqueClass.ToolMode) != null && !classInfo.IsAbstract || ContainsCommandLineArg(classInfo);
 
     ArgumentModelType GetArgType(TypeSyntax type, bool isCollection)
     {

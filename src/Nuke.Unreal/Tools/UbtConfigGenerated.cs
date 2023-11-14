@@ -24,6 +24,48 @@ public enum HotReloadMode
 }
 
 /// <summary>
+/// Controls how a particular warning is treated
+/// </summary>
+public enum WarningLevel
+{
+    /// <summary>
+    /// Do not display diagnostics
+    /// </summary>
+    Off,
+    /// <summary>
+    /// Output warnings normally
+    /// </summary>
+    Warning,
+    /// <summary>
+    /// Output warnings as errors
+    /// </summary>
+    Error,
+}
+
+/// <summary>
+/// Specifies which language standard to use. This enum should be kept in order, so that toolchains can check whether the requested setting is >= values that they support.
+/// </summary>
+public enum CppStandardVersion
+{
+    /// <summary>
+    /// Use the default standard version
+    /// </summary>
+    Default,
+    /// <summary>
+    /// Supports C++14
+    /// </summary>
+    Cpp14,
+    /// <summary>
+    /// Supports C++17
+    /// </summary>
+    Cpp17,
+    /// <summary>
+    /// Latest standard supported by the compiler
+    /// </summary>
+    Latest,
+}
+
+/// <summary>
 /// Available compiler toolchains on Windows platform
 /// </summary>
 public enum WindowsCompiler
@@ -148,6 +190,173 @@ public enum UnrealTargetConfiguration
 /// All other analyzers default automatically to Text.
 /// </summary>
 public enum WindowsStaticAnalyzerOutputType
+{
+    /// <summary>
+    /// Output the analysis to stdout.
+    /// </summary>
+    Text,
+    /// <summary>
+    /// Output the analysis to an HTML file in the object folder.
+    /// </summary>
+    Html,
+}
+
+/// <summary>
+/// What version of include order to use when compiling.
+/// </summary>
+public enum EngineIncludeOrderVersion
+{
+    /// <summary>
+    /// Include order used in Unreal 5.0
+    /// </summary>
+    Unreal5_0,
+    /// <summary>
+    /// Include order used in Unreal 5.1
+    /// </summary>
+    Unreal5_1,
+    /// <summary>
+    /// Always use the latest version of include order.
+    /// </summary>
+    Latest,
+    /// <summary>
+    /// Contains the oldest version of include order that the engine supports.
+    /// </summary>
+    Oldest,
+}
+
+/// <summary>
+/// Output type for the static analyzer. This currently only works for the Clang static analyzer.
+/// The Clang static analyzer can do a shallow quick analysis. However the default deep is recommended.
+/// </summary>
+public enum StaticAnalyzerMode
+{
+    /// <summary>
+    /// Default deep analysis.
+    /// </summary>
+    Deep,
+    /// <summary>
+    /// Quick analysis. Not recommended.
+    /// </summary>
+    Shallow,
+}
+
+/// <summary>
+/// Specifies which C language standard to use. This enum should be kept in order, so that toolchains can check whether the requested setting is >= values that they support.
+/// </summary>
+public enum CStandardVersion
+{
+    /// <summary>
+    /// Use the default standard version
+    /// </summary>
+    Default,
+    /// <summary>
+    /// Supports C89
+    /// </summary>
+    C89,
+    /// <summary>
+    /// Supports C99
+    /// </summary>
+    C99,
+    /// <summary>
+    /// Supports C11
+    /// </summary>
+    C11,
+    /// <summary>
+    /// Supports C17
+    /// </summary>
+    C17,
+    /// <summary>
+    /// Latest standard supported by the compiler
+    /// </summary>
+    Latest,
+}
+
+/// <summary>
+/// Optimization mode for compiler settings
+/// </summary>
+public enum OptimizationMode
+{
+    /// <summary>
+    /// Favor speed
+    /// </summary>
+    Speed,
+    /// <summary>
+    /// Favor minimal code size
+    /// </summary>
+    Size,
+    /// <summary>
+    /// Somewhere between Speed and Size
+    /// </summary>
+    SizeAndSpeed,
+}
+
+/// <summary>
+/// Specifies the architecture for code generation on x64 for windows platforms.
+/// Note that by enabling this you are changing the minspec for the PC platform, and the resultant executable will crash on machines without AVX support.
+/// For more details please see https://learn.microsoft.com/en-us/cpp/build/reference/arch-x64
+/// </summary>
+public enum MinimumCpuArchitectureX64
+{
+    /// <summary>
+    /// No minimum architecure
+    /// </summary>
+    None,
+    /// <summary>
+    /// Enables the use of Intel Advanced Vector Extensions instructions
+    /// </summary>
+    AVX,
+    /// <summary>
+    /// Enables the use of Intel Advanced Vector Extensions 2 instructions
+    /// </summary>
+    AVX2,
+    /// <summary>
+    /// Enables the use of Intel Advanced Vector Extensions 512 instructions
+    /// </summary>
+    AVX512,
+    /// <summary>
+    /// Use the default minimum architecure
+    /// </summary>
+    Default,
+}
+
+/// <summary>
+/// Which static analyzer to use
+/// </summary>
+public enum StaticAnalyzer
+{
+    /// <summary>
+    /// Do not perform static analysis
+    /// </summary>
+    None,
+    /// <summary>
+    /// Use the default static analyzer for the selected compiler, if it has one. For
+    /// Visual Studio and Clang, this means using their built-in static analysis tools.
+    /// Any compiler that doesn't support static analysis will ignore this option.
+    /// </summary>
+    Default,
+    /// <summary>
+    /// Use the built-in Visual C++ static analyzer
+    /// </summary>
+    VisualCpp,
+    /// <summary>
+    /// Use PVS-Studio for static analysis
+    /// </summary>
+    PVSStudio,
+    /// <summary>
+    /// Use clang for static analysis. This forces the compiler to clang.
+    /// </summary>
+    Clang,
+}
+
+/// <summary>
+/// Output type for the static analyzer. This currently only works for the Clang static analyzer.
+/// The Clang static analyzer can do either Text, which prints the analysis to stdout, or
+/// html, where it writes out a navigable HTML page for each issue that it finds, per file.
+/// The HTML is output in the same directory as the object file that would otherwise have
+/// been generated.
+/// All other analyzers default automatically to Text.
+/// </summary>
+public enum StaticAnalyzerOutputType
 {
     /// <summary>
     /// Output the analysis to stdout.
@@ -1168,6 +1377,1193 @@ public abstract class UbtConfigGenerated : ToolConfig
 
         
 /// <summary>
+/// Build all the modules that are valid for this target type. Used for CIS and making installed engine builds.
+/// </summary>
+        public virtual UbtConfig AllModules(bool? val = null)
+        {
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-AllModules",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (UbtConfig) this;
+        }
+
+        
+/// <summary>
+/// Additional plugins that are built for this target type but not enabled.
+/// </summary>
+        public virtual UbtConfig BuildPlugin(params object[] values)
+        {
+            if (true)
+            {
+                if (values != null)
+                    foreach (var val in values)
+                    {
+                        AppendArgument(new UnrealToolArgument(
+                            "-BuildPlugin",
+                            Value: val.ToString(),
+                            Setter: '=',
+                            Meta: new(
+                                Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
+                                AllowMultiple: true
+                            )
+                        ));
+                    }
+            }
+            return (UbtConfig) this;
+        }
+
+        
+/// <summary>
+/// Additional plugins that should be included for this target.
+/// </summary>
+        public virtual UbtConfig EnablePlugin(params object[] values)
+        {
+            if (true)
+            {
+                if (values != null)
+                    foreach (var val in values)
+                    {
+                        AppendArgument(new UnrealToolArgument(
+                            "-EnablePlugin",
+                            Value: val.ToString(),
+                            Setter: '=',
+                            Meta: new(
+                                Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
+                                AllowMultiple: true
+                            )
+                        ));
+                    }
+            }
+            return (UbtConfig) this;
+        }
+
+        
+/// <summary>
+/// List of plugins to be disabled for this target. Note that the project file may still reference them, so they should be marked
+/// as optional to avoid failing to find them at runtime.
+/// </summary>
+        public virtual UbtConfig DisablePlugin(params object[] values)
+        {
+            if (true)
+            {
+                if (values != null)
+                    foreach (var val in values)
+                    {
+                        AppendArgument(new UnrealToolArgument(
+                            "-DisablePlugin",
+                            Value: val.ToString(),
+                            Setter: '=',
+                            Meta: new(
+                                Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
+                                AllowMultiple: true
+                            )
+                        ));
+                    }
+            }
+            return (UbtConfig) this;
+        }
+
+        
+/// <summary>
+/// Whether this target should be compiled as a DLL.  Requires LinkType to be set to TargetLinkType.Monolithic.
+/// </summary>
+        public virtual UbtConfig CompileAsDll(bool? val = null)
+        {
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-CompileAsDll",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (UbtConfig) this;
+        }
+
+        
+/// <summary>
+/// Whether to compile the Chaos physics plugin.
+/// </summary>
+        public virtual UbtConfig NoCompileChaos(bool present = true)
+        {
+            if (present)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-NoCompileChaos",
+                    Value: null,
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (UbtConfig) this;
+        }
+
+        
+/// <summary>
+/// Whether to compile the Chaos physics plugin.
+/// </summary>
+        public virtual UbtConfig CompileChaos(bool present = true)
+        {
+            if (present)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-CompileChaos",
+                    Value: null,
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (UbtConfig) this;
+        }
+
+        
+/// <summary>
+/// Whether to use the Chaos physics interface. This overrides the physx flags to disable APEX and NvCloth
+/// </summary>
+        public virtual UbtConfig NoUseChaos(bool present = true)
+        {
+            if (present)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-NoUseChaos",
+                    Value: null,
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (UbtConfig) this;
+        }
+
+        
+/// <summary>
+/// Whether to use the Chaos physics interface. This overrides the physx flags to disable APEX and NvCloth
+/// </summary>
+        public virtual UbtConfig UseChaos(bool present = true)
+        {
+            if (present)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-UseChaos",
+                    Value: null,
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (UbtConfig) this;
+        }
+
+        
+/// <summary>
+/// Enable RTTI for all modules.
+/// </summary>
+        public virtual UbtConfig Rtti(bool? val = null)
+        {
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-rtti",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (UbtConfig) this;
+        }
+
+        
+/// <summary>Enables "include what you use" by default for modules in this target. Changes the default PCH mode for any module in this project to PCHUsageMode.UseExplicitOrSharedPCHs.
+/// Enables "include what you use" mode.</summary>
+        public virtual UbtConfig IWYU(bool? val = null)
+        {
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-IWYU",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (UbtConfig) this;
+        }
+
+        
+/// <summary>
+/// Make static libraries for all engine modules as intermediates for this target.
+/// </summary>
+        public virtual UbtConfig Precompile(bool? val = null)
+        {
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Precompile",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (UbtConfig) this;
+        }
+
+        
+/// <summary>
+/// Whether to unify C++ code into larger files for faster compilation.
+/// </summary>
+        public virtual UbtConfig DisableUnity(bool present = true)
+        {
+            if (present)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-DisableUnity",
+                    Value: null,
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (UbtConfig) this;
+        }
+
+        
+/// <summary>
+/// Whether to force C++ source files to be combined into larger files for faster compilation.
+/// </summary>
+        public virtual UbtConfig ForceUnity(bool? val = null)
+        {
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-ForceUnity",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (UbtConfig) this;
+        }
+
+        
+/// <summary>
+/// Forces shadow variable warnings to be treated as errors on platforms that support it.
+/// </summary>
+        public virtual UbtConfig ShadowVariableErrors(WarningLevel? val = null)
+        {
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-ShadowVariableErrors",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (UbtConfig) this;
+        }
+
+        
+/// <summary>
+/// New Monolithic Graphics drivers have optional "fast calls" replacing various D3d functions
+/// </summary>
+        public virtual UbtConfig FastMonoCalls(bool present = true)
+        {
+            if (present)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-FastMonoCalls",
+                    Value: null,
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (UbtConfig) this;
+        }
+
+        
+/// <summary>
+/// New Monolithic Graphics drivers have optional "fast calls" replacing various D3d functions
+/// </summary>
+        public virtual UbtConfig NoFastMonoCalls(bool present = true)
+        {
+            if (present)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-NoFastMonoCalls",
+                    Value: null,
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (UbtConfig) this;
+        }
+
+        
+/// <summary>
+/// Whether to stress test the C++ unity build robustness by including all C++ files files in a project from a single unified file.
+/// </summary>
+        public virtual UbtConfig StressTestUnity(bool? val = null)
+        {
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-StressTestUnity",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (UbtConfig) this;
+        }
+
+        
+/// <summary>
+/// Whether to force debug info to be generated.
+/// </summary>
+        public virtual UbtConfig ForceDebugInfo(bool? val = null)
+        {
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-ForceDebugInfo",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (UbtConfig) this;
+        }
+
+        
+/// <summary>
+/// Whether to globally disable debug info generation; see DebugInfoHeuristics.cs for per-config and per-platform options.
+/// </summary>
+        public virtual UbtConfig NoDebugInfo(bool? val = null)
+        {
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-NoDebugInfo",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (UbtConfig) this;
+        }
+
+        
+/// <summary>
+/// Whether PDB files should be used for Visual C++ builds.
+/// </summary>
+        public virtual UbtConfig NoPDB(bool present = true)
+        {
+            if (present)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-NoPDB",
+                    Value: null,
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (UbtConfig) this;
+        }
+
+        
+/// <summary>
+/// Whether PCH files should be used.
+/// </summary>
+        public virtual UbtConfig NoPCH(bool present = true)
+        {
+            if (present)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-NoPCH",
+                    Value: null,
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (UbtConfig) this;
+        }
+
+        
+/// <summary>
+/// Whether to just preprocess source files for this target, and skip compilation
+/// </summary>
+        public virtual UbtConfig Preprocess(bool? val = null)
+        {
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Preprocess",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (UbtConfig) this;
+        }
+
+        
+/// <summary>
+/// Whether to use incremental linking or not. Incremental linking can yield faster iteration times when making small changes.
+/// Currently disabled by default because it tends to behave a bit buggy on some computers (PDB-related compile errors).
+/// </summary>
+        public virtual UbtConfig IncrementalLinking(bool? val = null)
+        {
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-IncrementalLinking",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (UbtConfig) this;
+        }
+
+        
+/// <summary>
+/// Whether to use incremental linking or not. Incremental linking can yield faster iteration times when making small changes.
+/// Currently disabled by default because it tends to behave a bit buggy on some computers (PDB-related compile errors).
+/// </summary>
+        public virtual UbtConfig NoIncrementalLinking(bool present = true)
+        {
+            if (present)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-NoIncrementalLinking",
+                    Value: null,
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (UbtConfig) this;
+        }
+
+        
+/// <summary>
+/// Whether to allow the use of link time code generation (LTCG).
+/// </summary>
+        public virtual UbtConfig LTCG(bool? val = null)
+        {
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-LTCG",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (UbtConfig) this;
+        }
+
+        
+/// <summary>
+/// Whether to enable Profile Guided Optimization (PGO) instrumentation in this build.
+/// </summary>
+        public virtual UbtConfig PGOProfile(bool present = true)
+        {
+            if (present)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-PGOProfile",
+                    Value: null,
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (UbtConfig) this;
+        }
+
+        
+/// <summary>
+/// Whether to optimize this build with Profile Guided Optimization (PGO).
+/// </summary>
+        public virtual UbtConfig PGOOptimize(bool present = true)
+        {
+            if (present)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-PGOOptimize",
+                    Value: null,
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (UbtConfig) this;
+        }
+
+        
+/// <summary>
+/// Enables "Shared PCHs", a feature which significantly speeds up compile times by attempting to
+/// share certain PCH files between modules that UBT detects is including those PCH's header files.
+/// </summary>
+        public virtual UbtConfig NoSharedPCH(bool present = true)
+        {
+            if (present)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-NoSharedPCH",
+                    Value: null,
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (UbtConfig) this;
+        }
+
+        
+/// <summary>
+/// Whether to use the :FASTLINK option when building with /DEBUG to create local PDBs on Windows. Fast, but currently seems to have problems finding symbols in the debugger.
+/// </summary>
+        public virtual UbtConfig FastPDB(bool? val = null)
+        {
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-FastPDB",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (UbtConfig) this;
+        }
+
+        
+/// <summary>
+/// Outputs a map file as part of the build.
+/// </summary>
+        public virtual UbtConfig MapFile(bool? val = null)
+        {
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-MapFile",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (UbtConfig) this;
+        }
+
+        
+/// <summary>
+/// Bundle version for Mac apps.
+/// </summary>
+        public virtual UbtConfig BundleVersion(object val = null)
+        {
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-BundleVersion",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (UbtConfig) this;
+        }
+
+        
+/// <summary>
+/// Whether to deploy the executable after compilation on platforms that require deployment.
+/// </summary>
+        public virtual UbtConfig Deploy(bool? val = null)
+        {
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Deploy",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (UbtConfig) this;
+        }
+
+        
+/// <summary>
+/// Whether to force skipping deployment for platforms that require deployment by default.
+/// </summary>
+        public virtual UbtConfig SkipDeploy(bool? val = null)
+        {
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-SkipDeploy",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (UbtConfig) this;
+        }
+
+        
+/// <summary>
+/// Whether to disable linking for this target.
+/// </summary>
+        public virtual UbtConfig NoLink(bool? val = null)
+        {
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-NoLink",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (UbtConfig) this;
+        }
+
+        
+/// <summary>
+/// Indicates that this is a formal build, intended for distribution. This flag is automatically set to true when Build.version has a changelist set.
+/// The only behavior currently bound to this flag is to compile the default resource file separately for each binary so that the OriginalFilename field is set correctly.
+/// By default, we only compile the resource once to reduce build times.
+/// </summary>
+        public virtual UbtConfig Formal(bool? val = null)
+        {
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Formal",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (UbtConfig) this;
+        }
+
+        
+/// <summary>
+/// Whether to clean Builds directory on a remote Mac before building.
+/// </summary>
+        public virtual UbtConfig FlushMac(bool? val = null)
+        {
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-FlushMac",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (UbtConfig) this;
+        }
+
+        
+/// <summary>
+/// Whether to write detailed timing info from the compiler and linker.
+/// </summary>
+        public virtual UbtConfig Timing(bool? val = null)
+        {
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Timing",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (UbtConfig) this;
+        }
+
+        
+/// <summary>
+/// Whether to parse timing data into a tracing file compatible with chrome://tracing.
+/// </summary>
+        public virtual UbtConfig Tracing(bool? val = null)
+        {
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Tracing",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (UbtConfig) this;
+        }
+
+        
+/// <summary>
+/// Whether to expose all symbols as public by default on POSIX platforms
+/// </summary>
+        public virtual UbtConfig PublicSymbolsByDefault(bool? val = null)
+        {
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-PublicSymbolsByDefault",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (UbtConfig) this;
+        }
+
+        
+/// <summary>
+/// Allows overriding the toolchain to be created for this target. This must match the name of a class declared in the UnrealBuildTool assembly.
+/// </summary>
+        public virtual UbtConfig ToolChain(object val = null)
+        {
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-ToolChain",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (UbtConfig) this;
+        }
+
+        
+/// <summary>Which C++ stanard to use for compiling this target
+/// Which C++ standard to use for compiling this target (for non-engine modules)</summary>
+        public virtual UbtConfig CppStd(CppStandardVersion? val = null)
+        {
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-CppStd",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (UbtConfig) this;
+        }
+
+        
+/// <summary>
+/// Do not allow manifest changes when building this target. Used to cause earlier errors when building multiple targets with a shared build environment.
+/// </summary>
+        public virtual UbtConfig NoManifestChanges(bool? val = null)
+        {
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-NoManifestChanges",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (UbtConfig) this;
+        }
+
+        
+/// <summary>
+/// The build version string
+/// </summary>
+        public virtual UbtConfig BuildVersion(object val = null)
+        {
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-BuildVersion",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (UbtConfig) this;
+        }
+
+        
+/// <summary>
+/// Backing storage for the LinkType property.
+/// </summary>
+        public virtual UbtConfig Monolithic(bool present = true)
+        {
+            if (present)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Monolithic",
+                    Value: null,
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (UbtConfig) this;
+        }
+
+        
+/// <summary>
+/// Backing storage for the LinkType property.
+/// </summary>
+        public virtual UbtConfig Modular(bool present = true)
+        {
+            if (present)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Modular",
+                    Value: null,
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (UbtConfig) this;
+        }
+
+        
+/// <summary>
+/// Macros to define globally across the whole target.
+/// </summary>
+        public virtual UbtConfig Define(params object[] values)
+        {
+            if (true)
+            {
+                if (values != null)
+                    foreach (var val in values)
+                    {
+                        AppendArgument(new UnrealToolArgument(
+                            "-Define",
+                            Value: val.ToString(),
+                            Setter: ':',
+                            Meta: new(
+                                Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
+                                AllowMultiple: true
+                            )
+                        ));
+                    }
+            }
+            return (UbtConfig) this;
+        }
+
+        
+/// <summary>
+/// Macros to define across all macros in the project.
+/// </summary>
+        public virtual UbtConfig ProjectDefine(params object[] values)
+        {
+            if (true)
+            {
+                if (values != null)
+                    foreach (var val in values)
+                    {
+                        AppendArgument(new UnrealToolArgument(
+                            "-ProjectDefine",
+                            Value: val.ToString(),
+                            Setter: ':',
+                            Meta: new(
+                                Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
+                                AllowMultiple: true
+                            )
+                        ));
+                    }
+            }
+            return (UbtConfig) this;
+        }
+
+        
+/// <summary>
+/// Path to a manifest to output for this target
+/// </summary>
+        public virtual UbtConfig Manifest(params object[] values)
+        {
+            if (true)
+            {
+                if (values != null)
+                    foreach (var val in values)
+                    {
+                        AppendArgument(new UnrealToolArgument(
+                            "-Manifest",
+                            Value: val.ToString(),
+                            Setter: '=',
+                            Meta: new(
+                                Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
+                                AllowMultiple: true
+                            )
+                        ));
+                    }
+            }
+            return (UbtConfig) this;
+        }
+
+        
+/// <summary>
+/// Path to a list of dependencies for this target, when precompiling
+/// </summary>
+        public virtual UbtConfig DependencyList(params object[] values)
+        {
+            if (true)
+            {
+                if (values != null)
+                    foreach (var val in values)
+                    {
+                        AppendArgument(new UnrealToolArgument(
+                            "-DependencyList",
+                            Value: val.ToString(),
+                            Setter: '=',
+                            Meta: new(
+                                Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
+                                AllowMultiple: true
+                            )
+                        ));
+                    }
+            }
+            return (UbtConfig) this;
+        }
+
+        
+/// <summary>
+/// Backing storage for the BuildEnvironment property
+/// </summary>
+        public virtual UbtConfig SharedBuildEnvironment(bool present = true)
+        {
+            if (present)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-SharedBuildEnvironment",
+                    Value: null,
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (UbtConfig) this;
+        }
+
+        
+/// <summary>
+/// Backing storage for the BuildEnvironment property
+/// </summary>
+        public virtual UbtConfig UniqueBuildEnvironment(bool present = true)
+        {
+            if (present)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-UniqueBuildEnvironment",
+                    Value: null,
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (UbtConfig) this;
+        }
+
+        
+/// <summary>
+/// Whether to ignore violations to the shared build environment (eg. editor targets modifying definitions)
+/// </summary>
+        public virtual UbtConfig OverrideBuildEnvironment(bool? val = null)
+        {
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-OverrideBuildEnvironment",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (UbtConfig) this;
+        }
+
+        
+/// <summary>
+/// Additional arguments to pass to the compiler
+/// </summary>
+        public virtual UbtConfig CompilerArguments(object val = null)
+        {
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-CompilerArguments",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (UbtConfig) this;
+        }
+
+        
+/// <summary>
+/// Additional arguments to pass to the linker
+/// </summary>
+        public virtual UbtConfig LinkerArguments(object val = null)
+        {
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-LinkerArguments",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (UbtConfig) this;
+        }
+
+        
+/// <summary>
 /// Lists Architectures that you want to build
 /// </summary>
         public virtual UbtConfig Architectures(params object[] values)
@@ -1630,9 +3026,9 @@ public abstract class UbtConfigGenerated : ToolConfig
         }
 
         
-/// <summary>
-/// Enables "thin" LTO
-/// </summary>
+/// <summary>Enables "thin" LTO
+/// When Link Time Code Generation (LTCG) is enabled, whether to
+/// prefer using the lighter weight version on supported platforms.</summary>
         public virtual UbtConfig ThinLTO(bool? val = null)
         {
             if (true)
@@ -1642,7 +3038,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -1696,9 +3092,8 @@ public abstract class UbtConfigGenerated : ToolConfig
         }
 
         
-/// <summary>
-/// The static analyzer to use.
-/// </summary>
+/// <summary>The static analyzer to use.
+/// Whether static code analysis should be enabled.</summary>
         public virtual UbtConfig StaticAnalyzer(WindowsStaticAnalyzer? val = null)
         {
             if (true)
@@ -1708,7 +3103,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -2096,6 +3491,91 @@ public abstract class UbtConfigGenerated : ToolConfig
 
         
 /// <summary>
+/// Whether to use the verse script interface.
+/// </summary>
+        public virtual UbtConfig NoUseVerse(bool present = true)
+        {
+            if (present)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-NoUseVerse",
+                    Value: null,
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (UbtConfig) this;
+        }
+
+        
+/// <summary>
+/// Whether to use the verse script interface.
+/// </summary>
+        public virtual UbtConfig UseVerse(bool present = true)
+        {
+            if (present)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-UseVerse",
+                    Value: null,
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (UbtConfig) this;
+        }
+
+        
+/// <summary>
+/// Use a heuristic to determine which files are currently being iterated on and exclude them from unity blobs, result in faster
+/// incremental compile times. The current implementation uses the read-only flag to distinguish the working set, assuming that files will
+/// be made writable by the source control system if they are being modified. This is true for Perforce, but not for Git.
+/// </summary>
+        public virtual UbtConfig DisableAdaptiveUnity(bool present = true)
+        {
+            if (present)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-DisableAdaptiveUnity",
+                    Value: null,
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (UbtConfig) this;
+        }
+
+        
+/// <summary>Whether to enable all warnings as errors. UE enables most warnings as errors already, but disables a few (such as deprecation warnings).
+/// Treat warnings as errors</summary>
+        public virtual UbtConfig WarningsAsErrors(bool? val = null)
+        {
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-WarningsAsErrors",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (UbtConfig) this;
+        }
+
+        
+/// <summary>
 /// Enables HW address sanitizer (HWASan)
 /// </summary>
         public virtual UbtConfig EnableHWASan(bool? val = null)
@@ -2179,9 +3659,8 @@ public abstract class UbtConfigGenerated : ToolConfig
         }
 
         
-/// <summary>
-/// The output type to use for the static analyzer.
-/// </summary>
+/// <summary>The output type to use for the static analyzer.
+/// The output type to use for the static analyzer. This is only supported for Clang.</summary>
         public virtual UbtConfig StaticAnalyzerOutputType(WindowsStaticAnalyzerOutputType? val = null)
         {
             if (true)
@@ -2191,7 +3670,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2,
+                        Compatibility: UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -2200,9 +3679,13 @@ public abstract class UbtConfigGenerated : ToolConfig
         }
 
         
-/// <summary>
-/// Set flags require for determinstic compiles (experimental)
-/// </summary>
+/// <summary>Set flags require for determinstic compiles (experimental)
+/// Force set flags require for determinstic compiling and linking (experimental, may not be fully supported).
+/// This setting is only recommended for testing, instead:
+/// * Set bDeterministic on a per module basis in ModuleRules to control deterministic compiling.
+/// * Set bDeterministic on a per target basis in TargetRules to control deterministic linking.
+/// Set flags require for deterministic compiling and linking.
+/// Enabling deterministic mode for msvc disables codegen multithreading so compiling will be slower</summary>
         public virtual UbtConfig Deterministic(bool? val = null)
         {
             if (true)
@@ -2212,7 +3695,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_0,
+                        Compatibility: UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -2329,6 +3812,380 @@ public abstract class UbtConfigGenerated : ToolConfig
         }
 
         
+/// <summary>
+/// Override the name used for this target
+/// </summary>
+        public virtual UbtConfig TargetNameOverride(object val = null)
+        {
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-TargetNameOverride",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (UbtConfig) this;
+        }
+
+        
+/// <summary>
+/// Force the include order to a specific version. Overrides any Target and Module rules.
+/// </summary>
+        public virtual UbtConfig ForceIncludeOrder(EngineIncludeOrderVersion? val = null)
+        {
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-ForceIncludeOrder",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (UbtConfig) this;
+        }
+
+        
+/// <summary>
+/// Whether to use Iris.
+/// </summary>
+        public virtual UbtConfig NoUseIris(bool present = true)
+        {
+            if (present)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-NoUseIris",
+                    Value: null,
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (UbtConfig) this;
+        }
+
+        
+/// <summary>
+/// Whether to use Iris.
+/// </summary>
+        public virtual UbtConfig UseIris(bool present = true)
+        {
+            if (present)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-UseIris",
+                    Value: null,
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (UbtConfig) this;
+        }
+
+        
+    
+        public virtual UbtConfig TrustedServer(bool present = true)
+        {
+            if (present)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-TrustedServer",
+                    Value: null,
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_5_1,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (UbtConfig) this;
+        }
+
+        
+    
+        public virtual UbtConfig NoTrustedServer(bool present = true)
+        {
+            if (present)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-NoTrustedServer",
+                    Value: null,
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_5_1,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (UbtConfig) this;
+        }
+
+        
+/// <summary>
+/// Whether to merge module and generated unity files for faster compilation.
+/// </summary>
+        public virtual UbtConfig DisableMergingUnityFiles(bool present = true)
+        {
+            if (present)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-DisableMergingUnityFiles",
+                    Value: null,
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (UbtConfig) this;
+        }
+
+        
+/// <summary>
+/// Forces frame pointers to be retained this is usually required when you want reliable callstacks e.g. mallocframeprofiler
+/// </summary>
+        public virtual UbtConfig RetainFramePointers(bool present = true)
+        {
+            if (present)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-RetainFramePointers",
+                    Value: null,
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (UbtConfig) this;
+        }
+
+        
+/// <summary>
+/// Forces frame pointers to be retained this is usually required when you want reliable callstacks e.g. mallocframeprofiler
+/// </summary>
+        public virtual UbtConfig NoRetainFramePointers(bool present = true)
+        {
+            if (present)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-NoRetainFramePointers",
+                    Value: null,
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (UbtConfig) this;
+        }
+
+        
+/// <summary>
+/// An approximate number of bytes of C++ code to target for inclusion in a single unified C++ file.
+/// </summary>
+        public virtual UbtConfig BytesPerUnityCPP(double? val = null)
+        {
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-BytesPerUnityCPP",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (UbtConfig) this;
+        }
+
+        
+/// <summary>Whether to add additional information to the unity files, such as '_of_X' in the file name.
+/// Whether to add additional information to the unity files, such as '_of_X' in the file name. Not recommended.</summary>
+        public virtual UbtConfig DetailedUnityFiles(bool present = true)
+        {
+            if (present)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-DetailedUnityFiles",
+                    Value: null,
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (UbtConfig) this;
+        }
+
+        
+/// <summary>Whether to add additional information to the unity files, such as '_of_X' in the file name.
+/// Whether to add additional information to the unity files, such as '_of_X' in the file name. Not recommended.</summary>
+        public virtual UbtConfig NoDetailedUnityFiles(bool present = true)
+        {
+            if (present)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-NoDetailedUnityFiles",
+                    Value: null,
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (UbtConfig) this;
+        }
+
+        
+/// <summary>
+/// Generate dependency files by preprocessing. This is only recommended when distributing builds as it adds additional overhead.
+/// </summary>
+        public virtual UbtConfig PreprocessDepends(bool? val = null)
+        {
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-PreprocessDepends",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (UbtConfig) this;
+        }
+
+        
+/// <summary>
+/// The mode to use for the static analyzer. This is only supported for Clang.
+/// Shallow mode completes quicker but is generally not recommended.
+/// </summary>
+        public virtual UbtConfig StaticAnalyzerMode(StaticAnalyzerMode? val = null)
+        {
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-StaticAnalyzerMode",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (UbtConfig) this;
+        }
+
+        
+/// <summary>
+/// Package full path (directory + filename) where to store input files used at link time
+/// Normally used to debug a linker crash for platforms that support it
+/// </summary>
+        public virtual UbtConfig PackagePath(object val = null)
+        {
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-PackagePath",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (UbtConfig) this;
+        }
+
+        
+/// <summary>
+/// Directory where to put crash report files for platforms that support it
+/// </summary>
+        public virtual UbtConfig CrashDiagnosticDirectory(object val = null)
+        {
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-CrashDiagnosticDirectory",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (UbtConfig) this;
+        }
+
+        
+/// <summary>
+/// Disable supports for inlining gen.cpps
+/// </summary>
+        public virtual UbtConfig DisableInliningGenCpps(bool? val = null)
+        {
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-DisableInliningGenCpps",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (UbtConfig) this;
+        }
+
+        
+/// <summary>
+/// Which C standard to use for compiling this target
+/// </summary>
+        public virtual UbtConfig CStd(CStandardVersion? val = null)
+        {
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-CStd",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (UbtConfig) this;
+        }
+
+        
 /// <summary>Disables all logging including the default log location
 /// Disable log file creation including the default log file</summary>
         public virtual UbtConfig NoLog(bool? val = null)
@@ -2356,25 +4213,6 @@ public abstract class UbtConfigGenerated : ToolConfig
             {
                 AppendArgument(new UnrealToolArgument(
                     "-Test",
-                    Value: val?.ToString(),
-                    Setter: '=',
-                    Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
-                        AllowMultiple: false
-                    )
-                ));
-            }
-            return (UbtConfig) this;
-        }
-
-        
-/// <summary>Treat warnings as errors</summary>
-        public virtual UbtConfig WarningsAsErrors(bool? val = null)
-        {
-            if (true)
-            {
-                AppendArgument(new UnrealToolArgument(
-                    "-WarningsAsErrors",
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
@@ -2671,6 +4509,154 @@ public abstract class UbtConfigGenerated : ToolConfig
 
         
 /// <summary>
+/// Enable Position Independent Executable (PIE). Has an overhead cost
+/// </summary>
+        public virtual UbtConfig Pie(bool? val = null)
+        {
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-pie",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (UbtConfig) this;
+        }
+
+        
+/// <summary>
+/// Enable Stack Protection. Has an overhead cost
+/// </summary>
+        public virtual UbtConfig StackProtect(bool? val = null)
+        {
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-stack-protect",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (UbtConfig) this;
+        }
+
+        
+/// <summary>
+/// Allows to fine tune optimizations level for speed and\or code size
+/// </summary>
+        public virtual UbtConfig OptimizationLevel(OptimizationMode? val = null)
+        {
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-OptimizationLevel",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (UbtConfig) this;
+        }
+
+        
+/// <summary>
+/// Tells "include what you use" to only compile header files.
+/// </summary>
+        public virtual UbtConfig IWYUHeadersOnly(bool? val = null)
+        {
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-IWYUHeadersOnly",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_5_2,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (UbtConfig) this;
+        }
+
+        
+/// <summary>
+/// Disables overrides that are set by the module
+/// </summary>
+        public virtual UbtConfig DisableModuleNumIncludedBytesPerUnityCPPOverride(bool present = true)
+        {
+            if (present)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-DisableModuleNumIncludedBytesPerUnityCPPOverride",
+                    Value: null,
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (UbtConfig) this;
+        }
+
+        
+/// <summary>
+/// Directory where to put the ThinLTO cache on supported platforms.
+/// </summary>
+        public virtual UbtConfig ThinLTOCacheDirectory(object val = null)
+        {
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-ThinLTOCacheDirectory",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (UbtConfig) this;
+        }
+
+        
+/// <summary>
+/// Arguments that will be applied to prune the ThinLTO cache on supported platforms.
+/// Arguments will only be applied if ThinLTOCacheDirectory is set.
+/// </summary>
+        public virtual UbtConfig ThinLTOCachePruningArguments(object val = null)
+        {
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-ThinLTOCachePruningArguments",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (UbtConfig) this;
+        }
+
+        
+/// <summary>
 /// True if we should use the Clang linker (LLD) when we are compiling with Clang, or Intel linker (xilink\xilib) when we are compiling with Intel oneAPI, otherwise we use the MSVC linker.
 /// </summary>
         public virtual UbtConfig ClangLinker(bool? val = null)
@@ -2861,69 +4847,6 @@ public abstract class UbtConfigGenerated : ToolConfig
 
         
 /// <summary>
-/// Whether to unify C++ code into larger files for faster compilation.
-/// </summary>
-        public virtual UbtConfig DisableUnity(bool present = true)
-        {
-            if (present)
-            {
-                AppendArgument(new UnrealToolArgument(
-                    "-DisableUnity",
-                    Value: null,
-                    Setter: '=',
-                    Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_Latest,
-                        AllowMultiple: false
-                    )
-                ));
-            }
-            return (UbtConfig) this;
-        }
-
-        
-/// <summary>
-/// Whether to force C++ source files to be combined into larger files for faster compilation.
-/// </summary>
-        public virtual UbtConfig ForceUnity(bool? val = null)
-        {
-            if (true)
-            {
-                AppendArgument(new UnrealToolArgument(
-                    "-ForceUnity",
-                    Value: val?.ToString(),
-                    Setter: '=',
-                    Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_Latest,
-                        AllowMultiple: false
-                    )
-                ));
-            }
-            return (UbtConfig) this;
-        }
-
-        
-/// <summary>
-/// Enables "include what you use" mode.
-/// </summary>
-        public virtual UbtConfig IWYU(bool? val = null)
-        {
-            if (true)
-            {
-                AppendArgument(new UnrealToolArgument(
-                    "-IWYU",
-                    Value: val?.ToString(),
-                    Setter: '=',
-                    Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_Latest,
-                        AllowMultiple: false
-                    )
-                ));
-            }
-            return (UbtConfig) this;
-        }
-
-        
-/// <summary>
 /// Whether we should treat the ForeignPlugin argument as a local plugin for building purposes
 /// </summary>
         public virtual UbtConfig BuildPluginAsLocal(bool? val = null)
@@ -3011,6 +4934,365 @@ public abstract class UbtConfigGenerated : ToolConfig
         }
 
         
+/// <summary>
+/// Adds header files in included modules to the build.
+/// </summary>
+        public virtual UbtConfig IncludeHeaders(bool? val = null)
+        {
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-IncludeHeaders",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (UbtConfig) this;
+        }
+
+        
+/// <summary>
+/// Set flags require for deterministic compiling and linking.
+/// Enabling deterministic mode for msvc disables codegen multithreading so compiling will be slower
+/// </summary>
+        public virtual UbtConfig NonDeterministic(bool present = true)
+        {
+            if (present)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-NonDeterministic",
+                    Value: null,
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (UbtConfig) this;
+        }
+
+        
+/// <summary>
+/// Which C++ standard to use for compiling this target (for engine modules)
+/// </summary>
+        public virtual UbtConfig CppStdEngine(CppStandardVersion? val = null)
+        {
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-CppStdEngine",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (UbtConfig) this;
+        }
+
+        
+/// <summary>
+/// Whether to use the AutoRTFM Clang compiler.
+/// </summary>
+        public virtual UbtConfig NoUseAutoRTFM(bool present = true)
+        {
+            if (present)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-NoUseAutoRTFM",
+                    Value: null,
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (UbtConfig) this;
+        }
+
+        
+/// <summary>
+/// Whether to use the AutoRTFM Clang compiler.
+/// </summary>
+        public virtual UbtConfig UseAutoRTFM(bool present = true)
+        {
+            if (present)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-UseAutoRTFM",
+                    Value: null,
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (UbtConfig) this;
+        }
+
+        
+/// <summary>
+/// Whether to compile in Chaos Visual Debugger (CVD) support features to record the state of the physics simulation
+/// </summary>
+        public virtual UbtConfig CompileChaosVisualDebuggerSupport(bool? val = null)
+        {
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-CompileChaosVisualDebuggerSupport",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (UbtConfig) this;
+        }
+
+        
+/// <summary>
+/// When used with -IncludeHeaders, only header files will be compiled.
+/// </summary>
+        public virtual UbtConfig HeadersOnly(bool? val = null)
+        {
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-HeadersOnly",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (UbtConfig) this;
+        }
+
+        
+/// <summary>
+/// Indicates what warning/error level to treat potential PCH performance issues.
+/// </summary>
+        public virtual UbtConfig PCHPerformanceIssueWarningLevel(WarningLevel? val = null)
+        {
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-PCHPerformanceIssueWarningLevel",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (UbtConfig) this;
+        }
+
+        
+/// <summary>
+/// How to treat general module include path validation messages
+/// </summary>
+        public virtual UbtConfig ModuleIncludePathWarningLevel(WarningLevel? val = null)
+        {
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-ModuleIncludePathWarningLevel",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (UbtConfig) this;
+        }
+
+        
+/// <summary>
+/// How to treat private module include path validation messages, where a module is adding an include path that exposes private headers
+/// </summary>
+        public virtual UbtConfig ModuleIncludePrivateWarningLevel(WarningLevel? val = null)
+        {
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-ModuleIncludePrivateWarningLevel",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (UbtConfig) this;
+        }
+
+        
+/// <summary>
+/// How to treat unnecessary module sub-directory include path validation messages
+/// </summary>
+        public virtual UbtConfig ModuleIncludeSubdirectoryWarningLevel(WarningLevel? val = null)
+        {
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-ModuleIncludeSubdirectoryWarningLevel",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (UbtConfig) this;
+        }
+
+        
+/// <summary>
+/// Whether PDB files should be used for Visual C++ builds.
+/// </summary>
+        public virtual UbtConfig UsePDB(bool present = true)
+        {
+            if (present)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-UsePDB",
+                    Value: null,
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (UbtConfig) this;
+        }
+
+        
+/// <summary>
+/// Whether PCHs should be chained when compiling with clang.
+/// </summary>
+        public virtual UbtConfig NoPCHChain(bool present = true)
+        {
+            if (present)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-NoPCHChain",
+                    Value: null,
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (UbtConfig) this;
+        }
+
+        
+/// <summary>
+/// Whether to generate assembly data while compiling this target. Works exclusively on MSVC for now.
+/// </summary>
+        public virtual UbtConfig WithAssembly(bool? val = null)
+        {
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-WithAssembly",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (UbtConfig) this;
+        }
+
+        
+/// <summary>
+/// Whether the target requires code coverage compilation and linking.
+/// </summary>
+        public virtual UbtConfig CodeCoverage(bool present = true)
+        {
+            if (present)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-CodeCoverage",
+                    Value: null,
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (UbtConfig) this;
+        }
+
+        
+/// <summary>
+/// Whether to support edit and continue.
+/// </summary>
+        public virtual UbtConfig SupportEditAndContinue(bool? val = null)
+        {
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-SupportEditAndContinue",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (UbtConfig) this;
+        }
+
+        
+/// <summary>
+/// Direct the compiler to generate AVX instructions wherever SSE or AVX intrinsics are used, on the x64 platforms that support it.
+/// Note that by enabling this you are changing the minspec for the PC platform, and the resultant executable will crash on machines without AVX support.
+/// </summary>
+        public virtual UbtConfig MinCpuArchX64(MinimumCpuArchitectureX64? val = null)
+        {
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-MinCpuArchX64",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (UbtConfig) this;
+        }
+
+        
 /// <summary>Enables LibFuzzer
 /// Enables LibFuzzer.
 /// Enables LibFuzzer. Only supported for Visual Studio 2022 17.0.0 and up.</summary>
@@ -3062,6 +5344,27 @@ public abstract class UbtConfigGenerated : ToolConfig
             {
                 AppendArgument(new UnrealToolArgument(
                     "-VCToolchain",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (UbtConfig) this;
+        }
+
+        
+/// <summary>
+/// If -PGOOptimize is specified but the linker flags have changed since the last -PGOProfile, this will emit a warning and build without PGO instead of failing during link with LNK1268.
+/// </summary>
+        public virtual UbtConfig IgnoreStalePGOData(bool? val = null)
+        {
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-IgnoreStalePGOData",
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
@@ -4315,69 +6618,6 @@ public abstract class UbtConfigGenerated : ToolConfig
             }
             return (BuildConfigurationConfig) this;
         }
-
-        
-/// <summary>
-/// Whether to unify C++ code into larger files for faster compilation.
-/// </summary>
-        public virtual BuildConfigurationConfig DisableUnity(bool present = true)
-        {
-            if (present)
-            {
-                AppendArgument(new UnrealToolArgument(
-                    "-DisableUnity",
-                    Value: null,
-                    Setter: '=',
-                    Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_Latest,
-                        AllowMultiple: false
-                    )
-                ));
-            }
-            return (BuildConfigurationConfig) this;
-        }
-
-        
-/// <summary>
-/// Whether to force C++ source files to be combined into larger files for faster compilation.
-/// </summary>
-        public virtual BuildConfigurationConfig ForceUnity(bool? val = null)
-        {
-            if (true)
-            {
-                AppendArgument(new UnrealToolArgument(
-                    "-ForceUnity",
-                    Value: val?.ToString(),
-                    Setter: '=',
-                    Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_Latest,
-                        AllowMultiple: false
-                    )
-                ));
-            }
-            return (BuildConfigurationConfig) this;
-        }
-
-        
-/// <summary>
-/// Enables "include what you use" mode.
-/// </summary>
-        public virtual BuildConfigurationConfig IWYU(bool? val = null)
-        {
-            if (true)
-            {
-                AppendArgument(new UnrealToolArgument(
-                    "-IWYU",
-                    Value: val?.ToString(),
-                    Setter: '=',
-                    Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_Latest,
-                        AllowMultiple: false
-                    )
-                ));
-            }
-            return (BuildConfigurationConfig) this;
-        }
     
     
         private ToolConfig[] _configs = null;
@@ -4797,6 +7037,69 @@ public abstract class UbtConfigGenerated : ToolConfig
             }
             return (TargetDescriptorConfig) this;
         }
+
+        
+/// <summary>
+/// Whether to unify C++ code into larger files for faster compilation.
+/// </summary>
+        public virtual TargetDescriptorConfig DisableUnity(bool present = true)
+        {
+            if (present)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-DisableUnity",
+                    Value: null,
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (TargetDescriptorConfig) this;
+        }
+
+        
+/// <summary>
+/// Whether to force C++ source files to be combined into larger files for faster compilation.
+/// </summary>
+        public virtual TargetDescriptorConfig ForceUnity(bool? val = null)
+        {
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-ForceUnity",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (TargetDescriptorConfig) this;
+        }
+
+        
+/// <summary>
+/// Enables "include what you use" mode.
+/// </summary>
+        public virtual TargetDescriptorConfig IWYU(bool? val = null)
+        {
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-IWYU",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (TargetDescriptorConfig) this;
+        }
     
     
         private ToolConfig[] _configs = null;
@@ -4806,6 +7109,2263 @@ public abstract class UbtConfigGenerated : ToolConfig
     }
 
     protected readonly TargetDescriptorConfig TargetDescriptorStorage = new();
+        
+/// <summary>
+/// TargetRules is a data structure that contains the rules for defining a target (application/executable)
+/// </summary>
+    public  class TargetRulesConfig : ToolConfig
+    {
+        public override string Name => "TargetRules";
+        public override string CliName => "";
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest;
+    
+/// <summary>
+/// Build all the modules that are valid for this target type. Used for CIS and making installed engine builds.
+/// </summary>
+        public virtual TargetRulesConfig AllModules(bool? val = null)
+        {
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-AllModules",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (TargetRulesConfig) this;
+        }
+
+        
+/// <summary>
+/// Additional plugins that are built for this target type but not enabled.
+/// </summary>
+        public virtual TargetRulesConfig BuildPlugin(params object[] values)
+        {
+            if (true)
+            {
+                if (values != null)
+                    foreach (var val in values)
+                    {
+                        AppendArgument(new UnrealToolArgument(
+                            "-BuildPlugin",
+                            Value: val.ToString(),
+                            Setter: '=',
+                            Meta: new(
+                                Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
+                                AllowMultiple: true
+                            )
+                        ));
+                    }
+            }
+            return (TargetRulesConfig) this;
+        }
+
+        
+/// <summary>
+/// Additional plugins that should be included for this target.
+/// </summary>
+        public virtual TargetRulesConfig EnablePlugin(params object[] values)
+        {
+            if (true)
+            {
+                if (values != null)
+                    foreach (var val in values)
+                    {
+                        AppendArgument(new UnrealToolArgument(
+                            "-EnablePlugin",
+                            Value: val.ToString(),
+                            Setter: '=',
+                            Meta: new(
+                                Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
+                                AllowMultiple: true
+                            )
+                        ));
+                    }
+            }
+            return (TargetRulesConfig) this;
+        }
+
+        
+/// <summary>
+/// List of plugins to be disabled for this target. Note that the project file may still reference them, so they should be marked
+/// as optional to avoid failing to find them at runtime.
+/// </summary>
+        public virtual TargetRulesConfig DisablePlugin(params object[] values)
+        {
+            if (true)
+            {
+                if (values != null)
+                    foreach (var val in values)
+                    {
+                        AppendArgument(new UnrealToolArgument(
+                            "-DisablePlugin",
+                            Value: val.ToString(),
+                            Setter: '=',
+                            Meta: new(
+                                Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
+                                AllowMultiple: true
+                            )
+                        ));
+                    }
+            }
+            return (TargetRulesConfig) this;
+        }
+
+        
+/// <summary>
+/// Whether this target should be compiled as a DLL.  Requires LinkType to be set to TargetLinkType.Monolithic.
+/// </summary>
+        public virtual TargetRulesConfig CompileAsDll(bool? val = null)
+        {
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-CompileAsDll",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (TargetRulesConfig) this;
+        }
+
+        
+/// <summary>
+/// Whether to compile the Chaos physics plugin.
+/// </summary>
+        public virtual TargetRulesConfig NoCompileChaos(bool present = true)
+        {
+            if (present)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-NoCompileChaos",
+                    Value: null,
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (TargetRulesConfig) this;
+        }
+
+        
+/// <summary>
+/// Whether to compile the Chaos physics plugin.
+/// </summary>
+        public virtual TargetRulesConfig CompileChaos(bool present = true)
+        {
+            if (present)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-CompileChaos",
+                    Value: null,
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (TargetRulesConfig) this;
+        }
+
+        
+/// <summary>
+/// Whether to use the Chaos physics interface. This overrides the physx flags to disable APEX and NvCloth
+/// </summary>
+        public virtual TargetRulesConfig NoUseChaos(bool present = true)
+        {
+            if (present)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-NoUseChaos",
+                    Value: null,
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (TargetRulesConfig) this;
+        }
+
+        
+/// <summary>
+/// Whether to use the Chaos physics interface. This overrides the physx flags to disable APEX and NvCloth
+/// </summary>
+        public virtual TargetRulesConfig UseChaos(bool present = true)
+        {
+            if (present)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-UseChaos",
+                    Value: null,
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (TargetRulesConfig) this;
+        }
+
+        
+/// <summary>
+/// Enable RTTI for all modules.
+/// </summary>
+        public virtual TargetRulesConfig Rtti(bool? val = null)
+        {
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-rtti",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (TargetRulesConfig) this;
+        }
+
+        
+/// <summary>Enables "include what you use" by default for modules in this target. Changes the default PCH mode for any module in this project to PCHUsageMode.UseExplicitOrSharedPCHs.
+/// Enables "include what you use" mode.</summary>
+        public virtual TargetRulesConfig IWYU(bool? val = null)
+        {
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-IWYU",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (TargetRulesConfig) this;
+        }
+
+        
+/// <summary>
+/// Make static libraries for all engine modules as intermediates for this target.
+/// </summary>
+        public virtual TargetRulesConfig Precompile(bool? val = null)
+        {
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Precompile",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (TargetRulesConfig) this;
+        }
+
+        
+/// <summary>
+/// Whether to unify C++ code into larger files for faster compilation.
+/// </summary>
+        public virtual TargetRulesConfig DisableUnity(bool present = true)
+        {
+            if (present)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-DisableUnity",
+                    Value: null,
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (TargetRulesConfig) this;
+        }
+
+        
+/// <summary>
+/// Whether to force C++ source files to be combined into larger files for faster compilation.
+/// </summary>
+        public virtual TargetRulesConfig ForceUnity(bool? val = null)
+        {
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-ForceUnity",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (TargetRulesConfig) this;
+        }
+
+        
+/// <summary>
+/// Forces shadow variable warnings to be treated as errors on platforms that support it.
+/// </summary>
+        public virtual TargetRulesConfig ShadowVariableErrors(WarningLevel? val = null)
+        {
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-ShadowVariableErrors",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (TargetRulesConfig) this;
+        }
+
+        
+/// <summary>
+/// New Monolithic Graphics drivers have optional "fast calls" replacing various D3d functions
+/// </summary>
+        public virtual TargetRulesConfig FastMonoCalls(bool present = true)
+        {
+            if (present)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-FastMonoCalls",
+                    Value: null,
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (TargetRulesConfig) this;
+        }
+
+        
+/// <summary>
+/// New Monolithic Graphics drivers have optional "fast calls" replacing various D3d functions
+/// </summary>
+        public virtual TargetRulesConfig NoFastMonoCalls(bool present = true)
+        {
+            if (present)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-NoFastMonoCalls",
+                    Value: null,
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (TargetRulesConfig) this;
+        }
+
+        
+/// <summary>
+/// Whether to stress test the C++ unity build robustness by including all C++ files files in a project from a single unified file.
+/// </summary>
+        public virtual TargetRulesConfig StressTestUnity(bool? val = null)
+        {
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-StressTestUnity",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (TargetRulesConfig) this;
+        }
+
+        
+/// <summary>
+/// Whether to force debug info to be generated.
+/// </summary>
+        public virtual TargetRulesConfig ForceDebugInfo(bool? val = null)
+        {
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-ForceDebugInfo",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (TargetRulesConfig) this;
+        }
+
+        
+/// <summary>
+/// Whether to globally disable debug info generation; see DebugInfoHeuristics.cs for per-config and per-platform options.
+/// </summary>
+        public virtual TargetRulesConfig NoDebugInfo(bool? val = null)
+        {
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-NoDebugInfo",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (TargetRulesConfig) this;
+        }
+
+        
+/// <summary>
+/// Whether PDB files should be used for Visual C++ builds.
+/// </summary>
+        public virtual TargetRulesConfig NoPDB(bool present = true)
+        {
+            if (present)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-NoPDB",
+                    Value: null,
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (TargetRulesConfig) this;
+        }
+
+        
+/// <summary>
+/// Whether PCH files should be used.
+/// </summary>
+        public virtual TargetRulesConfig NoPCH(bool present = true)
+        {
+            if (present)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-NoPCH",
+                    Value: null,
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (TargetRulesConfig) this;
+        }
+
+        
+/// <summary>
+/// Whether to just preprocess source files for this target, and skip compilation
+/// </summary>
+        public virtual TargetRulesConfig Preprocess(bool? val = null)
+        {
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Preprocess",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (TargetRulesConfig) this;
+        }
+
+        
+/// <summary>
+/// Whether to use incremental linking or not. Incremental linking can yield faster iteration times when making small changes.
+/// Currently disabled by default because it tends to behave a bit buggy on some computers (PDB-related compile errors).
+/// </summary>
+        public virtual TargetRulesConfig IncrementalLinking(bool? val = null)
+        {
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-IncrementalLinking",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (TargetRulesConfig) this;
+        }
+
+        
+/// <summary>
+/// Whether to use incremental linking or not. Incremental linking can yield faster iteration times when making small changes.
+/// Currently disabled by default because it tends to behave a bit buggy on some computers (PDB-related compile errors).
+/// </summary>
+        public virtual TargetRulesConfig NoIncrementalLinking(bool present = true)
+        {
+            if (present)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-NoIncrementalLinking",
+                    Value: null,
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (TargetRulesConfig) this;
+        }
+
+        
+/// <summary>
+/// Whether to allow the use of link time code generation (LTCG).
+/// </summary>
+        public virtual TargetRulesConfig LTCG(bool? val = null)
+        {
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-LTCG",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (TargetRulesConfig) this;
+        }
+
+        
+/// <summary>
+/// Whether to enable Profile Guided Optimization (PGO) instrumentation in this build.
+/// </summary>
+        public virtual TargetRulesConfig PGOProfile(bool present = true)
+        {
+            if (present)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-PGOProfile",
+                    Value: null,
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (TargetRulesConfig) this;
+        }
+
+        
+/// <summary>
+/// Whether to optimize this build with Profile Guided Optimization (PGO).
+/// </summary>
+        public virtual TargetRulesConfig PGOOptimize(bool present = true)
+        {
+            if (present)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-PGOOptimize",
+                    Value: null,
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (TargetRulesConfig) this;
+        }
+
+        
+/// <summary>
+/// Enables "Shared PCHs", a feature which significantly speeds up compile times by attempting to
+/// share certain PCH files between modules that UBT detects is including those PCH's header files.
+/// </summary>
+        public virtual TargetRulesConfig NoSharedPCH(bool present = true)
+        {
+            if (present)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-NoSharedPCH",
+                    Value: null,
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (TargetRulesConfig) this;
+        }
+
+        
+/// <summary>
+/// Whether to use the :FASTLINK option when building with /DEBUG to create local PDBs on Windows. Fast, but currently seems to have problems finding symbols in the debugger.
+/// </summary>
+        public virtual TargetRulesConfig FastPDB(bool? val = null)
+        {
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-FastPDB",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (TargetRulesConfig) this;
+        }
+
+        
+/// <summary>
+/// Outputs a map file as part of the build.
+/// </summary>
+        public virtual TargetRulesConfig MapFile(bool? val = null)
+        {
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-MapFile",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (TargetRulesConfig) this;
+        }
+
+        
+/// <summary>
+/// Bundle version for Mac apps.
+/// </summary>
+        public virtual TargetRulesConfig BundleVersion(object val = null)
+        {
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-BundleVersion",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (TargetRulesConfig) this;
+        }
+
+        
+/// <summary>
+/// Whether to deploy the executable after compilation on platforms that require deployment.
+/// </summary>
+        public virtual TargetRulesConfig Deploy(bool? val = null)
+        {
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Deploy",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (TargetRulesConfig) this;
+        }
+
+        
+/// <summary>
+/// Whether to force skipping deployment for platforms that require deployment by default.
+/// </summary>
+        public virtual TargetRulesConfig SkipDeploy(bool? val = null)
+        {
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-SkipDeploy",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (TargetRulesConfig) this;
+        }
+
+        
+/// <summary>
+/// Whether to disable linking for this target.
+/// </summary>
+        public virtual TargetRulesConfig NoLink(bool? val = null)
+        {
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-NoLink",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (TargetRulesConfig) this;
+        }
+
+        
+/// <summary>
+/// Indicates that this is a formal build, intended for distribution. This flag is automatically set to true when Build.version has a changelist set.
+/// The only behavior currently bound to this flag is to compile the default resource file separately for each binary so that the OriginalFilename field is set correctly.
+/// By default, we only compile the resource once to reduce build times.
+/// </summary>
+        public virtual TargetRulesConfig Formal(bool? val = null)
+        {
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Formal",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (TargetRulesConfig) this;
+        }
+
+        
+/// <summary>
+/// Whether to clean Builds directory on a remote Mac before building.
+/// </summary>
+        public virtual TargetRulesConfig FlushMac(bool? val = null)
+        {
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-FlushMac",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (TargetRulesConfig) this;
+        }
+
+        
+/// <summary>
+/// Whether to write detailed timing info from the compiler and linker.
+/// </summary>
+        public virtual TargetRulesConfig Timing(bool? val = null)
+        {
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Timing",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (TargetRulesConfig) this;
+        }
+
+        
+/// <summary>
+/// Whether to parse timing data into a tracing file compatible with chrome://tracing.
+/// </summary>
+        public virtual TargetRulesConfig Tracing(bool? val = null)
+        {
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Tracing",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (TargetRulesConfig) this;
+        }
+
+        
+/// <summary>
+/// Whether to expose all symbols as public by default on POSIX platforms
+/// </summary>
+        public virtual TargetRulesConfig PublicSymbolsByDefault(bool? val = null)
+        {
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-PublicSymbolsByDefault",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (TargetRulesConfig) this;
+        }
+
+        
+/// <summary>
+/// Allows overriding the toolchain to be created for this target. This must match the name of a class declared in the UnrealBuildTool assembly.
+/// </summary>
+        public virtual TargetRulesConfig ToolChain(object val = null)
+        {
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-ToolChain",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (TargetRulesConfig) this;
+        }
+
+        
+/// <summary>Which C++ stanard to use for compiling this target
+/// Which C++ standard to use for compiling this target (for non-engine modules)</summary>
+        public virtual TargetRulesConfig CppStd(CppStandardVersion? val = null)
+        {
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-CppStd",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (TargetRulesConfig) this;
+        }
+
+        
+/// <summary>
+/// Do not allow manifest changes when building this target. Used to cause earlier errors when building multiple targets with a shared build environment.
+/// </summary>
+        public virtual TargetRulesConfig NoManifestChanges(bool? val = null)
+        {
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-NoManifestChanges",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (TargetRulesConfig) this;
+        }
+
+        
+/// <summary>
+/// The build version string
+/// </summary>
+        public virtual TargetRulesConfig BuildVersion(object val = null)
+        {
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-BuildVersion",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (TargetRulesConfig) this;
+        }
+
+        
+/// <summary>
+/// Backing storage for the LinkType property.
+/// </summary>
+        public virtual TargetRulesConfig Monolithic(bool present = true)
+        {
+            if (present)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Monolithic",
+                    Value: null,
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (TargetRulesConfig) this;
+        }
+
+        
+/// <summary>
+/// Backing storage for the LinkType property.
+/// </summary>
+        public virtual TargetRulesConfig Modular(bool present = true)
+        {
+            if (present)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Modular",
+                    Value: null,
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (TargetRulesConfig) this;
+        }
+
+        
+/// <summary>
+/// Macros to define globally across the whole target.
+/// </summary>
+        public virtual TargetRulesConfig Define(params object[] values)
+        {
+            if (true)
+            {
+                if (values != null)
+                    foreach (var val in values)
+                    {
+                        AppendArgument(new UnrealToolArgument(
+                            "-Define",
+                            Value: val.ToString(),
+                            Setter: ':',
+                            Meta: new(
+                                Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
+                                AllowMultiple: true
+                            )
+                        ));
+                    }
+            }
+            return (TargetRulesConfig) this;
+        }
+
+        
+/// <summary>
+/// Macros to define across all macros in the project.
+/// </summary>
+        public virtual TargetRulesConfig ProjectDefine(params object[] values)
+        {
+            if (true)
+            {
+                if (values != null)
+                    foreach (var val in values)
+                    {
+                        AppendArgument(new UnrealToolArgument(
+                            "-ProjectDefine",
+                            Value: val.ToString(),
+                            Setter: ':',
+                            Meta: new(
+                                Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
+                                AllowMultiple: true
+                            )
+                        ));
+                    }
+            }
+            return (TargetRulesConfig) this;
+        }
+
+        
+/// <summary>
+/// Path to a manifest to output for this target
+/// </summary>
+        public virtual TargetRulesConfig Manifest(params object[] values)
+        {
+            if (true)
+            {
+                if (values != null)
+                    foreach (var val in values)
+                    {
+                        AppendArgument(new UnrealToolArgument(
+                            "-Manifest",
+                            Value: val.ToString(),
+                            Setter: '=',
+                            Meta: new(
+                                Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
+                                AllowMultiple: true
+                            )
+                        ));
+                    }
+            }
+            return (TargetRulesConfig) this;
+        }
+
+        
+/// <summary>
+/// Path to a list of dependencies for this target, when precompiling
+/// </summary>
+        public virtual TargetRulesConfig DependencyList(params object[] values)
+        {
+            if (true)
+            {
+                if (values != null)
+                    foreach (var val in values)
+                    {
+                        AppendArgument(new UnrealToolArgument(
+                            "-DependencyList",
+                            Value: val.ToString(),
+                            Setter: '=',
+                            Meta: new(
+                                Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
+                                AllowMultiple: true
+                            )
+                        ));
+                    }
+            }
+            return (TargetRulesConfig) this;
+        }
+
+        
+/// <summary>
+/// Backing storage for the BuildEnvironment property
+/// </summary>
+        public virtual TargetRulesConfig SharedBuildEnvironment(bool present = true)
+        {
+            if (present)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-SharedBuildEnvironment",
+                    Value: null,
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (TargetRulesConfig) this;
+        }
+
+        
+/// <summary>
+/// Backing storage for the BuildEnvironment property
+/// </summary>
+        public virtual TargetRulesConfig UniqueBuildEnvironment(bool present = true)
+        {
+            if (present)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-UniqueBuildEnvironment",
+                    Value: null,
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (TargetRulesConfig) this;
+        }
+
+        
+/// <summary>
+/// Whether to ignore violations to the shared build environment (eg. editor targets modifying definitions)
+/// </summary>
+        public virtual TargetRulesConfig OverrideBuildEnvironment(bool? val = null)
+        {
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-OverrideBuildEnvironment",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (TargetRulesConfig) this;
+        }
+
+        
+/// <summary>
+/// Additional arguments to pass to the compiler
+/// </summary>
+        public virtual TargetRulesConfig CompilerArguments(object val = null)
+        {
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-CompilerArguments",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (TargetRulesConfig) this;
+        }
+
+        
+/// <summary>
+/// Additional arguments to pass to the linker
+/// </summary>
+        public virtual TargetRulesConfig LinkerArguments(object val = null)
+        {
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-LinkerArguments",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (TargetRulesConfig) this;
+        }
+
+        
+/// <summary>
+/// Whether to use the verse script interface.
+/// </summary>
+        public virtual TargetRulesConfig NoUseVerse(bool present = true)
+        {
+            if (present)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-NoUseVerse",
+                    Value: null,
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (TargetRulesConfig) this;
+        }
+
+        
+/// <summary>
+/// Whether to use the verse script interface.
+/// </summary>
+        public virtual TargetRulesConfig UseVerse(bool present = true)
+        {
+            if (present)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-UseVerse",
+                    Value: null,
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (TargetRulesConfig) this;
+        }
+
+        
+/// <summary>
+/// Use a heuristic to determine which files are currently being iterated on and exclude them from unity blobs, result in faster
+/// incremental compile times. The current implementation uses the read-only flag to distinguish the working set, assuming that files will
+/// be made writable by the source control system if they are being modified. This is true for Perforce, but not for Git.
+/// </summary>
+        public virtual TargetRulesConfig DisableAdaptiveUnity(bool present = true)
+        {
+            if (present)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-DisableAdaptiveUnity",
+                    Value: null,
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (TargetRulesConfig) this;
+        }
+
+        
+/// <summary>Whether to enable all warnings as errors. UE enables most warnings as errors already, but disables a few (such as deprecation warnings).
+/// Treat warnings as errors</summary>
+        public virtual TargetRulesConfig WarningsAsErrors(bool? val = null)
+        {
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-WarningsAsErrors",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (TargetRulesConfig) this;
+        }
+
+        
+/// <summary>
+/// When Link Time Code Generation (LTCG) is enabled, whether to
+/// prefer using the lighter weight version on supported platforms.
+/// </summary>
+        public virtual TargetRulesConfig ThinLTO(bool? val = null)
+        {
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-ThinLTO",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (TargetRulesConfig) this;
+        }
+
+        
+/// <summary>
+/// Override the name used for this target
+/// </summary>
+        public virtual TargetRulesConfig TargetNameOverride(object val = null)
+        {
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-TargetNameOverride",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (TargetRulesConfig) this;
+        }
+
+        
+/// <summary>
+/// Force the include order to a specific version. Overrides any Target and Module rules.
+/// </summary>
+        public virtual TargetRulesConfig ForceIncludeOrder(EngineIncludeOrderVersion? val = null)
+        {
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-ForceIncludeOrder",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (TargetRulesConfig) this;
+        }
+
+        
+/// <summary>
+/// Whether to use Iris.
+/// </summary>
+        public virtual TargetRulesConfig NoUseIris(bool present = true)
+        {
+            if (present)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-NoUseIris",
+                    Value: null,
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (TargetRulesConfig) this;
+        }
+
+        
+/// <summary>
+/// Whether to use Iris.
+/// </summary>
+        public virtual TargetRulesConfig UseIris(bool present = true)
+        {
+            if (present)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-UseIris",
+                    Value: null,
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (TargetRulesConfig) this;
+        }
+
+        
+    
+        public virtual TargetRulesConfig TrustedServer(bool present = true)
+        {
+            if (present)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-TrustedServer",
+                    Value: null,
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_5_1,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (TargetRulesConfig) this;
+        }
+
+        
+    
+        public virtual TargetRulesConfig NoTrustedServer(bool present = true)
+        {
+            if (present)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-NoTrustedServer",
+                    Value: null,
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_5_1,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (TargetRulesConfig) this;
+        }
+
+        
+/// <summary>
+/// Whether to merge module and generated unity files for faster compilation.
+/// </summary>
+        public virtual TargetRulesConfig DisableMergingUnityFiles(bool present = true)
+        {
+            if (present)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-DisableMergingUnityFiles",
+                    Value: null,
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (TargetRulesConfig) this;
+        }
+
+        
+/// <summary>
+/// Forces frame pointers to be retained this is usually required when you want reliable callstacks e.g. mallocframeprofiler
+/// </summary>
+        public virtual TargetRulesConfig RetainFramePointers(bool present = true)
+        {
+            if (present)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-RetainFramePointers",
+                    Value: null,
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (TargetRulesConfig) this;
+        }
+
+        
+/// <summary>
+/// Forces frame pointers to be retained this is usually required when you want reliable callstacks e.g. mallocframeprofiler
+/// </summary>
+        public virtual TargetRulesConfig NoRetainFramePointers(bool present = true)
+        {
+            if (present)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-NoRetainFramePointers",
+                    Value: null,
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (TargetRulesConfig) this;
+        }
+
+        
+/// <summary>
+/// An approximate number of bytes of C++ code to target for inclusion in a single unified C++ file.
+/// </summary>
+        public virtual TargetRulesConfig BytesPerUnityCPP(double? val = null)
+        {
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-BytesPerUnityCPP",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (TargetRulesConfig) this;
+        }
+
+        
+/// <summary>Whether to add additional information to the unity files, such as '_of_X' in the file name.
+/// Whether to add additional information to the unity files, such as '_of_X' in the file name. Not recommended.</summary>
+        public virtual TargetRulesConfig DetailedUnityFiles(bool present = true)
+        {
+            if (present)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-DetailedUnityFiles",
+                    Value: null,
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (TargetRulesConfig) this;
+        }
+
+        
+/// <summary>Whether to add additional information to the unity files, such as '_of_X' in the file name.
+/// Whether to add additional information to the unity files, such as '_of_X' in the file name. Not recommended.</summary>
+        public virtual TargetRulesConfig NoDetailedUnityFiles(bool present = true)
+        {
+            if (present)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-NoDetailedUnityFiles",
+                    Value: null,
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (TargetRulesConfig) this;
+        }
+
+        
+/// <summary>Force set flags require for determinstic compiling and linking (experimental, may not be fully supported).
+/// This setting is only recommended for testing, instead:
+/// * Set bDeterministic on a per module basis in ModuleRules to control deterministic compiling.
+/// * Set bDeterministic on a per target basis in TargetRules to control deterministic linking.
+/// Set flags require for deterministic compiling and linking.
+/// Enabling deterministic mode for msvc disables codegen multithreading so compiling will be slower</summary>
+        public virtual TargetRulesConfig Deterministic(bool? val = null)
+        {
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-Deterministic",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (TargetRulesConfig) this;
+        }
+
+        
+/// <summary>
+/// Generate dependency files by preprocessing. This is only recommended when distributing builds as it adds additional overhead.
+/// </summary>
+        public virtual TargetRulesConfig PreprocessDepends(bool? val = null)
+        {
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-PreprocessDepends",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (TargetRulesConfig) this;
+        }
+
+        
+/// <summary>Whether static code analysis should be enabled.
+/// The static analyzer to use.</summary>
+        public virtual TargetRulesConfig StaticAnalyzer(StaticAnalyzer? val = null)
+        {
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-StaticAnalyzer",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (TargetRulesConfig) this;
+        }
+
+        
+/// <summary>
+/// The output type to use for the static analyzer. This is only supported for Clang.
+/// </summary>
+        public virtual TargetRulesConfig StaticAnalyzerOutputType(StaticAnalyzerOutputType? val = null)
+        {
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-StaticAnalyzerOutputType",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (TargetRulesConfig) this;
+        }
+
+        
+/// <summary>
+/// The mode to use for the static analyzer. This is only supported for Clang.
+/// Shallow mode completes quicker but is generally not recommended.
+/// </summary>
+        public virtual TargetRulesConfig StaticAnalyzerMode(StaticAnalyzerMode? val = null)
+        {
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-StaticAnalyzerMode",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (TargetRulesConfig) this;
+        }
+
+        
+/// <summary>
+/// Package full path (directory + filename) where to store input files used at link time
+/// Normally used to debug a linker crash for platforms that support it
+/// </summary>
+        public virtual TargetRulesConfig PackagePath(object val = null)
+        {
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-PackagePath",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (TargetRulesConfig) this;
+        }
+
+        
+/// <summary>
+/// Directory where to put crash report files for platforms that support it
+/// </summary>
+        public virtual TargetRulesConfig CrashDiagnosticDirectory(object val = null)
+        {
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-CrashDiagnosticDirectory",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (TargetRulesConfig) this;
+        }
+
+        
+/// <summary>
+/// Disable supports for inlining gen.cpps
+/// </summary>
+        public virtual TargetRulesConfig DisableInliningGenCpps(bool? val = null)
+        {
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-DisableInliningGenCpps",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (TargetRulesConfig) this;
+        }
+
+        
+/// <summary>
+/// Which C standard to use for compiling this target
+/// </summary>
+        public virtual TargetRulesConfig CStd(CStandardVersion? val = null)
+        {
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-CStd",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (TargetRulesConfig) this;
+        }
+
+        
+/// <summary>
+/// Enable Position Independent Executable (PIE). Has an overhead cost
+/// </summary>
+        public virtual TargetRulesConfig Pie(bool? val = null)
+        {
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-pie",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (TargetRulesConfig) this;
+        }
+
+        
+/// <summary>
+/// Enable Stack Protection. Has an overhead cost
+/// </summary>
+        public virtual TargetRulesConfig StackProtect(bool? val = null)
+        {
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-stack-protect",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (TargetRulesConfig) this;
+        }
+
+        
+/// <summary>
+/// Allows to fine tune optimizations level for speed and\or code size
+/// </summary>
+        public virtual TargetRulesConfig OptimizationLevel(OptimizationMode? val = null)
+        {
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-OptimizationLevel",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (TargetRulesConfig) this;
+        }
+
+        
+/// <summary>
+/// Tells "include what you use" to only compile header files.
+/// </summary>
+        public virtual TargetRulesConfig IWYUHeadersOnly(bool? val = null)
+        {
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-IWYUHeadersOnly",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_5_2,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (TargetRulesConfig) this;
+        }
+
+        
+/// <summary>
+/// Disables overrides that are set by the module
+/// </summary>
+        public virtual TargetRulesConfig DisableModuleNumIncludedBytesPerUnityCPPOverride(bool present = true)
+        {
+            if (present)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-DisableModuleNumIncludedBytesPerUnityCPPOverride",
+                    Value: null,
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (TargetRulesConfig) this;
+        }
+
+        
+/// <summary>
+/// Directory where to put the ThinLTO cache on supported platforms.
+/// </summary>
+        public virtual TargetRulesConfig ThinLTOCacheDirectory(object val = null)
+        {
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-ThinLTOCacheDirectory",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (TargetRulesConfig) this;
+        }
+
+        
+/// <summary>
+/// Arguments that will be applied to prune the ThinLTO cache on supported platforms.
+/// Arguments will only be applied if ThinLTOCacheDirectory is set.
+/// </summary>
+        public virtual TargetRulesConfig ThinLTOCachePruningArguments(object val = null)
+        {
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-ThinLTOCachePruningArguments",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (TargetRulesConfig) this;
+        }
+
+        
+/// <summary>
+/// Adds header files in included modules to the build.
+/// </summary>
+        public virtual TargetRulesConfig IncludeHeaders(bool? val = null)
+        {
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-IncludeHeaders",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (TargetRulesConfig) this;
+        }
+
+        
+/// <summary>
+/// Set flags require for deterministic compiling and linking.
+/// Enabling deterministic mode for msvc disables codegen multithreading so compiling will be slower
+/// </summary>
+        public virtual TargetRulesConfig NonDeterministic(bool present = true)
+        {
+            if (present)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-NonDeterministic",
+                    Value: null,
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (TargetRulesConfig) this;
+        }
+
+        
+/// <summary>
+/// Which C++ standard to use for compiling this target (for engine modules)
+/// </summary>
+        public virtual TargetRulesConfig CppStdEngine(CppStandardVersion? val = null)
+        {
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-CppStdEngine",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (TargetRulesConfig) this;
+        }
+
+        
+/// <summary>
+/// Whether to use the AutoRTFM Clang compiler.
+/// </summary>
+        public virtual TargetRulesConfig NoUseAutoRTFM(bool present = true)
+        {
+            if (present)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-NoUseAutoRTFM",
+                    Value: null,
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (TargetRulesConfig) this;
+        }
+
+        
+/// <summary>
+/// Whether to use the AutoRTFM Clang compiler.
+/// </summary>
+        public virtual TargetRulesConfig UseAutoRTFM(bool present = true)
+        {
+            if (present)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-UseAutoRTFM",
+                    Value: null,
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (TargetRulesConfig) this;
+        }
+
+        
+/// <summary>
+/// Whether to compile in Chaos Visual Debugger (CVD) support features to record the state of the physics simulation
+/// </summary>
+        public virtual TargetRulesConfig CompileChaosVisualDebuggerSupport(bool? val = null)
+        {
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-CompileChaosVisualDebuggerSupport",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (TargetRulesConfig) this;
+        }
+
+        
+/// <summary>
+/// When used with -IncludeHeaders, only header files will be compiled.
+/// </summary>
+        public virtual TargetRulesConfig HeadersOnly(bool? val = null)
+        {
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-HeadersOnly",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (TargetRulesConfig) this;
+        }
+
+        
+/// <summary>
+/// Indicates what warning/error level to treat potential PCH performance issues.
+/// </summary>
+        public virtual TargetRulesConfig PCHPerformanceIssueWarningLevel(WarningLevel? val = null)
+        {
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-PCHPerformanceIssueWarningLevel",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (TargetRulesConfig) this;
+        }
+
+        
+/// <summary>
+/// How to treat general module include path validation messages
+/// </summary>
+        public virtual TargetRulesConfig ModuleIncludePathWarningLevel(WarningLevel? val = null)
+        {
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-ModuleIncludePathWarningLevel",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (TargetRulesConfig) this;
+        }
+
+        
+/// <summary>
+/// How to treat private module include path validation messages, where a module is adding an include path that exposes private headers
+/// </summary>
+        public virtual TargetRulesConfig ModuleIncludePrivateWarningLevel(WarningLevel? val = null)
+        {
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-ModuleIncludePrivateWarningLevel",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (TargetRulesConfig) this;
+        }
+
+        
+/// <summary>
+/// How to treat unnecessary module sub-directory include path validation messages
+/// </summary>
+        public virtual TargetRulesConfig ModuleIncludeSubdirectoryWarningLevel(WarningLevel? val = null)
+        {
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-ModuleIncludeSubdirectoryWarningLevel",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (TargetRulesConfig) this;
+        }
+
+        
+/// <summary>
+/// Whether PDB files should be used for Visual C++ builds.
+/// </summary>
+        public virtual TargetRulesConfig UsePDB(bool present = true)
+        {
+            if (present)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-UsePDB",
+                    Value: null,
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (TargetRulesConfig) this;
+        }
+
+        
+/// <summary>
+/// Whether PCHs should be chained when compiling with clang.
+/// </summary>
+        public virtual TargetRulesConfig NoPCHChain(bool present = true)
+        {
+            if (present)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-NoPCHChain",
+                    Value: null,
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (TargetRulesConfig) this;
+        }
+
+        
+/// <summary>
+/// Whether to generate assembly data while compiling this target. Works exclusively on MSVC for now.
+/// </summary>
+        public virtual TargetRulesConfig WithAssembly(bool? val = null)
+        {
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-WithAssembly",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (TargetRulesConfig) this;
+        }
+
+        
+/// <summary>
+/// Whether the target requires code coverage compilation and linking.
+/// </summary>
+        public virtual TargetRulesConfig CodeCoverage(bool present = true)
+        {
+            if (present)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-CodeCoverage",
+                    Value: null,
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (TargetRulesConfig) this;
+        }
+
+        
+/// <summary>
+/// Whether to support edit and continue.
+/// </summary>
+        public virtual TargetRulesConfig SupportEditAndContinue(bool? val = null)
+        {
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-SupportEditAndContinue",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (TargetRulesConfig) this;
+        }
+
+        
+/// <summary>
+/// Direct the compiler to generate AVX instructions wherever SSE or AVX intrinsics are used, on the x64 platforms that support it.
+/// Note that by enabling this you are changing the minspec for the PC platform, and the resultant executable will crash on machines without AVX support.
+/// </summary>
+        public virtual TargetRulesConfig MinCpuArchX64(MinimumCpuArchitectureX64? val = null)
+        {
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-MinCpuArchX64",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (TargetRulesConfig) this;
+        }
+    
+    
+        private ToolConfig[] _configs = null;
+        protected override ToolConfig[] Configs => _configs ??= new ToolConfig[]
+        {
+        };
+    }
+
+    protected readonly TargetRulesConfig TargetRulesStorage = new();
         
 /// <summary>
 /// Aggregates parsed Visual C++ timing information files together into one monolithic breakdown file.
@@ -6382,6 +10942,25 @@ public abstract class UbtConfigGenerated : ToolConfig
             }
             return (IOSPostBuildSyncConfig) this;
         }
+
+        
+    
+        public virtual IOSPostBuildSyncConfig LegacyXcode(bool? val = null)
+        {
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-LegacyXcode",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (IOSPostBuildSyncConfig) this;
+        }
     
     
         private ToolConfig[] _configs = null;
@@ -6830,9 +11409,9 @@ public abstract class UbtConfigGenerated : ToolConfig
         }
 
         
-/// <summary>
-/// Enables "thin" LTO
-/// </summary>
+/// <summary>Enables "thin" LTO
+/// When Link Time Code Generation (LTCG) is enabled, whether to
+/// prefer using the lighter weight version on supported platforms.</summary>
         public virtual LinuxTargetRulesConfig ThinLTO(bool? val = null)
         {
             if (true)
@@ -6842,7 +11421,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -7384,9 +11963,8 @@ public abstract class UbtConfigGenerated : ToolConfig
         }
 
         
-/// <summary>
-/// The static analyzer to use.
-/// </summary>
+/// <summary>The static analyzer to use.
+/// Whether static code analysis should be enabled.</summary>
         public virtual WindowsTargetRulesConfig StaticAnalyzer(WindowsStaticAnalyzer? val = null)
         {
             if (true)
@@ -7396,7 +11974,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -7467,9 +12045,8 @@ public abstract class UbtConfigGenerated : ToolConfig
         }
 
         
-/// <summary>
-/// The output type to use for the static analyzer.
-/// </summary>
+/// <summary>The output type to use for the static analyzer.
+/// The output type to use for the static analyzer. This is only supported for Clang.</summary>
         public virtual WindowsTargetRulesConfig StaticAnalyzerOutputType(WindowsStaticAnalyzerOutputType? val = null)
         {
             if (true)
@@ -7479,7 +12056,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2,
+                        Compatibility: UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -7509,9 +12086,13 @@ public abstract class UbtConfigGenerated : ToolConfig
         }
 
         
-/// <summary>
-/// Set flags require for determinstic compiles (experimental)
-/// </summary>
+/// <summary>Set flags require for determinstic compiles (experimental)
+/// Force set flags require for determinstic compiling and linking (experimental, may not be fully supported).
+/// This setting is only recommended for testing, instead:
+/// * Set bDeterministic on a per module basis in ModuleRules to control deterministic compiling.
+/// * Set bDeterministic on a per target basis in TargetRules to control deterministic linking.
+/// Set flags require for deterministic compiling and linking.
+/// Enabling deterministic mode for msvc disables codegen multithreading so compiling will be slower</summary>
         public virtual WindowsTargetRulesConfig Deterministic(bool? val = null)
         {
             if (true)
@@ -7521,7 +12102,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_0,
+                        Compatibility: UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -7665,6 +12246,27 @@ public abstract class UbtConfigGenerated : ToolConfig
             {
                 AppendArgument(new UnrealToolArgument(
                     "-VCToolchain",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (WindowsTargetRulesConfig) this;
+        }
+
+        
+/// <summary>
+/// If -PGOOptimize is specified but the linker flags have changed since the last -PGOProfile, this will emit a warning and build without PGO instead of failing during link with LNK1268.
+/// </summary>
+        public virtual WindowsTargetRulesConfig IgnoreStalePGOData(bool? val = null)
+        {
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-IgnoreStalePGOData",
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
@@ -9360,6 +13962,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                 GlobalOptionsStorage,
                 BuildConfigurationStorage,
                 TargetDescriptorStorage,
+                TargetRulesStorage,
                 AggregateParsedTimingInfoStorage,
                 BuildStorage,
                 CleanStorage,
@@ -9436,6 +14039,15 @@ public abstract class UbtConfigGenerated : ToolConfig
     {
         configurator?.Invoke(TargetDescriptorStorage);
         AppendSubtool(TargetDescriptorStorage);
+        return (UbtConfig) this;
+    }
+/// <summary>
+/// TargetRules is a data structure that contains the rules for defining a target (application/executable)
+/// </summary>
+    public UbtConfig TargetRules(Action<TargetRulesConfig> configurator)
+    {
+        configurator?.Invoke(TargetRulesStorage);
+        AppendSubtool(TargetRulesStorage);
         return (UbtConfig) this;
     }
 /// <summary>
