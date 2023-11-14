@@ -52,6 +52,9 @@ namespace Nuke.Unreal
         [Parameter("The target configuration for building or packaging the project")]
         public virtual UnrealConfig[] Config { get; set; } = new [] {UnrealConfig.Development};
 
+        [Parameter("The target configuration for building or packaging the project")]
+        public virtual UnrealConfig[] EditorConfig { get; set; } = new [] {UnrealConfig.Development};
+
         [Parameter("The Unreal target type for building the project")]
         public virtual UnrealTargetType[] TargetType { get; set; } = new [] {UnrealTargetType.Game};
 
@@ -59,7 +62,8 @@ namespace Nuke.Unreal
         [Parameter("Extra arguments passed to UBT. It's recommended to use it only from command line, do not override.")]
         public virtual string[] UbtArgs { get; set; }
         
-        public virtual UbtConfig UbtGlobal(UbtConfig _) => _;
+        public virtual UbtConfig UbtGlobal(UbtConfig _) => _
+            .WaitMutex();
         public virtual UatConfig UatGlobal(UatConfig _) => _
             .UTF8Output()
             .NoP4();

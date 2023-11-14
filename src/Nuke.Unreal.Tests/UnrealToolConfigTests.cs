@@ -31,9 +31,9 @@ public class UnrealToolConfigTests
     public void UbtBuild()
     {
         var result = new UbtConfig()
-            .Target("RW1", "RW1" + UnrealTargetType.Editor, "SomeOther")
-            .Platform(UnrealPlatform.Win64, UnrealPlatform.Android)
-            .Configuration(
+            .Targets("RW1", "RW1" + UnrealTargetType.Editor, "SomeOther")
+            .Platforms(UnrealPlatform.Win64, UnrealPlatform.Android)
+            .Configurations(
                 UnrealConfig.Development,
                 UnrealConfig.DebugGame,
                 UnrealConfig.Shipping

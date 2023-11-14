@@ -85,10 +85,21 @@ namespace Nuke.Unreal
             .Executes(() =>
             {
                 Unreal.BuildTool(this, _ => _
-                    .Target(ProjectName + UnrealTargetType.Editor)
-                    .Platform(Unreal.GetDefaultPlatform())
-                    .Configuration(UnrealConfig.Development)
-                    .Project(ProjectPath)
+                    .Target(
+                        ProjectName + UnrealTargetType.Editor,
+                        UnrealPlatform.FromFlag(Unreal.GetDefaultPlatform()),
+                        EditorConfig
+                    )
+                    .Project(ProjectPath, true)
+                    .If(Unreal.Version(this).IsEngineSource, _ => _
+                        .Target(
+                            "ShaderCompileWorker",
+                            UnrealPlatform.FromFlag(Unreal.GetDefaultPlatform()),
+                            new [] { UnrealConfig.Development }
+                        )
+                        .Quiet()
+                    )
+                    .FromMsBuild()
                     .Apply(UbtGlobal)
                     .Append(UbtArgs.AsArguments())
                 )("");
@@ -100,14 +111,14 @@ namespace Nuke.Unreal
             .Executes(() =>
             {
                 Unreal.BuildTool(this, _ => _
-                    .Target(
+                    .Targets(
                         TargetType.Select(tt => tt == UnrealTargetType.Game
                             ? ProjectName
                             : ProjectName + tt
                         )
                     )
-                    .Platform(Platform)
-                    .Configuration(Config)
+                    .Platforms(Platform)
+                    .Configurations(Config)
                     .Project(ProjectPath)
                     .Apply(UbtGlobal)
                     .Append(UbtArgs.AsArguments())
