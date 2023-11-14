@@ -19561,6 +19561,25 @@ public abstract class UatConfigGenerated : ToolConfig
             }
             return (FinalizeInstalledBuildConfig) this;
         }
+
+        
+/// <summary>Unique identifier for this build (optional)</summary>
+        public virtual FinalizeInstalledBuildConfig BuildId(params object[] values)
+        {
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-BuildId",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: true
+                    )
+                ));
+            }
+            return (FinalizeInstalledBuildConfig) this;
+        }
     
     
         private ToolConfig[] _configs = null;
