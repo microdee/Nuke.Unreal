@@ -52,7 +52,7 @@ namespace Nuke.Unreal
         [Parameter("The target configuration for building or packaging the project")]
         public virtual UnrealConfig[] Config { get; set; } = new [] {UnrealConfig.Development};
 
-        [Parameter("The target configuration for building or packaging the project")]
+        [Parameter("The editor configuration to be used while building or packaging the project")]
         public virtual UnrealConfig[] EditorConfig { get; set; } = new [] {UnrealConfig.Development};
 
         [Parameter("The Unreal target type for building the project")]

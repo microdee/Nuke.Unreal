@@ -17,6 +17,7 @@ using Nuke.Unreal.Tools;
 using Nuke.Common.Tooling;
 using System.Reflection;
 using Nuke.Cola;
+using Nuke.Common.Utilities;
 
 namespace Nuke.Unreal
 {
@@ -128,6 +129,15 @@ namespace Nuke.Unreal
         public virtual bool CookAll => false;
 
         public virtual UatConfig UatCook(UatConfig _) => _;
+
+        public virtual bool ForDistribution()
+        {
+            var section = ReadIniHierarchy("Game")["/Script/UnrealEd.ProjectPackagingSettings"];
+            return section == null ? false : section
+                .GetFirst("ForDistribution", new() { Value = "" }).Value
+                .EqualsAnyOrdinalIgnoreCase("true", "1");
+        }
+
         public virtual Target Cook => _ => _
             .Description("Cook Unreal assets for standalone game execution")
             .DependsOn(BuildEditor)
@@ -146,6 +156,9 @@ namespace Nuke.Unreal
                             .Clientconfig(config)
                             .Skipstage()
                             .Manifests()
+                            .If(ForDistribution(), _ => _
+                                .Distribution()
+                            )
                         )
                         .ScriptsForProject(ProjectPath)
                         .Targetplatform(Platform)

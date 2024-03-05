@@ -51,6 +51,9 @@ namespace Nuke.Unreal
                             .Clientconfig(self.Config)
                             .Manifests()
                             .AppLocalDirectory(appLocalDir)
+                            .If(self.ForDistribution(), _ => _
+                                .Distribution()
+                            )
                         )
                         .ScriptsForProject(self.ProjectPath)
                         .Targetplatform(self.Platform)
