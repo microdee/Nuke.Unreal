@@ -101,10 +101,10 @@ public partial class UbtGathering : CSharpSourceGatherer
             foreach(var commandLineAttr in commandLineAttrs)
             {
                 var implicitCliNameCandidateNode = commandLineAttr
-                    .GetImplicitAttributeArguments()
+                    .GetImplicitStringLiteralAttributeArguments()
                     ?.FirstOrDefault();
 
-                var explicitCliNameCandidateNode = commandLineAttr.GetNamedAttributeArgument("Prefix");
+                var explicitCliNameCandidateNode = commandLineAttr.GetNamedStringLiteralAttributeArgument("Prefix");
 
                 var cliNameCandidate = implicitCliNameCandidateNode
                     ?? explicitCliNameCandidateNode
@@ -128,7 +128,7 @@ public partial class UbtGathering : CSharpSourceGatherer
                         ? cliNameCandidate[^1].ToString()
                         : "=";
 
-                var value = commandLineAttr.GetNamedAttributeArgument("Value");
+                var value = commandLineAttr.GetNamedStringLiteralAttributeArgument("Value");
 
                 var argType = ArgumentModelType.Switch;
                 EnumData enumData = null;
@@ -167,12 +167,12 @@ public partial class UbtGathering : CSharpSourceGatherer
                     }
                 }
 
-                var separator = commandLineAttr.GetNamedAttributeArgument("ListSeparator");
+                var separator = commandLineAttr.GetNamedStringLiteralAttributeArgument("ListSeparator");
                 bool isCollectionMultipleArgs = argType >= ArgumentModelType.ScalarCollection && string.IsNullOrWhiteSpace(separator);
 
                 var documentation = member.GetLeadingXmlDocs();
-                var description = commandLineAttr.GetNamedAttributeArgument("Description");
-                var requiredWarning = commandLineAttr.GetNamedAttributeArgument("Required") != null
+                var description = commandLineAttr.GetNamedStringLiteralAttributeArgument("Description");
+                var requiredWarning = commandLineAttr.GetNamedLiteralAttributeArgument("Required") != null
                     ? "REQUIRED!"
                     : null;
 
@@ -182,7 +182,7 @@ public partial class UbtGathering : CSharpSourceGatherer
                         ConfigName = csharpName,
                         CliName = cliName,
                         ArgumentType = argType,
-                        CollectionSeparator = separator ?? "=",
+                        CollectionSeparator = separator ?? "+",
                         IsCollectionMultipleArgs = isCollectionMultipleArgs,
                         ValueSetter = setter,
                         Enum = enumData,

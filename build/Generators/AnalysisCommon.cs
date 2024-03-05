@@ -70,15 +70,32 @@ public static class AnalysisCommon
         _ => false
     };
 
+    public static IEnumerable<string> GetLiteralValues(this IEnumerable<AttributeArgumentSyntax> args) => args
+            .SelectMany(a => a
+                .DescendantNodes()
+                .OfType<LiteralExpressionSyntax>()
+            )
+            .Select(l => l.Token.ValueText);
+
     public static IEnumerable<string> GetLiteralStringValues(this IEnumerable<AttributeArgumentSyntax> args) => args
             .SelectMany(a => a
                 .DescendantNodes()
                 .OfType<LiteralExpressionSyntax>()
-                .Where(l => l.IsKind(SyntaxKind.StringLiteralExpression))
+                .Where(l => l.IsKind(SyntaxKind.StringLiteralExpression) || l.IsKind(SyntaxKind.CharacterLiteralExpression))
             )
             .Select(l => l.Token.ValueText);
 
-    public static string GetNamedAttributeArgument(this AttributeSyntax attr, string key) =>
+    public static string GetNamedLiteralAttributeArgument(this AttributeSyntax attr, string key) =>
+        attr?.ArgumentList?.Arguments
+            .Where(a => a
+                .DescendantNodes()
+                .OfType<NameEqualsSyntax>()
+                .Any(n => n.Name.ToString() == key)
+            )
+            .GetLiteralValues()
+            ?.FirstOrDefault();
+
+    public static string GetNamedStringLiteralAttributeArgument(this AttributeSyntax attr, string key) =>
         attr?.ArgumentList?.Arguments
             .Where(a => a
                 .DescendantNodes()
@@ -87,8 +104,15 @@ public static class AnalysisCommon
             )
             .GetLiteralStringValues()
             ?.FirstOrDefault();
+            
+    public static IEnumerable<string> GetImplicitLiteralAttributeArguments(this AttributeSyntax attr) =>
+        attr?.ArgumentList?.Arguments
+            .Where(a => a
+                .ChildNodes().Count() == 1
+            )
+            .GetLiteralValues();
 
-    public static IEnumerable<string> GetImplicitAttributeArguments(this AttributeSyntax attr) =>
+    public static IEnumerable<string> GetImplicitStringLiteralAttributeArguments(this AttributeSyntax attr) =>
         attr?.ArgumentList?.Arguments
             .Where(a => a
                 .ChildNodes().Count() == 1

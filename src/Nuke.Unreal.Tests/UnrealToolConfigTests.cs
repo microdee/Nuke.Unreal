@@ -43,7 +43,7 @@ public class UnrealToolConfigTests
             .AppendRaw("-just -some--raw -arguments", "-more -here")
             .Gather(new EngineVersion("4.27"));
         Assert.Equal(
-            "RW1+RW1Editor+SomeOther Win64+Android Development+DebugGame+Shipping A:/path.uproject"
+            "RW1+RW1Editor+SomeOther -Platforms=Win64+Android Development+DebugGame+Shipping A:/path.uproject"
             + " \"-Key=Value with spaces\" -OtherKey -just -some--raw -arguments -more -here",
             result
         );
