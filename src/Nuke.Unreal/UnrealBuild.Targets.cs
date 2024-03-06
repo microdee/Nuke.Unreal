@@ -1,21 +1,12 @@
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Nuke.Common;
 using Nuke.Common.IO;
 using Nuke.Common.Utilities.Collections;
-
-using static Nuke.Common.IO.FileSystemTasks;
 using GlobExpressions;
 using Nuke.Common.Tools.Git;
-using Serilog;
-using Nuke.Common.Tools.MSBuild;
-using Nuke.Common.ProjectModel;
-using System.Security.Cryptography;
 using Nuke.Unreal.Tools;
-using Nuke.Common.Tooling;
-using System.Reflection;
 using Nuke.Cola;
 using Nuke.Common.Utilities;
 
