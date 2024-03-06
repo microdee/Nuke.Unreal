@@ -129,6 +129,7 @@ class Build : NukeBuild, IPublishNugets
                     .SetProjectFile(project)
                     .SetVersion(GitVersion.NuGetVersion)
                     .SetAssemblyVersion(GitVersion.MajorMinorPatch)
+                    .SetConfiguration(Configuration)
                 );
             }
         });
