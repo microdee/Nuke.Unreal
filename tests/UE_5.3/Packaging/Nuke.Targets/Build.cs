@@ -14,7 +14,7 @@ using static Nuke.Common.EnvironmentInfo;
 using static Nuke.Common.IO.FileSystemTasks;
 using static Nuke.Common.IO.PathConstruction;
 
-class Build : UnrealBuildTest, IPackageTargets
+class TestBuild : UnrealBuildTest, IPackageTargets
 {
     /// Support plugins are available for:
     ///   - JetBrains ReSharper        https://nuke.build/resharper
@@ -22,7 +22,7 @@ class Build : UnrealBuildTest, IPackageTargets
     ///   - Microsoft VisualStudio     https://nuke.build/visualstudio
     ///   - Microsoft VSCode           https://nuke.build/vscode
 
-    public static int Main () => Execute<Build>(x => x.Test);
+    public static int Main () => Execute<TestBuild>(x => x.Test);
 
     AbsolutePath PlatformBinariesFolder => ProjectFolder / "Binaries" / Unreal.GetDefaultPlatform().ToString();
 
@@ -44,16 +44,17 @@ class Build : UnrealBuildTest, IPackageTargets
             Assert.NotEmpty(PlatformBinariesFolder.GlobFiles($"*Editor-{ProjectName}*"));
         });
 
+    Target CheckCook => _ => _
+        .TriggeredBy(Cook)
+        .Triggers(Build);
+
     Target CheckBuild => _ => _
         .TriggeredBy(Build)
+        .Triggers<IPackageTargets>(p => p.Package)
         .Executes(() =>
         {
             Assert.NotEmpty(PlatformBinariesFolder.GlobFiles($"{ProjectName}*"));
         });
-
-    Target CheckCook => _ => _
-        .TriggeredBy(Cook)
-        .Triggers<IPackageTargets>(p => p.Package);
 
     Target CheckPackage => _ => _
         .TriggeredBy<IPackageTargets>(p => p.Package)
