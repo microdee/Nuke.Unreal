@@ -121,6 +121,24 @@ public static class ToolConfigExtensions
     }
 
     /// <summary>
+    /// Convenience function to apply potentially stacking command line arguments for each element in an enumerable
+    /// </summary>
+    /// <param name="config"></param>
+    /// <param name="collection"></param>
+    /// <param name="body">Execute delegate for each item of `collection`</param>
+    /// <typeparam name="T"></typeparam>
+    /// <typeparam name="I"></typeparam>
+    /// <returns>The same configurator as the input one</returns>
+    public static T For<T, I>(this T config, IEnumerable<I> collection, Action<I, T> body) where T : ToolConfig
+    {
+        foreach (var item in collection)
+        {
+            body?.Invoke(item, config);
+        }
+        return config;
+    }
+
+    /// <summary>
     /// Append arbitrary arguments to target configurator.
     /// Arguments will be parsed for (NAME)[=:]?(VALUE)? structure, and quoted if necessary
     /// </summary>

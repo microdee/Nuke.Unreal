@@ -40,7 +40,7 @@ namespace Nuke.Unreal
         }
         
         [Parameter("Specify the output working directory for artifacts")]
-        public AbsolutePath Output { get; set; } = null;
+        public AbsolutePath Output;
 
         public virtual AbsolutePath GetOutput() => Output ??= ProjectFolder / "Intermediate" / "Output";
 

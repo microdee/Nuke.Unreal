@@ -102,15 +102,14 @@ namespace Nuke.Unreal
             .After(Cook) // Android needs Cook to happen before building the APK, so OBB files can be included in the APK
             .Executes(() =>
             {
+                var targets = TargetType.Select(tt => tt == UnrealTargetType.Game
+                    ? ProjectName
+                    : ProjectName + tt
+                );
                 Unreal.BuildTool(this, _ => _
-                    .Targets(
-                        TargetType.Select(tt => tt == UnrealTargetType.Game
-                            ? ProjectName
-                            : ProjectName + tt
-                        )
+                    .For(targets, (t, _) => _
+                        .Target(t, Platform, Config)
                     )
-                    .Platforms(Platform)
-                    .Configurations(Config)
                     .Project(ProjectPath)
                     .Apply(UbtGlobal)
                     .Append(UbtArgs.AsArguments())
