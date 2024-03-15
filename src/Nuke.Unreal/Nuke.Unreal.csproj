@@ -3,7 +3,7 @@
     <TargetFramework>net8.0</TargetFramework>
     <LangVersion>11.0</LangVersion>
     <PackageId>md.Nuke.Unreal</PackageId>
-    <Version>2.0.0</Version>
+    <Version>2.0.2</Version>
     <Authors>David Mórász</Authors>
     <Company>mcro.de</Company>
     <Description>Commonly used Unreal Engine targets and tasks for the Nuke execution engine</Description>

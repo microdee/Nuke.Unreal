@@ -32,6 +32,20 @@
           "type": "string",
           "description": "Specify a path to a custom engine version (eg.: built from source)"
         },
+        "EditorConfig": {
+          "type": "array",
+          "description": "The editor configuration to be used while building or packaging the project",
+          "items": {
+            "type": "string",
+            "enum": [
+              "Debug",
+              "DebugGame",
+              "Development",
+              "Shipping",
+              "Test"
+            ]
+          }
+        },
         "Help": {
           "type": "boolean",
           "description": "Shows the help text for this build assembly"
