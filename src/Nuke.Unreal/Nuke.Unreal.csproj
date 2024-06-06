@@ -3,7 +3,7 @@
     <TargetFramework>net8.0</TargetFramework>
     <LangVersion>11.0</LangVersion>
     <PackageId>md.Nuke.Unreal</PackageId>
-    <Version>2.0.2</Version>
+    <Version>2.0.5</Version>
     <Authors>David Mórász</Authors>
     <Company>mcro.de</Company>
     <Description>Commonly used Unreal Engine targets and tasks for the Nuke execution engine</Description>
@@ -27,11 +27,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Nuke.Unreal.Ini\Nuke.Unreal.Ini.csproj" />
+    <ProjectReference Include="../Nuke.Unreal.Ini/Nuke.Unreal.Ini.csproj" />
+    <!-- ProjectReference Include="../../../Nuke.Cola/md.Nuke.Cola/md.Nuke.Cola.csproj" / -->
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="md.Nuke.Cola" Version="2.0.2" />
+    <PackageReference Include="md.Nuke.Cola" Version="2.0.5" />
     <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="4.3.1" />
     <PackageReference Include="Nuke.Common" Version="8.0.0" />
     <PackageReference Include="Goblinfactory.Konsole" Version="6.2.0" />

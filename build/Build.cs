@@ -154,9 +154,9 @@ class Build : NukeBuild, IPublishNugets
             var tests_4_27 = RootDirectory / "tests" / "UE_4.27";
             RunTest(tests_4_27 / "AddCodeToProject");
             RunTest(tests_4_27 / "Packaging");
-            // RunTest(tests_4_27 / "Packaging",
-            //     "--platform Android --android-texture-mode ASTC --skip sign"
-            // );
+            RunTest(tests_4_27 / "Packaging",
+                "--platform Android --android-texture-mode ASTC --skip sign"
+            );
 
             var tests_5_1 = RootDirectory / "tests" / "UE_5.1";
             RunTest(tests_5_1 / "AddCodeToProject");

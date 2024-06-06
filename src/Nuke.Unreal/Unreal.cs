@@ -17,6 +17,7 @@ using Nuke.Common.Utilities;
 using System.Text;
 using Nuke.Unreal.Tools;
 using Nuke.Cola;
+using Nuke.Cola.Tooling;
 
 namespace Nuke.Unreal
 {
@@ -151,7 +152,7 @@ namespace Nuke.Unreal
             var toolConfig = new UbtConfig();
             config?.Invoke(toolConfig);
             return BuildTool(ofVersion).With(
-                arguments: toolConfig.Gather(ofVersion),
+                arguments: $"{toolConfig.Gather(ofVersion):nq}",
                 workingDirectory: GetEnginePath(ofVersion) / "Engine" / "Source",
                 logInvocation: true
             );
@@ -175,7 +176,7 @@ namespace Nuke.Unreal
             var toolConfig = new UatConfig();
             config?.Invoke(toolConfig);
             return AutomationTool(ofVersion).With(
-                arguments: toolConfig.Gather(ofVersion),
+                arguments: $"{toolConfig.Gather(ofVersion):nq}",
                 workingDirectory: GetEnginePath(ofVersion) / "Engine" / "Source",
                 logInvocation: true
             );

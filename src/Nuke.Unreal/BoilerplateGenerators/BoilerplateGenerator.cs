@@ -89,7 +89,7 @@ namespace Nuke.Unreal.BoilerplateGenerators
         private static string GetMessage(Template template)
         {
             var nl = Environment.NewLine;
-            var errors = string.Join(nl + "    ", template.Messages.Cast<string>());
+            var errors = string.Join(nl + "    ", template.Messages.Select(m => m.ToString()));
             return $"Parsing scriban template threw an error:{nl}"
                 + $"  at {template.SourceFilePath}:{nl}    {errors}";
         }
