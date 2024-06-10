@@ -29,7 +29,11 @@ namespace Nuke.Unreal.BoilerplateGenerators
                 UeVersion = ueVersion.FullVersionName
             };
 
-            var pluginsFolder = (AbsolutePath) project.Folder / "Plugins";
+            var projectMainPluginsFolder = (AbsolutePath) project.Folder / "Plugins";
+            var pluginsFolder = currentFolder.ToString().Contains(projectMainPluginsFolder)
+                ? currentFolder
+                : projectMainPluginsFolder;
+
             if(!Directory.Exists(pluginsFolder))
                 Directory.CreateDirectory(pluginsFolder);
 
