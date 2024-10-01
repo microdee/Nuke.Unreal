@@ -89,11 +89,18 @@
             "type": "string",
             "enum": [
               "Compile",
+              "DotnetTest",
               "GenerateTools",
               "Info",
               "PublishNuget",
               "Restore",
-              "Test"
+              "Test",
+              "TestUE_4_27",
+              "TestUE_5_1",
+              "TestUE_5_2",
+              "TestUE_5_3",
+              "TestUE_5_4",
+              "TestUE_5_5"
             ]
           }
         },
@@ -108,11 +115,18 @@
             "type": "string",
             "enum": [
               "Compile",
+              "DotnetTest",
               "GenerateTools",
               "Info",
               "PublishNuget",
               "Restore",
-              "Test"
+              "Test",
+              "TestUE_4_27",
+              "TestUE_5_1",
+              "TestUE_5_2",
+              "TestUE_5_3",
+              "TestUE_5_4",
+              "TestUE_5_5"
             ]
           }
         },
