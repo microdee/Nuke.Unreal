@@ -53,7 +53,7 @@ Foo=Bar";
         var ini = ConfigIni.Parse(MainConfig);
         Assert.NotNull(ini);
         Assert.Collection(
-            ini.Sessions.Values,
+            ini!.Sessions.Values,
             s => Assert.Equal("SimpleEntries", s.Name),
             s => Assert.Equal("Collections", s.Name)
         );
@@ -66,7 +66,7 @@ Foo=Bar";
     {
         var ini = ConfigIni.Parse(MainConfig);
         Assert.NotNull(ini);
-        Assert.Equal(MainConfig, ini.Serialize());
+        Assert.Equal(MainConfig, ini!.Serialize());
     }
 
     [Fact]
@@ -76,7 +76,7 @@ Foo=Bar";
         var otherIni = ConfigIni.Parse(OtherConfig);
         Assert.NotNull(mainIni);
         Assert.NotNull(otherIni);
-        mainIni.Merge(otherIni);
+        mainIni!.Merge(otherIni!);
 
         Assert.NotNull(mainIni["NewSession"]);
         Assert.NotEmpty(mainIni["SimpleEntries"]?.GetFirst("Empty").Value);
@@ -90,10 +90,10 @@ Foo=Bar";
         var mainIni = ConfigIni.Parse(MainConfig);
         Assert.NotNull(mainIni);
 
-        var section = mainIni["SimpleEntries"];
+        var section = mainIni!["SimpleEntries"];
         Assert.NotNull(section);
 
-        section.Remove("NumberEntry", "BoolEntry", "PlainStringEntry");
+        section!.Remove("NumberEntry", "BoolEntry", "PlainStringEntry");
         Console.WriteLine(mainIni.Serialize());
         Assert.All(section.Commands, c => Assert.NotEqual("NumberEntry", c.Name));
         Assert.All(section.Commands, c => Assert.NotEqual("BoolEntry", c.Name));
@@ -106,10 +106,10 @@ Foo=Bar";
         var mainIni = ConfigIni.Parse(MainConfig);
         Assert.NotNull(mainIni);
 
-        var section = mainIni["SimpleEntries"];
+        var section = mainIni!["SimpleEntries"];
         Assert.NotNull(section);
 
-        section.Set("NumberEntry", "2");
+        section!.Set("NumberEntry", "2");
         Assert.Equal("2", section.GetFirst("NumberEntry").Value);
 
         section.Set("NonExisting", "yep");
@@ -117,7 +117,7 @@ Foo=Bar";
 
         mainIni.FindOrAdd("NewSection").Set("Foo", "Bar");
         Assert.NotNull(mainIni["NewSection"]);
-        Assert.NotEmpty(mainIni["NewSection"].GetFirst("Foo").Value);
+        Assert.NotEmpty(mainIni["NewSection"]!.GetFirst("Foo").Value);
     }
 
     [Fact]
@@ -127,7 +127,7 @@ Foo=Bar";
         Assert.NotNull(mainIni);
         
         mainIni.FindOrAdd("NewSection").Set("NewEntry", "yo");
-        Assert.Equal("yo", mainIni["NewSection"].GetFirst("NewEntry").Value);
+        Assert.Equal("yo", mainIni!["NewSection"]?.GetFirst("NewEntry").Value);
     }
 
     [Fact]
@@ -135,14 +135,14 @@ Foo=Bar";
     {
         var mainIni = ConfigIni.Parse(File.ReadAllText(ThisFile.Folder() / "DefaultEngine_LF.ini"));
         Assert.NotNull(mainIni);
-        Assert.Equal("False", mainIni["/Script/Engine.RendererSettings"]?.GetFirst("r.ClearCoatNormal").Value);
+        Assert.Equal("False", mainIni!["/Script/Engine.RendererSettings"]?.GetFirst("r.ClearCoatNormal").Value);
 
         mainIni = ConfigIni.Parse(File.ReadAllText(ThisFile.Folder() / "DefaultEngine_UTF16LE.ini"));
         Assert.NotNull(mainIni);
-        Assert.Equal("False", mainIni["/Script/Engine.RendererSettings"]?.GetFirst("r.ClearCoatNormal").Value);
+        Assert.Equal("False", mainIni!["/Script/Engine.RendererSettings"]?.GetFirst("r.ClearCoatNormal").Value);
 
         mainIni = ConfigIni.Parse(File.ReadAllText(ThisFile.Folder() / "DefaultEngine_UTF16BE.ini"));
         Assert.NotNull(mainIni);
-        Assert.Equal("True", mainIni["/Script/NavigationSystem.NavigationSystemV1"]?.GetFirst("bAllowClientSideNavigation").Value);
+        Assert.Equal("True", mainIni!["/Script/NavigationSystem.NavigationSystemV1"]?.GetFirst("bAllowClientSideNavigation").Value);
     }
 }

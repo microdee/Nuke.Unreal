@@ -82,7 +82,7 @@ namespace Nuke.Unreal
                 UnrealPlatformFlag.LinuxAArch64 => LinuxAArch64,
                 UnrealPlatformFlag.Android      => Android,
                 UnrealPlatformFlag.IOS          => IOS,
-                _ => null,
+                _ => throw new Exception($"UnrealPlatformFlag {flag} didn't have matching UnrealPlatform"),
             };
         }
 

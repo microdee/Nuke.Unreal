@@ -25,7 +25,7 @@ namespace Nuke.Unreal
     public interface IPackageTargets : INukeBuild
     {
         T Self<T>() where T : INukeBuild => (T)(object)this;
-        T SelfAs<T>() where T : class, INukeBuild => (object)this as T;
+        T? SelfAs<T>() where T : class, INukeBuild => (object)this as T;
 
         UatConfig UatPackage(UatConfig _) => _.Prereqs();
 

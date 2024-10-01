@@ -8,40 +8,30 @@ using Nuke.Common;
 
 namespace Nuke.Unreal.BoilerplateGenerators
 {
-    public class SourceFileModel : CommonModelBase
-    {
-        public UnrealProject Project { get; init; }
-        public UnrealPlugin Plugin { get; init; }
-        public UnrealModule Module { get; init; }
-        public string CppIncludePath { get; set; }
-    }
-
-    public record SourceFileGeneratorArgs(string Name)
-    {
-    }
-
-    public abstract class SourceFileGenerator : SourceFileGenerator<SourceFileGeneratorArgs, SourceFileModel>
-    {
-    }
+    public record SourceFileModel(
+        string Name, string? Copyright,
+        UnrealProject Project,
+        UnrealPlugin Plugin,
+        UnrealModule Module,
+        string CppIncludePath
+    ) : CommonModelBase(Name, Copyright);
     
-    public abstract class SourceFileGenerator<TGeneratorArg, TModel>
-        : BoilerplateGenerator
-        where TGeneratorArg : SourceFileGeneratorArgs
-        where TModel : SourceFileModel, new()
+    public abstract class SourceFileGenerator : BoilerplateGenerator
     {
-        protected TModel Model;
+        protected SourceFileModel? Model;
         public abstract string TemplateSubfolder { get; }
 
-        public virtual void Generate(AbsolutePath templatesPath, AbsolutePath currentFolder, TGeneratorArg Arguments)
+        public virtual void Generate(AbsolutePath templatesPath, AbsolutePath currentFolder, string name)
         {
             CheckInsideSourceFolder(currentFolder);
 
-            Model = GetModelFromArguments(currentFolder, Arguments);
-            Model.CppIncludePath = Path.GetRelativePath(Model.Module.Folder, currentFolder)
-                .Replace("\\", "/")
-                .Replace("public", "", true, null)
-                .Replace("private", "", true, null)
-                .Trim('.').Trim('/');
+            Model = GetModelFromArguments(currentFolder, name) with {
+                CppIncludePath = Path.GetRelativePath(Model!.Module.Folder, currentFolder)
+                    .Replace("\\", "/")
+                    .Replace("public", "", true, null)
+                    .Replace("private", "", true, null)
+                    .Trim('.').Trim('/')
+            };
 
             if(!(templatesPath / TemplateSubfolder).DirectoryExists())
                 templatesPath = DefaultTemplateFolder;
@@ -74,20 +64,20 @@ namespace Nuke.Unreal.BoilerplateGenerators
             );
         }
 
-        public virtual TModel GetModelFromArguments(AbsolutePath currentFolder, TGeneratorArg Arguments)
+        public virtual SourceFileModel GetModelFromArguments(AbsolutePath currentFolder, string name)
         {
             var project = new UnrealProject(currentFolder);
-            return new()
-            {
-                Name = Arguments.Name,
-                Copyright = Unreal.ReadCopyrightFromProject((AbsolutePath)project.Folder),
-                Project = project,
-                Plugin = new UnrealPlugin(currentFolder),
-                Module = new UnrealModule(
+            return new(
+                Name: name,
+                Copyright: Unreal.ReadCopyrightFromProject(project.Folder!),
+                Project: project,
+                Plugin: new UnrealPlugin(currentFolder),
+                Module: new UnrealModule(
                     currentFolder,
                     $"{currentFolder} is not inside a Module. Unreal Engine requires all source files to be contained inside a Module in a Source folder."
-                )
-            };
+                ),
+                CppIncludePath: ""
+            );
         }
 
         protected void CheckInsideSourceFolder(AbsolutePath currentFolder)

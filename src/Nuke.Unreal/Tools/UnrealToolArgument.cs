@@ -34,11 +34,11 @@ public record UnrealToolArgumentMeta(
 /// <param name="Value">Flattened value of argument</param>
 /// <param name="Setter"></param>
 /// <param name="Meta">Properties guiding how to process the argument</param>
-public record UnrealToolArgument(
+public partial record UnrealToolArgument(
     string Name,
-    string Value = "",
+    string? Value = null,
     char Setter = '=',
-    UnrealToolArgumentMeta Meta = null
+    UnrealToolArgumentMeta? Meta = null
 ) {
     /// <summary>
     /// Render the command line without 'UE4' -&gt; 'Unreal' compatibility transformation
@@ -50,6 +50,9 @@ public record UnrealToolArgument(
         return string.IsNullOrWhiteSpace(Value)
             ? Name : (Name + Setter + Value).DoubleQuoteIfNeeded();
     }
+
+    [GeneratedRegex(@"^(?<NAME>.*?)((?<SETTER>[:=])(?<VALUE>.*))?$")]
+    private static partial Regex ParseRegex();
     
     /// <summary>
     /// Parse a (NAME)[=:]?(VALUE)? formatted argument
@@ -59,7 +62,7 @@ public record UnrealToolArgument(
     /// Pass in new(IsRawText: true) to not parse it and take input at face value
     /// </param>
     /// <returns></returns>
-    public static UnrealToolArgument Parse(string input, UnrealToolArgumentMeta meta = null)
+    public static UnrealToolArgument? Parse(string input, UnrealToolArgumentMeta? meta = null)
     {
         meta ??= new();
         if (meta.IsRawText)
@@ -70,11 +73,11 @@ public record UnrealToolArgument(
             );
         }
 
-        var groups = Regex.Match(input, @"^(?<NAME>.*?)((?<SETTER>[:=])(?<VALUE>.*))?$")?.Groups;
+        var groups = ParseRegex().Match(input)?.Groups;
         return groups?["NAME"] == null
             ? null
             : new(
-                groups?["NAME"]?.Value,
+                groups?["NAME"]?.Value!,
                 groups?["VALUE"]?.Value,
                 (groups?["SETTER"]?.Value ?? "=").FirstOrDefault('='),
                 Meta: meta

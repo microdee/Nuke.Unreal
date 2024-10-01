@@ -18,16 +18,21 @@ using System.Text;
 
 namespace Nuke.Unreal
 {
-    public struct EngineVersion
+    public partial struct EngineVersion
     {
-        public static bool ValidVersionString(string versionName)
+        [GeneratedRegex(@"(?<version>[\W\d]+)(?<extension>\w*)")]
+        private static partial Regex ValidVersionRegex();
+        
+        public static bool ValidVersionString(string? versionName)
         {
+            if (string.IsNullOrWhiteSpace(versionName)) return false;
+
             if(Guid.TryParse(versionName, out _))
             {
                 return true;
             }
 
-            var regexedComponents = Regex.Match(versionName, @"(?<version>[\W\d]+)(?<extension>\w*)");
+            var regexedComponents = ValidVersionRegex().Match(versionName);
             if(regexedComponents == null)
                 return false;
 
@@ -35,7 +40,10 @@ namespace Nuke.Unreal
             return Version.TryParse(pureVersionNamePatch, out _);
         }
 
-        public EngineVersion(string versionName, string customEnginePath = null)
+        [GeneratedRegex(@"(?<version>[\W\d]+)(?<extension>\w*)")]
+        private static partial Regex VersionRegex();
+
+        public EngineVersion(string versionName, string? customEnginePath = null)
         {
             FullVersionName = versionName;
             VersionName = versionName;
@@ -45,7 +53,7 @@ namespace Nuke.Unreal
             Extension = "";
             IsEngineSource = false;
             IsEarlyAccess = false;
-            SemanticalVersion = null;
+            SemanticalVersion = new Version();
 
             if(Guid.TryParse(versionName, out EngineSourceId))
             {
@@ -76,19 +84,19 @@ namespace Nuke.Unreal
                 return;
             }
 
-            var regexedComponents = Regex.Match(versionName, @"(?<version>[\W\d]+)(?<extension>\w*)");
+            var regexedComponents = VersionRegex().Match(versionName);
             Assert.True(regexedComponents != null, "Invalid version format");
 
-            PureVersionNamePatch = regexedComponents.Groups["version"].Value;
+            PureVersionNamePatch = regexedComponents!.Groups["version"].Value;
             Extension = regexedComponents.Groups["extension"].Value ?? "";
             IsEarlyAccess = Extension == "EA";
 
             Assert.True(Version.TryParse(PureVersionNamePatch, out var semVersion), "Couldn't parse semantic version of input UE version");
 
             SemanticalVersion = new Version(
-                semVersion.Major,
-                semVersion.Minor,
-                Math.Max(semVersion.Build, 0),
+                semVersion!.Major,
+                semVersion!.Minor,
+                Math.Max(semVersion!.Build, 0),
                 0
             );
 

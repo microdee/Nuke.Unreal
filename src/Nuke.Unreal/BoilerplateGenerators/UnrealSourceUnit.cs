@@ -7,12 +7,12 @@ namespace Nuke.Unreal.BoilerplateGenerators
 {
     public abstract class UnrealSourceUnit
     {
-        public readonly AbsolutePath Folder;
-        public readonly string Name;
+        public readonly AbsolutePath? Folder;
+        public readonly string? Name;
 
         public readonly bool IsValid = false;
 
-        public UnrealSourceUnit(AbsolutePath currentFolder, string throwIfNotFound = null)
+        public UnrealSourceUnit(AbsolutePath currentFolder, string? throwIfNotFound = null)
         {
             Folder = currentFolder.FindParentOrSelf(d => d.GetFiles().Any(f => FilePredicate(f)));
             if(throwIfNotFound != null && Folder == null)

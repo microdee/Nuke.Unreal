@@ -23,9 +23,9 @@ namespace Nuke.Unreal
 {
     public static class Unreal
     {
-        public static readonly HashSet<AbsolutePath> EngineSearchPaths;
+        public static readonly HashSet<AbsolutePath>? EngineSearchPaths;
 
-        public static AbsolutePath EnginePathOverride = null;
+        public static AbsolutePath? EnginePathOverride = null;
 
         static Unreal()
         {
@@ -193,7 +193,7 @@ namespace Nuke.Unreal
             (folder / "DerivedDataCache").DeleteDirectory();
         }
 
-        public static string ReadCopyrightFromProject(AbsolutePath projectFolder)
+        public static string? ReadCopyrightFromProject(AbsolutePath projectFolder)
         {
             var configPath = projectFolder / "Config" / "DefaultGame.ini";
             if(!File.Exists(configPath)) return null;

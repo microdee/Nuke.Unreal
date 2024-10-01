@@ -58,7 +58,7 @@ namespace Nuke.Unreal.BoilerplateGenerators
         /// <param name="destinationFolder"></param>
         /// <param name="model"></param>
         /// <param name="currentFolder">This is != the current Working Directory! It should be only used by subsequent recursive function calls</param>
-        protected static void RenderFolder(AbsolutePath templateRoot, AbsolutePath destinationFolder, object model, AbsolutePath currentFolder = null)
+        protected static void RenderFolder(AbsolutePath templateRoot, AbsolutePath destinationFolder, object model, AbsolutePath? currentFolder = null)
         {
             currentFolder ??= templateRoot;
             foreach(var file in Directory.EnumerateFiles(currentFolder))
@@ -74,11 +74,7 @@ namespace Nuke.Unreal.BoilerplateGenerators
         }
     }
 
-    public class CommonModelBase
-    {
-        public string Name { get; init; }
-        public string Copyright { get; init; }
-    }
+    public record CommonModelBase(string Name, string? Copyright);
 
     public class ScribanParseException : Exception
     {

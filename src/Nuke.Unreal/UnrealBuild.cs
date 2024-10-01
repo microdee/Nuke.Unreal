@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -19,16 +20,16 @@ namespace Nuke.Unreal
     public abstract partial class UnrealBuild : NukeBuild
     {
         protected T Self<T>() where T : INukeBuild => (T)(object)this;
-        protected T SelfAs<T>() where T : class, INukeBuild => (object)this as T;
+        protected T? SelfAs<T>() where T : class, INukeBuild => (object)this as T;
 
         /// <summary>
         /// Most targets read the desired UE4 version from the project file.
         /// </summary>
         [Parameter("Specify the target Unreal Engine version. By default only used by the Checkout target. Everything else should infer engine version from the project file.")]
-        public virtual string UnrealVersion { get; set; }
+        public virtual string? UnrealVersion { get; set; }
 
         [Parameter("Specify a path to a custom engine version (eg.: built from source)")]
-        public virtual AbsolutePath CustomEnginePath { get; set; } = null;
+        public virtual AbsolutePath? CustomEnginePath { get; set; } = null;
         
         protected override void OnBuildInitialized()
         {
@@ -40,7 +41,7 @@ namespace Nuke.Unreal
         }
         
         [Parameter("Specify the output working directory for artifacts")]
-        public AbsolutePath Output;
+        public AbsolutePath? Output;
 
         public virtual AbsolutePath GetOutput() => Output ??= ProjectFolder / "Intermediate" / "Output";
 
@@ -56,9 +57,10 @@ namespace Nuke.Unreal
         [Parameter("The Unreal target type for building the project")]
         public virtual UnrealTargetType[] TargetType { get; set; } = new [] {UnrealTargetType.Game};
 
-        public EngineVersion EngineVersion => new(UnrealVersion, CustomEnginePath);
+        public EngineVersion ManualEngineVersion => new(UnrealVersion ?? "0.0", CustomEnginePath);
+
         [Parameter("Extra arguments passed to UBT. It's recommended to use it only from command line, do not override.")]
-        public virtual string[] UbtArgs { get; set; }
+        public virtual string[] UbtArgs { get; set; } = Array.Empty<string>();
         
         public virtual UbtConfig UbtGlobal(UbtConfig _) => _
             .WaitMutex();
@@ -67,14 +69,14 @@ namespace Nuke.Unreal
             .NoP4();
 
         [Parameter("Extra arguments passed to UAT. It's recommended to use it only from command line, do not override.")]
-        public virtual string[] UatArgs { get; set; }
+        public virtual string[] UatArgs { get; set; } = Array.Empty<string>();
 
         public EngineVersion GetEngineVersionFromProject() {
-            var result = (ProjectObject["EngineVersionPatch"] ?? ProjectObject["EngineAssociation"]).ToString();
+            var result = (ProjectObject["EngineVersionPatch"] ?? ProjectObject["EngineAssociation"])?.ToString();
             if(!EngineVersion.ValidVersionString(result))
-                return EngineVersion;
+                return ManualEngineVersion;
             
-            return new(result, CustomEnginePath);
+            return new(result!, CustomEnginePath);
         }
 
         public AbsolutePath UnrealEnginePath => Unreal.GetEnginePath(GetEngineVersionFromProject());
@@ -84,7 +86,7 @@ namespace Nuke.Unreal
             IniHierarchyLevel lowestLevel = IniHierarchyLevel.Base,
             IniHierarchyLevel highestLevel = IniHierarchyLevel.Saved,
             bool considerPlugins = true,
-            IEnumerable<string> extraConfigSubfolder = null
+            IEnumerable<string>? extraConfigSubfolder = null
         ) {
             var resultIni = new ConfigIni();
             extraConfigSubfolder = (extraConfigSubfolder ?? Enumerable.Empty<string>())

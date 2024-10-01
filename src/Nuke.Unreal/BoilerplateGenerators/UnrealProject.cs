@@ -5,7 +5,7 @@ namespace Nuke.Unreal.BoilerplateGenerators
 {
     public class UnrealProject : UnrealSourceUnit
     {
-        public UnrealProject(AbsolutePath currentFolder, string throwIfNotFound = null) : base(currentFolder, throwIfNotFound)
+        public UnrealProject(AbsolutePath currentFolder, string? throwIfNotFound = null) : base(currentFolder, throwIfNotFound)
         {
         }
 

@@ -8,28 +8,27 @@ using Nuke.Common;
 
 namespace Nuke.Unreal.BoilerplateGenerators
 {
-    public class PluginModel : CommonModelBase
-    {
-        public string UeVersion { get; init; }
-        public UnrealProject Project { get; init; }
-    }
+    public record PluginModel(
+        string Name, string? Copyright,
+        string UeVersion, UnrealProject Project
+    ) : CommonModelBase(Name, Copyright);
 
     public class PluginGenerator : BoilerplateGenerator
     {
-        protected PluginModel Model;
+        protected PluginModel? Model;
         public string TemplateSubfolder => "Plugin";
 
         public void Generate(AbsolutePath templatesPath, AbsolutePath currentFolder, string name, EngineVersion ueVersion)
         {
             var project = new UnrealProject(currentFolder);
-            Model = new() {
-                Name = name,
-                Copyright = Unreal.ReadCopyrightFromProject((AbsolutePath)project.Folder),
-                Project = project,
-                UeVersion = ueVersion.FullVersionName
-            };
+            Model = new(
+                Name: name,
+                Copyright: Unreal.ReadCopyrightFromProject(project.Folder!),
+                Project: project,
+                UeVersion: ueVersion.FullVersionName
+            );
 
-            var projectMainPluginsFolder = (AbsolutePath) project.Folder / "Plugins";
+            var projectMainPluginsFolder = project.Folder / "Plugins";
             var pluginsFolder = currentFolder.ToString().Contains(projectMainPluginsFolder)
                 ? currentFolder
                 : projectMainPluginsFolder;

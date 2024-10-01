@@ -12,15 +12,14 @@ using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace Nuke.Unreal.BoilerplateGenerators
 {
-    public class ModuleModel : CommonModelBase
-    {
-        public UnrealProject Project { get; init; }
-        public UnrealPlugin Plugin { get; init; }
-    }
+    public record ModuleModel(
+        string Name, string? Copyright,
+        UnrealProject Project, UnrealPlugin Plugin
+    ) : CommonModelBase(Name, Copyright);
 
     public class ModuleGenerator : BoilerplateGenerator
     {
-        protected ModuleModel Model;
+        protected ModuleModel? Model;
         public string TemplateSubfolder => "Module";
 
         public bool AddToTarget { get; private set; }
@@ -34,12 +33,12 @@ namespace Nuke.Unreal.BoilerplateGenerators
         public void Generate(AbsolutePath templatesPath, AbsolutePath currentFolder, string name)
         {
             var project = new UnrealProject(currentFolder);
-            Model = new() {
-                Name = name,
-                Copyright = Unreal.ReadCopyrightFromProject((AbsolutePath)project.Folder),
-                Project = project,
-                Plugin = new UnrealPlugin(currentFolder)
-            };
+            Model = new(
+                Name: name,
+                Copyright: Unreal.ReadCopyrightFromProject(project.Folder!),
+                Project: project,
+                Plugin: new UnrealPlugin(currentFolder)
+            );
 
             if(Directory.Exists(currentFolder / name))
             {
@@ -86,7 +85,7 @@ namespace Nuke.Unreal.BoilerplateGenerators
 
         protected void AddModuleToPlugin()
         {
-            var pluginFile = (AbsolutePath) Model.Plugin.Folder / $"{Model.Plugin.Name}.uplugin";
+            var pluginFile = Model!.Plugin.Folder / $"{Model.Plugin.Name}.uplugin";
             try
             {
                 AddModuleToProjectUnit(pluginFile, Model.Name);
@@ -100,7 +99,7 @@ namespace Nuke.Unreal.BoilerplateGenerators
 
         protected void AddModuleToProject()
         {
-            var projectFile = (AbsolutePath) Model.Project.Folder / $"{Model.Project.Name}.uproject";
+            var projectFile = Model!.Project.Folder / $"{Model.Project.Name}.uproject";
             try
             {
                 AddModuleToProjectUnit(projectFile, Model.Name);
@@ -112,8 +111,8 @@ namespace Nuke.Unreal.BoilerplateGenerators
             }
             if(AddToTarget)
             {
-                var targetFile = (AbsolutePath) Model.Project.Folder / "Source" / $"{Model.Project.Name}.Target.cs";
-                var editorTargetFile = (AbsolutePath) Model.Project.Folder / "Source" / $"{Model.Project.Name}Editor.Target.cs";
+                var targetFile = Model.Project.Folder / "Source" / $"{Model.Project.Name}.Target.cs";
+                var editorTargetFile = Model.Project.Folder / "Source" / $"{Model.Project.Name}Editor.Target.cs";
                 try
                 {
                     AddModuleToTarget(targetFile);
@@ -136,7 +135,7 @@ namespace Nuke.Unreal.BoilerplateGenerators
                 .DescendantNodes().OfType<ClassDeclarationSyntax>()
                 .FirstOrDefault(c =>
                     c.Identifier.ValueText.EndsWith("Target", true, null)
-                    && c.Identifier.ValueText.Contains(Model.Project.Name, StringComparison.InvariantCultureIgnoreCase)
+                    && c.Identifier.ValueText.Contains(Model!.Project.Name!, StringComparison.InvariantCultureIgnoreCase)
                 );
             
             if(targetClass == null)
@@ -153,17 +152,21 @@ namespace Nuke.Unreal.BoilerplateGenerators
                 throw new InvalidDataException($"Could not find the constructor of the target rule class in {targetFile}");
             }
             
-            var extraModuleAdd = CSharpSyntaxTree.ParseText($"ExtraModuleNames.Add(\"{Model.Name}\");")
+            var extraModuleAdd = CSharpSyntaxTree.ParseText($"ExtraModuleNames.Add(\"{Model!.Name}\");")
                 .GetCompilationUnitRoot()
                 .DescendantNodes().OfType<ExpressionStatementSyntax>()
                 .FirstOrDefault();
+            
+            if (extraModuleAdd != null)
+            {
+                var newBody = constructor.Body?.AddStatements(extraModuleAdd);
+                var newCtr = constructor.WithBody(newBody);
 
-            var newBody = constructor.Body?.AddStatements(extraModuleAdd);
-            var newCtr = constructor.WithBody(newBody);
+                var root = targetSt.GetRoot().ReplaceNode(constructor, newCtr);
 
-            var root = targetSt.GetRoot().ReplaceNode(constructor, newCtr);
+                File.WriteAllText(targetFile, root.GetText().ToString());
+            }
 
-            File.WriteAllText(targetFile, root.GetText().ToString());
         }
 
         protected void CheckInsideSourceFolder(AbsolutePath currentFolder)

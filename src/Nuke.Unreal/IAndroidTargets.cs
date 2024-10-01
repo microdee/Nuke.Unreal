@@ -38,7 +38,7 @@ namespace Nuke.Unreal
         public static readonly IAndroidTargets Default = new AndroidTargets();
     }
 
-    internal record AndroidProcess(
+    internal partial record AndroidProcess(
         string User,
         int Pid,
         int ParentPid,
@@ -49,9 +49,12 @@ namespace Nuke.Unreal
         string S,
         string Name
     ) {
-        public static AndroidProcess Make(string line)
+        [GeneratedRegex(@"(?<USER>\S+)\s+(?<PID>\S+)\s+(?<PPID>\S+)\s+(?<VSZ>\S+)\s+(?<RSS>\S+)\s+(?<WCHAN>\S+)\s+(?<ADDR>\S+)\s+(?<S>\S+)\s+(?<NAME>\S+)")]
+        private static partial Regex AndroidProcessRegex();
+
+        public static AndroidProcess? Make(string line)
         {
-            var r = Regex.Matches(line, @"(?<USER>\S+)\s+(?<PID>\S+)\s+(?<PPID>\S+)\s+(?<VSZ>\S+)\s+(?<RSS>\S+)\s+(?<WCHAN>\S+)\s+(?<ADDR>\S+)\s+(?<S>\S+)\s+(?<NAME>\S+)")
+            var r = AndroidProcessRegex().Matches(line)
                 .FirstOrDefault()?.Groups;
 
             return r == null ? null : new(
@@ -77,6 +80,7 @@ namespace Nuke.Unreal
         {
             return $"User: {User}, Pid: {Pid}, ParentPid: {ParentPid}, Vsz: {Vsz}, Rss: {Rss}, Wchan: {Wchan}, Addr: {Addr}, S: {S}, Name: {Name}";
         }
+
     }
 
     public record AndroidBuildEnvironment(
@@ -87,32 +91,33 @@ namespace Nuke.Unreal
     );
 
     public record AndroidSdkNdkUserSettings(
-        string SdkPath,
-        string NdkPath,
-        string JavaPath,
-        string SdkApiLevel,
-        string NdkApiLevel
+        string? SdkPath,
+        string? NdkPath,
+        string? JavaPath,
+        string? SdkApiLevel,
+        string? NdkApiLevel
     ) {
         
         public static readonly string SdkUserSettingsSection = "/Script/AndroidPlatformEditor.AndroidSDKSettings";
 
-        public static string GetConfig(ConfigIni from, string key) =>
+        public static string? GetConfig(ConfigIni? from, string key) =>
             from?[SdkUserSettingsSection]?[key].FirstOrDefault().Value;
 
-        public static string GetConfigPath(ConfigIni from, string key) =>
-            GetConfig(from, key)?.Parse(@"Path=""(?<PATH>.*)""")("PATH");
+        public static string? GetConfigPath(ConfigIni? from, string key) =>
+            GetConfig(from, key)?.Parse(@"Path=""(?<PATH>.*)""")("PATH")!;
 
-        public static void SetConfig(ConfigIni to, string key, string value)
+        public static void SetConfig(ConfigIni? to, string key, string? value)
         {
-            to.FindOrAdd(SdkUserSettingsSection).Set(key, value);
+            if (value != null)
+                to?.FindOrAdd(SdkUserSettingsSection).Set(key, value);
         }
 
-        public static void SetConfigPath(ConfigIni to, string key, string value)
+        public static void SetConfigPath(ConfigIni? to, string key, string? value)
         {
-            to.FindOrAdd(SdkUserSettingsSection).Set(key, $"(Path=\"{value}\")");
+            to?.FindOrAdd(SdkUserSettingsSection).Set(key, $"(Path=\"{value}\")");
         }
 
-        public static AndroidSdkNdkUserSettings From(ConfigIni ini) => new(
+        public static AndroidSdkNdkUserSettings From(ConfigIni? ini) => new(
             GetConfigPath(ini, "SDKPath"),
             GetConfigPath(ini, "NDKPath"),
             GetConfigPath(ini, "JavaPath"),
@@ -138,9 +143,9 @@ namespace Nuke.Unreal
             return result;
         }
 
-        public override string ToString() => IsEmpty ? null : ToConfig().Serialize().Trim();
+        public override string? ToString() => IsEmpty ? null : ToConfig().Serialize().Trim();
 
-        public AndroidSdkNdkUserSettings Merge(AndroidSdkNdkUserSettings from) => this with {
+        public AndroidSdkNdkUserSettings Merge(AndroidSdkNdkUserSettings? from) => this with {
             SdkPath = from?.SdkPath ?? SdkPath,
             NdkPath = from?.NdkPath ?? NdkPath,
             JavaPath = from?.JavaPath ?? JavaPath,
@@ -278,15 +283,15 @@ namespace Nuke.Unreal
             .DependentFor<IPackageTargets>(p => p.Package)
             .Executes(() =>
             {
-                string cachedIniContent = UserEngineIniCache.FileExists() ? File.ReadAllText(UserEngineIniCache) : null;
-                string sharedIniContent = UserEngineIniPath.FileExists() ? File.ReadAllText(UserEngineIniPath) : null;
+                string? cachedIniContent = UserEngineIniCache.FileExists() ? File.ReadAllText(UserEngineIniCache) : null;
+                string? sharedIniContent = UserEngineIniPath.FileExists() ? File.ReadAllText(UserEngineIniPath) : null;
                 var cachedIni = ConfigIni.Parse(cachedIniContent);
                 var sharedIni = ConfigIni.Parse(sharedIniContent);
 
                 var cached = AndroidSdkNdkUserSettings.From(cachedIni);
                 var shared = AndroidSdkNdkUserSettings.From(sharedIni);
 
-                string AppendPrefix(string input) =>
+                string? AppendPrefix(string? input) =>
                     input?.StartsWithOrdinalIgnoreCase("android-") ?? true ? input : "android-" + input;
 
                 var input = new AndroidSdkNdkUserSettings(
@@ -475,7 +480,7 @@ namespace Nuke.Unreal
 
         private static readonly Regex ComponentFromPathRegex = new Regex(@"/(?:org|com|extensions?)/.*$", RegexOptions.Multiline | RegexOptions.IgnoreCase);
 
-        private static string GetComponentFromPath(AbsolutePath path) =>
+        private static string? GetComponentFromPath(AbsolutePath path) =>
             ComponentFromPathRegex.Match(path.ToString().Replace('\\', '/'))?.Value;
 
         private static bool ArePathsSharingComponents(AbsolutePath a, AbsolutePath b)
@@ -485,7 +490,7 @@ namespace Nuke.Unreal
             return ac?.EqualsOrdinalIgnoreCase(bc ?? "") ?? false;
         }
 
-        private static AbsolutePath FindMatchingComponentPath(AbsolutePath reference, AbsolutePath root, bool lookForFiles)
+        private static AbsolutePath? FindMatchingComponentPath(AbsolutePath reference, AbsolutePath root, bool lookForFiles)
         {
             var target = root.SubTreeProject()
                 .Where(s => s.ToString().Replace('\\', '/').ContainsOrdinalIgnoreCase("java/src"));
@@ -527,7 +532,7 @@ namespace Nuke.Unreal
                     IncludeSubdirectories = true
                 };
 
-                void FileSystemEventBody(object s, FileSystemEventArgs e, bool useFileInComparison, Action<AbsolutePath, AbsolutePath> onItemDirectory, Action<AbsolutePath, AbsolutePath> onItemFile)
+                void FileSystemEventBody(object s, FileSystemEventArgs e, bool useFileInComparison, Action<AbsolutePath, AbsolutePath>? onItemDirectory, Action<AbsolutePath, AbsolutePath> onItemFile)
                 {
                     var path = (AbsolutePath) ((e as RenamedEventArgs)?.OldFullPath ?? e.FullPath);
                     Log.Information("Item change: {0} | {1}", path, e.ChangeType);

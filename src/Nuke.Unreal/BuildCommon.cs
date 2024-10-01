@@ -36,7 +36,7 @@ public static class BuildCommon
             .FirstOrDefault(p => Directory.Exists(p / "content"));
         
         Assert.NotNullOrEmpty(contentFolder, "Couldn't find contents folder of Nuke.Unreal.");
-        return contentFolder;
+        return contentFolder!;
     }
     
     public static IEnumerable<AbsolutePath> SubTreeProject(this AbsolutePath origin, Func<AbsolutePath, bool> filter = null) =>

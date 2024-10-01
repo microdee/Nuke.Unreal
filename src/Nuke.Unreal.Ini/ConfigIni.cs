@@ -51,13 +51,13 @@ public class ConfigIni
         return result;
     }
 
-    public static ConfigIni? Parse(string input)
+    public static ConfigIni? Parse(string? input)
     {
         if (string.IsNullOrWhiteSpace(input)) return null;
         ConfigSession? currentSession = null;
         var ini = new ConfigIni();
         int order = 0;
-        foreach(var lineIn in input.Split(new [] { "\r", "\n" }, StringSplitOptions.None))
+        foreach(var lineIn in input!.Split(new [] { "\r", "\n" }, StringSplitOptions.None))
         {
             if (string.IsNullOrWhiteSpace(lineIn)) continue;
             var line = lineIn.Trim();
@@ -75,9 +75,9 @@ public class ConfigIni
                     ini.Sessions.Add(sessionName, currentSession);
                 }
             }
-            else if (currentSession != null)
+            else
             {
-                currentSession.SetLine(line, order);
+                currentSession?.SetLine(line, order);
             }
             order++;
         }

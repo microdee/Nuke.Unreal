@@ -1,5 +1,6 @@
 
 // This file is generated via `nuke generate-tools` target.
+#nullable disable
 
 using System;
 using System.Collections.Generic;

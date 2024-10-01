@@ -10,14 +10,14 @@ namespace Nuke.Unreal
     [TypeConverter(typeof(TypeConverter<AndroidDebuggerBackend>))]
     public class AndroidDebuggerBackend : Enumeration
     {
-        public static AndroidDebuggerBackend LLDB = new()
+        public static readonly AndroidDebuggerBackend LLDB = new()
         {
             Value = nameof(LLDB),
             ServerProgramName = "lldb-server",
             ServerProgramPath = cpu => (RelativePath) "toolchains" / "llvm" / "prebuilt" / "windows-x86_64" / "lib64" / "clang" / "9.0.9" / "lib" / "linux" / cpu.AltName,
             LaunchArguments = (port, pid) => $"platform --listen *:{port}"
         };
-        public static AndroidDebuggerBackend GDB = new()
+        public static readonly AndroidDebuggerBackend GDB = new()
         {
             Value = nameof(GDB),
             ServerProgramName = "gdbserver",
@@ -25,9 +25,9 @@ namespace Nuke.Unreal
             LaunchArguments = (port, pid) => $":{port} --attach {pid}"
         };
 
-        public string ServerProgramName { get; init; }
-        public Func<AndroidProcessorArchitecture /* cpu */, RelativePath /* -> pathInNdk */> ServerProgramPath { get; init; }
-        public Func<int /* port */, int /* pid */, string /* -> args */> LaunchArguments { get; init; }
+        public required string ServerProgramName { get; init; }
+        public required Func<AndroidProcessorArchitecture /* cpu */, RelativePath /* -> pathInNdk */> ServerProgramPath { get; init; }
+        public required Func<int /* port */, int /* pid */, string /* -> args */> LaunchArguments { get; init; }
         
         public static implicit operator string(AndroidDebuggerBackend configuration)
         {

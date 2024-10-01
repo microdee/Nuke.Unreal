@@ -48,9 +48,9 @@ public abstract class ToolConfig
         UsingArguments.Add(arg);
     }
 
-    public virtual void AppendArgument(string arg, UnrealToolArgumentMeta meta = null)
+    public virtual void AppendArgument(string arg, UnrealToolArgumentMeta? meta = null)
     {
-        AppendArgument(UnrealToolArgument.Parse(arg, meta));
+        AppendArgument(UnrealToolArgument.Parse(arg, meta)!);
     }
 
     public virtual void AppendSubtool(ToolConfig subtool)
@@ -113,7 +113,7 @@ public static class ToolConfigExtensions
     /// <param name="false">Execute delegate when condition is false</param>
     /// <typeparam name="T"></typeparam>
     /// <returns>The same configurator as the input one</returns>
-    public static T If<T>(this T config, bool condition, Action<T> @true = null, Action<T> @false = null) where T : ToolConfig
+    public static T If<T>(this T config, bool condition, Action<T>? @true = null, Action<T>? @false = null) where T : ToolConfig
     {
         if (condition) @true?.Invoke(config);
         else @false?.Invoke(config);
@@ -157,10 +157,11 @@ public static class ToolConfigExtensions
     /// <param name="arguments"></param>
     /// <typeparam name="T"></typeparam>
     /// <returns>The same configurator as the input one</returns>
-    public static T Append<T>(this T config, IEnumerable<string> arguments) where T : ToolConfig
+    public static T Append<T>(this T config, IEnumerable<string?> arguments) where T : ToolConfig
     {
         foreach(var arg in arguments)
         {
+            if (arg == null) continue;
             config.AppendArgument(arg);
         }
         return config;

@@ -13,7 +13,7 @@ namespace Nuke.Unreal
         public virtual AbsolutePath TemplatesPath { get; set; } = BoilerplateGenerator.DefaultTemplateFolder;
 
         [Parameter("Name parameter for boilerplate generators.")]
-        public string[] Name { get; set; }
+        public string[] Name { get; set; } = Array.Empty<string>();
 
         [Parameter("Explicitly add new module to project target")]
         public bool AddToTarget { get; set; }

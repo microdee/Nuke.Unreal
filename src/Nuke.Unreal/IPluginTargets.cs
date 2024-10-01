@@ -13,6 +13,7 @@ using Nuke.Common.Tooling;
 
 using static Nuke.Common.IO.FileSystemTasks;
 using Nuke.Cola;
+using System.Linq;
 
 namespace Nuke.Unreal
 {
@@ -20,17 +21,17 @@ namespace Nuke.Unreal
     {
         public static readonly Dictionary<IPluginTargets, PluginCache> Instances = new();
         
-        public AbsolutePath PluginPath;
-        public JObject PluginObject;
+        public AbsolutePath? PluginPath;
+        public JObject? PluginObject;
     }
 
     public static class PluginTargetsExtensions
     {
         public static PluginCache Cache(this IPluginTargets self)
         {
-            if (PluginCache.Instances.ContainsKey(self))
+            if (PluginCache.Instances.TryGetValue(self, out var value))
             {
-                return PluginCache.Instances[self];
+                return value;
             }
             var cache = new PluginCache();
             PluginCache.Instances.Add(self, cache);
@@ -61,7 +62,7 @@ namespace Nuke.Unreal
         {
             get
             {
-                if(this.Cache().PluginPath != null) return this.Cache().PluginPath;
+                if(this.Cache().PluginPath != null) return this.Cache().PluginPath!;
 
                 if (this is not UnrealBuild self)
                 {
@@ -73,7 +74,7 @@ namespace Nuke.Unreal
                 {
                     Log.Information($"Found plugin at {candidate}");
                     this.Cache().PluginPath = candidate;
-                    return candidate;
+                    return candidate!;
                 }
                 throw new FileNotFoundException("No .uplugin was found");
             }
@@ -94,18 +95,18 @@ namespace Nuke.Unreal
 
                 Log.Information($"Checking out targeting UE {self.UnrealVersion} on platform {self.Platform}");
 
-                PluginObject["EngineVersion"] = self.EngineVersion.VersionName;
+                PluginObject["EngineVersion"] = self.ManualEngineVersion.VersionName;
                 PluginObject["VersionName"] = PluginVersion;
 
-                foreach (var module in PluginObject["Modules"])
+                foreach (var module in PluginObject["Modules"] ?? Enumerable.Empty<JToken>())
                 {
                     module["WhitelistPlatforms"] = new JArray(self.Platform.ToString());
                 }
 
                 Unreal.WriteJson(PluginObject, PluginPath);
 
-                self.ProjectObject["EngineAssociation"] = self.EngineVersion.EngineAssociation;
-                self.ProjectObject["EngineVersionPatch"] = self.EngineVersion.FullVersionName;
+                self.ProjectObject["EngineAssociation"] = self.ManualEngineVersion.EngineAssociation;
+                self.ProjectObject["EngineVersionPatch"] = self.ManualEngineVersion.FullVersionName;
                 Unreal.WriteJson(self.ProjectObject, self.ProjectPath);
             });
 

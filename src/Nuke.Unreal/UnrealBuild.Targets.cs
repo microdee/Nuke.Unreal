@@ -123,7 +123,7 @@ namespace Nuke.Unreal
         public virtual bool ForDistribution()
         {
             var section = ReadIniHierarchy("Game")["/Script/UnrealEd.ProjectPackagingSettings"];
-            return section == null ? false : section
+            return section != null && section
                 .GetFirst("ForDistribution", new() { Value = "" }).Value
                 .EqualsAnyOrdinalIgnoreCase("true", "1");
         }

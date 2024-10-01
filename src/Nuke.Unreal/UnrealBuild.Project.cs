@@ -8,7 +8,7 @@ namespace Nuke.Unreal
 {
     public abstract partial class UnrealBuild : NukeBuild
     {
-        private AbsolutePath _projectCache = null;
+        private AbsolutePath? _projectCache = null;
 
         /// <summary>
         /// Optionally specify a project path.
@@ -26,7 +26,7 @@ namespace Nuke.Unreal
                 {
                     Log.Information($"Found project at {candidate}");
                     _projectCache = candidate;
-                    return _projectCache;
+                    return _projectCache!;
                 }
                 throw new FileNotFoundException("No .uproject was found");
             }
@@ -37,7 +37,7 @@ namespace Nuke.Unreal
 
         public string ProjectName => Path.GetFileNameWithoutExtension(ProjectPath);
 
-        private JObject _projectObject;
+        private JObject? _projectObject;
         public JObject ProjectObject => _projectObject ??= JObject.Parse(File.ReadAllText(ProjectPath));
     }
 }

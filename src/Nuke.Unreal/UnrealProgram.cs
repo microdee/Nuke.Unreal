@@ -25,7 +25,7 @@ namespace Nuke.Unreal
                     && !t.IsAbstract
                     && t.Name.Equals(Value, StringComparison.InvariantCultureIgnoreCase)
                 );
-            return (IProgramInfo)(Activator.CreateInstance(programType));
+            return (IProgramInfo)Activator.CreateInstance(programType)!;
         }
         
         public static implicit operator string(UnrealProgram configuration)
