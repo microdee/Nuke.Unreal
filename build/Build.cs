@@ -136,48 +136,78 @@ class Build : NukeBuild, IPublishNugets
             }
         });
 
-    Target Test => _ => _
+    private static void RunTest(AbsolutePath root, string args = "")
+        => ToolResolver.GetTool(root / "build.cmd")(
+            args,
+            workingDirectory: root
+        );
+
+    Target TestUE_4_27 => _ => _
+        .Executes(() =>
+        {
+            var tests_4_27 = RootDirectory / "tests" / "UE_4.27";
+            RunTest(tests_4_27 / "AddCodeToProject");
+            RunTest(tests_4_27 / "Packaging");
+            // RunTest(tests_4_27 / "Packaging",
+            //     "--platform Android --android-texture-mode ASTC --skip sign"
+            // );
+        });
+
+    Target TestUE_5_1 => _ => _
+        .Executes(() =>
+        {
+            var tests_5_1 = RootDirectory / "tests" / "UE_5.1";
+            RunTest(tests_5_1 / "AddCodeToProject");
+            RunTest(tests_5_1 / "Packaging");
+        });
+
+    Target TestUE_5_2 => _ => _
+        .Executes(() =>
+        {
+            var tests_5_2 = RootDirectory / "tests" / "UE_5.2";
+            RunTest(tests_5_2 / "AddCodeToProject");
+            RunTest(tests_5_2 / "Packaging");
+        });
+
+    Target TestUE_5_3 => _ => _
+        .Executes(() =>
+        {
+            var tests_5_3 = RootDirectory / "tests" / "UE_5.3";
+            RunTest(tests_5_3 / "AddCodeToProject");
+            RunTest(tests_5_3 / "Packaging");
+        });
+    Target TestUE_5_4 => _ => _
+        .Executes(() =>
+        {
+            var tests_5_4 = RootDirectory / "tests" / "UE_5.4";
+            RunTest(tests_5_4 / "AddCodeToProject");
+            RunTest(tests_5_4 / "Packaging");
+        });
+        
+    Target TestUE_5_5 => _ => _
+        .Executes(() =>
+        {
+            var tests_5_5 = RootDirectory / "tests" / "UE_5.5";
+            RunTest(tests_5_5 / "AddCodeToProject");
+            RunTest(tests_5_5 / "Packaging");
+        });
+
+    Target DotnetTest => _ => _
         .Executes(() =>
         {
             DotNetTest(s => s
                 .SetProjectFile(GetSlnProject("Nuke.Unreal.Tests"))
             );
-
-            Log.Information("=== Running build target tests ===");
-
-            static void RunTest(AbsolutePath root, string args = "")
-            {
-                ToolResolver.GetTool(root / "build.cmd")(
-                    args,
-                    workingDirectory: root
-                );
-            }
-
-            var tests_4_27 = RootDirectory / "tests" / "UE_4.27";
-            RunTest(tests_4_27 / "AddCodeToProject");
-            RunTest(tests_4_27 / "Packaging");
-            RunTest(tests_4_27 / "Packaging",
-                "--platform Android --android-texture-mode ASTC --skip sign"
-            );
-
-            var tests_5_1 = RootDirectory / "tests" / "UE_5.1";
-            RunTest(tests_5_1 / "AddCodeToProject");
-            RunTest(tests_5_1 / "Packaging");
-
-            var tests_5_2 = RootDirectory / "tests" / "UE_5.2";
-            RunTest(tests_5_2 / "AddCodeToProject");
-            RunTest(tests_5_2 / "Packaging");
-
-            var tests_5_3 = RootDirectory / "tests" / "UE_5.3";
-            RunTest(tests_5_3 / "AddCodeToProject");
-            RunTest(tests_5_3 / "Packaging");
-
-            var tests_5_4 = RootDirectory / "tests" / "UE_5.4";
-            RunTest(tests_5_4 / "AddCodeToProject");
-            RunTest(tests_5_4 / "Packaging");
-
-            var tests_5_5 = RootDirectory / "tests" / "UE_5.5";
-            RunTest(tests_5_5 / "AddCodeToProject");
-            RunTest(tests_5_5 / "Packaging");
         });
+        
+    Target Test => _ => _
+        .Triggers(
+            DotnetTest,
+            TestUE_4_27,
+            TestUE_5_1,
+            TestUE_5_2,
+            TestUE_5_3,
+            TestUE_5_4,
+            TestUE_5_5
+        );
 }

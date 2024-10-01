@@ -8,7 +8,7 @@ public class PackagingEditorTarget : TargetRules
 	public PackagingEditorTarget(TargetInfo Target) : base(Target)
 	{
 		Type = TargetType.Editor;
-		DefaultBuildSettings = BuildSettingsVersion.V2;
+		DefaultBuildSettings = BuildSettingsVersion.V4;
 
 		ExtraModuleNames.AddRange( new string[] { "Packaging" } );
 	}

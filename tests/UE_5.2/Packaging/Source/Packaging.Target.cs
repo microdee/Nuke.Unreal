@@ -8,7 +8,7 @@ public class PackagingTarget : TargetRules
 	public PackagingTarget(TargetInfo Target) : base(Target)
 	{
 		Type = TargetType.Game;
-		DefaultBuildSettings = BuildSettingsVersion.V2;
+		DefaultBuildSettings = BuildSettingsVersion.V3;
 
 		ExtraModuleNames.AddRange( new string[] { "Packaging" } );
 	}
