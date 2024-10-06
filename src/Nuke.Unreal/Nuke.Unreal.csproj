@@ -4,7 +4,7 @@
     <LangVersion>11.0</LangVersion>
     <Nullable>enable</Nullable>
     <PackageId>md.Nuke.Unreal</PackageId>
-    <Version>2.0.16</Version>
+    <Version>2.0.17</Version>
     <Authors>David Mórász</Authors>
     <Company>mcro.de</Company>
     <Description>Commonly used Unreal Engine targets and tasks for the Nuke execution engine</Description>
@@ -32,7 +32,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="md.Nuke.Cola" Version="2.1.1" />
+    <PackageReference Include="md.Nuke.Cola" Version="2.1.2" />
     <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="4.3.1" />
     <PackageReference Include="Nuke.Common" Version="8.0.0" />
     <PackageReference Include="Goblinfactory.Konsole" Version="6.2.0" />
