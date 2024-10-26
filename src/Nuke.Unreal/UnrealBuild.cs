@@ -25,7 +25,12 @@ namespace Nuke.Unreal
         /// <summary>
         /// Most targets read the desired UE4 version from the project file.
         /// </summary>
-        [Parameter("Specify the target Unreal Engine version. By default only used by the Checkout target. Everything else should infer engine version from the project file.")]
+        [Parameter(
+            """
+            Specify the target Unreal Engine version. By default only used by the Checkout target.
+            Everything else should infer engine version from the project file.
+            """
+        )]
         public virtual string? UnrealVersion { get; set; }
 
         [Parameter("Specify a path to a custom engine version (eg.: built from source)")]
@@ -59,7 +64,12 @@ namespace Nuke.Unreal
 
         public EngineVersion ManualEngineVersion => new(UnrealVersion ?? "0.0", CustomEnginePath);
 
-        [Parameter("Extra arguments passed to UBT. It's recommended to use it only from command line, do not override.")]
+        [Parameter(
+            """
+            Extra arguments passed to UBT. It's recommended to use it only from command line, do not
+            override.
+            """
+        )]
         public virtual string[] UbtArgs { get; set; } = Array.Empty<string>();
         
         public virtual UbtConfig UbtGlobal(UbtConfig _) => _
@@ -68,7 +78,12 @@ namespace Nuke.Unreal
             .UTF8Output()
             .NoP4();
 
-        [Parameter("Extra arguments passed to UAT. It's recommended to use it only from command line, do not override.")]
+        [Parameter(
+            """
+            Extra arguments passed to UAT. It's recommended to use it only from command line, do not
+            override.
+            """
+        )]
         public virtual string[] UatArgs { get; set; } = Array.Empty<string>();
 
         public EngineVersion GetEngineVersionFromProject() {

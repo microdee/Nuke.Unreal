@@ -9,7 +9,13 @@ namespace Nuke.Unreal
     public abstract partial class UnrealBuild : NukeBuild
     {
 
-        [Parameter("Specify a folder containing generator specific folders for Scriban scaffolding and templates")]
+        [Parameter(
+            """
+            Specify a folder containing generator specific folders for Scriban scaffolding and
+            templates. If left empty the templates coming with Nuke.Unreal will be used.
+
+            """
+        )]
         public virtual AbsolutePath TemplatesPath { get; set; } = BoilerplateGenerator.DefaultTemplateFolder;
 
         [Parameter("Name parameter for boilerplate generators.")]
