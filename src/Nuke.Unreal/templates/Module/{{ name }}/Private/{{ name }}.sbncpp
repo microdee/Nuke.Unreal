@@ -2,10 +2,6 @@
 
 #include "{{ name }}.h"
 
-DEFINE_LOG_CATEGORY(Log{{ name }});
-
-#define LOCTEXT_NAMESPACE "F{{ name }}Module"
-
 void F{{ name }}Module::StartupModule()
 {
 }
@@ -13,7 +9,5 @@ void F{{ name }}Module::StartupModule()
 void F{{ name }}Module::ShutdownModule()
 {
 }
-
-#undef LOCTEXT_NAMESPACE
 	
 IMPLEMENT_MODULE(F{{ name }}Module, {{ name }});
