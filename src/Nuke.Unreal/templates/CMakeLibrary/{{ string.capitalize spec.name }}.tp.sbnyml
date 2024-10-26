@@ -1,0 +1,8 @@
+﻿name: {{ spec.name }}
+source: TODO url
+project: TODO url
+authors:
+    - TODO (url to profile)
+license: TODO (url to license)
+reasoning: |
+    TODO tell us pls

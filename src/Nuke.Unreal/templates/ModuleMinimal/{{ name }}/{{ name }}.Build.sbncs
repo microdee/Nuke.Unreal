@@ -1,0 +1,18 @@
+// {{ copyright }}
+
+using UnrealBuildTool;
+
+public class {{ name }} : ModuleRules
+{
+	public {{ name }}(ReadOnlyTargetRules Target) : base(Target)
+	{
+		PublicDependencyModuleNames.AddRange(new[] {
+			"Core",
+		});
+			
+		
+		PrivateDependencyModuleNames.AddRange(new[] {
+			"CoreUObject",
+		});
+	}
+}

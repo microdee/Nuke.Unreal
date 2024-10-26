@@ -1,0 +1,12 @@
+// 
+
+using UnrealBuildTool;
+
+public class {{ name }}{{ suffix }} : ModuleRules
+{
+	public {{ name }}{{ suffix }}(ReadOnlyTargetRules target) : base(target)
+	{
+		Type = ModuleType.External;
+		PublicIncludePaths.Add($"{ModuleDirectory}/Include");
+	}
+}
