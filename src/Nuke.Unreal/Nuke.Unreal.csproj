@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
-    <LangVersion>11.0</LangVersion>
+    <LangVersion>12</LangVersion>
     <Nullable>enable</Nullable>
     <PackageId>md.Nuke.Unreal</PackageId>
     <Version>2.0.18</Version>
@@ -32,9 +32,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="md.Nuke.Cola" Version="2.1.2" />
+    <PackageReference Include="md.Nuke.Cola" Version="2.1.8" />
     <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="4.3.1" />
-    <PackageReference Include="Nuke.Common" Version="8.0.0" />
+    <PackageReference Include="Nuke.Common" Version="8.1.2" />
     <PackageReference Include="Goblinfactory.Konsole" Version="6.2.0" />
     <PackageReference Include="Scriban" Version="4.0.1" />
   </ItemGroup>
