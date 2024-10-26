@@ -1,0 +1,13 @@
+{{- cap_name = spec.name | string.capitalize -}}
+// {{ copyright }}
+
+using UnrealBuildTool;
+
+public class {{ cap_name }}{{ suffix }} : ModuleRules
+{
+	public {{ cap_name }}{{ suffix }}(ReadOnlyTargetRules target) : base(target)
+	{
+		Type = ModuleType.External;
+		PublicIncludePaths.Add($"{ModuleDirectory}/Include");
+	}
+}

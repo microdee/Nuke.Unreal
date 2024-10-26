@@ -7,6 +7,7 @@ using Nuke.Common.IO;
 using Nuke.Common.Tooling;
 using System.ComponentModel;
 using Nuke.Cola;
+using System.Text.RegularExpressions;
 
 namespace Nuke.Unreal.BoilerplateGenerators;
 
@@ -33,10 +34,11 @@ public class LibraryType : Enumeration
     };
 
     public required string TemplateSubfolder { init; get; }
-    public Func<string, LibrarySpec> ParseSpec { get; private set; } = s => new LibrarySpec(s);
+    public Func<string, LibrarySpec> ParseSpec { get; private set; } = s => new LibrarySpec(s, s);
 }
 
 public record LibrarySpec(
+    string Spec,
     string Name,
     string? Version = null,
     string? Provider = null,
@@ -47,14 +49,18 @@ public record LibrarySpec(
         var matches = spec.Parse(
             """
             ^
-            (?:(?<PROVIDER>\w+)\:\:)?
-            (?<NAME>[\w\.]+)
-            (?:[\s\/-](?<VERSION>[0-9\.x#]+))?
+            (?<SPEC>
+                (?:(?<PROVIDER>\w+)\:\:)?
+                (?<NAME>[\w\.]+)
+                (?:[\s\/-](?<VERSION>[0-9\.x#]+))?
+            )
             (?:\s(?<OPTIONS>[\w=,]+))?
             $
-            """.AsSingleLine("")
+            """.AsSingleLine(""),
+            RegexOptions.IgnorePatternWhitespace
+            | RegexOptions.IgnoreCase
         );
-        return new(matches("NAME")!, matches("VERSION"), matches("PROVIDER"), matches("OPTIONS"));
+        return new(matches("SPEC")!, matches("NAME")!, matches("VERSION"), matches("PROVIDER"), matches("OPTIONS"));
     }
 }
 
