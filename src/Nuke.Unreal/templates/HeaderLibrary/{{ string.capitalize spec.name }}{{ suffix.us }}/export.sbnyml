@@ -3,4 +3,4 @@ link:
     as: Include
   - file: {{ string.capitalize spec.name }}.tp.yml
 copy:
-  - { file: {{ string.capitalize spec.name }}{{ suffix }}.build.cs, procContent: true }
+  - { file: {{ string.capitalize spec.name }}{{ suffix.us }}.build.cs, procContent: true }

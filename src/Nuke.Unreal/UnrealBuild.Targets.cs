@@ -56,8 +56,23 @@ namespace Nuke.Unreal
             .DependsOn(CleanProject)
             .DependsOn(CleanPlugins);
 
+        public virtual Target Prepare => _ => _
+            .Description(
+                """
+                Run necessary preparations which needs to be done before Unreal tools can handle
+                the project. By default it is empty and the main build project may override it or
+                other Targets can depend on it / hook into it.
+                """
+            );
+
         public virtual Target Generate => _ => _
-            .Description("Generate project files for the default IDE of the current platform (Visual Studio or XCode)")
+            .Description(
+                """
+                Generate project files for the default IDE of the current platform
+                (Visual Studio or XCode)
+                """
+            )
+            .DependsOn(Prepare)
             .Executes(() =>
             {
                 Unreal.BuildTool(this, _ => _
@@ -73,7 +88,11 @@ namespace Nuke.Unreal
             });
 
         public virtual Target BuildEditor => _ => _
-            .Description("Build the editor binaries so this project can be opened properly in the Unreal editor")
+            .Description(
+                """
+                Build the editor binaries so this project can be opened properly in the Unreal editor
+                """
+            )
             .Executes(() =>
             {
                 Unreal.BuildTool(this, _ => _

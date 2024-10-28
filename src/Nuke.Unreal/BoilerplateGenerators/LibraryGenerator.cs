@@ -8,6 +8,8 @@ using Nuke.Common.Tooling;
 using System.ComponentModel;
 using Nuke.Cola;
 using System.Text.RegularExpressions;
+using Nuke.Unreal.BoilerplateGenerators.XRepo;
+using System.Collections.Generic;
 
 namespace Nuke.Unreal.BoilerplateGenerators;
 
@@ -30,7 +32,7 @@ public class LibraryType : Enumeration
     {
         Value = nameof(XRepo),
         TemplateSubfolder = "XRepoLibrary",
-        ParseSpec = LibrarySpec.ParseXRepo
+        ParseSpec = XRepoLibrary.ParseSpec
     };
 
     public required string TemplateSubfolder { init; get; }
@@ -42,48 +44,35 @@ public record LibrarySpec(
     string Name,
     string? Version = null,
     string? Provider = null,
-    string? Options = null
-) {
-    internal static LibrarySpec ParseXRepo(string spec)
-    {
-        var matches = spec.Parse(
-            """
-            ^
-            (?<SPEC>
-                (?:(?<PROVIDER>\w+)\:\:)?
-                (?<NAME>[\w\.]+)
-                (?:[\s\/-](?<VERSION>[0-9\.x#]+))?
-            )
-            (?:\s(?<OPTIONS>[\w=,]+))?
-            $
-            """.AsSingleLine(""),
-            RegexOptions.IgnorePatternWhitespace
-            | RegexOptions.IgnoreCase
-        );
-        return new(matches("SPEC")!, matches("NAME")!, matches("VERSION"), matches("PROVIDER"), matches("OPTIONS"));
-    }
+    string? Options = null,
+    string? Features = null
+);
+
+public record SuffixRecord(string? Text, string? Us, string? Dot)
+{
+    public SuffixRecord(string? suffix) : this(suffix, suffix.PrependNonEmpty("_"), suffix.PrependNonEmpty(".")) {}
 }
 
 public record LibraryModel(
-    LibrarySpec Spec, string? Copyright, string? Suffix
+    LibrarySpec Spec,
+    string? Copyright,
+    SuffixRecord Suffix,
+    IEnumerable<UnrealPlatform> Platforms
 ) : CommonModelBase(Spec.Name, Copyright);
 
 public class LibraryGenerator : BoilerplateGenerator
 {
     protected LibraryModel? Model;
-    public required string Spec { init; get; }
-    public required LibraryType LibraryType { init; get; }
-    public string TemplateSubfolder => LibraryType.TemplateSubfolder;
-    public string? Suffix { init; get; }
 
-    public void Generate(AbsolutePath templatesPath, AbsolutePath currentFolder, EngineVersion ueVersion)
+    public void Generate(AbsolutePath templatesPath, AbsolutePath currentFolder, string fullSpec, LibraryType libraryType, string? suffix)
     {
         var project = new UnrealProject(currentFolder);
-        var spec = LibraryType.ParseSpec(Spec);
+        var spec = libraryType.ParseSpec(fullSpec);
         Model = new(
             Spec: spec,
             Copyright: Unreal.ReadCopyrightFromProject(project.Folder!),
-            Suffix: Suffix
+            Suffix: new(suffix),
+            UnrealPlatform.Platforms
         );
 
         if ((currentFolder / spec.Name).DirectoryExists())
@@ -91,11 +80,11 @@ public class LibraryGenerator : BoilerplateGenerator
             throw new InvalidOperationException($"The library module folder of {spec.Name} already exists in the current folder.");
         }
 
-        if(!(templatesPath / TemplateSubfolder).DirectoryExists())
+        if(!(templatesPath / libraryType.TemplateSubfolder).DirectoryExists())
             templatesPath = DefaultTemplateFolder;
 
-        var templateDir = templatesPath / TemplateSubfolder;
+        var templateDir = templatesPath / libraryType.TemplateSubfolder;
 
-        RenderFolder(templateDir, currentFolder / spec.Name, Model);
+        RenderFolder(templateDir, currentFolder, Model);
     }
 }

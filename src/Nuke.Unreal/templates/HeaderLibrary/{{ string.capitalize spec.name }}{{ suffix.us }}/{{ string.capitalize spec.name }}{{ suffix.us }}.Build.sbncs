@@ -3,9 +3,9 @@
 
 using UnrealBuildTool;
 
-public class {{ cap_name }}{{ suffix }} : ModuleRules
+public class {{ cap_name }}{{ suffix.us }} : ModuleRules
 {
-	public {{ cap_name }}{{ suffix }}(ReadOnlyTargetRules target) : base(target)
+	public {{ cap_name }}{{ suffix.us }}(ReadOnlyTargetRules target) : base(target)
 	{
 		Type = ModuleType.External;
 		PublicIncludePaths.Add($"{ModuleDirectory}/Include");
