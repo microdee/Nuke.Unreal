@@ -9,6 +9,8 @@ using Nuke.Common.Tools.Git;
 using Nuke.Unreal.Tools;
 using Nuke.Cola;
 using Nuke.Common.Utilities;
+using Nuke.Common.ProjectModel;
+using Serilog;
 
 namespace Nuke.Unreal
 {
@@ -183,6 +185,33 @@ namespace Nuke.Unreal
                         .Append(UatArgs.AsArguments())
                     )("", workingDirectory: UnrealEnginePath);
                 });
+            });
+
+        public virtual Target EnsureBuildPluginSupport => _ => _
+            .Description(
+                """
+                Ensure support for plain C# build plugins without the need for CSX or dotnet projects.
+
+                This only needs to be done once, you can check in the results into source control.
+                """
+            )
+            .Executes(() =>
+            {
+                var project = ProjectModelTasks.ParseProject(BuildProjectFile);
+                project.SkipEvaluation = true;
+                var compileItems = project.GetItems("Compile");
+                var pattern = "../**/*.nuke.cs";
+                if (!compileItems.Any(i => i.UnevaluatedInclude == pattern))
+                {
+                    Log.Information("Preparing build project to accept standalone C# files. {0}, in {1}", pattern, BuildProjectFile);
+                    project.AddItem("Compile", pattern);
+                    project.Save();
+                    Log.Information("This only needs to be done once, you can check in the results into source control.");
+                }
+                else
+                {
+                    Log.Debug("Build project already supports standalone C# build plugins.");
+                }
             });
     }
 }
