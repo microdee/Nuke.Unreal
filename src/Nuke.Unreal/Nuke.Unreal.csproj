@@ -32,7 +32,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="md.Nuke.Cola" Version="2.1.8" />
+    <PackageReference Include="md.Nuke.Cola" Version="2.1.10" />
     <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="4.3.1" />
     <PackageReference Include="Nuke.Common" Version="8.1.2" />
     <PackageReference Include="Goblinfactory.Konsole" Version="6.2.0" />

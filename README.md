@@ -205,7 +205,7 @@ Nuke.Unreal provides builder pattern Unreal tool configurators in C# which yield
 // For UBT:
 Unreal.BuildTool(this, _ => _
     .Target(UnrealTargetType.Server)
-    .Platform(UnrealPlatform.LinuxAArch64)
+    .Platform(UnrealPlatform.LinuxArm64)
     .Configuration(UnrealConfig.Development)
     .Project(ProjectPath)
     .Append(MyExplicitArguments)

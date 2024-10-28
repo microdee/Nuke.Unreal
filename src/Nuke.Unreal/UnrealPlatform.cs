@@ -10,16 +10,19 @@ namespace Nuke.Unreal
     [Flags]
     public enum UnrealPlatformFlag
     {
-        Win64 =         0b_00000001,
-        Win32 =         0b_00000010,
-        HoloLens =      0b_00000100,
-        Mac =           0b_00001000,
-        Linux =         0b_00010000,
-        LinuxAArch64 =  0b_00100000,
-        Android =       0b_01000000,
-        IOS =           0b_10000000,
+        Win64 =         1 << 0,
+        Win32 =         1 << 1,
+        // TODO: Windows ARM64?
+        HoloLens =      1 << 2,
+        Mac =           1 << 3,
+        Linux =         1 << 4,
+        LinuxArm64 =    1 << 5,
+        Android =       1 << 6,
+        IOS =           1 << 7,
+        TVOS =          1 << 8,
+        VisionOS =      1 << 9,
         AllWin =        Win32  | Win64,
-        AllLinux =      Linux  | LinuxAArch64,
+        AllLinux =      Linux  | LinuxArm64,
         AllDesktop =    AllWin | AllLinux | Mac
 
         // TODO: rest of the platforms
@@ -54,10 +57,10 @@ namespace Nuke.Unreal
             Value = nameof(Linux),
             Flag = UnrealPlatformFlag.Linux
         };
-        public static readonly UnrealPlatform LinuxAArch64 = new()
+        public static readonly UnrealPlatform LinuxArm64 = new()
         {
-            Value = nameof(LinuxAArch64),
-            Flag = UnrealPlatformFlag.LinuxAArch64
+            Value = nameof(LinuxArm64),
+            Flag = UnrealPlatformFlag.LinuxArm64
         };
         public static readonly UnrealPlatform Android = new()
         {
@@ -69,29 +72,54 @@ namespace Nuke.Unreal
             Value = nameof(IOS),
             Flag = UnrealPlatformFlag.IOS
         };
+        public static readonly UnrealPlatform TVOS = new()
+        {
+            Value = nameof(TVOS),
+            Flag = UnrealPlatformFlag.TVOS
+        };
+        public static readonly UnrealPlatform VisionOS = new()
+        {
+            Value = nameof(VisionOS),
+            Flag = UnrealPlatformFlag.VisionOS
+        };
 
         public static UnrealPlatform FromFlag(UnrealPlatformFlag flag)
         {
             return flag switch
             {
-                UnrealPlatformFlag.Win64        => Win64,
-                UnrealPlatformFlag.Win32        => Win32,
-                UnrealPlatformFlag.HoloLens     => HoloLens,
-                UnrealPlatformFlag.Mac          => Mac,
-                UnrealPlatformFlag.Linux        => Linux,
-                UnrealPlatformFlag.LinuxAArch64 => LinuxAArch64,
-                UnrealPlatformFlag.Android      => Android,
-                UnrealPlatformFlag.IOS          => IOS,
+                UnrealPlatformFlag.Win64      => Win64,
+                UnrealPlatformFlag.Win32      => Win32,
+                // TODO: Windows ARM64?
+                UnrealPlatformFlag.HoloLens   => HoloLens,
+                UnrealPlatformFlag.Mac        => Mac,
+                UnrealPlatformFlag.Linux      => Linux,
+                UnrealPlatformFlag.LinuxArm64 => LinuxArm64,
+                UnrealPlatformFlag.Android    => Android,
+                UnrealPlatformFlag.IOS        => IOS,
+                UnrealPlatformFlag.TVOS       => TVOS,
+                UnrealPlatformFlag.VisionOS   => VisionOS,
                 _ => throw new Exception($"UnrealPlatformFlag {flag} didn't have matching UnrealPlatform"),
             };
         }
+
+        public static readonly IEnumerable<UnrealPlatform> Platforms =
+        [
+            Win64,
+            Mac,
+            Linux,
+            LinuxArm64,
+            Android,
+            IOS,
+            TVOS,
+            VisionOS,
+        ];
 
         public UnrealPlatformFlag Flag { get; private set; } = UnrealPlatformFlag.Win64;
 
         public bool IsDesktop => (Flag & UnrealPlatformFlag.AllDesktop) > 0;
         public bool IsLinux => (Flag & UnrealPlatformFlag.AllLinux) > 0;
         public bool IsWindows => (Flag & UnrealPlatformFlag.AllWin) > 0;
-        public bool IsMobile => (Flag & (UnrealPlatformFlag.Android | UnrealPlatformFlag.IOS | UnrealPlatformFlag.HoloLens)) > 0;
+        public bool IsMobile => (Flag & (UnrealPlatformFlag.Android | UnrealPlatformFlag.IOS | UnrealPlatformFlag.HoloLens | UnrealPlatformFlag.VisionOS)) > 0;
 
         public static implicit operator string(UnrealPlatform configuration)
         {
