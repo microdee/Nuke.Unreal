@@ -1,90 +1,209 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
-  "$ref": "#/definitions/build",
-  "title": "Build Schema",
+  "properties": {
+    "AddToTarget": {
+      "type": "boolean",
+      "description": "Explicitly add new module to project target"
+    },
+    "Config": {
+      "type": "array",
+      "description": "The target configuration for building or packaging the project",
+      "items": {
+        "type": "string",
+        "enum": [
+          "Debug",
+          "DebugGame",
+          "Development",
+          "Shipping",
+          "Test"
+        ]
+      }
+    },
+    "CustomEnginePath": {
+      "type": "string",
+      "description": "Specify a path to a custom engine version (eg.: built from source)"
+    },
+    "EditorConfig": {
+      "type": "array",
+      "description": "The editor configuration to be used while building or packaging the project",
+      "items": {
+        "type": "string",
+        "enum": [
+          "Debug",
+          "DebugGame",
+          "Development",
+          "Shipping",
+          "Test"
+        ]
+      }
+    },
+    "LibraryType": {
+      "type": "string",
+      "description": "Specify the type of the third-party library being imported:\r\n    `Header`: header only C++ library which doesn't need extra preparation\r\n     `CMake`: generates an extra nuke target which prepares the CMake library to be used\r\n              and distributed in Unreal.\r\n     `XRepo`: generates an extra nuke target which then installs the library on\r\n              preparation via the xrepo package manager. The library for a specific\r\n              platform will be available when running Prepare<library>, Prepare or\r\n              Generate targets",
+      "enum": [
+        "CMake",
+        "Header",
+        "XRepo"
+      ]
+    },
+    "Name": {
+      "type": "array",
+      "description": "Name parameter for boilerplate generators",
+      "items": {
+        "type": "string"
+      }
+    },
+    "Output": {
+      "type": "string",
+      "description": "Specify the output working directory for artifacts"
+    },
+    "Platform": {
+      "type": "string",
+      "description": "Set platform for running targets",
+      "enum": [
+        "Android",
+        "HoloLens",
+        "IOS",
+        "Linux",
+        "LinuxArm64",
+        "Mac",
+        "Platforms",
+        "TVOS",
+        "VisionOS",
+        "Win32",
+        "Win64"
+      ]
+    },
+    "Spec": {
+      "type": "array",
+      "description": "Specification(s) of the imported library(ies). This is used slightly differently based\r\non which library type is being used:\r\n\r\n    Header / CMake: It's only the name of the library (like --spec spdlog)\r\n\r\n             XRepo: specify the xrepo package reference and its config separated by\r\n                    space. For example:\r\n                    --spec \"zlib\"\r\n                    --spec \"zlib 1.2.x\"\r\n                    --spec \"boost regex=true,thread=true\"\r\n                    --spec \"imgui 1.91.1 freetype=true\"\r\n\r\n                    Use VCPKG via XRepo, note that specifying an explicit version is\r\n                    not supported in VCPKG (bug in xrepo?)\r\n                    --spec \"vcpkg::spdlog\"\r\n\r\n                    VCPKG features are supported\r\n                    --spec \"vcpkg::spdlog[wchar]\"\r\n\r\n                    Use Conan via XRepo (note version is required and delimited with /)\r\n                    --spec \"conan::zlib/1.2.11\"\r\n\r\n                    And of course multiple libraries can be used in one go\r\n                    --spec \"imgui 1.91.1 freetype=true\" \"conan::zlib/1.2.11\" \"vcpkg::spdlog[wchar]\" <etc...>\r\n\r\n                    More about xrepo: https://xrepo.xmake.io\r\n                    NOTE: since Unreal uses MD runtime linkage `runtimes='MD'` config is\r\n                    always appended by Nuke.Unreal, and the user must not specify it",
+      "items": {
+        "type": "string"
+      }
+    },
+    "Suffix": {
+      "type": "string",
+      "description": "Some boilerplate generators allows to define an extra suffix for names depending on\r\ntheir use case. For example `NewLibrary` can use the plain `Name` for library folder\r\nstructure and `Name_MySuffix` for module names (when `Suffix` is set to `MySuffix`)"
+    },
+    "TargetType": {
+      "type": "array",
+      "description": "The Unreal target type for building the project",
+      "items": {
+        "type": "string",
+        "enum": [
+          "Client",
+          "Editor",
+          "Game",
+          "Program",
+          "Server"
+        ]
+      }
+    },
+    "TemplatesPath": {
+      "type": "string",
+      "description": "Specify a folder containing generator specific folders for Scriban scaffolding and\r\ntemplates. If left empty the templates coming with Nuke.Unreal will be used"
+    },
+    "UatArgs": {
+      "type": "array",
+      "description": "Extra arguments passed to UAT. It's recommended to use it only from command line, do not\r\noverride",
+      "items": {
+        "type": "string"
+      }
+    },
+    "UbtArgs": {
+      "type": "array",
+      "description": "Extra arguments passed to UBT. It's recommended to use it only from command line, do not\r\noverride",
+      "items": {
+        "type": "string"
+      }
+    },
+    "UnrealVersion": {
+      "type": "string",
+      "description": "Specify the target Unreal Engine version. By default only used by the Checkout target.\r\nEverything else should infer engine version from the project file"
+    }
+  },
   "definitions": {
-    "build": {
-      "type": "object",
+    "Host": {
+      "type": "string",
+      "enum": [
+        "AppVeyor",
+        "AzurePipelines",
+        "Bamboo",
+        "Bitbucket",
+        "Bitrise",
+        "GitHubActions",
+        "GitLab",
+        "Jenkins",
+        "Rider",
+        "SpaceAutomation",
+        "TeamCity",
+        "Terminal",
+        "TravisCI",
+        "VisualStudio",
+        "VSCode"
+      ]
+    },
+    "ExecutableTarget": {
+      "type": "string",
+      "enum": [
+        "AddCode",
+        "Build",
+        "BuildEditor",
+        "CheckBuild",
+        "CheckBuildEditor",
+        "CheckCook",
+        "CheckGenerate",
+        "CheckPackage",
+        "Clean",
+        "CleanDeployment",
+        "CleanPlugins",
+        "CleanProject",
+        "Cook",
+        "EnsureBuildPluginSupport",
+        "Generate",
+        "NewActor",
+        "NewInterface",
+        "NewModule",
+        "NewObject",
+        "NewPlugin",
+        "NewSpec",
+        "NewStruct",
+        "Package",
+        "Prepare",
+        "Test",
+        "UseCMake",
+        "UseHeaderOnly",
+        "UseLibrary",
+        "UseXRepo"
+      ]
+    },
+    "Verbosity": {
+      "type": "string",
+      "description": "",
+      "enum": [
+        "Verbose",
+        "Normal",
+        "Minimal",
+        "Quiet"
+      ]
+    },
+    "NukeBuild": {
       "properties": {
-        "AddToTarget": {
-          "type": "boolean",
-          "description": "Explicitly add new module to project target"
-        },
-        "Config": {
-          "type": "array",
-          "description": "The target configuration for building or packaging the project",
-          "items": {
-            "type": "string",
-            "enum": [
-              "Debug",
-              "DebugGame",
-              "Development",
-              "Shipping",
-              "Test"
-            ]
-          }
-        },
         "Continue": {
           "type": "boolean",
           "description": "Indicates to continue a previously failed build attempt"
-        },
-        "CustomEnginePath": {
-          "type": "string",
-          "description": "Specify a path to a custom engine version (eg.: built from source)"
-        },
-        "EditorConfig": {
-          "type": "array",
-          "description": "The editor configuration to be used while building or packaging the project",
-          "items": {
-            "type": "string",
-            "enum": [
-              "Debug",
-              "DebugGame",
-              "Development",
-              "Shipping",
-              "Test"
-            ]
-          }
         },
         "Help": {
           "type": "boolean",
           "description": "Shows the help text for this build assembly"
         },
         "Host": {
-          "type": "string",
           "description": "Host for execution. Default is 'automatic'",
-          "enum": [
-            "AppVeyor",
-            "AzurePipelines",
-            "Bamboo",
-            "Bitbucket",
-            "Bitrise",
-            "GitHubActions",
-            "GitLab",
-            "Jenkins",
-            "Rider",
-            "SpaceAutomation",
-            "TeamCity",
-            "Terminal",
-            "TravisCI",
-            "VisualStudio",
-            "VSCode"
-          ]
-        },
-        "Name": {
-          "type": "array",
-          "description": "Name parameter for boilerplate generators",
-          "items": {
-            "type": "string"
-          }
+          "$ref": "#/definitions/Host"
         },
         "NoLogo": {
           "type": "boolean",
           "description": "Disables displaying the NUKE logo"
-        },
-        "Output": {
-          "type": "string",
-          "description": "Specify the output working directory for artifacts"
         },
         "Partition": {
           "type": "string",
@@ -93,20 +212,6 @@
         "Plan": {
           "type": "boolean",
           "description": "Shows the execution plan (HTML)"
-        },
-        "Platform": {
-          "type": "string",
-          "description": "Set platform for running targets",
-          "enum": [
-            "Android",
-            "HoloLens",
-            "IOS",
-            "Linux",
-            "LinuxAArch64",
-            "Mac",
-            "Win32",
-            "Win64"
-          ]
         },
         "Profile": {
           "type": "array",
@@ -123,113 +228,22 @@
           "type": "array",
           "description": "List of targets to be skipped. Empty list skips all dependencies",
           "items": {
-            "type": "string",
-            "enum": [
-              "AddCode",
-              "Build",
-              "BuildEditor",
-              "CheckBuild",
-              "CheckBuildEditor",
-              "CheckCook",
-              "CheckGenerate",
-              "CheckPackage",
-              "Clean",
-              "CleanDeployment",
-              "CleanPlugins",
-              "CleanProject",
-              "Cook",
-              "Generate",
-              "NewActor",
-              "NewInterface",
-              "NewModule",
-              "NewObject",
-              "NewPlugin",
-              "NewSpec",
-              "NewStruct",
-              "Package",
-              "Test"
-            ]
+            "$ref": "#/definitions/ExecutableTarget"
           }
         },
         "Target": {
           "type": "array",
           "description": "List of targets to be invoked. Default is '{default_target}'",
           "items": {
-            "type": "string",
-            "enum": [
-              "AddCode",
-              "Build",
-              "BuildEditor",
-              "CheckBuild",
-              "CheckBuildEditor",
-              "CheckCook",
-              "CheckGenerate",
-              "CheckPackage",
-              "Clean",
-              "CleanDeployment",
-              "CleanPlugins",
-              "CleanProject",
-              "Cook",
-              "Generate",
-              "NewActor",
-              "NewInterface",
-              "NewModule",
-              "NewObject",
-              "NewPlugin",
-              "NewSpec",
-              "NewStruct",
-              "Package",
-              "Test"
-            ]
+            "$ref": "#/definitions/ExecutableTarget"
           }
-        },
-        "TargetType": {
-          "type": "array",
-          "description": "The Unreal target type for building the project",
-          "items": {
-            "type": "string",
-            "enum": [
-              "Client",
-              "Editor",
-              "Game",
-              "Program",
-              "Server"
-            ]
-          }
-        },
-        "TemplatesPath": {
-          "type": "string",
-          "description": "Specify a folder containing generator specific folders for Scriban scaffolding and templates"
-        },
-        "UatArgs": {
-          "type": "array",
-          "description": "Extra arguments passed to UAT. It's recommended to use it only from command line, do not override",
-          "items": {
-            "type": "string"
-          }
-        },
-        "UbtArgs": {
-          "type": "array",
-          "description": "Extra arguments passed to UBT. It's recommended to use it only from command line, do not override",
-          "items": {
-            "type": "string"
-          }
-        },
-        "UnrealVersion": {
-          "type": "string",
-          "description": "Specify the target Unreal Engine version. By default only used by the Checkout target. Everything else should infer engine version from the project file"
         },
         "Verbosity": {
-          "type": "string",
           "description": "Logging verbosity during build execution. Default is 'Normal'",
-          "enum": [
-            "Minimal",
-            "Normal",
-            "Quiet",
-            "Verbose"
-          ]
+          "$ref": "#/definitions/Verbosity"
         }
       }
     }
-  }
+  },
+  "$ref": "#/definitions/NukeBuild"
 }

@@ -9,7 +9,7 @@
     <RepositoryUrl>https://github.com/microdee/Nuke.Unreal.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageProjectUrl>https://github.com/microdee/Nuke.Unreal</PackageProjectUrl>
-    <PackageLicenseUrl>https://github.com/microdee/Nuke.Unreal/blob/main/LICENSE</PackageLicenseUrl>
+    <PackageLicense>https://github.com/microdee/Nuke.Unreal/blob/main/LICENSE</PackageLicense>
     <PackageIcon>nu_logo-125.png</PackageIcon>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>

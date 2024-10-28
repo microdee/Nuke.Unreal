@@ -10,8 +10,6 @@ using Newtonsoft.Json.Linq;
 using Nuke.Common;
 using Nuke.Common.Utilities;
 using Nuke.Common.Utilities.Collections;
-using static Nuke.Common.IO.FileSystemTasks;
-using static Nuke.Common.IO.PathConstruction;
 using Nuke.Common.Tooling;
 using Nuke.Unreal.Ini;
 using Serilog;
@@ -563,17 +561,17 @@ namespace Nuke.Unreal
                 }
 
                 watcher.Created += (s, e) => FileSystemEventBody(s, e, false,
-                    (p, t) => Directory.CreateDirectory(t / p.Name),
+                    (p, t) => (t / p.Name).CreateDirectory(),
                     (p, t) =>
                     {
-                        var content = File.ReadAllText(p);
-                        File.WriteAllText(t / p.Name, content);
+                        var content = p.ReadAllText();
+                        (t / p.Name).WriteAllText(content);
                     }
                 );
 
                 watcher.Renamed += (s, e) => FileSystemEventBody(s, e, true,
-                    (p, t) => RenameDirectory(t, e.Name, DirectoryExistsPolicy.Merge, FileExistsPolicy.OverwriteIfNewer),
-                    (p, t) => RenameFile(t, e.Name, FileExistsPolicy.OverwriteIfNewer)
+                    (p, t) => t.Rename(e.Name, ExistsPolicy.DirectoryMerge | ExistsPolicy.FileFail),
+                    (p, t) => t.Rename(e.Name, ExistsPolicy.Fail)
                 );
 
                 watcher.Deleted += (s, e) => FileSystemEventBody(s, e, true,
@@ -583,7 +581,7 @@ namespace Nuke.Unreal
 
                 watcher.Changed += (s, e) => FileSystemEventBody(s, e, true,
                     null,
-                    (p, t) => CopyFileToDirectory(p, t.Parent, FileExistsPolicy.Overwrite)
+                    (p, t) => p.CopyToDirectory(t.Parent, ExistsPolicy.MergeAndOverwrite)
                 );
 
                 Log.Information("Now you can start Android Studio and load the gradle project at\n{0}", gradleProjectFolder);

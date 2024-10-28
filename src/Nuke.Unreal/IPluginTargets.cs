@@ -176,33 +176,23 @@ namespace Nuke.Unreal
                 Directory.CreateDirectory(targetDir);
                 (targetDir.Parent / archiveFileName).DeleteFile();
 
-                CopyFileToDirectory(
-                    PluginPath, targetDir,
-                    FileExistsPolicy.Overwrite
-                );
-                CopyDirectoryRecursively(
-                    PluginPath.Parent / "Source",
+                // TODO: use folder composition for this:
+
+                PluginPath.CopyToDirectory(targetDir, ExistsPolicy.FileOverwrite);
+                (PluginPath.Parent / "Source").Copy(
                     targetDir / "Source",
-                    DirectoryExistsPolicy.Merge,
+                    ExistsPolicy.MergeAndOverwrite,
                     excludeDirectory: d => d.Name.StartsWith(".git", StringComparison.InvariantCultureIgnoreCase),
                     excludeFile: f =>
                         f.Name.StartsWith(".git", StringComparison.InvariantCultureIgnoreCase)
                         || f.Name.EndsWith(".md", StringComparison.InvariantCultureIgnoreCase)
                 );
 
-                if(Directory.Exists(PluginPath.Parent / "Resources"))
-                    CopyDirectoryRecursively(
-                        PluginPath.Parent / "Resources",
-                        targetDir / "Resources",
-                        DirectoryExistsPolicy.Merge
-                    );
+                if((PluginPath.Parent / "Resources").DirectoryExists())
+                    (PluginPath.Parent / "Resources").Copy(targetDir / "Resources", ExistsPolicy.MergeAndOverwrite);
                 
-                if(Directory.Exists(PluginPath.Parent / "Config"))
-                    CopyDirectoryRecursively(
-                        PluginPath.Parent / "Config",
-                        targetDir / "Config",
-                        DirectoryExistsPolicy.Merge
-                    );
+                if((PluginPath.Parent / "Config").DirectoryExists())
+                    (PluginPath.Parent / "Config").Copy(targetDir / "Config", ExistsPolicy.MergeAndOverwrite);
 
                 Log.Information($"Archiving release: {packageName}");
                 ZipFile.CreateFromDirectory(targetDir, targetDir.Parent / archiveFileName);

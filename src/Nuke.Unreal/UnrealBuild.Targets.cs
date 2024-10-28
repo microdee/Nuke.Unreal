@@ -201,16 +201,15 @@ namespace Nuke.Unreal
                 project.SkipEvaluation = true;
                 var compileItems = project.GetItems("Compile");
                 var pattern = "../**/*.nuke.cs";
-                if (!compileItems.Any(i => i.UnevaluatedInclude == pattern))
+                
+                if (BuildProjectFile.ReadAllText().Contains(pattern))
+                    Log.Debug("Build project already supports standalone C# build plugins.");
+                else
                 {
                     Log.Information("Preparing build project to accept standalone C# files. {0}, in {1}", pattern, BuildProjectFile);
                     project.AddItem("Compile", pattern);
                     project.Save();
                     Log.Information("This only needs to be done once, you can check in the results into source control.");
-                }
-                else
-                {
-                    Log.Debug("Build project already supports standalone C# build plugins.");
                 }
             });
     }
