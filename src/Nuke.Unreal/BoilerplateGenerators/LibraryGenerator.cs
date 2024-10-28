@@ -75,7 +75,7 @@ public class LibraryGenerator : BoilerplateGenerator
             UnrealPlatform.Platforms
         );
 
-        if ((currentFolder / spec.Name).DirectoryExists())
+        if ((currentFolder / (spec.Name + Model.Suffix.Us)).DirectoryExists())
         {
             throw new InvalidOperationException($"The library module folder of {spec.Name} already exists in the current folder.");
         }

@@ -5,6 +5,7 @@ using Nuke.Common;
 using Nuke.Common.IO;
 using Nuke.Common.Tooling;
 using Nuke.Cola;
+using Nuke.Cola.Tooling;
 using Nuke.Cola.BuildPlugins;
 using Nuke.Unreal;
 using Serilog;
@@ -16,7 +17,7 @@ public interface IUse{{ cap_name }} : INukeBuild
 {
     AbsolutePath {{ cap_name }}InputDir => this.ScriptFolder() / "{{ spec.name }}";
 
-    string[] {{ cap_name }}Configs => new [] { "Release", "Debug" };
+    string[] {{ cap_name }}Configs => [ "Release", "Debug" ];
 
     Target Prepare{{ cap_name }} => _ => _
         .DependentFor<UnrealBuild>(b => b.Generate)
@@ -38,9 +39,9 @@ public interface IUse{{ cap_name }} : INukeBuild
                     -G "Visual Studio 17 2022" -A {architecture}
                     -DCMAKE_BUILD_TYPE={config}
                     -DCMAKE_INSTALL_PREFIX="{cmakeOutput}"
-                    "{{{ cap_name }}InputDir}"
+                    "{ {{ cap_name }}InputDir }"
                     """
-                    .AsSingleLine()
+                    .AsSingleLine();
                 
                 cmake(arguments: $"{args:nq}", workingDirectory: cmakeOutput);
 
