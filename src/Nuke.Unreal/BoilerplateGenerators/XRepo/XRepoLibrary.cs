@@ -7,6 +7,7 @@ using Nuke.Cola;
 using Nuke.Cola.Tooling;
 using Nuke.Common.IO;
 using Nuke.Common.Utilities;
+using Nuke.Common.Utilities.Collections;
 using Serilog;
 
 namespace Nuke.Unreal.BoilerplateGenerators.XRepo;
@@ -63,7 +64,7 @@ public static partial class XRepoLibrary
 
         // TODO: pass NDK location in
 
-        XRepoTasks.Install(spec.Spec, options, extraArgs);
+        XRepoTasks.Install(spec.Spec, options, extraArgs)("");
         
         string[] ProcessPaths(string? paths, AbsolutePath dstDir)
         {
@@ -74,15 +75,16 @@ public static partial class XRepoLibrary
                 {
                     var currPath = (AbsolutePath) i;
                     var dstPath = dstDir / currPath.Name;
-                    int ctr = 0;
-                    while (dstPath.FileExists() || dstPath.DirectoryExists())
+                    if (currPath.FileExists() || currPath.DirectoryExists())
+                        currPath.Copy(dstPath, ExistsPolicy.MergeAndOverwrite);
+                    else
                     {
-                        dstPath = dstDir / currPath.Name + $"_{ctr}";
-                        ctr++;
+                        Log.Warning("A library is referring to a non-existing file or folder: {0}", currPath);
+                        return "";
                     }
-                    currPath.LinkedByOrCopyTo(dstPath).Assume();
                     return dstPath.Name;
                 })
+                .Where(p => !string.IsNullOrWhiteSpace(p))
                 .ToArray();
         };
 
@@ -126,10 +128,11 @@ public static partial class XRepoLibrary
                     SysLinks: i["fetchinfo"]!["syslinks"]?.Value?.Split(" ") ?? [],
                     Defines: i["fetchinfo"]!["defines"]?.Value?.Split(" ") ?? []
                 );
-            });
+            })
+            .ToArray();
     }
 
-    public static void InstallXRepoLibrary(this UnrealBuild self, string specIn, string options, AbsolutePath targetPath, string? suffix)
+    public static void InstallXRepoLibrary(this UnrealBuild self, string specIn, string options, AbsolutePath targetPath, string? suffix = null)
     {
         Log.Information("Installing library {0} via xrepo", specIn);
         var spec = ParseSpec(specIn) with { Options = options };

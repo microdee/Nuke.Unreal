@@ -72,7 +72,7 @@ public class LibraryGenerator : BoilerplateGenerator
             Spec: spec,
             Copyright: Unreal.ReadCopyrightFromProject(project.Folder!),
             Suffix: new(suffix),
-            UnrealPlatform.Platforms
+            Platforms: UnrealPlatform.Platforms
         );
 
         if ((currentFolder / (spec.Name + Model.Suffix.Us)).DirectoryExists())

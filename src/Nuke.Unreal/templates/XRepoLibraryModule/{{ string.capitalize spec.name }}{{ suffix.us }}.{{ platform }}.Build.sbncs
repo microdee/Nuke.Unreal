@@ -15,31 +15,32 @@ public partial class {{ cap_name }}{{ suffix.us }} : ModuleRules
 			{{ library.description }}
 
 			Current options:
-			{{ library.options }}
+				{{ library.options }}
 
 			Library options help:
-			{{ library.options_help }}
+				{{ library.options_help }}
 		*/
 
 		{{- for incl in library.include_paths }}
 		PublicIncludePaths.Add($"{ModuleDirectory}/{{ library.spec.name }}/Includes/{{ incl }}");
-		{{- end -}}
+		{{- end }}
 
 		{{- for incl in library.sys_include_paths }}
 		PublicSystemIncludePaths.Add($"{ModuleDirectory}/{{ library.spec.name }}/SysIncludes/{{ incl }}");
-		{{- end -}}
+		{{- end }}
 
 		{{- for lib in library.lib_files }}
 		PublicAdditionalLibraries.Add($"{ModuleDirectory}/{{ library.spec.name }}/Libs/{{ platform }}/{LibraryConfig}/{{ lib }}");
-		{{- end -}}
+		{{- end }}
 
 		{{- for lib in library.sys_libs }}
 		PublicSystemLibraries.AddUnique("{{ lib }}");
-		{{- end -}}
+		{{- end }}
 
 		{{- for define in library.defines }}
 		PublicDefinitions.AddUnique("{{ define }}");
-		{{- end -}}
-		{{- end -}}
+		{{- end }}
+		{{ end }}
+		PlatformSetup = true;
 	}
 }

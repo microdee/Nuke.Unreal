@@ -20,7 +20,7 @@ public interface IUse{{ cap_name }} : INukeBuild
     string[] {{ cap_name }}Configs => [ "Release", "Debug" ];
 
     Target Prepare{{ cap_name }} => _ => _
-        .DependentFor<UnrealBuild>(b => b.Generate)
+        .DependentFor<UnrealBuild>(b => b.Prepare)
         .Executes(() =>
         {
             var cmake = ToolCola.Use("cmake").Get();

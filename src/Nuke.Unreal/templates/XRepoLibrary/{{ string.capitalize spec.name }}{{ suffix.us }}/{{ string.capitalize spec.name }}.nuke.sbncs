@@ -5,8 +5,10 @@ using Nuke.Common;
 using Nuke.Common.IO;
 using Nuke.Common.Tooling;
 using Nuke.Cola;
+using Nuke.Cola.Tooling;
 using Nuke.Cola.BuildPlugins;
 using Nuke.Unreal;
+using Nuke.Unreal.BoilerplateGenerators.XRepo;
 using Serilog;
 using System;
 
@@ -19,12 +21,11 @@ public interface IUse{{ cap_name }} : INukeBuild
     string[] {{ cap_name }}Configs => new [] { "Release", "Debug" };
 
     Target Prepare{{ cap_name }} => _ => _
-        .DependentFor<UnrealBuild>(b => b.Generate)
+        .DependentFor<UnrealBuild>(b => b.Prepare)
         .Executes(() =>
         {
-            XRepo.Install("{{ spec.spec }}", "{{ spec.options }}" /* TODO: unreal+platform+arch specific stuff */);
-            var info = XRepoTasks.Info("{{ spec.spec }}", "{{ spec.options }}")("").ParseXRepoInfo();
-            // TODO: link files to local folder
-            // TODO: XRepoLibraryModuleGenerator
+            ((UnrealBuild) this).InstallXRepoLibrary(
+                "{{ spec.spec }}", "{{ spec.options }}", this.ScriptFolder(){{ if suffix.text }}, {{ suffix.text; end }}
+            );
         });
 }

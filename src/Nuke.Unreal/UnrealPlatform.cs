@@ -111,7 +111,7 @@ namespace Nuke.Unreal
             Android,
             IOS,
             TVOS,
-            VisionOS,
+            // VisionOS, // TODO: associate platforms with supported versions of Unreal
         ];
 
         public UnrealPlatformFlag Flag { get; private set; } = UnrealPlatformFlag.Win64;

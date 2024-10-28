@@ -1,11 +1,13 @@
 {{- cap_name = spec.name | string.capitalize -}}
 // {{ copyright }}
 
+using System;
 using UnrealBuildTool;
 
 public partial class {{ cap_name }}{{ suffix.us }} : ModuleRules
 {
 	bool IsDebug;
+	bool PlatformSetup = false;
 	string LibraryConfig;
 	string LibraryPlatform;
 
@@ -24,13 +26,21 @@ public partial class {{ cap_name }}{{ suffix.us }} : ModuleRules
 		// Write user defined setup here
 
 		// Optional platform specific library setup:
-		{{- for plat in supported_platforms }}
+		{{ for plat in platforms }}
 		if (target.Platform == UnrealTargetPlatform.{{ plat }})
 			SetupLibrary_{{ plat }}(target);
-		{{- end -}}
+		{{ end }}
+		if (!PlatformSetup)
+		{
+			throw new Exception(
+				$"{{ spec.name }} was not set up for {target.Platform}."
+				+ $"\n Did you install the library for {target.Platform}?"
+				+ $"\n`nuke prepare-{{ spec.name }} --platform {target.Platform}`"
+			);
+		}
 	}
 
-	{{- for plat in supported_platforms }}
+	{{- for plat in platforms }}
 	partial void SetupLibrary_{{ plat }}(ReadOnlyTargetRules target);
-	{{- end -}}
+	{{- end }}
 }
