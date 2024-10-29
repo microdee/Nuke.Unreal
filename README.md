@@ -10,12 +10,31 @@
 
 Simplistic workflow for automating Unreal Engine project tasks embracing [Nuke](https://nuke.build), providing a consistent way to use UE4/5 tools and reducing chores they come with.
 
-## Usage
+- [Nuke.Unreal](#nukeunreal)
+- [Usage](#usage)
+  - [Install via remote script](#install-via-remote-script)
+  - [Install manually](#install-manually)
+- [Features:](#features)
+- [Setting up for a project](#setting-up-for-a-project)
+- [Setting up for plugin development](#setting-up-for-plugin-development)
+  - [Additional Plugin Targets](#additional-plugin-targets)
+- [Generators](#generators)
+  - [C# code generators for Unreal tools](#c-code-generators-for-unreal-tools)
+  - [Using third-party C++ libraries](#using-third-party-c-libraries)
+    - [Use library from xrepo](#use-library-from-xrepo)
+    - [Use library via CMake](#use-library-via-cmake)
+    - [Use header only library](#use-header-only-library)
+  - [Unreal boilerplate templates](#unreal-boilerplate-templates)
+    - [Use your own templates](#use-your-own-templates)
+- [Custom UBT or UAT arguments from command line](#custom-ubt-or-uat-arguments-from-command-line)
+
+
+# Usage
 
 > [!WARNING]
-> `dotnet` is required to be installed first. Also recommend to set 
+> `dotnet` is required to be installed first.
 
-### Install via remote script
+## Install via remote script
 
 Navigate to your project with powershell and do
 
@@ -26,7 +45,7 @@ Set-ExecutionPolicy Unrestricted -Scope Process -Force; iex (iwr 'https://raw.gi
 1. ***(optional)*** Inherit `IPackageTargets` interface if you want to package the associated Unreal project
 2. ***(optional)*** Inherit `IPluginTargets` interface for automating plugin development related steps.
 
-### Install manually
+## Install manually
 
 Nuke.Unreal is available as a Nuget package and you can just add it to your build project as usual (package ID is `md.Nuke.Unreal`)
 
@@ -63,10 +82,10 @@ public class Build : UnrealBuild
 }
 ```
 
-## Features:
+# Features:
 
 * All what the great Nuke can offer
-* Common UE4 build tasks (generate project files, build editor, cook, package, etc)
+* Common Unreal build tasks (generate project files, build editor, cook, package, etc)
   ```
   > nuke generate
   > nuke build-editor
@@ -95,7 +114,7 @@ public class Build : UnrealBuild
 * Generated C# configurators for Unreal tools with gathered documentation. (UBT and UAT)
 * Pluggable way to define targets for reusable plugins and modules
 
-## Setting up for a project
+# Setting up for a project
 
 Nuke.Unreal targets looks for the `*.uproject` file automatically and it will use the first one it finds. A `*.uproject` is required to be present even for plugin development (more on plugins below). Automatically found project files can be in the sub-folder tree of Nuke's root (which is the folder containing the `.nuke` temporary folder) or in parent folders of Nuke's root. If for any reason there are more than one or no `*.uproject` files in that area, the developer can specify an explicit location of the associated `*.uproject` file.
 
@@ -105,7 +124,7 @@ public override AbsolutePath ProjectPath => RootDirectory / ".." / "MyProject" /
 
 Only one Unreal project is supported per Nuke.Unreal instance.
 
-## Setting up for plugin development
+# Setting up for plugin development
 
 Same is applicable when Nuke.Unreal is used for developing an Unreal Plugin for release. Of course Nuke.Unreal can work with multiple plugins in a project, but the `IPluginTargets` interface focuses only on one plugin. Again if the plugin is not trivially locatable then the developer can specify its location explicitly.
 
@@ -113,7 +132,7 @@ Same is applicable when Nuke.Unreal is used for developing an Unreal Plugin for 
 public AbsolutePath PluginPath => UnrealPluginsFolder / "MyPlugin" / "MyPlugin.uplugin";
 ```
 
-### Additional Plugin Targets
+## Additional Plugin Targets
 
 However plugins which require some pre-processing might benefit from the "[Build plugins](https://github.com/microdee/md.Nuke.Cola?tab=readme-ov-file#build-plugins)" pattern from Nuke.Cola. Simplest method of which is [standalone `*.nuke.cs` files](https://github.com/microdee/md.Nuke.Cola?tab=readme-ov-file#implicitbuildinterface-plugins) which are compiled with the build project. Let's have this scaffolding as an example:
 
@@ -171,11 +190,9 @@ public interface IMyPluginTargets : INukeBuild
 }
 ```
 
-## Generators
+# Generators
 
-### C# code generators for Unreal tools
-
-**TODO:** record a new fancy gif with newest updates
+## C# code generators for Unreal tools
 
 Nuke.Unreal provides builder pattern Unreal tool configurators in C# which yield a command line for the specified tool. TLDR: the syntax looks like this:
 
@@ -205,11 +222,11 @@ As the reader can see from the GIF this introduces a greater discoveribility to 
 
 UBT on the other hand had a more disciplined and consistent approach for interpreting the command line, that allowed to rely on purely reflection while gathering arguments with the added feature of typed parameter value input (like numbers, strings and enums). As of time of writing detecting parameter types in a reliable and meaningful way is not possible for UAT.
 
-### Using third-party C++ libraries
+## Using third-party C++ libraries
 
 Nuke.Unreal allows you to set up boilerplate for C++ libraries, or fetch them via a package manager. There are three methods available:
 
-#### Use library from [xrepo](https://xrepo.xmake.io)
+### Use library from [xrepo](https://xrepo.xmake.io)
 
 Tt can be as simple as
 
@@ -240,7 +257,7 @@ provider::name[comma,separated,features] 1.2.3 comma='separated',options=true
 ```
 
 > [!NOTE]
-> Conan packages uses `/` to delimit version (`conan::zlib/1.2.3`). VCPKG through xrepo cannot set specific version so attempting to do `vcpkg::zlib 1.2.3` will result in failing installation, but `vcpkg::zlib` is fine.
+> Conan packages use `/` to delimit version (`conan::zlib/1.2.3`) instead of space. VCPKG through xrepo cannot set specific version so attempting to do `vcpkg::zlib 1.2.3` will result in failing installation, but `vcpkg::zlib` is fine.
 
 > [!NOTE]
 > Since Unreal requires `MD` C runtime linkage `runtimes='MD'` is implicitly added by Nuke.Unreal.
@@ -248,24 +265,45 @@ provider::name[comma,separated,features] 1.2.3 comma='separated',options=true
 The `Prepare` and the individual `Prepare-<library>` targets will generate partial module rule classes for the platforms they were invoked for. This is done because libraries may have different requirements based on which platform they're used on / compiled on. The main `MyLibrary.Build.cs` module rule is the place for the developer to add custom logic if that's necessary for the library. Individual `MyLibrary.Platform.Build.cs` partial rules set up includes and libs.
 
 > [!IMPORTANT]
-> During installation only one platform is considered, and only one platform worth of module rule class will be generated. This means the library should be prpared with all supported platforms or cross-compiled to be able to deploy in a truly cross-platform fashion.
+> During installation only one platform is considered, and only one platform worth of module rule class will be generated. This means the library should be prepared with all supported platforms or cross-compiled to be able to deploy in a truly cross-platform fashion.
 
-### Unreal boilerplate templates
+The main benefit of this design is that libraries prepared this way can be further distributed with source but without the need for Nuke.Unreal, or without the need to execute complex behavior from the module rule files. This ensures for example ~~Marketplace~~/Fab compliance of plugins.
+
+### Use library via CMake
+
+```
+nuke use-cmake --spec MyLibrary
+```
+
+This generates build plugins allowing the developer to prepare libraries via CMake. Fetching and storing the library is the responsibility of the developer. The build plugin is prepared for the most trivial use case when compiling a library via CMake but one may need to modify that depending on the design decisions of the library being used.
+
+### Use header only library
+
+```
+nuke use-header-only --spec MyLibrary
+```
+
+This will directly generate only the module rule file without the need for extra preparations like with the xrepo or the CMake methods.
+
+## Unreal boilerplate templates
 
 Nuke.Unreal provides some targets which creates boilerplate code for common Unreal entities, such as
 
-* [x] Plugins
-* [x] Modules
-* [x] Unreal Object/Actor/Structs/Interfaces
+* Plugins
+* Modules
+* Unreal Object/Actor/Structs/Interfaces
 
 without the need for opening the Unreal editor or extend heavy weight IDE's. These boilerplate targets work with Scriban templates. The path to these templates can be overridden in the actual Nuke build class in case a project requires further boilerplate. Example:
 
-In any folder in your project
+In any folder in your project do
+
 ```
-> nuke NewActor --name MyPreciousActor
+> nuke new-actor --name MyPreciousActor
 ```
 
 This will generate MyPreciousActor.h and ~.cpp at their respective places (taking public and private folders into account) and the minimal actor class boilerplate for unreal.
+
+### Use your own templates
 
 Optional **Custom templates** folders are required to contain generator specific subfolders. If a subfolder doesn't exist for a generator the default will be used. Example:
 
@@ -289,17 +327,15 @@ public override AbsolutePath TemplatesPath { get; set; } = RootDirectory / "MyTe
 
 This way Actor and Object generators will have their project specific Scriban templates but the remaining generator types will use the default templates of Nuke.Unreal.
 
-## Custom UBT or UAT arguments from command line
+# Custom UBT or UAT arguments from command line
 
 Nuke.Unreal supports passing custom arguments to UBT or UAT via `--ubt-args` or `--uat-args`. These are regular array properties exposed as Nuke target parameters. This means however that doing `--ubt-args -DisableUnity` wouldn't actually add `-DisableUnity` to the argument list. This happens because Nuke stops parsing the array argument when it hits a `-` character. For this reason Nuke.Unreal has a special escape mechanism where `~-` is replaced with `-`, or if the argument starts with `~` then that's also replaced with a `-`.
 
 So doing `--ubt-args ~DisableUnity ~2022` will correctly pass arguments `-DisableUnity -2022` to UBT.
 
-For convenience the sequence `''` is also replaced with a double quote `"` hopefully escaping command line parsers.
-
 This is especially useful for doing temporary debugging with UBT and the compiler: (not an actual usecase)
 ```
-> nuke build ... --ubt-args "~CompilerArguments=''/diagnostics:caret /P /C''" ~DisableUnity
-> nuke build ... --ubt-args "~LinkerArguments=''/VERBOSE''"
+> nuke build ... --ubt-args "~CompilerArguments='/diagnostics:caret /P /C'" ~DisableUnity
+> nuke build ... --ubt-args ~LinkerArguments=/VERBOSE
 > nuke build ... --ubt-args ~Preprocess
 ```
