@@ -192,7 +192,7 @@ namespace Nuke.Unreal
                 """
                 Ensure support for plain C# build plugins without the need for CSX or dotnet projects.
 
-                This only needs to be done once, you can check in the results into source control.
+                This only needs to be done once, you can check the results into source control.
                 """
             )
             .Executes(() =>
@@ -201,7 +201,7 @@ namespace Nuke.Unreal
                 project.SkipEvaluation = true;
                 var compileItems = project.GetItems("Compile");
                 var pattern = "../**/*.nuke.cs";
-                
+
                 if (BuildProjectFile.ReadAllText().Contains(pattern))
                     Log.Debug("Build project already supports standalone C# build plugins.");
                 else
@@ -209,7 +209,7 @@ namespace Nuke.Unreal
                     Log.Information("Preparing build project to accept standalone C# files. {0}, in {1}", pattern, BuildProjectFile);
                     project.AddItem("Compile", pattern);
                     project.Save();
-                    Log.Information("This only needs to be done once, you can check in the results into source control.");
+                    Log.Information("This only needs to be done once, you can check the results into source control.");
                 }
             });
     }

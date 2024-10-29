@@ -204,7 +204,7 @@ namespace Nuke.Unreal
                 instead of
                 nuke use-library --library-type xrepo --spec tracy
 
-                This only needs to be done once, you can check in the results into source control.
+                This only needs to be done once, you can check the results into source control.
                 """
             )
             .DependsOn(EnsureBuildPluginSupport)
@@ -226,7 +226,7 @@ namespace Nuke.Unreal
                 );
                 if (LibraryType == LibraryType.XRepo)
                     Log.Information("Run `Prepare` or `Generate` to install new libraries.");
-                Log.Information("This only needs to be done once, you can check in the results into source control.");
+                Log.Information("This only needs to be done once, you can check the results into source control.");
             });
 
         public Target UseXRepo => _ => _
@@ -259,7 +259,7 @@ namespace Nuke.Unreal
                 NOTE: since Unreal uses MD runtime linkage `runtimes='MD'` config is always appended
                 by Nuke.Unreal, and the user must not specify it.
 
-                This only needs to be done once, you can check in the results into source control.
+                This only needs to be done once, you can check the results into source control.
                 """
             )
             .Triggers(UseLibrary)
