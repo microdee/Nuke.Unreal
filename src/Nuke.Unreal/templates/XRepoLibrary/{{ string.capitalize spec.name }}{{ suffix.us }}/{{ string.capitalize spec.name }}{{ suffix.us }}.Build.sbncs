@@ -1,0 +1,46 @@
+{{- cap_name = spec.name | string.capitalize -}}
+// {{ copyright }}
+
+using System;
+using UnrealBuildTool;
+
+public partial class {{ cap_name }}{{ suffix.us }} : ModuleRules
+{
+	bool IsDebug;
+	bool PlatformSetup = false;
+	string LibraryConfig;
+	string LibraryPlatform;
+
+	public {{ cap_name }}{{ suffix.us }}(ReadOnlyTargetRules target) : base(target)
+	{
+		// This is the main module file for using {{ spec.name }} in Unreal Engine.
+		// Because each individual platform can carry different requirements for {{ spec.name }},
+		// includes and lib imports are expressed in platform specific partial classes. These are
+		// auto generated when the library is prepared on/for a specific platform.
+
+		Type = ModuleType.External;
+		IsDebug = target.Configuration == UnrealTargetConfiguration.Debug && target.bDebugBuildsActuallyUseDebugCRT;
+		LibraryConfig = IsDebug ? "Debug" : "Release";
+		LibraryPlatform = target.Platform.ToString();
+
+		// Write user defined setup here
+
+		// Optional platform specific library setup:
+		{{ for plat in platforms }}
+		if (target.Platform == UnrealTargetPlatform.{{ plat }})
+			SetupLibrary_{{ plat }}(target);
+		{{ end }}
+		if (!PlatformSetup)
+		{
+			throw new Exception(
+				$"{{ spec.name }} was not set up for {target.Platform}."
+				+ $"\n Did you install the library for {target.Platform}?"
+				+ $"\n`nuke prepare-{{ spec.name }} --platform {target.Platform}`"
+			);
+		}
+	}
+
+	{{- for plat in platforms }}
+	partial void SetupLibrary_{{ plat }}(ReadOnlyTargetRules target);
+	{{- end }}
+}

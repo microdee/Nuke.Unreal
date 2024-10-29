@@ -43,10 +43,12 @@ namespace Nuke.Unreal.BoilerplateGenerators
 
             if(!Directory.Exists(resultPath.Parent))
                 Directory.CreateDirectory(resultPath.Parent);
+            
+            resultFilename = (resultFilename + resultExt).Replace("___", "");
 
-            var outPath = (resultPath.Parent / resultFilename) + resultExt;
+            var outPath = resultPath.Parent / resultFilename;
 
-            Log.Debug($"Rendering to: {resultFilename + resultExt}");
+            Log.Debug($"Rendering to: {resultFilename}");
 
             File.WriteAllText(outPath, renderedText);
         }

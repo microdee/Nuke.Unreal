@@ -1,0 +1,31 @@
+{{- cap_name = spec.name | string.capitalize -}}
+// {{ copyright }}
+
+using Nuke.Common;
+using Nuke.Common.IO;
+using Nuke.Common.Tooling;
+using Nuke.Cola;
+using Nuke.Cola.Tooling;
+using Nuke.Cola.BuildPlugins;
+using Nuke.Unreal;
+using Nuke.Unreal.BoilerplateGenerators.XRepo;
+using Serilog;
+using System;
+
+[ImplicitBuildInterface]
+[ParameterPrefix("{{ spec.name }}")]
+public interface IUse{{ cap_name }} : INukeBuild
+{
+    AbsolutePath {{ cap_name }}InputDir => this.ScriptFolder() / "{{ spec.name }}";
+
+    string[] {{ cap_name }}Configs => new [] { "Release", "Debug" };
+
+    Target Prepare{{ cap_name }} => _ => _
+        .DependentFor<UnrealBuild>(b => b.Prepare)
+        .Executes(() =>
+        {
+            ((UnrealBuild) this).InstallXRepoLibrary(
+                "{{ spec.spec }}", "{{ spec.options }}", this.ScriptFolder(){{ if suffix.text }}, {{ suffix.text; end }}
+            );
+        });
+}

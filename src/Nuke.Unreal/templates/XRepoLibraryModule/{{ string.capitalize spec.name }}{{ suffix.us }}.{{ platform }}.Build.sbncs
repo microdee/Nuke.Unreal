@@ -1,0 +1,45 @@
+{{- cap_name = spec.name | string.capitalize -}}
+// {{ copyright }}
+
+using UnrealBuildTool;
+
+public partial class {{ cap_name }}{{ suffix.us }} : ModuleRules
+{
+	partial void SetupLibrary_{{ platform }}(ReadOnlyTargetRules target)
+	{
+		// This is generated code, not intended to be modified
+		{{- for library in libraries }}
+		/*
+			Using {{ library.spec.name }} {{ library.spec.version }} {{ library.spec.features }}
+			{{ library.description }}
+
+			Current options:
+				{{ library.options }}
+
+			Library options help:
+				{{ library.options_help }}
+		*/
+
+		{{- for incl in library.include_paths }}
+		PublicIncludePaths.Add($"{ModuleDirectory}/LibraryFiles/{{ library.spec.name }}/Includes/{{ incl }}");
+		{{- end }}
+
+		{{- for incl in library.sys_include_paths }}
+		PublicSystemIncludePaths.Add($"{ModuleDirectory}/LibraryFiles/{{ library.spec.name }}/SysIncludes/{{ incl }}");
+		{{- end }}
+
+		{{- for lib in library.lib_files }}
+		PublicAdditionalLibraries.Add($"{ModuleDirectory}/LibraryFiles/{{ library.spec.name }}/Libs/{{ platform }}/{LibraryConfig}/{{ lib }}");
+		{{- end }}
+
+		{{- for lib in library.sys_libs }}
+		PublicSystemLibraries.Add("{{ lib }}");
+		{{- end }}
+
+		{{- for define in library.defines }}
+		PublicDefinitions.Add("{{ define }}");
+		{{- end }}
+		{{ end }}
+		PlatformSetup = true;
+	}
+}

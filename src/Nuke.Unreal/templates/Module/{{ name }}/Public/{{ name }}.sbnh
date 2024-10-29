@@ -4,8 +4,6 @@
 
 #include "Modules/ModuleManager.h"
 
-DECLARE_LOG_CATEGORY_EXTERN(Log{{ name }}, Log, All);
-
 class F{{ name }}Module : public IModuleInterface
 {
 public:

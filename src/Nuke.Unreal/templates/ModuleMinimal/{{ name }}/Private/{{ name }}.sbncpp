@@ -1,0 +1,7 @@
+// {{ copyright }}
+
+#include "Modules/ModuleManager.h"
+
+class F{{ name }}Module : public IModuleInterface {};
+
+IMPLEMENT_MODULE(F{{ name }}Module, {{ name }});

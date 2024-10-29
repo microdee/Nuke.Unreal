@@ -9,6 +9,8 @@ using Nuke.Common.Tools.Git;
 using Nuke.Unreal.Tools;
 using Nuke.Cola;
 using Nuke.Common.Utilities;
+using Nuke.Common.ProjectModel;
+using Serilog;
 
 namespace Nuke.Unreal
 {
@@ -56,8 +58,23 @@ namespace Nuke.Unreal
             .DependsOn(CleanProject)
             .DependsOn(CleanPlugins);
 
+        public virtual Target Prepare => _ => _
+            .Description(
+                """
+                Run necessary preparations which needs to be done before Unreal tools can handle
+                the project. By default it is empty and the main build project may override it or
+                other Targets can depend on it / hook into it.
+                """
+            );
+
         public virtual Target Generate => _ => _
-            .Description("Generate project files for the default IDE of the current platform (Visual Studio or XCode)")
+            .Description(
+                """
+                Generate project files for the default IDE of the current platform
+                (Visual Studio or XCode)
+                """
+            )
+            .DependsOn(Prepare)
             .Executes(() =>
             {
                 Unreal.BuildTool(this, _ => _
@@ -73,7 +90,11 @@ namespace Nuke.Unreal
             });
 
         public virtual Target BuildEditor => _ => _
-            .Description("Build the editor binaries so this project can be opened properly in the Unreal editor")
+            .Description(
+                """
+                Build the editor binaries so this project can be opened properly in the Unreal editor
+                """
+            )
             .Executes(() =>
             {
                 Unreal.BuildTool(this, _ => _
@@ -164,6 +185,32 @@ namespace Nuke.Unreal
                         .Append(UatArgs.AsArguments())
                     )("", workingDirectory: UnrealEnginePath);
                 });
+            });
+
+        public virtual Target EnsureBuildPluginSupport => _ => _
+            .Description(
+                """
+                Ensure support for plain C# build plugins without the need for CSX or dotnet projects.
+
+                This only needs to be done once, you can check the results into source control.
+                """
+            )
+            .Executes(() =>
+            {
+                var project = ProjectModelTasks.ParseProject(BuildProjectFile);
+                project.SkipEvaluation = true;
+                var compileItems = project.GetItems("Compile");
+                var pattern = "../**/*.nuke.cs";
+
+                if (BuildProjectFile.ReadAllText().Contains(pattern))
+                    Log.Debug("Build project already supports standalone C# build plugins.");
+                else
+                {
+                    Log.Information("Preparing build project to accept standalone C# files. {0}, in {1}", pattern, BuildProjectFile);
+                    project.AddItem("Compile", pattern);
+                    project.Save();
+                    Log.Information("This only needs to be done once, you can check the results into source control.");
+                }
             });
     }
 }

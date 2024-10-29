@@ -1,0 +1,21 @@
+{{- cap_name = spec.name | string.capitalize -}}
+// {{ copyright }}
+
+using UnrealBuildTool;
+
+public class {{ cap_name }}{{ suffix.us }} : ModuleRules
+{
+	public {{ cap_name }}{{ suffix.us }}(ReadOnlyTargetRules target) : base(target)
+	{
+		Type = ModuleType.External;
+		PublicIncludePaths.Add($"{ModuleDirectory}/Include");
+
+		var isDebug = target.Configuration == UnrealTargetConfiguration.Debug && target.bDebugBuildsActuallyUseDebugCRT;
+		var config = isDebug ? "Debug" : "Release";
+		
+		PublicAdditionalLibraries.AddRange(new []
+		{
+			$"{ModuleDirectory}/Lib/{target.Platform}/{config}/{{ spec.name }}.lib",
+		});
+	}
+}
