@@ -1,7 +1,5 @@
 link:
   - file: {{ string.capitalize spec.name }}.tp.yml
-  {{- for library in libraries }}
-  - dif: {{ library.spec.name }}
-  {{- end }}
+  - dif: LibraryFiles
 copy:
   - { file: {{ string.capitalize spec.name }}{{ suffix.us }}.build.cs, procContent: true }

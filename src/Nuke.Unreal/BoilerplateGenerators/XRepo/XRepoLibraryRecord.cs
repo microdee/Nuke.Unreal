@@ -13,6 +13,6 @@ public record XRepoLibraryRecord(
     IEnumerable<string> IncludePaths,
     IEnumerable<string> SysIncludePaths,
     IEnumerable<string> LibFiles,
-    IEnumerable<string> SysLinks,
+    IEnumerable<string> SysLibs,
     IEnumerable<string> Defines
 );

@@ -49,6 +49,7 @@ public static partial class XRepoLibrary
 
     internal static IEnumerable<XRepoLibraryRecord> InstallXRepoLibrary(UnrealBuild self, LibrarySpec spec, string options, AbsolutePath targetPath, bool debug)
     {
+        var libraryFiles = targetPath / "LibraryFiles";
         options = options.AppendNonEmpty(",") + (debug
             ? "runtimes='MDd'"
             : "runtimes='MD'"
@@ -115,17 +116,20 @@ public static partial class XRepoLibrary
                         ?? "",
                     IncludePaths: ProcessPaths(
                         i["fetchinfo"]!["includedirs"]?.Value,
-                        targetPath / currSpec.Name / "Includes"
+                        libraryFiles / currSpec.Name / "Includes"
                     ),
                     SysIncludePaths: ProcessPaths(
                         i["fetchinfo"]!["sysincludedirs"]?.Value,
-                        targetPath / currSpec.Name / "SysIncludes"
+                        libraryFiles / currSpec.Name / "SysIncludes"
                     ),
                     LibFiles: ProcessPaths(
                         i["fetchinfo"]!["libfiles"]?.Value,
-                        targetPath / currSpec.Name / "Libs" / self.Platform / (debug ? "Debug" : "Release")
+                        libraryFiles / currSpec.Name / "Libs" / self.Platform / (debug ? "Debug" : "Release")
                     ),
-                    SysLinks: i["fetchinfo"]!["syslinks"]?.Value?.Split(" ") ?? [],
+                    SysLibs: i["fetchinfo"]!["syslinks"]?.Value
+                        ?.Split(" ")
+                        ?.Select(l => self.Platform.IsWindows && !l.EndsWith(".lib") ? l + ".lib" : l)
+                        ?? [],
                     Defines: i["fetchinfo"]!["defines"]?.Value?.Split(" ") ?? []
                 );
             })
