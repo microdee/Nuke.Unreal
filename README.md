@@ -224,7 +224,7 @@ UBT on the other hand had a more disciplined and consistent approach for interpr
 
 ## Using third-party C++ libraries
 
-Nuke.Unreal allows you to set up boilerplate for C++ libraries, or fetch them via a package manager. There are three methods available:
+Nuke.Unreal allows you to set up boilerplate for C++ libraries, or fetch them via a package manager. In all cases the artifacts it generates are placed in the working directory (the current location of your terminal). There are three methods available:
 
 ### Use library from [xrepo](https://xrepo.xmake.io)
 
