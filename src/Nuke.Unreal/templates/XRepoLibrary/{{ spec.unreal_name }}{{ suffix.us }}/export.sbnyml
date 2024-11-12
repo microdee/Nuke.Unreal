@@ -2,4 +2,5 @@ link:
   - file: {{ spec.unreal_name }}.tp.yml
   - dif: LibraryFiles
 copy:
-  - { file: {{ spec.unreal_name }}{{ suffix.us }}.build.cs, procContent: true }
+  - { file: {{ spec.unreal_name }}{{ suffix.us }}.Build.cs, procContent: true }
+  - { file: {{ spec.unreal_name }}{{ suffix.us }}.*.Build.cs, procContent: true }
