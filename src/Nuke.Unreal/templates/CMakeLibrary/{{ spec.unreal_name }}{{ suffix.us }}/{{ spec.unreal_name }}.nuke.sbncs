@@ -1,4 +1,4 @@
-{{- cap_name = spec.name | string.capitalize -}}
+{{- cap_name = spec.unreal_name -}}
 // {{ copyright }}
 
 using Nuke.Common;

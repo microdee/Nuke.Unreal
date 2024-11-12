@@ -10,6 +10,7 @@ using Nuke.Cola;
 using System.Text.RegularExpressions;
 using Nuke.Unreal.BoilerplateGenerators.XRepo;
 using System.Collections.Generic;
+using Humanizer;
 
 namespace Nuke.Unreal.BoilerplateGenerators;
 
@@ -46,7 +47,9 @@ public record LibrarySpec(
     string? Provider = null,
     string? Options = null,
     string? Features = null
-);
+) {
+    public string UnrealName => Name.Pascalize();
+}
 
 public record SuffixRecord(string? Text, string? Us, string? Dot)
 {
