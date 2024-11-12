@@ -16,36 +16,40 @@ file static class ThisFile
 
 public class ConfigTests
 {
-    string MainConfig = @"
-[SimpleEntries]
-; This is a comment
-BoolEntry=True
-NumberEntry=1.000
-PlainStringEntry=They do unspeakable madness in here
-StringWithQuotes=""They do unspeakable madness in here""
-Struct=(Path=""foobar"", Name=""wizz"")
-Dictionary=((""Key"", ""Value""), (""Second"", ""Thing""))
-Collection=(1, 2, 3, 4)
-Empty=
+    string MainConfig =
+        """
+        [SimpleEntries]
+        ; This is a comment
+        BoolEntry=True
+        NumberEntry=1.000
+        PlainStringEntry=They do unspeakable madness in here
+        StringWithQuotes=""They do unspeakable madness in here""
+        Struct=(Path=""foobar"", Name=""wizz"")
+        Dictionary=((""Key"", ""Value""), (""Second"", ""Thing""))
+        Collection=(1, 2, 3, 4)
+        Empty=
 
-[Collections]
-+FooList=A
-+FooList=B
-+FooList=C
-+FooList=D
--FooList=E
--FooList=F";
+        [Collections]
+        +FooList=A
+        +FooList=B
+        +FooList=C
+        +FooList=D
+        -FooList=E
+        -FooList=F
+        """;
 
-    string OtherConfig = @"
-[SimpleEntries]
-Empty=nope
+    string OtherConfig =
+        """
+        [SimpleEntries]
+        Empty=nope
 
-[Collections]
--FooList=A
--FooList=B
+        [Collections]
+        -FooList=A
+        -FooList=B
 
-[NewSession]
-Foo=Bar";
+        [NewSession]
+        Foo=Bar
+        """;
 
     [Fact]
     public void Parse()
