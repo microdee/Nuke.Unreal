@@ -1,1 +1,2 @@
 LibraryFiles/
+{{ spec.unreal_name }}{{ suffix.us }}.*.Build.cs
