@@ -95,6 +95,7 @@ namespace Nuke.Unreal
                 Build the editor binaries so this project can be opened properly in the Unreal editor
                 """
             )
+            .After(Prepare)
             .Executes(() =>
             {
                 Unreal.BuildTool(this, _ => _
@@ -121,6 +122,7 @@ namespace Nuke.Unreal
         public virtual Target Build => _ => _
             .Description("Build this project for execution")
             .After(Cook) // Android needs Cook to happen before building the APK, so OBB files can be included in the APK
+            .After(Prepare)
             .Executes(() =>
             {
                 var targets = TargetType.Select(tt => tt == UnrealTargetType.Game

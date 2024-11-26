@@ -34,6 +34,7 @@ namespace Nuke.Unreal
             .DependsOn<UnrealBuild>(u => u.BuildEditor)
             .After<UnrealBuild>(u => u.CleanDeployment)
             .After<UnrealBuild>(u => u.Cook)
+            .After<UnrealBuild>(u => u.Prepare)
             .Executes(() =>
             {
                 var self = Self<UnrealBuild>();
