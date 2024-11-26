@@ -1,0 +1,322 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "definitions": {
+    "Host": {
+      "type": "string",
+      "enum": [
+        "AppVeyor",
+        "AzurePipelines",
+        "Bamboo",
+        "Bitbucket",
+        "Bitrise",
+        "GitHubActions",
+        "GitLab",
+        "Jenkins",
+        "Rider",
+        "SpaceAutomation",
+        "TeamCity",
+        "Terminal",
+        "TravisCI",
+        "VisualStudio",
+        "VSCode"
+      ]
+    },
+    "ExecutableTarget": {
+      "type": "string",
+      "enum": [
+        "AddCode",
+        "ApplySdkUserSettings",
+        "Build",
+        "BuildEditor",
+        "Checkout",
+        "Clean",
+        "CleanDeployment",
+        "CleanIntermediateAndroid",
+        "CleanPlugins",
+        "CleanProject",
+        "Cook",
+        "DebugOnAndroid",
+        "EnsureBuildPluginSupport",
+        "Generate",
+        "InstallOnAndroid",
+        "JavaDevelopmentService",
+        "MakeMarketplaceRelease",
+        "MakeRelease",
+        "NewActor",
+        "NewInterface",
+        "NewModule",
+        "NewObject",
+        "NewPlugin",
+        "NewSpec",
+        "NewStruct",
+        "Package",
+        "PackPlugin",
+        "Prepare",
+        "SignApk",
+        "UseCMake",
+        "UseHeaderOnly",
+        "UseLibrary",
+        "UseXRepo"
+      ]
+    },
+    "Verbosity": {
+      "type": "string",
+      "description": "",
+      "enum": [
+        "Verbose",
+        "Normal",
+        "Minimal",
+        "Quiet"
+      ]
+    },
+    "NukeBuild": {
+      "properties": {
+        "Continue": {
+          "type": "boolean",
+          "description": "Indicates to continue a previously failed build attempt"
+        },
+        "Help": {
+          "type": "boolean",
+          "description": "Shows the help text for this build assembly"
+        },
+        "Host": {
+          "description": "Host for execution. Default is 'automatic'",
+          "$ref": "#/definitions/Host"
+        },
+        "NoLogo": {
+          "type": "boolean",
+          "description": "Disables displaying the NUKE logo"
+        },
+        "Partition": {
+          "type": "string",
+          "description": "Partition to use on CI"
+        },
+        "Plan": {
+          "type": "boolean",
+          "description": "Shows the execution plan (HTML)"
+        },
+        "Profile": {
+          "type": "array",
+          "description": "Defines the profiles to load",
+          "items": {
+            "type": "string"
+          }
+        },
+        "Root": {
+          "type": "string",
+          "description": "Root directory during build execution"
+        },
+        "Skip": {
+          "type": "array",
+          "description": "List of targets to be skipped. Empty list skips all dependencies",
+          "items": {
+            "$ref": "#/definitions/ExecutableTarget"
+          }
+        },
+        "Target": {
+          "type": "array",
+          "description": "List of targets to be invoked. Default is '{default_target}'",
+          "items": {
+            "$ref": "#/definitions/ExecutableTarget"
+          }
+        },
+        "Verbosity": {
+          "description": "Logging verbosity during build execution. Default is 'Normal'",
+          "$ref": "#/definitions/Verbosity"
+        }
+      }
+    }
+  },
+  "allOf": [
+    {
+      "properties": {
+        "AddToTarget": {
+          "type": "boolean",
+          "description": "Explicitly add new module to project target"
+        },
+        "AndroidAppName": {
+          "type": "string",
+          "description": "Specify the full qualified android app name"
+        },
+        "AndroidBuildToolVersion": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "description": "Specify version of the Android build tools to use. Latest will be used by default, or when the specified version is not found",
+          "format": "int32"
+        },
+        "AndroidCpu": {
+          "type": "string",
+          "description": "Processor architecture of your target hardware",
+          "enum": [
+            "Arm",
+            "Arm64",
+            "X86",
+            "X86_64"
+          ]
+        },
+        "AndroidJavaPath": {
+          "type": "string",
+          "description": "Absolute path to Android Java. If not specified a local cache will be used. If that doesn't exist the global user settings will be used"
+        },
+        "AndroidNdkApiLevel": {
+          "type": "string",
+          "description": "If not specified a local cache will be used. If that doesn't exist the global user settings will be used"
+        },
+        "AndroidNdkVersion": {
+          "type": "string",
+          "description": "Android NDK version or path. If not specified a local cache will be used. If that doesn't exist the global user settings will be used"
+        },
+        "AndroidNoUninstall": {
+          "type": "boolean",
+          "description": "Processor architecture of your target hardware"
+        },
+        "AndroidSdkApiLevel": {
+          "type": "string",
+          "description": "If not specified a local cache will be used. If that doesn't exist the global user settings will be used"
+        },
+        "AndroidSdkPath": {
+          "type": "string",
+          "description": "Android SDK version or path. If not specified a local cache will be used. If that doesn't exist the global user settings will be used"
+        },
+        "AndroidTextureMode": {
+          "type": "array",
+          "description": "Select texture compression mode for Android",
+          "items": {
+            "type": "string",
+            "enum": [
+              "ASTC",
+              "DXT",
+              "ETC2",
+              "Multi"
+            ]
+          }
+        },
+        "Config": {
+          "type": "array",
+          "description": "The target configuration for building or packaging the project",
+          "items": {
+            "type": "string",
+            "enum": [
+              "Debug",
+              "DebugGame",
+              "Development",
+              "Shipping",
+              "Test"
+            ]
+          }
+        },
+        "CustomEnginePath": {
+          "type": "string",
+          "description": "Specify a path to a custom engine version (eg.: built from source)"
+        },
+        "EditorConfig": {
+          "type": "array",
+          "description": "The editor configuration to be used while building or packaging the project",
+          "items": {
+            "type": "string",
+            "enum": [
+              "Debug",
+              "DebugGame",
+              "Development",
+              "Shipping",
+              "Test"
+            ]
+          }
+        },
+        "ForMarketplace": {
+          "type": "boolean",
+          "description": "Make marketplace compliant archives"
+        },
+        "LibraryType": {
+          "type": "string",
+          "description": "Specify the type of the third-party library being imported:\r\n    `Header`: header only C++ library which doesn't need extra preparation\r\n     `CMake`: generates an extra nuke target which prepares the CMake library to be used\r\n              and distributed in Unreal.\r\n     `XRepo`: generates an extra nuke target which then installs the library on\r\n              preparation via the xrepo package manager. The library for a specific\r\n              platform will be available when running Prepare<library>, Prepare or\r\n              Generate targets",
+          "enum": [
+            "CMake",
+            "Header",
+            "XRepo"
+          ]
+        },
+        "Name": {
+          "type": "array",
+          "description": "Name parameter for boilerplate generators",
+          "items": {
+            "type": "string"
+          }
+        },
+        "Output": {
+          "type": "string",
+          "description": "Specify the output working directory for artifacts"
+        },
+        "Platform": {
+          "type": "string",
+          "description": "Set platform for running targets",
+          "enum": [
+            "Android",
+            "HoloLens",
+            "IOS",
+            "Linux",
+            "LinuxArm64",
+            "Mac",
+            "Platforms",
+            "TVOS",
+            "VisionOS",
+            "Win32",
+            "Win64"
+          ]
+        },
+        "Spec": {
+          "type": "array",
+          "description": "Specification(s) of the imported library(ies). This is used slightly differently based\r\non which library type is being used:\r\n\r\n    Header / CMake: It's only the name of the library (like --spec spdlog)\r\n\r\n             XRepo: specify the xrepo package reference and its config separated by\r\n                    space. For example:\r\n                    --spec \"zlib\"\r\n                    --spec \"zlib 1.2.x\"\r\n                    --spec \"boost regex=true,thread=true\"\r\n                    --spec \"imgui 1.91.1 freetype=true\"\r\n\r\n                    Use VCPKG via XRepo, note that specifying an explicit version is\r\n                    not supported in VCPKG (bug in xrepo?)\r\n                    --spec \"vcpkg::spdlog\"\r\n\r\n                    VCPKG features are supported\r\n                    --spec \"vcpkg::spdlog[wchar]\"\r\n\r\n                    Use Conan via XRepo (note version is required and delimited with /)\r\n                    --spec \"conan::zlib/1.2.11\"\r\n\r\n                    And of course multiple libraries can be used in one go\r\n                    --spec \"imgui 1.91.1 freetype=true\" \"conan::zlib/1.2.11\" \"vcpkg::spdlog[wchar]\" <etc...>\r\n\r\n                    More about xrepo: https://xrepo.xmake.io\r\n                    NOTE: since Unreal uses MD runtime linkage `runtimes='MD'` config is\r\n                    always appended by Nuke.Unreal, and the user must not specify it",
+          "items": {
+            "type": "string"
+          }
+        },
+        "Suffix": {
+          "type": "string",
+          "description": "Some boilerplate generators allows to define an extra suffix for names depending on\r\ntheir use case. For example `NewLibrary` can use the plain `Name` for library folder\r\nstructure and `Name_MySuffix` for module names (when `Suffix` is set to `MySuffix`)"
+        },
+        "TargetType": {
+          "type": "array",
+          "description": "The Unreal target type for building the project",
+          "items": {
+            "type": "string",
+            "enum": [
+              "Client",
+              "Editor",
+              "Game",
+              "Program",
+              "Server"
+            ]
+          }
+        },
+        "TemplatesPath": {
+          "type": "string",
+          "description": "Specify a folder containing generator specific folders for Scriban scaffolding and\r\ntemplates. If left empty the templates coming with Nuke.Unreal will be used"
+        },
+        "UatArgs": {
+          "type": "array",
+          "description": "Extra arguments passed to UAT. It's recommended to use it only from command line, do not\r\noverride",
+          "items": {
+            "type": "string"
+          }
+        },
+        "UbtArgs": {
+          "type": "array",
+          "description": "Extra arguments passed to UBT. It's recommended to use it only from command line, do not\r\noverride",
+          "items": {
+            "type": "string"
+          }
+        },
+        "UnrealVersion": {
+          "type": "string",
+          "description": "Specify the target Unreal Engine version. By default only used by the Checkout target.\r\nEverything else should infer engine version from the project file"
+        }
+      }
+    },
+    {
+      "$ref": "#/definitions/NukeBuild"
+    }
+  ]
+}
