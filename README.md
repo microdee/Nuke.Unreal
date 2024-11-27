@@ -51,6 +51,7 @@ Simplistic workflow for automating Unreal Engine project tasks embracing [Nuke](
     - [make-release](#make-release)
     - [pack-plugin](#pack-plugin)
     - [make-marketplace-release](#make-marketplace-release)
+- [Articles](#articles)
 
 
 # Usage
@@ -621,3 +622,8 @@ Prepare a Marketplace complaint archive from the plugin. This yields zip archive
     * This will be deprecated in the future and express the same intention with just the target execution graph
   * `--platform` default is current development platform
   * `--output` default is `<project root>/Intermediate/Output`
+
+# Articles
+
+* [Nuke.Unreal 2.1](https://mcro.de/c/log/nuke-unreal-2-1)
+* [Nuke.Unreal 1.2](https://mcro.de/c/log/nuke-unreal-1-2)
