@@ -272,12 +272,17 @@ namespace Nuke.Unreal
 
         Target ApplySdkUserSettings => _ => _
             .Description(
-                "For some cursed reason Epic decided to store crucial project breaking build settings"
-                + " in a user scoped shared location (AppData/Local). This target attempts to make"
-                + " it less shared info, so one project compilation doesn't break the other one."
+                """
+                For some cursed reason Epic decided to store crucial project breaking build settings
+                in a user scoped shared location (AppData/Local). This target attempts to make
+                it less shared info, so one project compilation doesn't break the other one.
+                """
             )
             .OnlyWhenStatic(() => IsAndroidPlatform())
-            .DependentFor<UnrealBuild>(ub => ub.Build, ub => ub.Cook)
+            .DependentFor<UnrealBuild>(
+                u => u.Build,
+                u => u.Cook
+            )
             .DependentFor<IPackageTargets>(p => p.Package)
             .Executes(() =>
             {
@@ -380,8 +385,10 @@ namespace Nuke.Unreal
 
         Target InstallOnAndroid => _ => _
             .Description(
-                "Package and install the product on a connected android device."
-                + " Only executed when target-platform is set to Android"
+                """
+                Package and install the product on a connected android device.
+                Only executed when target-platform is set to Android
+                """
             )
             .OnlyWhenStatic(() => IsAndroidPlatform())
             .After<IPackageTargets>(p => p.Package)
@@ -455,9 +462,11 @@ namespace Nuke.Unreal
 
         Target DebugOnAndroid => _ => _
             .Description(
-                "Launch the product on android but wait for debugger."
-                + " This requires ADB to be in your PATH and NDK to be correctly configured."
-                + " Only executed when target-platform is set to Android"
+                """
+                Launch the product on android but wait for debugger.
+                This requires ADB to be in your PATH and NDK to be correctly configured.
+                Only executed when target-platform is set to Android
+                """
             )
             .OnlyWhenStatic(() => IsAndroidPlatform())
             .After(InstallOnAndroid)

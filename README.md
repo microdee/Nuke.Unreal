@@ -27,6 +27,30 @@ Simplistic workflow for automating Unreal Engine project tasks embracing [Nuke](
   - [Unreal boilerplate templates](#unreal-boilerplate-templates)
     - [Use your own templates](#use-your-own-templates)
 - [Custom UBT or UAT arguments from command line](#custom-ubt-or-uat-arguments-from-command-line)
+- [Targets](#targets)
+  - [Global targets (UnrealBuild)](#global-targets-unrealbuild)
+    - [prepare](#prepare)
+    - [generate](#generate)
+    - [build-editor](#build-editor)
+    - [build](#build)
+    - [cook](#cook)
+    - [clean](#clean)
+    - [ensure-build-plugin-support](#ensure-build-plugin-support)
+  - [UnrealBuild.Templating](#unrealbuildtemplating)
+  - [Packaging (IPackageTargets)](#packaging-ipackagetargets)
+    - [package](#package)
+  - [Targeting Android (IAndroidTargets)](#targeting-android-iandroidtargets)
+    - [apply-sdk-user-settings](#apply-sdk-user-settings)
+    - [clean-intermediate-android](#clean-intermediate-android)
+    - [sign-apk](#sign-apk)
+    - [install-on-android](#install-on-android)
+    - [debug-on-android](#debug-on-android)
+    - [java-development-service](#java-development-service)
+  - [Plugin development (IPluginTargets)](#plugin-development-iplugintargets)
+    - [checkout](#checkout)
+    - [make-release](#make-release)
+    - [pack-plugin](#pack-plugin)
+    - [make-marketplace-release](#make-marketplace-release)
 
 
 # Usage
@@ -94,6 +118,7 @@ public class Build : UnrealBuild
   > nuke build --config Shipping
   > nuke build --config DebugGame Development --target-type Game --platform Android
   ```
+* Unreal engine location is automatically determined (on Windows at least)
 * Prepare plugins for release in Marketplace
   ```
   > nuke make-release --for-marketplace
@@ -339,3 +364,260 @@ This is especially useful for doing temporary debugging with UBT and the compile
 > nuke build ... --ubt-args ~LinkerArguments=/VERBOSE
 > nuke build ... --ubt-args ~Preprocess
 ```
+
+# Targets
+
+In Nuke (and consequently in Nuke.Unreal) a target is a delegate which can build a dependency execution graph with other targets. Nuke's main selling point is how these targets allow complex build compositions and how that can be controlled via command line or profile files.
+
+![](docs/plan.png)
+
+Nuke.Unreal provides couple of universally useful targets associated with regular chores regarding Unreal Engine development. The above figure shows all convenience targets available and their relationship to each other. This also includes optional targets (coming from `IPackageTargets`, `IPluginTargets` and `IAndroidTargets`)
+
+> [!NOTE]
+> All parameters specified here are optional and have a "sensible" default, unless they're marked required.
+
+## Global targets (UnrealBuild)
+
+They're available for all project types just from using `UnrealBuild` as base class (`UnrealBuild.Targets.cs` or `UnrealBuild.Templating.cs`).
+
+* Plans:
+  * [ ] TODO: `run` target which allows to run any Unreal program from the version associated with the project with arbitrary command line arguments.
+
+### prepare
+Run necessary preparations which needs to be done before Unreal tools can handle the project. By default it is empty and the main build project may override it or other Targets can depend on it / hook into it. For example the generated Nuke targets made by `use-cmake` or `use-xrepo` are dependent for `prepare`
+
+### generate
+
+Generate project files for the default IDE of the current platform (i.e.: Visual Studio or XCode). It is equivalent to right clicking the uproject and selecting "Generate _IDE_ project files".
+
+* Graph:
+  * Depends on [`prepare`](#prepare)
+* Plans:
+  * [ ] TODO: Provide more arguments for how the project is generated
+
+### build-editor
+
+Shorthand for building the editor for current platform.
+
+* Parameters:
+  * `--editor-config` default is `developnment`
+* Graph:
+  * After [`prepare`](#prepare)
+
+### build
+
+Uses UBT to build one of the main project targets (Game, Editor, Client, Server).
+
+* Parameters:
+  * `--config` default is `development`
+  * `--target-type` default is `game`
+  * `--platform` default is current development platform
+  * `--ubt-args` see [Custom UBT or UAT arguments from command line](#custom-ubt-or-uat-arguments-from-command-line)
+* Graph:
+  * After [`cook`](#cook)
+  * After [`prepare`](#prepare)
+
+### cook
+
+Cook Unreal assets for standalone game execution with UAT.
+
+* Parameters:
+  * `--config` default is `development`
+  * `--platform` default is current development platform
+  * `--uat-args` see [Custom UBT or UAT arguments from command line](#custom-ubt-or-uat-arguments-from-command-line)
+  * from [`IAndroidTargets`](#targeting-android-iandroidtargets)
+    * `--android-texture-mode` default is `multi`
+* Graph:
+  * Depends on [`build-editor`](#build-editor)
+
+### clean
+
+Removes auto generated folders of Unreal Engine
+
+* Graph:
+  * Depends on:
+    * `clean-project`
+    * `clean-plugins`
+  * Related to `clean-deployment`
+* Plans:
+  * [ ] TODO: it may be too aggressive, use rather UAT?
+
+### ensure-build-plugin-support
+
+Ensure support for plain C# build plugins without the need for CSX or dotnet projects. This only needs to be done once and you can check the results into source control. It will modify the main Nuke project itself, see [Additional Plugin Targets](#additional-plugin-targets) or [`[ImplicitBuildInterface]` plugins of Nuke.Cola](https://github.com/microdee/md.Nuke.Cola?tab=readme-ov-file#implicitbuildinterface-plugins)
+
+If you used the [remote script install method](#install-via-remote-script) then you don't need to run this target as it's already configured for you.
+
+## UnrealBuild.Templating
+
+These targets are used as a development aid for generating boilerplates. See [Using third-party C++ libraries](#using-third-party-c-libraries) and [Unreal boilerplate templates](#unreal-boilerplate-templates) for full explanation. Because those sections explain in detail how to use boilerplate generator targets, they will be only listed here:
+
+```
+new-module      --name ...
+add-code        --name ...
+new-plugin      --name ...
+new-actor       --name ...
+new-interface   --name ...
+new-object      --name ...
+new-struct      --name ...
+new-spec        --name ...
+use-library     --spec ... --library-type ...
+use-xrepo       --spec ...
+use-cmake       --spec ...
+use-header-only --spec ...
+```
+
+Only special mention is `use-library` which is not recommended to be used manually, use either one of `use-xrepo`, `use-cmake` or `use-header-only`. `use-library` expects an extra `--library-type` which the former targets already fill in.
+
+## Packaging (IPackageTargets)
+
+### package
+
+Package the project for distribution. Same as packaging the project from the editor.
+
+* Parameters:
+  * `--config` default is `development`
+  * `--editor-config` default is `development`
+  * `--platform` default is current development platform
+  * `--output` default is `<project root>/Intermediate/Output`
+  * `--uat-args` see [Custom UBT or UAT arguments from command line](#custom-ubt-or-uat-arguments-from-command-line)
+  * from [`IAndroidTargets`](#targeting-android-iandroidtargets)
+    * `--android-texture-mode` default is `multi`
+* Graph:
+  * Depends on [`build-editor`](#build-editor)
+  * After
+    * `clean-deployment`
+    * [`cook`](#cook)
+    * [`prepare`](#prepare)
+
+## Targeting Android (IAndroidTargets)
+
+* Plans
+  * [ ] TODO: Android targets require some tidy-up and "nicer" interaction with SDK managers (both from the Android SDK Manager and Epic's AutoSDK). Some of the targets are still experimental and probably won't lose that status in the forseeable future
+
+### apply-sdk-user-settings
+
+Epic in their infinite wisdom decided to store crucial project breaking build settings in a user scoped shared location (AppData/Local on Windows). This target attempts to make it less shared info, so one project compilation doesn't break the other one if they use different Engine versions and if these settings are not solidified in `*Engine.ini`.
+
+* Parameters:
+  * the default for all of these are determined from engine version and the current user configuration. SDK and NDK versions and API levels can be simple numbers.
+  * `--android-build-tool-version`
+  * `--android-sdk-path`
+  * `--android-ndk-version`
+  * `--android-java-path`
+  * `--adnroid-sdk-api-level`
+  * `--adnroid-ndk-api-level`
+* Graph:
+  * Dependent for
+    * [`build`](#build)
+    * [`cook`](#cook)
+    * from [`IPackageTargets`](#packaging-ipackagetargets)
+      * [`package`](#package)
+
+### clean-intermediate-android
+
+During Android development workflows involving debugging Unreal programs with the generated Gradle project in Android Studio, or developing Java files, Android Studio may modify the generated Gradle project caches in a way that is unexpected for Unreal tools and which may fail in consequent builds. This target clears only the intermediate files generated for Android tooling to avoid such scenario.
+
+This target hooks itself into package and build targets so it's very rare that it has to be executed manually.
+
+* Graph:
+  * Dependent for
+    * [`build`](#build)
+    * from [`IPackageTargets`](#packaging-ipackagetargets)
+      * [`package`](#package)
+
+### sign-apk
+
+In some cases UAT or UBT fails to sign the generated APK with the data provided from `[/Script/AndroidRuntimeSettings.AndroidRuntimeSettings]` @ `*Engine.ini`, so this target does that manually directly using the Android tooling.
+
+* Parameters:
+  * the default for all of these are determined from engine version and the current user configuration. SDK and NDK versions and API levels can be simple numbers.
+  * `--android-build-tool-version`
+* Graph:
+  * Triggered by [`package`](#package)
+  * After [`build`](#build)
+  * Before
+    * [`install-on-android`](#install-on-android)
+    * [`debug-on-android`](#debug-on-android)
+
+### install-on-android
+
+Install the result of packaging or build on a connected android device, same as the "install APK" generated batch files, but more robust. This may provide an alternative to "Launch on device" feature available in Editor but for cases when for some cursed reason that is not supported by the project, or for cases when a bug only happens in distributed or almost distributed builds.
+
+> [!WARNING]
+> Assumes ADB is in PATH
+
+* Parameters:
+  * the default for all of these are determined from engine version and the current user configuration. SDK and NDK versions and API levels can be simple numbers.
+  * `--android-build-tool-version`
+* Graph:
+  * After
+    * [`package`](#package)
+    * [`build`](#build)
+
+### debug-on-android
+
+Run this project on a connected Android device from the result of packaging or build with the ActivityManager. This may provide an alternative to "Launch on device" feature available in Editor but for cases when for some cursed reason that is not supported by the project, or for cases when a bug only happens in distributed or almost distributed builds.
+
+> [!WARNING]
+> Assumes ADB is in PATH
+
+* Graph:
+  * After [`install-on-android`](#install-on-android)
+
+### java-development-service
+
+> [!CAUTION]
+> This is highly experimental and only developed for specific cases, but with ambitious intents.
+
+This was an attempt to sync Java files copied into the generated Gradle project back to their original source whenever they're changed. At the moment this is very experimental, may not cover all edge cases, and if I ever return to this problem, I'll rewrite this to use symlinks instead which is set up by another target which needs to be run only once (instead of this acting as a file-system watcher service).
+
+## Plugin development (IPluginTargets)
+
+> [!CAUTION]
+> This is highly experimental and only developed for specific cases, but with ambitious intents. This entire section can be different in future versions.
+
+* Plans:
+  * This build component will have a lot of changes in the foreseeable future which will allow to better prepare plugins for distribution.
+
+### checkout
+
+Switch to the specified Unreal Engine version and platform for plugin development. A CI/CD can call nuke with this target multiple times to deploy the plugin for multiple engine versions.
+
+* Overrides:
+  * `IPluginTargets.PluginPath { get; }` if multiple plugins are present in development project
+* Parameters:
+  * `--unreal-version` **REQUIRED**
+* Graph:
+  * Depends on [`clean`](#clean)
+
+### make-release
+
+Convenience target triggering [`pack-plugin`](#pack-plugin) and [`make-marketplace-release`](#make-marketplace-release).
+
+### pack-plugin
+
+Make a pre-built release of the plugin and archive it into a zip file ready to be distributed.
+
+* Overrides:
+  * `IPluginTargets.PluginVersion { get; }`
+  * `IPluginTargets.PluginPath { get; }` if multiple plugins are present in development project
+* Parameters:
+  * `--platform` default is current development platform
+  * `--output` default is `<project root>/Intermediate/Output`
+  * `--uat-args` see [Custom UBT or UAT arguments from command line]
+* Graph:
+  * After `clean-deployment`
+
+### make-marketplace-release
+
+Prepare a Marketplace complaint archive from the plugin. This yields zip archives in the deployment path, which can then be linked for ~~marketplace~~/Fab.
+
+> [!IMPORTANT]
+> Because Unreal Marketplace is no longer a thing, this will be probably renamed to `make-fab-release` in the future.
+
+* Parameters:
+  * `--for-marketplace` **REQUIRED** switch
+    * This will be deprecated in the future and express the same intention with just the target execution graph
+  * `--platform` default is current development platform
+  * `--output` default is `<project root>/Intermediate/Output`

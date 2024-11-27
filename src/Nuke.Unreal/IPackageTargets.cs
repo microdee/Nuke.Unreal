@@ -32,9 +32,11 @@ namespace Nuke.Unreal
         Target Package => _ => _
             .Description("Same as running Package Project from Editor")
             .DependsOn<UnrealBuild>(u => u.BuildEditor)
-            .After<UnrealBuild>(u => u.CleanDeployment)
-            .After<UnrealBuild>(u => u.Cook)
-            .After<UnrealBuild>(u => u.Prepare)
+            .After<UnrealBuild>(
+                u => u.CleanDeployment,
+                u => u.Cook,
+                u => u.Prepare
+            )
             .Executes(() =>
             {
                 var self = Self<UnrealBuild>();
