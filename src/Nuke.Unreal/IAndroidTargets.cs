@@ -153,7 +153,7 @@ namespace Nuke.Unreal
     }
 
     [ParameterPrefix("Android")]
-    public interface IAndroidTargets : INukeBuild
+    public partial interface IAndroidTargets : INukeBuild
     {
         T Self<T>() where T : INukeBuild => (T)(object)this;
         bool IsAndroidPlatform() => Self<UnrealBuild>().Platform == UnrealPlatform.Android;
@@ -161,7 +161,7 @@ namespace Nuke.Unreal
         [Parameter("Select texture compression mode for Android")]
         AndroidCookFlavor[] TextureMode
             => TryGetValue(() => TextureMode)
-            ?? new [] {AndroidCookFlavor.Multi};
+            ?? [ AndroidCookFlavor.Multi ];
 
         string GetAppNameFromConfig()
         {
@@ -485,10 +485,11 @@ namespace Nuke.Unreal
             Console.SetCursorPosition(Left, Top);
         }
 
-        private static readonly Regex ComponentFromPathRegex = new Regex(@"/(?:org|com|extensions?)/.*$", RegexOptions.Multiline | RegexOptions.IgnoreCase);
+        [GeneratedRegex(@"/(?:org|com|extensions?)/.*$", RegexOptions.IgnoreCase | RegexOptions.Multiline, "en-GB")]
+        private static partial Regex ComponentFromPathRegex();
 
         private static string? GetComponentFromPath(AbsolutePath path) =>
-            ComponentFromPathRegex.Match(path.ToString().Replace('\\', '/'))?.Value;
+            ComponentFromPathRegex().Match(path.ToString().Replace('\\', '/'))?.Value;
 
         private static bool ArePathsSharingComponents(AbsolutePath a, AbsolutePath b)
         {

@@ -41,7 +41,7 @@ namespace Nuke.Unreal
             {
                 var self = Self<UnrealBuild>();
                 var androidTextureMode = SelfAs<IAndroidTargets>()?.TextureMode
-                    ?? new [] { AndroidCookFlavor.Multi };
+                    ?? [ AndroidCookFlavor.Multi ];
 
                 var isAndroidPlatform = self.Platform == UnrealPlatform.Android;
                 var appLocalDir = self.UnrealEnginePath / "Engine" / "Binaries" / "ThirdParty" / "AppLocalDependencies";

@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Nuke.Common.Tooling;
 using Nuke.Common.Utilities;
 using Serilog;
 
@@ -11,7 +12,7 @@ namespace Nuke.Unreal.Tools;
 /// The base class for generated strongly typed tool configurators providing base
 /// functionalities like argument and subtool management
 /// </summary>
-public abstract class ToolConfig
+public abstract class ToolConfig : Options
 {
     /// <summary>
     /// The C# friendly name of the tool which will be used inside configurators
@@ -30,10 +31,10 @@ public abstract class ToolConfig
     /// </summary>
     public abstract UnrealCompatibility Compatibility { get; }
     
-    protected List<UnrealToolArgument> UsingArguments = new();
-    protected readonly Dictionary<string, ToolConfig> UsingSubtools = new();
+    protected List<UnrealToolArgument> UsingArguments = [];
+    protected readonly Dictionary<string, ToolConfig> UsingSubtools = [];
 
-    protected virtual ToolConfig[] Configs => Array.Empty<ToolConfig>();
+    protected virtual ToolConfig[] Configs => [];
 
     public virtual void AppendArgument(UnrealToolArgument arg)
     {

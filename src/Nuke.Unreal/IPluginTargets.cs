@@ -19,7 +19,7 @@ namespace Nuke.Unreal
 {
     public class PluginCache
     {
-        public static readonly Dictionary<IPluginTargets, PluginCache> Instances = new();
+        public static readonly Dictionary<IPluginTargets, PluginCache> Instances = [];
         
         public AbsolutePath? PluginPath;
         public JObject? PluginObject;
