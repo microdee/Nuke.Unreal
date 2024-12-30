@@ -193,18 +193,18 @@ namespace Nuke.Unreal
             (folder / "DerivedDataCache").DeleteDirectory();
         }
 
-        public static string? ReadCopyrightFromProject(AbsolutePath projectFolder)
+        public static string ReadCopyrightFromProject(AbsolutePath projectFolder)
         {
             var configPath = projectFolder / "Config" / "DefaultGame.ini";
-            if(!File.Exists(configPath)) return null;
+            if(!File.Exists(configPath)) return "Fill in Copyright info...";
 
             var crLine = File.ReadAllLines(configPath)
                 .FirstOrDefault(l => l.StartsWith("CopyrightNotice="));
             
-            if(string.IsNullOrWhiteSpace(crLine)) return null;
+            if(string.IsNullOrWhiteSpace(crLine)) return "Fill in Copyright info...";
 
             var crEntry = crLine.Split('=', 2, StringSplitOptions.TrimEntries);
-            if(crEntry.Length < 2) return null;
+            if(crEntry.Length < 2) return "Fill in Copyright info...";
 
             return crEntry[1];
         }

@@ -218,6 +218,7 @@ namespace Nuke.Unreal
                     { 
                         Log.Information("Preparing library {0}", n);
                         new LibraryGenerator().Generate(
+                            this,
                             TemplatesPath,
                             EnvironmentInfo.WorkingDirectory,
                             n, LibraryType!, Suffix

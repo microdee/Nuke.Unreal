@@ -19,9 +19,9 @@ public static partial class XRepoLibrary
         ^
         (?<SPEC>
             (?:(?<PROVIDER>\w+)\:\:)?
-            (?<NAME>[\w\.]+)
+            (?<NAME>[\w\-\.]+)
             (?:\[
-                (?<FEATURES>[\w-,]+)
+                (?<FEATURES>[\w\-,]+)
             \])?
             (?:[\s\/-]
                 (?<VERSION>[0-9\.x#]+)

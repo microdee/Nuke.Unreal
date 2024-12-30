@@ -26,14 +26,14 @@
             // Use IntelliSense to find out which attributes exist for C# debugging
             // Use hover for the description of the existing attributes
             // For further information visit https://github.com/OmniSharp/omnisharp-vscode/blob/master/debugger-launchjson.md
-            "name": "Test Nuke UE 5.3",
+            "name": "Test Nuke UE 5.5",
             "type": "coreclr",
             "request": "launch",
-            "preLaunchTask": "build-ue_5_3-test",
+            "preLaunchTask": "build-ue_5_5-test",
             // If you have changed target frameworks, make sure to update the program path.
-            "program": "${workspaceFolder}/tests/UE_5.3/Packaging/Nuke.Targets/bin/Debug/Nuke.Targets.dll",
-            "args": ["prepare-imgui"],
-            "cwd": "${workspaceFolder}/tests/UE_5.3/Packaging/Source",
+            "program": "${workspaceFolder}/tests/UE_5.5/Packaging/Nuke.Targets/bin/Debug/Nuke.Targets.dll",
+            "args": ["use-xrepo", "--spec", "yaml-cpp 0.8.0", "--suffix Origin"],
+            "cwd": "${workspaceFolder}/tests/UE_5.5/Packaging/Source/ThirdParty",
             // For more information about the 'console' field, see https://aka.ms/VSCode-CS-LaunchJson-Console
             "console": "internalConsole",
             "stopAtEntry": false

@@ -34,8 +34,8 @@ public partial class {{ cap_name }}{{ suffix.us }} : ModuleRules
 		{
 			throw new Exception(
 				$"{{ spec.name }} was not set up for {target.Platform}."
-				+ $"\n Did you install the library for {target.Platform}?"
-				+ $"\nnuke Prepare{{ cap_name }} --platform {target.Platform}"
+				+ $"\n Did you install the library for {target.Platform}? Run:"
+				+ $"\n > nuke Prepare{{ cap_name }} --platform {target.Platform}"
 			);
 		}
 	}

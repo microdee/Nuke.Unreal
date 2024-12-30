@@ -22,12 +22,12 @@
             ]
         },
         {
-            "label": "build-ue_5_3-test",
+            "label": "build-ue_5_5-test",
             "command": "dotnet",
             "type": "process",
             "args": [
                 "build",
-                "${workspaceFolder}/tests/UE_5.3/Packaging/Nuke.Targets/Nuke.Targets.csproj",
+                "${workspaceFolder}/tests/UE_5.5/Packaging/Nuke.Targets/Nuke.Targets.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ]

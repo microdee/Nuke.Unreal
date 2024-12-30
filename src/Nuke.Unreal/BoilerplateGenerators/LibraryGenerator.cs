@@ -48,7 +48,10 @@ public record LibrarySpec(
     string? Options = null,
     string? Features = null
 ) {
-    public string UnrealName => Name.Pascalize();
+    public string UnrealName => Name
+        .Replace("-", "_")
+        .Replace(".", "_")
+        .Pascalize();
 }
 
 public record SuffixRecord(string? Text, string? Us, string? Dot)
@@ -67,9 +70,9 @@ public class LibraryGenerator : BoilerplateGenerator
 {
     protected LibraryModel? Model;
 
-    public void Generate(AbsolutePath templatesPath, AbsolutePath currentFolder, string fullSpec, LibraryType libraryType, string? suffix)
+    public void Generate(UnrealBuild build, AbsolutePath templatesPath, AbsolutePath currentFolder, string fullSpec, LibraryType libraryType, string? suffix)
     {
-        var project = new UnrealProject(currentFolder);
+        var project = new UnrealProject(build);
         var spec = libraryType.ParseSpec(fullSpec);
         Model = new(
             Spec: spec,
