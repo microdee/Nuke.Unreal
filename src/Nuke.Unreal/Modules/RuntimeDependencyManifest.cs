@@ -3,40 +3,30 @@ using System.Collections.Generic;
 using Nuke.Common;
 using System.Xml.Serialization;
 using System.IO;
+using System.Linq;
 using Nuke.Common.IO;
 using Nuke.Common.Tooling;
 
 namespace Nuke.Unreal.Modules;
 
-/// <summary>
-/// List of either runtime dependency files or delay-loaded DLL filenames, separated by configuration
-/// </summary>
-public class RuntimeDependencyPlatformList
+public class RuntimeDependency
 {
-    public List<string> Release = new();
-    public List<string> Debug = new();
+    [XmlText]
+    string Value = "";
+
+    [XmlAttribute]
+    string? Platform;
+
+    [XmlAttribute]
+    string? Config;
 };
 
-/// <summary>
-/// List of runtime dependency files relative to the root of an Unreal plugin which then can be
-/// read by a module rule to work with.
-/// </summary>
-/// <remarks>
-/// XML serialization is done in this fashion because Unreal Module rules must not depend on other
-/// data structures than what .NET provides out of the box.
-/// </remarks>
 public class RuntimeDependencies
 {
-    /// <summary>
-    /// List of runtime dependency files relative to the root of an Unreal plugin which then can be
-    /// read by a module rule to work with. Separated for each platform.
-    /// </summary>
-    public Dictionary<string, RuntimeDependencyPlatformList> FileDependencies = new();
-
-    /// <summary>
-    /// List of DLL file names for PublicDelayLoadDLLs, separated for each platform.
-    /// </summary>
-    public Dictionary<string, RuntimeDependencyPlatformList> DllDependencies = new();
+    [XmlElement]
+    public RuntimeDependency[] RuntimeLibraryPath = [];
+    public RuntimeDependency[] Files = [];
+    public RuntimeDependency[] Dlls = [];
 
     public void Serialize(TextWriter writer)
     {
