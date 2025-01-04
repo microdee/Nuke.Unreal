@@ -35,22 +35,28 @@ namespace Nuke.Unreal
         public static readonly UnrealPlatform Win64 = new()
         {
             Value = nameof(Win64),
-            Flag = UnrealPlatformFlag.Win64
+            Flag = UnrealPlatformFlag.Win64,
+            DllExtension = "dll"
         };
         public static readonly UnrealPlatform Win32 = new()
         {
             Value = nameof(Win32),
-            Flag = UnrealPlatformFlag.Win32
+            Flag = UnrealPlatformFlag.Win32,
+            Compatibility = UnrealCompatibility.UE_4,
+            DllExtension = "dll",
         };
         public static readonly UnrealPlatform HoloLens = new()
         {
             Value = nameof(HoloLens),
-            Flag = UnrealPlatformFlag.HoloLens
+            Flag = UnrealPlatformFlag.HoloLens,
+            Compatibility = UnrealCompatibility.UE_4,
+            DllExtension = "dll",
         };
         public static readonly UnrealPlatform Mac = new()
         {
             Value = nameof(Mac),
-            Flag = UnrealPlatformFlag.Mac
+            Flag = UnrealPlatformFlag.Mac,
+            DllExtension = "dylib",
         };
         public static readonly UnrealPlatform Linux = new()
         {
@@ -70,17 +76,21 @@ namespace Nuke.Unreal
         public static readonly UnrealPlatform IOS = new()
         {
             Value = nameof(IOS),
-            Flag = UnrealPlatformFlag.IOS
+            Flag = UnrealPlatformFlag.IOS,
+            DllExtension = "dylib",
         };
         public static readonly UnrealPlatform TVOS = new()
         {
             Value = nameof(TVOS),
-            Flag = UnrealPlatformFlag.TVOS
+            Flag = UnrealPlatformFlag.TVOS,
+            DllExtension = "dylib",
         };
         public static readonly UnrealPlatform VisionOS = new()
         {
             Value = nameof(VisionOS),
-            Flag = UnrealPlatformFlag.VisionOS
+            Flag = UnrealPlatformFlag.VisionOS,
+            Compatibility = UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+            DllExtension = "dylib",
         };
 
         public static UnrealPlatform FromFlag(UnrealPlatformFlag flag)
@@ -111,10 +121,12 @@ namespace Nuke.Unreal
             Android,
             IOS,
             TVOS,
-            // VisionOS, // TODO: associate platforms with supported versions of Unreal
+            VisionOS,
         ];
 
         public UnrealPlatformFlag Flag { get; private set; } = UnrealPlatformFlag.Win64;
+        public UnrealCompatibility Compatibility { get; private set; } = UnrealCompatibility.All;
+        public string DllExtension { get; private set; } = "so";
 
         public bool IsDesktop => (Flag & UnrealPlatformFlag.AllDesktop) > 0;
         public bool IsLinux => (Flag & UnrealPlatformFlag.AllLinux) > 0;
