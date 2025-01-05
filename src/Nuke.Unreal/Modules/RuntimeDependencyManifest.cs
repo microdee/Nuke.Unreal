@@ -12,13 +12,13 @@ namespace Nuke.Unreal.Modules;
 public class RuntimeDependency
 {
     [XmlText]
-    string Value = "";
+    public string Value = "";
 
     [XmlAttribute]
-    string? Platform;
+    public string? Platform;
 
     [XmlAttribute]
-    string? Config;
+    public string? Config;
 };
 
 public class RuntimeDependencies
