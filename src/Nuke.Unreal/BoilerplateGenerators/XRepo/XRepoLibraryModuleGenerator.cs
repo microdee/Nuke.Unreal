@@ -6,6 +6,7 @@ using Nuke.Cola;
 using Nuke.Cola.Tooling;
 using Nuke.Common.IO;
 using Nuke.Common.Utilities;
+using Nuke.Common.Utilities.Collections;
 
 namespace Nuke.Unreal.BoilerplateGenerators.XRepo;
 
@@ -14,7 +15,8 @@ public record XRepoLibraryModuleModel(
     UnrealPlatform Platform,
     string? Copyright,
     SuffixRecord Suffix,
-    IEnumerable<XRepoLibraryRecord> Libraries
+    IEnumerable<XRepoLibraryRecord> Libraries,
+    bool HeaderOnly
 ) : CommonModelBase(Spec.Name, Copyright);
 
 public class XRepoLibraryModuleGenerator : BoilerplateGenerator
@@ -29,14 +31,20 @@ public class XRepoLibraryModuleGenerator : BoilerplateGenerator
             Platform: platform,
             Copyright: Unreal.ReadCopyrightFromProject(project.Folder!),
             Suffix: new(suffix),
-            Libraries: libraries
+            Libraries: libraries,
+            HeaderOnly: libraries.SelectMany(l => l.LibFiles.Concat(l.SysLibs)).IsEmpty()
         );
 
         var templateSubFolder = "XRepoLibraryModule";
-        if(!(templatesPath / templateSubFolder).DirectoryExists())
+        if (!(templatesPath / templateSubFolder).DirectoryExists())
             templatesPath = DefaultTemplateFolder;
         
         var templateDir = templatesPath / templateSubFolder;
         RenderFolder(templateDir, currentFolder, Model);
+        if (Model.HeaderOnly)
+        {
+            var redundantPlatformModuleFile = $"{spec.UnrealName}{Model.Suffix.Us}.{platform}.Build.cs";
+            (currentFolder / redundantPlatformModuleFile).DeleteFile();
+        }
     }
 }
