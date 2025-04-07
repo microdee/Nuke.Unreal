@@ -8,6 +8,7 @@ public partial class {{ cap_name }}{{ suffix.us }} : ModuleRules
 {
 	bool IsDebug;
 	bool PlatformSetup = false;
+	bool IncludesSetup = false;
 	string LibraryConfig;
 	string LibraryPlatform;
 
@@ -25,12 +26,15 @@ public partial class {{ cap_name }}{{ suffix.us }} : ModuleRules
 
 		// Write user defined setup here
 
+		// Set up library headers
+		SetupLibrary_Includes(target);
+
 		// Optional platform specific library setup:
 		{{ for plat in platforms }}
 		if (target.Platform == UnrealTargetPlatform.{{ plat }})
 			SetupLibrary_{{ plat }}(target);
 		{{ end }}
-		if (!PlatformSetup)
+		if (!PlatformSetup || !IncludesSetup)
 		{
 			throw new Exception(
 				$"{{ spec.name }} was not set up for {target.Platform}."
@@ -39,6 +43,8 @@ public partial class {{ cap_name }}{{ suffix.us }} : ModuleRules
 			);
 		}
 	}
+	
+	partial void SetupLibrary_Includes(ReadOnlyTargetRules target);
 
 	{{- for plat in platforms }}
 	partial void SetupLibrary_{{ plat }}(ReadOnlyTargetRules target);

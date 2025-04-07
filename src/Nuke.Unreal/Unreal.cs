@@ -1,22 +1,14 @@
 using System;
-using System.Text.RegularExpressions;
 using System.Linq;
 using System.IO;
 using System.Collections.Generic;
-using Nuke.Common;
 using Nuke.Common.IO;
 using System.Runtime.InteropServices;
 using Nuke.Common.Tooling;
-using System.Reflection;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using Serilog;
-
-using static Nuke.Common.IO.FileSystemTasks;
-using Nuke.Common.Utilities;
 using System.Text;
 using Nuke.Unreal.Tools;
-using Nuke.Cola;
 using Nuke.Cola.Tooling;
 
 namespace Nuke.Unreal
