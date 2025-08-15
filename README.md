@@ -26,15 +26,22 @@ Simplistic workflow for automating Unreal Engine project tasks embracing [Nuke](
     - [Use header only library](#use-header-only-library)
   - [Unreal boilerplate templates](#unreal-boilerplate-templates)
     - [Use your own templates](#use-your-own-templates)
-- [Custom UBT or UAT arguments from command line](#custom-ubt-or-uat-arguments-from-command-line)
+- [Passing command line arguments to Unreal tools](#passing-command-line-arguments-to-unreal-tools)
+  - [Custom UBT or UAT arguments](#custom-ubt-or-uat-arguments)
 - [Targets](#targets)
   - [Global targets (UnrealBuild)](#global-targets-unrealbuild)
+    - [info](#info)
+    - [switch](#switch)
     - [prepare](#prepare)
     - [generate](#generate)
     - [build-editor](#build-editor)
     - [build](#build)
     - [cook](#cook)
     - [clean](#clean)
+    - [run](#run)
+    - [run-uat](#run-uat)
+    - [run-ubt](#run-ubt)
+    - [run-shell](#run-shell)
     - [ensure-build-plugin-support](#ensure-build-plugin-support)
   - [UnrealBuild.Templating](#unrealbuildtemplating)
   - [Packaging (IPackageTargets)](#packaging-ipackagetargets)
@@ -120,9 +127,12 @@ public class Build : UnrealBuild
   > nuke build --config DebugGame Development --target-type Game --platform Android
   ```
 * Unreal engine location is automatically determined (on Windows at least)
-* Prepare plugins for release in Marketplace
+* Execute Unreal tools without the need to navigate to their location
   ```
-  > nuke make-release --for-marketplace
+  > nuke run-uat --> <args...>
+  > nuke run-ubt --> <args...>
+  > nuke run-shell
+  > nuke run --tool editor-cmd --> <args...>
   ```
 * Install C++ libraries (using [xrepo](https://xrepo.xmake.io))
   ```
@@ -139,6 +149,7 @@ public class Build : UnrealBuild
     ```
 * Generated C# configurators for Unreal tools with gathered documentation. (UBT and UAT)
 * Pluggable way to define targets for reusable plugins and modules
+* Prepare Unreal Plugins for distribution
 
 # Setting up for a project
 
@@ -353,17 +364,36 @@ public override AbsolutePath TemplatesPath { get; set; } = RootDirectory / "MyTe
 
 This way Actor and Object generators will have their project specific Scriban templates but the remaining generator types will use the default templates of Nuke.Unreal.
 
-# Custom UBT or UAT arguments from command line
+# Passing command line arguments to Unreal tools
 
-Nuke.Unreal supports passing custom arguments to UBT or UAT via `--ubt-args` or `--uat-args`. These are regular array properties exposed as Nuke target parameters. This means however that doing `--ubt-args -DisableUnity` wouldn't actually add `-DisableUnity` to the argument list. This happens because Nuke stops parsing the array argument when it hits a `-` character. For this reason Nuke.Unreal has a special escape mechanism where `~-` is replaced with `-`, or if the argument starts with `~` then that's also replaced with a `-`.
+In some targets Nuke.Unreal allows to pass custom command line arguments for Unreal tools. This is only necessary for advanced use cases, and for prototyping. In almost all cases once a workflow is developed with these custom arguments it is recommended to solidify them into a custom target, or use the plathera of customization and modularization points Nuke.Unreal offers.
 
-So doing `--ubt-args ~DisableUnity ~2022` will correctly pass arguments `-DisableUnity -2022` to UBT.
+Command line arguments are passed with the `-->` sequence, anything after such sequence will be passed directly to tools. This is dubbed as "argument blocks". The precise usage of them depends on the specific target being used. Multiple argument blocks can be named and used by targets. A block ends when another one starts or when it's the end of the command line input.
+
+In all cases Nuke.Unreal provides some variables so the user don't need to repeat long paths. These variables are replaced at any position of the text of any argument. These variables are:
+
+```
+   ~p - Absolute path of the .uproject file
+~pdir - Absolute folder containing the .uproject file
+  ~ue - Absolute path to the engine root
+```
+
+For example
+
+```
+> nuke run --tool editor-cmd --> ~p -run=MyCommandlet
+UnrealEditor-Cmd.exe C:\Projects\Personal\MyProject\MyProject.uproject -run=MyCommandlet
+```
+
+## Custom UBT or UAT arguments
+
+When invoking common tasks Nuke.Unreal supports passing extra custom arguments to UBT or UAT via `-->ubt` or `-->uat`. Anything passed behaind these or in-between these will be passed to their respective tool.
 
 This is especially useful for doing temporary debugging with UBT and the compiler: (not an actual usecase)
 ```
-> nuke build ... --ubt-args "~CompilerArguments='/diagnostics:caret /P /C'" ~DisableUnity
-> nuke build ... --ubt-args ~LinkerArguments=/VERBOSE
-> nuke build ... --ubt-args ~Preprocess
+> nuke build ... -->ubt -CompilerArguments="/diagnostics:caret /P /C" -DisableUnity
+> nuke build ... -->ubt -LinkerArguments=/VERBOSE
+> nuke build ... -->ubt -Preprocess
 ```
 
 # Targets
@@ -381,8 +411,24 @@ Nuke.Unreal provides couple of universally useful targets associated with regula
 
 They're available for all project types just from using `UnrealBuild` as base class (`UnrealBuild.Targets.cs` or `UnrealBuild.Templating.cs`).
 
-* Plans:
-  * [ ] TODO: `run` target which allows to run any Unreal program from the version associated with the project with arbitrary command line arguments.
+### info
+
+Prints curated information about project.
+
+### switch
+
+Switch to the specified Unreal Engine version and platform. A CI/CD can call nuke with this target multiple times to deploy plugins for multiple engine versions for example.
+
+* Parameters:
+  * `--unreal` **REQUIRED**
+    * Can be simple version name like `5.5`, a GUID associated with engine location or an absolute path to engine root.
+* Graph:
+  * Depends on [`clean`](#clean)
+  * Before [prepare](#prepare)
+  * Before [generate](#generate)
+  * Before [buildEditor](#buildEditor)
+  * Before [build](#build)
+  * Before [cook](#cook)
 
 ### prepare
 Run necessary preparations which needs to be done before Unreal tools can handle the project. By default it is empty and the main build project may override it or other Targets can depend on it / hook into it. For example the generated Nuke targets made by `use-cmake` or `use-xrepo` are dependent for `prepare`
@@ -413,7 +459,8 @@ Uses UBT to build one of the main project targets (Game, Editor, Client, Server)
   * `--config` default is `development`
   * `--target-type` default is `game`
   * `--platform` default is current development platform
-  * `--ubt-args` see [Custom UBT or UAT arguments from command line](#custom-ubt-or-uat-arguments-from-command-line)
+* Argument blocks:
+  * `-->ubt` see [Custom UBT or UAT arguments](#custom-ubt-or-uat-arguments)
 * Graph:
   * After [`cook`](#cook)
   * After [`prepare`](#prepare)
@@ -425,9 +472,10 @@ Cook Unreal assets for standalone game execution with UAT.
 * Parameters:
   * `--config` default is `development`
   * `--platform` default is current development platform
-  * `--uat-args` see [Custom UBT or UAT arguments from command line](#custom-ubt-or-uat-arguments-from-command-line)
   * from [`IAndroidTargets`](#targeting-android-iandroidtargets)
     * `--android-texture-mode` default is `multi`
+* Argument blocks:
+  * `-->uat` see [Custom UBT or UAT arguments](#custom-ubt-or-uat-arguments)
 * Graph:
   * Depends on [`build-editor`](#build-editor)
 
@@ -442,6 +490,44 @@ Removes auto generated folders of Unreal Engine
   * Related to `clean-deployment`
 * Plans:
   * [ ] TODO: it may be too aggressive, use rather UAT?
+
+### run
+
+Run an Unreal tool from the engine binaries folder. You can omit the `Unreal` prefix and the extension. For example:
+
+```
+> nuke run --tool pak --> ./Path/To/MyProject.pak -Extract "D:/temp"
+> nuke run --tool editor-cmd --> ~p -run=MyCommandlet
+```
+
+Working directory is the project folder, regardless of actual working directory.
+
+* Parameters:
+  * `--tool`
+* Argument blocks:
+  * `-->` see [Passing command line arguments to Unreal tools](#passing-command-line-arguments-to-unreal-tools)
+
+### run-uat
+
+Simply run UAT with arguments passed after `-->`
+
+* Parameters:
+  * `--ignore-global-args`
+* Argument blocks:
+  * `-->` see [Passing command line arguments to Unreal tools](#passing-command-line-arguments-to-unreal-tools)
+
+### run-ubt
+
+Simply run UBT with arguments passed after `-->`
+
+* Parameters:
+  * `--ignore-global-args`
+* Argument blocks:
+  * `-->` see [Passing command line arguments to Unreal tools](#passing-command-line-arguments-to-unreal-tools)
+
+### run-shell
+
+Create console window with a [UShell](https://dev.epicgames.com/documentation/en-us/unreal-engine/how-to-use-ushell-for-unreal-engine) session. Only fully supported after UE 5.5
 
 ### ensure-build-plugin-support
 
@@ -480,10 +566,11 @@ Package the project for distribution. Same as packaging the project from the edi
   * `--config` default is `development`
   * `--editor-config` default is `development`
   * `--platform` default is current development platform
-  * `--output` default is `<project root>/Intermediate/Output`
-  * `--uat-args` see [Custom UBT or UAT arguments from command line](#custom-ubt-or-uat-arguments-from-command-line)
+  * `--output` default is `<project root>/Intermediate/Output`(#custom-ubt-or-uat-arguments)
   * from [`IAndroidTargets`](#targeting-android-iandroidtargets)
     * `--android-texture-mode` default is `multi`
+* Argument blocks:
+  * `-->uat` see [Custom UBT or UAT arguments](#custom-ubt-or-uat-arguments)
 * Graph:
   * Depends on [`build-editor`](#build-editor)
   * After
@@ -588,7 +675,7 @@ Switch to the specified Unreal Engine version and platform for plugin developmen
 * Overrides:
   * `IPluginTargets.PluginPath { get; }` if multiple plugins are present in development project
 * Parameters:
-  * `--unreal-version` **REQUIRED**
+  * `--unreal` **REQUIRED**
 * Graph:
   * Depends on [`clean`](#clean)
 
@@ -606,7 +693,8 @@ Make a pre-built release of the plugin and archive it into a zip file ready to b
 * Parameters:
   * `--platform` default is current development platform
   * `--output` default is `<project root>/Intermediate/Output`
-  * `--uat-args` see [Custom UBT or UAT arguments from command line]
+* Argument blocks:
+  * `-->uat` see [Custom UBT or UAT arguments](#custom-ubt-or-uat-arguments)
 * Graph:
   * After `clean-deployment`
 
@@ -625,5 +713,6 @@ Prepare a Marketplace complaint archive from the plugin. This yields zip archive
 
 # Articles
 
+* [Nuke.Unreal 2.2](https://mcro.de/c/log/nuke-unreal-2-2)
 * [Nuke.Unreal 2.1](https://mcro.de/c/log/nuke-unreal-2-1)
 * [Nuke.Unreal 1.2](https://mcro.de/c/log/nuke-unreal-1-2)
