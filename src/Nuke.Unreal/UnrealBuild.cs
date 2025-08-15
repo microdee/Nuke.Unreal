@@ -29,21 +29,10 @@ namespace Nuke.Unreal
             """
             Specify the target Unreal Engine version. By default only used by the Checkout target.
             Everything else should infer engine version from the project file.
-            """
+            """,
+            Name = "unreal"
         )]
         public virtual string? UnrealVersion { get; set; }
-
-        [Parameter("Specify a path to a custom engine version (eg.: built from source)")]
-        public virtual AbsolutePath? CustomEnginePath { get; set; } = null;
-        
-        protected override void OnBuildInitialized()
-        {
-            base.OnBuildInitialized();
-            if(CustomEnginePath != null)
-            {
-                Unreal.EnginePathOverride = CustomEnginePath;
-            }
-        }
         
         [Parameter("Specify the output working directory for artifacts")]
         public AbsolutePath? Output;
@@ -54,15 +43,13 @@ namespace Nuke.Unreal
         public virtual UnrealPlatform Platform { get; set; } = UnrealPlatform.FromFlag(Unreal.GetDefaultPlatform());
 
         [Parameter("The target configuration for building or packaging the project")]
-        public virtual UnrealConfig[] Config { get; set; } = new [] {UnrealConfig.Development};
+        public virtual UnrealConfig[] Config { get; set; } = [UnrealConfig.Development];
 
         [Parameter("The editor configuration to be used while building or packaging the project")]
-        public virtual UnrealConfig[] EditorConfig { get; set; } = new [] {UnrealConfig.Development};
+        public virtual UnrealConfig[] EditorConfig { get; set; } = [UnrealConfig.Development];
 
         [Parameter("The Unreal target type for building the project")]
-        public virtual UnrealTargetType[] TargetType { get; set; } = new [] {UnrealTargetType.Game};
-
-        public EngineVersion ManualEngineVersion => new(UnrealVersion ?? "0.0", CustomEnginePath);
+        public virtual UnrealTargetType[] TargetType { get; set; } = [UnrealTargetType.Game];
 
         [Parameter(
             """
@@ -86,12 +73,17 @@ namespace Nuke.Unreal
         )]
         public virtual string[] UatArgs { get; set; } = Array.Empty<string>();
 
-        public EngineVersion GetEngineVersionFromProject() {
-            var result = (ProjectObject["EngineVersionPatch"] ?? ProjectObject["EngineAssociation"])?.ToString();
-            if(!EngineVersion.ValidVersionString(result))
-                return ManualEngineVersion;
-            
-            return new(result!, CustomEnginePath);
+        private EngineVersion? EngineVersionCache = null;
+        
+        public EngineVersion GetEngineVersionFromProject()
+        {
+            if (EngineVersionCache == null)
+            {
+                var versionString = UnrealVersion ?? ProjectObject["EngineAssociation"]?.ToString();
+                Assert.NotNull(versionString, "Unreal Engine version couldn't be determined");
+                EngineVersionCache = new(versionString!);
+            }
+            return EngineVersionCache!;
         }
 
         public AbsolutePath UnrealEnginePath => Unreal.GetEnginePath(GetEngineVersionFromProject());

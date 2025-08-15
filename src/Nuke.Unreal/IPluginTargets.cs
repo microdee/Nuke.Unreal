@@ -92,7 +92,7 @@ namespace Nuke.Unreal
 
                 Log.Information($"Checking out targeting UE {self.UnrealVersion} on platform {self.Platform}");
 
-                PluginObject["EngineVersion"] = self.ManualEngineVersion.VersionName;
+                PluginObject["EngineVersion"] = Unreal.Version(self).VersionName;
                 PluginObject["VersionName"] = PluginVersion;
 
                 foreach (var module in PluginObject["Modules"] ?? Enumerable.Empty<JToken>())
@@ -102,8 +102,7 @@ namespace Nuke.Unreal
 
                 Unreal.WriteJson(PluginObject, PluginPath);
 
-                self.ProjectObject["EngineAssociation"] = self.ManualEngineVersion.EngineAssociation;
-                self.ProjectObject["EngineVersionPatch"] = self.ManualEngineVersion.FullVersionName;
+                self.ProjectObject["EngineAssociation"] = Unreal.Version(self).ExtendedVersionName;
                 Unreal.WriteJson(self.ProjectObject, self.ProjectPath);
             });
 
