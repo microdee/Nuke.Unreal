@@ -88,7 +88,8 @@ class Build : NukeBuild, IPublishNugets
                 new("5.2", UnrealCompatibility.UE_5_2),
                 new("5.3", UnrealCompatibility.UE_5_3),
                 new("5.4", UnrealCompatibility.UE_5_4),
-                new("5.5", UnrealCompatibility.UE_5_Latest),
+                new("5.5", UnrealCompatibility.UE_5_5),
+                new("5.6", UnrealCompatibility.UE_5_Latest),
             };
             new UbtGeneratorFromSource().Generate(this, engines);
             new UatGenerator().Generate(this, engines);
