@@ -11,6 +11,7 @@ using Nuke.Cola;
 using Nuke.Common.Utilities;
 using Nuke.Common.ProjectModel;
 using Serilog;
+using System.Runtime.InteropServices;
 
 namespace Nuke.Unreal
 {
@@ -227,6 +228,47 @@ namespace Nuke.Unreal
                     project.Save();
                     Log.Information("This only needs to be done once, you can check the results into source control.");
                 }
+            });
+
+        [Parameter("Do not use globally applicable UBT/UAT arguments with run-uat/run-ubt")]
+        public bool IgnoreGlobalArgs = false;
+
+        public virtual Target RunUat => _ => _
+            .Description("Simply run UAT with arguments passed after `-->`")
+            .Executes(() =>
+            {
+                Unreal.AutomationTool(this, _ => _
+                    .Append(Arguments.GetBlock())
+                    .If(!IgnoreGlobalArgs, _ => _.Apply(UatGlobal))
+                );
+            });
+
+        public virtual Target RunUbt => _ => _
+            .Description("Simply run UBT with arguments passed after `-->`")
+            .Executes(() =>
+            {
+                Unreal.BuildTool(this, _ => _
+                    .Append(Arguments.GetBlock())
+                    .If(!IgnoreGlobalArgs, _ => _.Apply(UbtGlobal))
+                )("", workingDirectory: UnrealEnginePath);
+            });
+
+        public virtual Target RunShell => _ => _
+            .Description(
+                """
+                Start a UShell session. This opens a new console window, and nuke will exit
+                immadiately
+                """
+            )
+            .Executes(() =>
+            {
+                var ushellDir = Unreal.GetEnginePath(this) / "Engine" / "Extras" / "ushell";
+                var scriptExt = RuntimeInformation.IsOSPlatform(OSPlatform.Windows) ? "bat" : "sh";
+                var ushellScript = ushellDir / ("ushell." + scriptExt);
+                Common.Tooling.ProcessTasks.StartShell(
+                    ushellScript,
+                    ProjectFolder
+                );
             });
     }
 }
