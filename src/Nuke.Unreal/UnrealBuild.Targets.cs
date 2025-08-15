@@ -30,24 +30,24 @@ namespace Nuke.Unreal
             {
                 void recurseBody(AbsolutePath path)
                 {
-                    if(Glob.Files(path, "*.uplugin", GlobOptions.CaseInsensitive).Any())
+                    if (Glob.Files(path, "*.uplugin", GlobOptions.CaseInsensitive).Any())
                     {
                         Unreal.ClearFolder(path);
-                        if((path / ".git").DirectoryExists() || (path / ".git").FileExists())
+                        if ((path / ".git").DirectoryExists() || (path / ".git").FileExists())
                             GitTasks.Git("clean -xdf", path);
                     }
                     else
                     {
-                        if((path / ".git").DirectoryExists() || (path / ".git").FileExists())
+                        if ((path / ".git").DirectoryExists() || (path / ".git").FileExists())
                             GitTasks.Git("clean -xdf", path);
-                        foreach(var dir in Directory.EnumerateDirectories(path))
+                        foreach (var dir in Directory.EnumerateDirectories(path))
                         {
                             recurseBody((AbsolutePath)dir);
                         }
                     }
                 }
 
-                foreach(var pluginDir in Directory.EnumerateDirectories(PluginsFolder))
+                foreach (var pluginDir in Directory.EnumerateDirectories(PluginsFolder))
                 {
                     recurseBody((AbsolutePath)pluginDir);
                 }
@@ -98,7 +98,7 @@ namespace Nuke.Unreal
                         .Engine()
                     )
                     .Progress()
-                    .Append(UbtArgs.AsArguments())
+                    .Append(Arguments.GetBlock("ubt"))
                 )("");
             });
 
@@ -122,13 +122,13 @@ namespace Nuke.Unreal
                         .Target(
                             "ShaderCompileWorker",
                             UnrealPlatform.FromFlag(Unreal.GetDefaultPlatform()),
-                            new [] { UnrealConfig.Development }
+                            [UnrealConfig.Development]
                         )
                         .Quiet()
                     )
                     .FromMsBuild()
                     .Apply(UbtGlobal)
-                    .Append(UbtArgs.AsArguments())
+                    .Append(Arguments.GetBlock("ubt"))
                 )("");
             });
 
@@ -148,7 +148,7 @@ namespace Nuke.Unreal
                     )
                     .Project(ProjectPath)
                     .Apply(UbtGlobal)
-                    .Append(UbtArgs.AsArguments())
+                    .Append(Arguments.GetBlock("ubt"))
                 )("");
             });
 
@@ -170,7 +170,7 @@ namespace Nuke.Unreal
             .Executes(() =>
             {
                 var isAndroidPlatform = Platform == UnrealPlatform.Android;
-                
+
                 var androidTextureMode = SelfAs<IAndroidTargets>()?.TextureMode
                     ?? [AndroidCookFlavor.Multi];
 
@@ -195,9 +195,10 @@ namespace Nuke.Unreal
                         .If(isAndroidPlatform, _ => _
                             .Cookflavor(androidTextureMode)
                         )
+                        .UbtArgs(Arguments.GetBlock("ubt").JoinSpace())
                         .Apply(UatCook)
                         .Apply(UatGlobal)
-                        .Append(UatArgs.AsArguments())
+                        .Append(Arguments.GetBlock("uat"))
                     )("", workingDirectory: UnrealEnginePath);
                 });
             });

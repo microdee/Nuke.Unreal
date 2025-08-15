@@ -10,10 +10,10 @@ using Newtonsoft.Json.Linq;
 using Nuke.Common;
 using Nuke.Common.Utilities.Collections;
 using Nuke.Unreal.Tools;
-using Nuke.Common.Tooling;
+using Nuke.Cola;
+using Nuke.Common.Utilities;
 
 using static Nuke.Common.IO.PathConstruction;
-using Nuke.Cola;
 
 namespace Nuke.Unreal
 {
@@ -76,10 +76,11 @@ namespace Nuke.Unreal
                         .If(isAndroidPlatform, _ => _
                             .Cookflavor(androidTextureMode)
                         )
+                        .UbtArgs(Arguments.GetBlock("ubt").JoinSpace())
                         .Apply(UatPackage)
                         .Apply(self.UatCook)
                         .Apply(self.UatGlobal)
-                        .Append(self.UatArgs.AsArguments())
+                        .Append(Arguments.GetBlock("uat"))
                     )("", workingDirectory: self.UnrealEnginePath);
                 });
             });

@@ -8,9 +8,9 @@ using Newtonsoft.Json.Linq;
 using Nuke.Common;
 using System.Collections.Generic;
 using Nuke.Unreal.Tools;
-using Nuke.Common.Tooling;
 using Nuke.Cola;
 using System.Linq;
+using Nuke.Common.Utilities;
 
 namespace Nuke.Unreal
 {
@@ -144,9 +144,10 @@ namespace Nuke.Unreal
                         .NoDeleteHostProject()
                         .Unversioned()
                     )
+                    .UbtArgs(Arguments.GetBlock("ubt").JoinSpace())
                     .Apply(UatPackPlugin)
                     .Apply(self.UatGlobal)
-                    .Append(self.UatArgs.AsArguments())
+                    .Append(Arguments.GetBlock("uat"))
                 )("");
                 hostProjectDir.DeleteDirectory();
 

@@ -52,28 +52,12 @@ namespace Nuke.Unreal
 
         [Parameter("The Unreal target type for building the project")]
         public virtual UnrealTargetType[] TargetType { get; set; } = [UnrealTargetType.Game];
-
-        [Parameter(
-            """
-            Extra arguments passed to UBT. It's recommended to use it only from command line, do not
-            override.
-            """
-        )]
-        public virtual string[] UbtArgs { get; set; } = Array.Empty<string>();
         
         public virtual UbtConfig UbtGlobal(UbtConfig _) => _
             .WaitMutex();
         public virtual UatConfig UatGlobal(UatConfig _) => _
             .UTF8Output()
             .NoP4();
-
-        [Parameter(
-            """
-            Extra arguments passed to UAT. It's recommended to use it only from command line, do not
-            override.
-            """
-        )]
-        public virtual string[] UatArgs { get; set; } = Array.Empty<string>();
 
         private EngineVersion? _engineVersionCache = null;
         
