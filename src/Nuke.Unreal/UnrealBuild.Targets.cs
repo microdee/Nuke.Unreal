@@ -58,6 +58,19 @@ namespace Nuke.Unreal
             .DependsOn(CleanProject)
             .DependsOn(CleanPlugins);
 
+        public virtual Target Switch => _ => _
+            .Description("Switch to an explicit Engine version")
+            .DependsOn(Clean)
+            .Before(Prepare, Generate, BuildEditor, Build, Cook)
+            .Requires(() => UnrealVersion)
+            .Executes(() =>
+            {
+                Log.Information($"Targeting Unreal Engine {UnrealVersion} on platform {Platform}");
+                Unreal.InvalidateEnginePathCache();
+                ProjectObject["EngineAssociation"] = UnrealVersion;
+                Unreal.WriteJson(ProjectObject, ProjectPath);
+            });
+
         public virtual Target Prepare => _ => _
             .Description(
                 """

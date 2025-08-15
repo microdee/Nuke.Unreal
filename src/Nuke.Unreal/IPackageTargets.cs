@@ -35,7 +35,8 @@ namespace Nuke.Unreal
             .After<UnrealBuild>(
                 u => u.CleanDeployment,
                 u => u.Cook,
-                u => u.Prepare
+                u => u.Prepare,
+                u => u.Switch
             )
             .Executes(() =>
             {

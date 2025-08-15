@@ -27,8 +27,10 @@ namespace Nuke.Unreal
         /// </summary>
         [Parameter(
             """
-            Specify the target Unreal Engine version. By default only used by the Checkout target.
+            Specify the target Unreal Engine version. It's used only for the Switch target.
             Everything else should infer engine version from the project file.
+            Can be simple version name like `5.5`, a GUID associated with engine location or an
+            absolute path to engine root.
             """,
             Name = "unreal"
         )]
@@ -73,20 +75,20 @@ namespace Nuke.Unreal
         )]
         public virtual string[] UatArgs { get; set; } = Array.Empty<string>();
 
-        private EngineVersion? EngineVersionCache = null;
+        private EngineVersion? _engineVersionCache = null;
         
         public EngineVersion GetEngineVersionFromProject()
         {
-            if (EngineVersionCache == null)
+            if (_engineVersionCache == null)
             {
                 var versionString = UnrealVersion ?? ProjectObject["EngineAssociation"]?.ToString();
                 Assert.NotNull(versionString, "Unreal Engine version couldn't be determined");
-                EngineVersionCache = new(versionString!);
+                _engineVersionCache = new(versionString!);
             }
-            return EngineVersionCache!;
+            return _engineVersionCache!;
         }
 
-        public AbsolutePath UnrealEnginePath => Unreal.GetEnginePath(GetEngineVersionFromProject());
+        public AbsolutePath UnrealEnginePath => Unreal.GetEnginePath(this);
         
         public ConfigIni ReadIniHierarchy(
             string shortName,
