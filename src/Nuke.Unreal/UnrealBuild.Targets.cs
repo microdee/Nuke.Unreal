@@ -17,6 +17,10 @@ namespace Nuke.Unreal
 {
     public abstract partial class UnrealBuild : NukeBuild
     {
+        public virtual Target Info => _ => _
+            .Description("Prints curated information about project")
+            .Executes(PrintInfo);
+            
         public virtual Target CleanDeployment => _ => _
             .Description("Removes previous deployment folder")
             .Executes(() => GetOutput().DeleteDirectory());

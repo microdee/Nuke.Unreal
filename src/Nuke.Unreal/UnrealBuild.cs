@@ -8,6 +8,7 @@ using Nuke.Common.IO;
 using Nuke.Common.Utilities;
 using Nuke.Unreal.Ini;
 using Nuke.Unreal.Tools;
+using Serilog;
 
 public enum IniHierarchyLevel
 {
@@ -74,6 +75,16 @@ namespace Nuke.Unreal
         }
 
         public AbsolutePath UnrealEnginePath => Unreal.GetEnginePath(this);
+
+        public virtual void PrintInfo()
+        {
+            var unrealVersion = GetEngineVersionFromProject();
+            Log.Information("Project name:        {0}", ProjectPath.NameWithoutExtension);
+            Log.Information("Unreal version:      {0}", unrealVersion.VersionName);
+            Log.Information("Unreal full version: {0}", unrealVersion.VersionPatch);
+            Log.Information("Unreal root:         {0}", UnrealEnginePath);
+            Log.Information("Output folder:       {0}", GetOutput());
+        }
 
         public virtual IEnumerable<string> GetArgumentBlock(string name = "")
             => Arguments.GetBlock(name)
