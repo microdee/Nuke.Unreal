@@ -144,10 +144,10 @@ namespace Nuke.Unreal
                         .NoDeleteHostProject()
                         .Unversioned()
                     )
-                    .UbtArgs(Arguments.GetBlock("ubt").JoinSpace())
+                    .UbtArgs(self.GetArgumentBlock("ubt").JoinSpace())
                     .Apply(UatPackPlugin)
                     .Apply(self.UatGlobal)
-                    .Append(Arguments.GetBlock("uat"))
+                    .AppendRaw(self.GetArgumentBlock("uat"))
                 )("");
                 hostProjectDir.DeleteDirectory();
 

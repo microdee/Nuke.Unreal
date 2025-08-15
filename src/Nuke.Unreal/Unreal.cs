@@ -10,6 +10,7 @@ using Serilog;
 using System.Text;
 using Nuke.Unreal.Tools;
 using Nuke.Cola.Tooling;
+using Nuke.Common;
 
 namespace Nuke.Unreal
 {
@@ -224,6 +225,19 @@ namespace Nuke.Unreal
             if (crEntry.Length < 2) return "Fill in Copyright info...";
 
             return crEntry[1];
+        }
+
+        public static Tool GetTool(UnrealBuild build, string name)
+        {
+            var binaries = GetEnginePath(build) / "Engine" / "Binaries" / GetDefaultPlatform().ToString();
+            var ext = RuntimeInformation.IsOSPlatform(OSPlatform.Windows) ? ".exe" : "";
+            var path = binaries / (name + ext);
+
+            if (!path.FileExists())
+                path = binaries / ("Unreal" + name + ext);
+
+            Assert.FileExists(path, $"Requested tool {name} doesn't exist.");
+            return ToolResolver.GetTool(path);
         }
     }
 }

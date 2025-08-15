@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using Nuke.Cola;
 using Nuke.Common;
 using Nuke.Common.IO;
 using Nuke.Common.Utilities;
@@ -73,6 +74,15 @@ namespace Nuke.Unreal
         }
 
         public AbsolutePath UnrealEnginePath => Unreal.GetEnginePath(this);
+
+        public virtual IEnumerable<string> GetArgumentBlock(string name = "")
+            => Arguments.GetBlock(name)
+                .Select(a => a
+                    .Replace("~p", ProjectPath)
+                    .Replace("~pdir", ProjectFolder)
+                    .Replace("~ue", UnrealEnginePath)
+                    .DoubleQuoteIfNeeded()
+                );
         
         public ConfigIni ReadIniHierarchy(
             string shortName,
@@ -117,7 +127,7 @@ namespace Nuke.Unreal
                 var baseIni = ConfigIni.Parse(File.ReadAllText(configFolder / "Base.ini"));
                 if (baseIni != null)
                     resultIni.Merge(baseIni);
-                
+
                 GatherInis(configFolder, resultIni);
             }
 

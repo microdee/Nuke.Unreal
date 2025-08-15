@@ -70,6 +70,8 @@ namespace Nuke.Unreal
                 Unreal.InvalidateEnginePathCache();
                 ProjectObject["EngineAssociation"] = UnrealVersion;
                 Unreal.WriteJson(ProjectObject, ProjectPath);
+                _projectObject = null;
+                _engineVersionCache = null;
             });
 
         public virtual Target Prepare => _ => _
@@ -99,7 +101,7 @@ namespace Nuke.Unreal
                         .Engine()
                     )
                     .Progress()
-                    .Append(Arguments.GetBlock("ubt"))
+                    .AppendRaw(GetArgumentBlock("ubt"))
                 )("");
             });
 
@@ -129,7 +131,7 @@ namespace Nuke.Unreal
                     )
                     .FromMsBuild()
                     .Apply(UbtGlobal)
-                    .Append(Arguments.GetBlock("ubt"))
+                    .AppendRaw(GetArgumentBlock("ubt"))
                 )("");
             });
 
@@ -149,7 +151,7 @@ namespace Nuke.Unreal
                     )
                     .Project(ProjectPath)
                     .Apply(UbtGlobal)
-                    .Append(Arguments.GetBlock("ubt"))
+                    .AppendRaw(GetArgumentBlock("ubt"))
                 )("");
             });
 
@@ -196,10 +198,10 @@ namespace Nuke.Unreal
                         .If(isAndroidPlatform, _ => _
                             .Cookflavor(androidTextureMode)
                         )
-                        .UbtArgs(Arguments.GetBlock("ubt").JoinSpace())
+                        .UbtArgs(GetArgumentBlock("ubt").JoinSpace())
                         .Apply(UatCook)
                         .Apply(UatGlobal)
-                        .Append(Arguments.GetBlock("uat"))
+                        .AppendRaw(GetArgumentBlock("uat"))
                     )("", workingDirectory: UnrealEnginePath);
                 });
             });
@@ -238,9 +240,9 @@ namespace Nuke.Unreal
             .Executes(() =>
             {
                 Unreal.AutomationTool(this, _ => _
-                    .Append(Arguments.GetBlock())
+                    .AppendRaw(GetArgumentBlock())
                     .If(!IgnoreGlobalArgs, _ => _.Apply(UatGlobal))
-                );
+                )("", workingDirectory: ProjectFolder);
             });
 
         public virtual Target RunUbt => _ => _
@@ -248,27 +250,57 @@ namespace Nuke.Unreal
             .Executes(() =>
             {
                 Unreal.BuildTool(this, _ => _
-                    .Append(Arguments.GetBlock())
+                    .AppendRaw(GetArgumentBlock())
                     .If(!IgnoreGlobalArgs, _ => _.Apply(UbtGlobal))
-                )("", workingDirectory: UnrealEnginePath);
+                )("", workingDirectory: ProjectFolder);
             });
 
         public virtual Target RunShell => _ => _
             .Description(
                 """
                 Start a UShell session. This opens a new console window, and nuke will exit
-                immadiately
+                immadiately. Working directory is the project folder, regardless of actual working
+                directory.
                 """
             )
             .Executes(() =>
             {
-                var ushellDir = Unreal.GetEnginePath(this) / "Engine" / "Extras" / "ushell";
+                var ushellDir = UnrealEnginePath / "Engine" / "Extras" / "ushell";
                 var scriptExt = RuntimeInformation.IsOSPlatform(OSPlatform.Windows) ? "bat" : "sh";
                 var ushellScript = ushellDir / ("ushell." + scriptExt);
                 Common.Tooling.ProcessTasks.StartShell(
                     ushellScript,
                     ProjectFolder
                 );
+            });
+
+        [Parameter(
+            """
+            Name the Unreal tool to be run, You can omit the `Unreal` prefix and the extension.
+            For example:
+            nuke run --tool pak --> ./Path/To/MyProject.pak -Extract "D:/temp"
+            nuke run --tool editor-cmd --> ~p -run=MyCommandlet
+            """
+        )]
+        public string? Tool;
+
+        public virtual Target Run => _ => _
+            .Description(
+                """
+                Run an Unreal tool from the engine binaries folder. You can omit the `Unreal` prefix
+                and the extension. For example:
+
+                nuke run --tool pak --> ./Path/To/MyProject.pak -Extract "D:/temp"
+                nuke run --tool editor-cmd --> ~p -run=MyCommandlet
+
+                Working directory is the project folder, regardless of actual working
+                directory.
+                """
+            )
+            .Requires(() => Tool)
+            .Executes(() =>
+            {
+                Unreal.GetTool(this, Tool!)(GetArgumentBlock().JoinSpace(), ProjectFolder);
             });
     }
 }
