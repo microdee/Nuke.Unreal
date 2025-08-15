@@ -98,12 +98,30 @@ namespace Nuke.Unreal
         public static bool Is4(UnrealBuild build) => Version(build).SemanticalVersion.Major == 4;
         public static bool Is5(UnrealBuild build) => Version(build).SemanticalVersion.Major == 5;
 
+        public static bool IsInstalled(AbsolutePath enginePath)
+            => (enginePath / "Engine" / "Build" / "InstalledBuild.txt").FileExists();
+
+        public static bool IsInstalled(EngineVersion ofVersion, bool ignoreCache = false)
+            => IsInstalled(GetEnginePath(ofVersion, ignoreCache));
+
+        public static bool IsInstalled(UnrealBuild build, bool ignoreCache = false)
+            => IsInstalled(GetEnginePath(build, ignoreCache));
+
+        public static bool IsSource(AbsolutePath enginePath)
+            => !IsInstalled(enginePath);
+
+        public static bool IsSource(EngineVersion ofVersion, bool ignoreCache = false)
+            => IsSource(GetEnginePath(ofVersion, ignoreCache));
+
+        public static bool IsSource(UnrealBuild build, bool ignoreCache = false)
+            => IsSource(GetEnginePath(build, ignoreCache));
+
         public static AbsolutePath GetEnginePath(EngineVersion ofVersion, bool ignoreCache = false)
         {
             if (!ignoreCache && EnginePathCache != null) return EnginePathCache;
-            if (ofVersion.IsEngineSource)
+            if (ofVersion.ExplicitEnginePath != null)
             {
-                EnginePathCache = ofVersion.Source!.EngineSourcePath;
+                EnginePathCache = ofVersion.ExplicitEnginePath.Path;
                 return EnginePathCache;
             }
 

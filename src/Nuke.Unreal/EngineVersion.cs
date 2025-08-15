@@ -10,9 +10,9 @@ using Nuke.Common.Utilities;
 
 namespace Nuke.Unreal
 {
-    public record EngineSourceInfo(
-        Guid? EngineSourceId,
-        AbsolutePath EngineSourcePath
+    public record EnginePathInfo(
+        Guid? Id,
+        AbsolutePath Path
     );
 
     public partial class EngineVersion
@@ -39,7 +39,7 @@ namespace Nuke.Unreal
         }
 
         private AbsolutePath GetEnginePath(string versionName)
-            => Source?.EngineSourcePath ?? Unreal.GetEnginePath(versionName);
+            => ExplicitEnginePath?.Path ?? Unreal.GetEnginePath(versionName);
 
         private Version GetEngineSemVersion(string versionName)
         {
@@ -67,14 +67,14 @@ namespace Nuke.Unreal
             {
                 var enginePath = Unreal.GetEnginePath(versionName);
                 Assert.NotNull(enginePath, $"GUID was not pointing to an Unreal Engine instance {versionName}");
-                Source = new(engineSourceId, enginePath);
+                ExplicitEnginePath = new(engineSourceId, enginePath);
                 return;
             }
 
             if (Path.IsPathRooted(versionName))
             {
                 Assert.DirectoryExists(versionName, $"No instance of Unreal Engine exists at {versionName}");
-                Source = new(null, AbsolutePath.Create(versionName));
+                ExplicitEnginePath = new(null, AbsolutePath.Create(versionName));
                 return;
             }
 
@@ -96,8 +96,7 @@ namespace Nuke.Unreal
         public string VersionPatch => SemanticalVersion.Major + "." + SemanticalVersion.Minor + "." + SemanticalVersion.Build;
         public string Extension;
         public bool IsEarlyAccess;
-        public EngineSourceInfo? Source = null;
-        public bool IsEngineSource => Source != null;
+        public EnginePathInfo? ExplicitEnginePath = null;
 
         private int CompatibilityBaseExponent => SemanticalVersion.Major > 4 ? 32 : 0;
         private ulong CompatibilityFlag => 1UL << (CompatibilityBaseExponent + SemanticalVersion.Minor);

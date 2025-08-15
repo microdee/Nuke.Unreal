@@ -94,7 +94,7 @@ namespace Nuke.Unreal
                     .ProjectFiles()
                     .Project(ProjectPath)
                     .Game()
-                    .If(Unreal.Version(this).IsEngineSource, _ => _
+                    .If(Unreal.IsSource(this), _ => _
                         .Engine()
                     )
                     .Progress()
@@ -118,7 +118,7 @@ namespace Nuke.Unreal
                         EditorConfig
                     )
                     .Project(ProjectPath, true)
-                    .If(Unreal.Version(this).IsEngineSource, _ => _
+                    .If(Unreal.IsSource(this), _ => _
                         .Target(
                             "ShaderCompileWorker",
                             UnrealPlatform.FromFlag(Unreal.GetDefaultPlatform()),
