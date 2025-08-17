@@ -57,6 +57,116 @@ public class AutoRuntimeDependencyGenerator : BoilerplateGenerator
 
 public static class RuntimeDependenciesExtensions
 {
+    /// <summary>
+    /// <para>
+    /// Prepare and transform a group of files for neatly be packaged as runtime dependencies in
+    /// conventional locations. This aims to alleviate some chore regarding working with elaborate
+    /// third-party/prebuilt libraries.
+    /// </para>
+    /// <para>
+    /// The result of this function is a partial module rule C# file which will list runtime
+    /// dependencies in a partial method called `SetupRuntimeDependencies`. Please take care that
+    /// the main module rules class for the target module is also partial.
+    /// </para>
+    /// <para>
+    /// Here's the overview of the usage of this function.
+    /// </para>
+    /// <list type="number">
+    /// <item>
+    /// Provide a source folder for the runtime dependencies
+    /// </item>
+    /// <item>
+    /// Provide a set of locations in runtime, relative to the destination folder serving as
+    /// runtime library paths (ideally one for each supported platforms). This may be used as base
+    /// folders to load DLL's from.
+    /// </item>
+    /// <item>
+    /// If applicable provide pattern matching functions to determine the platform and configuration
+    /// for individual files
+    /// </item>
+    /// <item>
+    /// To control the destination folder structure PrepareRuntimeDependencies may pick up a folder
+    /// composition manifest file called "RuntimeDeps.yml" (by default this can be also overridden)
+    /// </item>
+    /// <item>
+    /// If no such manifest is available one can be passed directly in C#
+    /// </item>
+    /// </list>
+    /// <para>
+    /// Output files will be put into
+    /// `&lt;plugin-directory&gt;/Binaries/&lt;binariesSubfolder&gt;/&lt;moduleName&gt;`. Where
+    /// `binariesSubfolder` is "ThirdParty" by default.
+    /// </para>
+    /// <para>
+    /// For example:
+    /// </para>
+    /// <code>
+    /// [ImplicitBuildInterface]
+    /// public interface IMyPluginTargets : INukeBuild
+    /// {
+    ///     Target PrepareMyPlugin =&gt; _ =&gt; _
+    ///         .Executes(() =&gt;
+    ///         {
+    ///             this.PrepareRuntimeDependencies(
+    ///                 this.ScriptFolder(),
+    ///                 [ new() {Path = (RelativePath)&quot;Win64&quot; } ],
+    ///                 determinePlatform: f =&gt; UnrealPlatform.Win64,
+    ///                 customManifest: new()
+    ///                 {
+    ///                     Copy = [
+    ///                         new() {Directory = &quot;tools&quot;},
+    ///                         new() {
+    ///                             Directory = &quot;sdk/windows-desktop/amd64/release/bin&quot;,
+    ///                             As = &quot;Win64&quot;
+    ///                         },
+    ///                     ]
+    ///                 }
+    ///             );
+    ///         });
+    /// }
+    /// </code>
+    /// </summary>
+    /// <param name="self"></param>
+    /// <param name="sourceFolder">
+    /// Required. The root folder of the third-party library. Ideally the same folder as the
+    /// external module representing the library for Unreal.
+    /// </param>
+    /// <param name="runtimeLibraryPaths">
+    /// Required. A a set of locations in runtime, relative to the destination folder serving as
+    /// runtime library paths (ideally one for each supported platforms). This may be used as base
+    /// folders to load DLL's from.
+    /// </param>
+    /// <param name="determineConfig">
+    /// Optional. Determin a configuration (either debug or release) from a given runtime dependency
+    /// file. If the file is needed in all configurations return `RuntimeDependencyConfig.All`.
+    /// This predicate is also applied to DLL's, there are no assumptions about them, solely based
+    /// on their file paths. By default every file is assumed for all configurations.
+    /// </param>
+    /// <param name="determinePlatform">
+    /// Optional. Determin a target platform from a given runtime dependency file. If the file is
+    /// needed on all platforms return `UnrealPlatform.Independent`. This predicate is also applied
+    /// to DLL's, there are no assumptions about them, solely based on their file paths. By default
+    /// every file is assumed for all platforms.
+    /// </param>
+    /// <param name="moduleName">
+    /// Optional. By default derived from the folder name provided with `sourceFolder`
+    /// </param>
+    /// <param name="pluginFolder">
+    /// Optional. By default it's the owning plugin of the `sourceFolder`
+    /// </param>
+    /// <param name="customManifest">
+    /// Optional. Provide a folder composition manifest if the target file-folder structure is
+    /// different than the input one. Default is empty (just copy folder structure as-is)
+    /// </param>
+    /// <param name="manifestFilePattern">
+    /// Optional. The file name of an optional folder composition manifest which may reside in
+    /// `sourceFolder`. Default is "RuntimeDeps.y*ml"
+    /// </param>
+    /// <param name="binariesSubfolder">
+    /// Optional. The subfolder name in the plugin Binaries where everything else is copied into.
+    /// Default is "ThirdParty".
+    /// </param>
+    /// <param name="moduleRuleOutput"></param>
     public static void PrepareRuntimeDependencies(
         this UnrealBuild self,
         AbsolutePath sourceFolder,
@@ -68,12 +178,10 @@ public static class RuntimeDependenciesExtensions
         ExportManifest? customManifest = null,
         string manifestFilePattern = "RuntimeDeps.y*ml",
         string binariesSubfolder = "ThirdParty",
-        AbsolutePath? moduleRuleOutput = null,
-        [CallerFilePath] string? scriptFile = null
+        AbsolutePath? moduleRuleOutput = null
     )
     {
-        var scriptFolder = AbsolutePath.Create(scriptFile!).Parent;
-        pluginFolder ??= scriptFolder.GetOwningPlugin()!.Parent;
+        pluginFolder ??= sourceFolder.GetOwningPlugin()!.Parent;
         determineConfig ??= p => RuntimeDependencyConfig.All;
         determinePlatform ??= p => UnrealPlatform.Independent;
         moduleName ??= sourceFolder.Name;
