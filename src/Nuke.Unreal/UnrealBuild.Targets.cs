@@ -202,7 +202,6 @@ namespace Nuke.Unreal
                         .If(isAndroidPlatform, _ => _
                             .Cookflavor(androidTextureMode)
                         )
-                        .UbtArgs(GetArgumentBlock("ubt").JoinSpace())
                         .Apply(UatCook)
                         .Apply(UatGlobal)
                         .AppendRaw(GetArgumentBlock("uat"))

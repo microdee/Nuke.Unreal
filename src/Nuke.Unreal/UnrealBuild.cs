@@ -6,6 +6,7 @@ using Nuke.Cola;
 using Nuke.Common;
 using Nuke.Common.IO;
 using Nuke.Common.Utilities;
+using Nuke.Common.Utilities.Collections;
 using Nuke.Unreal.Ini;
 using Nuke.Unreal.Tools;
 using Serilog;
@@ -25,7 +26,7 @@ namespace Nuke.Unreal
         protected T? SelfAs<T>() where T : class, INukeBuild => (object)this as T;
 
         /// <summary>
-        /// Most targets read the desired UE4 version from the project file.
+        /// Most targets read the desired Unreal version from the project file.
         /// </summary>
         [Parameter(
             """
@@ -57,9 +58,14 @@ namespace Nuke.Unreal
         
         public virtual UbtConfig UbtGlobal(UbtConfig _) => _
             .WaitMutex();
-        public virtual UatConfig UatGlobal(UatConfig _) => _
-            .UTF8Output()
-            .NoP4();
+        public virtual UatConfig UatGlobal(UatConfig _)
+        {
+            var ubtArgs = GetArgumentBlock("ubt").ToList();
+            return _
+                .UTF8Output()
+                .NoP4()
+                .If(!ubtArgs.IsEmpty(), _ => _.UbtArgs(ubtArgs.JoinSpace()));
+        }
 
         private EngineVersion? _engineVersionCache = null;
         
