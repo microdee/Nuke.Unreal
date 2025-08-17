@@ -202,7 +202,7 @@ public static class RuntimeDependenciesExtensions
                 customManifest == null
                 ? self.ImportFolders(new ImportOptions(Pretend: true), (sourceFolder, dstFolder, manifestFilePattern))
                 : self.ImportFolders(new ImportOptions(Pretend: true), (sourceFolder, dstFolder, customManifest, manifestFilePattern))
-            ).ToList();
+            ).WithFilesExpanded().ToList();
 
         var dllDeps = deps
             .Where(d => UnrealPlatform.Platforms.Any(
