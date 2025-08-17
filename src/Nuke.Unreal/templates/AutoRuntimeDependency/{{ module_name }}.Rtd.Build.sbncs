@@ -11,6 +11,12 @@ public partial class {{ module_name }} : ModuleRules
 		PublicDefinitions.Add($"{{ module_name | string.upcase }}_DLL_PATH=TEXT(\"{path}\")");
 	}
 
+	void HandleRuntimeDependency(string from, string to) =>
+		RuntimeDependencies.Add(
+			$"{PluginDirectory}/{from}", $"{PluginDirectory}/{to}",
+			StagedFileType.SystemNonUFS
+		);
+
 	partial void SetupRuntimeDependencies(ReadOnlyTargetRules target)
 	{
 		var Win64 =       target.Platform == UnrealTargetPlatform.Win64;
@@ -36,7 +42,7 @@ public partial class {{ module_name }} : ModuleRules
 		{{- end }}
 
 		{{- for file in files }}
-		if ({{ file.config }} && {{ file.platform }}) RuntimeDependencies.Add("{{ file.value }}");
+		if ({{ file.config }} && {{ file.platform }}) HandleRuntimeDependency("{{ file.origin }}", "{{ file.value }}");
 		{{- end }}
 
 		{{- for dll in dlls }}

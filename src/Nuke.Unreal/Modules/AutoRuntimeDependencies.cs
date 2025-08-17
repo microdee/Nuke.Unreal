@@ -10,6 +10,7 @@ using System.Runtime.CompilerServices;
 using Nuke.Cola.FolderComposition;
 using Nuke.Common.Utilities;
 using Nuke.Unreal.BoilerplateGenerators;
+using System.Collections;
 
 namespace Nuke.Unreal.Modules;
 
@@ -30,6 +31,7 @@ public class RuntimeLibraryPath
 public class RuntimeDependency
 {
     public string Value = "";
+    public string Origin = "";
     public UnrealPlatform Platform = UnrealPlatform.Independent;
     public RuntimeDependencyConfig Config = RuntimeDependencyConfig.All;
 };
@@ -61,7 +63,8 @@ public static class RuntimeDependenciesExtensions
     /// <para>
     /// Prepare and transform a group of files for neatly be packaged as runtime dependencies in
     /// conventional locations. This aims to alleviate some chore regarding working with elaborate
-    /// third-party/prebuilt libraries.
+    /// third-party/prebuilt libraries. Files are not actually copied by Nuke.Unreal but let UBT
+    /// do it.
     /// </para>
     /// <para>
     /// The result of this function is a partial module rule C# file which will list runtime
@@ -93,7 +96,7 @@ public static class RuntimeDependenciesExtensions
     /// </item>
     /// </list>
     /// <para>
-    /// Output files will be put into
+    /// The module rule will copy output files on building the project to
     /// `&lt;plugin-directory&gt;/Binaries/&lt;binariesSubfolder&gt;/&lt;moduleName&gt;`. Where
     /// `binariesSubfolder` is "ThirdParty" by default.
     /// </para>
@@ -166,8 +169,15 @@ public static class RuntimeDependenciesExtensions
     /// Optional. The subfolder name in the plugin Binaries where everything else is copied into.
     /// Default is "ThirdParty".
     /// </param>
-    /// <param name="moduleRuleOutput"></param>
-    public static void PrepareRuntimeDependencies(
+    /// <param name="moduleRuleOutput">
+    /// Optional. A custom folder output for the generated module rule file.
+    /// Default is `sourceFolder`.
+    /// </param>
+    /// <param name="pretend">
+    /// Optional. If true only list affected files, but do not generate a module rule.
+    /// Default is false.
+    /// </param>
+    public static IEnumerable<ImportedItem> PrepareRuntimeDependencies(
         this UnrealBuild self,
         AbsolutePath sourceFolder,
         IEnumerable<RuntimeLibraryPath> runtimeLibraryPaths,
@@ -178,9 +188,9 @@ public static class RuntimeDependenciesExtensions
         ExportManifest? customManifest = null,
         string manifestFilePattern = "RuntimeDeps.y*ml",
         string binariesSubfolder = "ThirdParty",
-        AbsolutePath? moduleRuleOutput = null
-    )
-    {
+        AbsolutePath? moduleRuleOutput = null,
+        bool pretend = false
+    ) {
         pluginFolder ??= sourceFolder.GetOwningPlugin()!.Parent;
         determineConfig ??= p => RuntimeDependencyConfig.All;
         determinePlatform ??= p => UnrealPlatform.Independent;
@@ -188,33 +198,33 @@ public static class RuntimeDependenciesExtensions
         moduleRuleOutput ??= sourceFolder;
 
         var dstFolder = pluginFolder / "Binaries" / binariesSubfolder;
+        var deps = (
+                customManifest == null
+                ? self.ImportFolders(new ImportOptions(Pretend: true), (sourceFolder, dstFolder, manifestFilePattern))
+                : self.ImportFolders(new ImportOptions(Pretend: true), (sourceFolder, dstFolder, customManifest, manifestFilePattern))
+            ).ToList();
 
-        if (customManifest == null)
-            self.ImportFolders((sourceFolder, dstFolder, manifestFilePattern));
-        else
-            self.ImportFolders((sourceFolder, dstFolder, customManifest, manifestFilePattern));
-
-        var runtimeDeps = (dstFolder / moduleName).GetFiles(depth: 40);
-        var dllDeps = (dstFolder / moduleName / self.Platform).GetFiles(depth: 40)
-            .Where(f => UnrealPlatform.Platforms.Any(
-                p => f.Extension.EqualsOrdinalIgnoreCase("." + p.DllExtension)
+        var dllDeps = deps
+            .Where(d => UnrealPlatform.Platforms.Any(
+                p => d.From.Extension.EqualsOrdinalIgnoreCase("." + p.DllExtension)
             ));
 
         var model = new RuntimeDependencies
         {
             ModuleName = moduleName,
-            Files = [.. runtimeDeps.Select(f => new RuntimeDependency
+            Files = [.. deps.Select(d => new RuntimeDependency
             {
-                Value = pluginFolder.GetRelativePathTo(f).ToUnixRelativePath(),
-                Config = determineConfig(f),
-                Platform = determinePlatform(f)
+                Value = pluginFolder.GetRelativePathTo(d.To).ToUnixRelativePath(),
+                Origin = pluginFolder.GetRelativePathTo(d.From).ToUnixRelativePath(),
+                Config = determineConfig(d.From),
+                Platform = determinePlatform(d.From)
             })],
 
-            Dlls = [.. dllDeps.Select(f => new RuntimeDependency
+            Dlls = [.. dllDeps.Select(d => new RuntimeDependency
             {
-                Value = f.Name,
-                Config = determineConfig(f),
-                Platform = determinePlatform(f)
+                Value = d.To.Name,
+                Config = determineConfig(d.From),
+                Platform = determinePlatform(d.From)
             })],
 
             RuntimeLibraryPath = [.. runtimeLibraryPaths.Select(p => new RuntimeDependency
@@ -225,6 +235,9 @@ public static class RuntimeDependenciesExtensions
             })]
         };
 
-        new AutoRuntimeDependencyGenerator().Generate(self.TemplatesPath, moduleRuleOutput, model);
+        if (!pretend)
+            new AutoRuntimeDependencyGenerator().Generate(self.TemplatesPath, moduleRuleOutput, model);
+        
+        return deps;
     }
 }
