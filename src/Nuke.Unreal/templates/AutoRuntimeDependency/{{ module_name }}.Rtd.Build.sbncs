@@ -1,0 +1,49 @@
+// This is an automatically generated file, do not modify
+
+using System;
+using UnrealBuildTool;
+
+public partial class {{ module_name }} : ModuleRules
+{
+	void HandleRuntimeLibraryPath(string path)
+	{
+		PublicRuntimeLibraryPaths.Add($"{PluginDirectory}/{path}");
+		PublicDefinitions.Add($"{{ module_name | string.upcase }}_DLL_PATH=TEXT(\"{path}\")");
+	}
+
+	partial void SetupRuntimeDependencies(ReadOnlyTargetRules target)
+	{
+		var Win64 =       target.Platform == UnrealTargetPlatform.Win64;
+		var Mac =         target.Platform == UnrealTargetPlatform.Mac;
+		var Linux =       target.Platform == UnrealTargetPlatform.Linux;
+		var LinuxArm64 =  target.Platform == UnrealTargetPlatform.LinuxArm64;
+		var Android =     target.Platform == UnrealTargetPlatform.Android;
+		var IOS =         target.Platform == UnrealTargetPlatform.IOS;
+		var TVOS =        target.Platform == UnrealTargetPlatform.TVOS;
+		var VisionOS =    target.Platform == UnrealTargetPlatform.VisionOS;
+		var Independent = true;
+
+		var Debug = target is
+		{
+			Configuration: UnrealTargetConfiguration.Debug,
+			bDebugBuildsActuallyUseDebugCRT: true
+		};
+		var Release = !Debug;
+		var All = true;
+
+		{{- for rt_lib_path in runtime_library_path }}
+		if ({{ rt_lib_path.config }} && {{ rt_lib_path.platform }}) HandleRuntimeLibraryPath("{{ rt_lib_path.value }}");
+		{{- end }}
+
+		{{- for file in files }}
+		if ({{ file.config }} && {{ file.platform }}) RuntimeDependencies.Add("{{ file.value }}");
+		{{- end }}
+
+		{{- for dll in dlls }}
+		if ({{ dll.config }} && {{ dll.platform }}) PublicDelayLoadDLLs.Add("{{ dll.value }}");
+		{{- end }}
+		
+		var dllList = string.Join(',', PublicDelayLoadDLLs.Select(d => $"TEXT(\"{d}\")"));
+		PublicDefinitions.Add($"{{ module_name | string.upcase }}_DLL_FILES={dllList}");
+	}
+}
