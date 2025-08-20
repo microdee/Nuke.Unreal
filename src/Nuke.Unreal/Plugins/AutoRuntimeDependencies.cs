@@ -175,6 +175,10 @@ public static class RuntimeDependenciesExtensions
     ///     Optional. A custom folder output for the generated module rule file.
     ///     Default is `sourceFolder`.
     /// </param>
+    /// <param name="setFilterPlugin">
+    ///     Enqueue referred files and their destination locations in the owning plugin instance.
+    ///     Default is true.
+    /// </param>
     /// <param name="pretend">
     ///     Optional. If true only list affected files, but do not generate a module rule.
     ///     Default is false.
@@ -191,6 +195,7 @@ public static class RuntimeDependenciesExtensions
         string manifestFilePattern = "RuntimeDeps.y*ml",
         string binariesSubfolder = "ThirdParty",
         AbsolutePath? moduleRuleOutput = null,
+        bool setFilterPlugin = true,
         bool pretend = false
     ) {
         pluginFolder ??= sourceFolder.GetOwningPlugin()!.Parent;
@@ -202,9 +207,12 @@ public static class RuntimeDependenciesExtensions
         var dstFolder = pluginFolder / "Binaries" / binariesSubfolder;
         var deps = (
                 customManifest == null
-                ? self.ImportFolders(new ImportOptions(Pretend: true), (sourceFolder, dstFolder, manifestFilePattern))
-                : self.ImportFolders(new ImportOptions(Pretend: true), (sourceFolder, dstFolder, customManifest, manifestFilePattern))
+                ? self.ImportFolders(new ImportOptions(Pretend: pretend), (sourceFolder, dstFolder, manifestFilePattern))
+                : self.ImportFolders(new ImportOptions(Pretend: pretend), (sourceFolder, dstFolder, customManifest, manifestFilePattern))
             ).WithFilesExpanded().ToList();
+
+        if (setFilterPlugin)
+            UnrealPlugin.Get(pluginFolder).AddExplicitPluginFiles(deps.Select(d => d.To));
 
         var dllDeps = deps
             .Where(d => UnrealPlatform.Platforms.Any(
