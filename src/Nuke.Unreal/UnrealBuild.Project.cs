@@ -21,14 +21,23 @@ namespace Nuke.Unreal
             {
                 if (_projectCache != null) return _projectCache;
 
-                Log.Information(".uproject path was unspecified, looking for one...");
-                if (BuildCommon.LookAroundFor(f => f.EndsWith(".uproject"), out var candidate))
+                var projectCachePath = TemporaryDirectory / "UProjectFile.txt";
+                if (projectCachePath.FileExists())
                 {
-                    Log.Information($"Found project at {candidate}");
-                    _projectCache = candidate;
-                    return _projectCache!;
+                    _projectCache = AbsolutePath.Create(projectCachePath.ReadAllText());
                 }
-                throw new FileNotFoundException("No .uproject was found");
+                else
+                {
+                    Log.Information("Detecting Unreal project");
+                    if (BuildCommon.LookAroundFor(f => f.EndsWith(".uproject"), out var candidate))
+                    {
+                        projectCachePath.WriteAllText(candidate);
+                        _projectCache = candidate;
+                    }
+                }
+                Assert.NotNull(_projectCache, "This build doesn't seem to be an Unreal project.");
+                Log.Information($"Unreal project: {_projectCache}");
+                return _projectCache!;
             }
         }
 
