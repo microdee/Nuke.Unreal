@@ -11,9 +11,13 @@ namespace Nuke.Unreal
         private AbsolutePath? _projectCache = null;
 
         /// <summary>
-        /// Optionally specify a project path.
-        /// If not overridden Nuke.Unreal will traverse upwards on the directory tree,
-        /// then sift through all subdirectories recursively (ignoring some known folders)
+        ///     <para>
+        ///         Optionally specify a path to a `.uproject` file.
+        ///     </para>
+        ///     <para>
+        ///         If not overridden Nuke.Unreal will traverse upwards on the directory tree,
+        ///         then sift through all subdirectories recursively (ignoring some known folders)
+        ///     </para>
         /// </summary>
         public virtual AbsolutePath ProjectPath
         {
@@ -41,12 +45,22 @@ namespace Nuke.Unreal
             }
         }
 
+        /// <summary>
+        /// Path to folder containing the `.project` file
+        /// </summary>
         public AbsolutePath ProjectFolder => ProjectPath.Parent;
         public AbsolutePath PluginsFolder => ProjectFolder / "Plugins";
 
+        /// <summary>
+        /// Short name of the project
+        /// </summary>
         public string ProjectName => Path.GetFileNameWithoutExtension(ProjectPath);
 
         private JObject? _projectObject;
+        
+        /// <summary>
+        /// JObject representation of the `.uproject` contents
+        /// </summary>
         public JObject ProjectObject => _projectObject ??= JObject.Parse(File.ReadAllText(ProjectPath));
     }
 }
