@@ -12,7 +12,7 @@ using Nuke.Common.Utilities;
 using Nuke.Unreal.BoilerplateGenerators;
 using System.Collections;
 
-namespace Nuke.Unreal.Modules;
+namespace Nuke.Unreal.Plugins;
 
 public enum RuntimeDependencyConfig
 {
