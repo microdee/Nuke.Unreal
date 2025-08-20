@@ -2,6 +2,7 @@ using System.IO;
 using Newtonsoft.Json.Linq;
 using Nuke.Common;
 using Nuke.Common.IO;
+using Nuke.Common.Utilities;
 using Serilog;
 
 namespace Nuke.Unreal
@@ -62,5 +63,36 @@ namespace Nuke.Unreal
         /// JObject representation of the `.uproject` contents
         /// </summary>
         public JObject ProjectObject => _projectObject ??= JObject.Parse(File.ReadAllText(ProjectPath));
+
+        private bool? _isPerforceCache = null;
+
+        /// <summary>
+        /// Does this project reside in a Perforce workspace?
+        /// </summary>
+        public virtual bool IsPerforce {
+            get
+            {
+                if (_isPerforceCache != null) return _isPerforceCache ?? false;
+
+                var isP4CachePath = TemporaryDirectory / "IsP4.txt";
+                if (isP4CachePath.FileExists())
+                    _isPerforceCache = bool.Parse(isP4CachePath.ReadAllText());
+                else
+                {
+                    Log.Information("Detecting Perforce workspace");
+                    var isP4 = BuildCommon.LookAroundFor(
+                        f => Path.GetFileName(f).EqualsOrdinalIgnoreCase("p4config.txt"),
+                        out _
+                    );
+                    isP4CachePath.WriteAllText(isP4.ToString());
+                    _isPerforceCache = isP4;
+                }
+                Log.Information(_isPerforceCache ?? false
+                    ? "Project is managed by Perforce"
+                    : "Project is not in a Perforce Workspace"
+                );
+                return _isPerforceCache ?? false;
+            }
+        }
     }
 }

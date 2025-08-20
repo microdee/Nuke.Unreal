@@ -25,6 +25,16 @@ namespace Nuke.Unreal
         protected T Self<T>() where T : INukeBuild => (T)(object)this;
         protected T? SelfAs<T>() where T : class, INukeBuild => (object)this as T;
 
+        protected override void OnBuildInitialized()
+        {
+            base.OnBuildInitialized();
+            if (IsPerforce && IsLocalBuild)
+            {
+                Log.Warning("This project is part of a perforce workspace.");
+                Log.Warning("Some files may be locked by P4 which this build may modify. This may result in file-system errors.");
+            }
+        }
+
         /// <summary>
         /// Most targets read the desired Unreal version from the project file.
         /// </summary>
@@ -63,7 +73,7 @@ namespace Nuke.Unreal
             var ubtArgs = GetArgumentBlock("ubt").ToList();
             return _
                 .UTF8Output()
-                .NoP4()
+                .If(!IsPerforce, _ => _.NoP4())
                 .If(!ubtArgs.IsEmpty(), _ => _.UbtArgs(ubtArgs.JoinSpace()));
         }
 
