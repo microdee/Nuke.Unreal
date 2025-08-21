@@ -236,7 +236,16 @@ public static class RuntimeDependenciesExtensions
             ).WithFilesExpanded().ToList();
 
         if (setFilterPlugin)
-            UnrealPlugin.Get(pluginFolder).AddExplicitPluginFiles(deps.Select(d => d.To));
+        {
+            var thisPlugin = UnrealPlugin.Get(pluginFolder);
+            thisPlugin.AddExplicitPluginFiles(deps.Select(d => d.To));
+
+            if (!pretend)
+            {
+                Log.Debug("Generating FilterPlugin.ini for {0}", thisPlugin.Name);
+                thisPlugin.GenerateFilterPluginIni(self);
+            }
+        }
 
         if (!pretend)
         {

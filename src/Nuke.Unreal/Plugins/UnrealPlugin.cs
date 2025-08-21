@@ -100,6 +100,17 @@ public class UnrealPlugin
     {
         PluginPath = uplugin;
         Descriptor = uplugin.ReadJson<PluginDescriptor>(Unreal.JsonReadSettings);
+        if (FilterPluginIni.FileExists())
+        {
+            Log.Debug("Considering FilterPlugin.ini of {0}", Name);
+            var inFiles = FilterPluginIni.ReadAllLines()
+                .Where(l => !l.Contains("[FilterPlugin]"))
+                .Where(l => !string.IsNullOrWhiteSpace(l))
+                .Where(l => !l.StartsWith(';'))
+                .Select(l => (RelativePath)l)
+            ;
+            AddExplicitPluginFiles(inFiles);
+        }
     }
 
     /// <summary>
@@ -116,6 +127,9 @@ public class UnrealPlugin
     /// Path to folder containing the `.uplugin` file
     /// </summary>
     public AbsolutePath Folder => PluginPath.Parent;
+
+    public AbsolutePath ConfigFolder => Folder / "Config";
+    public AbsolutePath FilterPluginIni => ConfigFolder / "FilterPlugin.ini";
 
     /// <summary>
     /// Short name of the plugin
@@ -217,7 +231,7 @@ public class UnrealPlugin
     {
         AddDefaultExplicitPluginFiles(build);
 
-        var configPath = Folder / "Config" / "FilterPlugin.ini";
+        var configPath = FilterPluginIni;
         Log.Debug("Generating FilterPlugin.ini: {0}", configPath);
 
         var lines = _explicitPluginFiles
