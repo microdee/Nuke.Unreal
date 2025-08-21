@@ -133,6 +133,13 @@ namespace Nuke.Unreal
             VisionOS,
         ];
 
+        public static readonly IEnumerable<UnrealPlatform> DevelopmentPlatforms =
+        [
+            Win64,
+            Mac,
+            Linux,
+        ];
+
         public UnrealPlatformFlag Flag { get; private set; } = UnrealPlatformFlag.Win64;
         public UnrealCompatibility Compatibility { get; private set; } = UnrealCompatibility.All;
         public string DllExtension { get; private set; } = "so";
