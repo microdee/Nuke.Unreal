@@ -29,9 +29,9 @@ namespace Nuke.Unreal
                 var projectCachePath = TemporaryDirectory / "UProjectFile.txt";
                 if (projectCachePath.FileExists())
                 {
-                    _projectCache = AbsolutePath.Create(projectCachePath.ReadAllText());
+                    _projectCache = AbsolutePath.Create(projectCachePath.ReadAllText().Trim());
                 }
-                else
+                if (!projectCachePath.FileExists() || !_projectCache.FileExists())
                 {
                     Log.Information("Detecting Unreal project");
                     if (BuildCommon.LookAroundFor(f => f.EndsWith(".uproject"), out var candidate))
@@ -81,7 +81,7 @@ namespace Nuke.Unreal
 
                 var isP4CachePath = TemporaryDirectory / "IsP4.txt";
                 if (isP4CachePath.FileExists())
-                    _isPerforceCache = bool.Parse(isP4CachePath.ReadAllText());
+                    _isPerforceCache = bool.Parse(isP4CachePath.ReadAllText().Trim());
                 else
                 {
                     Log.Information("Detecting Perforce workspace");
