@@ -6,9 +6,8 @@ using Nuke.Cola.BuildPlugins;
 using Serilog;
 
 public class Build : UnrealBuild
-    // , IPackageTargets   // Build component for packaged projects
-    // , IPluginTargets    // Build component for common plugin development
-    // , IAndroidTargets   // Build component for Android chores
+    , IPackageTargets   // Build component for packaged projects
+    , IAndroidTargets   // Build component for Android chores
 {
     /// Nuke:
     /// Support plugins are available for:
