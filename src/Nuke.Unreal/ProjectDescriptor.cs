@@ -47,80 +47,65 @@ enum ProjectDescriptorVersion
 /// <summary>
 /// In-memory representation of a .uproject file
 /// </summary>
-public class ProjectDescriptor
-{
-    /// <summary>
-    /// Descriptor version number.
-    /// </summary>
-    public int FileVersion;
-
-    /// <summary>
-    /// The engine to open this project with.
-    /// </summary>
-    public string? EngineAssociation;
-
-    /// <summary>
-    /// Category to show under the project browser
-    /// </summary>
-    public string? Category;
-
-    /// <summary>
-    /// Description to show in the project browser
-    /// </summary>
-    public string? Description;
-
-    /// <summary>
-    /// List of all modules associated with this project
-    /// </summary>
-    public List<ModuleDescriptor>? Modules;
-
-    /// <summary>
-    /// List of plugins for this project (may be enabled/disabled)
-    /// </summary>
-    public List<PluginReferenceDescriptor>? Plugins;
-
-    /// <summary>
-    /// Array of additional root directories
-    /// </summary>
-    public List<string>? AdditionalRootDirectories;
-
-    /// <summary>
-    /// List of additional plugin directories to scan for available plugins
-    /// </summary>
-    public List<string>? AdditionalPluginDirectories;
-
-    /// <summary>
-    /// Array of platforms that this project is targeting
-    /// </summary>
-    public List<UnrealPlatform>? TargetPlatforms;
-
-    /// <summary>
-    /// A hash that is used to determine if the project was forked from a sample
-    /// </summary>
-    public uint? EpicSampleNameHash;
-
-    /// <summary>
-    /// Steps to execute before creating rules assemblies in this project
-    /// </summary>
-    public Dictionary<UnrealPlatform, string[]>? InitSteps;
-
-    /// <summary>
-    /// Steps to execute before building targets in this project
-    /// </summary>
-    public Dictionary<UnrealPlatform, string[]>? PreBuildSteps;
-
-    /// <summary>
-    /// Steps to execute before building targets in this project
-    /// </summary>
-    public Dictionary<UnrealPlatform, string[]>? PostBuildSteps;
-
-    /// <summary>
-    /// Indicates if this project is an Enterprise project
-    /// </summary>
-    public bool? IsEnterpriseProject;
-
-    /// <summary>
-    /// Indicates that enabled by default engine plugins should not be enabled unless explicitly enabled by the project or target files.
-    /// </summary>
-    public bool? DisableEnginePluginsByDefault;
-}
+/// <param name="FileVersion">
+/// Descriptor version number.
+/// </param>
+/// <param name="EngineAssociation">
+/// The engine to open this project with.
+/// </param>
+/// <param name="Category">
+/// Category to show under the project browser
+/// </param>
+/// <param name="Description">
+/// Description to show in the project browser
+/// </param>
+/// <param name="Modules">
+/// List of all modules associated with this project
+/// </param>
+/// <param name="Plugins">
+/// List of plugins for this project (may be enabled/disabled)
+/// </param>
+/// <param name="AdditionalRootDirectories">
+/// Array of additional root directories
+/// </param>
+/// <param name="AdditionalPluginDirectories">
+/// List of additional plugin directories to scan for available plugins
+/// </param>
+/// <param name="TargetPlatforms">
+/// Array of platforms that this project is targeting
+/// </param>
+/// <param name="EpicSampleNameHash">
+/// A hash that is used to determine if the project was forked from a sample
+/// </param>
+/// <param name="InitSteps">
+/// Steps to execute before creating rules assemblies in this project
+/// </param>
+/// <param name="PreBuildSteps">
+/// Steps to execute before building targets in this project
+/// </param>
+/// <param name="PostBuildSteps">
+/// Steps to execute before building targets in this project
+/// </param>
+/// <param name="IsEnterpriseProject">
+/// Indicates if this project is an Enterprise project
+/// </param>
+/// <param name="DisableEnginePluginsByDefault">
+/// Indicates that enabled by default engine plugins should not be enabled unless explicitly enabled by the project or target files.
+/// </param>
+public record ProjectDescriptor(
+    int FileVersion = 3,
+    string? EngineAssociation = null,
+    string? Category = null,
+    string? Description = null,
+    List<ModuleDescriptor>? Modules = null,
+    List<PluginReferenceDescriptor>? Plugins = null,
+    List<string>? AdditionalRootDirectories = null,
+    List<string>? AdditionalPluginDirectories = null,
+    List<UnrealPlatform>? TargetPlatforms = null,
+    uint? EpicSampleNameHash = null,
+    Dictionary<UnrealPlatform, string[]>? InitSteps = null,
+    Dictionary<UnrealPlatform, string[]>? PreBuildSteps = null,
+    Dictionary<UnrealPlatform, string[]>? PostBuildSteps = null,
+    bool? IsEnterpriseProject = null,
+    bool? DisableEnginePluginsByDefault = null
+);

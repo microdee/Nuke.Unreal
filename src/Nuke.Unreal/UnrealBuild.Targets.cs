@@ -72,7 +72,7 @@ namespace Nuke.Unreal
             {
                 Log.Information($"Targeting Unreal Engine {UnrealVersion} on platform {Platform}");
                 Unreal.InvalidateEnginePathCache();
-                ProjectDescriptor.EngineAssociation = UnrealVersion;
+                ProjectDescriptor = ProjectDescriptor with { EngineAssociation = UnrealVersion };
                 Unreal.WriteJson(ProjectDescriptor, ProjectPath);
                 _projectDescriptor = null;
                 _engineVersionCache = null;

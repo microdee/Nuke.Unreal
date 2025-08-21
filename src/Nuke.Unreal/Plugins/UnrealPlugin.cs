@@ -107,7 +107,7 @@ public class UnrealPlugin
     public AbsolutePath PluginPath { get; private set; }
 
     /// <summary>
-    /// Mutable C# representation of the uplugin file
+    /// "Immutable" C# representation of the uplugin file
     /// </summary>
     public PluginDescriptor Descriptor { get; private set; }
 
@@ -136,7 +136,7 @@ public class UnrealPlugin
         );
         set
         {
-            Descriptor.VersionName = value.ToString(3);
+            Descriptor = Descriptor with { VersionName = value.ToString(3) };
             _versionCache = value;
             Unreal.WriteJson(Descriptor, PluginPath);
         }

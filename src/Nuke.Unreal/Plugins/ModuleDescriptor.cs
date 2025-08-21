@@ -142,70 +142,57 @@ public enum ModuleLoadingPhase
 /// <summary>
 /// Class containing information about a code module
 /// </summary>
-public class ModuleDescriptor
-{
-    /// <summary>
-    /// Name of this module
-    /// </summary>
-    public string? Name;
-
-    /// <summary>
-    /// Usage type of module
-    /// </summary>
-    public ModuleHostType? Type;
-
-    /// <summary>
-    /// When should the module be loaded during the startup sequence?  This is sort of an advanced setting.
-    /// </summary>
-    public ModuleLoadingPhase? LoadingPhase;
-
-    /// <summary>
-    /// List of allowed platforms
-    /// </summary>
-    public List<UnrealPlatform>? PlatformAllowList;
-
-    /// <summary>
-    /// List of disallowed platforms
-    /// </summary>
-    public List<UnrealPlatform>? PlatformDenyList;
-
-    /// <summary>
-    /// List of allowed targets
-    /// </summary>
-    public List<UnrealTargetType>? TargetAllowList;
-
-    /// <summary>
-    /// List of disallowed targets
-    /// </summary>
-    public List<UnrealTargetType>? TargetDenyList;
-
-    /// <summary>
-    /// List of allowed target configurations
-    /// </summary>
-    public List<UnrealConfig>? TargetConfigurationAllowList;
-
-    /// <summary>
-    /// List of disallowed target configurations
-    /// </summary>
-    public List<UnrealConfig>? TargetConfigurationDenyList;
-
-    /// <summary>
-    /// List of allowed programs
-    /// </summary>
-    public List<string>? ProgramAllowList;
-
-    /// <summary>
-    /// List of disallowed programs
-    /// </summary>
-    public List<string>? ProgramDenyList;
-
-    /// <summary>
-    /// List of additional dependencies for building this module.
-    /// </summary>
-    public List<string>? AdditionalDependencies;
-
-    /// <summary>
-    /// When true, an empty PlatformAllowList is interpreted as 'no platforms' with the expectation that explicit platforms will be added in plugin extensions */
-    /// </summary>
-    public bool? bHasExplicitPlatforms;
-}
+/// <param name="Name">
+/// Name of this module
+/// </param>
+/// <param name="Type">
+/// Usage type of module
+/// </param>
+/// <param name="LoadingPhase">
+/// When should the module be loaded during the startup sequence?  This is sort of an advanced setting.
+/// </param>
+/// <param name="PlatformAllowList">
+/// List of allowed platforms
+/// </param>
+/// <param name="PlatformDenyList">
+/// List of disallowed platforms
+/// </param>
+/// <param name="TargetAllowList">
+/// List of allowed targets
+/// </param>
+/// <param name="TargetDenyList">
+/// List of disallowed targets
+/// </param>
+/// <param name="TargetConfigurationAllowList">
+/// List of allowed target configurations
+/// </param>
+/// <param name="TargetConfigurationDenyList">
+/// List of disallowed target configurations
+/// </param>
+/// <param name="ProgramAllowList">
+/// List of allowed programs
+/// </param>
+/// <param name="ProgramDenyList">
+/// List of disallowed programs
+/// </param>
+/// <param name="AdditionalDependencies">
+/// List of additional dependencies for building this module.
+/// </param>
+/// <param name="bHasExplicitPlatforms">
+/// When true, an empty PlatformAllowList is interpreted as 'no platforms' with the expectation that explicit platforms will be added in plugin extensions */
+/// </param>
+public record ModuleDescriptor(
+    string? Name = null,
+    ModuleHostType? Type = null,
+    ModuleLoadingPhase? LoadingPhase = null,
+    List<UnrealPlatform>? PlatformAllowList = null,
+    List<UnrealPlatform>? PlatformDenyList = null,
+    List<UnrealTargetType>? TargetAllowList = null,
+    List<UnrealTargetType>? TargetDenyList = null,
+    List<UnrealConfig>? TargetConfigurationAllowList = null,
+    List<UnrealConfig>? TargetConfigurationDenyList = null,
+    List<string>? ProgramAllowList = null,
+    List<string>? ProgramDenyList = null,
+    List<string>? AdditionalDependencies = null,
+    bool? bHasExplicitPlatforms = null
+);
