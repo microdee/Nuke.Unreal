@@ -379,13 +379,13 @@ public class UnrealPlugin
     }
 
     /// <summary>
-    /// Make a prebuilt release of this plugin.
+    /// Make a prebuilt release of this plugin with UAT.
     /// </summary>
     /// <param name="build"></param>
     /// <param name="uatConfig"></param>
     /// <param name="buildOptions"></param>
     /// <param name="distOptions"></param>
-    /// <returns></returns>
+    /// <returns>Output folder of the packaged plugin</returns>
     public AbsolutePath BuildPlugin(
         UnrealBuild build,
         Func<UatConfig, UatConfig>? uatConfig = null,
