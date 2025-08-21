@@ -11,6 +11,7 @@ using System.Text;
 using Nuke.Unreal.Tools;
 using Nuke.Cola.Tooling;
 using Nuke.Common;
+using Nuke.Common.Utilities;
 
 namespace Nuke.Unreal
 {
@@ -50,6 +51,13 @@ namespace Nuke.Unreal
             throw new Exception("Attempting to build on an unsupported platform");
         }
 
+        public static readonly JsonSerializerSettings JsonReadSettings = new()
+        {
+            MissingMemberHandling = MissingMemberHandling.Ignore,
+            DefaultValueHandling = DefaultValueHandling.Populate,
+            NullValueHandling = NullValueHandling.Include,
+        };
+
         public static void WriteJson(object input, AbsolutePath path)
         {
             var sb = new StringBuilder();
@@ -62,7 +70,12 @@ namespace Nuke.Unreal
                 IndentChar = '\t'
             };
 
-            new JsonSerializer().Serialize(jtw, input);
+            var serializer = new JsonSerializer()
+            {
+                NullValueHandling = NullValueHandling.Ignore,
+                Formatting = Formatting.Indented
+            };
+            serializer.Serialize(jtw, input);
             File.WriteAllText(path, sb.ToString());
         }
 

@@ -10,6 +10,7 @@ using Nuke.Common.IO;
 using Nuke.Common.Utilities;
 using Nuke.Common.Utilities.Collections;
 using Nuke.Unreal.Tools;
+using Serilog;
 
 namespace Nuke.Unreal.Plugins;
 
@@ -87,14 +88,17 @@ public class UnrealPlugin
         var uplugin = from.FileExists() && from.HasExtension(".uplugin") ? from : from.GetOwningPlugin();
         Assert.NotNull(uplugin, $"Given plugin context {from} didn't contain an Unreal plugin");
         if (!Instances.ContainsKey(uplugin!))
+        {
+            Log.Debug("Handling plugin: {0}", uplugin!.NameWithoutExtension);
             Instances.Add(uplugin!, new (uplugin!));
+        }
         return Instances[uplugin!];
     }
 
     internal UnrealPlugin(AbsolutePath uplugin)
     {
         PluginPath = uplugin;
-        PluginObject = JObject.Parse(uplugin.ReadAllText());
+        Descriptor = uplugin.ReadJson<PluginDescriptor>(Unreal.JsonReadSettings);
     }
 
     /// <summary>
@@ -103,9 +107,9 @@ public class UnrealPlugin
     public AbsolutePath PluginPath { get; private set; }
 
     /// <summary>
-    /// JObject representation of the uplugin contents
+    /// Mutable C# representation of the uplugin file
     /// </summary>
-    public JObject PluginObject { get; private set; }
+    public PluginDescriptor Descriptor { get; private set; }
 
     /// <summary>
     /// Path to folder containing the `.uplugin` file
@@ -126,15 +130,15 @@ public class UnrealPlugin
     public Version Version
     {
         get => _versionCache ?? (
-            Version.TryParse(PluginObject["VersionName"]?.ToString() ?? "", out var version)
+            Version.TryParse(Descriptor.VersionName ?? "", out var version)
             ? version
             : new()
         );
         set
         {
-            PluginObject["VersionName"] = value.ToString(3);
+            Descriptor.VersionName = value.ToString(3);
             _versionCache = value;
-            Unreal.WriteJson(PluginObject, PluginPath);
+            Unreal.WriteJson(Descriptor, PluginPath);
         }
     }
 
@@ -211,10 +215,13 @@ public class UnrealPlugin
     public void GenerateFilterPluginIni(UnrealBuild build)
     {
         AddDefaultExplicitPluginFiles(build);
+
+        var configPath = Folder / "Config" / "FilterPlugin.ini";
+        Log.Debug("Generating FilterPlugin.ini: {0}", configPath);
+
         var lines = _explicitPluginFiles
             .Select(f => ("/" + f.ToString()).Replace("//", "/"))
             .Prepend("[FilterPlugin]");
-        var configPath = Folder / "Config" / "FilterPlugin.ini";
         configPath.WriteAllLines(lines);
     }
 

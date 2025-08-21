@@ -57,12 +57,13 @@ namespace Nuke.Unreal
         /// </summary>
         public string ProjectName => Path.GetFileNameWithoutExtension(ProjectPath);
 
-        private JObject? _projectObject;
+        private ProjectDescriptor? _projectDescriptor;
         
         /// <summary>
-        /// JObject representation of the `.uproject` contents
+        /// Mutable C# representation of the `.uproject` contents
         /// </summary>
-        public JObject ProjectObject => _projectObject ??= JObject.Parse(File.ReadAllText(ProjectPath));
+        public ProjectDescriptor ProjectDescriptor => _projectDescriptor
+            ??= ProjectPath.ReadJson<ProjectDescriptor>(Unreal.JsonReadSettings);
 
         private bool? _isPerforceCache = null;
 

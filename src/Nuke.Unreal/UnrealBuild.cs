@@ -83,7 +83,7 @@ namespace Nuke.Unreal
         {
             if (_engineVersionCache == null)
             {
-                var versionString = UnrealVersion ?? ProjectObject["EngineAssociation"]?.ToString();
+                var versionString = UnrealVersion ?? ProjectDescriptor.EngineAssociation;
                 Assert.NotNull(versionString, "Unreal Engine version couldn't be determined");
                 _engineVersionCache = new(versionString!);
             }
