@@ -12,6 +12,7 @@ using Nuke.Common.Utilities;
 using Nuke.Common.ProjectModel;
 using Serilog;
 using System.Runtime.InteropServices;
+using Nuke.Cola.Tooling;
 
 namespace Nuke.Unreal
 {
@@ -301,7 +302,26 @@ namespace Nuke.Unreal
             .Requires(() => Tool)
             .Executes(() =>
             {
-                Unreal.GetTool(this, Tool!)(GetArgumentBlock().JoinSpace(), ProjectFolder);
+                Unreal.GetTool(this, Tool!).WithSemanticLogging()(
+                    GetArgumentBlock().JoinSpace(), ProjectFolder
+                );
+            });
+
+        [Parameter("Name of the editor commandlet to run")]
+        public string? Cmd;
+
+        public virtual Target RunEditorCmd => _ => _
+            .Description("Run an editor commandlet with arguments passed in after -->")
+            .Requires(() => Cmd)
+            .Executes(() =>
+            {
+                Unreal.GetTool(this, "Editor-Cmd").WithSemanticLogging()(
+                    GetArgumentBlock()
+                        .Prepend($"{ProjectPath} -run={Cmd}")
+                        .JoinSpace()
+                    ,
+                    ProjectFolder
+                );
             });
     }
 }
