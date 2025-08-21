@@ -11,11 +11,17 @@ using Nuke.Cola;
 using Nuke.Common.Utilities;
 using Nuke.Common.ProjectModel;
 using Serilog;
+using System.Runtime.InteropServices;
+using Nuke.Cola.Tooling;
 
 namespace Nuke.Unreal
 {
     public abstract partial class UnrealBuild : NukeBuild
     {
+        public virtual Target Info => _ => _
+            .Description("Prints curated information about project")
+            .Executes(PrintInfo);
+            
         public virtual Target CleanDeployment => _ => _
             .Description("Removes previous deployment folder")
             .Executes(() => GetOutput().DeleteDirectory());
@@ -26,28 +32,26 @@ namespace Nuke.Unreal
 
         public virtual Target CleanPlugins => _ => _
             .Description("Removes auto generated folders of Unreal Engine from the plugins")
+            .OnlyWhenDynamic(() => PluginsFolder.DirectoryExists())
             .Executes(() =>
             {
                 void recurseBody(AbsolutePath path)
                 {
-                    if(Glob.Files(path, "*.uplugin", GlobOptions.CaseInsensitive).Any())
+                    if (Glob.Files(path, "*.uplugin", GlobOptions.CaseInsensitive).Any())
                     {
+                        Log.Debug("Cleaning plugin {0}", path);
                         Unreal.ClearFolder(path);
-                        if((path / ".git").DirectoryExists() || (path / ".git").FileExists())
-                            GitTasks.Git("clean -xdf", path);
                     }
                     else
                     {
-                        if((path / ".git").DirectoryExists() || (path / ".git").FileExists())
-                            GitTasks.Git("clean -xdf", path);
-                        foreach(var dir in Directory.EnumerateDirectories(path))
+                        foreach (var dir in Directory.EnumerateDirectories(path))
                         {
                             recurseBody((AbsolutePath)dir);
                         }
                     }
                 }
 
-                foreach(var pluginDir in Directory.EnumerateDirectories(PluginsFolder))
+                foreach (var pluginDir in Directory.EnumerateDirectories(PluginsFolder))
                 {
                     recurseBody((AbsolutePath)pluginDir);
                 }
@@ -57,6 +61,21 @@ namespace Nuke.Unreal
             .Description("Removes auto generated folders of Unreal Engine")
             .DependsOn(CleanProject)
             .DependsOn(CleanPlugins);
+
+        public virtual Target Switch => _ => _
+            .Description("Switch to an explicit Engine version")
+            .DependsOn(Clean)
+            .Before(Prepare, Generate, BuildEditor, Build, Cook)
+            .Requires(() => UnrealVersion)
+            .Executes(() =>
+            {
+                Log.Information($"Targeting Unreal Engine {UnrealVersion} on platform {Platform}");
+                Unreal.InvalidateEnginePathCache();
+                ProjectDescriptor = ProjectDescriptor with { EngineAssociation = UnrealVersion };
+                Unreal.WriteJson(ProjectDescriptor, ProjectPath);
+                _projectDescriptor = null;
+                _engineVersionCache = null;
+            });
 
         public virtual Target Prepare => _ => _
             .Description(
@@ -81,11 +100,11 @@ namespace Nuke.Unreal
                     .ProjectFiles()
                     .Project(ProjectPath)
                     .Game()
-                    .If(Unreal.Version(this).IsEngineSource, _ => _
+                    .If(Unreal.IsSource(this), _ => _
                         .Engine()
                     )
                     .Progress()
-                    .Append(UbtArgs.AsArguments())
+                    .AppendRaw(GetArgumentBlock("ubt"))
                 )("");
             });
 
@@ -105,17 +124,17 @@ namespace Nuke.Unreal
                         EditorConfig
                     )
                     .Project(ProjectPath, true)
-                    .If(Unreal.Version(this).IsEngineSource, _ => _
+                    .If(Unreal.IsSource(this), _ => _
                         .Target(
                             "ShaderCompileWorker",
                             UnrealPlatform.FromFlag(Unreal.GetDefaultPlatform()),
-                            new [] { UnrealConfig.Development }
+                            [UnrealConfig.Development]
                         )
                         .Quiet()
                     )
                     .FromMsBuild()
                     .Apply(UbtGlobal)
-                    .Append(UbtArgs.AsArguments())
+                    .AppendRaw(GetArgumentBlock("ubt"))
                 )("");
             });
 
@@ -135,7 +154,7 @@ namespace Nuke.Unreal
                     )
                     .Project(ProjectPath)
                     .Apply(UbtGlobal)
-                    .Append(UbtArgs.AsArguments())
+                    .AppendRaw(GetArgumentBlock("ubt"))
                 )("");
             });
 
@@ -157,7 +176,7 @@ namespace Nuke.Unreal
             .Executes(() =>
             {
                 var isAndroidPlatform = Platform == UnrealPlatform.Android;
-                
+
                 var androidTextureMode = SelfAs<IAndroidTargets>()?.TextureMode
                     ?? [AndroidCookFlavor.Multi];
 
@@ -184,7 +203,7 @@ namespace Nuke.Unreal
                         )
                         .Apply(UatCook)
                         .Apply(UatGlobal)
-                        .Append(UatArgs.AsArguments())
+                        .AppendRaw(GetArgumentBlock("uat"))
                     )("", workingDirectory: UnrealEnginePath);
                 });
             });
@@ -213,6 +232,96 @@ namespace Nuke.Unreal
                     project.Save();
                     Log.Information("This only needs to be done once, you can check the results into source control.");
                 }
+            });
+
+        [Parameter("Do not use globally applicable UBT/UAT arguments with run-uat/run-ubt")]
+        public bool IgnoreGlobalArgs = false;
+
+        public virtual Target RunUat => _ => _
+            .Description("Simply run UAT with arguments passed after `-->`")
+            .Executes(() =>
+            {
+                Unreal.AutomationTool(this, _ => _
+                    .AppendRaw(GetArgumentBlock())
+                    .If(!IgnoreGlobalArgs, _ => _.Apply(UatGlobal))
+                )("", workingDirectory: ProjectFolder);
+            });
+
+        public virtual Target RunUbt => _ => _
+            .Description("Simply run UBT with arguments passed after `-->`")
+            .Executes(() =>
+            {
+                Unreal.BuildTool(this, _ => _
+                    .AppendRaw(GetArgumentBlock())
+                    .If(!IgnoreGlobalArgs, _ => _.Apply(UbtGlobal))
+                )("", workingDirectory: ProjectFolder);
+            });
+
+        public virtual Target RunShell => _ => _
+            .Description(
+                """
+                Start a UShell session. This opens a new console window, and nuke will exit
+                immadiately. Working directory is the project folder, regardless of actual working
+                directory.
+                """
+            )
+            .Executes(() =>
+            {
+                var ushellDir = UnrealEnginePath / "Engine" / "Extras" / "ushell";
+                var scriptExt = RuntimeInformation.IsOSPlatform(OSPlatform.Windows) ? "bat" : "sh";
+                var ushellScript = ushellDir / ("ushell." + scriptExt);
+                Common.Tooling.ProcessTasks.StartShell(
+                    ushellScript,
+                    ProjectFolder
+                );
+            });
+
+        [Parameter(
+            """
+            Name the Unreal tool to be run, You can omit the `Unreal` prefix and the extension.
+            For example:
+            nuke run --tool pak --> ./Path/To/MyProject.pak -Extract "D:/temp"
+            nuke run --tool editor-cmd --> ~p -run=MyCommandlet
+            """
+        )]
+        public string? Tool;
+
+        public virtual Target Run => _ => _
+            .Description(
+                """
+                Run an Unreal tool from the engine binaries folder. You can omit the `Unreal` prefix
+                and the extension. For example:
+
+                nuke run --tool pak --> ./Path/To/MyProject.pak -Extract "D:/temp"
+                nuke run --tool editor-cmd --> ~p -run=MyCommandlet
+
+                Working directory is the project folder, regardless of actual working
+                directory.
+                """
+            )
+            .Requires(() => Tool)
+            .Executes(() =>
+            {
+                Unreal.GetTool(this, Tool!).WithSemanticLogging()(
+                    GetArgumentBlock().JoinSpace(), ProjectFolder
+                );
+            });
+
+        [Parameter("Name of the editor commandlet to run")]
+        public string? Cmd;
+
+        public virtual Target RunEditorCmd => _ => _
+            .Description("Run an editor commandlet with arguments passed in after -->")
+            .Requires(() => Cmd)
+            .Executes(() =>
+            {
+                Unreal.GetTool(this, "Editor-Cmd").WithSemanticLogging()(
+                    GetArgumentBlock()
+                        .Prepend($"{ProjectPath} -run={Cmd}")
+                        .JoinSpace()
+                    ,
+                    ProjectFolder
+                );
             });
     }
 }

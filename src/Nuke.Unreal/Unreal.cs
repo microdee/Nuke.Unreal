@@ -10,6 +10,9 @@ using Serilog;
 using System.Text;
 using Nuke.Unreal.Tools;
 using Nuke.Cola.Tooling;
+using Nuke.Common;
+using Nuke.Common.Utilities;
+using Newtonsoft.Json.Converters;
 
 namespace Nuke.Unreal
 {
@@ -17,18 +20,18 @@ namespace Nuke.Unreal
     {
         public static readonly HashSet<AbsolutePath>? EngineSearchPaths;
 
-        public static AbsolutePath? EnginePathOverride = null;
+        public static AbsolutePath? EnginePathCache = null;
 
         static Unreal()
         {
-            if(RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
             {
                 // Use UnrealLocator
                 return;
             }
 
             // TODO: Use UnrealLocator on other platforms as well
-            if(RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
             {
                 EngineSearchPaths = new()
                 {
@@ -36,7 +39,7 @@ namespace Nuke.Unreal
                 };
                 return;
             }
-            if(RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
             {
                 // TODO: build and use UnrealLocator on linux
                 EngineSearchPaths = new()
@@ -49,6 +52,16 @@ namespace Nuke.Unreal
             throw new Exception("Attempting to build on an unsupported platform");
         }
 
+        public static readonly JsonSerializerSettings JsonReadSettings = new()
+        {
+            MissingMemberHandling = MissingMemberHandling.Ignore,
+            DefaultValueHandling = DefaultValueHandling.Populate,
+            NullValueHandling = NullValueHandling.Include,
+            Converters = {
+                new StringEnumConverter(false)
+            }
+        };
+
         public static void WriteJson(object input, AbsolutePath path)
         {
             var sb = new StringBuilder();
@@ -60,14 +73,22 @@ namespace Nuke.Unreal
                 Indentation = 1,
                 IndentChar = '\t'
             };
-            
-            new JsonSerializer().Serialize(jtw, input);
+
+            var serializer = new JsonSerializer()
+            {
+                NullValueHandling = NullValueHandling.Ignore,
+                Formatting = Formatting.Indented,
+                Converters = {
+                    new StringEnumConverter(false)
+                }
+            };
+            serializer.Serialize(jtw, input);
             File.WriteAllText(path, sb.ToString());
         }
 
         public static AbsolutePath GetUnrealLocatorPath()
         {
-            if(RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
             {
                 return BuildCommon.GetContentsFolder() / "UnrealLocator" / "UnrealLocator.exe";
             }
@@ -76,51 +97,76 @@ namespace Nuke.Unreal
 
         public static Tool UnrealLocator => ToolResolver.GetTool(GetUnrealLocatorPath());
 
-        public static AbsolutePath GetEnginePath(string engineAssociation)
+        public static void InvalidateEnginePathCache() => EnginePathCache = null;
+        public static AbsolutePath GetEnginePath(string engineAssociation, bool ignoreCache = false)
         {
-            if(EnginePathOverride != null) return EnginePathOverride;
+            if (!ignoreCache && EnginePathCache != null) return EnginePathCache;
 
-            if(RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
             {
                 Log.Debug("Looking for Unreal Engine installation:");
                 string location = UnrealLocator(engineAssociation, logOutput: false).Single().Text;
                 Log.Debug("Found at: {0}", location);
-                EnginePathOverride = (AbsolutePath) location;
-                return (AbsolutePath) location;
+                EnginePathCache = (AbsolutePath)location;
+                return (AbsolutePath)location;
             }
 
             throw new FileNotFoundException("No Unreal Engine installation could be found.");
         }
-        
+
         public static EngineVersion Version(UnrealBuild build) => build.GetEngineVersionFromProject();
 
         public static bool Is4(UnrealBuild build) => Version(build).SemanticalVersion.Major == 4;
         public static bool Is5(UnrealBuild build) => Version(build).SemanticalVersion.Major == 5;
 
-        public static AbsolutePath GetEnginePath(EngineVersion ofVersion)
-        {
-            if(EnginePathOverride != null) return EnginePathOverride;
+        public static bool IsInstalled(AbsolutePath enginePath)
+            => (enginePath / "Engine" / "Build" / "InstalledBuild.txt").FileExists();
 
-            if(RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+        public static bool IsInstalled(EngineVersion ofVersion, bool ignoreCache = false)
+            => IsInstalled(GetEnginePath(ofVersion, ignoreCache));
+
+        public static bool IsInstalled(UnrealBuild build, bool ignoreCache = false)
+            => IsInstalled(GetEnginePath(build, ignoreCache));
+
+        public static bool IsSource(AbsolutePath enginePath)
+            => !IsInstalled(enginePath);
+
+        public static bool IsSource(EngineVersion ofVersion, bool ignoreCache = false)
+            => IsSource(GetEnginePath(ofVersion, ignoreCache));
+
+        public static bool IsSource(UnrealBuild build, bool ignoreCache = false)
+            => IsSource(GetEnginePath(build, ignoreCache));
+
+        public static AbsolutePath GetEnginePath(EngineVersion ofVersion, bool ignoreCache = false)
+        {
+            if (!ignoreCache && EnginePathCache != null) return EnginePathCache;
+            if (ofVersion.ExplicitEnginePath != null)
             {
-                return GetEnginePath(ofVersion.VersionName);
+                EnginePathCache = ofVersion.ExplicitEnginePath.Path;
+                return EnginePathCache;
+            }
+
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+            {
+                return GetEnginePath(ofVersion.VersionName, ignoreCache);
             }
 
             throw new FileNotFoundException("No Unreal Engine installation could be found.");
         }
-        public static AbsolutePath GetEnginePath(UnrealBuild build) => GetEnginePath(Version(build));
+        public static AbsolutePath GetEnginePath(UnrealBuild build, bool ignoreCache = false)
+            => GetEnginePath(Version(build), ignoreCache);
 
         public static UnrealPlatformFlag GetDefaultPlatform()
         {
-            if(RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
                 return UnrealPlatformFlag.Win64;
 
-            if(RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
                 return UnrealPlatformFlag.Mac;
-                
-            if(RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
                 return UnrealPlatformFlag.Linux;
-                
+
             throw new Exception("Attempting to build on an unsupported platform");
         }
 
@@ -132,7 +178,7 @@ namespace Nuke.Unreal
             var ubtPath = ofVersion.SemanticalVersion.Major >= 5
                 ? GetEnginePath(ofVersion) / "Engine" / "Binaries" / "DotNET" / "UnrealBuildTool" / "UnrealBuildTool.exe"
                 : GetEnginePath(ofVersion) / "Engine" / "Binaries" / "DotNET" / "UnrealBuildTool.exe";
-            
+
             return ToolResolver.GetTool(ubtPath).WithSemanticLogging();
 
             // TODO: MacOS: "sh", $"\"{MacRunMono(ofVersion)}\" \"{ubtPath}\" " + arguments
@@ -188,17 +234,30 @@ namespace Nuke.Unreal
         public static string ReadCopyrightFromProject(AbsolutePath projectFolder)
         {
             var configPath = projectFolder / "Config" / "DefaultGame.ini";
-            if(!File.Exists(configPath)) return "Fill in Copyright info...";
+            if (!File.Exists(configPath)) return "Fill in Copyright info...";
 
             var crLine = File.ReadAllLines(configPath)
                 .FirstOrDefault(l => l.StartsWith("CopyrightNotice="));
-            
-            if(string.IsNullOrWhiteSpace(crLine)) return "Fill in Copyright info...";
+
+            if (string.IsNullOrWhiteSpace(crLine)) return "Fill in Copyright info...";
 
             var crEntry = crLine.Split('=', 2, StringSplitOptions.TrimEntries);
-            if(crEntry.Length < 2) return "Fill in Copyright info...";
+            if (crEntry.Length < 2) return "Fill in Copyright info...";
 
             return crEntry[1];
+        }
+
+        public static Tool GetTool(UnrealBuild build, string name)
+        {
+            var binaries = GetEnginePath(build) / "Engine" / "Binaries" / GetDefaultPlatform().ToString();
+            var ext = RuntimeInformation.IsOSPlatform(OSPlatform.Windows) ? ".exe" : "";
+            var path = binaries / (name + ext);
+
+            if (!path.FileExists())
+                path = binaries / ("Unreal" + name + ext);
+
+            Assert.FileExists(path, $"Requested tool {name} doesn't exist.");
+            return ToolResolver.GetTool(path);
         }
     }
 }

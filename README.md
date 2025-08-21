@@ -17,7 +17,8 @@ Simplistic workflow for automating Unreal Engine project tasks embracing [Nuke](
 - [Features:](#features)
 - [Setting up for a project](#setting-up-for-a-project)
 - [Setting up for plugin development](#setting-up-for-plugin-development)
-  - [Additional Plugin Targets](#additional-plugin-targets)
+- [Passing command line arguments to Unreal tools](#passing-command-line-arguments-to-unreal-tools)
+  - [Custom UBT or UAT arguments](#custom-ubt-or-uat-arguments)
 - [Generators](#generators)
   - [C# code generators for Unreal tools](#c-code-generators-for-unreal-tools)
   - [Using third-party C++ libraries](#using-third-party-c-libraries)
@@ -26,15 +27,22 @@ Simplistic workflow for automating Unreal Engine project tasks embracing [Nuke](
     - [Use header only library](#use-header-only-library)
   - [Unreal boilerplate templates](#unreal-boilerplate-templates)
     - [Use your own templates](#use-your-own-templates)
-- [Custom UBT or UAT arguments from command line](#custom-ubt-or-uat-arguments-from-command-line)
+  - [Semi-auto Runtime Dependencies](#semi-auto-runtime-dependencies)
 - [Targets](#targets)
   - [Global targets (UnrealBuild)](#global-targets-unrealbuild)
+    - [info](#info)
+    - [switch](#switch)
     - [prepare](#prepare)
     - [generate](#generate)
     - [build-editor](#build-editor)
     - [build](#build)
     - [cook](#cook)
     - [clean](#clean)
+    - [run](#run)
+    - [run-uat](#run-uat)
+    - [run-ubt](#run-ubt)
+    - [run-shell](#run-shell)
+    - [run-editor-cmd](#run-editor-cmd)
     - [ensure-build-plugin-support](#ensure-build-plugin-support)
   - [UnrealBuild.Templating](#unrealbuildtemplating)
   - [Packaging (IPackageTargets)](#packaging-ipackagetargets)
@@ -46,11 +54,6 @@ Simplistic workflow for automating Unreal Engine project tasks embracing [Nuke](
     - [install-on-android](#install-on-android)
     - [debug-on-android](#debug-on-android)
     - [java-development-service](#java-development-service)
-  - [Plugin development (IPluginTargets)](#plugin-development-iplugintargets)
-    - [checkout](#checkout)
-    - [make-release](#make-release)
-    - [pack-plugin](#pack-plugin)
-    - [make-marketplace-release](#make-marketplace-release)
 - [Articles](#articles)
 
 
@@ -66,9 +69,6 @@ Navigate to your project with powershell and do
 ```
 Set-ExecutionPolicy Unrestricted -Scope Process -Force; iex (iwr 'https://raw.githubusercontent.com/microdee/Nuke.Unreal/refs/heads/main/install/install.ps1').ToString()
 ```
-
-1. ***(optional)*** Inherit `IPackageTargets` interface if you want to package the associated Unreal project
-2. ***(optional)*** Inherit `IPluginTargets` interface for automating plugin development related steps.
 
 ## Install manually
 
@@ -91,7 +91,6 @@ Nuke.Unreal is available as a Nuget package and you can just add it to your buil
 3. Use `Main () => Plugins.Execute<Build>(Execute);` instead of `Main () => Execute();`
 4. No further boilerplate required, run `nuke --plan` to test Nuke.Unreal
 5. ***(optional)*** Inherit `IPackageTargets` interface if you want to package the associated Unreal project
-6. ***(optional)*** Inherit `IPluginTargets` interface for automating plugin development related steps.
 
 Your bare-bones minimal Build.cs which will provide the default features of Nuke.Unreal should look like this:
 
@@ -120,9 +119,12 @@ public class Build : UnrealBuild
   > nuke build --config DebugGame Development --target-type Game --platform Android
   ```
 * Unreal engine location is automatically determined (on Windows at least)
-* Prepare plugins for release in Marketplace
+* Execute Unreal tools without the need to navigate to their location
   ```
-  > nuke make-release --for-marketplace
+  > nuke run-uat --> <args...>
+  > nuke run-ubt --> <args...>
+  > nuke run-shell
+  > nuke run --tool editor-cmd --> <args...>
   ```
 * Install C++ libraries (using [xrepo](https://xrepo.xmake.io))
   ```
@@ -139,6 +141,7 @@ public class Build : UnrealBuild
     ```
 * Generated C# configurators for Unreal tools with gathered documentation. (UBT and UAT)
 * Pluggable way to define targets for reusable plugins and modules
+* Prepare Unreal Plugins for distribution with easy to use API.
 
 # Setting up for a project
 
@@ -152,15 +155,19 @@ Only one Unreal project is supported per Nuke.Unreal instance.
 
 # Setting up for plugin development
 
-Same is applicable when Nuke.Unreal is used for developing an Unreal Plugin for release. Of course Nuke.Unreal can work with multiple plugins in a project, but the `IPluginTargets` interface focuses only on one plugin. Again if the plugin is not trivially locatable then the developer can specify its location explicitly.
+A little bit of theory: Unreal plugins are simple on the surface but easily can get very complicated to handle especially when they need to interact with the non-unreal world. For this reason it is recommended to break up development and distribution of Unreal plugins into multiple stages:
 
-```CSharp
-public AbsolutePath PluginPath => UnrealPluginsFolder / "MyPlugin" / "MyPlugin.uplugin";
-```
+<div align="center">
 
-## Additional Plugin Targets
+![](docs/PluginStages.drawio.svg)
 
-However plugins which require some pre-processing might benefit from the "[Build plugins](https://github.com/microdee/md.Nuke.Cola?tab=readme-ov-file#build-plugins)" pattern from Nuke.Cola. Simplest method of which is [standalone `*.nuke.cs` files](https://github.com/microdee/md.Nuke.Cola?tab=readme-ov-file#implicitbuildinterface-plugins) which are compiled with the build project. Let's have this scaffolding as an example:
+</div>
+
+Nuke.Unreal lives in the "**True Plugin Source**" stage *(whatever that may look like in your software architecture)* and helps to deliver it to further distribution stages.
+
+Plugins can be managed by creating your own targets to handle them. You can do that inside either your main build class, or glue that logic to your Unreal plugin in its folder structure via [Nuke.Cola build plugins](https://github.com/microdee/md.Nuke.Cola?tab=readme-ov-file#build-plugins). The simplest method of which is [standalone `*.nuke.cs` files](https://github.com/microdee/md.Nuke.Cola?tab=readme-ov-file#implicitbuildinterface-plugins) which are compiled with the build project.
+
+Let's have this scaffolding as an example:
 
 ```
 <project root>
@@ -180,7 +187,7 @@ However plugins which require some pre-processing might benefit from the "[Build
         └── <source files>
 ```
 
-Build interfaces (or in Nuke vocabulary "Build Components") decorated with `[ImplicitBuildInterface]` inside these `*.nuke.cs` files will automatically contribute to the build graph without further boilerplate.
+Build interfaces (or in Nuke vocabulary "[Build Components](https://nuke.build/docs/sharing/build-components/)") decorated with `[ImplicitBuildInterface]` inside these `*.nuke.cs` files will automatically contribute to the build graph without further boilerplate.
 
 ```CSharp
 
@@ -195,9 +202,20 @@ namespace Nuke.MyModule;
 [ImplicitBuildInterface]
 public interface IMyModuleTargets : INukeBuild
 {
-    Target Foo => _ => _
-        .DependsOn<IPackageTargets>()
-        .Executes(() {...});
+    Target PrepareMyModule => _ => _
+        .Executes(() =>
+        {
+            var self = (UnrealBuild)this;
+
+            // This will automatically fetch the plugin which owns this particular script.
+            // These plugin objects are shared among all targets and they can all manipulate their aspects
+            var thisPlugin = UnrealPlugin.Get(this.ScriptFolder());
+
+            // This module has some runtime dependencies which it needs to sort out
+            // This function gets the plugin in itself, no need to use thisPlugin here
+            // See exact usage of this in section "Semi-auto Runtime Dependencies"
+            self.PrepareRuntimeDependencies(this.ScriptFolder(), /* ... */);
+        });
 }
 
 // MyPlugin.nuke.cs
@@ -210,10 +228,82 @@ namespace Nuke.MyPlugin;
 [ImplicitBuildInterface]
 public interface IMyPluginTargets : INukeBuild
 {
-    Target Foo => _ => _
-        .Before<UnrealBuild>(u => u.Generate, u => u.Build, u => u.BuildEditor)
-        .Executes(() {...});
+    Target PrepareMyPlugin => _ => _
+        .DependentFor<UnrealBuild>(u => u.Prepare)
+        .DependsOn<IMyModuleTargets>()
+        .Executes(() =>
+        {
+            // This will automatically fetch the plugin which owns this particular script.
+            // These plugin objects are shared among all targets and they can all manipulate their aspects
+            var thisPlugin = UnrealPlugin.Get(this.ScriptFolder());
+
+            // Do extra logic scoped for the plugin...
+        });
+    
+    Target DistributeMyPlugin => _ => _
+        .DependsOn(PrepareMyPlugin)
+        .Executes(() =>
+        {
+            // Create a copy of this plugin which can be distributed to other developers or other tools
+            // who shouldn't require extra non-unreal related steps to work with it.
+            // You can upload the result of this to Fab.
+            var (files, outputDir) = UnrealPlugin.Get(this.ScriptFolder()).DistributeSource();
+
+            // Do something with the affected files or in the output directory...
+        });
+    
+    Target BuildMyPlugin => _ => _
+        .DependsOn(PrepareMyPlugin)
+        .Executes(() =>
+        {
+            // Build this plugin with UAT for binary distribution
+            var outputDir = UnrealPlugin.Get(this.ScriptFolder()).BuildPlugin();
+
+            // Do something in the output directory...
+        });
 }
+```
+
+And call them later with
+
+```
+> nuke prepare-my-plugin
+> nuke distribute-my-plugin
+> nuke build-my-plugin
+```
+
+You have absolute freedom to organize the task-dependency graph around handling your plugins. For example one target may manipulate multiple plugins even, from a dynamic set of folders. The above example is just a simple use-case.
+
+# Passing command line arguments to Unreal tools
+
+In some targets Nuke.Unreal allows to pass custom command line arguments for Unreal tools. This is only necessary for advanced use cases, and for prototyping. In almost all cases once a workflow is developed with these custom arguments it is recommended to solidify them into a custom target, or use the plathera of customization and modularization points Nuke.Unreal offers.
+
+Command line arguments are passed with the `-->` sequence, anything after such sequence will be passed directly to tools. This is dubbed as "argument blocks". The precise usage of them depends on the specific target being used. Multiple argument blocks can be named and used by targets. A block ends when another one starts or when it's the end of the command line input.
+
+In all cases Nuke.Unreal provides some variables so the user don't need to repeat long paths. These variables are replaced at any position of the text of any argument. These variables are:
+
+```
+   ~p - Absolute path of the .uproject file
+~pdir - Absolute folder containing the .uproject file
+  ~ue - Absolute path to the engine root
+```
+
+For example
+
+```
+> nuke run --tool editor-cmd --> ~p -run=MyCommandlet
+UnrealEditor-Cmd.exe C:\Projects\Personal\MyProject\MyProject.uproject -run=MyCommandlet
+```
+
+## Custom UBT or UAT arguments
+
+When invoking common tasks Nuke.Unreal supports passing extra custom arguments to UBT or UAT via `-->ubt` or `-->uat`. Anything passed behaind these or in-between these will be passed to their respective tool.
+
+This is especially useful for doing temporary debugging with UBT and the compiler: (not an actual usecase)
+```
+> nuke build ... -->ubt -CompilerArguments="/diagnostics:caret /P /C" -DisableUnity
+> nuke build ... -->ubt -LinkerArguments=/VERBOSE
+> nuke build ... -->ubt -Preprocess
 ```
 
 # Generators
@@ -250,7 +340,9 @@ UBT on the other hand had a more disciplined and consistent approach for interpr
 
 ## Using third-party C++ libraries
 
-Nuke.Unreal allows you to set up boilerplate for C++ libraries, or fetch them via a package manager. In all cases the artifacts it generates are placed in the working directory (the current location of your terminal). There are three methods available:
+Nuke.Unreal allows you to set up boilerplate for C++ libraries, or fetch them via a package manager. In all cases the artifacts it generates are placed in the working directory (the current location of your terminal). In all cases they're managed in their own preparation targets which are generated for you.
+
+There are three methods available:
 
 ### Use library from [xrepo](https://xrepo.xmake.io)
 
@@ -353,18 +445,220 @@ public override AbsolutePath TemplatesPath { get; set; } = RootDirectory / "MyTe
 
 This way Actor and Object generators will have their project specific Scriban templates but the remaining generator types will use the default templates of Nuke.Unreal.
 
-# Custom UBT or UAT arguments from command line
+## Semi-auto Runtime Dependencies
 
-Nuke.Unreal supports passing custom arguments to UBT or UAT via `--ubt-args` or `--uat-args`. These are regular array properties exposed as Nuke target parameters. This means however that doing `--ubt-args -DisableUnity` wouldn't actually add `-DisableUnity` to the argument list. This happens because Nuke stops parsing the array argument when it hits a `-` character. For this reason Nuke.Unreal has a special escape mechanism where `~-` is replaced with `-`, or if the argument starts with `~` then that's also replaced with a `-`.
+Some third-party libraries or solutions may come with a lot of binary dependencies, which needs to be organized neatly into specific folders when distributing the project. Module rules provide a mechanism for managing arbitrary runtime dependencies, and UAT will distribute them when packaging. However when there's a lot of files in elaborate folder structure it is quite a chore to list them all in module rules.
 
-So doing `--ubt-args ~DisableUnity ~2022` will correctly pass arguments `-DisableUnity -2022` to UBT.
+Nuke.Unreal comes with a feature dubbed "Auto Runtime Dependencies" which can generate partial module rules sorting them out for each platform and configuration. This is only meant to be used for large, prebuilt libraries ususally downloaded or pre-installed for a project. Libraries fetched in other ways like the XRepo workflow, doesn't need this feature, as the same problem is solved there in a different way.
 
-This is especially useful for doing temporary debugging with UBT and the compiler: (not an actual usecase)
+Here's the overview of the usage of `PrepareRuntimeDependencies` function:
+
+1. Provide a source folder for the runtime dependencies
+2. Provide a set of locations in runtime, relative to the destination folder serving as runtime library paths (ideally one for each supported platforms). This may be used as base folders to load DLL's from.
+3. If applicable provide pattern matching functions to determine the platform and configuration for individual files
+4. To control the destination folder structure `PrepareRuntimeDependencies` may pick up a folder composition manifest file called "RuntimeDeps.yml" (by default this can be also overridden)
+5. If no such manifest is available one can be passed directly in C#
+
+The module rule will copy output files on building the project to `<plugin-directory>/Binaries/<binariesSubfolder>/<moduleName>`. Where `binariesSubfolder` is "ThirdParty" by default.
+
+For example have the following file structure of a module representing a third-party library:
+
 ```
-> nuke build ... --ubt-args "~CompilerArguments='/diagnostics:caret /P /C'" ~DisableUnity
-> nuke build ... --ubt-args ~LinkerArguments=/VERBOSE
-> nuke build ... --ubt-args ~Preprocess
+TpModule
+├── ...
+├── LibraryFiles
+│   ├── includes ...
+│   └── lib
+│       ├── win_amd64
+│       │   ├── rel
+│       │   │   ├── libtp.lib
+│       │   │   └── *.dll
+│       │   └── debug
+│       │       ├── libtp.lib
+│       │       └── *.dll
+│       └── linux_x86_64
+│           ├── rel
+│           │   ├── libtp.lib
+│           │   └── *.so
+│           └── debug
+│               ├── libtp.lib
+│               └── *.so
+├── RuntimeDeps.yml
+├── TpModule.Build.cs
+└── TpModule.nuke.cs
 ```
+
+```yaml
+# RuntimeDeps.yml
+copy:
+  - file: LibraryFiles/win_amd64/rel/*.dll
+    as: Win64/Release/$1.dll
+  - file: LibraryFiles/win_amd64/debug/*.dll
+    as: Win64/Debug/$1.dll
+  - file: LibraryFiles/linux_x86_64/rel/*.so
+    as: Linux/Release/$1.so
+  - file: LibraryFiles/linux_x86_64/debug/*.so
+    as: Linux/Debug/$1.so
+```
+
+```CSharp
+// TpModule.Build.cs
+
+using System;
+using UnrealBuildTool;
+
+public partial class TpModule : ModuleRules
+{
+    public TpModule(ReadOnlyTargetRules target) : base(target)
+    {
+		Type = ModuleType.External;
+        SetupRuntimeDependencies(target);
+    }
+    partial void SetupRuntimeDependencies(ReadOnlyTargetRules target);
+}
+```
+
+```CSharp
+// TpModule.nuke.cs
+
+using Nuke.Common;
+using Nuke.Cola;
+using Nuke.Cola.BuildPlugins;
+using Nuke.Unreal;
+
+[ImplicitBuildInterface]
+public interface IMyPluginTargets : INukeBuild
+{
+    Target PrepareMyPlugin => _ => _
+        .Executes(() =>
+        {
+            this.PrepareRuntimeDependencies(
+                this.ScriptFolder(),
+                [
+                    new() {
+                        Path = (RelativePath)"Win64/Release",
+                        Config = RuntimeDependencyConfig.Release,
+                        Platform = UnrealPlatform.Win64
+                    },
+                    new() {
+                        Path = (RelativePath)"Win64/Debug",
+                        Config = RuntimeDependencyConfig.Debug,
+                        Platform = UnrealPlatform.Win64
+                    },
+                    new() {
+                        Path = (RelativePath)"Linux/Release",
+                        Config = RuntimeDependencyConfig.Release,
+                        Platform = UnrealPlatform.Linux
+                    },
+                    new() {
+                        Path = (RelativePath)"Linux/Debug",
+                        Config = RuntimeDependencyConfig.Debug,
+                        Platform = UnrealPlatform.Linux
+                    },
+                ],
+                determineConfig: f =>
+                    f.ToString().Contains("rel")
+                    ? RuntimeDependencyConfig.Release
+                    : f.ToString().Contains("debug")
+                    ? RuntimeDependencyConfig.Debug
+                    : RuntimeDependencyConfig.All
+                ,
+                determinePlatform: f =>
+                    f.ToString().Contains("win_amd64")
+                    ? UnrealPlatform.Win64
+                    : f.ToString().Contains("linux_x86_64")
+                    ? UnrealPlatform.Linux
+                    : UnrealPlatform.Independent
+            );
+        });
+}
+```
+
+<details>
+<summary>Will generate a partial module rule file:</summary>
+
+```CSharp
+
+// TpModule.Rtd.Build.cs
+// This is an automatically generated file, do not modify
+
+using System;
+using UnrealBuildTool;
+
+public partial class TpModule : ModuleRules
+{
+	void HandleRuntimeLibraryPath(string path)
+	{
+		PublicRuntimeLibraryPaths.Add($"{PluginDirectory}/{path}");
+		PublicDefinitions.Add($"TPMODULE_DLL_PATH=TEXT(\"{path}\")");
+	}
+
+	void HandleRuntimeDependency(string from, string to) =>
+		RuntimeDependencies.Add(
+			$"{PluginDirectory}/{from}", $"{PluginDirectory}/{to}",
+			StagedFileType.SystemNonUFS
+		);
+
+	partial void SetupRuntimeDependencies(ReadOnlyTargetRules target)
+	{
+		var Win64 =       target.Platform == UnrealTargetPlatform.Win64;
+		var Mac =         target.Platform == UnrealTargetPlatform.Mac;
+		var Linux =       target.Platform == UnrealTargetPlatform.Linux;
+		var LinuxArm64 =  target.Platform == UnrealTargetPlatform.LinuxArm64;
+		var Android =     target.Platform == UnrealTargetPlatform.Android;
+		var IOS =         target.Platform == UnrealTargetPlatform.IOS;
+		var TVOS =        target.Platform == UnrealTargetPlatform.TVOS;
+		var VisionOS =    target.Platform == UnrealTargetPlatform.VisionOS;
+		var Independent = true;
+
+		var Debug = target is
+		{
+			Configuration: UnrealTargetConfiguration.Debug,
+			bDebugBuildsActuallyUseDebugCRT: true
+		};
+		var Release = !Debug;
+		var All = true;
+
+		if (Release && Win64) HandleRuntimeLibraryPath("Binaries/ThirdParty/TpModule/Win64/Release");
+		if (Debug && Win64) HandleRuntimeLibraryPath("Binaries/ThirdParty/TpModule/Win64/Debug");
+		if (Release && Linux) HandleRuntimeLibraryPath("Binaries/ThirdParty/TpModule/Linux/Release");
+		if (Debug && Linux) HandleRuntimeLibraryPath("Binaries/ThirdParty/TpModule/Linux/Debug");
+
+		if (Release && Win64) HandleRuntimeDependency("Source/ThirdParty/TpModule/LibraryFiles/lib/win_amd64/rel/foo.dll", "Binaries/ThirdParty/TpModule/Win64/Release/foo.dll");
+		if (Release && Win64) HandleRuntimeDependency("Source/ThirdParty/TpModule/LibraryFiles/lib/win_amd64/rel/bar.dll", "Binaries/ThirdParty/TpModule/Win64/Release/bar.dll");
+		if (Release && Win64) HandleRuntimeDependency("Source/ThirdParty/TpModule/LibraryFiles/lib/win_amd64/rel/etc.dll", "Binaries/ThirdParty/TpModule/Win64/Release/etc.dll");
+		if (Debug && Win64) HandleRuntimeDependency("Source/ThirdParty/TpModule/LibraryFiles/lib/win_amd64/debug/foo.dll", "Binaries/ThirdParty/TpModule/Win64/Debug/foo.dll");
+		if (Debug && Win64) HandleRuntimeDependency("Source/ThirdParty/TpModule/LibraryFiles/lib/win_amd64/debug/bar.dll", "Binaries/ThirdParty/TpModule/Win64/Debug/bar.dll");
+		if (Debug && Win64) HandleRuntimeDependency("Source/ThirdParty/TpModule/LibraryFiles/lib/win_amd64/debug/etc.dll", "Binaries/ThirdParty/TpModule/Win64/Debug/etc.dll");
+		if (Release && Linux) HandleRuntimeDependency("Source/ThirdParty/TpModule/LibraryFiles/lib/linux_x86_64/rel/foo.so", "Binaries/ThirdParty/TpModule/Linux/Release/foo.so");
+		if (Release && Linux) HandleRuntimeDependency("Source/ThirdParty/TpModule/LibraryFiles/lib/linux_x86_64/rel/bar.so", "Binaries/ThirdParty/TpModule/Linux/Release/bar.so");
+		if (Release && Linux) HandleRuntimeDependency("Source/ThirdParty/TpModule/LibraryFiles/lib/linux_x86_64/rel/etc.so", "Binaries/ThirdParty/TpModule/Linux/Release/etc.so");
+		if (Debug && Linux) HandleRuntimeDependency("Source/ThirdParty/TpModule/LibraryFiles/lib/linux_x86_64/debug/foo.so", "Binaries/ThirdParty/TpModule/Linux/Debug/foo.so");
+		if (Debug && Linux) HandleRuntimeDependency("Source/ThirdParty/TpModule/LibraryFiles/lib/linux_x86_64/debug/bar.so", "Binaries/ThirdParty/TpModule/Linux/Debug/bar.so");
+		if (Debug && Linux) HandleRuntimeDependency("Source/ThirdParty/TpModule/LibraryFiles/lib/linux_x86_64/debug/etc.so", "Binaries/ThirdParty/TpModule/Linux/Debug/etc.so");
+
+		if (Release && Win64) PublicDelayLoadDLLs.Add("foo.dll");
+		if (Release && Win64) PublicDelayLoadDLLs.Add("bar.dll");
+		if (Release && Win64) PublicDelayLoadDLLs.Add("etc.dll");
+		if (Debug && Win64) PublicDelayLoadDLLs.Add("foo.dll");
+		if (Debug && Win64) PublicDelayLoadDLLs.Add("bar.dll");
+		if (Debug && Win64) PublicDelayLoadDLLs.Add("etc.dll");
+		if (Release && Linux) PublicDelayLoadDLLs.Add("foo.so");
+		if (Release && Linux) PublicDelayLoadDLLs.Add("bar.so");
+		if (Release && Linux) PublicDelayLoadDLLs.Add("etc.so");
+		if (Debug && Linux) PublicDelayLoadDLLs.Add("foo.so");
+		if (Debug && Linux) PublicDelayLoadDLLs.Add("bar.so");
+		if (Debug && Linux) PublicDelayLoadDLLs.Add("etc.so");
+		
+		var dllList = string.Join(',', PublicDelayLoadDLLs.Select(d => $"TEXT(\"{d}\")"));
+		PublicDefinitions.Add($"TPMODULE_DLL_FILES={dllList}");
+	}
+}
+```
+
+</details>
+
+This is of course a toy example. As you can see though this may end up with quite a lot of boilerplate code, so again this is only recommended for libraries which needs a non-trivial folder structure of files and DLL's for its runtime.
 
 # Targets
 
@@ -381,10 +675,27 @@ Nuke.Unreal provides couple of universally useful targets associated with regula
 
 They're available for all project types just from using `UnrealBuild` as base class (`UnrealBuild.Targets.cs` or `UnrealBuild.Templating.cs`).
 
-* Plans:
-  * [ ] TODO: `run` target which allows to run any Unreal program from the version associated with the project with arbitrary command line arguments.
+### info
+
+Prints curated information about project.
+
+### switch
+
+Switch to the specified Unreal Engine version and platform. A CI/CD can call nuke with this target multiple times to deploy plugins for multiple engine versions for example.
+
+* Parameters:
+  * `--unreal` **REQUIRED**
+    * Can be simple version name like `5.5`, a GUID associated with engine location or an absolute path to engine root.
+* Graph:
+  * Depends on [`clean`](#clean)
+  * Before [prepare](#prepare)
+  * Before [generate](#generate)
+  * Before [buildEditor](#buildEditor)
+  * Before [build](#build)
+  * Before [cook](#cook)
 
 ### prepare
+
 Run necessary preparations which needs to be done before Unreal tools can handle the project. By default it is empty and the main build project may override it or other Targets can depend on it / hook into it. For example the generated Nuke targets made by `use-cmake` or `use-xrepo` are dependent for `prepare`
 
 ### generate
@@ -413,7 +724,8 @@ Uses UBT to build one of the main project targets (Game, Editor, Client, Server)
   * `--config` default is `development`
   * `--target-type` default is `game`
   * `--platform` default is current development platform
-  * `--ubt-args` see [Custom UBT or UAT arguments from command line](#custom-ubt-or-uat-arguments-from-command-line)
+* Argument blocks:
+  * `-->ubt` see [Custom UBT or UAT arguments](#custom-ubt-or-uat-arguments)
 * Graph:
   * After [`cook`](#cook)
   * After [`prepare`](#prepare)
@@ -425,9 +737,10 @@ Cook Unreal assets for standalone game execution with UAT.
 * Parameters:
   * `--config` default is `development`
   * `--platform` default is current development platform
-  * `--uat-args` see [Custom UBT or UAT arguments from command line](#custom-ubt-or-uat-arguments-from-command-line)
   * from [`IAndroidTargets`](#targeting-android-iandroidtargets)
     * `--android-texture-mode` default is `multi`
+* Argument blocks:
+  * `-->uat` see [Custom UBT or UAT arguments](#custom-ubt-or-uat-arguments)
 * Graph:
   * Depends on [`build-editor`](#build-editor)
 
@@ -442,6 +755,53 @@ Removes auto generated folders of Unreal Engine
   * Related to `clean-deployment`
 * Plans:
   * [ ] TODO: it may be too aggressive, use rather UAT?
+
+### run
+
+Run an Unreal tool from the engine binaries folder. You can omit the `Unreal` prefix and the extension. For example:
+
+```
+> nuke run --tool pak --> ./Path/To/MyProject.pak -Extract "D:/temp"
+> nuke run --tool editor-cmd --> ~p -run=MyCommandlet
+```
+
+Working directory is the project folder, regardless of actual working directory.
+
+* Parameters:
+  * `--tool`
+* Argument blocks:
+  * `-->` see [Passing command line arguments to Unreal tools](#passing-command-line-arguments-to-unreal-tools)
+
+### run-uat
+
+Simply run UAT with arguments passed after `-->`
+
+* Parameters:
+  * `--ignore-global-args`
+* Argument blocks:
+  * `-->` see [Passing command line arguments to Unreal tools](#passing-command-line-arguments-to-unreal-tools)
+
+### run-ubt
+
+Simply run UBT with arguments passed after `-->`
+
+* Parameters:
+  * `--ignore-global-args`
+* Argument blocks:
+  * `-->` see [Passing command line arguments to Unreal tools](#passing-command-line-arguments-to-unreal-tools)
+
+### run-shell
+
+Create console window with a [UShell](https://dev.epicgames.com/documentation/en-us/unreal-engine/how-to-use-ushell-for-unreal-engine) session. Only fully supported after UE 5.5
+
+### run-editor-cmd
+
+Run an editor commandlet with arguments passed in after `-->`
+
+* Parameters:
+  * `--cmd`
+* Argument blocks:
+  * `-->` see [Passing command line arguments to Unreal tools](#passing-command-line-arguments-to-unreal-tools)
 
 ### ensure-build-plugin-support
 
@@ -480,10 +840,11 @@ Package the project for distribution. Same as packaging the project from the edi
   * `--config` default is `development`
   * `--editor-config` default is `development`
   * `--platform` default is current development platform
-  * `--output` default is `<project root>/Intermediate/Output`
-  * `--uat-args` see [Custom UBT or UAT arguments from command line](#custom-ubt-or-uat-arguments-from-command-line)
+  * `--output` default is `<project root>/Intermediate/Output`(#custom-ubt-or-uat-arguments)
   * from [`IAndroidTargets`](#targeting-android-iandroidtargets)
     * `--android-texture-mode` default is `multi`
+* Argument blocks:
+  * `-->uat` see [Custom UBT or UAT arguments](#custom-ubt-or-uat-arguments)
 * Graph:
   * Depends on [`build-editor`](#build-editor)
   * After
@@ -573,57 +934,8 @@ Run this project on a connected Android device from the result of packaging or b
 
 This was an attempt to sync Java files copied into the generated Gradle project back to their original source whenever they're changed. At the moment this is very experimental, may not cover all edge cases, and if I ever return to this problem, I'll rewrite this to use symlinks instead which is set up by another target which needs to be run only once (instead of this acting as a file-system watcher service).
 
-## Plugin development (IPluginTargets)
-
-> [!CAUTION]
-> This is highly experimental and only developed for specific cases, but with ambitious intents. This entire section can be different in future versions.
-
-* Plans:
-  * This build component will have a lot of changes in the foreseeable future which will allow to better prepare plugins for distribution.
-
-### checkout
-
-Switch to the specified Unreal Engine version and platform for plugin development. A CI/CD can call nuke with this target multiple times to deploy the plugin for multiple engine versions.
-
-* Overrides:
-  * `IPluginTargets.PluginPath { get; }` if multiple plugins are present in development project
-* Parameters:
-  * `--unreal-version` **REQUIRED**
-* Graph:
-  * Depends on [`clean`](#clean)
-
-### make-release
-
-Convenience target triggering [`pack-plugin`](#pack-plugin) and [`make-marketplace-release`](#make-marketplace-release).
-
-### pack-plugin
-
-Make a pre-built release of the plugin and archive it into a zip file ready to be distributed.
-
-* Overrides:
-  * `IPluginTargets.PluginVersion { get; }`
-  * `IPluginTargets.PluginPath { get; }` if multiple plugins are present in development project
-* Parameters:
-  * `--platform` default is current development platform
-  * `--output` default is `<project root>/Intermediate/Output`
-  * `--uat-args` see [Custom UBT or UAT arguments from command line]
-* Graph:
-  * After `clean-deployment`
-
-### make-marketplace-release
-
-Prepare a Marketplace complaint archive from the plugin. This yields zip archives in the deployment path, which can then be linked for ~~marketplace~~/Fab.
-
-> [!IMPORTANT]
-> Because Unreal Marketplace is no longer a thing, this will be probably renamed to `make-fab-release` in the future.
-
-* Parameters:
-  * `--for-marketplace` **REQUIRED** switch
-    * This will be deprecated in the future and express the same intention with just the target execution graph
-  * `--platform` default is current development platform
-  * `--output` default is `<project root>/Intermediate/Output`
-
 # Articles
 
+* [Nuke.Unreal 2.2](https://mcro.de/c/log/nuke-unreal-2-2)
 * [Nuke.Unreal 2.1](https://mcro.de/c/log/nuke-unreal-2-1)
 * [Nuke.Unreal 1.2](https://mcro.de/c/log/nuke-unreal-1-2)

@@ -8,22 +8,23 @@ using Nuke.Common.Tooling;
 namespace Nuke.Unreal
 {
     [Flags]
-    public enum UnrealPlatformFlag
+    public enum UnrealPlatformFlag : UInt16
     {
-        Win64 =         1 << 0,
-        Win32 =         1 << 1,
+        Win64 =       1 << 0,
+        Win32 =       1 << 1,
         // TODO: Windows ARM64?
-        HoloLens =      1 << 2,
-        Mac =           1 << 3,
-        Linux =         1 << 4,
-        LinuxArm64 =    1 << 5,
-        Android =       1 << 6,
-        IOS =           1 << 7,
-        TVOS =          1 << 8,
-        VisionOS =      1 << 9,
-        AllWin =        Win32  | Win64,
-        AllLinux =      Linux  | LinuxArm64,
-        AllDesktop =    AllWin | AllLinux | Mac
+        HoloLens =    1 << 2,
+        Mac =         1 << 3,
+        Linux =       1 << 4,
+        LinuxArm64 =  1 << 5,
+        Android =     1 << 6,
+        IOS =         1 << 7,
+        TVOS =        1 << 8,
+        VisionOS =    1 << 9,
+        AllWin =      Win32 | Win64,
+        AllLinux =    Linux | LinuxArm64,
+        AllDesktop =  AllWin | AllLinux | Mac,
+        Independent = 0xFFFF
 
         // TODO: rest of the platforms
         // Engine/Source/Programs/UnrealBuildTool/Configuration/UEBuildTarget.cs
@@ -92,22 +93,30 @@ namespace Nuke.Unreal
             Compatibility = UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
             DllExtension = "dylib",
         };
+        public static readonly UnrealPlatform Independent = new()
+        {
+            Value = nameof(Independent),
+            Flag = UnrealPlatformFlag.Independent,
+            DllExtension = "",
+            _platformText = ""
+        };
 
         public static UnrealPlatform FromFlag(UnrealPlatformFlag flag)
         {
             return flag switch
             {
-                UnrealPlatformFlag.Win64      => Win64,
-                UnrealPlatformFlag.Win32      => Win32,
+                UnrealPlatformFlag.Win64       => Win64,
+                UnrealPlatformFlag.Win32       => Win32,
                 // TODO: Windows ARM64?
-                UnrealPlatformFlag.HoloLens   => HoloLens,
-                UnrealPlatformFlag.Mac        => Mac,
-                UnrealPlatformFlag.Linux      => Linux,
-                UnrealPlatformFlag.LinuxArm64 => LinuxArm64,
-                UnrealPlatformFlag.Android    => Android,
-                UnrealPlatformFlag.IOS        => IOS,
-                UnrealPlatformFlag.TVOS       => TVOS,
-                UnrealPlatformFlag.VisionOS   => VisionOS,
+                UnrealPlatformFlag.HoloLens    => HoloLens,
+                UnrealPlatformFlag.Mac         => Mac,
+                UnrealPlatformFlag.Linux       => Linux,
+                UnrealPlatformFlag.LinuxArm64  => LinuxArm64,
+                UnrealPlatformFlag.Android     => Android,
+                UnrealPlatformFlag.IOS         => IOS,
+                UnrealPlatformFlag.TVOS        => TVOS,
+                UnrealPlatformFlag.VisionOS    => VisionOS,
+                UnrealPlatformFlag.Independent => Independent,
                 _ => throw new Exception($"UnrealPlatformFlag {flag} didn't have matching UnrealPlatform"),
             };
         }
@@ -124,10 +133,19 @@ namespace Nuke.Unreal
             VisionOS,
         ];
 
+        public static readonly IEnumerable<UnrealPlatform> DevelopmentPlatforms =
+        [
+            Win64,
+            Mac,
+            Linux,
+        ];
+
         public UnrealPlatformFlag Flag { get; private set; } = UnrealPlatformFlag.Win64;
         public UnrealCompatibility Compatibility { get; private set; } = UnrealCompatibility.All;
         public string DllExtension { get; private set; } = "so";
+        private string? _platformText = null;
 
+        public string PlatformText => _platformText ?? Value;
         public bool IsDesktop => (Flag & UnrealPlatformFlag.AllDesktop) > 0;
         public bool IsLinux => (Flag & UnrealPlatformFlag.AllLinux) > 0;
         public bool IsWindows => (Flag & UnrealPlatformFlag.AllWin) > 0;

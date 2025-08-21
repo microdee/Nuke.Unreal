@@ -25,7 +25,7 @@ namespace Nuke.Unreal.BoilerplateGenerators
                 Name: name,
                 Copyright: Unreal.ReadCopyrightFromProject(project.Folder!),
                 Project: project,
-                UeVersion: ueVersion.FullVersionName
+                UeVersion: ueVersion.VersionMinor
             );
 
             var projectMainPluginsFolder = project.Folder / "Plugins";
