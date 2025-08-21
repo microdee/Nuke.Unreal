@@ -12,6 +12,7 @@ using Nuke.Unreal.Tools;
 using Nuke.Cola.Tooling;
 using Nuke.Common;
 using Nuke.Common.Utilities;
+using Newtonsoft.Json.Converters;
 
 namespace Nuke.Unreal
 {
@@ -56,6 +57,9 @@ namespace Nuke.Unreal
             MissingMemberHandling = MissingMemberHandling.Ignore,
             DefaultValueHandling = DefaultValueHandling.Populate,
             NullValueHandling = NullValueHandling.Include,
+            Converters = {
+                new StringEnumConverter(false)
+            }
         };
 
         public static void WriteJson(object input, AbsolutePath path)
@@ -73,7 +77,10 @@ namespace Nuke.Unreal
             var serializer = new JsonSerializer()
             {
                 NullValueHandling = NullValueHandling.Ignore,
-                Formatting = Formatting.Indented
+                Formatting = Formatting.Indented,
+                Converters = {
+                    new StringEnumConverter(false)
+                }
             };
             serializer.Serialize(jtw, input);
             File.WriteAllText(path, sb.ToString());
