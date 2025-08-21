@@ -31,20 +31,18 @@ namespace Nuke.Unreal
 
         public virtual Target CleanPlugins => _ => _
             .Description("Removes auto generated folders of Unreal Engine from the plugins")
+            .OnlyWhenDynamic(() => PluginsFolder.DirectoryExists())
             .Executes(() =>
             {
                 void recurseBody(AbsolutePath path)
                 {
                     if (Glob.Files(path, "*.uplugin", GlobOptions.CaseInsensitive).Any())
                     {
+                        Log.Debug("Cleaning plugin {0}", path);
                         Unreal.ClearFolder(path);
-                        if ((path / ".git").DirectoryExists() || (path / ".git").FileExists())
-                            GitTasks.Git("clean -xdf", path);
                     }
                     else
                     {
-                        if ((path / ".git").DirectoryExists() || (path / ".git").FileExists())
-                            GitTasks.Git("clean -xdf", path);
                         foreach (var dir in Directory.EnumerateDirectories(path))
                         {
                             recurseBody((AbsolutePath)dir);
