@@ -6,8 +6,8 @@ using Nuke.Cola.BuildPlugins;
 using Serilog;
 
 public class Build : UnrealBuild
-    , IPackageTargets   // Build component for packaged projects
-    , IAndroidTargets   // Build component for Android chores
+    , IPackageTargets   // Build component for packaged projects (delete if not needed)
+    , IAndroidTargets   // Build component for Android chores    (delete if not needed)
 {
     /// Nuke:
     /// Support plugins are available for:
@@ -19,5 +19,5 @@ public class Build : UnrealBuild
     // Uncomment to permanently disable the ASCII Nuke logo:
     // protected override void OnBuildCreated() => NoLogo = true;
 
-    public static int Main () => Plugins.Execute<Build>(Execute);
+    public static int Main() => Plugins.Execute<Build>(Execute);
 }
