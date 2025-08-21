@@ -28,7 +28,6 @@
         "ApplySdkUserSettings",
         "Build",
         "BuildEditor",
-        "Checkout",
         "Clean",
         "CleanDeployment",
         "CleanIntermediateAndroid",
@@ -38,10 +37,9 @@
         "DebugOnAndroid",
         "EnsureBuildPluginSupport",
         "Generate",
+        "Info",
         "InstallOnAndroid",
         "JavaDevelopmentService",
-        "MakeMarketplaceRelease",
-        "MakeRelease",
         "NewActor",
         "NewInterface",
         "NewModule",
@@ -50,9 +48,13 @@
         "NewSpec",
         "NewStruct",
         "Package",
-        "PackPlugin",
         "Prepare",
+        "Run",
+        "RunShell",
+        "RunUat",
+        "RunUbt",
         "SignApk",
+        "Switch",
         "UseCMake",
         "UseHeaderOnly",
         "UseLibrary",
@@ -207,10 +209,6 @@
             ]
           }
         },
-        "CustomEnginePath": {
-          "type": "string",
-          "description": "Specify a path to a custom engine version (eg.: built from source)"
-        },
         "EditorConfig": {
           "type": "array",
           "description": "The editor configuration to be used while building or packaging the project",
@@ -225,9 +223,9 @@
             ]
           }
         },
-        "ForMarketplace": {
+        "IgnoreGlobalArgs": {
           "type": "boolean",
-          "description": "Make marketplace compliant archives"
+          "description": "Do not use globally applicable UBT/UAT arguments with run-uat/run-ubt"
         },
         "LibraryType": {
           "type": "string",
@@ -254,7 +252,9 @@
           "description": "Set platform for running targets",
           "enum": [
             "Android",
+            "DevelopmentPlatforms",
             "HoloLens",
+            "Independent",
             "IOS",
             "Linux",
             "LinuxArm64",
@@ -295,23 +295,13 @@
           "type": "string",
           "description": "Specify a folder containing generator specific folders for Scriban scaffolding and\r\ntemplates. If left empty the templates coming with Nuke.Unreal will be used"
         },
-        "UatArgs": {
-          "type": "array",
-          "description": "Extra arguments passed to UAT. It's recommended to use it only from command line, do not\r\noverride",
-          "items": {
-            "type": "string"
-          }
-        },
-        "UbtArgs": {
-          "type": "array",
-          "description": "Extra arguments passed to UBT. It's recommended to use it only from command line, do not\r\noverride",
-          "items": {
-            "type": "string"
-          }
-        },
-        "UnrealVersion": {
+        "Tool": {
           "type": "string",
-          "description": "Specify the target Unreal Engine version. By default only used by the Checkout target.\r\nEverything else should infer engine version from the project file"
+          "description": "Name the Unreal tool to be run, You can omit the `Unreal` prefix and the extension.\r\nFor example:\r\nnuke run --tool pak --> ./Path/To/MyProject.pak -Extract \"D:/temp\"\r\nnuke run --tool editor-cmd --> ~p -run=MyCommandlet"
+        },
+        "unreal": {
+          "type": "string",
+          "description": "Specify the target Unreal Engine version. It's used only for the Switch target.\r\nEverything else should infer engine version from the project file.\r\nCan be simple version name like `5.5`, a GUID associated with engine location or an\r\nabsolute path to engine root"
         }
       }
     },
