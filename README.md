@@ -42,6 +42,7 @@ Simplistic workflow for automating Unreal Engine project tasks embracing [Nuke](
     - [run-uat](#run-uat)
     - [run-ubt](#run-ubt)
     - [run-shell](#run-shell)
+    - [run-editor-cmd](#run-editor-cmd)
     - [ensure-build-plugin-support](#ensure-build-plugin-support)
   - [UnrealBuild.Templating](#unrealbuildtemplating)
   - [Packaging (IPackageTargets)](#packaging-ipackagetargets)
@@ -792,6 +793,15 @@ Simply run UBT with arguments passed after `-->`
 ### run-shell
 
 Create console window with a [UShell](https://dev.epicgames.com/documentation/en-us/unreal-engine/how-to-use-ushell-for-unreal-engine) session. Only fully supported after UE 5.5
+
+### run-editor-cmd
+
+Run an editor commandlet with arguments passed in after `-->`
+
+* Parameters:
+  * `--cmd`
+* Argument blocks:
+  * `-->` see [Passing command line arguments to Unreal tools](#passing-command-line-arguments-to-unreal-tools)
 
 ### ensure-build-plugin-support
 
