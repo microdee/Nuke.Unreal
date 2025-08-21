@@ -11,6 +11,7 @@ using Nuke.Cola.FolderComposition;
 using Nuke.Common.Utilities;
 using Nuke.Unreal.BoilerplateGenerators;
 using System.Collections;
+using Serilog;
 
 namespace Nuke.Unreal.Plugins;
 
@@ -63,8 +64,8 @@ public static class RuntimeDependenciesExtensions
     ///     <para>
     ///         Prepare and transform a group of files for neatly be packaged as runtime
     ///         dependencies in conventional locations. This aims to alleviate some chore regarding
-    ///         working with elaborate third-party/prebuilt libraries. Files are not actually copied
-    ///         by Nuke.Unreal but let UBT do it.
+    ///         working with elaborate third-party/prebuilt libraries. Files are copied by
+    ///         Nuke.Unreal but let UBT do it.
     ///     </para>
     ///     <para>
     ///         The result of this function is a partial module rule C# file which will list runtime
@@ -130,6 +131,12 @@ public static class RuntimeDependenciesExtensions
     ///         }
     ///     </code>
     /// </summary>
+    /// <remarks>
+    ///     This will create a "copy" of the binaries subfolder in Plugin sources, so Fab
+    ///     compatibility can be ensured. This "copy" is just done with symlinks, not actual copies
+    ///     of binaries. This wisdom has been bestowed upon us by the author of CefView
+    ///     https://forums.unrealengine.com/t/copy-3rd-party-dlls-to-binaries-folder-does-not-work-for-engine-plugin-how-to-solve/738255/6
+    /// </remarks>
     /// <param name="self"></param>
     /// <param name="sourceFolder">
     ///     Required. The root folder of the third-party library. Ideally the same folder as the
@@ -180,8 +187,8 @@ public static class RuntimeDependenciesExtensions
     ///     Default is true.
     /// </param>
     /// <param name="pretend">
-    ///     Optional. If true only list affected files, but do not generate a module rule.
-    ///     Default is false.
+    ///     Optional. If true only list affected files, but do not modify files or generate a module
+    ///     rule. Default is false.
     /// </param>
     public static IEnumerable<ImportedItem> PrepareRuntimeDependencies(
         this UnrealBuild self,
@@ -204,20 +211,55 @@ public static class RuntimeDependenciesExtensions
         moduleName ??= sourceFolder.Name;
         moduleRuleOutput ??= sourceFolder;
 
+        Log.Information(
+            """
+            Preparing runtime dependencies:
+            For plugin:           {0}
+                folder:           {1}
+            For module:           {2}
+                folder:           {3}
+                Result .build.cs: {4}
+            """,
+            pluginFolder.Name, pluginFolder,
+            moduleName, sourceFolder,
+            moduleRuleOutput
+        );
+
         var dstFolder = pluginFolder / "Binaries" / binariesSubfolder;
+        var options = new ImportOptions(
+            Pretend: pretend
+        );
         var deps = (
                 customManifest == null
-                ? self.ImportFolders(new ImportOptions(Pretend: pretend), (sourceFolder, dstFolder, manifestFilePattern))
-                : self.ImportFolders(new ImportOptions(Pretend: pretend), (sourceFolder, dstFolder, customManifest, manifestFilePattern))
+                ? self.ImportFolder((sourceFolder, dstFolder, manifestFilePattern), options)
+                : self.ImportFolder((sourceFolder, dstFolder, customManifest, manifestFilePattern), options)
             ).WithFilesExpanded().ToList();
 
         if (setFilterPlugin)
             UnrealPlugin.Get(pluginFolder).AddExplicitPluginFiles(deps.Select(d => d.To));
 
+        if (!pretend)
+        {
+            var binaryPlumbingTemporary = pluginFolder
+                / "Source"
+                / "ThirdParty"
+                / "BinaryPlumbing"
+                / moduleName
+                / binariesSubfolder
+                / sourceFolder.Name
+            ;
+            Log.Debug("For marketplace compatibility these binaries will be linked within the Source folder as well.");
+            Log.Debug("Plugin distribution will ship these binaries in the Source folder, not in Binaries folder for Fab compatibility.");
+            Log.Information("Binary-plumbing folder: {0}", binaryPlumbingTemporary);
+            self.ImportFolder((dstFolder / sourceFolder.Name, binaryPlumbingTemporary), new(UseSubfolder: false));
+        }
+
         var dllDeps = deps
             .Where(d => UnrealPlatform.Platforms.Any(
                 p => d.From.Extension.EqualsOrdinalIgnoreCase("." + p.DllExtension)
             ));
+
+        Log.Debug("DLL's handled: {0}", dllDeps.Select(d => d.To.Name));
 
         var model = new RuntimeDependencies
         {

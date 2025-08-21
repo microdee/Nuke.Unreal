@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using EverythingSearchClient;
 using Newtonsoft.Json.Linq;
+using Nuke.Cola;
 using Nuke.Cola.FolderComposition;
 using Nuke.Common;
 using Nuke.Common.IO;
@@ -262,6 +263,60 @@ public class UnrealPlugin
     private void AddDefaultExplicitPluginFiles(UnrealBuild build)
         => AddExplicitPluginFiles(GetDefaultExplicitPluginFiles(build));
 
+    private bool InjectBinaryPlumbing(out PluginDescriptor result)
+    {
+        var plumbingRootRelative = (RelativePath) "Source" / "ThirdParty" / "BinaryPlumbing";
+        var plumbingRoot = Folder / plumbingRootRelative;
+        if (!plumbingRoot.DirectoryExists())
+        {
+            result = Descriptor;
+            return false;
+        }
+
+        Log.Information("{0} seemingly requires binary plumbing", Name);
+        Log.Debug("Because {0} exists", plumbingRoot);
+
+        result = Descriptor with {
+            PreBuildSteps = Descriptor.PreBuildSteps?.ToDictionary() ?? []
+        };
+        result.PreBuildSteps.EnsureDevelopmentPlatforms();
+        
+        foreach (var platform in UnrealPlatform.DevelopmentPlatforms)
+        {
+            result.PreBuildSteps[platform] = [..
+                result.PreBuildSteps[platform]
+                    .FilterBuildStepBlock("BinaryPlumbing")
+                    .StartBuildStepBlock("BinaryPlumbing"),
+                $"echo Plumbing runtime dependencies for {Name} plugin",
+            ];
+        }
+        
+        foreach (var subdir in plumbingRoot.GetDirectories())
+        {
+            Log.Debug("Plumbing from {0}", subdir);
+
+            result.PreBuildSteps[UnrealPlatform.Win64].AddRange([
+                $"echo Copying {subdir.Name} runtime dependencies",
+                $"robocopy /s /v /njh /njs /np /ndl \"$(PluginDir)\\{plumbingRootRelative.ToWinRelativePath()}\\{subdir.Name}\" \"$(PluginDir)\\Binaries\"",
+                "if %ERRORLEVEL% LSS 8 (exit /B 0) else (exit /B %ERRORLEVEL%)"
+            ]);
+
+            result.PreBuildSteps[UnrealPlatform.Linux].AddRange([
+                $"echo Copying {subdir.Name} runtime dependencies",
+                $"cp -vnpR \"$(PluginDir)/{plumbingRootRelative.ToUnixRelativePath()}/{subdir.Name}\" \"$(PluginDir)/Binaries\"",
+                "chmod -R +x \"$(PluginDir)/Binaries\""
+            ]);
+
+            result.PreBuildSteps[UnrealPlatform.Mac].AddRange([
+                $"echo Copying {subdir.Name} runtime dependencies",
+                $"cp -vnpR \"$(PluginDir)/{plumbingRootRelative.ToUnixRelativePath()}/{subdir.Name}\" \"$(PluginDir)/Binaries\"",
+                "chmod -R +x \"$(PluginDir)/Binaries\""
+            ]);
+        }
+
+        return true;
+    }
+
     /// <summary>
     ///     Create a copy of this plugin which can be distributed to other developers or other tools
     ///     who shouldn't require extra non-unreal related steps to work with it.
@@ -286,11 +341,6 @@ public class UnrealPlugin
         if (options.GenerateFilterPluginIni && !pretend)
             GenerateFilterPluginIni(build);
 
-        if (!pretend && _explicitPluginFiles.Any(f => f.ToString().Contains("Binaries")))
-        {
-            // TODO: Handle delayed binary copy
-        }
-
         var result = build.ImportFolder((Folder, outFolder, "PluginFiles.yml"), new(
             UseSubfolder: false,
             ForceCopyLinks: true,
@@ -304,6 +354,12 @@ public class UnrealPlugin
                 },
             }]
         ));
+        
+        if (!pretend && InjectBinaryPlumbing(out var newDescriptor))
+        {
+            var outUPlugin = outFolder / PluginPath.Name;
+            Unreal.WriteJson(newDescriptor, outUPlugin);
+        }
 
         return (result.WithFilesExpanded(), outFolder);
     }
@@ -352,5 +408,28 @@ public class UnrealPlugin
         )("");
 
         return outFolder;
+    }
+}
+
+internal static class UnrealPluginExtensions
+{
+    internal static IEnumerable<string> FilterBuildStepBlock(this IEnumerable<string> self, string name)
+        => self
+            .TakeUntil(a => a == "echo GENERATED BUILD STEPS".AppendNonEmpty(name))
+            .Concat(
+                self.SkipUntil(a => a == "echo GENERATED BUILD STEPS".AppendNonEmpty(name))
+                .Skip(1)
+                .SkipUntil(a => a.StartsWith("echo GENERATED BUILD STEPS"))
+            );
+    
+    internal static IEnumerable<string> StartBuildStepBlock(this IEnumerable<string> self, string name)
+        => self.Append("echo GENERATED BUILD STEPS".AppendNonEmpty(name));
+
+    internal static void EnsureDevelopmentPlatforms(this Dictionary<UnrealPlatform, List<string>> self)
+    {
+        foreach (var platform in UnrealPlatform.DevelopmentPlatforms)
+        {
+            if (!self.ContainsKey(platform)) self.Add(platform, []);
+        }
     }
 }

@@ -103,9 +103,9 @@ public record ProjectDescriptor(
     List<string>? AdditionalPluginDirectories = null,
     List<UnrealPlatform>? TargetPlatforms = null,
     uint? EpicSampleNameHash = null,
-    Dictionary<UnrealPlatform, string[]>? InitSteps = null,
-    Dictionary<UnrealPlatform, string[]>? PreBuildSteps = null,
-    Dictionary<UnrealPlatform, string[]>? PostBuildSteps = null,
+    Dictionary<UnrealPlatform, List<string>>? InitSteps = null,
+    Dictionary<UnrealPlatform, List<string>>? PreBuildSteps = null,
+    Dictionary<UnrealPlatform, List<string>>? PostBuildSteps = null,
     bool? IsEnterpriseProject = null,
     bool? DisableEnginePluginsByDefault = null
 );

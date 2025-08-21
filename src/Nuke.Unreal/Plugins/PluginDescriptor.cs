@@ -171,8 +171,8 @@ public record PluginDescriptor(
     bool? bNoCode = null,
     bool? bExplicitlyLoaded = null,
     bool? bHasExplicitPlatforms = null,
-    Dictionary<UnrealPlatform, string[]>? PreBuildSteps = null,
-    Dictionary<UnrealPlatform, string[]>? PostBuildSteps = null,
+    Dictionary<UnrealPlatform, List<string>>? PreBuildSteps = null,
+    Dictionary<UnrealPlatform, List<string>>? PostBuildSteps = null,
     List<PluginReferenceDescriptor>? Plugins = null,
     List<string>? DisallowedPlugins = null
 );
