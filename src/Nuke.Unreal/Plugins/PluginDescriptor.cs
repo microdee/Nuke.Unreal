@@ -82,7 +82,7 @@ public enum PluginDescriptorVersion
 /// <param name="EngineVersion">
 /// Sets the version of the engine that this plugin is compatible with.
 /// </param>
-/// <param name="bIsPluginExtension">4
+/// <param name="IsPluginExtension">4
 /// If true, this plugin from a platform extension extending another plugin */
 /// </param>
 /// <param name="SupportedTargetPlatforms">
@@ -97,37 +97,37 @@ public enum PluginDescriptorVersion
 /// <param name="LocalizationTargets">
 /// List of all localization targets associated with this plugin
 /// </param>
-/// <param name="bEnabledByDefault">
+/// <param name="EnabledByDefault">
 /// Whether this plugin should be enabled by default for all projects
 /// </param>
-/// <param name="bCanContainContent">
+/// <param name="CanContainContent">
 /// Can this plugin contain content?
 /// </param>
-/// <param name="bCanContainVerse">
+/// <param name="CanContainVerse">
 /// Can this plugin contain Verse code (either in content directory or in any of its modules)?
 /// </param>
-/// <param name="bIsBetaVersion">
+/// <param name="IsBetaVersion">
 /// Marks the plugin as beta in the UI
 /// </param>
-/// <param name="bIsExperimentalVersion">
+/// <param name="IsExperimentalVersion">
 /// Marks the plugin as experimental in the UI
 /// </param>
-/// <param name="bInstalled">
+/// <param name="Installed">
 /// Set for plugins which are installed
 /// </param>
-/// <param name="bRequiresBuildPlatform">
+/// <param name="RequiresBuildPlatform">
 /// For plugins that are under a platform folder (eg. /IOS/), determines whether compiling the plugin requires the build platform and/or SDK to be available
 /// </param>
-/// <param name="bIsSealed">
+/// <param name="IsSealed">
 /// When true, prevents other plugins from depending on this plugin
 /// </param>
-/// <param name="bNoCode">
+/// <param name="NoCode">
 /// When true, this plugin should not contain any code or modules.
 /// </param>
-/// <param name="bExplicitlyLoaded">
+/// <param name="ExplicitlyLoaded">
 /// When true, this plugin's modules will not be loaded automatically nor will it's content be mounted automatically. It will load/mount when explicitly requested and LoadingPhases will be ignored
 /// </param>
-/// <param name="bHasExplicitPlatforms">
+/// <param name="HasExplicitPlatforms">
 /// When true, an empty SupportedTargetPlatforms is interpeted as 'no platforms' with the expectation that explict platforms will be added in plugin platform extensions
 /// </param>
 /// <param name="PreBuildSteps">
@@ -155,22 +155,22 @@ public record PluginDescriptor(
     string? MarketplaceURL = null,
     string? SupportURL = null,
     string? EngineVersion = null,
-    bool? bIsPluginExtension = null,
+    bool? IsPluginExtension = null,
     List<UnrealPlatform>? SupportedTargetPlatforms = null,
     List<string>? SupportedPrograms = null,
     List<ModuleDescriptor>? Modules = null,
     List<LocalizationTargetDescriptor>? LocalizationTargets = null,
-    bool? bEnabledByDefault = null,
-    bool? bCanContainContent = null,
-    bool? bCanContainVerse = null,
-    bool? bIsBetaVersion = null,
-    bool? bIsExperimentalVersion = null,
-    bool? bInstalled = null,
-    bool? bRequiresBuildPlatform = null,
-    bool? bIsSealed = null,
-    bool? bNoCode = null,
-    bool? bExplicitlyLoaded = null,
-    bool? bHasExplicitPlatforms = null,
+    bool? EnabledByDefault = null,
+    bool? CanContainContent = null,
+    bool? CanContainVerse = null,
+    bool? IsBetaVersion = null,
+    bool? IsExperimentalVersion = null,
+    bool? Installed = null,
+    bool? RequiresBuildPlatform = null,
+    bool? IsSealed = null,
+    bool? NoCode = null,
+    bool? ExplicitlyLoaded = null,
+    bool? HasExplicitPlatforms = null,
     Dictionary<UnrealPlatform, List<string>>? PreBuildSteps = null,
     Dictionary<UnrealPlatform, List<string>>? PostBuildSteps = null,
     List<PluginReferenceDescriptor>? Plugins = null,

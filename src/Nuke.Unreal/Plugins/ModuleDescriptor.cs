@@ -178,7 +178,7 @@ public enum ModuleLoadingPhase
 /// <param name="AdditionalDependencies">
 /// List of additional dependencies for building this module.
 /// </param>
-/// <param name="bHasExplicitPlatforms">
+/// <param name="HasExplicitPlatforms">
 /// When true, an empty PlatformAllowList is interpreted as 'no platforms' with the expectation that explicit platforms will be added in plugin extensions */
 /// </param>
 public record ModuleDescriptor(
@@ -194,5 +194,5 @@ public record ModuleDescriptor(
     List<string>? ProgramAllowList = null,
     List<string>? ProgramDenyList = null,
     List<string>? AdditionalDependencies = null,
-    bool? bHasExplicitPlatforms = null
+    bool? HasExplicitPlatforms = null
 );
