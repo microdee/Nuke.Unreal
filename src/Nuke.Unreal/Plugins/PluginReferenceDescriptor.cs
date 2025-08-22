@@ -11,10 +11,10 @@ namespace Nuke.Unreal.Plugins;
 /// <param name="Name">
 /// Name of the plugin
 /// </param>
-/// <param name="bEnabled">
+/// <param name="Enabled">
 /// Whether it should be enabled by default
 /// </param>
-/// <param name="bOptional">
+/// <param name="Optional">
 /// Whether this plugin is optional, and the game should silently ignore it not being present
 /// </param>
 /// <param name="Description">
@@ -44,7 +44,7 @@ namespace Nuke.Unreal.Plugins;
 /// <param name="SupportedTargetPlatforms">
 /// The list of supported platforms for this plugin. This field is copied from the plugin descriptor, and supplements the user's allowed/denied platforms.
 /// </param>
-/// <param name="bHasExplicitPlatforms">
+/// <param name="HasExplicitPlatforms">
 /// When true, empty SupportedTargetPlatforms and PlatformAllowList are interpreted as 'no platforms' with the expectation that explicit platforms will be added in plugin platform extensions
 /// </param>
 /// <param name="RequestedVersion">
@@ -52,8 +52,8 @@ namespace Nuke.Unreal.Plugins;
 /// </param>
 public record PluginReferenceDescriptor(
     string? Name = null,
-    bool? bEnabled = null,
-    bool? bOptional = null,
+    bool? Enabled = null,
+    bool? Optional = null,
     string? Description = null,
     string? MarketplaceURL = null,
     List<string>? PlatformAllowList = null,
@@ -63,6 +63,6 @@ public record PluginReferenceDescriptor(
     List<UnrealTargetType>? TargetAllowList = null,
     List<UnrealTargetType>? TargetDenyList = null,
     List<string>? SupportedTargetPlatforms = null,
-    bool? bHasExplicitPlatforms = null,
+    bool? HasExplicitPlatforms = null,
     int? RequestedVersion = null
 );
