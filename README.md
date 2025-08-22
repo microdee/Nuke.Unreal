@@ -177,14 +177,14 @@ Let's have this scaffolding as an example:
 ├── Nuke.Targets
 │       Build.cs
 │       Nuke.Targets.csproj (main build script)
-├── Plugins
-│   └── MyPlugin
-│       │   MyPlugin.nuke.cs
-│       └── <regular plugin files>
-└── Source
-    └── MyModule
-        │   MyModule.nuke.cs
-        └── <source files>
+└── Plugins
+    └── MyPlugin
+        │   MyPlugin.nuke.cs
+        ├── Source
+        │   └── MyModule
+        │       │   MyModule.nuke.cs
+        │       └── <source files>
+        └── <regular plugin files>
 ```
 
 Build interfaces (or in Nuke vocabulary "[Build Components](https://nuke.build/docs/sharing/build-components/)") decorated with `[ImplicitBuildInterface]` inside these `*.nuke.cs` files will automatically contribute to the build graph without further boilerplate.
