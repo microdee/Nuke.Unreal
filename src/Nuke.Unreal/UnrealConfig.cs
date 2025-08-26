@@ -1,11 +1,13 @@
 using System;
 using System.ComponentModel;
 using System.Linq;
+using Newtonsoft.Json;
 using Nuke.Common.Tooling;
 
 namespace Nuke.Unreal
 {
     [TypeConverter(typeof(TypeConverter<UnrealConfig>))]
+    [JsonConverter(typeof(EnumerationJsonConverter<UnrealConfig>))]
     public class UnrealConfig : Enumeration
     {
         public static readonly UnrealConfig Debug = new() { Value = nameof(Debug) };

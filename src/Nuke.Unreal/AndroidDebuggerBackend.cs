@@ -1,6 +1,7 @@
 using System;
 using System.ComponentModel;
 using System.Linq;
+using Newtonsoft.Json;
 using Nuke.Common;
 using Nuke.Common.IO;
 using Nuke.Common.Tooling;
@@ -8,6 +9,7 @@ using Nuke.Common.Tooling;
 namespace Nuke.Unreal
 {
     [TypeConverter(typeof(TypeConverter<AndroidDebuggerBackend>))]
+    [JsonConverter(typeof(EnumerationJsonConverter<AndroidDebuggerBackend>))]
     public class AndroidDebuggerBackend : Enumeration
     {
         public static readonly AndroidDebuggerBackend LLDB = new()

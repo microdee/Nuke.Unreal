@@ -1,11 +1,13 @@
 using System;
 using System.ComponentModel;
 using System.Linq;
+using Newtonsoft.Json;
 using Nuke.Common.Tooling;
 
 namespace Nuke.Unreal
 {
     [TypeConverter(typeof(TypeConverter<AndroidProcessorArchitecture>))]
+    [JsonConverter(typeof(EnumerationJsonConverter<AndroidProcessorArchitecture>))]
     public class AndroidProcessorArchitecture : Enumeration
     {
         public static readonly AndroidProcessorArchitecture Arm = new()
