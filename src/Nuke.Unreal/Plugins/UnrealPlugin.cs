@@ -38,6 +38,25 @@ public record PluginDistributionOptions(
 );
 
 /// <summary>
+/// Method of packaging a plugin.
+/// </summary>
+public enum PluginBuildMethod
+{
+    /// <summary>
+    /// Use UAT BuildPlugin feature
+    /// </summary>
+    UAT,
+    
+    /// <summary>
+    ///     Nuke.Unreal will use UBT directly in a similar way than UAT does. This is added because
+    ///     UBT has a problem with module rule files if both a project and a plugin contained in
+    ///     that project is passed to it. If you have problems with duplicate types in your module
+    ///     rules, then use this, otherwise use PluginBuildMethod.UAT
+    /// </summary>
+    UBT
+}
+
+/// <summary>
 ///     Options for packaging plugins for binary distribution with UAT.
 /// </summary>
 /// <param name="OutputSubfolder">
@@ -52,10 +71,19 @@ public record PluginDistributionOptions(
 ///     If set to true, first make a distributed copy of this plugin and then package it with UAT
 ///     from that.
 /// </param>
+/// <param name="Method">
+///     Select the method of packaging the plugin. If you have problems with duplicate types in your
+///     module rules, then set this to PluginBuildMethod.UBT.
+/// </param>
+/// <param name="Platforms">
+///     Extra platforms to build this plugin for. UnrealBuild.Platform is always added to this list.
+/// </param>
 public record PluginBuildOptions(
     RelativePath? OutputSubfolder = null,
     AbsolutePath? OutputOverride = null,
-    bool UseDistributedPlugin = true
+    bool UseDistributedPlugin = true,
+    PluginBuildMethod Method = PluginBuildMethod.UAT,
+    UnrealPlatform[]? Platforms = null
 );
 
 /// <summary>
@@ -240,19 +268,11 @@ public class UnrealPlugin
         configPath.WriteAllLines(lines);
     }
 
-    private readonly ExportManifest _filterExportManifest = new()
+    private static readonly ExportManifest _filterExportManifest = new()
     {
-        Copy = {
-            new()
-            {
-                File = "Content/**/*" ,
-                Not = {
-                    "PluginFiles.yml", "*.uasset", "*.umap",
-                }
-            },
-            new() { File = "Resources/**/*" ,  Not = { "PluginFiles.yml" }},
-        },
+        Copy = { new() { File = "Config/**/*.ini" } },
         Not = {
+            "PluginFiles.yml",
             "*.nuke.cs",
             "*.nuke.csx",
             "Nuke.Targets",
@@ -362,16 +382,26 @@ public class UnrealPlugin
             AddToMain: [_filterExportManifest, new()
             {
                 Copy = {
-                    new() { File = "Config/**/*.ini" , Not = { "PluginFiles.yml" }},
+                    new() { File = "Content/**/*" ,    Not = { "PluginFiles.yml" }},
+                    new() { File = "Shaders/**/*" ,    Not = { "PluginFiles.yml" }},
                     new() { File = "Source/**/*" ,     Not = { "PluginFiles.yml" }},
+                    new() { File = "Resources/**/*" ,  Not = { "PluginFiles.yml" }},
+                    new() { File = "Tests/**/*" ,      Not = { "PluginFiles.yml" }},
                     new() { File = "*.uplugin" ,       Not = { "PluginFiles.yml" }},
                 },
             }]
         ));
         
+        var outUPlugin = outFolder / PluginPath.Name;
+
+        if (!pretend)
+        {
+            Descriptor = Descriptor with { EngineVersion = Unreal.Version(build).VersionMinor };
+            Unreal.WriteJson(Descriptor, outUPlugin);
+        }
+        
         if (!pretend && InjectBinaryPlumbing(out var newDescriptor))
         {
-            var outUPlugin = outFolder / PluginPath.Name;
             Unreal.WriteJson(newDescriptor, outUPlugin);
         }
 
@@ -383,20 +413,24 @@ public class UnrealPlugin
     /// </summary>
     /// <param name="build"></param>
     /// <param name="uatConfig"></param>
+    /// <param name="ubtConfig"></param>
     /// <param name="buildOptions"></param>
     /// <param name="distOptions"></param>
     /// <returns>Output folder of the packaged plugin</returns>
     public AbsolutePath BuildPlugin(
         UnrealBuild build,
         Func<UatConfig, UatConfig>? uatConfig = null,
+        Func<UbtConfig, UbtConfig>? ubtConfig = null,
         PluginBuildOptions? buildOptions = null,
         PluginDistributionOptions? distOptions = null
     ) {
         var outFolder = GetBuildOutput(build, buildOptions);
         buildOptions ??= _buildOptionsCache;
+        uatConfig ??= _ => _;
+        ubtConfig ??= _ => _;
 
         var sourceFolder = Folder;
-        if (buildOptions.UseDistributedPlugin)
+        if (buildOptions.UseDistributedPlugin || buildOptions.Method == PluginBuildMethod.UBT)
         {
             var (_, distFolder) = DistributeSource(build, distOptions);
             sourceFolder = distFolder;
@@ -405,27 +439,76 @@ public class UnrealPlugin
         var hostProjectDir = build.GetOutput() / "Plugins" / Name / "HostProject";
         outFolder.CreateOrCleanDirectory();
         hostProjectDir.ExistingDirectory()?.DeleteDirectory();
+        
+        var platforms = (buildOptions.Platforms ?? []).Union([build.Platform]);
 
-        Unreal.AutomationTool(build, _ => _
-            .BuildPlugin(_ => _
-                .Plugin(sourceFolder / PluginPath.Name)
-                .Package(outFolder)
-                .TargetPlatforms(build.Platform)
-                .If(Unreal.Is4(build), _ => _
-                    .VS2019()
+        switch (buildOptions.Method)
+        {
+
+        case PluginBuildMethod.UAT:
+            Unreal.AutomationTool(build, _ => _
+                .BuildPlugin(_ => _
+                    .Plugin(sourceFolder / PluginPath.Name)
+                    .Package(outFolder)
+                    .TargetPlatforms(platforms)
+                    .If(Unreal.Is4(build), _ => _
+                        .VS2019()
+                    )
+                    .Unversioned()
                 )
-                .NoDeleteHostProject()
-                .Unversioned()
-            )
-            .Apply(uatConfig)
-            .Apply(build.UatGlobal)
-        )("");
+                .Apply(uatConfig)
+                .Apply(build.UatGlobal)
+            )("");
+        break;
+
+        case PluginBuildMethod.UBT:
+            hostProjectDir.CreateDirectory();
+            var hostPluginDir = hostProjectDir / "Plugins" / Name;
+            (hostProjectDir / "HostProject.uproject").WriteAllText(
+                $$"""
+                { "FileVersion": 3, "Plugins": [ { "Name": "{{Name}}", "Enabled": true } ] }
+                """
+            );
+            sourceFolder.Copy(hostProjectDir / "Plugins" / Name);
+            foreach(var platform in platforms)
+            {
+                Log.Information("Building UnrealGame binaries for {0}", platform);
+                Unreal.BuildTool(build, _ => _
+                    .Target("UnrealGame", platform,
+                    [
+                        UnrealConfig.Development,
+                        UnrealConfig.Shipping
+                    ])
+                    .Plugin(hostProjectDir / "Plugins" / Name / PluginPath.Name)
+                    .NoUBTMakefiles()
+                    .NoHotReload()
+                    .Apply(ubtConfig)
+                    .Apply(build.UbtGlobal)
+                )("");
+                if (platform.IsDevelopment)
+                {
+                    Log.Information("Building UnrealEditor binaries for {0}");
+                    Unreal.BuildTool(build, _ => _
+                        .Target("UnrealEditor", platform, [UnrealConfig.Development])
+                        .Plugin(hostProjectDir / "Plugins" / Name / PluginPath.Name)
+                        .NoUBTMakefiles()
+                        .NoHotReload()
+                        .Apply(ubtConfig)
+                        .Apply(build.UbtGlobal)
+                    )("");
+                }
+            }
+            hostPluginDir.Copy(outFolder, ExistsPolicy.MergeAndOverwrite);
+            hostProjectDir.DeleteDirectory();
+        break;
+
+        }
 
         return outFolder;
     }
 }
 
-internal static class UnrealPluginExtensions
+public static class UnrealPluginExtensions
 {
     internal static IEnumerable<string> FilterBuildStepBlock(this IEnumerable<string> self, string name)
         => self
@@ -446,4 +529,9 @@ internal static class UnrealPluginExtensions
             if (!self.ContainsKey(platform)) self.Add(platform, []);
         }
     }
+
+    public static UbtConfig StrictIncludes(this UbtConfig _) => _
+        .NoPCH()
+        .NoSharedPCH()
+        .DisableUnity();
 }
