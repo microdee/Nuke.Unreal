@@ -124,7 +124,7 @@ namespace Nuke.Unreal
             };
         }
 
-        public static readonly IEnumerable<UnrealPlatform> Platforms =
+        public static readonly List<UnrealPlatform> Platforms =
         [
             Win64,
             Mac,
@@ -136,7 +136,7 @@ namespace Nuke.Unreal
             VisionOS,
         ];
 
-        public static readonly IEnumerable<UnrealPlatform> DevelopmentPlatforms =
+        public static readonly List<UnrealPlatform> DevelopmentPlatforms =
         [
             Win64,
             Mac,
@@ -168,6 +168,8 @@ namespace Nuke.Unreal
         private string? _platformText = null;
         public string PlatformText => MapsTo?.PlatformText ?? _platformText ?? Value;
         public bool IsDesktop => (Flag & UnrealPlatformFlag.AllDesktop) > 0;
+        public bool IsDevelopment => DevelopmentPlatforms.Contains(MapsTo ?? this);
+        public bool IsHost => IsDevelopment;
         public bool IsLinux => (Flag & UnrealPlatformFlag.AllLinux) > 0;
         public bool IsWindows => (Flag & UnrealPlatformFlag.AllWin) > 0;
         public bool IsMobile => (Flag & (UnrealPlatformFlag.Android | UnrealPlatformFlag.IOS | UnrealPlatformFlag.HoloLens | UnrealPlatformFlag.VisionOS)) > 0;
