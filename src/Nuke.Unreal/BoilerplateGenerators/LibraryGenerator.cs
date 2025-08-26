@@ -15,6 +15,7 @@ using Humanizer;
 namespace Nuke.Unreal.BoilerplateGenerators;
 
 [TypeConverter(typeof(TypeConverter<LibraryType>))]
+[JsonConverter(typeof(EnumerationJsonConverter<LibraryType>))]
 public class LibraryType : Enumeration
 {
     public static readonly LibraryType Header = new()

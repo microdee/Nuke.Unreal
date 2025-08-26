@@ -4,10 +4,12 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.ComponentModel;
 using Nuke.Common.Tooling;
+using Newtonsoft.Json;
 
 namespace Nuke.Unreal
 {
     [TypeConverter(typeof(TypeConverter<UnrealTargetType>))]
+    [JsonConverter(typeof(EnumerationJsonConverter<UnrealTargetType>))]
     public class UnrealTargetType : Enumeration
     {
         public static readonly UnrealTargetType Game = new() { Value = nameof(Game) };

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.ComponentModel;
 using Nuke.Common.Tooling;
+using Newtonsoft.Json;
 
 namespace Nuke.Unreal
 {
@@ -31,6 +32,7 @@ namespace Nuke.Unreal
     }
 
     [TypeConverter(typeof(TypeConverter<UnrealPlatform>))]
+    [JsonConverter(typeof(EnumerationJsonConverter<UnrealPlatform>))]
     public class UnrealPlatform : Enumeration
     {
         public static readonly UnrealPlatform Win64 = new()
@@ -100,6 +102,7 @@ namespace Nuke.Unreal
             DllExtension = "",
             _platformText = ""
         };
+        public static readonly UnrealPlatform Windows = new() { MapsTo = Win64 };
 
         public static UnrealPlatform FromFlag(UnrealPlatformFlag flag)
         {
@@ -140,20 +143,43 @@ namespace Nuke.Unreal
             Linux,
         ];
 
-        public UnrealPlatformFlag Flag { get; private set; } = UnrealPlatformFlag.Win64;
-        public UnrealCompatibility Compatibility { get; private set; } = UnrealCompatibility.All;
-        public string DllExtension { get; private set; } = "so";
-        private string? _platformText = null;
+        private UnrealPlatformFlag _flag = UnrealPlatformFlag.Win64;
+        public UnrealPlatformFlag Flag
+        {
+            get => MapsTo?.Flag ?? _flag;
+            private set => _flag = value;
+        }
 
-        public string PlatformText => _platformText ?? Value;
+        private UnrealCompatibility _compatibility = UnrealCompatibility.All;
+        public UnrealCompatibility Compatibility
+        {
+            get => MapsTo?.Compatibility ?? _compatibility;
+            private set => _compatibility = value;
+        }
+
+        private string _dllExtension = "so";
+        public string DllExtension
+        {
+            get => MapsTo?.DllExtension ?? _dllExtension;
+            private set => _dllExtension = value;
+        }
+
+        public UnrealPlatform? MapsTo { get; private set; }
+        private string? _platformText = null;
+        public string PlatformText => MapsTo?.PlatformText ?? _platformText ?? Value;
         public bool IsDesktop => (Flag & UnrealPlatformFlag.AllDesktop) > 0;
         public bool IsLinux => (Flag & UnrealPlatformFlag.AllLinux) > 0;
         public bool IsWindows => (Flag & UnrealPlatformFlag.AllWin) > 0;
         public bool IsMobile => (Flag & (UnrealPlatformFlag.Android | UnrealPlatformFlag.IOS | UnrealPlatformFlag.HoloLens | UnrealPlatformFlag.VisionOS)) > 0;
 
+        public override string ToString()
+        {
+            return MapsTo?.ToString() ?? Value;
+        }
+
         public static implicit operator string(UnrealPlatform configuration)
         {
-            return configuration.Value;
+            return configuration.ToString();
         }
     }
 }

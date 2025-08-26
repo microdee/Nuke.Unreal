@@ -1,11 +1,13 @@
 using System;
 using System.ComponentModel;
 using System.Linq;
+using Newtonsoft.Json;
 using Nuke.Common.Tooling;
 
 namespace Nuke.Unreal
 {
     [TypeConverter(typeof(TypeConverter<AndroidCookFlavor>))]
+    [JsonConverter(typeof(EnumerationJsonConverter<AndroidCookFlavor>))]
     public class AndroidCookFlavor : Enumeration
     {
         public static AndroidCookFlavor Multi = new() { Value = nameof(Multi) };
