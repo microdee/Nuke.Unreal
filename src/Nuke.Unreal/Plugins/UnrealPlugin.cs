@@ -367,8 +367,11 @@ public class UnrealPlugin
     ///     who shouldn't require extra non-unreal related steps to work with it.
     /// </summary>
     /// <param name="build"></param>
-    /// <param name="options"></param>
-    /// <param name="pretend"></param>
+    /// <param name="options">Optional arguments for distribution</param>
+    /// <param name="pretend">
+    ///     Do not have side effects on files, just return a list of files which may be affected
+    ///     by this operation.
+    /// </param>
     /// <returns>
     ///     <list type="bullet">
     ///         <item>result: List of files which has been copied</item>
@@ -420,13 +423,14 @@ public class UnrealPlugin
     }
 
     /// <summary>
-    /// Make a prebuilt release of this plugin with UAT.
+    /// Make a prebuilt release of this plugin for end-users. Globally set UAT and UBT arguments
+    /// are used from the input UnrealBuild
     /// </summary>
     /// <param name="build"></param>
-    /// <param name="uatConfig"></param>
-    /// <param name="ubtConfig"></param>
-    /// <param name="buildOptions"></param>
-    /// <param name="distOptions"></param>
+    /// <param name="uatConfig">Configurator for UAT</param>
+    /// <param name="ubtConfig">Configurator for UBT (only when UBT method is used)</param>
+    /// <param name="buildOptions">Optional arguments for packaging</param>
+    /// <param name="distOptions">Optional arguments for distribution</param>
     /// <returns>Output folder of the packaged plugin</returns>
     public AbsolutePath BuildPlugin(
         UnrealBuild build,
