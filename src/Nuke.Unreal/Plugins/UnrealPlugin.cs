@@ -92,6 +92,8 @@ public record PluginBuildOptions(
 public class UnrealPlugin
 {
     public static readonly Dictionary<AbsolutePath, UnrealPlugin> Instances = [];
+    internal static string RelativePathDistinction<T>(T path)
+        => path!.ToString()!.Trim().Trim('/');
 
     /// <summary>
     ///     <para>
@@ -135,7 +137,8 @@ public class UnrealPlugin
                 .Where(l => !l.Contains("[FilterPlugin]"))
                 .Where(l => !string.IsNullOrWhiteSpace(l))
                 .Where(l => !l.StartsWith(';'))
-                .Select(l => (RelativePath)l)
+                .Select(l => (RelativePath)l.Trim())
+                .DistinctBy(RelativePathDistinction)
             ;
             AddExplicitPluginFiles(inFiles);
         }
@@ -208,7 +211,11 @@ public class UnrealPlugin
     /// </summary>
     public void AddExplicitPluginFiles(IEnumerable<RelativePath> pluginRelativePaths)
         => _explicitPluginFiles = [..
-                _explicitPluginFiles.Union(pluginRelativePaths.Select(f => f.ToUnixRelativePath()))
+                _explicitPluginFiles
+                    .UnionBy(
+                        pluginRelativePaths.Select(f => f.ToUnixRelativePath()),
+                        RelativePathDistinction
+                    )
             ];
 
     private PluginDistributionOptions _distributionOptionsCache = new();
@@ -264,13 +271,17 @@ public class UnrealPlugin
 
         var lines = _explicitPluginFiles
             .Select(f => ("/" + f.ToString()).Replace("//", "/"))
-            .Prepend("[FilterPlugin]");
-        configPath.WriteAllLines(lines);
+            .Distinct()
+        ;
+        if (!lines.IsEmpty())
+            configPath.WriteAllLines(lines.Prepend("[FilterPlugin]"));
+        else
+            Log.Debug("There were no files to list in FilterPlugin.ini");
     }
 
     private static readonly ExportManifest _filterExportManifest = new()
     {
-        Copy = { new() { File = "Config/**/*.ini" } },
+        Copy = { new() { File = "Config/**/*.ini" , Not = {"FilterPlugin.ini"}} },
         Not = {
             "PluginFiles.yml",
             "*.nuke.cs",
@@ -487,7 +498,7 @@ public class UnrealPlugin
                 )("");
                 if (platform.IsDevelopment)
                 {
-                    Log.Information("Building UnrealEditor binaries for {0}");
+                    Log.Information("Building UnrealEditor binaries for {0}", platform);
                     Unreal.BuildTool(build, _ => _
                         .Target("UnrealEditor", platform, [UnrealConfig.Development])
                         .Plugin(hostProjectDir / "Plugins" / Name / PluginPath.Name)
