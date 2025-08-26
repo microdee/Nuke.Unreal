@@ -297,7 +297,7 @@ UnrealEditor-Cmd.exe C:\Projects\Personal\MyProject\MyProject.uproject -run=MyCo
 
 ## Custom UBT or UAT arguments
 
-When invoking common tasks Nuke.Unreal supports passing extra custom arguments to UBT or UAT via `-->ubt` or `-->uat`. Anything passed behaind these or in-between these will be passed to their respective tool.
+When invoking common tasks Nuke.Unreal supports passing extra custom arguments to UBT or UAT via `-->ubt` or `-->uat`. Anything passed behind these or in-between these will be passed to their respective tool.
 
 This is especially useful for doing temporary debugging with UBT and the compiler: (not an actual usecase)
 ```
