@@ -5,6 +5,9 @@ using System.Threading.Tasks;
 using System.ComponentModel;
 using Nuke.Common.Tooling;
 using Newtonsoft.Json;
+using Nuke.Cola;
+using Nuke.Common;
+using Nuke.Common.Utilities;
 
 namespace Nuke.Unreal
 {
@@ -31,9 +34,39 @@ namespace Nuke.Unreal
         // Engine/Source/Programs/UnrealBuildTool/Configuration/UEBuildTarget.cs
     }
 
+    public class UnrealPlatformJsonConverter : JsonConverter
+    {
+        public override bool CanConvert(Type objectType)
+        {
+            return objectType.IsClass && objectType.IsAssignableTo(typeof(UnrealPlatform));
+        }
+
+        public override object? ReadJson(JsonReader reader, Type objectType, object? existingValue, JsonSerializer serializer)
+        {
+            if (reader.Value is string value)
+            {
+                return UnrealPlatform.Parse(value);
+            }
+            Assert.True(reader.TokenType == JsonToken.None
+                || reader.TokenType == JsonToken.Null
+                || reader.TokenType == JsonToken.Undefined,
+                $"JSON value was neither a string, nor one of the 'not-existing' types. Token type: {reader.TokenType}; Object type: {objectType.Name};"
+            );
+            return null;
+        }
+
+        public override void WriteJson(JsonWriter writer, object? value, JsonSerializer serializer)
+        {
+            if (value is UnrealPlatform platform)
+            {
+                writer.WriteValue(platform.UserDefinedName ?? platform.ToString());
+            }
+        }
+    }
+
     [TypeConverter(typeof(TypeConverter<UnrealPlatform>))]
-    [JsonConverter(typeof(EnumerationJsonConverter<UnrealPlatform>))]
-    public class UnrealPlatform : Enumeration
+    [JsonConverter(typeof(UnrealPlatformJsonConverter))]
+    public class UnrealPlatform : Enumeration, ICloneable<UnrealPlatform>
     {
         public static readonly UnrealPlatform Win64 = new()
         {
@@ -102,7 +135,6 @@ namespace Nuke.Unreal
             DllExtension = "",
             _platformText = ""
         };
-        public static readonly UnrealPlatform Windows = new() { MapsTo = Win64 };
 
         public static UnrealPlatform FromFlag(UnrealPlatformFlag flag)
         {
@@ -143,32 +175,18 @@ namespace Nuke.Unreal
             Linux,
         ];
 
-        private UnrealPlatformFlag _flag = UnrealPlatformFlag.Win64;
-        public UnrealPlatformFlag Flag
-        {
-            get => MapsTo?.Flag ?? _flag;
-            private set => _flag = value;
-        }
+        public UnrealPlatformFlag Flag {get; private set; } = UnrealPlatformFlag.Win64;
 
-        private UnrealCompatibility _compatibility = UnrealCompatibility.All;
-        public UnrealCompatibility Compatibility
-        {
-            get => MapsTo?.Compatibility ?? _compatibility;
-            private set => _compatibility = value;
-        }
+        public UnrealCompatibility Compatibility {get; private set; } = UnrealCompatibility.All;
 
-        private string _dllExtension = "so";
-        public string DllExtension
-        {
-            get => MapsTo?.DllExtension ?? _dllExtension;
-            private set => _dllExtension = value;
-        }
+        public string DllExtension {get; private set; } = "so";
 
-        public UnrealPlatform? MapsTo { get; private set; }
+        public string? UserDefinedName { get; private set; }
+
         private string? _platformText = null;
-        public string PlatformText => MapsTo?.PlatformText ?? _platformText ?? Value;
+        public string PlatformText => _platformText ?? Value;
         public bool IsDesktop => (Flag & UnrealPlatformFlag.AllDesktop) > 0;
-        public bool IsDevelopment => DevelopmentPlatforms.Contains(MapsTo ?? this);
+        public bool IsDevelopment => DevelopmentPlatforms.Contains(this);
         public bool IsHost => IsDevelopment;
         public bool IsLinux => (Flag & UnrealPlatformFlag.AllLinux) > 0;
         public bool IsWindows => (Flag & UnrealPlatformFlag.AllWin) > 0;
@@ -176,12 +194,47 @@ namespace Nuke.Unreal
 
         public override string ToString()
         {
-            return MapsTo?.ToString() ?? Value;
+            return Value;
+        }
+
+        public UnrealPlatform Clone()
+        {
+            return new()
+            {
+                Flag = Flag,
+                Compatibility = Compatibility,
+                DllExtension = DllExtension,
+                UserDefinedName =  UserDefinedName,
+                _platformText = _platformText
+            };
+        }
+
+        object ICloneable.Clone()
+        {
+            return Clone();
         }
 
         public static implicit operator string(UnrealPlatform configuration)
         {
             return configuration.ToString();
+        }
+
+        public static UnrealPlatform Parse(string platformText)
+        {
+            if (platformText.ContainsOrdinalIgnoreCase("Windows"))
+                return Win64.Clone().With(p => p.UserDefinedName = platformText);
+            if (platformText.ContainsOrdinalIgnoreCase("Mac") && platformText != "Mac")
+                return Mac.Clone().With(p => p.UserDefinedName = platformText);
+            try
+            {
+                var result = TypeDescriptor.GetConverter(typeof(UnrealPlatform)).ConvertFrom(platformText!);
+                Assert.NotNull(result, $"'{platformText}' is not a valid UnrealPlatform");
+                return (UnrealPlatform)result!;
+            }
+            catch (Exception e)
+            {
+                throw new AggregateException($"'{platformText}' is not a valid UnrealPlatform", e);
+            }
         }
     }
 }
