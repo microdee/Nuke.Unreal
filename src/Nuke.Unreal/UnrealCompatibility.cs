@@ -36,7 +36,7 @@ public enum UnrealCompatibility : ulong
     UE_4_26 = 1UL << 26,
     UE_4_27 = 1UL << 27, // Last UE 4
     UE_5 =        0b11111111_11111111_11111111_11111111_00000000_00000000_00000000_00000000,
-    UE_5_Latest = ~(UE_5_7 - 1),
+    UE_5_Latest = ~(UE_5_6 - 1),
     UE_5_0 = 1UL << 32,
     UE_5_1 = 1UL << 33,
     UE_5_2 = 1UL << 34,
