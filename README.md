@@ -54,6 +54,7 @@ Simplistic workflow for automating Unreal Engine project tasks embracing [Nuke](
     - [install-on-android](#install-on-android)
     - [debug-on-android](#debug-on-android)
     - [java-development-service](#java-development-service)
+- [Alternatives](#alternatives)
 - [Articles](#articles)
 
 
