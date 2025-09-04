@@ -934,6 +934,11 @@ Run this project on a connected Android device from the result of packaging or b
 
 This was an attempt to sync Java files copied into the generated Gradle project back to their original source whenever they're changed. At the moment this is very experimental, may not cover all edge cases, and if I ever return to this problem, I'll rewrite this to use symlinks instead which is set up by another target which needs to be run only once (instead of this acting as a file-system watcher service).
 
+# Alternatives
+
+* [**UET**](https://github.com/RedpointGames/uet) by Redpoint Games
+  * Seems to have more features than Nuke.Unreal out of the box
+
 # Articles
 
 * [Nuke.Unreal 2.2](https://mcro.de/c/log/nuke-unreal-2-2)
