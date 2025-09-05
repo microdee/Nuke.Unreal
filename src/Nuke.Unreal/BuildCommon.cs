@@ -20,13 +20,13 @@ public static class BuildCommon
     {
         var executingAssemblyFolder = (AbsolutePath) Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
 
-        if (Directory.Exists(executingAssemblyFolder / "UnrealLocator"))
+        if (Directory.Exists(executingAssemblyFolder / "Templates"))
         {
             return executingAssemblyFolder;
         }
 
         var nukeUnrealAssemblyFolder = (AbsolutePath) Path.GetDirectoryName(typeof(BuildCommon).Assembly.Location);
-        if (Directory.Exists(nukeUnrealAssemblyFolder / "UnrealLocator"))
+        if (Directory.Exists(nukeUnrealAssemblyFolder / "Templates"))
         {
             return nukeUnrealAssemblyFolder;
         }
