@@ -158,8 +158,6 @@ namespace Nuke.Unreal
                 )("");
             });
 
-        public virtual bool CookAll => false;
-
         public virtual UatConfig UatCook(UatConfig _) => _;
 
         public virtual bool ForDistribution()
