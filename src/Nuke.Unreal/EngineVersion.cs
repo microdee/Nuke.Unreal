@@ -10,40 +10,11 @@ using Nuke.Common.Utilities;
 
 namespace Nuke.Unreal
 {
-    public record EnginePathInfo(
-        Guid? Id,
-        AbsolutePath Path
-    );
-
     public partial class EngineVersion
     {
-        [GeneratedRegex(@"(?<version>[\W\d]+)(?<extension>\w*)")]
-        private static partial Regex ValidVersionRegex();
-
-        public static bool ValidVersionString(string? versionName)
+        private Version GetEngineSemVersion()
         {
-            if (string.IsNullOrWhiteSpace(versionName)) return false;
-
-            if (Guid.TryParse(versionName, out _))
-                return true;
-
-            if (Path.IsPathRooted(versionName) && Directory.Exists(versionName))
-                return true;
-
-            var regexedComponents = ValidVersionRegex().Match(versionName);
-            if (regexedComponents == null)
-                return false;
-
-            var pureVersionNamePatch = regexedComponents.Groups["version"].Value;
-            return Version.TryParse(pureVersionNamePatch, out _);
-        }
-
-        private AbsolutePath GetEnginePath(string versionName)
-            => ExplicitEnginePath?.Path ?? Unreal.GetEnginePath(versionName);
-
-        private Version GetEngineSemVersion(string versionName)
-        {
-            var buildVersionPath = GetEnginePath(versionName) / "Engine" / "Build" / "Build.version";
+            var buildVersionPath = EnginePath / "Engine" / "Build" / "Build.version";
             Assert.FileExists(buildVersionPath, $"Specified path was not an Unreal Engine instance ({buildVersionPath})");
 
             var buildVersion = JObject.Parse(File.ReadAllText(buildVersionPath));
@@ -54,49 +25,18 @@ namespace Nuke.Unreal
             );
         }
 
-        [GeneratedRegex(@"(?<version>[\W\d]+)(?<extension>\w*)")]
-        private static partial Regex VersionRegex();
-
         public EngineVersion(string versionName)
         {
             VersionName = versionName;
-            Extension = "";
-            IsEarlyAccess = false;
-
-            if (Guid.TryParse(versionName, out var engineSourceId))
-            {
-                var enginePath = Unreal.GetEnginePath(versionName);
-                Assert.NotNull(enginePath, $"GUID was not pointing to an Unreal Engine instance {versionName}");
-                ExplicitEnginePath = new(engineSourceId, enginePath);
-                return;
-            }
-
-            if (Path.IsPathRooted(versionName))
-            {
-                Assert.DirectoryExists(versionName, $"No instance of Unreal Engine exists at {versionName}");
-                ExplicitEnginePath = new(null, AbsolutePath.Create(versionName));
-                return;
-            }
-
-            var regexedComponents = VersionRegex().Match(versionName);
-            Assert.True(regexedComponents != null, $"Invalid version format ({versionName})");
-
-            VersionName = regexedComponents!.Groups["version"].Value;
-            Extension = regexedComponents.Groups["extension"].Value ?? "";
-            IsEarlyAccess = Extension == "EA";
-
-            Assert.True(Version.TryParse(VersionName, out _), $"Couldn't parse a simple Unreal version from ({versionName})");
+            EnginePath = Unreal.GetEnginePath(versionName);
         }
 
         public string VersionName;
-        public string ExtendedVersionName => VersionName + Extension;
         private Version? _semVersion = null;
-        public Version SemanticalVersion => _semVersion ??= GetEngineSemVersion(VersionName);
+        public Version SemanticalVersion => _semVersion ??= GetEngineSemVersion();
         public string VersionMinor => SemanticalVersion.Major + "." + SemanticalVersion.Minor;
         public string VersionPatch => SemanticalVersion.Major + "." + SemanticalVersion.Minor + "." + SemanticalVersion.Build;
-        public string Extension;
-        public bool IsEarlyAccess;
-        public EnginePathInfo? ExplicitEnginePath = null;
+        public AbsolutePath EnginePath;
 
         private int CompatibilityBaseExponent => SemanticalVersion.Major > 4 ? 32 : 0;
         private ulong CompatibilityFlag => 1UL << (CompatibilityBaseExponent + SemanticalVersion.Minor);
