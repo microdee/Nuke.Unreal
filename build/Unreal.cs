@@ -7,8 +7,11 @@ using Nuke.Common.IO;
 using System.Collections.Concurrent;
 using System.Reflection;
 using System.IO;
+using System.Runtime.InteropServices;
 using build.Generators;
 using System.Runtime.Loader;
+using Nuke.Common;
+using Serilog;
 
 namespace build;
 
@@ -78,19 +81,26 @@ public record UnrealEngineInstance(string Version, AbsolutePath Location, Unreal
 
 public static class Unreal
 {
-    private static AbsolutePath _locatorPath = null;
-    public static AbsolutePath LocatorPath => _locatorPath ??= BuildCommon.GetContentsFolder() / "UnrealLocator" / "UnrealLocator.exe";
+    public static AbsolutePath GetEnginePath(string engineAssociation)
+    {
+        IUnrealLocator locator = RuntimeInformation.IsOSPlatform(OSPlatform.Windows)
+            ? new WindowsUnrealLocator()
+            : new GenericUnrealLocator();
 
-    private static Tool _locator = null;
-    public static Tool Locator => _locator ??= ToolResolver.GetTool(LocatorPath);
+        Log.Debug("Looking for Unreal Engine installation {0}", engineAssociation);
+
+        var path = locator.GetEngine(engineAssociation);
+        path.NotNull("Couldn't find Unreal Engine with that association");
+
+        Log.Debug("Found at: {0}", path!);
+        return path!;
+    }
 
     private static readonly ConcurrentDictionary<string, UnrealEngineInstance> Instances = new();
 
     public static UnrealEngineInstance GetInstance(string version, UnrealCompatibility compatibility) => Instances.GetOrAdd(version, v =>
     {
-        var location = Directory.Exists(version)
-            ? (AbsolutePath) version
-            : (AbsolutePath) Locator(v, logOutput: false).Single().Text;
+        var location = GetEnginePath(version);
         return new(v, location, new(location, compatibility));
     });
 }

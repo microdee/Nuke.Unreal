@@ -86,32 +86,22 @@ namespace Nuke.Unreal
             File.WriteAllText(path, sb.ToString());
         }
 
-        public static AbsolutePath GetUnrealLocatorPath()
-        {
-            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
-            {
-                return BuildCommon.GetContentsFolder() / "UnrealLocator" / "UnrealLocator.exe";
-            }
-            throw new ApplicationException("Trying to get unreal locator on an unsupported platform.");
-        }
-
-        public static Tool UnrealLocator => ToolResolver.GetTool(GetUnrealLocatorPath());
-
         public static void InvalidateEnginePathCache() => EnginePathCache = null;
         public static AbsolutePath GetEnginePath(string engineAssociation, bool ignoreCache = false)
         {
             if (!ignoreCache && EnginePathCache != null) return EnginePathCache;
 
-            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
-            {
-                Log.Debug("Looking for Unreal Engine installation:");
-                string location = UnrealLocator(engineAssociation, logOutput: false).Single().Text;
-                Log.Debug("Found at: {0}", location);
-                EnginePathCache = (AbsolutePath)location;
-                return (AbsolutePath)location;
-            }
+            IUnrealLocator locator = RuntimeInformation.IsOSPlatform(OSPlatform.Windows)
+                ? new WindowsUnrealLocator()
+                : new GenericUnrealLocator();
 
-            throw new FileNotFoundException("No Unreal Engine installation could be found.");
+            Log.Debug("Looking for Unreal Engine installation {0}", engineAssociation);
+
+            EnginePathCache = locator.GetEngine(engineAssociation);
+            Assert.NotNull(EnginePathCache, "Couldn't find Unreal Engine with that association");
+
+            Log.Debug("Found at: {0}", EnginePathCache!);
+            return EnginePathCache!;
         }
 
         public static EngineVersion Version(UnrealBuild build) => build.GetEngineVersionFromProject();
@@ -122,39 +112,23 @@ namespace Nuke.Unreal
         public static bool IsInstalled(AbsolutePath enginePath)
             => (enginePath / "Engine" / "Build" / "InstalledBuild.txt").FileExists();
 
-        public static bool IsInstalled(EngineVersion ofVersion, bool ignoreCache = false)
-            => IsInstalled(GetEnginePath(ofVersion, ignoreCache));
+        public static bool IsInstalled(EngineVersion ofVersion)
+            => IsInstalled(ofVersion.EnginePath);
 
-        public static bool IsInstalled(UnrealBuild build, bool ignoreCache = false)
-            => IsInstalled(GetEnginePath(build, ignoreCache));
+        public static bool IsInstalled(UnrealBuild build)
+            => IsInstalled(GetEnginePath(build));
 
         public static bool IsSource(AbsolutePath enginePath)
             => !IsInstalled(enginePath);
 
-        public static bool IsSource(EngineVersion ofVersion, bool ignoreCache = false)
-            => IsSource(GetEnginePath(ofVersion, ignoreCache));
+        public static bool IsSource(EngineVersion ofVersion)
+            => IsSource(ofVersion.EnginePath);
 
-        public static bool IsSource(UnrealBuild build, bool ignoreCache = false)
-            => IsSource(GetEnginePath(build, ignoreCache));
+        public static bool IsSource(UnrealBuild build)
+            => IsSource(GetEnginePath(build));
 
-        public static AbsolutePath GetEnginePath(EngineVersion ofVersion, bool ignoreCache = false)
-        {
-            if (!ignoreCache && EnginePathCache != null) return EnginePathCache;
-            if (ofVersion.ExplicitEnginePath != null)
-            {
-                EnginePathCache = ofVersion.ExplicitEnginePath.Path;
-                return EnginePathCache;
-            }
-
-            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
-            {
-                return GetEnginePath(ofVersion.VersionName, ignoreCache);
-            }
-
-            throw new FileNotFoundException("No Unreal Engine installation could be found.");
-        }
-        public static AbsolutePath GetEnginePath(UnrealBuild build, bool ignoreCache = false)
-            => GetEnginePath(Version(build), ignoreCache);
+        public static AbsolutePath GetEnginePath(UnrealBuild build)
+            => Version(build).EnginePath;
 
         public static UnrealPlatformFlag GetDefaultPlatform()
         {
@@ -171,13 +145,13 @@ namespace Nuke.Unreal
         }
 
         public static AbsolutePath MacRunMono(EngineVersion ofVersion) =>
-            GetEnginePath(ofVersion) / "Engine" / "Build" / "BatchFiles" / "Mac" / "RunMono.sh";
+            ofVersion.EnginePath / "Engine" / "Build" / "BatchFiles" / "Mac" / "RunMono.sh";
 
         public static Tool BuildTool(EngineVersion ofVersion)
         {
             var ubtPath = ofVersion.SemanticalVersion.Major >= 5
-                ? GetEnginePath(ofVersion) / "Engine" / "Binaries" / "DotNET" / "UnrealBuildTool" / "UnrealBuildTool.exe"
-                : GetEnginePath(ofVersion) / "Engine" / "Binaries" / "DotNET" / "UnrealBuildTool.exe";
+                ? ofVersion.EnginePath / "Engine" / "Binaries" / "DotNET" / "UnrealBuildTool" / "UnrealBuildTool.exe"
+                : ofVersion.EnginePath / "Engine" / "Binaries" / "DotNET" / "UnrealBuildTool.exe";
 
             return ToolResolver.GetTool(ubtPath).WithSemanticLogging();
 
@@ -191,7 +165,7 @@ namespace Nuke.Unreal
             config?.Invoke(toolConfig);
             return BuildTool(ofVersion).With(
                 arguments: $"{toolConfig.Gather(ofVersion):nq}",
-                workingDirectory: GetEnginePath(ofVersion) / "Engine" / "Source",
+                workingDirectory: ofVersion.EnginePath / "Engine" / "Source",
                 logInvocation: true
             );
         }
@@ -203,7 +177,7 @@ namespace Nuke.Unreal
         public static Tool AutomationTool(EngineVersion ofVersion)
         {
             var scriptExt = RuntimeInformation.IsOSPlatform(OSPlatform.Windows) ? "bat" : "sh";
-            return ToolResolver.GetTool(GetEnginePath(ofVersion) / "Engine" / "Build" / "BatchFiles" / $"RunUAT.{scriptExt}")
+            return ToolResolver.GetTool(ofVersion.EnginePath / "Engine" / "Build" / "BatchFiles" / $"RunUAT.{scriptExt}")
                 .WithSemanticLogging(filter: l =>
                     !(l.Contains("Reading chunk manifest") && l.Contains("which contains 0 entries"))
                 );
@@ -215,7 +189,7 @@ namespace Nuke.Unreal
             config?.Invoke(toolConfig);
             return AutomationTool(ofVersion).With(
                 arguments: $"{toolConfig.Gather(ofVersion):nq}",
-                workingDirectory: GetEnginePath(ofVersion) / "Engine" / "Source",
+                workingDirectory: ofVersion.EnginePath / "Engine" / "Source",
                 logInvocation: true
             );
         }
