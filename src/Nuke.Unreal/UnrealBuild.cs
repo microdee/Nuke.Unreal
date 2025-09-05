@@ -73,6 +73,7 @@ namespace Nuke.Unreal
             var ubtArgs = GetArgumentBlock("ubt").ToList();
             return _
                 .UTF8Output()
+                .WaitForUATMutex()
                 .If(!IsPerforce, _ => _.NoP4())
                 .If(!ubtArgs.IsEmpty(), _ => _.UbtArgs(ubtArgs.JoinSpace()));
         }
