@@ -690,7 +690,7 @@ Switch to the specified Unreal Engine version and platform. A CI/CD can call nuk
   * Depends on [`clean`](#clean)
   * Before [prepare](#prepare)
   * Before [generate](#generate)
-  * Before [buildEditor](#buildEditor)
+  * Before [buildEditor](#build-editor)
   * Before [build](#build)
   * Before [cook](#cook)
 
@@ -805,7 +805,7 @@ Run an editor commandlet with arguments passed in after `-->`
 
 ### ensure-build-plugin-support
 
-Ensure support for plain C# build plugins without the need for CSX or dotnet projects. This only needs to be done once and you can check the results into source control. It will modify the main Nuke project itself, see [Additional Plugin Targets](#additional-plugin-targets) or [`[ImplicitBuildInterface]` plugins of Nuke.Cola](https://github.com/microdee/md.Nuke.Cola?tab=readme-ov-file#implicitbuildinterface-plugins)
+Ensure support for plain C# build plugins without the need for CSX or dotnet projects. This only needs to be done once and you can check the results into source control. It will modify the main Nuke project itself, see [Setting up for plugin development](#setting-up-for-plugin-development) or [`[ImplicitBuildInterface]` plugins of Nuke.Cola](https://github.com/microdee/md.Nuke.Cola?tab=readme-ov-file#implicitbuildinterface-plugins)
 
 If you used the [remote script install method](#install-via-remote-script) then you don't need to run this target as it's already configured for you.
 
