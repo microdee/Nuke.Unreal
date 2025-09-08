@@ -1,7 +1,9 @@
 
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
 using EverythingSearchClient;
 using Newtonsoft.Json.Linq;
 using Nuke.Cola;
@@ -461,19 +463,34 @@ public class UnrealPlugin
         {
 
         case PluginBuildMethod.UAT:
-            Unreal.AutomationTool(build, _ => _
-                .BuildPlugin(_ => _
-                    .Plugin(sourceFolder / PluginPath.Name)
-                    .Package(outFolder)
-                    .TargetPlatforms(string.Join('+', platforms))
-                    .If(Unreal.Is4(build), _ => _
-                        .VS2019()
+            var shortSource = sourceFolder.Shorten();
+            var shortOut = outFolder.Shorten();
+            try
+            {
+                Unreal.AutomationTool(build, _ => _
+                    .BuildPlugin(_ => _
+                        .Plugin(shortSource / PluginPath.Name)
+                        .Package(shortOut)
+                        .TargetPlatforms(string.Join('+', platforms))
+                        .If(Unreal.Is4(build), _ => _
+                            .VS2019()
+                        )
+                        .Unversioned()
                     )
-                    .Unversioned()
-                )
-                .Apply(uatConfig)
-                .Apply(build.UatGlobal)
-            )("");
+                    .Apply(uatConfig)
+                    .Apply(build.UatGlobal)
+                )("");
+            }
+            catch (Exception) { throw; }
+            finally
+            {
+                if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+                {
+                    shortSource.DeleteDirectory();
+                    shortOut.DeleteDirectory();
+                }
+            }
+
         break;
 
         case PluginBuildMethod.UBT:
@@ -484,37 +501,48 @@ public class UnrealPlugin
                 { "FileVersion": 3, "Plugins": [ { "Name": "{{Name}}", "Enabled": true } ] }
                 """
             );
-            sourceFolder.Copy(hostProjectDir / "Plugins" / Name);
-            foreach(var platform in platforms)
+            sourceFolder.Copy(hostPluginDir);
+            var shortPluginDir = hostPluginDir.Shorten();
+            
+            try
             {
-                Log.Information("Building UnrealGame binaries for {0}", platform);
-                Unreal.BuildTool(build, _ => _
-                    .Target("UnrealGame", platform,
-                    [
-                        UnrealConfig.Development,
-                        UnrealConfig.Shipping
-                    ])
-                    .Plugin(hostProjectDir / "Plugins" / Name / PluginPath.Name)
-                    .NoUBTMakefiles()
-                    .NoHotReload()
-                    .Apply(ubtConfig)
-                    .Apply(build.UbtGlobal)
-                )("");
-                if (platform.IsDevelopment)
+                foreach(var platform in platforms)
                 {
-                    Log.Information("Building UnrealEditor binaries for {0}", platform);
+                    Log.Information("Building UnrealGame binaries for {0}", platform);
                     Unreal.BuildTool(build, _ => _
-                        .Target("UnrealEditor", platform, [UnrealConfig.Development])
-                        .Plugin(hostProjectDir / "Plugins" / Name / PluginPath.Name)
+                        .Target("UnrealGame", platform,
+                        [
+                            UnrealConfig.Development,
+                            UnrealConfig.Shipping
+                        ])
+                        .Plugin(shortPluginDir / PluginPath.Name)
                         .NoUBTMakefiles()
                         .NoHotReload()
                         .Apply(ubtConfig)
                         .Apply(build.UbtGlobal)
                     )("");
+                    if (platform.IsDevelopment)
+                    {
+                        Log.Information("Building UnrealEditor binaries for {0}", platform);
+                        Unreal.BuildTool(build, _ => _
+                            .Target("UnrealEditor", platform, [UnrealConfig.Development])
+                            .Plugin(shortPluginDir / PluginPath.Name)
+                            .NoUBTMakefiles()
+                            .NoHotReload()
+                            .Apply(ubtConfig)
+                            .Apply(build.UbtGlobal)
+                        )("");
+                    }
                 }
+                hostPluginDir.Copy(outFolder, ExistsPolicy.MergeAndOverwrite);
+                hostProjectDir.DeleteDirectory();
             }
-            hostPluginDir.Copy(outFolder, ExistsPolicy.MergeAndOverwrite);
-            hostProjectDir.DeleteDirectory();
+            catch(Exception) { throw; }
+            finally
+            {
+                if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+                    shortPluginDir.DeleteDirectory();
+            }
         break;
 
         }
