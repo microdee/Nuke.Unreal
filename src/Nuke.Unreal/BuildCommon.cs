@@ -12,6 +12,7 @@ using System.Reflection;
 using Serilog;
 using System.Text.RegularExpressions;
 using Nuke.Cola;
+using System.Runtime.InteropServices;
 
 namespace Nuke.Unreal;
 public static class BuildCommon
@@ -76,4 +77,16 @@ public static class BuildCommon
             .DescendantsAndSelf(d => d.Parent, d => Path.GetPathRoot(d) != d)
             .SelectMany(p => p.GlobFiles("*.Build.cs"))
             .FirstOrDefault();
+
+    public static AbsolutePath Shorten(this AbsolutePath longPath, bool allPlatforms = false)
+    {
+        var result = longPath;
+        if (allPlatforms || RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+        {
+            Log.Information("Creating short symlink on {0} for {1}", longPath.GetRoot(), longPath);
+            result = longPath.GetRoot() / Guid.NewGuid().ToString("N")[..16];
+            result.Links(longPath);
+        }
+        return result;
+    }
 }
