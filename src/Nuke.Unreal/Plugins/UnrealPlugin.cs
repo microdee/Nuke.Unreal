@@ -465,7 +465,7 @@ public class UnrealPlugin
                 .BuildPlugin(_ => _
                     .Plugin(sourceFolder / PluginPath.Name)
                     .Package(outFolder)
-                    .TargetPlatforms(platforms)
+                    .TargetPlatforms(string.Join('+', platforms))
                     .If(Unreal.Is4(build), _ => _
                         .VS2019()
                     )
