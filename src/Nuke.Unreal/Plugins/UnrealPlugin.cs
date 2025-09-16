@@ -33,10 +33,14 @@ namespace Nuke.Unreal.Plugins;
 ///     Generate a FilterPlugin.ini in the plugin's Config folder, so Unreal tools will not ignore
 ///     extra files handled with Nuke.
 /// </param>
+/// <param name="UPluginAssociateEngineVersion">
+///     When set to true, distributing sources of plugins will write engine version to UPlugin file.
+/// </param>
 public record PluginDistributionOptions(
     RelativePath? OutputSubfolder = null,
     AbsolutePath? OutputOverride = null,
-    bool GenerateFilterPluginIni = true
+    bool GenerateFilterPluginIni = true,
+    bool UPluginAssociateEngineVersion = true
 );
 
 /// <summary>
@@ -410,7 +414,7 @@ public class UnrealPlugin
         
         var outUPlugin = outFolder / PluginPath.Name;
 
-        if (!pretend)
+        if (!pretend && options.UPluginAssociateEngineVersion)
         {
             Descriptor = Descriptor with { EngineVersion = Unreal.Version(build).VersionMinor };
             Unreal.WriteJson(Descriptor, outUPlugin);
@@ -503,7 +507,7 @@ public class UnrealPlugin
             );
             sourceFolder.Copy(hostPluginDir);
             var shortPluginDir = hostPluginDir.Shorten();
-            
+
             try
             {
                 foreach(var platform in platforms)
