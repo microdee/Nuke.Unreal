@@ -481,8 +481,8 @@ public class UnrealPlugin
                         )
                         .Unversioned()
                     )
-                    .Apply(uatConfig)
                     .Apply(build.UatGlobal)
+                    .Apply(uatConfig)
                 )("");
             }
             catch (Exception) { throw; }

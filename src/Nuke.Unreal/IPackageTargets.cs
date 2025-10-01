@@ -76,9 +76,9 @@ namespace Nuke.Unreal
                         .If(isAndroidPlatform, _ => _
                             .Cookflavor(androidTextureMode)
                         )
-                        .Apply(UatPackage)
-                        .Apply(self.UatCook)
                         .Apply(self.UatGlobal)
+                        .Apply(self.UatCook)
+                        .Apply(UatPackage)
                         .AppendRaw(self.GetArgumentBlock("uat"))
                     )("", workingDirectory: self.UnrealEnginePath);
                 });
