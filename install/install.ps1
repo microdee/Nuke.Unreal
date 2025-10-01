@@ -12,7 +12,7 @@ Expand-Archive -Path .\.nuke\temp\Fresh.zip -DestinationPath .
 dotnet tool install Nuke.GlobalTool --global
 
 "Updating Nuke"
-nuke :update
+nuke :add-package Nuke.Common
 
 "Updating Nuke.Unreal"
 nuke :add-package md.Nuke.Unreal
