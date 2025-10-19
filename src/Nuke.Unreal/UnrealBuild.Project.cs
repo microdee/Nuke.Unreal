@@ -5,6 +5,9 @@ using Nuke.Common.IO;
 using Nuke.Common.Utilities;
 using Serilog;
 
+// Maximum line length of long parameter description:
+// ------------------------------------------------------------
+
 namespace Nuke.Unreal
 {
     public abstract partial class UnrealBuild : NukeBuild

@@ -36,7 +36,7 @@ namespace Nuke.Unreal.Plugins;
 /// <param name="UPluginAssociateEngineVersion">
 ///     When set to true, distributing sources of plugins will write engine version to UPlugin file.
 /// </param>
-public record PluginDistributionOptions(
+public record class PluginDistributionOptions(
     RelativePath? OutputSubfolder = null,
     AbsolutePath? OutputOverride = null,
     bool GenerateFilterPluginIni = true,
@@ -84,7 +84,7 @@ public enum PluginBuildMethod
 /// <param name="Platforms">
 ///     Extra platforms to build this plugin for. UnrealBuild.Platform is always added to this list.
 /// </param>
-public record PluginBuildOptions(
+public record class PluginBuildOptions(
     RelativePath? OutputSubfolder = null,
     AbsolutePath? OutputOverride = null,
     bool UseDistributedPlugin = true,

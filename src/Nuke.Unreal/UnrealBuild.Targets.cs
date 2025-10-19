@@ -14,6 +14,9 @@ using Serilog;
 using System.Runtime.InteropServices;
 using Nuke.Cola.Tooling;
 
+// Maximum line length of long parameter description:
+// ------------------------------------------------------------
+
 namespace Nuke.Unreal
 {
     public abstract partial class UnrealBuild : NukeBuild
@@ -80,17 +83,21 @@ namespace Nuke.Unreal
         public virtual Target Prepare => _ => _
             .Description(
                 """
-                Run necessary preparations which needs to be done before Unreal tools can handle
-                the project. By default it is empty and the main build project may override it or
-                other Targets can depend on it / hook into it.
+
+                    Run necessary preparations which needs to be done before Unreal tools can handle
+                    the project. By default it is empty and the main build project may override it or
+                    other Targets can depend on it / hook into it.
+
                 """
             );
 
         public virtual Target Generate => _ => _
             .Description(
                 """
-                Generate project files for the default IDE of the current platform
-                (Visual Studio or XCode)
+
+                    Generate project files for the default IDE of the current platform
+                    (Visual Studio or XCode)
+                
                 """
             )
             .DependsOn(Prepare)
@@ -111,7 +118,10 @@ namespace Nuke.Unreal
         public virtual Target BuildEditor => _ => _
             .Description(
                 """
-                Build the editor binaries so this project can be opened properly in the Unreal editor
+
+                    Build the editor binaries so this project can be opened properly in the
+                    Unreal editor
+
                 """
             )
             .After(Prepare)
@@ -158,8 +168,19 @@ namespace Nuke.Unreal
                 )("");
             });
 
+        
+        /// <summary>
+        /// UAT arguments to be applied every time UAT is called for Cooking. Override this function
+        /// in your main build class if your project needs extra intricacies for Cooking.
+        /// For example specifying maps explicitly.
+        /// </summary>
         public virtual UatConfig UatCook(UatConfig _) => _;
 
+        /// <summary>
+        /// Enforce packaging for distribution when that is set from `Game` ini files.
+        /// Override this function in your main build class if you want a different logic set for
+        /// flagging packages for distribution.
+        /// </summary>
         public virtual bool ForDistribution()
         {
             var section = ReadIniHierarchy("Game")["/Script/UnrealEd.ProjectPackagingSettings"];
@@ -209,9 +230,11 @@ namespace Nuke.Unreal
         public virtual Target EnsureBuildPluginSupport => _ => _
             .Description(
                 """
-                Ensure support for plain C# build plugins without the need for CSX or dotnet projects.
 
-                This only needs to be done once, you can check the results into source control.
+                    Ensure support for plain C# build plugins without the need for CSX or dotnet
+                    projects. This only needs to be done once, you can check the results into
+                    source control.
+
                 """
             )
             .Executes(() =>
@@ -258,9 +281,11 @@ namespace Nuke.Unreal
         public virtual Target RunShell => _ => _
             .Description(
                 """
-                Start a UShell session. This opens a new console window, and nuke will exit
-                immadiately. Working directory is the project folder, regardless of actual working
-                directory.
+
+                    Start a UShell session. This opens a new console window, and nuke will exit
+                    immadiately. Working directory is the project folder, regardless of actual
+                    working directory.
+
                 """
             )
             .Executes(() =>
@@ -276,10 +301,12 @@ namespace Nuke.Unreal
 
         [Parameter(
             """
-            Name the Unreal tool to be run, You can omit the `Unreal` prefix and the extension.
-            For example:
-            nuke run --tool pak --> ./Path/To/MyProject.pak -Extract "D:/temp"
-            nuke run --tool editor-cmd --> ~p -run=MyCommandlet
+
+                Name the Unreal tool to be run, You can omit the `Unreal` prefix and the extension.
+                For example:
+                nuke run --tool pak --> ./Path/To/MyProject.pak -Extract "D:/temp"
+                nuke run --tool editor-cmd --> ~p -run=MyCommandlet
+            
             """
         )]
         public string? Tool;
@@ -287,14 +314,16 @@ namespace Nuke.Unreal
         public virtual Target Run => _ => _
             .Description(
                 """
-                Run an Unreal tool from the engine binaries folder. You can omit the `Unreal` prefix
-                and the extension. For example:
 
-                nuke run --tool pak --> ./Path/To/MyProject.pak -Extract "D:/temp"
-                nuke run --tool editor-cmd --> ~p -run=MyCommandlet
+                    Run an Unreal tool from the engine binaries folder. You can omit the `Unreal`
+                    prefix and the extension. For example:
 
-                Working directory is the project folder, regardless of actual working
-                directory.
+                    nuke run --tool pak --> ./Path/To/MyProject.pak -Extract "D:/temp"
+                    nuke run --tool editor-cmd --> ~p -run=MyCommandlet
+
+                    Working directory is the project folder, regardless of actual working
+                    directory.
+                
                 """
             )
             .Requires(() => Tool)

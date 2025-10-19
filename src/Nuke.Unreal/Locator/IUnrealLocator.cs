@@ -8,7 +8,7 @@ namespace Nuke.Unreal;
 /// <summary>
 /// Group an Unreal association with its actual path
 /// </summary>
-public record UnrealInstance(string Name, AbsolutePath Path);
+public record class UnrealInstance(string Name, AbsolutePath Path);
 
 /// <summary>
 /// Common interface for locating Unreal Engine instances in different environments

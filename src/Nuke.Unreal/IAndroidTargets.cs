@@ -81,14 +81,14 @@ namespace Nuke.Unreal
 
     }
 
-    public record AndroidBuildEnvironment(
+    public record class AndroidBuildEnvironment(
         AbsolutePath ArtifactFolder,
         AbsolutePath AndroidHome,
         AbsolutePath NdkFolder,
         AbsolutePath BuildTools
     );
 
-    public record AndroidSdkNdkUserSettings(
+    public record class AndroidSdkNdkUserSettings(
         string? SdkPath,
         string? NdkPath,
         string? JavaPath,

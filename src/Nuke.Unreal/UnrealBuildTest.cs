@@ -7,6 +7,9 @@ using Serilog;
 
 namespace Nuke.Unreal;
 
+/// <summary>
+/// Used only for testing purposes. It has no external use outside of Nuke.Unreal development.
+/// </summary>
 public class UnrealBuildTest : UnrealBuild
 {
     protected override void OnBuildCreated()

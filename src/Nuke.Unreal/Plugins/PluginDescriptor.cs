@@ -142,7 +142,7 @@ public enum PluginDescriptorVersion
 /// <param name="DisallowedPlugins">
 /// Plugins that this plugin should never depend on
 /// </param>
-public record PluginDescriptor(
+public record class PluginDescriptor(
     int FileVersion = 3,
     int Version = 1,
     string? VersionName = null,
