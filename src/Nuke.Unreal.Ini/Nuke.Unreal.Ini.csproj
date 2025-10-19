@@ -2,7 +2,7 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <PackageId>md.Nuke.Unreal.Ini</PackageId>
-    <Version>2.2.15</Version>
+    <Version>2.2.18</Version>
     <Authors>David Mórász</Authors>
     <Company>mcro.de</Company>
     <Description>Ini configuration parser for Unreal Engine</Description>
@@ -10,7 +10,7 @@
     <RepositoryType>git</RepositoryType>
     <PackageProjectUrl>https://github.com/microdee/Nuke.Unreal</PackageProjectUrl>
     <PackageLicense>https://github.com/microdee/Nuke.Unreal/blob/main/LICENSE</PackageLicense>
-    <PackageIcon>nu_logo-125.png</PackageIcon>
+    <PackageIcon>nu.icon.onDark.fill.125.png</PackageIcon>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <IncludeSource>true</IncludeSource>
@@ -23,7 +23,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="../../docs/nu_logo-125.png" Pack="true" PackagePath="/" />
+    <None Include="../../docs/Images/nu.icon.onDark.fill.125.png" Pack="true" PackagePath="/" />
   </ItemGroup>
 
 </Project>
