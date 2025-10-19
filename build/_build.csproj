@@ -21,7 +21,7 @@
     <PackageReference Include="Scriban" Version="5.12.1" GeneratePathProperty="true" PrivateAssets="all" />
     <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.11.0" />
     <PackageReference Include="Towel" Version="1.0.40" />
-    <PackageReference Include="md.Nuke.Cola" Version="2.2.12" />
+    <PackageReference Include="md.Nuke.Cola" Version="2.3.0" />
   </ItemGroup>
   
   <ItemGroup>

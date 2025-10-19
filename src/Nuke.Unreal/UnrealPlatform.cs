@@ -139,7 +139,7 @@ namespace Nuke.Unreal
         {
             Value = nameof(VisionOS),
             Flag = UnrealPlatformFlag.VisionOS,
-            Compatibility = UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+            Compatibility = UnrealCompatibility.UE_5_5.AndLater(),
             DllExtension = "dylib",
         };
 
