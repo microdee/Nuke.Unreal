@@ -92,7 +92,7 @@ enum ProjectDescriptorVersion
 /// <param name="DisableEnginePluginsByDefault">
 /// Indicates that enabled by default engine plugins should not be enabled unless explicitly enabled by the project or target files.
 /// </param>
-public record ProjectDescriptor(
+public record class ProjectDescriptor(
     int FileVersion = 3,
     string? EngineAssociation = null,
     string? Category = null,

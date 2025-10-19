@@ -9,7 +9,7 @@ public enum LocalizationTargetDescriptorLoadingPolicy
     ToolTips,
 };
 
-public record LocalizationTargetDescriptor(
+public record class LocalizationTargetDescriptor(
     string Name,
     LocalizationTargetDescriptorLoadingPolicy LoadingPolicy
 );

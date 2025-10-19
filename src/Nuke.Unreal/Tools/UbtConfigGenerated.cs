@@ -542,7 +542,7 @@ public abstract class UbtConfigGenerated : ToolConfig
 {
     public override string Name => "Ubt";
     public override string CliName => "";
-    public override UnrealCompatibility Compatibility => UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest;
+    public override UnrealCompatibility Compatibility => UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest;
     
 /// <summary>The amount of detail to write to the log
 /// Increase output verbosity</summary>
@@ -555,7 +555,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -575,7 +575,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -596,7 +596,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -616,7 +616,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -638,7 +638,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -658,7 +658,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -678,7 +678,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -698,7 +698,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -718,7 +718,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -739,7 +739,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -759,7 +759,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -779,7 +779,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -799,7 +799,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -820,7 +820,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -840,7 +840,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -860,7 +860,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -880,7 +880,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -900,7 +900,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -920,7 +920,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -961,7 +961,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -981,7 +981,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -1001,7 +1001,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -1021,7 +1021,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -1042,7 +1042,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -1062,7 +1062,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -1082,7 +1082,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -1121,7 +1121,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -1143,7 +1143,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -1164,7 +1164,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -1205,7 +1205,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -1226,7 +1226,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -1247,7 +1247,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -1268,7 +1268,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -1292,7 +1292,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                             Value: val.ToString(),
                             Setter: '=',
                             Meta: new(
-                                Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                                Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                                 AllowMultiple: true
                             )
                         ));
@@ -1317,7 +1317,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                             Value: val.ToString(),
                             Setter: '=',
                             Meta: new(
-                                Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                                Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                                 AllowMultiple: true
                             )
                         ));
@@ -1339,7 +1339,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -1360,7 +1360,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -1381,7 +1381,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -1427,7 +1427,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -1448,7 +1448,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -1469,7 +1469,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -1490,7 +1490,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -1511,7 +1511,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: true
                     )
                 ));
@@ -1532,7 +1532,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: true
                     )
                 ));
@@ -1554,7 +1554,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: true
                     )
                 ));
@@ -1575,7 +1575,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -1680,7 +1680,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -1700,7 +1700,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -1721,7 +1721,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -1742,7 +1742,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -1763,7 +1763,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -1792,7 +1792,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -1813,7 +1813,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -1834,7 +1834,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -1855,7 +1855,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -1876,7 +1876,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -1896,7 +1896,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -1917,7 +1917,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -1938,7 +1938,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -1959,7 +1959,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -1981,7 +1981,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -2003,7 +2003,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -2024,7 +2024,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -2045,7 +2045,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -2066,7 +2066,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -2088,7 +2088,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -2109,7 +2109,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -2130,7 +2130,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -2151,7 +2151,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -2172,7 +2172,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -2193,7 +2193,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -2214,7 +2214,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -2238,7 +2238,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -2259,7 +2259,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -2280,7 +2280,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -2301,7 +2301,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -2322,7 +2322,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -2343,7 +2343,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -2363,7 +2363,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -2384,7 +2384,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -2405,7 +2405,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -2426,7 +2426,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -2447,7 +2447,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -2471,7 +2471,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                             Value: val.ToString(),
                             Setter: ':',
                             Meta: new(
-                                Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                                Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                                 AllowMultiple: true
                             )
                         ));
@@ -2496,7 +2496,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                             Value: val.ToString(),
                             Setter: ':',
                             Meta: new(
-                                Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                                Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                                 AllowMultiple: true
                             )
                         ));
@@ -2521,7 +2521,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                             Value: val.ToString(),
                             Setter: '=',
                             Meta: new(
-                                Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                                Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                                 AllowMultiple: true
                             )
                         ));
@@ -2546,7 +2546,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                             Value: val.ToString(),
                             Setter: '=',
                             Meta: new(
-                                Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                                Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                                 AllowMultiple: true
                             )
                         ));
@@ -2568,7 +2568,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -2589,7 +2589,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -2610,7 +2610,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -2631,7 +2631,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -2652,7 +2652,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -2715,7 +2715,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -2795,7 +2795,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -2804,9 +2804,8 @@ public abstract class UbtConfigGenerated : ToolConfig
         }
 
     
-/// <summary>
-/// Whether to strip iOS symbols or not (implied by Shipping config).
-/// </summary>
+/// <summary>Whether to strip iOS symbols or not (implied by Shipping config).
+/// Whether to strip symbols or not (implied by Shipping config).</summary>
         public virtual UbtConfig Stripsymbols(bool present = true)
         {
             if (present)
@@ -2816,7 +2815,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -2837,7 +2836,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -2858,7 +2857,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -2879,7 +2878,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -2899,7 +2898,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -2920,7 +2919,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -2941,7 +2940,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -2962,7 +2961,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -2983,7 +2982,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -3004,7 +3003,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -3025,7 +3024,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -3046,7 +3045,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -3066,7 +3065,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -3086,7 +3085,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -3107,7 +3106,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -3128,7 +3127,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -3149,7 +3148,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -3173,7 +3172,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -3193,7 +3192,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -3214,7 +3213,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -3234,7 +3233,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -3255,7 +3254,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -3276,7 +3275,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: true
                     )
                 ));
@@ -3297,7 +3296,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: true
                     )
                 ));
@@ -3318,7 +3317,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: true
                     )
                 ));
@@ -3339,7 +3338,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: true
                     )
                 ));
@@ -3360,7 +3359,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -3380,7 +3379,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -3400,7 +3399,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -3421,7 +3420,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -3441,7 +3440,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -3462,7 +3461,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -3486,7 +3485,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                             Value: val.ToString(),
                             Setter: '=',
                             Meta: new(
-                                Compatibility: UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                                Compatibility: UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                                 AllowMultiple: true
                             )
                         ));
@@ -3511,7 +3510,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                             Value: val.ToString(),
                             Setter: '=',
                             Meta: new(
-                                Compatibility: UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                                Compatibility: UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                                 AllowMultiple: true
                             )
                         ));
@@ -3533,7 +3532,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -3554,7 +3553,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -3621,7 +3620,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -3641,7 +3640,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -3662,7 +3661,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -3683,7 +3682,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -3704,7 +3703,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -3745,7 +3744,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -3770,7 +3769,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -3790,7 +3789,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -3832,7 +3831,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -3856,7 +3855,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -3878,7 +3877,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -3899,7 +3898,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -3920,7 +3919,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -3941,7 +3940,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6,
                         AllowMultiple: false
                     )
                 ));
@@ -3962,7 +3961,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6,
                         AllowMultiple: false
                     )
                 ));
@@ -4042,7 +4041,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -4063,7 +4062,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -4084,7 +4083,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -4145,7 +4144,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -4167,7 +4166,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -4189,7 +4188,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -4210,7 +4209,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -4252,7 +4251,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -4272,7 +4271,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -4291,7 +4290,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -4310,7 +4309,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -4329,7 +4328,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -4348,7 +4347,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -4367,7 +4366,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -4386,7 +4385,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -4405,7 +4404,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -4426,7 +4425,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -4447,7 +4446,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -4467,7 +4466,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -4488,7 +4487,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -4509,7 +4508,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -4529,7 +4528,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -4550,7 +4549,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -4572,7 +4571,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -4593,7 +4592,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -4614,7 +4613,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -4635,7 +4634,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -4677,7 +4676,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -4698,7 +4697,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -4720,7 +4719,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -4740,7 +4739,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -4761,7 +4760,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -4783,7 +4782,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -4804,7 +4803,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -4825,7 +4824,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -4846,7 +4845,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -4867,7 +4866,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -4888,7 +4887,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -4909,7 +4908,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -4930,7 +4929,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -4951,7 +4950,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: values != null && values.Length > 0 ? string.Join(";", values) : null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: true
                     )
                 ));
@@ -4972,7 +4971,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -4981,9 +4980,8 @@ public abstract class UbtConfigGenerated : ToolConfig
         }
 
     
-/// <summary>
-/// Will build all files that directly include any of the files provided in -SingleFile
-/// </summary>
+/// <summary>Will build all files that directly include any of the files provided in -SingleFile
+/// Will build all files that directly include any of the files provided in -SingleFile, not including generated code</summary>
         public virtual UbtConfig SingleFileBuildDependents(bool? val = null)
         {
             if (true)
@@ -4993,7 +4991,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -5014,7 +5012,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -5036,7 +5034,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -5057,7 +5055,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -5077,7 +5075,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -5119,7 +5117,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -5140,7 +5138,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -5161,7 +5159,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -5182,7 +5180,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -5203,7 +5201,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -5224,7 +5222,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -5245,7 +5243,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -5266,7 +5264,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -5287,7 +5285,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -5308,7 +5306,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -5329,7 +5327,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -5351,7 +5349,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -5372,7 +5370,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -5393,7 +5391,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -5414,7 +5412,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -5435,7 +5433,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -5457,7 +5455,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -5480,7 +5478,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -5501,7 +5499,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -5523,7 +5521,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -5568,7 +5566,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -5589,7 +5587,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -5610,7 +5608,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -5631,7 +5629,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -5694,7 +5692,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -5716,7 +5714,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -5737,7 +5735,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -5758,7 +5756,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -5779,7 +5777,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -5800,7 +5798,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -5821,7 +5819,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: true
                     )
                 ));
@@ -5842,7 +5840,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: true
                     )
                 ));
@@ -5864,7 +5862,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -5885,7 +5883,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: true
                     )
                 ));
@@ -5906,7 +5904,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: true
                     )
                 ));
@@ -5927,7 +5925,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -5949,7 +5947,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -5970,7 +5968,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -5991,7 +5989,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -6014,7 +6012,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: true
                     )
                 ));
@@ -6035,7 +6033,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: true
                     )
                 ));
@@ -6057,7 +6055,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -6078,7 +6076,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -6099,7 +6097,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -6119,7 +6117,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -6140,7 +6138,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -6161,7 +6159,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -6182,7 +6180,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -6203,7 +6201,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -6224,7 +6222,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -6245,7 +6243,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -6266,7 +6264,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -6287,7 +6285,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -6308,7 +6306,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -6329,7 +6327,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -6350,7 +6348,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -6371,7 +6369,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -6392,7 +6390,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -6413,7 +6411,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -6434,7 +6432,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -6455,7 +6453,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -6476,7 +6474,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -6497,7 +6495,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -6539,7 +6537,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -6560,7 +6558,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -6581,7 +6579,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -6602,7 +6600,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -6623,7 +6621,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -6644,7 +6642,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -6665,7 +6663,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -6686,7 +6684,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -6706,7 +6704,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -6727,7 +6725,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -6748,7 +6746,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -6769,7 +6767,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -6790,7 +6788,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -6811,7 +6809,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -6832,7 +6830,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -6853,7 +6851,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -6875,7 +6873,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -6897,7 +6895,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -6918,7 +6916,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -6939,7 +6937,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -6960,7 +6958,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -6981,7 +6979,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -7004,7 +7002,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -7027,7 +7025,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -7049,7 +7047,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -7070,7 +7068,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -7091,7 +7089,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -7112,7 +7110,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -7121,10 +7119,10 @@ public abstract class UbtConfigGenerated : ToolConfig
         }
 
     
-/// <summary>
-/// True if optimizations to reduce the size of debug information should be disabled
+/// <summary>True if optimizations to reduce the size of debug information should be disabled
 /// See https://clang.llvm.org/docs/UsersManual.html#cmdoption-fstandalone-debug for more information
-/// </summary>
+/// True if optimizations to reduce the size of debug information should be disabled. Disabling this option can decrease pdb size but may degrade the debugging experience.
+/// See https://clang.llvm.org/docs/UsersManual.html#cmdoption-fstandalone-debug for more information</summary>
         public virtual UbtConfig ClangStandaloneDebug(bool? val = null)
         {
             if (true)
@@ -7134,7 +7132,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -7156,7 +7154,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -7178,7 +7176,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -7200,7 +7198,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -7220,7 +7218,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: true
                     )
                 ));
@@ -7241,7 +7239,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -7262,7 +7260,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -7283,7 +7281,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -7309,7 +7307,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -7330,7 +7328,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -7351,7 +7349,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -7372,7 +7370,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -7393,7 +7391,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: true
                     )
                 ));
@@ -7415,7 +7413,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -7436,7 +7434,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -7457,7 +7455,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -7477,7 +7475,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -7498,7 +7496,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -7519,7 +7517,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -7541,7 +7539,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -7562,7 +7560,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -7583,7 +7581,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -7604,7 +7602,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -7625,7 +7623,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -7646,7 +7644,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -7665,7 +7663,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -7684,7 +7682,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -7703,7 +7701,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -7722,7 +7720,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -7748,7 +7746,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -7769,7 +7767,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -7790,7 +7788,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -7813,7 +7811,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -7834,7 +7832,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -7855,7 +7853,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -7876,7 +7874,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -7899,7 +7897,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -7922,7 +7920,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: true
                     )
                 ));
@@ -7947,7 +7945,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: true
                     )
                 ));
@@ -7968,7 +7966,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: true
                     )
                 ));
@@ -7989,7 +7987,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -8010,7 +8008,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -8031,7 +8029,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -8052,7 +8050,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -8073,7 +8071,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -8094,7 +8092,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -8115,7 +8113,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -8136,6 +8134,534 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
+                        Compatibility: UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (UbtConfig) this;
+        }
+
+    
+/// <summary>The mode to execute
+/// Generate project files for Android Studio</summary>
+        public virtual UbtConfig AndroidStudio(bool present = true)
+        {
+            if (present)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-AndroidStudio",
+                    Value: null,
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (UbtConfig) this;
+        }
+
+    
+/// <summary>
+/// Subfolder to place executables in, relative to the default location.
+/// </summary>
+        public virtual UbtConfig BinariesSubfolder(object val = null)
+        {
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-BinariesSubfolder",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (UbtConfig) this;
+        }
+
+    
+/// <summary>
+/// True if debug line number tables should be omitted in debug information for inline functions, compilers that support doing so.
+/// </summary>
+        public virtual UbtConfig DebugInfoNoInlineLineTables(DebugInfoMode? val = null)
+        {
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-DebugInfoNoInlineLineTables",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (UbtConfig) this;
+        }
+
+    
+/// <summary>
+/// Modules that should include line number tables for inline functions for compilers that support doing so, even if DebugInfoNoInlineLineTables would otherwise remove them.
+/// </summary>
+        public virtual UbtConfig DebugInfoInlineLineTablesModules(params object[] values)
+        {
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-DebugInfoInlineLineTablesModules",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: true
+                    )
+                ));
+            }
+            return (UbtConfig) this;
+        }
+
+    
+/// <summary>
+/// Modules that should include line number tables for inline functions for compilers that support doing so, even if DebugInfoNoInlineLineTables would otherwise remove them.
+/// </summary>
+        public virtual UbtConfig DebugInfoInlineLineTablesPlugins(params object[] values)
+        {
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-DebugInfoInlineLineTablesPlugins",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: true
+                    )
+                ));
+            }
+            return (UbtConfig) this;
+        }
+
+    
+/// <summary>
+/// True if template type names should be simplified to reduce the size of debug info for compilers that support doing so.
+/// </summary>
+        public virtual UbtConfig DebugInfoSimpleTemplateNames(DebugInfoMode? val = null)
+        {
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-DebugInfoSimpleTemplateNames",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (UbtConfig) this;
+        }
+
+    
+/// <summary>
+/// Modules for which template type names should be simplified to reduce the size of debug info for compilers that support doing so.
+/// </summary>
+        public virtual UbtConfig DebugInfoSimpleTemplateNamesModules(params object[] values)
+        {
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-DebugInfoSimpleTemplateNamesModules",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: true
+                    )
+                ));
+            }
+            return (UbtConfig) this;
+        }
+
+    
+/// <summary>
+/// Plugins for which template type names should be simplified to reduce the size of debug info for compilers that support doing so.
+/// </summary>
+        public virtual UbtConfig DebugInfoSimpleTemplateNamesPlugins(params object[] values)
+        {
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-DebugInfoSimpleTemplateNamesPlugins",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: true
+                    )
+                ));
+            }
+            return (UbtConfig) this;
+        }
+
+    
+/// <summary>
+/// Salt value to modify cache bucket calculation, can be used to invalidate cached actions outputs
+/// </summary>
+        public virtual UbtConfig CacheSalt(object val = null)
+        {
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-CacheSalt",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (UbtConfig) this;
+        }
+
+    
+/// <summary>
+/// When Link Time Code Generation (LTCG) is enabled, whether to
+/// prefer using the lighter weight version on supported platforms.
+/// </summary>
+        public virtual UbtConfig NoThinLTO(bool present = true)
+        {
+            if (present)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-NoThinLTO",
+                    Value: null,
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (UbtConfig) this;
+        }
+
+    
+/// <summary>
+/// When ThinLTO is enabled we use distributed linking if supported
+/// This can save a lot of time for large binaries
+/// </summary>
+        public virtual UbtConfig ThinLTODistributed(bool? val = null)
+        {
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-ThinLTODistributed",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (UbtConfig) this;
+        }
+
+    
+/// <summary>
+/// Experimental: List of modules to exclude from Engine to be placed in Common
+/// </summary>
+        public virtual UbtConfig MergeAdditionalCommonModules(params object[] values)
+        {
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-MergeAdditionalCommonModules",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: true
+                    )
+                ));
+            }
+            return (UbtConfig) this;
+        }
+
+    
+/// <summary>
+/// Experimental: List of plugins (and their dependencies) to explicitly exclude when processing merged libraries. Requires bMergeModules to be enabled
+/// Ignored plugins will still be compiled but forced into the executable.
+/// </summary>
+        public virtual UbtConfig MergePluginsExcluded(params object[] values)
+        {
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-MergePluginsExcluded",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: true
+                    )
+                ));
+            }
+            return (UbtConfig) this;
+        }
+
+    
+/// <summary>
+/// Experimental: Whether to report module merging data to the game target.
+/// </summary>
+        public virtual UbtConfig MergeModulesReport(bool? val = null)
+        {
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-MergeModulesReport",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (UbtConfig) this;
+        }
+
+    
+/// <summary>
+/// Store object (.obj) compressed on disk. Requires uba to do link step where it will decompress obj files again
+/// </summary>
+        public virtual UbtConfig Nocompress(bool present = true)
+        {
+            if (present)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-nocompress",
+                    Value: null,
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (UbtConfig) this;
+        }
+
+    
+/// <summary>
+/// Max workers allowed to be used by build session
+/// </summary>
+        public virtual UbtConfig UBAHordeMaxWorkers(double? val = null)
+        {
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-UBAHordeMaxWorkers",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (UbtConfig) this;
+        }
+
+    
+/// <summary>
+/// Max idle time in seconds to maintain a connection to a worker when no pending actions are currently available due to waiting on dependencies
+/// </summary>
+        public virtual UbtConfig UBAHordeMaxIdle(double? val = null)
+        {
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-UBAHordeMaxIdle",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (UbtConfig) this;
+        }
+
+    
+/// <summary>
+/// Enabled parameter for use by INI config, expects one of [True, False, BuildMachineOnly]
+/// </summary>
+        public virtual UbtConfig UBAHordeCacheEnabled(bool? val = null)
+        {
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-UBAHordeCacheEnabled",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (UbtConfig) this;
+        }
+
+    
+/// <summary>
+/// Number of desired connections when connecting to cache
+/// </summary>
+        public virtual UbtConfig UBAHordeCacheDesiredConnectionCount(double? val = null)
+        {
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-UBAHordeCacheDesiredConnectionCount",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (UbtConfig) this;
+        }
+
+    
+/// <summary>
+/// Makes build interation faster
+/// </summary>
+        public virtual UbtConfig FastIterate(bool present = true)
+        {
+            if (present)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-FastIterate",
+                    Value: null,
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (UbtConfig) this;
+        }
+
+    
+/// <summary>
+/// Only generates gradle
+/// </summary>
+        public virtual UbtConfig OnlyGradleGeneration(bool present = true)
+        {
+            if (present)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-OnlyGradleGeneration",
+                    Value: null,
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (UbtConfig) this;
+        }
+
+    
+/// <summary>
+/// Whether to create a ".stripped" file when stripping symbols or not.
+/// </summary>
+        public virtual UbtConfig Createstripflagfile(bool present = true)
+        {
+            if (present)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-createstripflagfile",
+                    Value: null,
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (UbtConfig) this;
+        }
+
+    
+/// <summary>
+/// Whether to globally skip symbol stripping
+/// </summary>
+        public virtual UbtConfig NoStripSymbols(bool? val = null)
+        {
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-NoStripSymbols",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (UbtConfig) this;
+        }
+
+    
+/// <summary>
+/// Version of the compiler toolchain to use on Windows platform. A value of "default" will be changed to a specific version at UBT start up.
+/// </summary>
+        public virtual UbtConfig _2026(WindowsCompiler? val = null)
+        {
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-2026",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (UbtConfig) this;
+        }
+
+    
+/// <summary>
+/// True if optimizations to reduce the size of debug information should be disabled. Disabling this option can decrease pdb size but may degrade the debugging experience.
+/// See https://clang.llvm.org/docs/UsersManual.html#cmdoption-fstandalone-debug for more information
+/// </summary>
+        public virtual UbtConfig NoClangStandaloneDebug(bool present = true)
+        {
+            if (present)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-NoClangStandaloneDebug",
+                    Value: null,
+                    Setter: '=',
+                    Meta: new(
                         Compatibility: UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
@@ -8150,7 +8676,7 @@ public abstract class UbtConfigGenerated : ToolConfig
     {
         public override string Name => "UnrealBuildTool";
         public override string CliName => "";
-        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest;
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest;
     
         private ToolConfig[] _configs = null;
         protected override ToolConfig[] Configs => _configs ??= new ToolConfig[]
@@ -8167,7 +8693,7 @@ public abstract class UbtConfigGenerated : ToolConfig
     {
         public override string Name => "GlobalOptions";
         public override string CliName => "";
-        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest;
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest;
     
 /// <summary>The amount of detail to write to the log
 /// Increase output verbosity</summary>
@@ -8180,7 +8706,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -8200,7 +8726,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -8221,7 +8747,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -8241,7 +8767,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -8263,7 +8789,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -8283,7 +8809,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -8303,7 +8829,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -8323,7 +8849,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -8343,7 +8869,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -8364,7 +8890,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -8384,7 +8910,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -8404,7 +8930,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -8424,7 +8950,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -8445,7 +8971,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -8465,7 +8991,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -8485,7 +9011,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -8505,7 +9031,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -8525,7 +9051,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -8545,7 +9071,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -8586,7 +9112,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -8606,7 +9132,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -8626,7 +9152,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -8646,7 +9172,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -8666,7 +9192,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -8686,7 +9212,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -8706,7 +9232,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -8726,7 +9252,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: true
                     )
                 ));
@@ -8747,7 +9273,27 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (GlobalOptionsConfig) this;
+        }
+
+    
+/// <summary>The mode to execute
+/// Generate project files for Android Studio</summary>
+        public virtual GlobalOptionsConfig AndroidStudio(bool present = true)
+        {
+            if (present)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-AndroidStudio",
+                    Value: null,
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -8771,7 +9317,7 @@ public abstract class UbtConfigGenerated : ToolConfig
     {
         public override string Name => "BuildConfiguration";
         public override string CliName => "";
-        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest;
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest;
     
 /// <summary>
 /// Use existing static libraries for all engine modules in this target.
@@ -8785,7 +9331,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -8805,7 +9351,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -8825,7 +9371,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -8864,7 +9410,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -8886,7 +9432,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -8907,7 +9453,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -8948,7 +9494,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -8969,7 +9515,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -8990,7 +9536,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -9011,7 +9557,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -9031,7 +9577,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -9052,7 +9598,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -9094,7 +9640,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -9118,7 +9664,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -9140,7 +9686,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -9161,7 +9707,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -9182,7 +9728,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -9203,7 +9749,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -9224,7 +9770,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -9245,7 +9791,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -9266,7 +9812,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -9287,7 +9833,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -9308,7 +9854,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -9374,7 +9920,7 @@ public abstract class UbtConfigGenerated : ToolConfig
     {
         public override string Name => "TargetDescriptor";
         public override string CliName => "";
-        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest;
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest;
     
 /// <summary>
 /// Foreign plugin to compile against this target
@@ -9388,7 +9934,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -9412,7 +9958,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                             Value: val.ToString(),
                             Setter: '=',
                             Meta: new(
-                                Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                                Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                                 AllowMultiple: true
                             )
                         ));
@@ -9437,7 +9983,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                             Value: val.ToString(),
                             Setter: '=',
                             Meta: new(
-                                Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                                Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                                 AllowMultiple: true
                             )
                         ));
@@ -9459,7 +10005,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -9480,7 +10026,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -9501,7 +10047,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -9547,7 +10093,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -9568,7 +10114,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -9589,7 +10135,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -9613,7 +10159,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                             Value: val.ToString(),
                             Setter: '=',
                             Meta: new(
-                                Compatibility: UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                                Compatibility: UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                                 AllowMultiple: true
                             )
                         ));
@@ -9638,7 +10184,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                             Value: val.ToString(),
                             Setter: '=',
                             Meta: new(
-                                Compatibility: UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                                Compatibility: UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                                 AllowMultiple: true
                             )
                         ));
@@ -9660,7 +10206,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -9681,7 +10227,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -9702,7 +10248,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -9723,7 +10269,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: values != null && values.Length > 0 ? string.Join(";", values) : null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: true
                     )
                 ));
@@ -9744,7 +10290,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -9753,9 +10299,8 @@ public abstract class UbtConfigGenerated : ToolConfig
         }
 
     
-/// <summary>
-/// Will build all files that directly include any of the files provided in -SingleFile
-/// </summary>
+/// <summary>Will build all files that directly include any of the files provided in -SingleFile
+/// Will build all files that directly include any of the files provided in -SingleFile, not including generated code</summary>
         public virtual TargetDescriptorConfig SingleFileBuildDependents(bool? val = null)
         {
             if (true)
@@ -9765,7 +10310,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -9786,7 +10331,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -9807,7 +10352,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -9828,7 +10373,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -9849,7 +10394,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -9873,7 +10418,7 @@ public abstract class UbtConfigGenerated : ToolConfig
     {
         public override string Name => "TargetRules";
         public override string CliName => "";
-        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest;
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest;
     
 /// <summary>
 /// Build all the modules that are valid for this target type. Used for CIS and making installed engine builds.
@@ -9887,7 +10432,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -9908,7 +10453,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: true
                     )
                 ));
@@ -9929,7 +10474,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: true
                     )
                 ));
@@ -9951,7 +10496,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: true
                     )
                 ));
@@ -9972,7 +10517,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -10077,7 +10622,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -10097,7 +10642,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -10118,7 +10663,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -10139,7 +10684,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -10160,7 +10705,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -10189,7 +10734,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -10210,7 +10755,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -10231,7 +10776,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -10252,7 +10797,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -10273,7 +10818,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -10293,7 +10838,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -10314,7 +10859,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -10335,7 +10880,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -10356,7 +10901,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -10378,7 +10923,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -10400,7 +10945,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -10421,7 +10966,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -10442,7 +10987,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -10463,7 +11008,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -10485,7 +11030,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -10506,7 +11051,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -10527,7 +11072,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -10548,7 +11093,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -10569,7 +11114,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -10590,7 +11135,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -10611,7 +11156,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -10635,7 +11180,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -10656,7 +11201,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -10677,7 +11222,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -10698,7 +11243,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -10719,7 +11264,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -10740,7 +11285,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -10760,7 +11305,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -10781,7 +11326,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -10802,7 +11347,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -10823,7 +11368,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -10844,7 +11389,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -10868,7 +11413,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                             Value: val.ToString(),
                             Setter: ':',
                             Meta: new(
-                                Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                                Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                                 AllowMultiple: true
                             )
                         ));
@@ -10893,7 +11438,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                             Value: val.ToString(),
                             Setter: ':',
                             Meta: new(
-                                Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                                Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                                 AllowMultiple: true
                             )
                         ));
@@ -10918,7 +11463,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                             Value: val.ToString(),
                             Setter: '=',
                             Meta: new(
-                                Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                                Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                                 AllowMultiple: true
                             )
                         ));
@@ -10943,7 +11488,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                             Value: val.ToString(),
                             Setter: '=',
                             Meta: new(
-                                Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                                Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                                 AllowMultiple: true
                             )
                         ));
@@ -10965,7 +11510,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -10986,7 +11531,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -11007,7 +11552,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -11028,7 +11573,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -11049,7 +11594,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -11116,7 +11661,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -11136,7 +11681,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -11158,7 +11703,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -11179,7 +11724,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -11200,7 +11745,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -11221,7 +11766,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6,
                         AllowMultiple: false
                     )
                 ));
@@ -11242,7 +11787,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6,
                         AllowMultiple: false
                     )
                 ));
@@ -11322,7 +11867,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -11343,7 +11888,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -11364,7 +11909,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -11428,7 +11973,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -11449,7 +11994,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -11469,7 +12014,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -11490,7 +12035,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -11512,7 +12057,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -11534,7 +12079,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -11555,7 +12100,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -11597,7 +12142,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -11618,7 +12163,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -11639,7 +12184,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -11660,7 +12205,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -11702,7 +12247,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -11723,7 +12268,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -11745,7 +12290,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -11766,7 +12311,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -11788,7 +12333,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -11809,7 +12354,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -11829,7 +12374,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -11871,7 +12416,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -11892,7 +12437,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -11913,7 +12458,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -11934,7 +12479,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -11955,7 +12500,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -11976,7 +12521,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -11997,7 +12542,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -12018,7 +12563,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -12039,7 +12584,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -12060,7 +12605,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -12081,7 +12626,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -12103,7 +12648,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -12125,7 +12670,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -12146,7 +12691,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -12167,7 +12712,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -12188,7 +12733,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -12209,7 +12754,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -12230,7 +12775,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: true
                     )
                 ));
@@ -12251,7 +12796,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: true
                     )
                 ));
@@ -12273,7 +12818,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -12294,7 +12839,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: true
                     )
                 ));
@@ -12315,7 +12860,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: true
                     )
                 ));
@@ -12336,7 +12881,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -12358,7 +12903,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -12379,7 +12924,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -12400,7 +12945,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -12423,7 +12968,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: true
                     )
                 ));
@@ -12444,7 +12989,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: true
                     )
                 ));
@@ -12465,7 +13010,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -12486,7 +13031,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -12512,7 +13057,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -12533,7 +13078,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -12554,7 +13099,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -12575,7 +13120,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -12596,7 +13141,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: true
                     )
                 ));
@@ -12617,7 +13162,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -12640,7 +13185,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -12661,7 +13206,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -12682,7 +13227,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -12703,7 +13248,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -12726,7 +13271,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -12749,8 +13294,284 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
                     Setter: '=',
                     Meta: new(
+                        Compatibility: UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: true
+                    )
+                ));
+            }
+            return (TargetRulesConfig) this;
+        }
+
+    
+/// <summary>
+/// Subfolder to place executables in, relative to the default location.
+/// </summary>
+        public virtual TargetRulesConfig BinariesSubfolder(object val = null)
+        {
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-BinariesSubfolder",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (TargetRulesConfig) this;
+        }
+
+    
+/// <summary>
+/// True if debug line number tables should be omitted in debug information for inline functions, compilers that support doing so.
+/// </summary>
+        public virtual TargetRulesConfig DebugInfoNoInlineLineTables(DebugInfoMode? val = null)
+        {
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-DebugInfoNoInlineLineTables",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (TargetRulesConfig) this;
+        }
+
+    
+/// <summary>
+/// Modules that should include line number tables for inline functions for compilers that support doing so, even if DebugInfoNoInlineLineTables would otherwise remove them.
+/// </summary>
+        public virtual TargetRulesConfig DebugInfoInlineLineTablesModules(params object[] values)
+        {
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-DebugInfoInlineLineTablesModules",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Meta: new(
                         Compatibility: UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: true
+                    )
+                ));
+            }
+            return (TargetRulesConfig) this;
+        }
+
+    
+/// <summary>
+/// Modules that should include line number tables for inline functions for compilers that support doing so, even if DebugInfoNoInlineLineTables would otherwise remove them.
+/// </summary>
+        public virtual TargetRulesConfig DebugInfoInlineLineTablesPlugins(params object[] values)
+        {
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-DebugInfoInlineLineTablesPlugins",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: true
+                    )
+                ));
+            }
+            return (TargetRulesConfig) this;
+        }
+
+    
+/// <summary>
+/// True if template type names should be simplified to reduce the size of debug info for compilers that support doing so.
+/// </summary>
+        public virtual TargetRulesConfig DebugInfoSimpleTemplateNames(DebugInfoMode? val = null)
+        {
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-DebugInfoSimpleTemplateNames",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (TargetRulesConfig) this;
+        }
+
+    
+/// <summary>
+/// Modules for which template type names should be simplified to reduce the size of debug info for compilers that support doing so.
+/// </summary>
+        public virtual TargetRulesConfig DebugInfoSimpleTemplateNamesModules(params object[] values)
+        {
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-DebugInfoSimpleTemplateNamesModules",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: true
+                    )
+                ));
+            }
+            return (TargetRulesConfig) this;
+        }
+
+    
+/// <summary>
+/// Plugins for which template type names should be simplified to reduce the size of debug info for compilers that support doing so.
+/// </summary>
+        public virtual TargetRulesConfig DebugInfoSimpleTemplateNamesPlugins(params object[] values)
+        {
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-DebugInfoSimpleTemplateNamesPlugins",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: true
+                    )
+                ));
+            }
+            return (TargetRulesConfig) this;
+        }
+
+    
+/// <summary>
+/// Salt value to modify cache bucket calculation, can be used to invalidate cached actions outputs
+/// </summary>
+        public virtual TargetRulesConfig CacheSalt(object val = null)
+        {
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-CacheSalt",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (TargetRulesConfig) this;
+        }
+
+    
+/// <summary>
+/// When Link Time Code Generation (LTCG) is enabled, whether to
+/// prefer using the lighter weight version on supported platforms.
+/// </summary>
+        public virtual TargetRulesConfig NoThinLTO(bool present = true)
+        {
+            if (present)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-NoThinLTO",
+                    Value: null,
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (TargetRulesConfig) this;
+        }
+
+    
+/// <summary>
+/// When ThinLTO is enabled we use distributed linking if supported
+/// This can save a lot of time for large binaries
+/// </summary>
+        public virtual TargetRulesConfig ThinLTODistributed(bool? val = null)
+        {
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-ThinLTODistributed",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (TargetRulesConfig) this;
+        }
+
+    
+/// <summary>
+/// Experimental: List of modules to exclude from Engine to be placed in Common
+/// </summary>
+        public virtual TargetRulesConfig MergeAdditionalCommonModules(params object[] values)
+        {
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-MergeAdditionalCommonModules",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: true
+                    )
+                ));
+            }
+            return (TargetRulesConfig) this;
+        }
+
+    
+/// <summary>
+/// Experimental: List of plugins (and their dependencies) to explicitly exclude when processing merged libraries. Requires bMergeModules to be enabled
+/// Ignored plugins will still be compiled but forced into the executable.
+/// </summary>
+        public virtual TargetRulesConfig MergePluginsExcluded(params object[] values)
+        {
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-MergePluginsExcluded",
+                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: true
+                    )
+                ));
+            }
+            return (TargetRulesConfig) this;
+        }
+
+    
+/// <summary>
+/// Experimental: Whether to report module merging data to the game target.
+/// </summary>
+        public virtual TargetRulesConfig MergeModulesReport(bool? val = null)
+        {
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-MergeModulesReport",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
                     )
                 ));
             }
@@ -12776,7 +13597,7 @@ public abstract class UbtConfigGenerated : ToolConfig
     {
         public override string Name => "AggregateParsedTimingInfo";
         public override string CliName => "-AggregateParsedTimingInfo";
-        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest;
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest;
     
         private ToolConfig[] _configs = null;
         protected override ToolConfig[] Configs => _configs ??= new ToolConfig[]
@@ -12793,7 +13614,7 @@ public abstract class UbtConfigGenerated : ToolConfig
     {
         public override string Name => "Build";
         public override string CliName => "-Build";
-        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest;
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest;
     
 /// <summary>
 /// Whether to skip checking for files identified by the junk manifest.
@@ -12807,7 +13628,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -12828,7 +13649,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -12849,7 +13670,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -12870,7 +13691,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -12891,7 +13712,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -12912,7 +13733,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -12933,7 +13754,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -12954,7 +13775,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -12979,7 +13800,7 @@ public abstract class UbtConfigGenerated : ToolConfig
     {
         public override string Name => "Clean";
         public override string CliName => "-Clean";
-        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest;
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest;
     
 /// <summary>
 /// Whether to avoid cleaning targets
@@ -12993,7 +13814,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -13014,7 +13835,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -13038,7 +13859,7 @@ public abstract class UbtConfigGenerated : ToolConfig
     {
         public override string Name => "Deploy";
         public override string CliName => "-Deploy";
-        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest;
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest;
     
 /// <summary>If we are just running the deployment step, specifies the path to the given deployment settings
 /// REQUIRED!</summary>
@@ -13051,7 +13872,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -13075,7 +13896,7 @@ public abstract class UbtConfigGenerated : ToolConfig
     {
         public override string Name => "Execute";
         public override string CliName => "-Execute";
-        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest;
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest;
     
 /// <summary>Whether we should just export the outdated actions list
 /// REQUIRED!</summary>
@@ -13088,7 +13909,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -13112,7 +13933,7 @@ public abstract class UbtConfigGenerated : ToolConfig
     {
         public override string Name => "GenerateClangDatabase";
         public override string CliName => "-GenerateClangDatabase";
-        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest;
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest;
     
 /// <summary>
 /// Set of filters for files to include in the database. Relative to the root directory, or to the project file.
@@ -13151,7 +13972,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -13172,7 +13993,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -13197,7 +14018,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                             Value: val.ToString(),
                             Setter: '=',
                             Meta: new(
-                                Compatibility: UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                                Compatibility: UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                                 AllowMultiple: true
                             )
                         ));
@@ -13223,7 +14044,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                             Value: val.ToString(),
                             Setter: '=',
                             Meta: new(
-                                Compatibility: UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                                Compatibility: UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                                 AllowMultiple: true
                             )
                         ));
@@ -13245,7 +14066,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -13266,7 +14087,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -13290,7 +14111,7 @@ public abstract class UbtConfigGenerated : ToolConfig
     {
         public override string Name => "GenerateProjectFiles";
         public override string CliName => "-GenerateProjectFiles";
-        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest;
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest;
     
 /// <summary>
 /// Types of project files to generate
@@ -13307,7 +14128,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                             Value: val.ToString(),
                             Setter: '=',
                             Meta: new(
-                                Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                                Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                                 AllowMultiple: true
                             )
                         ));
@@ -13457,7 +14278,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                             Value: val.ToString(),
                             Setter: '=',
                             Meta: new(
-                                Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                                Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                                 AllowMultiple: true
                             )
                         ));
@@ -13482,7 +14303,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                             Value: val.ToString(),
                             Setter: '=',
                             Meta: new(
-                                Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                                Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                                 AllowMultiple: true
                             )
                         ));
@@ -13507,7 +14328,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                             Value: val.ToString(),
                             Setter: '=',
                             Meta: new(
-                                Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                                Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                                 AllowMultiple: true
                             )
                         ));
@@ -13532,7 +14353,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                             Value: val.ToString(),
                             Setter: '=',
                             Meta: new(
-                                Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                                Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                                 AllowMultiple: true
                             )
                         ));
@@ -13557,7 +14378,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                             Value: val.ToString(),
                             Setter: '=',
                             Meta: new(
-                                Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                                Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                                 AllowMultiple: true
                             )
                         ));
@@ -13582,7 +14403,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                             Value: val.ToString(),
                             Setter: '=',
                             Meta: new(
-                                Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                                Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                                 AllowMultiple: true
                             )
                         ));
@@ -13607,7 +14428,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                             Value: val.ToString(),
                             Setter: '=',
                             Meta: new(
-                                Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                                Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                                 AllowMultiple: true
                             )
                         ));
@@ -13632,7 +14453,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                             Value: val.ToString(),
                             Setter: '=',
                             Meta: new(
-                                Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                                Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                                 AllowMultiple: true
                             )
                         ));
@@ -13657,7 +14478,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                             Value: val.ToString(),
                             Setter: '=',
                             Meta: new(
-                                Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                                Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                                 AllowMultiple: true
                             )
                         ));
@@ -13682,7 +14503,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                             Value: val.ToString(),
                             Setter: '=',
                             Meta: new(
-                                Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                                Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6,
                                 AllowMultiple: true
                             )
                         ));
@@ -13707,7 +14528,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                             Value: val.ToString(),
                             Setter: '=',
                             Meta: new(
-                                Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                                Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                                 AllowMultiple: true
                             )
                         ));
@@ -13732,7 +14553,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                             Value: val.ToString(),
                             Setter: '=',
                             Meta: new(
-                                Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                                Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                                 AllowMultiple: true
                             )
                         ));
@@ -13754,7 +14575,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -13778,7 +14599,57 @@ public abstract class UbtConfigGenerated : ToolConfig
                             Value: val.ToString(),
                             Setter: '=',
                             Meta: new(
-                                Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                                Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
+                                AllowMultiple: true
+                            )
+                        ));
+                    }
+            }
+            return (GenerateProjectFilesConfig) this;
+        }
+
+    
+/// <summary>
+/// Types of project files to generate
+/// </summary>
+        public virtual GenerateProjectFilesConfig VisualStudio(params ProjectFileFormat[] values)
+        {
+            if (true)
+            {
+                if (values != null)
+                    foreach (var val in values)
+                    {
+                        AppendArgument(new UnrealToolArgument(
+                            "-VisualStudio",
+                            Value: val.ToString(),
+                            Setter: '=',
+                            Meta: new(
+                                Compatibility: UnrealCompatibility.UE_5_Latest,
+                                AllowMultiple: true
+                            )
+                        ));
+                    }
+            }
+            return (GenerateProjectFilesConfig) this;
+        }
+
+    
+/// <summary>
+/// Types of project files to generate
+/// </summary>
+        public virtual GenerateProjectFilesConfig AndroidStudio(params ProjectFileFormat[] values)
+        {
+            if (true)
+            {
+                if (values != null)
+                    foreach (var val in values)
+                    {
+                        AppendArgument(new UnrealToolArgument(
+                            "-AndroidStudio",
+                            Value: val.ToString(),
+                            Setter: '=',
+                            Meta: new(
+                                Compatibility: UnrealCompatibility.UE_5_Latest,
                                 AllowMultiple: true
                             )
                         ));
@@ -13803,7 +14674,7 @@ public abstract class UbtConfigGenerated : ToolConfig
     {
         public override string Name => "JsonExport";
         public override string CliName => "-JsonExport";
-        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest;
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest;
     
 /// <summary>
 /// Execute any actions which result in code generation (eg. ISPC compilation)
@@ -13817,7 +14688,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -13846,7 +14717,7 @@ public abstract class UbtConfigGenerated : ToolConfig
     {
         public override string Name => "ParseMsvcTimingInfo";
         public override string CliName => "-ParseMsvcTimingInfo";
-        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest;
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest;
     
         private ToolConfig[] _configs = null;
         protected override ToolConfig[] Configs => _configs ??= new ToolConfig[]
@@ -13863,7 +14734,7 @@ public abstract class UbtConfigGenerated : ToolConfig
     {
         public override string Name => "QueryTargets";
         public override string CliName => "-QueryTargets";
-        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest;
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest;
     
 /// <summary>
 /// Path to the project file to query
@@ -13877,7 +14748,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -13898,7 +14769,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -13919,7 +14790,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -13940,7 +14811,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -13961,7 +14832,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -13985,7 +14856,7 @@ public abstract class UbtConfigGenerated : ToolConfig
     {
         public override string Name => "SetupPlatforms";
         public override string CliName => "-SetupPlatforms";
-        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest;
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest;
     
         private ToolConfig[] _configs = null;
         protected override ToolConfig[] Configs => _configs ??= new ToolConfig[]
@@ -14002,7 +14873,7 @@ public abstract class UbtConfigGenerated : ToolConfig
     {
         public override string Name => "ValidatePlatforms";
         public override string CliName => "-ValidatePlatforms";
-        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest;
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest;
     
 /// <summary>
 /// Platforms to validate
@@ -14016,7 +14887,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: true
                     )
                 ));
@@ -14037,7 +14908,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -14058,7 +14929,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -14082,7 +14953,7 @@ public abstract class UbtConfigGenerated : ToolConfig
     {
         public override string Name => "WriteDocumentation";
         public override string CliName => "-WriteDocumentation";
-        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest;
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest;
     
 /// <summary>Type of documentation to generate
 /// REQUIRED!</summary>
@@ -14095,7 +14966,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -14115,7 +14986,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -14139,7 +15010,7 @@ public abstract class UbtConfigGenerated : ToolConfig
     {
         public override string Name => "WriteMetadata";
         public override string CliName => "-WriteMetadata";
-        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest;
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest;
     
         private ToolConfig[] _configs = null;
         protected override ToolConfig[] Configs => _configs ??= new ToolConfig[]
@@ -14192,7 +15063,7 @@ public abstract class UbtConfigGenerated : ToolConfig
     {
         public override string Name => "AndroidTargetRules";
         public override string CliName => "";
-        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest;
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest;
     
 /// <summary>
 /// Lists Architectures that you want to build
@@ -14248,7 +15119,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -14269,7 +15140,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -14289,7 +15160,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -14310,7 +15181,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -14332,7 +15203,7 @@ public abstract class UbtConfigGenerated : ToolConfig
     {
         public override string Name => "UEDeployAndroid";
         public override string CliName => "";
-        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest;
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest;
     
 /// <summary>
 /// Ignore AppBundle (AAB) generation setting if "-ForceAPKGeneration" specified
@@ -14346,7 +15217,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -14367,7 +15238,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -14389,7 +15260,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -14410,7 +15281,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -14431,7 +15302,49 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (UEDeployAndroidConfig) this;
+        }
+
+    
+/// <summary>
+/// Makes build interation faster
+/// </summary>
+        public virtual UEDeployAndroidConfig FastIterate(bool present = true)
+        {
+            if (present)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-FastIterate",
+                    Value: null,
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (UEDeployAndroidConfig) this;
+        }
+
+    
+/// <summary>
+/// Only generates gradle
+/// </summary>
+        public virtual UEDeployAndroidConfig OnlyGradleGeneration(bool present = true)
+        {
+            if (present)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-OnlyGradleGeneration",
+                    Value: null,
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -14528,7 +15441,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -14550,7 +15463,7 @@ public abstract class UbtConfigGenerated : ToolConfig
     {
         public override string Name => "IOSPostBuildSync";
         public override string CliName => "-IOSPostBuildSync";
-        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest;
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest;
     
 /// <summary>REQUIRED!</summary>
         public virtual IOSPostBuildSyncConfig Input(object val = null)
@@ -14562,7 +15475,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -14581,7 +15494,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -14600,7 +15513,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -14624,11 +15537,10 @@ public abstract class UbtConfigGenerated : ToolConfig
     {
         public override string Name => "IOSTargetRules";
         public override string CliName => "";
-        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest;
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest;
     
-/// <summary>
-/// Whether to strip iOS symbols or not (implied by Shipping config).
-/// </summary>
+/// <summary>Whether to strip iOS symbols or not (implied by Shipping config).
+/// Whether to strip symbols or not (implied by Shipping config).</summary>
         public virtual IOSTargetRulesConfig Stripsymbols(bool present = true)
         {
             if (present)
@@ -14638,7 +15550,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -14659,7 +15571,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -14680,7 +15592,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -14701,7 +15613,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -14721,7 +15633,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -14742,7 +15654,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -14763,7 +15675,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -14784,7 +15696,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -14805,7 +15717,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6,
                         AllowMultiple: false
                     )
                 ));
@@ -14825,7 +15737,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6,
                         AllowMultiple: false
                     )
                 ));
@@ -14846,7 +15758,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6,
                         AllowMultiple: false
                     )
                 ));
@@ -14867,7 +15779,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -14887,7 +15799,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -14911,7 +15823,7 @@ public abstract class UbtConfigGenerated : ToolConfig
     {
         public override string Name => "IOSProjectSettings";
         public override string CliName => "";
-        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest;
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest;
     
 /// <summary>
 /// Whether to build the iOS project as a framework.
@@ -14925,7 +15837,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -14946,7 +15858,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -14967,7 +15879,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -14991,7 +15903,7 @@ public abstract class UbtConfigGenerated : ToolConfig
     {
         public override string Name => "LinuxTargetRules";
         public override string CliName => "";
-        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest;
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest;
     
 /// <summary>Enables address sanitizer (ASan)
 /// Enables address sanitizer (ASan).
@@ -15005,7 +15917,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -15025,7 +15937,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -15045,7 +15957,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -15066,7 +15978,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -15087,7 +15999,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -15108,7 +16020,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -15129,7 +16041,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -15150,7 +16062,28 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (LinuxTargetRulesConfig) this;
+        }
+
+    
+/// <summary>
+/// Whether to globally skip symbol stripping
+/// </summary>
+        public virtual LinuxTargetRulesConfig NoStripSymbols(bool? val = null)
+        {
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-NoStripSymbols",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -15267,7 +16200,7 @@ public abstract class UbtConfigGenerated : ToolConfig
     {
         public override string Name => "MacTargetRules";
         public override string CliName => "";
-        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest;
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest;
     
 /// <summary>
 /// Enables address sanitizer (ASan).
@@ -15281,7 +16214,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6,
                         AllowMultiple: false
                     )
                 ));
@@ -15302,7 +16235,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6,
                         AllowMultiple: false
                     )
                 ));
@@ -15323,7 +16256,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6,
                         AllowMultiple: false
                     )
                 ));
@@ -15364,7 +16297,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -15385,7 +16318,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6,
                         AllowMultiple: false
                     )
                 ));
@@ -15406,7 +16339,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -15430,7 +16363,7 @@ public abstract class UbtConfigGenerated : ToolConfig
     {
         public override string Name => "PVSGather";
         public override string CliName => "-PVSGather";
-        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest;
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest;
     
 /// <summary>Path to the input file list
 /// REQUIRED!</summary>
@@ -15443,7 +16376,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -15463,7 +16396,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -15484,7 +16417,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -15525,7 +16458,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -15545,7 +16478,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -15569,7 +16502,7 @@ public abstract class UbtConfigGenerated : ToolConfig
     {
         public override string Name => "WindowsTargetRules";
         public override string CliName => "";
-        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest;
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest;
     
 /// <summary>
 /// Version of the compiler toolchain to use on Windows platform. A value of "default" will be changed to a specific version at UBT start up.
@@ -15646,7 +16579,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -15667,7 +16600,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -15691,7 +16624,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -15711,7 +16644,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -15732,7 +16665,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -15752,7 +16685,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -15773,7 +16706,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -15793,7 +16726,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -15814,7 +16747,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -15839,7 +16772,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -15860,7 +16793,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -15881,7 +16814,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -15901,7 +16834,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -15922,7 +16855,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -15942,7 +16875,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -15963,7 +16896,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -15984,7 +16917,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -16005,7 +16938,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -16027,7 +16960,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -16050,7 +16983,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -16071,7 +17004,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -16093,7 +17026,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -16114,7 +17047,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -16159,7 +17092,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -16182,7 +17115,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -16205,7 +17138,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -16227,7 +17160,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -16248,7 +17181,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -16269,7 +17202,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -16290,7 +17223,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -16299,10 +17232,10 @@ public abstract class UbtConfigGenerated : ToolConfig
         }
 
     
-/// <summary>
-/// True if optimizations to reduce the size of debug information should be disabled
+/// <summary>True if optimizations to reduce the size of debug information should be disabled
 /// See https://clang.llvm.org/docs/UsersManual.html#cmdoption-fstandalone-debug for more information
-/// </summary>
+/// True if optimizations to reduce the size of debug information should be disabled. Disabling this option can decrease pdb size but may degrade the debugging experience.
+/// See https://clang.llvm.org/docs/UsersManual.html#cmdoption-fstandalone-debug for more information</summary>
         public virtual WindowsTargetRulesConfig ClangStandaloneDebug(bool? val = null)
         {
             if (true)
@@ -16312,7 +17245,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -16334,7 +17267,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -16356,7 +17289,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -16378,7 +17311,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -16399,7 +17332,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -16420,7 +17353,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -16441,7 +17374,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -16462,7 +17395,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -16483,7 +17416,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -16504,7 +17437,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -16525,7 +17458,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -16546,7 +17479,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -16565,6 +17498,49 @@ public abstract class UbtConfigGenerated : ToolConfig
                 AppendArgument(new UnrealToolArgument(
                     "-EnableInstrumentation",
                     Value: val?.ToString(),
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (WindowsTargetRulesConfig) this;
+        }
+
+    
+/// <summary>
+/// Version of the compiler toolchain to use on Windows platform. A value of "default" will be changed to a specific version at UBT start up.
+/// </summary>
+        public virtual WindowsTargetRulesConfig _2026(WindowsCompiler? val = null)
+        {
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-2026",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (WindowsTargetRulesConfig) this;
+        }
+
+    
+/// <summary>
+/// True if optimizations to reduce the size of debug information should be disabled. Disabling this option can decrease pdb size but may degrade the debugging experience.
+/// See https://clang.llvm.org/docs/UsersManual.html#cmdoption-fstandalone-debug for more information
+/// </summary>
+        public virtual WindowsTargetRulesConfig NoClangStandaloneDebug(bool present = true)
+        {
+            if (present)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-NoClangStandaloneDebug",
+                    Value: null,
                     Setter: '=',
                     Meta: new(
                         Compatibility: UnrealCompatibility.UE_5_Latest,
@@ -16589,7 +17565,7 @@ public abstract class UbtConfigGenerated : ToolConfig
     {
         public override string Name => "RiderProjectFileGenerator";
         public override string CliName => "";
-        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest;
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest;
     
 /// <summary>
 /// Platforms to generate project files for
@@ -16603,7 +17579,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: true
                     )
                 ));
@@ -16624,7 +17600,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: true
                     )
                 ));
@@ -16645,7 +17621,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: true
                     )
                 ));
@@ -16666,7 +17642,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: true
                     )
                 ));
@@ -16687,7 +17663,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_4 | UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -16709,7 +17685,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -16733,7 +17709,7 @@ public abstract class UbtConfigGenerated : ToolConfig
     {
         public override string Name => "Analyze";
         public override string CliName => "-Analyze";
-        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest;
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE_5_0 | UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest;
     
         private ToolConfig[] _configs = null;
         protected override ToolConfig[] Configs => _configs ??= new ToolConfig[]
@@ -16750,7 +17726,7 @@ public abstract class UbtConfigGenerated : ToolConfig
     {
         public override string Name => "AggregateClangTimingInfo";
         public override string CliName => "-AggregateClangTimingInfo";
-        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest;
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest;
     
         private ToolConfig[] _configs = null;
         protected override ToolConfig[] Configs => _configs ??= new ToolConfig[]
@@ -16767,7 +17743,7 @@ public abstract class UbtConfigGenerated : ToolConfig
     {
         public override string Name => "FixIncludePaths";
         public override string CliName => "-FixIncludePaths";
-        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest;
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest;
     
 /// <summary>Set of filters for files to include in the database. Relative to the root directory, or to the project file.</summary>
         public virtual FixIncludePathsConfig Filter(params object[] values)
@@ -16782,7 +17758,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                             Value: val.ToString(),
                             Setter: '=',
                             Meta: new(
-                                Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                                Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                                 AllowMultiple: true
                             )
                         ));
@@ -16802,7 +17778,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -16821,7 +17797,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -16840,7 +17816,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -16862,7 +17838,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                             Value: val.ToString(),
                             Setter: '=',
                             Meta: new(
-                                Compatibility: UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                                Compatibility: UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                                 AllowMultiple: true
                             )
                         ));
@@ -16882,7 +17858,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -16906,7 +17882,7 @@ public abstract class UbtConfigGenerated : ToolConfig
     {
         public override string Name => "InlineGeneratedCpps";
         public override string CliName => "-InlineGeneratedCpps";
-        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest;
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest;
     
 /// <summary>Set of filters for files to include in the database. Relative to the root directory, or to the project file.</summary>
         public virtual InlineGeneratedCppsConfig Filter(params object[] values)
@@ -16921,7 +17897,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                             Value: val.ToString(),
                             Setter: '=',
                             Meta: new(
-                                Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                                Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                                 AllowMultiple: true
                             )
                         ));
@@ -16941,7 +17917,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -16960,7 +17936,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -16984,7 +17960,7 @@ public abstract class UbtConfigGenerated : ToolConfig
     {
         public override string Name => "PrintBuildGraphInfo";
         public override string CliName => "-PrintBuildGraphInfo";
-        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest;
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest;
     
         private ToolConfig[] _configs = null;
         protected override ToolConfig[] Configs => _configs ??= new ToolConfig[]
@@ -17001,7 +17977,7 @@ public abstract class UbtConfigGenerated : ToolConfig
     {
         public override string Name => "Test";
         public override string CliName => "-Test";
-        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest;
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest;
     
 /// <summary>
 /// Whether we're building implicit tests (default is explicit)
@@ -17015,7 +17991,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -17036,7 +18012,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -17057,7 +18033,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -17078,7 +18054,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -17099,7 +18075,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -17123,7 +18099,7 @@ public abstract class UbtConfigGenerated : ToolConfig
     {
         public override string Name => "UhtGlobalOptions";
         public override string CliName => "";
-        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest;
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest;
     
 /// <summary>The amount of detail to write to the log
 /// Increase output verbosity</summary>
@@ -17136,7 +18112,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -17156,7 +18132,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -17176,7 +18152,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -17196,7 +18172,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -17216,7 +18192,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -17236,7 +18212,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -17255,7 +18231,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -17274,7 +18250,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -17293,7 +18269,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -17312,7 +18288,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -17331,7 +18307,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -17350,7 +18326,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -17369,7 +18345,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -17388,7 +18364,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -17407,7 +18383,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -17431,7 +18407,7 @@ public abstract class UbtConfigGenerated : ToolConfig
     {
         public override string Name => "UnrealHeaderTool";
         public override string CliName => "-UnrealHeaderTool";
-        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest;
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE_5_1 | UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest;
     
         private ToolConfig[] _configs = null;
         protected override ToolConfig[] Configs => _configs ??= new ToolConfig[]
@@ -17448,7 +18424,7 @@ public abstract class UbtConfigGenerated : ToolConfig
     {
         public override string Name => "IWYU";
         public override string CliName => "-IWYU";
-        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest;
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest;
     
 /// <summary>
 /// Will check out files from p4 and write to disk
@@ -17462,7 +18438,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -17483,7 +18459,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -17504,7 +18480,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -17528,7 +18504,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -17550,7 +18526,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -17571,7 +18547,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -17592,7 +18568,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -17634,7 +18610,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -17655,7 +18631,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -17677,7 +18653,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -17698,7 +18674,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -17719,7 +18695,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -17740,7 +18716,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -17761,7 +18737,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -17782,7 +18758,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -17806,7 +18782,7 @@ public abstract class UbtConfigGenerated : ToolConfig
     {
         public override string Name => "ProfileUnitySizes";
         public override string CliName => "-ProfileUnitySizes";
-        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest;
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest;
     
 /// <summary>
 /// Set of filters for files to include in the database. Relative to the root directory, or to the project file.
@@ -17823,7 +18799,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                             Value: val.ToString(),
                             Setter: '=',
                             Meta: new(
-                                Compatibility: UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                                Compatibility: UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                                 AllowMultiple: true
                             )
                         ));
@@ -17846,7 +18822,7 @@ public abstract class UbtConfigGenerated : ToolConfig
     {
         public override string Name => "Server";
         public override string CliName => "-Server";
-        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest;
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest;
     
     
         public virtual ServerConfig LogDirectory(object val = null)
@@ -17858,7 +18834,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -17880,7 +18856,7 @@ public abstract class UbtConfigGenerated : ToolConfig
     {
         public override string Name => "VSCodeProjectFileGenerator";
         public override string CliName => "";
-        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest;
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest;
     
 /// <summary>
 /// Do not create compile commands json files with compiler arguments for each file; works better with VS Code extension using
@@ -17895,7 +18871,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_2 | UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -17916,7 +18892,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -17938,7 +18914,7 @@ public abstract class UbtConfigGenerated : ToolConfig
     {
         public override string Name => "ClRepro";
         public override string CliName => "-ClRepro";
-        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest;
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest;
     
 /// <summary>REQUIRED!</summary>
         public virtual ClReproConfig InputCpp(object val = null)
@@ -17950,7 +18926,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -17969,7 +18945,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -17991,7 +18967,7 @@ public abstract class UbtConfigGenerated : ToolConfig
     {
         public override string Name => "Query";
         public override string CliName => "-Query";
-        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest;
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest;
     
     
         public virtual QueryConfig LogDirectory(object val = null)
@@ -18003,7 +18979,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -18022,7 +18998,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -18041,7 +19017,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -18060,7 +19036,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -18079,7 +19055,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -18098,7 +19074,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -18117,7 +19093,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -18136,7 +19112,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -18155,7 +19131,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -18174,7 +19150,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -18196,7 +19172,7 @@ public abstract class UbtConfigGenerated : ToolConfig
     {
         public override string Name => "ApplePostBuildSync";
         public override string CliName => "-ApplePostBuildSync";
-        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest;
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest;
     
 /// <summary>REQUIRED!</summary>
         public virtual ApplePostBuildSyncConfig Input(object val = null)
@@ -18208,7 +19184,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -18227,7 +19203,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -18246,7 +19222,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_3 | UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -18265,7 +19241,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -18300,7 +19276,7 @@ public abstract class UbtConfigGenerated : ToolConfig
     {
         public override string Name => "ImmediateActionQueue";
         public override string CliName => "";
-        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest;
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest;
     
 /// <summary>
 /// Number of second of no completed actions to trigger an action stall report.
@@ -18315,7 +19291,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -18337,7 +19313,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -18361,7 +19337,7 @@ public abstract class UbtConfigGenerated : ToolConfig
     {
         public override string Name => "UnrealBuildAcceleratorConfig";
         public override string CliName => "";
-        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest;
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest;
     
 /// <summary>
 /// When set to true, UBA will not use any remote help
@@ -18375,7 +19351,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -18396,7 +19372,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -18416,7 +19392,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -18437,7 +19413,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -18458,7 +19434,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -18479,7 +19455,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -18500,7 +19476,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -18521,7 +19497,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -18542,7 +19518,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -18563,7 +19539,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -18584,7 +19560,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -18605,7 +19581,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -18626,7 +19602,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -18647,7 +19623,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -18668,7 +19644,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -18689,7 +19665,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -18710,7 +19686,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -18731,7 +19707,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -18752,7 +19728,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -18773,7 +19749,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -18794,7 +19770,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -18836,7 +19812,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -18857,7 +19833,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -18878,7 +19854,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -18899,7 +19875,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -18920,7 +19896,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -18941,7 +19917,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -18962,7 +19938,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -18983,7 +19959,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -19004,7 +19980,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -19025,7 +20001,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -19045,7 +20021,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -19066,7 +20042,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -19087,7 +20063,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -19112,7 +20088,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: true
                     )
                 ));
@@ -19133,7 +20109,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: true
                     )
                 ));
@@ -19154,7 +20130,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -19175,7 +20151,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -19196,7 +20172,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -19217,7 +20193,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -19236,6 +20212,27 @@ public abstract class UbtConfigGenerated : ToolConfig
                 AppendArgument(new UnrealToolArgument(
                     "-UBACompressionLevel",
                     Value: val?.ToString(),
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (UnrealBuildAcceleratorConfigConfig) this;
+        }
+
+    
+/// <summary>
+/// Store object (.obj) compressed on disk. Requires uba to do link step where it will decompress obj files again
+/// </summary>
+        public virtual UnrealBuildAcceleratorConfigConfig Nocompress(bool present = true)
+        {
+            if (present)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-nocompress",
+                    Value: null,
                     Setter: '=',
                     Meta: new(
                         Compatibility: UnrealCompatibility.UE_5_Latest,
@@ -19262,7 +20259,7 @@ public abstract class UbtConfigGenerated : ToolConfig
     {
         public override string Name => "UnrealBuildAcceleratorHordeConfig";
         public override string CliName => "";
-        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest;
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest;
     
 /// <summary>
 /// Uri of the Horde server
@@ -19276,7 +20273,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -19296,7 +20293,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -19317,7 +20314,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -19338,7 +20335,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -19359,7 +20356,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -19380,7 +20377,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -19401,7 +20398,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -19422,7 +20419,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -19443,7 +20440,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -19465,7 +20462,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -19487,7 +20484,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -19508,7 +20505,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -19529,7 +20526,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -19551,7 +20548,91 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (UnrealBuildAcceleratorHordeConfigConfig) this;
+        }
+
+    
+/// <summary>
+/// Max workers allowed to be used by build session
+/// </summary>
+        public virtual UnrealBuildAcceleratorHordeConfigConfig UBAHordeMaxWorkers(double? val = null)
+        {
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-UBAHordeMaxWorkers",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (UnrealBuildAcceleratorHordeConfigConfig) this;
+        }
+
+    
+/// <summary>
+/// Max idle time in seconds to maintain a connection to a worker when no pending actions are currently available due to waiting on dependencies
+/// </summary>
+        public virtual UnrealBuildAcceleratorHordeConfigConfig UBAHordeMaxIdle(double? val = null)
+        {
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-UBAHordeMaxIdle",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (UnrealBuildAcceleratorHordeConfigConfig) this;
+        }
+
+    
+/// <summary>
+/// Enabled parameter for use by INI config, expects one of [True, False, BuildMachineOnly]
+/// </summary>
+        public virtual UnrealBuildAcceleratorHordeConfigConfig UBAHordeCacheEnabled(bool? val = null)
+        {
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-UBAHordeCacheEnabled",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (UnrealBuildAcceleratorHordeConfigConfig) this;
+        }
+
+    
+/// <summary>
+/// Number of desired connections when connecting to cache
+/// </summary>
+        public virtual UnrealBuildAcceleratorHordeConfigConfig UBAHordeCacheDesiredConnectionCount(double? val = null)
+        {
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-UBAHordeCacheDesiredConnectionCount",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -19575,7 +20656,7 @@ public abstract class UbtConfigGenerated : ToolConfig
     {
         public override string Name => "PipInstall";
         public override string CliName => "-PipInstall";
-        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest;
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest;
     
 /// <summary>Full path to python interpreter engine was built with (if unspecified use value in PythonSDKRoot.txt)
 /// Full path to python interpreter to use in case the engine is built against an external python SDK</summary>
@@ -19588,7 +20669,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -19608,7 +20689,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -19628,7 +20709,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -19648,7 +20729,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -19669,7 +20750,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -19691,7 +20772,7 @@ public abstract class UbtConfigGenerated : ToolConfig
     {
         public override string Name => "VSWorkspaceProjectFileGenerator";
         public override string CliName => "";
-        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest;
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest;
     
 /// <summary>
 /// Platforms to generate project files for
@@ -19705,7 +20786,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: true
                     )
                 ));
@@ -19726,7 +20807,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: true
                     )
                 ));
@@ -19747,7 +20828,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: true
                     )
                 ));
@@ -19768,7 +20849,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: true
                     )
                 ));
@@ -19789,7 +20870,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_4 | UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -19808,7 +20889,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -19827,7 +20908,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -19846,7 +20927,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -19865,7 +20946,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_5 | UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -19889,7 +20970,7 @@ public abstract class UbtConfigGenerated : ToolConfig
     {
         public override string Name => "CppCompileWarnings";
         public override string CliName => "";
-        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE_5_Latest;
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest;
     
 /// <summary>
 /// Forces shadow variable warnings to be treated as errors on platforms that support it.
@@ -19912,7 +20993,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -19939,7 +21020,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -19965,7 +21046,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -19986,7 +21067,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -20007,7 +21088,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -20028,7 +21109,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -20049,7 +21130,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -20070,7 +21151,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -20091,7 +21172,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -20115,7 +21196,7 @@ public abstract class UbtConfigGenerated : ToolConfig
     {
         public override string Name => "UnrealBuildAcceleratorCacheConfig";
         public override string CliName => "";
-        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE_5_Latest;
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest;
     
 /// <summary>
 /// Address of the uba cache service. Will automatically use cache if connected
@@ -20129,7 +21210,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: val?.ToString(),
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -20150,7 +21231,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                     Value: null,
                     Setter: '=',
                     Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_Latest,
+                        Compatibility: UnrealCompatibility.UE_5_6 | UnrealCompatibility.UE_5_Latest,
                         AllowMultiple: false
                     )
                 ));
@@ -20166,6 +21247,149 @@ public abstract class UbtConfigGenerated : ToolConfig
     }
 
     protected readonly UnrealBuildAcceleratorCacheConfigConfig UnrealBuildAcceleratorCacheConfigStorage = new();
+    
+/// <summary>
+/// Apple-specific target settings
+/// </summary>
+    public  class AppleTargetRulesConfig : ToolConfig
+    {
+        public override string Name => "AppleTargetRules";
+        public override string CliName => "";
+        public override UnrealCompatibility Compatibility => UnrealCompatibility.UE_5_Latest;
+    
+/// <summary>
+/// Whether to strip symbols or not (implied by Shipping config).
+/// </summary>
+        public virtual AppleTargetRulesConfig Stripsymbols(bool present = true)
+        {
+            if (present)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-stripsymbols",
+                    Value: null,
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (AppleTargetRulesConfig) this;
+        }
+
+    
+/// <summary>
+/// Whether to create a ".stripped" file when stripping symbols or not.
+/// </summary>
+        public virtual AppleTargetRulesConfig Createstripflagfile(bool present = true)
+        {
+            if (present)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-createstripflagfile",
+                    Value: null,
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (AppleTargetRulesConfig) this;
+        }
+
+    
+/// <summary>
+/// Disables clang build verification checks on static libraries
+/// </summary>
+        public virtual AppleTargetRulesConfig Skipclangvalidation(bool present = true)
+        {
+            if (present)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-skipclangvalidation",
+                    Value: null,
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (AppleTargetRulesConfig) this;
+        }
+
+    
+/// <summary>
+/// Enables address sanitizer (ASan).
+/// </summary>
+        public virtual AppleTargetRulesConfig EnableASan(bool? val = null)
+        {
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-EnableASan",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (AppleTargetRulesConfig) this;
+        }
+
+    
+/// <summary>
+/// Enables thread sanitizer (TSan).
+/// </summary>
+        public virtual AppleTargetRulesConfig EnableTSan(bool? val = null)
+        {
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-EnableTSan",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (AppleTargetRulesConfig) this;
+        }
+
+    
+/// <summary>
+/// Enables undefined behavior sanitizer (UBSan).
+/// </summary>
+        public virtual AppleTargetRulesConfig EnableUBSan(bool? val = null)
+        {
+            if (true)
+            {
+                AppendArgument(new UnrealToolArgument(
+                    "-EnableUBSan",
+                    Value: val?.ToString(),
+                    Setter: '=',
+                    Meta: new(
+                        Compatibility: UnrealCompatibility.UE_5_Latest,
+                        AllowMultiple: false
+                    )
+                ));
+            }
+            return (AppleTargetRulesConfig) this;
+        }
+    
+    
+        private ToolConfig[] _configs = null;
+        protected override ToolConfig[] Configs => _configs ??= new ToolConfig[]
+        {
+        };
+    }
+
+    protected readonly AppleTargetRulesConfig AppleTargetRulesStorage = new();
 
     private ToolConfig[] _configs = null;
     protected override ToolConfig[] Configs => _configs ??= new ToolConfig[]
@@ -20225,6 +21449,7 @@ public abstract class UbtConfigGenerated : ToolConfig
                 VSWorkspaceProjectFileGeneratorStorage,
                 CppCompileWarningsStorage,
                 UnrealBuildAcceleratorCacheConfigStorage,
+                AppleTargetRulesStorage,
             };
 /// <summary></summary>
     public UbtConfig UnrealBuildTool(Action<UnrealBuildToolConfig> configurator)
@@ -20715,6 +21940,15 @@ public abstract class UbtConfigGenerated : ToolConfig
     {
         configurator?.Invoke(UnrealBuildAcceleratorCacheConfigStorage);
         AppendSubtool(UnrealBuildAcceleratorCacheConfigStorage);
+        return (UbtConfig) this;
+    }
+/// <summary>
+/// Apple-specific target settings
+/// </summary>
+    public UbtConfig AppleTargetRules(Action<AppleTargetRulesConfig> configurator)
+    {
+        configurator?.Invoke(AppleTargetRulesStorage);
+        AppendSubtool(AppleTargetRulesStorage);
         return (UbtConfig) this;
     }
 }

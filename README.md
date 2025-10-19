@@ -1,20 +1,68 @@
 <div align="center">
 
-![](docs/nu_logo-250.png)
+<img width="540px" src="docs/Images/nu.full.onLight.svg#gh-light-mode-only" />
+<img width="540px" src="docs/Images/nu.full.onDark.svg#gh-dark-mode-only" />
 
 ![](https://badgen.net/nuget/v/md.Nuke.Unreal)
 
-# Nuke.Unreal
+### [Documentation](https://mcro.de/Nuke.Unreal)
 
 </div>
 
-Simplistic workflow for automating Unreal Engine project tasks embracing [Nuke](https://nuke.build), providing a consistent way to use UE4/5 tools and reducing chores they come with.
+Elegant workflow for automating Unreal Engine project tasks embracing [Nuke](https://nuke.build), providing a consistent way to use UE4/5 tools and reducing chores they come with.
 
-- [Nuke.Unreal](#nukeunreal)
+# Features:
+
+* All what the great Nuke can offer
+* Common Unreal build tasks (generate project files, build editor, cook, package, etc)
+  ```
+  > nuke generate
+  > nuke build-editor
+  > nuke cook
+  > nuke package
+  > nuke build --config Shipping
+  > nuke build --config DebugGame Development --target-type Game --platform Android
+  ```
+* Unreal engine location is automatically determined (on Windows at least)
+* Execute Unreal tools without the need to navigate to their location
+  ```
+  > nuke run-uat --> <args...>
+  > nuke run-ubt --> <args...>
+  > nuke run-shell
+  > nuke run --tool editor-cmd --> <args...>
+  ```
+* Install C++ libraries (using [xrepo](https://xrepo.xmake.io))
+  ```
+  > nuke use-xrepo --spec "imgui 1.91.1 freetype=true" "vcpkg::ryml[dbg]" "conan::zlib/1.2.11"
+  > nuke generate
+  ```
+* Generate boilerplate code and scaffolding from [Scriban](https://github.com/scriban/scriban) templates so no editor needs to be opened
+    ```
+    > nuke new-actor --name MyActor
+    > nuke new-plugin --name MyPlugin
+    > nuke new-module --name MyModule
+    > nuke use-cmake --spec MyLibrary
+    etc...
+    ```
+* Generated C# configurators for Unreal tools with gathered documentation. (UBT and UAT)
+* Pluggable way to define targets for reusable plugins and modules
+* Prepare Unreal Plugins for distribution with easy to use API.
+
+### This README file is now deprecated
+
+> [!IMPORTANT]
+> Documentation is migrated over to https://mcro.de/Nuke.Unreal which is nicer than this readme file. This README is now deprecated and won't be updated. However external links may direct to this README file. For this reason its contents of will be kept until October 2026.
+
+---
+
+&nbsp;
+
+
+- [Features:](#features)
+    - [This README file is now deprecated](#this-readme-file-is-now-deprecated)
 - [Usage](#usage)
   - [Install via remote script](#install-via-remote-script)
   - [Install manually](#install-manually)
-- [Features:](#features)
 - [Setting up for a project](#setting-up-for-a-project)
 - [Setting up for plugin development](#setting-up-for-plugin-development)
 - [Passing command line arguments to Unreal tools](#passing-command-line-arguments-to-unreal-tools)
@@ -107,43 +155,6 @@ public class Build : UnrealBuild
 }
 ```
 
-# Features:
-
-* All what the great Nuke can offer
-* Common Unreal build tasks (generate project files, build editor, cook, package, etc)
-  ```
-  > nuke generate
-  > nuke build-editor
-  > nuke cook
-  > nuke package
-  > nuke build --config Shipping
-  > nuke build --config DebugGame Development --target-type Game --platform Android
-  ```
-* Unreal engine location is automatically determined (on Windows at least)
-* Execute Unreal tools without the need to navigate to their location
-  ```
-  > nuke run-uat --> <args...>
-  > nuke run-ubt --> <args...>
-  > nuke run-shell
-  > nuke run --tool editor-cmd --> <args...>
-  ```
-* Install C++ libraries (using [xrepo](https://xrepo.xmake.io))
-  ```
-  > nuke use-xrepo --spec "imgui 1.91.1 freetype=true" "vcpkg::ryml[dbg]" "conan::zlib/1.2.11"
-  > nuke generate
-  ```
-* Generate boilerplate code and scaffolding from [Scriban](https://github.com/scriban/scriban) templates so no editor needs to be opened
-    ```
-    > nuke new-actor --name MyActor
-    > nuke new-plugin --name MyPlugin
-    > nuke new-module --name MyModule
-    > nuke use-cmake --spec MyLibrary
-    etc...
-    ```
-* Generated C# configurators for Unreal tools with gathered documentation. (UBT and UAT)
-* Pluggable way to define targets for reusable plugins and modules
-* Prepare Unreal Plugins for distribution with easy to use API.
-
 # Setting up for a project
 
 Nuke.Unreal targets looks for the `*.uproject` file automatically and it will use the first one it finds. A `*.uproject` is required to be present even for plugin development (more on plugins below). Automatically found project files can be in the sub-folder tree of Nuke's root (which is the folder containing the `.nuke` temporary folder) or in parent folders of Nuke's root. If for any reason there are more than one or no `*.uproject` files in that area, the developer can specify an explicit location of the associated `*.uproject` file.
@@ -160,7 +171,7 @@ A little bit of theory: Unreal plugins are simple on the surface but easily can 
 
 <div align="center">
 
-![](docs/PluginStages.drawio.svg)
+![](docs/Images/PluginStages.drawio.svg)
 
 </div>
 
@@ -665,7 +676,7 @@ This is of course a toy example. As you can see though this may end up with quit
 
 In Nuke (and consequently in Nuke.Unreal) a target is a delegate which can build a dependency execution graph with other targets. Nuke's main selling point is how these targets allow complex build compositions and how that can be controlled via command line or profile files.
 
-![](docs/plan.png)
+![](docs/Images/plan.png)
 
 Nuke.Unreal provides couple of universally useful targets associated with regular chores regarding Unreal Engine development. The above figure shows all convenience targets available and their relationship to each other. This also includes optional targets (coming from `IPackageTargets`, `IPluginTargets` and `IAndroidTargets`)
 
@@ -945,3 +956,17 @@ This was an attempt to sync Java files copied into the generated Gradle project 
 * [Nuke.Unreal 2.2](https://mcro.de/c/log/nuke-unreal-2-2)
 * [Nuke.Unreal 2.1](https://mcro.de/c/log/nuke-unreal-2-1)
 * [Nuke.Unreal 1.2](https://mcro.de/c/log/nuke-unreal-1-2)
+
+&nbsp;
+
+---
+
+> [!IMPORTANT]
+> Documentation is migrated over to https://mcro.de/Nuke.Unreal which is nicer than this readme file. This README is now deprecated and won't be updated. However external links may direct to this README file. For this reason its contents of will be kept until October 2026.
+
+<div align="center">
+
+<img width="265px" src="docs/Images/nu.icon.onLight.svg#gh-light-mode-only" />
+<img width="265px" src="docs/Images/nu.icon.onDark.svg#gh-dark-mode-only" />
+
+</div>

@@ -4,7 +4,7 @@
     <LangVersion>12</LangVersion>
     <Nullable>enable</Nullable>
     <PackageId>md.Nuke.Unreal</PackageId>
-    <Version>2.2.17</Version>
+    <Version>2.2.18</Version>
     <Authors>David Mórász</Authors>
     <Company>mcro.de</Company>
     <Description>Commonly used Unreal Engine targets and tasks for the Nuke execution engine</Description>
@@ -12,7 +12,7 @@
     <RepositoryType>git</RepositoryType>
     <PackageProjectUrl>https://github.com/microdee/Nuke.Unreal</PackageProjectUrl>
     <PackageLicense>https://github.com/microdee/Nuke.Unreal/blob/main/LICENSE</PackageLicense>
-    <PackageIcon>nu_logo-125.png</PackageIcon>
+    <PackageIcon>nu.icon.onDark.fill.125.png</PackageIcon>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
@@ -22,7 +22,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="../../docs/nu_logo-125.png" Pack="true" PackagePath="/" />
+    <None Include="../../docs/Images/nu.icon.onDark.fill.125.png" Pack="true" PackagePath="/" />
     <None Include="../../README.md" Pack="true" PackagePath="/" />
   </ItemGroup>
 
@@ -32,7 +32,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="md.Nuke.Cola" Version="2.2.12" />
+    <PackageReference Include="md.Nuke.Cola" Version="2.3.0" />
     <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="4.11.0" />
     <PackageReference Include="Microsoft.Win32.Registry" Version="5.0.0" />
     <PackageReference Include="Nuke.Common" Version="9.0.4" />

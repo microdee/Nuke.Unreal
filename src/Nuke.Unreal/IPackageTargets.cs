@@ -22,11 +22,20 @@ namespace Nuke.Unreal
         public static readonly IPackageTargets Default = new PackageTargets();
     }
 
+    /// <summary>
+    /// Target for packaging the current project we're working on
+    /// </summary>
     public interface IPackageTargets : INukeBuild
     {
         T Self<T>() where T : INukeBuild => (T)(object)this;
         T? SelfAs<T>() where T : class, INukeBuild => (object)this as T;
 
+        /// <summary>
+        /// UAT arguments to be applied every time UAT is called for Packaging.
+        /// Explicitly implement this function in your main build class if your project needs extra
+        /// intricacies for Packaging.
+        /// For example specifying maps explicitly.
+        /// </summary>
         UatConfig UatPackage(UatConfig _) => _.Prereqs();
 
         Target Package => _ => _

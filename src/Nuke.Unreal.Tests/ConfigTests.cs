@@ -47,7 +47,7 @@ public class ConfigTests
         -FooList=A
         -FooList=B
 
-        [NewSession]
+        [NewSection]
         Foo=Bar
         """;
 
@@ -57,7 +57,7 @@ public class ConfigTests
         var ini = ConfigIni.Parse(MainConfig);
         Assert.NotNull(ini);
         Assert.Collection(
-            ini!.Sessions.Values,
+            ini!.Sections.Values,
             s => Assert.Equal("SimpleEntries", s.Name),
             s => Assert.Equal("Collections", s.Name)
         );
@@ -82,7 +82,7 @@ public class ConfigTests
         Assert.NotNull(otherIni);
         mainIni!.Merge(otherIni!);
 
-        Assert.NotNull(mainIni["NewSession"]);
+        Assert.NotNull(mainIni["NewSection"]);
         Assert.NotEmpty(mainIni["SimpleEntries"]?.GetFirst("Empty").Value);
         Assert.False(mainIni["Collections"]?.Commands.Any(c => c.Value == "A"));
         Assert.False(mainIni["Collections"]?.Commands.Any(c => c.Value == "B"));

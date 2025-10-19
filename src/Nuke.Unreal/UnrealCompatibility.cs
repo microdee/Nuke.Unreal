@@ -2,10 +2,22 @@ using System;
 
 namespace Nuke.Unreal;
 
+/// <summary>
+/// A flag enum representation for checking the Unreal version compatibility of various features.
+/// Lower half is indicating major version 4, and the other half is major version 5. This may be
+/// re-evaluated when Unreal Engine 6 releases.
+/// </summary>
 [Flags]
 public enum UnrealCompatibility : ulong
 {
+    /// <summary>
+    /// Aggregate flag indicating Unreal Engine 4 versions
+    /// </summary>
     UE_4 =        0b00000000_00000000_00000000_00000000_11111111_11111111_11111111_11111111,
+
+    /// <summary>
+    /// Aggregate flag indicating Unreal Engine 4.27 version
+    /// </summary>
     UE_4_Latest = (~(UE_4_27 - 1)) & UE_4,
     UE_4_0 = 1UL << 0,
     UE_4_1 = 1UL << 1,
@@ -35,16 +47,24 @@ public enum UnrealCompatibility : ulong
     UE_4_25 = 1UL << 25,
     UE_4_26 = 1UL << 26,
     UE_4_27 = 1UL << 27, // Last UE 4
+    
+    /// <summary>
+    /// Aggregate flag indicating Unreal Engine 5 versions
+    /// </summary>
     UE_5 =        0b11111111_11111111_11111111_11111111_00000000_00000000_00000000_00000000,
-    UE_5_Latest = ~(UE_5_6 - 1),
+    
+    /// <summary>
+    /// Aggregate flag indicating the latest Unreal Engine 5 versions known to Nuke.Unreal
+    /// </summary>
+    UE_5_Latest = ~(UE_5_7 - 1),
     UE_5_0 = 1UL << 32,
     UE_5_1 = 1UL << 33,
     UE_5_2 = 1UL << 34,
     UE_5_3 = 1UL << 35,
     UE_5_4 = 1UL << 36,
     UE_5_5 = 1UL << 37,
-    UE_5_6 = 1UL << 38, // Latest
-    UE_5_7 = 1UL << 39,
+    UE_5_6 = 1UL << 38,
+    UE_5_7 = 1UL << 39, // Latest
     UE_5_8 = 1UL << 40,
     UE_5_9 = 1UL << 41,
     UE_5_10 = 1UL << 42,
@@ -69,5 +89,9 @@ public enum UnrealCompatibility : ulong
     UE_5_29 = 1UL << 61,
     UE_5_30 = 1UL << 62,
     UE_5_31 = 1UL << 63,
+    
+    /// <summary>
+    /// Aggregate flag indicating overall compatibility with all Unreal Engine versions
+    /// </summary>
     All = 0xFFFFFFFFFFFFFFFF
 }

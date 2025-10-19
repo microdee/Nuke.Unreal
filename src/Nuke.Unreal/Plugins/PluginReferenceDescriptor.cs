@@ -50,7 +50,7 @@ namespace Nuke.Unreal.Plugins;
 /// <param name="RequestedVersion">
 /// When set, specifies a specific version of the plugin that this references.
 /// </param>
-public record PluginReferenceDescriptor(
+public record class PluginReferenceDescriptor(
     string? Name = null,
     bool? Enabled = null,
     bool? Optional = null,

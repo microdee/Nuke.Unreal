@@ -181,7 +181,7 @@ public enum ModuleLoadingPhase
 /// <param name="HasExplicitPlatforms">
 /// When true, an empty PlatformAllowList is interpreted as 'no platforms' with the expectation that explicit platforms will be added in plugin extensions */
 /// </param>
-public record ModuleDescriptor(
+public record class ModuleDescriptor(
     string? Name = null,
     ModuleHostType? Type = null,
     ModuleLoadingPhase? LoadingPhase = null,

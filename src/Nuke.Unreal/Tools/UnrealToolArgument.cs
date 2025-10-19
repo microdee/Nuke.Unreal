@@ -21,7 +21,7 @@ namespace Nuke.Unreal.Tools;
 /// Argument is provided as-is in the Name field, do not parse it or escape it.
 /// </param>
 /// <returns></returns>
-public record UnrealToolArgumentMeta(
+public record class UnrealToolArgumentMeta(
     UnrealCompatibility Compatibility = UnrealCompatibility.All,
     bool AllowMultiple = false,
     bool IsRawText = false
@@ -34,7 +34,7 @@ public record UnrealToolArgumentMeta(
 /// <param name="Value">Flattened value of argument</param>
 /// <param name="Setter"></param>
 /// <param name="Meta">Properties guiding how to process the argument</param>
-public partial record UnrealToolArgument(
+public partial record class UnrealToolArgument(
     string Name,
     string? Value = null,
     char Setter = '=',

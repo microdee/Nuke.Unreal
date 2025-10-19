@@ -6,6 +6,9 @@ using Nuke.Common.Tooling;
 
 namespace Nuke.Unreal
 {
+    /// <summary>
+    /// Build configurations UBT supports
+    /// </summary>
     [TypeConverter(typeof(TypeConverter<UnrealConfig>))]
     [JsonConverter(typeof(EnumerationJsonConverter<UnrealConfig>))]
     public class UnrealConfig : Enumeration
