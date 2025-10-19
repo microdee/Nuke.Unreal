@@ -1,0 +1,28 @@
+on:
+  push:
+    branches:
+      - main
+      - master
+      - gh-actions-test
+    tags:
+      - generate-docs
+permissions:
+  contents: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+      - name: Doxygen on GitHub Pages
+        id: ghaction
+        uses: AgarwalSaurav/ghaction-doxygen-ghpages@de7725119570b5d09a5d7872518f9e5cbd8dae8e
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          working-directory: docs
+          doxyfile-path: Doxyfile
+          html-output-folder: Doxygen/html
+          branch: gh-pages
