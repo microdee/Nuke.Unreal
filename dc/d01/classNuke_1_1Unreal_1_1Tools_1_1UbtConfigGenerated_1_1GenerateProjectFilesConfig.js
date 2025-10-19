@@ -1,0 +1,25 @@
+var classNuke_1_1Unreal_1_1Tools_1_1UbtConfigGenerated_1_1GenerateProjectFilesConfig =
+[
+    [ "_2012unsupported", "dc/d01/classNuke_1_1Unreal_1_1Tools_1_1UbtConfigGenerated_1_1GenerateProjectFilesConfig.html#a5fca238a3e79982a69a4e9922810d539", null ],
+    [ "_2013unsupported", "dc/d01/classNuke_1_1Unreal_1_1Tools_1_1UbtConfigGenerated_1_1GenerateProjectFilesConfig.html#a1e46ecc51ce6ca5b255ca14defc93981", null ],
+    [ "_2015", "dc/d01/classNuke_1_1Unreal_1_1Tools_1_1UbtConfigGenerated_1_1GenerateProjectFilesConfig.html#a5da7e720567414610d36de352011f2e6", null ],
+    [ "_2017", "dc/d01/classNuke_1_1Unreal_1_1Tools_1_1UbtConfigGenerated_1_1GenerateProjectFilesConfig.html#ae5006006e790bc8c52bdbd0f37d234b7", null ],
+    [ "_2019", "dc/d01/classNuke_1_1Unreal_1_1Tools_1_1UbtConfigGenerated_1_1GenerateProjectFilesConfig.html#a8037ca1c32815894dff623acee210751", null ],
+    [ "_2022", "dc/d01/classNuke_1_1Unreal_1_1Tools_1_1UbtConfigGenerated_1_1GenerateProjectFilesConfig.html#af71837f92b5588d0a69e398382570ecc", null ],
+    [ "AndroidStudio", "dc/d01/classNuke_1_1Unreal_1_1Tools_1_1UbtConfigGenerated_1_1GenerateProjectFilesConfig.html#a706354e225fdf79be03a4689958261a9", null ],
+    [ "Automated", "dc/d01/classNuke_1_1Unreal_1_1Tools_1_1UbtConfigGenerated_1_1GenerateProjectFilesConfig.html#a16bf7b6574ad72b8fca7d184c5a34cf0", null ],
+    [ "CLion", "dc/d01/classNuke_1_1Unreal_1_1Tools_1_1UbtConfigGenerated_1_1GenerateProjectFilesConfig.html#aa73f145b7a151358fb3c01c08b39af2d", null ],
+    [ "CMakefile", "dc/d01/classNuke_1_1Unreal_1_1Tools_1_1UbtConfigGenerated_1_1GenerateProjectFilesConfig.html#a67c69b14fe659ff8b00234d79486dee8", null ],
+    [ "CodeLiteFiles", "dc/d01/classNuke_1_1Unreal_1_1Tools_1_1UbtConfigGenerated_1_1GenerateProjectFilesConfig.html#a71c33bebf6dcc116fe3eb767b86ac668", null ],
+    [ "EddieProjectFiles", "dc/d01/classNuke_1_1Unreal_1_1Tools_1_1UbtConfigGenerated_1_1GenerateProjectFilesConfig.html#a3b505f321f61c5c44419e3f6e48d0c39", null ],
+    [ "KDevelopfile", "dc/d01/classNuke_1_1Unreal_1_1Tools_1_1UbtConfigGenerated_1_1GenerateProjectFilesConfig.html#a2a183961ee05e06052a3d0a76db3fd54", null ],
+    [ "Makefile", "dc/d01/classNuke_1_1Unreal_1_1Tools_1_1UbtConfigGenerated_1_1GenerateProjectFilesConfig.html#a72a579d2f8588b4d10915c9922edfbad", null ],
+    [ "ProjectFileFormat", "dc/d01/classNuke_1_1Unreal_1_1Tools_1_1UbtConfigGenerated_1_1GenerateProjectFilesConfig.html#a3cc6f6aa298fd25815f519bad8d94bf4", null ],
+    [ "QMakefile", "dc/d01/classNuke_1_1Unreal_1_1Tools_1_1UbtConfigGenerated_1_1GenerateProjectFilesConfig.html#a1a494fbc381de2a6bb89e11000f4ce42", null ],
+    [ "Rider", "dc/d01/classNuke_1_1Unreal_1_1Tools_1_1UbtConfigGenerated_1_1GenerateProjectFilesConfig.html#ac28373f59b46ecbb6c18e8684f2a2777", null ],
+    [ "VisualStudio", "dc/d01/classNuke_1_1Unreal_1_1Tools_1_1UbtConfigGenerated_1_1GenerateProjectFilesConfig.html#af8914fe6ce154464ab3e3da566b8be56", null ],
+    [ "VSCode", "dc/d01/classNuke_1_1Unreal_1_1Tools_1_1UbtConfigGenerated_1_1GenerateProjectFilesConfig.html#a7c0e2a41ddd9ab21a89b3fc4c1cf2d18", null ],
+    [ "VSMac", "dc/d01/classNuke_1_1Unreal_1_1Tools_1_1UbtConfigGenerated_1_1GenerateProjectFilesConfig.html#a0421e72b43fe60f2af71aa540982103d", null ],
+    [ "VSWorkspace", "dc/d01/classNuke_1_1Unreal_1_1Tools_1_1UbtConfigGenerated_1_1GenerateProjectFilesConfig.html#a5e56eb635d7be7c571c13e262b9ffa57", null ],
+    [ "XCodeProjectFiles", "dc/d01/classNuke_1_1Unreal_1_1Tools_1_1UbtConfigGenerated_1_1GenerateProjectFilesConfig.html#a9c6655d68f24ce0d784c8aa00282f143", null ]
+];
