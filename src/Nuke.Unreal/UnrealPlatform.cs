@@ -157,7 +157,7 @@ namespace Nuke.Unreal
 
         /// <summary>
         /// Get the high-level platform from a bit-field platform flag
-        /// </summary
+        /// </summary>
         public static UnrealPlatform FromFlag(UnrealPlatformFlag flag)
         {
             return flag switch

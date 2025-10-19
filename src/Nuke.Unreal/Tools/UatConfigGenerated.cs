@@ -22363,26 +22363,6 @@ public abstract class UatConfigGenerated : ToolConfig
             }
             return (OpenEditorConfig) this;
         }
-
-    
-    
-        public virtual OpenEditorConfig (params object[] values)
-        {
-            if (true)
-            {
-                AppendArgument(new UnrealToolArgument(
-                    "- -",
-                    Value: values != null && values.Length > 0 ? string.Join("+", values) : null,
-                    Setter: '=',
-                    Meta: new(
-                        Compatibility: UnrealCompatibility.UE_5_Latest,
-                        AllowMultiple: true
-                    )
-                ));
-            }
-            return (OpenEditorConfig) this;
-        }
-    
     
         private ToolConfig[] _configs = null;
         protected override ToolConfig[] Configs => _configs ??= new ToolConfig[]
