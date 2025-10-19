@@ -5,6 +5,9 @@ using System.Text.RegularExpressions;
 
 namespace Nuke.Unreal.Ini;
 
+/// <summary>
+/// Utilities for parsing Unreal configuration files
+/// </summary>
 public static class ConfigCommon
 {
     public static GroupCollection? MatchGroup(
@@ -22,6 +25,13 @@ public static class ConfigCommon
         return groups;
     }
 
+    /// <summary>
+    /// Convert a command type into its representing character
+    /// </summary>
+    /// <param name="commandType"></param>
+    /// <returns>
+    ///     Command type character or empty string if command doesn't have associated symbol.
+    /// </returns>
     public static string AsCharacter(this CommandType commandType) => commandType switch
     {
         CommandType.Set => "",
@@ -33,28 +43,46 @@ public static class ConfigCommon
     };
 }
 
+/// <summary>
+/// The root class representing Unreal INI configuration
+/// </summary>
 public class ConfigIni
 {
-    public readonly Dictionary<string, ConfigSession> Sessions = new();
+    /// <summary>
+    /// Sections separated by `[SectionName]` syntax
+    /// </summary>
+    public readonly Dictionary<string, ConfigSection> Sections = new();
 
-    public ConfigSession? this[string key] => Sessions.ContainsKey(key) ? Sessions[key] : null;
+    /// <summary>
+    /// Get a section via its name
+    /// </summary>
+    public ConfigSection? this[string key] => Sections.ContainsKey(key) ? Sections[key] : null;
 
-    public ConfigSession FindOrAdd(string key)
+    /// <summary>
+    /// Get an existing section or add it if it doesn't exist yet.
+    /// </summary>
+    /// <param name="key"></param>
+    /// <returns></returns>
+    public ConfigSection FindOrAdd(string key)
     {
         var result = this[key];
         if (result == null)
         {
-            var lastOrder = Sessions.Count > 0 ? Sessions.Values.Max(s => s.Order) + 1 : 0;
-            result = new ConfigSession {Order = lastOrder, Name = key};
-            Sessions.Add(key, result);
+            var lastOrder = Sections.Count > 0 ? Sections.Values.Max(s => s.Order) + 1 : 0;
+            result = new ConfigSection {Order = lastOrder, Name = key};
+            Sections.Add(key, result);
         }
         return result;
     }
 
+    /// <summary>
+    /// Parse an Unreal configuration text into a ConfigIni.
+    /// </summary>
+    /// <returns>Resulting ConfigIni or null if parsing was not possible.</returns>
     public static ConfigIni? Parse(string? input)
     {
         if (string.IsNullOrWhiteSpace(input)) return null;
-        ConfigSession? currentSession = null;
+        ConfigSection? currentSection = null;
         var ini = new ConfigIni();
         int order = 0;
         foreach(var lineIn in input!.Split(new [] { "\r", "\n" }, StringSplitOptions.None))
@@ -64,20 +92,20 @@ public class ConfigIni
             
             if (line.StartsWith("[") && line.EndsWith("]"))
             {
-                var sessionName = line.TrimStart('[').TrimEnd(']');
-                if (ini.Sessions.ContainsKey(sessionName))
+                var sectionName = line.TrimStart('[').TrimEnd(']');
+                if (ini.Sections.ContainsKey(sectionName))
                 {
-                    currentSession = ini.Sessions[sessionName];
+                    currentSection = ini.Sections[sectionName];
                 }
                 else
                 {
-                    currentSession = new() { Order = order, Name = sessionName };
-                    ini.Sessions.Add(sessionName, currentSession);
+                    currentSection = new() { Order = order, Name = sectionName };
+                    ini.Sections.Add(sectionName, currentSection);
                 }
             }
             else
             {
-                currentSession?.SetLine(line, order);
+                currentSection?.SetLine(line, order);
             }
             order++;
         }
@@ -85,23 +113,30 @@ public class ConfigIni
         return order > 0 ? ini : null;
     }
 
+    /// <summary>
+    /// Compose another ConfigIni instance into this one, overriding existing values and adding new
+    /// ones.
+    /// </summary>
     public void Merge(ConfigIni from)
     {
-        foreach(var fromSession in from.Sessions.Values)
+        foreach(var fromSection in from.Sections.Values)
         {
-            var name = fromSession.Name ?? "";
-            if (Sessions.ContainsKey(name))
+            var name = fromSection.Name ?? "";
+            if (Sections.ContainsKey(name))
             {
-                Sessions[name].Merge(fromSession);
+                Sections[name].Merge(fromSection);
             }
             else
             {
-                Sessions.Add(name, fromSession.Copy());
+                Sections.Add(name, fromSection.Copy());
             }
         }
     }
 
+    /// <summary>
+    /// Convert this ConfigIni back to something Unreal can read.
+    /// </summary>
     public string Serialize() => string.Join(Environment.NewLine,
-        Sessions.Values.OrderBy(s => s.Order).Select(s => s.Serialize())
+        Sections.Values.OrderBy(s => s.Order).Select(s => s.Serialize())
     );
 }
