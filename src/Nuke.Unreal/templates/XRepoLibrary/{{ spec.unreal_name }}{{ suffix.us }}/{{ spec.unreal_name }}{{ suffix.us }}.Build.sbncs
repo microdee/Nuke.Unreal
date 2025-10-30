@@ -20,7 +20,7 @@ public partial class {{ cap_name }}{{ suffix.us }} : ModuleRules
 		// auto generated when the library is prepared on/for a specific platform.
 
 		Type = ModuleType.External;
-		IsDebug = target.Configuration == UnrealTargetConfiguration.Debug && target.bDebugBuildsActuallyUseDebugCRT;
+		IsDebug = Target.Configuration <= UnrealTargetConfiguration.DebugGame;
 		LibraryConfig = IsDebug ? "Debug" : "Release";
 		LibraryPlatform = target.Platform.ToString();
 

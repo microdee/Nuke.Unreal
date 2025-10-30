@@ -164,11 +164,7 @@ public partial class TpModule : ModuleRules
 		var VisionOS =    target.Platform == UnrealTargetPlatform.VisionOS;
 		var Independent = true;
 
-		var Debug = target is
-		{
-			Configuration: UnrealTargetConfiguration.Debug,
-			bDebugBuildsActuallyUseDebugCRT: true
-		};
+		var Debug = Target.Configuration <= UnrealTargetConfiguration.DebugGame;
 		var Release = !Debug;
 		var All = true;
 

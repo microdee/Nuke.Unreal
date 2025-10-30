@@ -12,6 +12,9 @@ using Serilog;
 
 namespace Nuke.Unreal.BoilerplateGenerators.XRepo;
 
+/// <summary>
+/// Utility classes for working with XRepo (or XMake) packages
+/// </summary>
 public static partial class XRepoLibrary
 {
     [GeneratedRegex(
@@ -34,6 +37,9 @@ public static partial class XRepoLibrary
     )]
     private static partial Regex SpecRegex();
 
+    /// <summary>
+    /// Parses an input library spec string as a record
+    /// </summary>
     public static LibrarySpec ParseSpec(string spec)
     {
         var matches = spec.Parse(SpecRegex(), forceNullOnWhitespce: true);
@@ -47,13 +53,10 @@ public static partial class XRepoLibrary
         );
     }
 
-    internal static IEnumerable<XRepoLibraryRecord> InstallXRepoLibrary(UnrealBuild self, LibrarySpec spec, string options, AbsolutePath targetPath, bool debug)
+    internal static IEnumerable<XRepoLibraryRecord> InstallXRepoLibrary(UnrealBuild self, LibrarySpec spec, string options, AbsolutePath targetPath, bool debug, string runtime = "MD")
     {
         var libraryFiles = targetPath / "LibraryFiles";
-        options = options.AppendNonEmpty(",") + (debug
-            ? "runtimes='MDd'"
-            : "runtimes='MD'"
-        );
+        options = options.AppendNonEmpty(",") + $"runtimes='{runtime}'";
         var xrepoPlatArch = self.Platform.GetXRepoPlatformArch();
 
         var extraArgs =
@@ -136,7 +139,17 @@ public static partial class XRepoLibrary
             .ToArray();
     }
 
-    public static void InstallXRepoLibrary(this UnrealBuild self, string specIn, string options, AbsolutePath targetPath, string? suffix = null)
+    /// <summary>
+    /// Prepare a third-party library from an XRepo library spec for Unreal engine's consumption
+    /// </summary>
+    /// <param name="self">The build context</param>
+    /// <param name="specIn">The library spec specified here (without the options) https://mcro.de/Nuke.Unreal/d2/d84/CppLibraries.html</param>
+    /// <param name="options">Comma separated '=' delimited key-value pairs. Space is not allowed around commas</param>
+    /// <param name="targetPath">Where library files should be organized</param>
+    /// <param name="suffix">Optional addition to the name of library name exposed to Unreal</param>
+    /// <param name="releaseRuntime">Windows CRT linkage for release versions (default is MD)</param>
+    /// <param name="debugRuntime">Windows CRT linkage for debug versions (default is MD)</param>
+    public static void InstallXRepoLibrary(this UnrealBuild self, string specIn, string options, AbsolutePath targetPath, string? suffix = null, string releaseRuntime = "MD", string debugRuntime = "MD")
     {
         Log.Information("Installing library {0} via xrepo", specIn);
         var spec = ParseSpec(specIn) with { Options = options };
@@ -147,10 +160,10 @@ public static partial class XRepoLibrary
         Log.Information("    Features: {0}", spec.Features);
 
         Log.Information("Installing debug build");
-        var debugLibs = InstallXRepoLibrary(self, spec, options, targetPath, true);
+        var debugLibs = InstallXRepoLibrary(self, spec, options, targetPath, true, debugRuntime);
         
         Log.Information("Installing release build (metadata will be used from release build)");
-        var releaseLibs = InstallXRepoLibrary(self, spec, options, targetPath, false);
+        var releaseLibs = InstallXRepoLibrary(self, spec, options, targetPath, false, releaseRuntime);
         
         Log.Information("Generating partial module rule class for {0}", self.Platform);
         new XRepoLibraryModuleGenerator().Generate(

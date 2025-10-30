@@ -10,7 +10,7 @@ public class {{ cap_name }}{{ suffix.us }} : ModuleRules
 		Type = ModuleType.External;
 		PublicIncludePaths.Add($"{ModuleDirectory}/Include");
 
-		var isDebug = target.Configuration == UnrealTargetConfiguration.Debug && target.bDebugBuildsActuallyUseDebugCRT;
+		var isDebug = Target.Configuration <= UnrealTargetConfiguration.DebugGame;
 		var config = isDebug ? "Debug" : "Release";
 		
 		PublicAdditionalLibraries.AddRange(new []

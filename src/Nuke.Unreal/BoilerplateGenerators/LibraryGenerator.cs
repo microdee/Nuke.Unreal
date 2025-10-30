@@ -41,7 +41,7 @@ public class LibraryType : Enumeration
     public Func<string, LibrarySpec> ParseSpec { get; private set; } = s => new LibrarySpec(s, s);
 }
 
-public record LibrarySpec(
+public record class LibrarySpec(
     string Spec,
     string Name,
     string? Version = null,
@@ -55,12 +55,12 @@ public record LibrarySpec(
         .Pascalize();
 }
 
-public record SuffixRecord(string? Text, string? Us, string? Dot)
+public record class SuffixRecord(string? Text, string? Us, string? Dot)
 {
     public SuffixRecord(string? suffix) : this(suffix, suffix.PrependNonEmpty("_"), suffix.PrependNonEmpty(".")) {}
 }
 
-public record LibraryModel(
+public record class LibraryModel(
     LibrarySpec Spec,
     string? Copyright,
     SuffixRecord Suffix,
