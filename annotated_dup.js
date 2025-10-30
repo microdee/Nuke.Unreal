@@ -4,7 +4,7 @@ var annotated_dup =
       [ "Unreal", "d0/d55/namespaceNuke_1_1Unreal.html", [
         [ "BoilerplateGenerators", "d2/d37/namespaceNuke_1_1Unreal_1_1BoilerplateGenerators.html", [
           [ "XRepo", "d4/d58/namespaceNuke_1_1Unreal_1_1BoilerplateGenerators_1_1XRepo.html", [
-            [ "XRepoLibrary", "df/d60/classNuke_1_1Unreal_1_1BoilerplateGenerators_1_1XRepo_1_1XRepoLibrary.html", null ],
+            [ "XRepoLibrary", "df/d60/classNuke_1_1Unreal_1_1BoilerplateGenerators_1_1XRepo_1_1XRepoLibrary.html", "df/d60/classNuke_1_1Unreal_1_1BoilerplateGenerators_1_1XRepo_1_1XRepoLibrary" ],
             [ "XRepoLibraryModuleGenerator", "de/d50/classNuke_1_1Unreal_1_1BoilerplateGenerators_1_1XRepo_1_1XRepoLibraryModuleGenerator.html", null ],
             [ "XRepoUtils", "de/da4/classNuke_1_1Unreal_1_1BoilerplateGenerators_1_1XRepo_1_1XRepoUtils.html", null ]
           ] ],

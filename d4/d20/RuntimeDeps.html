@@ -270,11 +270,7 @@ Will generate a partial module rule file:</summary>
 <div class="line">        var VisionOS =    target.Platform == UnrealTargetPlatform.VisionOS;</div>
 <div class="line">        var Independent = <span class="keyword">true</span>;</div>
 <div class="line"> </div>
-<div class="line">        var Debug = target is</div>
-<div class="line">        {</div>
-<div class="line">            Configuration: UnrealTargetConfiguration.Debug,</div>
-<div class="line">            bDebugBuildsActuallyUseDebugCRT: <span class="keyword">true</span></div>
-<div class="line">        };</div>
+<div class="line">        var Debug = Target.Configuration &lt;= UnrealTargetConfiguration.DebugGame;</div>
 <div class="line">        var Release = !Debug;</div>
 <div class="line">        var All = <span class="keyword">true</span>;</div>
 <div class="line"> </div>

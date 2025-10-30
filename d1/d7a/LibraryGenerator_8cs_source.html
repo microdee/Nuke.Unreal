@@ -163,13 +163,13 @@ $(function(){initNavTree('d1/d7a/LibraryGenerator_8cs_source.html','../../'); in
 <div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>}</div>
 </div>
 <div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span><span class="keyword">public</span> record LibrarySpec(</div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    <span class="keywordtype">string</span> Spec,</div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    <span class="keywordtype">string</span> Name,</div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    <span class="keywordtype">string</span>? Version = <span class="keyword">null</span>,</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span><span class="keyword">public</span> record <span class="keyword">class </span>LibrarySpec(</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    string Spec,</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    string Name,</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    string? Version = <span class="keyword">null</span>,</div>
 <div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    <span class="keywordtype">string</span>? Provider = <span class="keyword">null</span>,</div>
 <div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    <span class="keywordtype">string</span>? Options = <span class="keyword">null</span>,</div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    <span class="keywordtype">string</span>? Features = <span class="keyword">null</span></div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    <span class="keywordtype">string</span>? Features = null</div>
 <div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>) {</div>
 <div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    <span class="keyword">public</span> <span class="keywordtype">string</span> UnrealName =&gt; Name</div>
 <div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>        .Replace(<span class="stringliteral">&quot;-&quot;</span>, <span class="stringliteral">&quot;_&quot;</span>)</div>
@@ -177,20 +177,20 @@ $(function(){initNavTree('d1/d7a/LibraryGenerator_8cs_source.html','../../'); in
 <div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>        .Pascalize();</div>
 <div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>}</div>
 <div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span> </div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span><span class="keyword">public</span> record SuffixRecord(<span class="keywordtype">string</span>? Text, <span class="keywordtype">string</span>? Us, <span class="keywordtype">string</span>? Dot)</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span><span class="keyword">public</span> record <span class="keyword">class </span>SuffixRecord(string? Text, string? Us, string? Dot)</div>
 <div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>{</div>
 <div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    <span class="keyword">public</span> SuffixRecord(<span class="keywordtype">string</span>? suffix) : this(suffix, suffix.PrependNonEmpty(<span class="stringliteral">&quot;_&quot;</span>), suffix.PrependNonEmpty(<span class="stringliteral">&quot;.&quot;</span>)) {}</div>
 <div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>}</div>
 <div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span> </div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span><span class="keyword">public</span> record LibraryModel(</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span><span class="keyword">public</span> record <span class="keyword">class </span>LibraryModel(</div>
 <div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    LibrarySpec Spec,</div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    <span class="keywordtype">string</span>? Copyright,</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    string? Copyright,</div>
 <div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>    SuffixRecord Suffix,</div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    IEnumerable&lt;UnrealPlatform&gt; Platforms</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    IEnumerable&lt;<a class="code hl_class" href="../../d5/dc0/classNuke_1_1Unreal_1_1UnrealPlatform.html">UnrealPlatform</a>&gt; Platforms</div>
 <div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>) : CommonModelBase(Spec.Name, Copyright);</div>
 <div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span> </div>
 <div class="foldopen" id="foldopen00070" data-start="{" data-end="};">
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno"><a class="line" href="../../d6/d9f/classNuke_1_1Unreal_1_1BoilerplateGenerators_1_1LibraryGenerator.html">   70</a></span><span class="keyword">public</span> <span class="keyword">class </span><a class="code hl_class" href="../../d6/d9f/classNuke_1_1Unreal_1_1BoilerplateGenerators_1_1LibraryGenerator.html">LibraryGenerator</a> : <a class="code hl_class" href="../../df/d35/classNuke_1_1Unreal_1_1BoilerplateGenerators_1_1BoilerplateGenerator.html">BoilerplateGenerator</a></div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno"><a class="line" href="../../d6/d9f/classNuke_1_1Unreal_1_1BoilerplateGenerators_1_1LibraryGenerator.html">   70</a></span><span class="keyword">public</span> class <a class="code hl_class" href="../../d6/d9f/classNuke_1_1Unreal_1_1BoilerplateGenerators_1_1LibraryGenerator.html">LibraryGenerator</a> : <a class="code hl_class" href="../../df/d35/classNuke_1_1Unreal_1_1BoilerplateGenerators_1_1BoilerplateGenerator.html">BoilerplateGenerator</a></div>
 <div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>{</div>
 <div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    <span class="keyword">protected</span> LibraryModel? Model;</div>
 <div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span> </div>
@@ -215,12 +215,11 @@ $(function(){initNavTree('d1/d7a/LibraryGenerator_8cs_source.html','../../'); in
 <div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span> </div>
 <div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>        var templateDir = templatesPath / libraryType.TemplateSubfolder;</div>
 <div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span> </div>
-<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>        <a class="code hl_function" href="../../df/d35/classNuke_1_1Unreal_1_1BoilerplateGenerators_1_1BoilerplateGenerator.html#a8a7280274bfe61a9676ce02468db095b">RenderFolder</a>(templateDir, currentFolder, Model);</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>        RenderFolder(templateDir, currentFolder, Model);</div>
 <div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>    }</div>
 <div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>}</div>
 </div>
 <div class="ttc" id="aclassNuke_1_1Unreal_1_1BoilerplateGenerators_1_1BoilerplateGenerator_html"><div class="ttname"><a href="../../df/d35/classNuke_1_1Unreal_1_1BoilerplateGenerators_1_1BoilerplateGenerator.html">Nuke.Unreal.BoilerplateGenerators.BoilerplateGenerator</a></div><div class="ttdef"><b>Definition</b> <a href="../../dd/da3/BoilerplateGenerator_8cs_source.html#l00012">BoilerplateGenerator.cs:13</a></div></div>
-<div class="ttc" id="aclassNuke_1_1Unreal_1_1BoilerplateGenerators_1_1BoilerplateGenerator_html_a8a7280274bfe61a9676ce02468db095b"><div class="ttname"><a href="../../df/d35/classNuke_1_1Unreal_1_1BoilerplateGenerators_1_1BoilerplateGenerator.html#a8a7280274bfe61a9676ce02468db095b">Nuke.Unreal.BoilerplateGenerators.BoilerplateGenerator.RenderFolder</a></div><div class="ttdeci">static void RenderFolder(AbsolutePath templateRoot, AbsolutePath destinationFolder, object model, AbsolutePath? currentFolder=null)</div><div class="ttdoc">Render scriban templated scaffoldings and files to destination folder.</div><div class="ttdef"><b>Definition</b> <a href="../../dd/da3/BoilerplateGenerator_8cs_source.html#l00063">BoilerplateGenerator.cs:63</a></div></div>
 <div class="ttc" id="aclassNuke_1_1Unreal_1_1BoilerplateGenerators_1_1LibraryGenerator_html"><div class="ttname"><a href="../../d6/d9f/classNuke_1_1Unreal_1_1BoilerplateGenerators_1_1LibraryGenerator.html">Nuke.Unreal.BoilerplateGenerators.LibraryGenerator</a></div><div class="ttdef"><b>Definition</b> <a href="#l00070">LibraryGenerator.cs:71</a></div></div>
 <div class="ttc" id="aclassNuke_1_1Unreal_1_1BoilerplateGenerators_1_1LibraryType_html"><div class="ttname"><a href="../../d4/d9d/classNuke_1_1Unreal_1_1BoilerplateGenerators_1_1LibraryType.html">Nuke.Unreal.BoilerplateGenerators.LibraryType</a></div><div class="ttdef"><b>Definition</b> <a href="#l00019">LibraryGenerator.cs:20</a></div></div>
 <div class="ttc" id="aclassNuke_1_1Unreal_1_1BoilerplateGenerators_1_1UnrealProject_html"><div class="ttname"><a href="../../d4/d8a/classNuke_1_1Unreal_1_1BoilerplateGenerators_1_1UnrealProject.html">Nuke.Unreal.BoilerplateGenerators.UnrealProject</a></div><div class="ttdef"><b>Definition</b> <a href="../../d3/d8c/UnrealProject_8cs_source.html#l00006">UnrealProject.cs:7</a></div></div>
