@@ -49,7 +49,8 @@ var namespaceNuke_1_1Unreal_1_1Plugins =
       [ "Latest", "dd/d1b/namespaceNuke_1_1Unreal_1_1Plugins.html#a666dc0d786236ea87e33e6c57e7f9f1facd118d21c3b0b4762c6e0063661e6e45", null ]
     ] ],
     [ "ModuleDescriptor", "dd/d1b/namespaceNuke_1_1Unreal_1_1Plugins.html#ab57b3582b7e4bed48893d795bf5482f3", null ],
-    [ "PluginBuildOptions", "dd/d1b/namespaceNuke_1_1Unreal_1_1Plugins.html#a84c1a9337b85ba0a2ad5818502680162", null ],
+    [ "PluginBuildArguments", "dd/d1b/namespaceNuke_1_1Unreal_1_1Plugins.html#ae7401ef3417452fa675953f9811515c4", null ],
+    [ "PluginBuildOptions", "dd/d1b/namespaceNuke_1_1Unreal_1_1Plugins.html#af63212f6a504d70831c13ded6c129afc", null ],
     [ "PluginDescriptor", "dd/d1b/namespaceNuke_1_1Unreal_1_1Plugins.html#a5ed86fafabf1877412c7eb95ef31733f", null ],
     [ "PluginDistributionOptions", "dd/d1b/namespaceNuke_1_1Unreal_1_1Plugins.html#a53f951c6c3b4746bb84e0da6bf30dbd1", null ],
     [ "PluginReferenceDescriptor", "dd/d1b/namespaceNuke_1_1Unreal_1_1Plugins.html#a1e058fbfb6d95592167387b32b5d20e4", null ]

@@ -234,9 +234,12 @@ record class&#160;</td><td class="memItemRight" valign="bottom"><b>LocalizationT
 <tr class="memitem:a53f951c6c3b4746bb84e0da6bf30dbd1" id="r_a53f951c6c3b4746bb84e0da6bf30dbd1"><td class="memItemLeft" align="right" valign="top">record class&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a53f951c6c3b4746bb84e0da6bf30dbd1">PluginDistributionOptions</a> (RelativePath? OutputSubfolder=null, AbsolutePath? OutputOverride=null, bool GenerateFilterPluginIni=true, bool UPluginAssociateEngineVersion=true)</td></tr>
 <tr class="memdesc:a53f951c6c3b4746bb84e0da6bf30dbd1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Options for creating a distributable version of this plugin, usually for making it independent of <a class="el" href="../../df/da7/namespaceNuke.html">Nuke</a>.  <br /></td></tr>
 <tr class="separator:a53f951c6c3b4746bb84e0da6bf30dbd1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a84c1a9337b85ba0a2ad5818502680162" id="r_a84c1a9337b85ba0a2ad5818502680162"><td class="memItemLeft" align="right" valign="top">record class&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a84c1a9337b85ba0a2ad5818502680162">PluginBuildOptions</a> (RelativePath? OutputSubfolder=null, AbsolutePath? OutputOverride=null, bool UseDistributedPlugin=true, <a class="el" href="#ad765f543fbb47f6b507b43a0afa4d76f">PluginBuildMethod</a> Method=<a class="el" href="#ad765f543fbb47f6b507b43a0afa4d76fa19dd6c1cec504ac854645f352eb03209">PluginBuildMethod.UAT</a>, <a class="el" href="../../d5/dc0/classNuke_1_1Unreal_1_1UnrealPlatform.html">UnrealPlatform</a>[]? Platforms=null)</td></tr>
-<tr class="memdesc:a84c1a9337b85ba0a2ad5818502680162"><td class="mdescLeft">&#160;</td><td class="mdescRight">Options for packaging plugins for binary distribution with UAT.  <br /></td></tr>
-<tr class="separator:a84c1a9337b85ba0a2ad5818502680162"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af63212f6a504d70831c13ded6c129afc" id="r_af63212f6a504d70831c13ded6c129afc"><td class="memItemLeft" align="right" valign="top">record class&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af63212f6a504d70831c13ded6c129afc">PluginBuildOptions</a> (RelativePath? OutputSubfolder=null, AbsolutePath? OutputOverride=null, bool UseDistributedPlugin=true, <a class="el" href="#ad765f543fbb47f6b507b43a0afa4d76f">PluginBuildMethod</a> Method=<a class="el" href="#ad765f543fbb47f6b507b43a0afa4d76fab1f8300184ef52c1dd7cbdd841f7ea2e">PluginBuildMethod.UBT</a>, <a class="el" href="../../d5/dc0/classNuke_1_1Unreal_1_1UnrealPlatform.html">UnrealPlatform</a>[]? Platforms=null)</td></tr>
+<tr class="memdesc:af63212f6a504d70831c13ded6c129afc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Options for packaging plugins for binary distribution..  <br /></td></tr>
+<tr class="separator:af63212f6a504d70831c13ded6c129afc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae7401ef3417452fa675953f9811515c4" id="r_ae7401ef3417452fa675953f9811515c4"><td class="memItemLeft" align="right" valign="top">record class&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae7401ef3417452fa675953f9811515c4">PluginBuildArguments</a> (Func&lt; <a class="el" href="../../d4/d4a/classNuke_1_1Unreal_1_1Tools_1_1UatConfig.html">UatConfig</a>, <a class="el" href="../../d4/d4a/classNuke_1_1Unreal_1_1Tools_1_1UatConfig.html">UatConfig</a> &gt;? <a class="el" href="../../d4/d4a/classNuke_1_1Unreal_1_1Tools_1_1UatConfig.html">UatConfig</a>=null, Func&lt; <a class="el" href="../../d9/dbc/classNuke_1_1Unreal_1_1Tools_1_1UbtConfig.html">UbtConfig</a>, <a class="el" href="../../d9/dbc/classNuke_1_1Unreal_1_1Tools_1_1UbtConfig.html">UbtConfig</a> &gt;? <a class="el" href="../../d9/dbc/classNuke_1_1Unreal_1_1Tools_1_1UbtConfig.html">UbtConfig</a>=null, <a class="el" href="#af63212f6a504d70831c13ded6c129afc">PluginBuildOptions</a>? BuildOptions=null, <a class="el" href="#a53f951c6c3b4746bb84e0da6bf30dbd1">PluginDistributionOptions</a>? DistOptions=null, Func&lt; <a class="el" href="../../d0/ded/classNuke_1_1Unreal_1_1Plugins_1_1UnrealPlugin.html">UnrealPlugin</a>, PluginBuildArguments, PluginBuildArguments?&gt;? DependencyHandler=null)</td></tr>
+<tr class="memdesc:ae7401ef3417452fa675953f9811515c4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Arguments for BuildPlugin.  <br /></td></tr>
+<tr class="separator:ae7401ef3417452fa675953f9811515c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Enumeration Type Documentation</h2>
 <a id="af69746111d818f1aae5d1ed27ad264b1" name="af69746111d818f1aae5d1ed27ad264b1"></a>
@@ -359,13 +362,13 @@ record class&#160;</td><td class="memItemRight" valign="bottom"><b>LocalizationT
 
 <p>Method of packaging a plugin. </p>
 <table class="fieldtable">
-<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="ad765f543fbb47f6b507b43a0afa4d76fa19dd6c1cec504ac854645f352eb03209" name="ad765f543fbb47f6b507b43a0afa4d76fa19dd6c1cec504ac854645f352eb03209"></a>UAT&#160;</td><td class="fielddoc"><p>Use UAT BuildPlugin feature. </p>
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="ad765f543fbb47f6b507b43a0afa4d76fa19dd6c1cec504ac854645f352eb03209" name="ad765f543fbb47f6b507b43a0afa4d76fa19dd6c1cec504ac854645f352eb03209"></a>UAT&#160;</td><td class="fielddoc"><p>Use vanilla UAT BuildPlugin feature. </p>
 </td></tr>
-<tr><td class="fieldname"><a id="ad765f543fbb47f6b507b43a0afa4d76fab1f8300184ef52c1dd7cbdd841f7ea2e" name="ad765f543fbb47f6b507b43a0afa4d76fab1f8300184ef52c1dd7cbdd841f7ea2e"></a>UBT&#160;</td><td class="fielddoc"><p><a class="el" href="../../d0/d55/namespaceNuke_1_1Unreal.html">Nuke.Unreal</a> will use UBT directly in a similar way than UAT does. This is added because UBT has a problem with module rule files if both a project and a plugin contained in that project is passed to it. If you have problems with duplicate types in your module rules, then use this, otherwise use <a class="el" href="#ad765f543fbb47f6b507b43a0afa4d76fa19dd6c1cec504ac854645f352eb03209" title="Use UAT BuildPlugin feature.">PluginBuildMethod.UAT</a>. </p>
+<tr><td class="fieldname"><a id="ad765f543fbb47f6b507b43a0afa4d76fab1f8300184ef52c1dd7cbdd841f7ea2e" name="ad765f543fbb47f6b507b43a0afa4d76fab1f8300184ef52c1dd7cbdd841f7ea2e"></a>UBT&#160;</td><td class="fielddoc"><p><a class="el" href="../../d0/d55/namespaceNuke_1_1Unreal.html">Nuke.Unreal</a> will use UBT directly in a similar way than UAT does, but with extra features/bugfixes that UAT doesn't have, for example automatically handle plugin dependencies, but in a customizable way. This is the default method. </p>
 </td></tr>
 </table>
 
-<p class="definition">Definition at line <a class="el" href="../../d4/d9f/Plugins_2UnrealPlugin_8cs_source.html#l00049">49</a> of file <a class="el" href="../../d4/d9f/Plugins_2UnrealPlugin_8cs_source.html">UnrealPlugin.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d4/d9f/Plugins_2UnrealPlugin_8cs_source.html#l00050">50</a> of file <a class="el" href="../../d4/d9f/Plugins_2UnrealPlugin_8cs_source.html">UnrealPlugin.cs</a>.</p>
 
 </div>
 </div>
@@ -514,8 +517,46 @@ record class&#160;</td><td class="memItemRight" valign="bottom"><b>LocalizationT
 
 </div>
 </div>
-<a id="a84c1a9337b85ba0a2ad5818502680162" name="a84c1a9337b85ba0a2ad5818502680162"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a84c1a9337b85ba0a2ad5818502680162">&#9670;&#160;</a></span>PluginBuildOptions()</h2>
+<a id="ae7401ef3417452fa675953f9811515c4" name="ae7401ef3417452fa675953f9811515c4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae7401ef3417452fa675953f9811515c4">&#9670;&#160;</a></span>PluginBuildArguments()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">record class Nuke.Unreal.Plugins.PluginBuildArguments </td>
+          <td>(</td>
+          <td class="paramtype">Func&lt; <a class="el" href="../../d4/d4a/classNuke_1_1Unreal_1_1Tools_1_1UatConfig.html">UatConfig</a>, <a class="el" href="../../d4/d4a/classNuke_1_1Unreal_1_1Tools_1_1UatConfig.html">UatConfig</a> &gt;?</td>          <td class="paramname"><span class="paramname"><em>UatConfig</em></span><span class="paramdefsep"> = </span><span class="paramdefval">null</span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Func&lt; <a class="el" href="../../d9/dbc/classNuke_1_1Unreal_1_1Tools_1_1UbtConfig.html">UbtConfig</a>, <a class="el" href="../../d9/dbc/classNuke_1_1Unreal_1_1Tools_1_1UbtConfig.html">UbtConfig</a> &gt;?</td>          <td class="paramname"><span class="paramname"><em>UbtConfig</em></span><span class="paramdefsep"> = </span><span class="paramdefval">null</span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="#af63212f6a504d70831c13ded6c129afc">PluginBuildOptions</a>?</td>          <td class="paramname"><span class="paramname"><em>BuildOptions</em></span><span class="paramdefsep"> = </span><span class="paramdefval">null</span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="#a53f951c6c3b4746bb84e0da6bf30dbd1">PluginDistributionOptions</a>?</td>          <td class="paramname"><span class="paramname"><em>DistOptions</em></span><span class="paramdefsep"> = </span><span class="paramdefval">null</span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Func&lt; <a class="el" href="../../d0/ded/classNuke_1_1Unreal_1_1Plugins_1_1UnrealPlugin.html">UnrealPlugin</a>, PluginBuildArguments, PluginBuildArguments?&gt;?</td>          <td class="paramname"><span class="paramname"><em>DependencyHandler</em></span><span class="paramdefsep"> = </span><span class="paramdefval">null</span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Arguments for BuildPlugin. </p>
+
+</div>
+</div>
+<a id="af63212f6a504d70831c13ded6c129afc" name="af63212f6a504d70831c13ded6c129afc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af63212f6a504d70831c13ded6c129afc">&#9670;&#160;</a></span>PluginBuildOptions()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -538,7 +579,7 @@ record class&#160;</td><td class="memItemRight" valign="bottom"><b>LocalizationT
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="#ad765f543fbb47f6b507b43a0afa4d76f">PluginBuildMethod</a></td>          <td class="paramname"><span class="paramname"><em>Method</em></span><span class="paramdefsep"> = </span><span class="paramdefval"><a class="el" href="#ad765f543fbb47f6b507b43a0afa4d76fa19dd6c1cec504ac854645f352eb03209">PluginBuildMethod.UAT</a></span>, </td>
+          <td class="paramtype"><a class="el" href="#ad765f543fbb47f6b507b43a0afa4d76f">PluginBuildMethod</a></td>          <td class="paramname"><span class="paramname"><em>Method</em></span><span class="paramdefsep"> = </span><span class="paramdefval"><a class="el" href="#ad765f543fbb47f6b507b43a0afa4d76fab1f8300184ef52c1dd7cbdd841f7ea2e">PluginBuildMethod.UBT</a></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -548,13 +589,13 @@ record class&#160;</td><td class="memItemRight" valign="bottom"><b>LocalizationT
       </table>
 </div><div class="memdoc">
 
-<p>Options for packaging plugins for binary distribution with UAT. </p>
+<p>Options for packaging plugins for binary distribution.. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">OutputSubfolder</td><td>Relative path to the output folder indicated by <code><a class="el" href="../../da/d58/classNuke_1_1Unreal_1_1UnrealBuild.html#a7c95be67b9b5f4b2bcbf686b7ca65944" title="Get an output folder where the targets should store their artifacts. Override this function in your m...">UnrealBuild.GetOutput()</a></code>. Default is <code>Plugins/{Name}/Build</code> </td></tr>
     <tr><td class="paramname">OutputOverride</td><td>If set, this will disregard both <code><a class="el" href="../../da/d58/classNuke_1_1Unreal_1_1UnrealBuild.html#a7c95be67b9b5f4b2bcbf686b7ca65944" title="Get an output folder where the targets should store their artifacts. Override this function in your m...">UnrealBuild.GetOutput()</a></code> and <code>OutputSubfolder</code>, and use this as the output of plugin distribution tasks </td></tr>
     <tr><td class="paramname">UseDistributedPlugin</td><td>If set to true, first make a distributed copy of this plugin and then package it with UAT from that. </td></tr>
-    <tr><td class="paramname">Method</td><td>Select the method of packaging the plugin. If you have problems with duplicate types in your module rules, then set this to <a class="el" href="#ad765f543fbb47f6b507b43a0afa4d76fab1f8300184ef52c1dd7cbdd841f7ea2e" title="Nuke.Unreal will use UBT directly in a similar way than UAT does. This is added because UBT has a pro...">PluginBuildMethod.UBT</a>. </td></tr>
+    <tr><td class="paramname">Method</td><td>Select the method of packaging the plugin. If you have problems with duplicate types in your module rules, then set this to <a class="el" href="#ad765f543fbb47f6b507b43a0afa4d76fab1f8300184ef52c1dd7cbdd841f7ea2e">PluginBuildMethod.UBT</a>. </td></tr>
     <tr><td class="paramname">Platforms</td><td>Extra platforms to build this plugin for. UnrealBuild.Platform is always added to this list. </td></tr>
   </table>
   </dd>

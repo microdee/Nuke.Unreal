@@ -1,5 +1,8 @@
 var NAVTREEINDEX24 =
 {
+"dd/d86/classNuke_1_1Unreal_1_1Tools_1_1UatConfigGenerated_1_1CreatePlatformExtensionConfig.html#a401f495e05f8fe0198dd16b08e35ace4":[13,0,0,0,3,3,49,0],
+"dd/d86/classNuke_1_1Unreal_1_1Tools_1_1UatConfigGenerated_1_1CreatePlatformExtensionConfig.html#a517bb7c6cedbe85657bd6b11af65729a":[12,0,0,0,3,3,49,6],
+"dd/d86/classNuke_1_1Unreal_1_1Tools_1_1UatConfigGenerated_1_1CreatePlatformExtensionConfig.html#a517bb7c6cedbe85657bd6b11af65729a":[13,0,0,0,3,3,49,6],
 "dd/d86/classNuke_1_1Unreal_1_1Tools_1_1UatConfigGenerated_1_1CreatePlatformExtensionConfig.html#a598f913ce2d5fde73a607a91c257e569":[12,0,0,0,3,3,49,16],
 "dd/d86/classNuke_1_1Unreal_1_1Tools_1_1UatConfigGenerated_1_1CreatePlatformExtensionConfig.html#a598f913ce2d5fde73a607a91c257e569":[13,0,0,0,3,3,49,16],
 "dd/d86/classNuke_1_1Unreal_1_1Tools_1_1UatConfigGenerated_1_1CreatePlatformExtensionConfig.html#a59cc2032c53021c6b0d3bc1cab6c8a6b":[12,0,0,0,3,3,49,1],
@@ -246,8 +249,5 @@ var NAVTREEINDEX24 =
 "de/dda/classNuke_1_1Unreal_1_1Tools_1_1UatConfigGenerated_1_1VS2022TargetPlatform__Win64Config.html#afdae2ccb03c38fce857845fcb1971840":[13,0,0,0,3,3,181,10],
 "de/ddd/classNuke_1_1Unreal_1_1Tools_1_1UbtConfigGenerated_1_1VSCodeProjectFileGeneratorConfig.html":[12,0,0,0,3,5,51],
 "de/ddd/classNuke_1_1Unreal_1_1Tools_1_1UbtConfigGenerated_1_1VSCodeProjectFileGeneratorConfig.html":[13,0,0,0,3,5,51],
-"de/ddd/classNuke_1_1Unreal_1_1Tools_1_1UbtConfigGenerated_1_1VSCodeProjectFileGeneratorConfig.html#a8d9c6a318092fe52d17fc6a41d7660b2":[12,0,0,0,3,5,51,0],
-"de/ddd/classNuke_1_1Unreal_1_1Tools_1_1UbtConfigGenerated_1_1VSCodeProjectFileGeneratorConfig.html#a8d9c6a318092fe52d17fc6a41d7660b2":[13,0,0,0,3,5,51,0],
-"de/ddd/classNuke_1_1Unreal_1_1Tools_1_1UbtConfigGenerated_1_1VSCodeProjectFileGeneratorConfig.html#af094c03bbd5c138e33e7f724096bb6d0":[12,0,0,0,3,5,51,1],
-"de/ddd/classNuke_1_1Unreal_1_1Tools_1_1UbtConfigGenerated_1_1VSCodeProjectFileGeneratorConfig.html#af094c03bbd5c138e33e7f724096bb6d0":[13,0,0,0,3,5,51,1]
+"de/ddd/classNuke_1_1Unreal_1_1Tools_1_1UbtConfigGenerated_1_1VSCodeProjectFileGeneratorConfig.html#a8d9c6a318092fe52d17fc6a41d7660b2":[12,0,0,0,3,5,51,0]
 };
