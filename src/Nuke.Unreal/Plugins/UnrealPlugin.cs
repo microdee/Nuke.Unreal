@@ -8,6 +8,7 @@ using EverythingSearchClient;
 using Newtonsoft.Json.Linq;
 using Nuke.Cola;
 using Nuke.Cola.FolderComposition;
+using Nuke.Cola.Search;
 using Nuke.Common;
 using Nuke.Common.IO;
 using Nuke.Common.Utilities;
@@ -49,21 +50,22 @@ public record class PluginDistributionOptions(
 public enum PluginBuildMethod
 {
     /// <summary>
-    /// Use UAT BuildPlugin feature
+    /// Use vanilla UAT BuildPlugin feature
     /// </summary>
     UAT,
     
     /// <summary>
-    ///     Nuke.Unreal will use UBT directly in a similar way than UAT does. This is added because
-    ///     UBT has a problem with module rule files if both a project and a plugin contained in
-    ///     that project is passed to it. If you have problems with duplicate types in your module
-    ///     rules, then use this, otherwise use PluginBuildMethod.UAT
+    /// <para>
+    ///     Nuke.Unreal will use UBT directly in a similar way than UAT does, but with extra
+    ///     features/bugfixes that UAT doesn't have, for example automatically handle plugin
+    ///     dependencies, but in a customizable way. This is the default method.
+    /// </para>
     /// </summary>
     UBT
 }
 
 /// <summary>
-///     Options for packaging plugins for binary distribution with UAT.
+///     Options for packaging plugins for binary distribution..
 /// </summary>
 /// <param name="OutputSubfolder">
 ///     Relative path to the output folder indicated by `UnrealBuild.GetOutput()`.
@@ -88,8 +90,19 @@ public record class PluginBuildOptions(
     RelativePath? OutputSubfolder = null,
     AbsolutePath? OutputOverride = null,
     bool UseDistributedPlugin = true,
-    PluginBuildMethod Method = PluginBuildMethod.UAT,
+    PluginBuildMethod Method = PluginBuildMethod.UBT,
     UnrealPlatform[]? Platforms = null
+);
+
+/// <summary>
+/// Arguments for BuildPlugin
+/// </summary>
+public record class PluginBuildArguments(
+        Func<UatConfig, UatConfig>? UatConfig = null,
+        Func<UbtConfig, UbtConfig>? UbtConfig = null,
+        PluginBuildOptions? BuildOptions = null,
+        PluginDistributionOptions? DistOptions = null,
+        Func<UnrealPlugin, PluginBuildArguments, PluginBuildArguments?>? DependencyHandler = null
 );
 
 /// <summary>
@@ -429,6 +442,26 @@ public class UnrealPlugin
     }
 
     /// <summary>
+    /// Get the project plugin dependencies of this plugin as UnrealPlugin objects.
+    /// </summary>
+    /// <param name="build"></param>
+    /// <returns></returns>
+    IEnumerable<UnrealPlugin> GetProjectPluginDependencies(UnrealBuild build)
+        => Descriptor.Plugins?
+            .Where(p => p.Enabled ?? false)
+            .Select(p =>
+            {
+                var depFIle = build.PluginsFolder.SearchFiles($"**/{p.Name}.uplugin").FirstOrDefault();
+                return depFIle != null ? Get(depFIle) : null;
+            })
+            .Where(p => p != null)
+            .Select(p => p!)
+            ?? []
+        ;
+
+    private AbsolutePath? _buildOutput = null;
+
+    /// <summary>
     /// Make a prebuilt release of this plugin for end-users. Globally set UAT and UBT arguments
     /// are used from the input UnrealBuild
     /// </summary>
@@ -437,13 +470,15 @@ public class UnrealPlugin
     /// <param name="ubtConfig">Configurator for UBT (only when UBT method is used)</param>
     /// <param name="buildOptions">Optional arguments for packaging</param>
     /// <param name="distOptions">Optional arguments for distribution</param>
+    /// <param name="dependencyHandler">Customize the build option for plugin dependencies</param>
     /// <returns>Output folder of the packaged plugin</returns>
     public AbsolutePath BuildPlugin(
         UnrealBuild build,
         Func<UatConfig, UatConfig>? uatConfig = null,
         Func<UbtConfig, UbtConfig>? ubtConfig = null,
         PluginBuildOptions? buildOptions = null,
-        PluginDistributionOptions? distOptions = null
+        PluginDistributionOptions? distOptions = null,
+        Func<UnrealPlugin, PluginBuildArguments, PluginBuildArguments?>? dependencyHandler = null
     ) {
         var outFolder = GetBuildOutput(build, buildOptions);
         buildOptions ??= _buildOptionsCache;
@@ -462,6 +497,35 @@ public class UnrealPlugin
         hostProjectDir.ExistingDirectory()?.DeleteDirectory();
         
         var platforms = (buildOptions.Platforms ?? []).Union([build.Platform]);
+        
+        var dependencies = GetProjectPluginDependencies(build).ToList();
+        var thisArgs = new PluginBuildArguments(
+            uatConfig,
+            ubtConfig,
+            buildOptions,
+            distOptions,
+            dependencyHandler
+        );
+
+        foreach (var unbuiltDep in dependencies.Where(d => d._buildOutput == null))
+        {
+            Log.Information("Building dependency plugin {0}", unbuiltDep.Name);
+            var args = dependencyHandler?.Invoke(unbuiltDep, thisArgs) ?? thisArgs;
+            unbuiltDep.BuildPlugin(
+                build,
+                args.UatConfig,
+                args.UbtConfig,
+                args.BuildOptions,
+                args.DistOptions,
+                args.DependencyHandler
+            );
+        }
+        var enginePluginsDir = build.UnrealEnginePath / "Engine" / "Plugins" / "Marketplace";
+        foreach (var dep in dependencies)
+        {
+            Log.Information("Copying dependency plugin {0} to {1}", dep.Name, enginePluginsDir);
+            dep._buildOutput.Copy(enginePluginsDir / dep.Name);
+        }
 
         switch (buildOptions.Method)
         {
@@ -484,6 +548,7 @@ public class UnrealPlugin
                     .Apply(build.UatGlobal)
                     .Apply(uatConfig)
                 )("");
+                _buildOutput = outFolder;
             }
             catch (Exception) { throw; }
             finally
@@ -491,61 +556,74 @@ public class UnrealPlugin
                 if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
                 {
                     shortSource.DeleteDirectory();
-                    shortOut.DeleteDirectory();
+                    shortOut.AsLinkInfo()?.Delete();
                 }
             }
 
         break;
 
         case PluginBuildMethod.UBT:
+
             hostProjectDir.CreateDirectory();
             var hostPluginDir = hostProjectDir / "Plugins" / Name;
-            (hostProjectDir / "HostProject.uproject").WriteAllText(
-                $$"""
-                { "FileVersion": 3, "Plugins": [ { "Name": "{{Name}}", "Enabled": true } ] }
-                """
+            var hostProject = new ProjectDescriptor(
+                Plugins: [
+                    new (Name: Name, Enabled: true),
+                    ..
+                    dependencies.Select(d => new PluginReferenceDescriptor(
+                        Name: d.Name,
+                        Enabled: true
+                    ))
+                ]
             );
+            Unreal.WriteJson(hostProject, hostProjectDir / "HostProject.uproject");
             sourceFolder.Copy(hostPluginDir);
-            var shortPluginDir = hostPluginDir.Shorten();
 
+            var shortPluginDir = hostPluginDir.Shorten();
             try
             {
+                UbtConfig Common(UbtConfig _) => _
+                    .Plugin(shortPluginDir / PluginPath.Name)
+                    .NoUBTMakefiles()
+                    .NoHotReload()
+                    .Apply(ubtConfig)
+                    .Apply(build.UbtGlobal);
+
                 foreach(var platform in platforms)
                 {
-                    Log.Information("Building UnrealGame binaries for {0}", platform);
+                    Log.Information("Building UnrealGame binaries for {0} @ {1}", Name, platform);
                     Unreal.BuildTool(build, _ => _
                         .Target("UnrealGame", platform,
                         [
                             UnrealConfig.Development,
                             UnrealConfig.Shipping
                         ])
-                        .Plugin(shortPluginDir / PluginPath.Name)
-                        .NoUBTMakefiles()
-                        .NoHotReload()
-                        .Apply(ubtConfig)
-                        .Apply(build.UbtGlobal)
+                        .Apply(Common)
                     )("");
                     if (platform.IsDevelopment)
                     {
-                        Log.Information("Building UnrealEditor binaries for {0}", platform);
+                        Log.Information("Building UnrealEditor binaries for {0} @ {1}", Name, platform);
                         Unreal.BuildTool(build, _ => _
                             .Target("UnrealEditor", platform, [UnrealConfig.Development])
-                            .Plugin(shortPluginDir / PluginPath.Name)
-                            .NoUBTMakefiles()
-                            .NoHotReload()
-                            .Apply(ubtConfig)
-                            .Apply(build.UbtGlobal)
+                            .Apply(Common)
                         )("");
                     }
                 }
                 hostPluginDir.Copy(outFolder, ExistsPolicy.MergeAndOverwrite);
                 hostProjectDir.DeleteDirectory();
+                _buildOutput = outFolder;
             }
             catch(Exception) { throw; }
             finally
             {
                 if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
-                    shortPluginDir.DeleteDirectory();
+                    shortPluginDir.AsLinkInfo()?.Delete();
+                
+                foreach (var dep in dependencies)
+                {
+                    Log.Debug("Deleting temporary installed plugin {0}", enginePluginsDir / dep.Name);
+                    (enginePluginsDir / dep.Name).ExistingDirectory()?.DeleteDirectory();
+                }
             }
         break;
 
