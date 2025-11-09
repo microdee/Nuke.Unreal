@@ -231,13 +231,13 @@ record class&#160;</td><td class="memItemRight" valign="bottom"><b>LocalizationT
 <tr class="memitem:a1e058fbfb6d95592167387b32b5d20e4" id="r_a1e058fbfb6d95592167387b32b5d20e4"><td class="memItemLeft" align="right" valign="top">record class&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1e058fbfb6d95592167387b32b5d20e4">PluginReferenceDescriptor</a> (string? Name=null, bool? Enabled=null, bool? Optional=null, string? Description=null, string? MarketplaceURL=null, List&lt; string &gt;? PlatformAllowList=null, List&lt; string &gt;? PlatformDenyList=null, List&lt; <a class="el" href="../../d7/dd2/classNuke_1_1Unreal_1_1UnrealConfig.html">UnrealConfig</a> &gt;? TargetConfigurationAllowList=null, List&lt; <a class="el" href="../../d7/dd2/classNuke_1_1Unreal_1_1UnrealConfig.html">UnrealConfig</a> &gt;? TargetConfigurationDenyList=null, List&lt; <a class="el" href="../../d7/dcc/classNuke_1_1Unreal_1_1UnrealTargetType.html">UnrealTargetType</a> &gt;? TargetAllowList=null, List&lt; <a class="el" href="../../d7/dcc/classNuke_1_1Unreal_1_1UnrealTargetType.html">UnrealTargetType</a> &gt;? TargetDenyList=null, List&lt; string &gt;? SupportedTargetPlatforms=null, bool? HasExplicitPlatforms=null, int? RequestedVersion=null)</td></tr>
 <tr class="memdesc:a1e058fbfb6d95592167387b32b5d20e4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Representation of a reference to a plugin from a project file.  <br /></td></tr>
 <tr class="separator:a1e058fbfb6d95592167387b32b5d20e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a53f951c6c3b4746bb84e0da6bf30dbd1" id="r_a53f951c6c3b4746bb84e0da6bf30dbd1"><td class="memItemLeft" align="right" valign="top">record class&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a53f951c6c3b4746bb84e0da6bf30dbd1">PluginDistributionOptions</a> (RelativePath? OutputSubfolder=null, AbsolutePath? OutputOverride=null, bool GenerateFilterPluginIni=true, bool UPluginAssociateEngineVersion=true)</td></tr>
-<tr class="memdesc:a53f951c6c3b4746bb84e0da6bf30dbd1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Options for creating a distributable version of this plugin, usually for making it independent of <a class="el" href="../../df/da7/namespaceNuke.html">Nuke</a>.  <br /></td></tr>
-<tr class="separator:a53f951c6c3b4746bb84e0da6bf30dbd1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac2e47ad20c3a66742003802722c96a40" id="r_ac2e47ad20c3a66742003802722c96a40"><td class="memItemLeft" align="right" valign="top">record class&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac2e47ad20c3a66742003802722c96a40">PluginDistributionOptions</a> (RelativePath? OutputSubfolder=null, AbsolutePath? OutputOverride=null, bool GenerateFilterPluginIni=true, bool UPluginAssociateEngineVersion=true, bool UPluginIsInstalled=true, Func&lt; <a class="el" href="#a5ed86fafabf1877412c7eb95ef31733f">PluginDescriptor</a>, <a class="el" href="#a5ed86fafabf1877412c7eb95ef31733f">PluginDescriptor</a> &gt;? UPluginConfig=null)</td></tr>
+<tr class="memdesc:ac2e47ad20c3a66742003802722c96a40"><td class="mdescLeft">&#160;</td><td class="mdescRight">Options for creating a distributable version of this plugin, usually for making it independent of <a class="el" href="../../df/da7/namespaceNuke.html">Nuke</a>.  <br /></td></tr>
+<tr class="separator:ac2e47ad20c3a66742003802722c96a40"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af63212f6a504d70831c13ded6c129afc" id="r_af63212f6a504d70831c13ded6c129afc"><td class="memItemLeft" align="right" valign="top">record class&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af63212f6a504d70831c13ded6c129afc">PluginBuildOptions</a> (RelativePath? OutputSubfolder=null, AbsolutePath? OutputOverride=null, bool UseDistributedPlugin=true, <a class="el" href="#ad765f543fbb47f6b507b43a0afa4d76f">PluginBuildMethod</a> Method=<a class="el" href="#ad765f543fbb47f6b507b43a0afa4d76fab1f8300184ef52c1dd7cbdd841f7ea2e">PluginBuildMethod.UBT</a>, <a class="el" href="../../d5/dc0/classNuke_1_1Unreal_1_1UnrealPlatform.html">UnrealPlatform</a>[]? Platforms=null)</td></tr>
 <tr class="memdesc:af63212f6a504d70831c13ded6c129afc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Options for packaging plugins for binary distribution..  <br /></td></tr>
 <tr class="separator:af63212f6a504d70831c13ded6c129afc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae7401ef3417452fa675953f9811515c4" id="r_ae7401ef3417452fa675953f9811515c4"><td class="memItemLeft" align="right" valign="top">record class&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae7401ef3417452fa675953f9811515c4">PluginBuildArguments</a> (Func&lt; <a class="el" href="../../d4/d4a/classNuke_1_1Unreal_1_1Tools_1_1UatConfig.html">UatConfig</a>, <a class="el" href="../../d4/d4a/classNuke_1_1Unreal_1_1Tools_1_1UatConfig.html">UatConfig</a> &gt;? <a class="el" href="../../d4/d4a/classNuke_1_1Unreal_1_1Tools_1_1UatConfig.html">UatConfig</a>=null, Func&lt; <a class="el" href="../../d9/dbc/classNuke_1_1Unreal_1_1Tools_1_1UbtConfig.html">UbtConfig</a>, <a class="el" href="../../d9/dbc/classNuke_1_1Unreal_1_1Tools_1_1UbtConfig.html">UbtConfig</a> &gt;? <a class="el" href="../../d9/dbc/classNuke_1_1Unreal_1_1Tools_1_1UbtConfig.html">UbtConfig</a>=null, <a class="el" href="#af63212f6a504d70831c13ded6c129afc">PluginBuildOptions</a>? BuildOptions=null, <a class="el" href="#a53f951c6c3b4746bb84e0da6bf30dbd1">PluginDistributionOptions</a>? DistOptions=null, Func&lt; <a class="el" href="../../d0/ded/classNuke_1_1Unreal_1_1Plugins_1_1UnrealPlugin.html">UnrealPlugin</a>, PluginBuildArguments, PluginBuildArguments?&gt;? DependencyHandler=null)</td></tr>
+<tr class="memitem:ae7401ef3417452fa675953f9811515c4" id="r_ae7401ef3417452fa675953f9811515c4"><td class="memItemLeft" align="right" valign="top">record class&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae7401ef3417452fa675953f9811515c4">PluginBuildArguments</a> (Func&lt; <a class="el" href="../../d4/d4a/classNuke_1_1Unreal_1_1Tools_1_1UatConfig.html">UatConfig</a>, <a class="el" href="../../d4/d4a/classNuke_1_1Unreal_1_1Tools_1_1UatConfig.html">UatConfig</a> &gt;? <a class="el" href="../../d4/d4a/classNuke_1_1Unreal_1_1Tools_1_1UatConfig.html">UatConfig</a>=null, Func&lt; <a class="el" href="../../d9/dbc/classNuke_1_1Unreal_1_1Tools_1_1UbtConfig.html">UbtConfig</a>, <a class="el" href="../../d9/dbc/classNuke_1_1Unreal_1_1Tools_1_1UbtConfig.html">UbtConfig</a> &gt;? <a class="el" href="../../d9/dbc/classNuke_1_1Unreal_1_1Tools_1_1UbtConfig.html">UbtConfig</a>=null, <a class="el" href="#af63212f6a504d70831c13ded6c129afc">PluginBuildOptions</a>? BuildOptions=null, <a class="el" href="#ac2e47ad20c3a66742003802722c96a40">PluginDistributionOptions</a>? DistOptions=null, Func&lt; <a class="el" href="../../d0/ded/classNuke_1_1Unreal_1_1Plugins_1_1UnrealPlugin.html">UnrealPlugin</a>, PluginBuildArguments, PluginBuildArguments?&gt;? DependencyHandler=null)</td></tr>
 <tr class="memdesc:ae7401ef3417452fa675953f9811515c4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Arguments for BuildPlugin.  <br /></td></tr>
 <tr class="separator:ae7401ef3417452fa675953f9811515c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
@@ -368,7 +368,7 @@ record class&#160;</td><td class="memItemRight" valign="bottom"><b>LocalizationT
 </td></tr>
 </table>
 
-<p class="definition">Definition at line <a class="el" href="../../d4/d9f/Plugins_2UnrealPlugin_8cs_source.html#l00050">50</a> of file <a class="el" href="../../d4/d9f/Plugins_2UnrealPlugin_8cs_source.html">UnrealPlugin.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d4/d9f/Plugins_2UnrealPlugin_8cs_source.html#l00058">58</a> of file <a class="el" href="../../d4/d9f/Plugins_2UnrealPlugin_8cs_source.html">UnrealPlugin.cs</a>.</p>
 
 </div>
 </div>
@@ -541,7 +541,7 @@ record class&#160;</td><td class="memItemRight" valign="bottom"><b>LocalizationT
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="#a53f951c6c3b4746bb84e0da6bf30dbd1">PluginDistributionOptions</a>?</td>          <td class="paramname"><span class="paramname"><em>DistOptions</em></span><span class="paramdefsep"> = </span><span class="paramdefval">null</span>, </td>
+          <td class="paramtype"><a class="el" href="#ac2e47ad20c3a66742003802722c96a40">PluginDistributionOptions</a>?</td>          <td class="paramname"><span class="paramname"><em>DistOptions</em></span><span class="paramdefsep"> = </span><span class="paramdefval">null</span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -813,8 +813,8 @@ record class&#160;</td><td class="memItemRight" valign="bottom"><b>LocalizationT
 
 </div>
 </div>
-<a id="a53f951c6c3b4746bb84e0da6bf30dbd1" name="a53f951c6c3b4746bb84e0da6bf30dbd1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a53f951c6c3b4746bb84e0da6bf30dbd1">&#9670;&#160;</a></span>PluginDistributionOptions()</h2>
+<a id="ac2e47ad20c3a66742003802722c96a40" name="ac2e47ad20c3a66742003802722c96a40"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac2e47ad20c3a66742003802722c96a40">&#9670;&#160;</a></span>PluginDistributionOptions()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -837,7 +837,17 @@ record class&#160;</td><td class="memItemRight" valign="bottom"><b>LocalizationT
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>UPluginAssociateEngineVersion</em></span><span class="paramdefsep"> = </span><span class="paramdefval">true</span>&#160;)</td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>UPluginAssociateEngineVersion</em></span><span class="paramdefsep"> = </span><span class="paramdefval">true</span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>UPluginIsInstalled</em></span><span class="paramdefsep"> = </span><span class="paramdefval">true</span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Func&lt; <a class="el" href="#a5ed86fafabf1877412c7eb95ef31733f">PluginDescriptor</a>, <a class="el" href="#a5ed86fafabf1877412c7eb95ef31733f">PluginDescriptor</a> &gt;?</td>          <td class="paramname"><span class="paramname"><em>UPluginConfig</em></span><span class="paramdefsep"> = </span><span class="paramdefval">null</span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -849,6 +859,8 @@ record class&#160;</td><td class="memItemRight" valign="bottom"><b>LocalizationT
     <tr><td class="paramname">OutputOverride</td><td>If set, this will disregard both <code><a class="el" href="../../da/d58/classNuke_1_1Unreal_1_1UnrealBuild.html#a7c95be67b9b5f4b2bcbf686b7ca65944" title="Get an output folder where the targets should store their artifacts. Override this function in your m...">UnrealBuild.GetOutput()</a></code> and <code>OutputSubfolder</code>, and use this as the output of plugin distribution tasks </td></tr>
     <tr><td class="paramname">GenerateFilterPluginIni</td><td>Generate a FilterPlugin.ini in the plugin's Config folder, so <a class="el" href="../../d3/d98/classNuke_1_1Unreal_1_1Unreal.html" title="A collection of utilities around basic functions regarding the environment of the Engine we&#39;re workin...">Unreal</a> tools will not ignore extra files handled with <a class="el" href="../../df/da7/namespaceNuke.html">Nuke</a>. </td></tr>
     <tr><td class="paramname">UPluginAssociateEngineVersion</td><td>When set to true, distributing sources of plugins will write engine version to UPlugin file. </td></tr>
+    <tr><td class="paramname">UPluginIsInstalled</td><td>Mark plugin as Installed when distributing. Default is true </td></tr>
+    <tr><td class="paramname">UPluginConfig</td><td>Modify plugin descriptor for the distributed plugin after all other configuration is done. </td></tr>
   </table>
   </dd>
 </dl>
