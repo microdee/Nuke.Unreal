@@ -37,11 +37,19 @@ namespace Nuke.Unreal.Plugins;
 /// <param name="UPluginAssociateEngineVersion">
 ///     When set to true, distributing sources of plugins will write engine version to UPlugin file.
 /// </param>
+/// <param name="UPluginIsInstalled">
+///     Mark plugin as Installed when distributing. Default is true
+/// </param>
+/// <param name="UPluginConfig">
+///     Modify plugin descriptor for the distributed plugin after all other configuration is done.
+/// </param>
 public record class PluginDistributionOptions(
     RelativePath? OutputSubfolder = null,
     AbsolutePath? OutputOverride = null,
     bool GenerateFilterPluginIni = true,
-    bool UPluginAssociateEngineVersion = true
+    bool UPluginAssociateEngineVersion = true,
+    bool UPluginIsInstalled = true,
+    Func<PluginDescriptor, PluginDescriptor>? UPluginConfig = null
 );
 
 /// <summary>
@@ -327,21 +335,21 @@ public class UnrealPlugin
     private void AddDefaultExplicitPluginFiles(UnrealBuild build)
         => AddExplicitPluginFiles(GetDefaultExplicitPluginFiles(build));
 
-    private bool InjectBinaryPlumbing(out PluginDescriptor result)
+    private bool InjectBinaryPlumbing(PluginDescriptor descriptor, out PluginDescriptor result)
     {
         var plumbingRootRelative = (RelativePath) "Source" / "ThirdParty" / "BinaryPlumbing";
         var plumbingRoot = Folder / plumbingRootRelative;
         if (!plumbingRoot.DirectoryExists())
         {
-            result = Descriptor;
+            result = descriptor;
             return false;
         }
 
         Log.Information("{0} seemingly requires binary plumbing", Name);
         Log.Debug("Because {0} exists", plumbingRoot);
 
-        result = Descriptor with {
-            PreBuildSteps = Descriptor.PreBuildSteps?.ToDictionary() ?? []
+        result = descriptor with {
+            PreBuildSteps = descriptor.PreBuildSteps?.ToDictionary() ?? []
         };
         result.PreBuildSteps.EnsureDevelopmentPlatforms();
         
@@ -427,15 +435,29 @@ public class UnrealPlugin
         
         var outUPlugin = outFolder / PluginPath.Name;
 
+        var descriptor = Descriptor with {};
+
         if (!pretend && options.UPluginAssociateEngineVersion)
         {
-            Descriptor = Descriptor with { EngineVersion = Unreal.Version(build).VersionMinor };
-            Unreal.WriteJson(Descriptor, outUPlugin);
+            descriptor = descriptor with { EngineVersion = Unreal.Version(build).VersionMinor };
+            Unreal.WriteJson(descriptor, outUPlugin);
         }
         
-        if (!pretend && InjectBinaryPlumbing(out var newDescriptor))
+        if (!pretend && InjectBinaryPlumbing(descriptor, out descriptor))
         {
-            Unreal.WriteJson(newDescriptor, outUPlugin);
+            Unreal.WriteJson(descriptor, outUPlugin);
+        }
+
+        if (!pretend && options.UPluginIsInstalled)
+        {
+            descriptor = descriptor with { Installed = true };
+            Unreal.WriteJson(descriptor, outUPlugin);
+        }
+
+        if (!pretend && options.UPluginConfig != null)
+        {
+            descriptor = options.UPluginConfig(descriptor);
+            Unreal.WriteJson(descriptor, outUPlugin);
         }
 
         return (result.WithFilesExpanded(), outFolder);
@@ -567,6 +589,7 @@ public class UnrealPlugin
             hostProjectDir.CreateDirectory();
             var hostPluginDir = hostProjectDir / "Plugins" / Name;
             var hostProject = new ProjectDescriptor(
+                EngineAssociation: build.ProjectDescriptor.EngineAssociation,
                 Plugins: [
                     new (Name: Name, Enabled: true),
                     ..
@@ -579,15 +602,18 @@ public class UnrealPlugin
             Unreal.WriteJson(hostProject, hostProjectDir / "HostProject.uproject");
             sourceFolder.Copy(hostPluginDir);
 
-            var shortPluginDir = hostPluginDir.Shorten();
+            var shortHostProjectDir = hostProjectDir.Shorten();
+            var shortPluginDir = shortHostProjectDir / "Plugins" / Name;
             try
             {
                 UbtConfig Common(UbtConfig _) => _
-                    .Plugin(shortPluginDir / PluginPath.Name)
-                    .NoUBTMakefiles()
+                    .Project(shortHostProjectDir / "HostProject.uproject")
+                    // .Plugin(shortPluginDir / PluginPath.Name) // this just breaks plugin distribution
+                    // .NoUBTMakefiles()
                     .NoHotReload()
                     .Apply(ubtConfig)
-                    .Apply(build.UbtGlobal);
+                    .Apply(build.UbtGlobal)
+                ;
 
                 foreach(var platform in platforms)
                 {
