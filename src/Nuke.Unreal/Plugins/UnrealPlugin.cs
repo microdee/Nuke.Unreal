@@ -439,7 +439,7 @@ public class UnrealPlugin
 
         if (!pretend && options.UPluginAssociateEngineVersion)
         {
-            descriptor = descriptor with { EngineVersion = Unreal.Version(build).VersionMinor };
+            descriptor = descriptor with { EngineVersion = Unreal.Version(build).VersionMinor + ".0" };
             Unreal.WriteJson(descriptor, outUPlugin);
         }
         
@@ -607,31 +607,53 @@ public class UnrealPlugin
             try
             {
                 UbtConfig Common(UbtConfig _) => _
-                    .Project(shortHostProjectDir / "HostProject.uproject")
-                    // .Plugin(shortPluginDir / PluginPath.Name) // this just breaks plugin distribution
-                    // .NoUBTMakefiles()
                     .NoHotReload()
-                    .Apply(ubtConfig)
                     .Apply(build.UbtGlobal)
+                    .Apply(ubtConfig)
+                ;
+                UbtConfig CommonProject(UbtConfig _) => _
+                    .Project(shortHostProjectDir / "HostProject.uproject")
+                    .Apply(Common)
+                ;
+                UbtConfig CommonPlugin(UbtConfig _) => _
+                    .Plugin(shortPluginDir / PluginPath.Name)
+                    .Apply(Common)
                 ;
 
                 foreach(var platform in platforms)
                 {
-                    Log.Information("Building UnrealGame binaries for {0} @ {1}", Name, platform);
+                    Log.Information("Building UnrealGame binaries from UProject for {0} @ {1}", Name, platform);
                     Unreal.BuildTool(build, _ => _
                         .Target("UnrealGame", platform,
                         [
                             UnrealConfig.Development,
                             UnrealConfig.Shipping
                         ])
-                        .Apply(Common)
+                        .Apply(CommonProject)
                     )("");
                     if (platform.IsDevelopment)
                     {
-                        Log.Information("Building UnrealEditor binaries for {0} @ {1}", Name, platform);
+                        Log.Information("Building UnrealEditor binaries for UProject {0} @ {1}", Name, platform);
                         Unreal.BuildTool(build, _ => _
                             .Target("UnrealEditor", platform, [UnrealConfig.Development])
-                            .Apply(Common)
+                            .Apply(CommonProject)
+                        )("");
+                    }
+                    Log.Information("Building UnrealGame binaries from UPlugin for {0} @ {1}", Name, platform);
+                    Unreal.BuildTool(build, _ => _
+                        .Target("UnrealGame", platform,
+                        [
+                            UnrealConfig.Development,
+                            UnrealConfig.Shipping
+                        ])
+                        .Apply(CommonPlugin)
+                    )("");
+                    if (platform.IsDevelopment)
+                    {
+                        Log.Information("Building UnrealEditor binaries for UPlugin {0} @ {1}", Name, platform);
+                        Unreal.BuildTool(build, _ => _
+                            .Target("UnrealEditor", platform, [UnrealConfig.Development])
+                            .Apply(CommonPlugin)
                         )("");
                     }
                 }
