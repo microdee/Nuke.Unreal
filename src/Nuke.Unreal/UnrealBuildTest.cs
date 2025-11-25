@@ -18,7 +18,7 @@ public class UnrealBuildTest : UnrealBuild
         NoLogo = true;
     }
     
-    protected virtual void Cleanup()
+    protected virtual void CleanupGit()
     {
         GitTasks.Git("clean -xdf -e Nuke.Targets/ -e .nuke/", workingDirectory: ProjectFolder);
         GitTasks.Git("restore . -- :(exclude)Nuke.Targets/ :(exclude).nuke/", workingDirectory: ProjectFolder);
@@ -37,6 +37,6 @@ public class UnrealBuildTest : UnrealBuild
             Log.Error(e, "Post build check failed");
             ExitCode = -1;
         }
-        Cleanup();
+        CleanupGit();
     }
 }

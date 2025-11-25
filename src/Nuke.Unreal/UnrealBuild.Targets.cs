@@ -65,6 +65,10 @@ namespace Nuke.Unreal
             .DependsOn(CleanProject)
             .DependsOn(CleanPlugins);
 
+        public virtual Target Cleanup => _ => _
+            .Description("Alias for clean")
+            .DependsOn(Clean);
+
         public virtual Target Switch => _ => _
             .Description("Switch to an explicit Engine version")
             .DependsOn(Clean)
