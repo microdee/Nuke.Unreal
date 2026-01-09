@@ -1,7 +1,7 @@
 # Getting started {#GettingStarted}
 
 > [!WARNING]
-> `dotnet` is required to be installed first.
+> .NET SDK 10 is required to be installed first.
 
 ## Install via remote script
 
