@@ -2,6 +2,7 @@
 // {{ copyright }}
 
 using System;
+using Microsoft.Extensions.Logging;
 using UnrealBuildTool;
 
 public partial class {{ cap_name }}{{ suffix.us }} : ModuleRules
@@ -36,10 +37,11 @@ public partial class {{ cap_name }}{{ suffix.us }} : ModuleRules
 		{{ end }}
 		if (!PlatformSetup || !IncludesSetup)
 		{
-			throw new Exception(
+			Logger.LogWarning(
 				$"{{ spec.name }} was not set up for {target.Platform}."
 				+ $"\n Did you install the library for {target.Platform}? Run:"
 				+ $"\n > nuke Prepare{{ cap_name }} --platform {target.Platform}"
+				+  "\n This library may not compile without that."
 			);
 		}
 	}
