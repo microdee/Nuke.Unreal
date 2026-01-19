@@ -24,4 +24,6 @@ public interface IPlatformSdk
     AbsolutePath GetToolchainPath(INukeBuild self) => GetSdkPath(self);
 
     bool Exists(INukeBuild self) => IsValid(self) && GetSdkPath(self).DirectoryExists();
+
+    string GetXmakeArguments(INukeBuild self);
 }

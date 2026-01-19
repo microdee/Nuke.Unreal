@@ -13,6 +13,7 @@ using Nuke.Common;
 using Nuke.Common.IO;
 using Nuke.Common.Utilities;
 using Nuke.Common.Utilities.Collections;
+using Nuke.Unreal.Platforms;
 using Nuke.Unreal.Tools;
 using Serilog;
 
@@ -92,7 +93,8 @@ public enum PluginBuildMethod
 ///     module rules, then set this to PluginBuildMethod.UBT.
 /// </param>
 /// <param name="Platforms">
-///     Extra platforms to build this plugin for. UnrealBuild.Platform is always added to this list.
+///     Extra platforms to build this plugin for. UnrealBuild.Platform and explicit SupportedTargetPlatforms
+///     is always added to this list.
 /// </param>
 public record class PluginBuildOptions(
     RelativePath? OutputSubfolder = null,
@@ -106,11 +108,11 @@ public record class PluginBuildOptions(
 /// Arguments for BuildPlugin
 /// </summary>
 public record class PluginBuildArguments(
-        Func<UatConfig, UatConfig>? UatConfig = null,
-        Func<UbtConfig, UbtConfig>? UbtConfig = null,
-        PluginBuildOptions? BuildOptions = null,
-        PluginDistributionOptions? DistOptions = null,
-        Func<UnrealPlugin, PluginBuildArguments, PluginBuildArguments?>? DependencyHandler = null
+    Func<UatConfig, UatConfig>? UatConfig = null,
+    Func<UbtConfig, UbtConfig>? UbtConfig = null,
+    PluginBuildOptions? BuildOptions = null,
+    PluginDistributionOptions? DistOptions = null,
+    Func<UnrealPlugin, PluginBuildArguments, PluginBuildArguments?>? DependencyHandler = null
 );
 
 /// <summary>
@@ -124,8 +126,8 @@ public class UnrealPlugin
 
     /// <summary>
     ///     <para>
-    ///         Get a `PluginInfo` instance from the path to its `.uplugin` file, or a file/folder
-    ///         belonging to that plugin (in its subtree of files and folders). If a PluginInfo
+    ///         Get a `UnrealPlugin` instance from the path to its `.uplugin` file, or a file/folder
+    ///         belonging to that plugin (in its subtree of files and folders). If a UnrealPlugin
     ///         doesn't exist yet, one will be created given that the associated plugin exists.
     ///     </para>
     ///     <para>
@@ -133,7 +135,7 @@ public class UnrealPlugin
     ///     </para>
     ///     <code>
     ///         // In a local `MyPlugin.nuke.cs`
-    ///         PluginInfo.Get(this.ScriptFolder()); // Gets or creates a `PluginInfo` about `MyPlugin.uplugin`
+    ///         UnrealPlugin.Get(this.ScriptFolder()); // Gets or creates an `UnrealPlugin` about `MyPlugin.uplugin`
     ///     </code>
     /// </summary>
     /// <remarks>
@@ -518,7 +520,21 @@ public class UnrealPlugin
         outFolder.CreateOrCleanDirectory();
         hostProjectDir.ExistingDirectory()?.DeleteDirectory();
         
-        var platforms = (buildOptions.Platforms ?? []).Union([build.Platform]);
+        var platforms = (buildOptions.Platforms ?? [])
+            .Union([Unreal.GetHostPlatform()])
+            .Union(Descriptor.SupportedTargetPlatforms ?? [])
+            .ToList()
+        ;
+
+        foreach (var platform in platforms)
+        {
+            var sdk = platform.GetSdk();
+            if (sdk != null)
+            {
+                Assert.True(sdk.IsValid(build), $"Attempting to use a platform which is not set up for cross compiling ({Unreal.GetHostPlatform()} -> {platform})");
+                sdk.Setup(build).Wait();
+            }
+        }
         
         var dependencies = GetProjectPluginDependencies(build).ToList();
         var thisArgs = new PluginBuildArguments(
@@ -582,7 +598,7 @@ public class UnrealPlugin
                 }
             }
 
-        break;
+            break;
 
         case PluginBuildMethod.UBT:
 
@@ -673,7 +689,7 @@ public class UnrealPlugin
                     (enginePluginsDir / dep.Name).ExistingDirectory()?.DeleteDirectory();
                 }
             }
-        break;
+            break;
 
         }
 

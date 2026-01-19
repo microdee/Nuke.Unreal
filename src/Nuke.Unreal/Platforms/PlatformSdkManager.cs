@@ -8,7 +8,7 @@ using PlatformSdkCollection = Dictionary<(UnrealPlatform Host, UnrealPlatform Ta
 
 public static class PlatformSdkManager
 {
-    public static AbsolutePath PlatformSdkRoot = AbsolutePath.Create(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData))
+    public static readonly AbsolutePath PlatformSdkRoot = AbsolutePath.Create(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData))
         / "Nuke.Unreal" / "PlatformSdks"
     ;
 
@@ -21,4 +21,7 @@ public static class PlatformSdkManager
     public static IPlatformSdk? GetSdk(this UnrealPlatform platform) =>
         Sdks.TryGetValue((Unreal.GetHostPlatform(), platform), out var sdk) ? sdk : null
     ;
+
+    public static void RegisterSdk(this UnrealPlatform platform, IPlatformSdk sdk)
+        => Sdks[(Unreal.GetHostPlatform(), platform)] = sdk;
 }

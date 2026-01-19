@@ -58,4 +58,7 @@ public class WindowsHostsLinux : IPlatformSdk
 
     public AbsolutePath GetToolchainPath(INukeBuild self)
         => GetSdkPath(self) / "x86_64-unknown-linux-gnu";
+
+    public string GetXmakeArguments(INukeBuild self)
+        => $"--sdk=\"{GetToolchainPath(self)}\" --cross=x86_64-unknown-linux-gnu-";
 }

@@ -96,43 +96,48 @@ public class WindowsHostsAndroid : IPlatformSdk
         }
         Environment.SetEnvironmentVariable("JAVA_HOME", jdkPath, EnvironmentVariableTarget.Process);
 
-        var sdkManagerPath = GetSdkManagerPath(self);
-        Log.Information("Using SDK Manager at {}", sdkVersions.Jdk, sdkManagerPath);
-        if (!sdkManagerPath.FileExists())
+        if (!SelfPlatformSdk.Exists(self))
         {
-            var cmdlineToolsDownloadPath = NukeBuild.TemporaryDirectory / "AndroidCommandLineTools.zip";
-            var url = "https://dl.google.com/android/repository/commandlinetools-win-13114758_latest.zip";
-            Log.Debug("    Downloading JDK from {} to {}", url, cmdlineToolsDownloadPath);
-            await HttpTasks.HttpDownloadFileAsync(url, cmdlineToolsDownloadPath);
+            var sdkManagerPath = GetSdkManagerPath(self);
+            Log.Information("Using SDK Manager at {}", sdkVersions.Jdk, sdkManagerPath);
+            if (!sdkManagerPath.FileExists())
+            {
+                var cmdlineToolsDownloadPath = NukeBuild.TemporaryDirectory / "AndroidCommandLineTools.zip";
+                var url = "https://dl.google.com/android/repository/commandlinetools-win-13114758_latest.zip";
+                Log.Debug("    Downloading JDK from {} to {}", url, cmdlineToolsDownloadPath);
+                await HttpTasks.HttpDownloadFileAsync(url, cmdlineToolsDownloadPath);
 
-            var extractTemp = NukeBuild.TemporaryDirectory / "AndroidCommandLineTools";
-            Log.Debug("    Extracting to {}", extractTemp);
-            cmdlineToolsDownloadPath.UnZipTo(extractTemp);
+                var extractTemp = NukeBuild.TemporaryDirectory / "AndroidCommandLineTools";
+                Log.Debug("    Extracting to {}", extractTemp);
+                cmdlineToolsDownloadPath.UnZipTo(extractTemp);
 
-            Log.Debug("    Moving");
-            (extractTemp / "cmdline-tools").Move(GetCommandlineToolsPath(self));
-            Assert.FileExists(sdkManagerPath);
+                Log.Debug("    Moving");
+                (extractTemp / "cmdline-tools").Move(GetCommandlineToolsPath(self));
+                Assert.FileExists(sdkManagerPath);
+            }
+
+            var sdkManager = ToolExResolver.GetTool(sdkManagerPath);
+
+            Log.Information(
+                "Installing Android SDK {}, Build Tools {}, NDK {}",
+                sdkVersions.Sdk,
+                sdkVersions.BuildTools.ToString(3),
+                sdkVersions.Ndk.ToString(3)
+            );
+            Log.Debug("    Accepting licenses");
+            sdkManager.WithInput("yes").CloseInput()("--licenses");
+
+            sdkManager(
+                $"""
+                "platforms;android-{sdkVersions.Sdk}"
+                "build-tools;{sdkVersions.BuildTools.ToString(3)}"
+                "ndk;{sdkVersions.Ndk.ToString(3)}"
+                """.AsSingleLine()
+            );
         }
 
-        var sdkManager = ToolExResolver.GetTool(sdkManagerPath);
-
-        Log.Information(
-            "Installing Android SDK {} and {}, Build Tools {}, NDK {}",
-            sdkVersions.Sdk,
-            sdkVersions.Target,
-            sdkVersions.BuildTools.ToString(3),
-            sdkVersions.Ndk.ToString(3)
-        );
-        Log.Debug("    Accepting licenses");
-        sdkManager.WithInput("yes")("--licenses");
-
-        sdkManager(
-            $"""
-            "platforms;android-{sdkVersions.Sdk}"
-            "build-tools;{sdkVersions.BuildTools.ToString(3)}"
-            "ndk;{sdkVersions.Ndk.ToString(3)}"
-            """.AsSingleLine()
-        );
+        Log.Information("Using Android SDK {} at {}", sdkVersions.Sdk, GetSdkPath(self));
+        Log.Information("Using Android NDK toolchain {} at {}", sdkVersions.Ndk.ToString(3), GetToolchainPath(self));
     }
 
     public bool IsValid(INukeBuild self) => GetSdkVersions(self) != null;
@@ -145,11 +150,17 @@ public class WindowsHostsAndroid : IPlatformSdk
         return AndroidHome / $"platforms/android-{sdkVersions.Sdk}";
     }
 
-    public AbsolutePath GetToolchainPath(INukeBuild self)
+    public AbsolutePath GetNdkPath(INukeBuild self)
     {
         var sdkVersions = GetSdkVersions(self)
-            .NotNull($"Couldn't determine Android SDK/JDK/NDK versions for Unreal {Unreal.Version((UnrealBuild)self)} ")
-        !;
-        return AndroidHome / "ndk" / sdkVersions.Ndk.ToString(3) / "toolchains/llvm/prebuilt/windows-x86_64";
+                .NotNull($"Couldn't determine Android SDK/JDK/NDK versions for Unreal {Unreal.Version((UnrealBuild)self)} ")
+            !;
+        return AndroidHome / "ndk" / sdkVersions.Ndk.ToString(3);
     }
+
+    public AbsolutePath GetToolchainPath(INukeBuild self)
+        => GetNdkPath(self) / "toolchains/llvm/prebuilt/windows-x86_64";
+
+    public string GetXmakeArguments(INukeBuild self)
+        => $"--ndk=\"{GetNdkPath(self)}\"";
 }

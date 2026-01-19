@@ -5,10 +5,13 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Nuke.Cola;
 using Nuke.Cola.Tooling;
+using Nuke.Common;
 using Nuke.Common.IO;
 using Nuke.Common.Utilities;
 using Nuke.Common.Utilities.Collections;
+using Nuke.Unreal.Platforms;
 using Serilog;
+using UPlugin = Nuke.Unreal.Plugins.UnrealPlugin;
 
 namespace Nuke.Unreal.BoilerplateGenerators.XRepo;
 
@@ -53,20 +56,30 @@ public static partial class XRepoLibrary
         );
     }
 
-    internal static IEnumerable<XRepoLibraryRecord> InstallXRepoLibrary(UnrealBuild self, LibrarySpec spec, string options, AbsolutePath targetPath, bool debug, string runtime = "MD")
+    internal static IEnumerable<XRepoLibraryRecord> InstallXRepoLibrary(INukeBuild build, UnrealPlatform platform, LibrarySpec spec, string options, AbsolutePath targetPath, bool debug, string runtime = "MD")
     {
         var libraryFiles = targetPath / "LibraryFiles";
         options = options.AppendNonEmpty(",") + $"runtimes='{runtime}'";
-        var xrepoPlatArch = self.Platform.GetXRepoPlatformArch();
+        var xrepoPlatArch = platform.GetXRepoPlatformArch();
+
+        var sdk = platform.GetSdk();
+        if (sdk != null)
+        {
+            Assert.True(sdk.IsValid(build), $"Attempting to use a platform which is not set up for cross compiling ({Unreal.GetHostPlatform()} -> {platform})");
+            sdk.Setup(build).Wait();
+        }
 
         var extraArgs =
             $"""
             -p {xrepoPlatArch.Platform}
-            -a {xrepoPlatArch.Arch}
+            -a {xrepoPlatArch.Arch.ToCorrectString()}
             -m {(debug ? "debug" : "release")}
-            """.AsSingleLine();
-
-        // TODO: pass NDK location in
+            """.AsSingleLine()
+        ;
+        if (sdk != null)
+        {
+            extraArgs += " " + sdk.GetXmakeArguments(build);
+        }
 
         XRepoTasks.Install(spec.Spec, options, extraArgs)("");
         
@@ -83,7 +96,7 @@ public static partial class XRepoLibrary
                         currPath.Copy(dstPath, ExistsPolicy.MergeAndOverwrite);
                     else
                     {
-                        Log.Warning("A library is referring to a non-existing file or folder: {0}", currPath);
+                        Log.Warning("A library is referring to a non-existing file or folder: {}", currPath);
                         return "";
                     }
                     return dstPath.Name;
@@ -98,14 +111,14 @@ public static partial class XRepoLibrary
             .Where(i => !i["fetchinfo"]!["kind"]?.Value?.EqualsOrdinalIgnoreCase("binary") ?? true)      // ignore required executables
             .Select(i =>
             {
-                Log.Information("Parsing library (dependency) {0}", i.Key);
+                Log.Information("Parsing library (dependency) {}", i.Key);
                 var currSpec = ParseSpec(i.Key!) with {
                     Version = i["version"]!.Value!
                 };
-                Log.Information("    Name: {0}", currSpec.Name);
-                Log.Information("    Version: {0}", currSpec.Version);
-                Log.Information("    Provider: {0}", currSpec.Provider ?? "xrepo");
-                Log.Information("    Features: {0}", currSpec.Features);
+                Log.Information("    Name: {}", currSpec.Name);
+                Log.Information("    Version: {}", currSpec.Version);
+                Log.Information("    Provider: {}", currSpec.Provider ?? "xrepo");
+                Log.Information("    Features: {}", currSpec.Features);
 
                 return new XRepoLibraryRecord(
                     Spec: currSpec,
@@ -127,11 +140,11 @@ public static partial class XRepoLibrary
                     ),
                     LibFiles: ProcessPaths(
                         i["fetchinfo"]!["libfiles"]?.Value,
-                        libraryFiles / currSpec.Name / "Libs" / self.Platform / (debug ? "Debug" : "Release")
+                        libraryFiles / currSpec.Name / "Libs" / platform / (debug ? "Debug" : "Release")
                     ),
                     SysLibs: i["fetchinfo"]!["syslinks"]?.Value
                         ?.Split(" ")
-                        ?.Select(l => self.Platform.IsWindows && !l.EndsWith(".lib") ? l + ".lib" : l)
+                        ?.Select(l => platform.IsWindows && !l.EndsWith(".lib") ? l + ".lib" : l)
                         ?? [],
                     Defines: i["fetchinfo"]!["defines"]?.Value?.Split(" ") ?? []
                 );
@@ -140,39 +153,63 @@ public static partial class XRepoLibrary
     }
 
     /// <summary>
-    /// Prepare a third-party library from an XRepo library spec for Unreal engine's consumption
+    ///     Prepare a third-party library from an XRepo library spec for Unreal engine's consumption. Each platforms
+    ///     will be considered which is listed under SupportedTargetPlatforms of the owning UPlugin. If it's empty
+    ///     only consider the host platform.
     /// </summary>
-    /// <param name="self">The build context</param>
-    /// <param name="specIn">The library spec specified here (without the options) https://mcro.de/Nuke.Unreal/d2/d84/CppLibraries.html</param>
+    /// <param name="build">The build context</param>
+    /// <param name="specIn">
+    ///     The library spec specified here (without the options) https://mcro.de/Nuke.Unreal/d2/d84/CppLibraries.html
+    /// </param>
     /// <param name="options">Comma separated '=' delimited key-value pairs. Space is not allowed around commas</param>
     /// <param name="targetPath">Where library files should be organized</param>
+    /// <param name="supportedPlatforms">
+    ///     Optionally limit the platforms considered for this library, if it shouldn't be compiled with all what's
+    ///     listed in its UPlugin.
+    /// </param>
     /// <param name="suffix">Optional addition to the name of library name exposed to Unreal</param>
     /// <param name="releaseRuntime">Windows CRT linkage for release versions (default is MD)</param>
     /// <param name="debugRuntime">Windows CRT linkage for debug versions (default is MD)</param>
-    public static void InstallXRepoLibrary(this UnrealBuild self, string specIn, string options, AbsolutePath targetPath, string? suffix = null, string releaseRuntime = "MD", string debugRuntime = "MD")
+    public static void InstallXRepoLibrary(this INukeBuild build, string specIn, string options, AbsolutePath targetPath, List<UnrealPlatform>? supportedPlatforms = null, string? suffix = null, string releaseRuntime = "MD", string debugRuntime = "MD")
     {
-        Log.Information("Installing library {0} via xrepo", specIn);
+        Log.Information("Installing library {} via xrepo", specIn);
         var spec = ParseSpec(specIn) with { Options = options };
-        Log.Information("    Name: {0}", spec.Name);
-        Log.Information("    Version: {0}", spec.Version);
-        Log.Information("    Provider: {0}", spec.Provider ?? "xrepo");
-        Log.Information("    Options: {0}", spec.Options);
-        Log.Information("    Features: {0}", spec.Features);
+        Log.Information("    Name: {}", spec.Name);
+        Log.Information("    Version: {}", spec.Version);
+        Log.Information("    Provider: {}", spec.Provider ?? "xrepo");
+        Log.Information("    Options: {}", spec.Options);
+        Log.Information("    Features: {}", spec.Features);
 
-        Log.Information("Installing debug build");
-        var debugLibs = InstallXRepoLibrary(self, spec, options, targetPath, true, debugRuntime);
-        
-        Log.Information("Installing release build (metadata will be used from release build)");
-        var releaseLibs = InstallXRepoLibrary(self, spec, options, targetPath, false, releaseRuntime);
-        
-        Log.Information("Generating partial module rule class for {0}", self.Platform);
-        new XRepoLibraryModuleGenerator().Generate(
-            self.TemplatesPath,
-            targetPath,
-            spec,
-            self.Platform,
-            releaseLibs,
-            suffix
-        );
+        var platforms = UPlugin.Get(targetPath).Descriptor.SupportedTargetPlatforms;
+        if (platforms == null || platforms.IsEmpty())
+        {
+            platforms = [Unreal.GetHostPlatform()];
+        }
+
+        foreach (var platform in platforms)
+        {
+            if (!supportedPlatforms.IsNullOrEmpty() && supportedPlatforms!.All(p => p != platform))
+            {
+                Log.Information("{} platform has been skipped", platform);
+                continue;
+            }
+
+            Log.Information("Installing debug build for {}", platform);
+            var debugLibs = InstallXRepoLibrary(build, platform, spec, options, targetPath, true, debugRuntime);
+
+            Log.Information("Installing release build for {}", platform);
+            Log.Information("    (metadata will be used from release build)");
+            var releaseLibs = InstallXRepoLibrary(build, platform, spec, options, targetPath, false, releaseRuntime);
+
+            Log.Information("Generating partial module rule class for {}", platform);
+            new XRepoLibraryModuleGenerator().Generate(
+                ((UnrealBuild) build).TemplatesPath,
+                targetPath,
+                spec,
+                platform,
+                releaseLibs,
+                suffix
+            );
+        }
     }
 }
