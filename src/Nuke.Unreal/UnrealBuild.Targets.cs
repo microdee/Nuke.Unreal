@@ -130,14 +130,14 @@ namespace Nuke.Unreal
                 Unreal.BuildTool(this, _ => _
                     .Target(
                         ProjectName + UnrealTargetType.Editor,
-                        UnrealPlatform.FromFlag(Unreal.GetDefaultPlatform()),
+                        UnrealPlatform.FromFlag(Unreal.GetHostPlatformFlag()),
                         EditorConfig
                     )
                     .Project(ProjectPath, true)
                     .If(Unreal.IsSource(this), _ => _
                         .Target(
                             "ShaderCompileWorker",
-                            UnrealPlatform.FromFlag(Unreal.GetDefaultPlatform()),
+                            UnrealPlatform.FromFlag(Unreal.GetHostPlatformFlag()),
                             [UnrealConfig.Development]
                         )
                         .Quiet()

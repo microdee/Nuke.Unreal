@@ -81,7 +81,7 @@ namespace Nuke.Unreal
         public virtual AbsolutePath GetOutput() => Output ??= ProjectFolder / "Intermediate" / "Output";
 
         [Parameter("Set platform for running targets")]
-        public virtual UnrealPlatform Platform { get; set; } = UnrealPlatform.FromFlag(Unreal.GetDefaultPlatform());
+        public virtual UnrealPlatform Platform { get; set; } = UnrealPlatform.FromFlag(Unreal.GetHostPlatformFlag());
 
         [Parameter("The target configuration for building or packaging the project")]
         public virtual UnrealConfig[] Config { get; set; } = [UnrealConfig.Development];

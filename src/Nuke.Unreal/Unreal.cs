@@ -192,9 +192,9 @@ namespace Nuke.Unreal
             => Version(build).EnginePath;
 
         /// <summary>
-        /// Get the current development platform Nuke.Unreal is ran on.
+        /// Get the current development platform flag Nuke.Unreal is ran on.
         /// </summary>
-        public static UnrealPlatformFlag GetDefaultPlatform()
+        public static UnrealPlatformFlag GetHostPlatformFlag()
         {
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
                 return UnrealPlatformFlag.Win64;
@@ -207,6 +207,11 @@ namespace Nuke.Unreal
 
             throw new Exception("Attempting to build on an unsupported platform");
         }
+
+        /// <summary>
+        /// Get the current development platform Nuke.Unreal is ran on.
+        /// </summary>
+        public static UnrealPlatform GetHostPlatform() => UnrealPlatform.FromFlag(GetHostPlatformFlag());
 
         /// <summary>
         /// On Mac many Unreal tools need the Mono bootstrap.
@@ -344,7 +349,7 @@ namespace Nuke.Unreal
         /// <returns>A Tool delegate for selected Unreal tool</returns>
         public static Tool GetTool(UnrealBuild build, string name)
         {
-            var binaries = GetEnginePath(build) / "Engine" / "Binaries" / GetDefaultPlatform().ToString();
+            var binaries = GetEnginePath(build) / "Engine" / "Binaries" / GetHostPlatformFlag().ToString();
             var ext = RuntimeInformation.IsOSPlatform(OSPlatform.Windows) ? ".exe" : "";
             var path = binaries / (name + ext);
 

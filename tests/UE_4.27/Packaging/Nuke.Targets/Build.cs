@@ -12,7 +12,7 @@ class TestBuild : UnrealBuildTest, IPackageTargets
 
     public static int Main () => Execute<TestBuild>(x => x.Test);
 
-    AbsolutePath PlatformBinariesFolder => ProjectFolder / "Binaries" / Unreal.GetDefaultPlatform().ToString();
+    AbsolutePath PlatformBinariesFolder => ProjectFolder / "Binaries" / Unreal.GetHostPlatformFlag().ToString();
 
     public Target Test => _ => _
         .Triggers(Generate);

@@ -79,5 +79,10 @@ namespace Nuke.Unreal
         {
             return (compatibility & Compatibility) > 0;
         }
+
+        public override string ToString()
+        {
+            return VersionName;
+        }
     }
 }
