@@ -8,11 +8,9 @@ using Nuke.Common.IO;
 using Nuke.Common.Tooling;
 using Serilog;
 
-namespace Nuke.Unreal.Platforms;
+namespace Nuke.Unreal.Platforms.Android;
 
-public record class AndroidSdkVersion(int Jdk, int Sdk, int Target, Version Ndk, Version BuildTools);
-
-public class WindowsHostsAndroid : IPlatformSdk
+public class WindowsHostsAndroid : AndroidSdk
 {
     public static string? GetJdkDownloadUrl(int jdk) => jdk switch
     {
@@ -27,27 +25,6 @@ public class WindowsHostsAndroid : IPlatformSdk
         17 => "https://download.java.net/java/GA/jdk17.0.2/dfd4a8d0985749f896bed50d7138ee7f/8/GPL/openjdk-17.0.2_windows-x64_bin.zip",
         _ => null
     };
-
-    private static AndroidSdkVersion? GetSdkVersions(string unrealVersion) => unrealVersion switch
-    {
-        "5.0" => new(17, 30, 30, new(21, 4, 7075529), new(30, 0, 3)),
-        "5.1" => new(17, 32, 32, new(25, 1, 8937393), new(32, 0, 0)),
-        "5.2" => new(17, 32, 32, new(25, 1, 8937393), new(32, 0, 0)),
-        "5.3" => new(17, 33, 33, new(25, 1, 8937393), new(33, 0, 3)),
-        "5.4" => new(17, 34, 34, new(25, 1, 8937393), new(34, 0, 0)),
-        "5.5" => new(17, 34, 34, new(25, 1, 8937393), new(34, 0, 0)),
-        "5.6" => new(21, 35, 34, new(27, 2, 12479018), new(35, 0, 1)),
-        "5.7" => new(21, 35, 34, new(27, 2, 12479018), new(35, 0, 1)),
-        _ => null
-    };
-
-    public static AndroidSdkVersion? GetSdkVersions(INukeBuild self)
-        => GetSdkVersions(Unreal.Version((UnrealBuild)self).VersionMinor);
-
-    public static AbsolutePath SharedUserEngineIniPath =>
-        EnvironmentInfo.SpecialFolder(SpecialFolders.LocalApplicationData).NotNull()
-        / "Unreal Engine/Engine/Config/UserEngine.ini"
-    ;
 
     public static AbsolutePath AndroidHome
     {
@@ -68,14 +45,12 @@ public class WindowsHostsAndroid : IPlatformSdk
 
     public AbsolutePath GetSdkManagerPath(INukeBuild self) => GetCommandlineToolsPath(self) / "bin/sdkmanager.bat";
 
-    public UnrealPlatform Host => UnrealPlatform.Win64;
-    public UnrealPlatform Target => UnrealPlatform.Android;
+    public override UnrealPlatform Host => UnrealPlatform.Win64;
+    public override UnrealPlatform Target => UnrealPlatform.Android;
 
-    public async Task Setup(INukeBuild self)
+    public override async Task Setup(INukeBuild self)
     {
-        var sdkVersions = GetSdkVersions(self)
-            .NotNull($"Couldn't determine Android SDK/JDK/NDK versions for Unreal {Unreal.Version((UnrealBuild)self)} ")
-        !;
+        var sdkVersions = GetSdkVersionsChecked(self);
         var jdkPath = GetJdkVersionsPath(self) / sdkVersions.Jdk.ToString();
 
         Log.Information("Using JDK {} at {}", sdkVersions.Jdk, jdkPath);
@@ -136,31 +111,32 @@ public class WindowsHostsAndroid : IPlatformSdk
             );
         }
 
+        Environment.SetEnvironmentVariable("NDK_ROOT", GetNdkPath(self), EnvironmentVariableTarget.Process);
+        Environment.SetEnvironmentVariable("NDKROOT", GetNdkPath(self), EnvironmentVariableTarget.Process);
+
         Log.Information("Using Android SDK {} at {}", sdkVersions.Sdk, GetSdkPath(self));
         Log.Information("Using Android NDK toolchain {} at {}", sdkVersions.Ndk.ToString(3), GetToolchainPath(self));
     }
 
-    public bool IsValid(INukeBuild self) => GetSdkVersions(self) != null;
+    public override bool IsValid(INukeBuild self) => GetSdkVersions(self) != null;
 
-    public AbsolutePath GetSdkPath(INukeBuild self)
-    {
-        var sdkVersions = GetSdkVersions(self)
-            .NotNull($"Couldn't determine Android SDK/JDK/NDK versions for Unreal {Unreal.Version((UnrealBuild)self)} ")
-        !;
-        return AndroidHome / $"platforms/android-{sdkVersions.Sdk}";
-    }
+    public override AbsolutePath GetSdkPath(INukeBuild self)
+        => AndroidHome / $"platforms/android-{GetSdkVersionsChecked(self).Sdk}";
 
-    public AbsolutePath GetNdkPath(INukeBuild self)
-    {
-        var sdkVersions = GetSdkVersions(self)
-                .NotNull($"Couldn't determine Android SDK/JDK/NDK versions for Unreal {Unreal.Version((UnrealBuild)self)} ")
-            !;
-        return AndroidHome / "ndk" / sdkVersions.Ndk.ToString(3);
-    }
+    public override AbsolutePath GetAndroidHome(INukeBuild self) => AndroidHome;
+
+    public override AbsolutePath GetNdkPath(INukeBuild self)
+        => AndroidHome / "ndk" / GetSdkVersionsChecked(self).Ndk.ToString(3);
+
+    public override AbsolutePath GetBuildToolsPath(INukeBuild self)
+        => AndroidHome / "build-tools" / GetSdkVersionsChecked(self).BuildTools.ToString(3);
+
+    public override Tool GetApkSigner(INukeBuild self)
+        => ToolResolver.GetTool(GetBuildToolsPath(self) / "apksigner.bat");
 
     public AbsolutePath GetToolchainPath(INukeBuild self)
         => GetNdkPath(self) / "toolchains/llvm/prebuilt/windows-x86_64";
 
-    public string GetXmakeArguments(INukeBuild self)
+    public override string GetXmakeArguments(INukeBuild self)
         => $"--ndk=\"{GetNdkPath(self)}\"";
 }
