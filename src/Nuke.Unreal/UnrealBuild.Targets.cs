@@ -131,10 +131,10 @@ namespace Nuke.Unreal
                     }
                     else
                     {
-                        Log.Warning("An SDK for {} cannot be prepared for current build", Platform);
+                        Log.Error("An SDK for {} cannot be prepared for current build", Platform);
                     }
                 }
-            };
+            });
 
         public virtual Target BuildEditor => _ => _
             .Description(
@@ -218,9 +218,6 @@ namespace Nuke.Unreal
             {
                 var isAndroidPlatform = Platform == UnrealPlatform.Android;
 
-                var androidTextureMode = SelfAs<IAndroidTargets>()?.TextureMode
-                    ?? [AndroidCookFlavor.Multi];
-
                 Config.ForEach(config =>
                 {
                     Unreal.AutomationTool(this, _ => _
@@ -240,7 +237,7 @@ namespace Nuke.Unreal
                             .NoCompileEditor()
                         )
                         .If(isAndroidPlatform, _ => _
-                            .Cookflavor(androidTextureMode)
+                            .Cookflavor(AndroidTextureMode)
                         )
                         .Apply(UatGlobal)
                         .Apply(UatCook)

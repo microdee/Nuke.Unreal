@@ -45,6 +45,8 @@ public abstract class AndroidSdk : IPlatformSdk
     public abstract AbsolutePath GetAndroidHome(INukeBuild self);
     public abstract AbsolutePath GetNdkPath(INukeBuild self);
     public abstract AbsolutePath GetBuildToolsPath(INukeBuild self);
+    public abstract AbsolutePath GetPlatformToolsPath(INukeBuild self);
 
     public abstract Tool GetApkSigner(INukeBuild self);
+    public abstract Tool GetAdb(INukeBuild self);
 }

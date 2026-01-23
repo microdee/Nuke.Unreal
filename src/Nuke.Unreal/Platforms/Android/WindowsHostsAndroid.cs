@@ -107,6 +107,7 @@ public class WindowsHostsAndroid : AndroidSdk
                 "platforms;android-{sdkVersions.Sdk}"
                 "build-tools;{sdkVersions.BuildTools.ToString(3)}"
                 "ndk;{sdkVersions.Ndk.ToString(3)}"
+                "platform-tools"
                 """.AsSingleLine()
             );
         }
@@ -139,4 +140,8 @@ public class WindowsHostsAndroid : AndroidSdk
 
     public override string GetXmakeArguments(INukeBuild self)
         => $"--ndk=\"{GetNdkPath(self)}\"";
+
+    public override AbsolutePath GetPlatformToolsPath(INukeBuild self) => AndroidHome / "platform-tools";
+
+    public override Tool GetAdb(INukeBuild self) => ToolResolver.GetTool(GetPlatformToolsPath(self) / "adb.exe");
 }

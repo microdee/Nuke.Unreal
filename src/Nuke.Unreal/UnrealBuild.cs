@@ -8,6 +8,7 @@ using Nuke.Common.IO;
 using Nuke.Common.Utilities;
 using Nuke.Common.Utilities.Collections;
 using Nuke.Unreal.Ini;
+using Nuke.Unreal.Platforms.Android;
 using Nuke.Unreal.Tools;
 using Serilog;
 
@@ -91,6 +92,9 @@ namespace Nuke.Unreal
 
         [Parameter("The Unreal target type for building the project")]
         public virtual UnrealTargetType[] TargetType { get; set; } = [UnrealTargetType.Game];
+
+        [Parameter("Select texture compression mode for Android")]
+        public virtual AndroidCookFlavor[] AndroidTextureMode { get; set; } = [ AndroidCookFlavor.Multi ];
         
         /// <summary>
         /// UBT arguments to be applied globally for all UBT invocations. Override this function

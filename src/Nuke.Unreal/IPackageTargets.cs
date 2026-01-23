@@ -12,8 +12,7 @@ using Nuke.Common.Utilities.Collections;
 using Nuke.Unreal.Tools;
 using Nuke.Cola;
 using Nuke.Common.Utilities;
-
-using static Nuke.Common.IO.PathConstruction;
+using Nuke.Unreal.Platforms.Android;
 
 namespace Nuke.Unreal
 {
@@ -53,10 +52,7 @@ namespace Nuke.Unreal
             .Executes(() =>
             {
                 var self = Self<UnrealBuild>();
-                var androidTextureMode = SelfAs<IAndroidTargets>()?.TextureMode
-                    ?? [ AndroidCookFlavor.Multi ];
 
-                var isAndroidPlatform = self.Platform == UnrealPlatform.Android;
                 var appLocalDir = self.UnrealEnginePath / "Engine" / "Binaries" / "ThirdParty" / "AppLocalDependencies";
                 self.Config.ForEach(config =>
                 {
@@ -85,8 +81,8 @@ namespace Nuke.Unreal
                         .If(!InvokedTargets.Contains(self.BuildEditor), _ => _
                             .NoCompileEditor()
                         )
-                        .If(isAndroidPlatform, _ => _
-                            .Cookflavor(androidTextureMode)
+                        .If(this.IsAndroidPlatform(), _ => _
+                            .Cookflavor(self.AndroidTextureMode)
                         )
                         .Apply(self.UatGlobal)
                         .Apply(self.UatCook)
