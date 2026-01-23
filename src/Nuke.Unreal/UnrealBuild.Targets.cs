@@ -13,6 +13,8 @@ using Nuke.Common.ProjectModel;
 using Serilog;
 using System.Runtime.InteropServices;
 using Nuke.Cola.Tooling;
+using Nuke.Unreal.Platforms;
+using Nuke.Unreal.Platforms.Android;
 
 // Maximum line length of long parameter description:
 // ------------------------------------------------------------
@@ -115,6 +117,25 @@ namespace Nuke.Unreal
                 )("");
             });
 
+        public virtual Target SetupPlatformSdk => _ => _
+            .Unlisted()
+            .Executes(() =>
+            {
+                var sdk = Platform.GetSdk();
+                if (sdk != null)
+                {
+                    if (sdk.IsValid(this))
+                    {
+                        Log.Information("Preparing SDK for {}", Platform);
+                        sdk.Setup(this);
+                    }
+                    else
+                    {
+                        Log.Warning("An SDK for {} cannot be prepared for current build", Platform);
+                    }
+                }
+            };
+
         public virtual Target BuildEditor => _ => _
             .Description(
                 """
@@ -150,6 +171,7 @@ namespace Nuke.Unreal
 
         public virtual Target Build => _ => _
             .Description("Build this project for execution")
+            .DependsOn(SetupPlatformSdk)
             .After(Cook) // Android needs Cook to happen before building the APK, so OBB files can be included in the APK
             .After(Prepare)
             .Executes(() =>
@@ -191,7 +213,7 @@ namespace Nuke.Unreal
 
         public virtual Target Cook => _ => _
             .Description("Cook Unreal assets for standalone game execution")
-            .DependsOn(BuildEditor)
+            .DependsOn(BuildEditor, SetupPlatformSdk)
             .Executes(() =>
             {
                 var isAndroidPlatform = Platform == UnrealPlatform.Android;
@@ -260,6 +282,7 @@ namespace Nuke.Unreal
 
         public virtual Target RunUat => _ => _
             .Description("Simply run UAT with arguments passed after `-->`")
+            .DependsOn(SetupPlatformSdk)
             .Executes(() =>
             {
                 Unreal.AutomationTool(this, _ => _
@@ -270,6 +293,7 @@ namespace Nuke.Unreal
 
         public virtual Target RunUbt => _ => _
             .Description("Simply run UBT with arguments passed after `-->`")
+            .DependsOn(SetupPlatformSdk)
             .Executes(() =>
             {
                 Unreal.BuildTool(this, _ => _
@@ -288,6 +312,7 @@ namespace Nuke.Unreal
 
                 """
             )
+            .DependsOn(SetupPlatformSdk)
             .Executes(() =>
             {
                 var ushellDir = UnrealEnginePath / "Engine" / "Extras" / "ushell";

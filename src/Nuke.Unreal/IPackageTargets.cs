@@ -40,7 +40,10 @@ namespace Nuke.Unreal
 
         Target Package => _ => _
             .Description("Same as running Package Project from Editor")
-            .DependsOn<UnrealBuild>(u => u.BuildEditor)
+            .DependsOn<UnrealBuild>(
+                u => u.BuildEditor,
+                u => u.SetupPlatformSdk
+            )
             .After<UnrealBuild>(
                 u => u.CleanDeployment,
                 u => u.Cook,
