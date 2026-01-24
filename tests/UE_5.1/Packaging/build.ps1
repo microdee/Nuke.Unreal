@@ -1,1 +1,0 @@
-../../Common/build.ps1
