@@ -1,1 +1,1 @@
-../../build.cmd
+../Common/build.cmd

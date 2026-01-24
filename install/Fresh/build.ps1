@@ -1,1 +1,1 @@
-../../build.ps1
+../../tests/Common/build.ps1

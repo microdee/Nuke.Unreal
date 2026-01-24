@@ -1,10 +1,11 @@
 using System.IO;
 using Nuke.Common;
 using Nuke.Unreal;
+using Nuke.Cola.BuildPlugins;
 
-class Build : UnrealBuildTest
+class TestBuild : UnrealBuildTest
 {
-    public static int Main() => Plugins.Execute<Build>(Execute);
+    public static int Main() => Plugins.Execute<TestBuild>(Execute);
 
     Target Test => _ => _
         .Triggers(AddCode, Generate);

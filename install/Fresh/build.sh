@@ -1,1 +1,1 @@
-../../build.sh
+../../tests/Common/build.sh

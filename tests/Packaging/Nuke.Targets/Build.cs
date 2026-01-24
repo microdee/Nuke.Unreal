@@ -1,10 +1,11 @@
 using Nuke.Common;
 using Nuke.Common.IO;
 using Nuke.Unreal;
+using Nuke.Cola.BuildPlugins;
 
 class TestBuild : UnrealBuildTest, IPackageTargets
 {
-    public static int Main() => Plugins.Execute<Build>(Execute);
+    public static int Main() => Plugins.Execute<TestBuild>(Execute);
 
     AbsolutePath PlatformBinariesFolder => ProjectFolder / "Binaries" / Unreal.GetHostPlatformFlag().ToString();
 
