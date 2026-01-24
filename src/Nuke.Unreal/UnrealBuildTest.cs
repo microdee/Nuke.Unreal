@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Nuke.Common;
 using Nuke.Common.Tools.Git;
 using Serilog;
 
@@ -12,6 +13,9 @@ namespace Nuke.Unreal;
 /// </summary>
 public class UnrealBuildTest : UnrealBuild
 {
+    [Parameter]
+    bool TestMode = false;
+
     protected override void OnBuildCreated()
     {
         base.OnBuildCreated();
@@ -28,6 +32,7 @@ public class UnrealBuildTest : UnrealBuild
 
     protected override void OnBuildFinished()
     {
+        if (!TestMode) return;
         try
         {
             PostBuildCheck();
