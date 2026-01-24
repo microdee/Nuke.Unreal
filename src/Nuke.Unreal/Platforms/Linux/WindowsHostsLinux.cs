@@ -1,12 +1,11 @@
-﻿
-using System;
+﻿using System;
 using System.Threading.Tasks;
 using Nuke.Common;
 using Nuke.Common.IO;
 using Nuke.Common.Tooling;
 using Serilog;
 
-namespace Nuke.Unreal.Platforms;
+namespace Nuke.Unreal.Platforms.Linux;
 
 public class WindowsHostsLinux : IPlatformSdk
 {

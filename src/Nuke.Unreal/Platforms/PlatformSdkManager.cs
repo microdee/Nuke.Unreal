@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Nuke.Common;
 using Nuke.Common.IO;
 using Nuke.Unreal.Platforms.Android;
+using Nuke.Unreal.Platforms.Linux;
 
 namespace Nuke.Unreal.Platforms;
 using PlatformSdkCollection = Dictionary<(UnrealPlatform Host, UnrealPlatform Target), IPlatformSdk>;
