@@ -39,8 +39,9 @@ public partial class {{ cap_name }}{{ suffix.us }} : ModuleRules
 		{
 			Logger.LogWarning(
 				$"{{ spec.name }} was not set up for {target.Platform}."
-				+ $"\n Did you install the library for {target.Platform}? Run:"
-				+ $"\n > nuke Prepare{{ cap_name }} --platform {target.Platform}"
+				+ $"\n Libraries are prepared for platforms listed in the SupportedTargetPlatforms"
+				+ $"\n field in the host .uplugin descriptor. Add {target.Platform} and run:"
+				+ $"\n > nuke Prepare{{ cap_name }}"
 				+  "\n This library may not compile without that."
 			);
 		}
