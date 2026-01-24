@@ -18,4 +18,8 @@
     <ProjectReference Include="..\..\..\src\Nuke.Unreal\Nuke.Unreal.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Include="../**/*.nuke.cs" />
+  </ItemGroup>
+
 </Project>

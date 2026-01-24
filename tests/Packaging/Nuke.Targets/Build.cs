@@ -3,7 +3,7 @@ using Nuke.Common.IO;
 using Nuke.Unreal;
 using Nuke.Cola.BuildPlugins;
 
-class TestBuild : UnrealBuildTest, IPackageTargets
+public class TestBuild : UnrealBuildTest, IPackageTargets
 {
     public static int Main() => Plugins.Execute<TestBuild>(Execute);
 
