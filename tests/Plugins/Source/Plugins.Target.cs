@@ -3,13 +3,13 @@
 using UnrealBuildTool;
 using System.Collections.Generic;
 
-public class PackagingTarget : TargetRules
+public class PluginsTarget : TargetRules
 {
-	public PackagingTarget(TargetInfo Target) : base(Target)
+	public PluginsTarget(TargetInfo Target) : base(Target)
 	{
 		Type = TargetType.Game;
 		DefaultBuildSettings = BuildSettingsVersion.Latest;
 
-		ExtraModuleNames.AddRange( new string[] { "Packaging" } );
+		ExtraModuleNames.AddRange( new string[] { "Plugins" } );
 	}
 }
