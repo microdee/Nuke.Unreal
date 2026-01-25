@@ -45,6 +45,9 @@
     <Content Include="./Templates/**/*" CopyToOutputDirectory="PreserveNewest">
       <PackageCopyToOutput>true</PackageCopyToOutput>
     </Content>
+    <Content Include="./7z/**/*" CopyToOutputDirectory="PreserveNewest">
+      <PackageCopyToOutput>true</PackageCopyToOutput>
+    </Content>
   </ItemGroup>
 
 </Project>
