@@ -96,7 +96,7 @@ public static partial class XRepoLibrary
                         currPath.Copy(dstPath, ExistsPolicy.MergeAndOverwrite);
                     else
                     {
-                        Log.Warning("A library is referring to a non-existing file or folder: {}", currPath);
+                        Log.Warning("A library is referring to a non-existing file or folder: {0}", currPath);
                         return "";
                     }
                     return dstPath.Name;
@@ -111,14 +111,14 @@ public static partial class XRepoLibrary
             .Where(i => !i["fetchinfo"]!["kind"]?.Value?.EqualsOrdinalIgnoreCase("binary") ?? true)      // ignore required executables
             .Select(i =>
             {
-                Log.Information("Parsing library (dependency) {}", i.Key);
+                Log.Information("Parsing library (dependency) {0}", i.Key);
                 var currSpec = ParseSpec(i.Key!) with {
                     Version = i["version"]!.Value!
                 };
-                Log.Information("    Name: {}", currSpec.Name);
-                Log.Information("    Version: {}", currSpec.Version);
-                Log.Information("    Provider: {}", currSpec.Provider ?? "xrepo");
-                Log.Information("    Features: {}", currSpec.Features);
+                Log.Information("    Name: {0}", currSpec.Name);
+                Log.Information("    Version: {0}", currSpec.Version);
+                Log.Information("    Provider: {0}", currSpec.Provider ?? "xrepo");
+                Log.Information("    Features: {0}", currSpec.Features);
 
                 return new XRepoLibraryRecord(
                     Spec: currSpec,
@@ -172,13 +172,13 @@ public static partial class XRepoLibrary
     /// <param name="debugRuntime">Windows CRT linkage for debug versions (default is MD)</param>
     public static void InstallXRepoLibrary(this INukeBuild build, string specIn, string options, AbsolutePath targetPath, List<UnrealPlatform>? supportedPlatforms = null, string? suffix = null, string releaseRuntime = "MD", string debugRuntime = "MD")
     {
-        Log.Information("Installing library {} via xrepo", specIn);
+        Log.Information("Installing library {0} via xrepo", specIn);
         var spec = ParseSpec(specIn) with { Options = options };
-        Log.Information("    Name: {}", spec.Name);
-        Log.Information("    Version: {}", spec.Version);
-        Log.Information("    Provider: {}", spec.Provider ?? "xrepo");
-        Log.Information("    Options: {}", spec.Options);
-        Log.Information("    Features: {}", spec.Features);
+        Log.Information("    Name: {0}", spec.Name);
+        Log.Information("    Version: {0}", spec.Version);
+        Log.Information("    Provider: {0}", spec.Provider ?? "xrepo");
+        Log.Information("    Options: {0}", spec.Options);
+        Log.Information("    Features: {0}", spec.Features);
 
         var platforms = UPlugin.Get(targetPath).Descriptor.SupportedTargetPlatforms;
         if (platforms == null || platforms.IsEmpty())
@@ -190,18 +190,18 @@ public static partial class XRepoLibrary
         {
             if (!supportedPlatforms.IsNullOrEmpty() && supportedPlatforms!.All(p => p != platform))
             {
-                Log.Information("{} platform has been skipped", platform);
+                Log.Information("{0} platform has been skipped", platform);
                 continue;
             }
 
-            Log.Information("Installing debug build for {}", platform);
+            Log.Information("Installing debug build for {0}", platform);
             var debugLibs = InstallXRepoLibrary(build, platform, spec, options, targetPath, true, debugRuntime);
 
-            Log.Information("Installing release build for {}", platform);
+            Log.Information("Installing release build for {0}", platform);
             Log.Information("    (metadata will be used from release build)");
             var releaseLibs = InstallXRepoLibrary(build, platform, spec, options, targetPath, false, releaseRuntime);
 
-            Log.Information("Generating partial module rule class for {}", platform);
+            Log.Information("Generating partial module rule class for {0}", platform);
             new XRepoLibraryModuleGenerator().Generate(
                 ((UnrealBuild) build).TemplatesPath,
                 targetPath,

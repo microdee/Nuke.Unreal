@@ -126,12 +126,12 @@ namespace Nuke.Unreal
                 {
                     if (sdk.IsValid(this))
                     {
-                        Log.Information("Preparing SDK for {}", Platform);
+                        Log.Information("Preparing SDK for {0}", Platform);
                         sdk.Setup(this);
                     }
                     else
                     {
-                        Log.Error("An SDK for {} cannot be prepared for current build", Platform);
+                        Log.Error("An SDK for {0} cannot be prepared for current build", Platform);
                     }
                 }
             });

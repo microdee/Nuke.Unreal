@@ -53,16 +53,16 @@ public class WindowsHostsAndroid : AndroidSdk
         var sdkVersions = GetSdkVersionsChecked(self);
         var jdkPath = GetJdkVersionsPath(self) / sdkVersions.Jdk.ToString();
 
-        Log.Information("Using JDK {} at {}", sdkVersions.Jdk, jdkPath);
+        Log.Information("Using JDK {0} at {1}", sdkVersions.Jdk, jdkPath);
         if (!jdkPath.DirectoryExists())
         {
             var jdkDownloadPath = NukeBuild.TemporaryDirectory / $"OpenJDK-{sdkVersions.Jdk}.zip";
             var url = GetJdkDownloadUrl(sdkVersions.Jdk);
-            Log.Debug("    Downloading JDK from {} to {}", url, jdkDownloadPath);
+            Log.Debug("    Downloading JDK from {0} to {1}", url, jdkDownloadPath);
             await HttpTasks.HttpDownloadFileAsync(url, jdkDownloadPath);
 
             var extractTemp = NukeBuild.TemporaryDirectory / $"OpenJDK-{sdkVersions.Jdk}";
-            Log.Debug("    Extracting to {}", extractTemp);
+            Log.Debug("    Extracting to {0}", extractTemp);
 
             jdkDownloadPath.UnZipTo(extractTemp);
             var tempJdkRoot = extractTemp.GetDirectories().First();
@@ -74,16 +74,16 @@ public class WindowsHostsAndroid : AndroidSdk
         if (!SelfPlatformSdk.Exists(self))
         {
             var sdkManagerPath = GetSdkManagerPath(self);
-            Log.Information("Using SDK Manager at {}", sdkVersions.Jdk, sdkManagerPath);
+            Log.Information("Using SDK Manager at {0}", sdkVersions.Jdk, sdkManagerPath);
             if (!sdkManagerPath.FileExists())
             {
                 var cmdlineToolsDownloadPath = NukeBuild.TemporaryDirectory / "AndroidCommandLineTools.zip";
                 var url = "https://dl.google.com/android/repository/commandlinetools-win-13114758_latest.zip";
-                Log.Debug("    Downloading JDK from {} to {}", url, cmdlineToolsDownloadPath);
+                Log.Debug("    Downloading JDK from {0} to {1}", url, cmdlineToolsDownloadPath);
                 await HttpTasks.HttpDownloadFileAsync(url, cmdlineToolsDownloadPath);
 
                 var extractTemp = NukeBuild.TemporaryDirectory / "AndroidCommandLineTools";
-                Log.Debug("    Extracting to {}", extractTemp);
+                Log.Debug("    Extracting to {0}", extractTemp);
                 cmdlineToolsDownloadPath.UnZipTo(extractTemp);
 
                 Log.Debug("    Moving");
@@ -94,7 +94,7 @@ public class WindowsHostsAndroid : AndroidSdk
             var sdkManager = ToolExResolver.GetTool(sdkManagerPath);
 
             Log.Information(
-                "Installing Android SDK {}, Build Tools {}, NDK {}",
+                "Installing Android SDK {0}, Build Tools {1}, NDK {2}",
                 sdkVersions.Sdk,
                 sdkVersions.BuildTools.ToString(3),
                 sdkVersions.Ndk.ToString(3)
@@ -115,8 +115,8 @@ public class WindowsHostsAndroid : AndroidSdk
         Environment.SetEnvironmentVariable("NDK_ROOT", GetNdkPath(self), EnvironmentVariableTarget.Process);
         Environment.SetEnvironmentVariable("NDKROOT", GetNdkPath(self), EnvironmentVariableTarget.Process);
 
-        Log.Information("Using Android SDK {} at {}", sdkVersions.Sdk, GetSdkPath(self));
-        Log.Information("Using Android NDK toolchain {} at {}", sdkVersions.Ndk.ToString(3), GetToolchainPath(self));
+        Log.Information("Using Android SDK {0} at {1}", sdkVersions.Sdk, GetSdkPath(self));
+        Log.Information("Using Android NDK toolchain {0} at {1}", sdkVersions.Ndk.ToString(3), GetToolchainPath(self));
     }
 
     public override bool IsValid(INukeBuild self) => GetSdkVersions(self) != null;

@@ -34,13 +34,13 @@ public class WindowsHostsLinux : IPlatformSdk
         var epicToolchainName = GetEpicToolchainName(self);
         var sdkPath = GetSdkPath(self);
 
-        Log.Information("Setting up Linux toolchain {} at {}", epicToolchainName, sdkPath);
+        Log.Information("Setting up Linux toolchain {0} at {1}", epicToolchainName, sdkPath);
         if (!SelfPlatformSdk.Exists(self))
         {
             var url = $"https://cdn.unrealengine.com/CrossToolchain_Linux/{epicToolchainName}.exe";
             var installerPath = NukeBuild.TemporaryDirectory / "LinuxSdkTemp" / (epicToolchainName + ".exe");
 
-            Log.Debug("    Downloading from {} to {}", url, installerPath);
+            Log.Debug("    Downloading from {0} to {1}", url, installerPath);
             await HttpTasks.HttpDownloadFileAsync(url, installerPath);
 
             Log.Debug("    Installing");
