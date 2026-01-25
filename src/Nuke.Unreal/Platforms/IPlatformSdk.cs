@@ -7,6 +7,8 @@ using Nuke.Common.IO;
 
 namespace Nuke.Unreal.Platforms;
 
+public record class PlatformSdkXMakeData(string Arguments, string? Platform = null);
+
 public interface IPlatformSdk
 {
     UnrealPlatform Host { get; }
@@ -25,5 +27,5 @@ public interface IPlatformSdk
 
     bool Exists(INukeBuild self) => IsValid(self) && GetSdkPath(self).DirectoryExists();
 
-    string GetXmakeArguments(INukeBuild self);
+    PlatformSdkXMakeData GetXMakeData(INukeBuild self);
 }

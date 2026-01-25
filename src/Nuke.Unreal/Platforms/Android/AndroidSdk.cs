@@ -40,7 +40,7 @@ public abstract class AndroidSdk : IPlatformSdk
     public abstract Task Setup(INukeBuild self);
     public abstract bool IsValid(INukeBuild self);
     public abstract AbsolutePath GetSdkPath(INukeBuild self);
-    public abstract string GetXmakeArguments(INukeBuild self);
+    public abstract PlatformSdkXMakeData GetXMakeData(INukeBuild self);
 
     public abstract AbsolutePath GetAndroidHome(INukeBuild self);
     public abstract AbsolutePath GetNdkPath(INukeBuild self);

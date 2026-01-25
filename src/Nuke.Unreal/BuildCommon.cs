@@ -21,6 +21,11 @@ namespace Nuke.Unreal;
 /// </summary>
 public static class BuildCommon
 {
+    static BuildCommon()
+    {
+        HttpTasks.DefaultTimeout = TimeSpan.FromMinutes(60);
+    }
+
     /// <summary>
     /// Get the contents folder Nuke.Unreal is shipped with. This is usually contained in the local
     /// nuget installation of Nuke.Unreal, but may vary depending on the circumstances.

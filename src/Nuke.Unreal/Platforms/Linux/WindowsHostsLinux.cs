@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Nuke.Cola.Tooling;
 using Nuke.Common;
 using Nuke.Common.IO;
 using Nuke.Common.Tooling;
@@ -43,9 +44,8 @@ public class WindowsHostsLinux : IPlatformSdk
             Log.Debug("    Downloading from {0} to {1}", url, installerPath);
             await HttpTasks.HttpDownloadFileAsync(url, installerPath);
 
-            Log.Debug("    Installing");
-            var installer = ToolResolver.GetTool(installerPath);
-            installer($"/NCRC /S /D={sdkPath}");
+            Log.Debug("    Because this installer require admin rights we will rather extract its contents with 7zip");
+            SevenZip.Exe($"x -bso1 -bse1 -bsp1 -o{sdkPath} {installerPath}");
         }
         Environment.SetEnvironmentVariable("LINUX_MULTIARCH_ROOT", sdkPath, EnvironmentVariableTarget.Process);
     }
@@ -58,6 +58,6 @@ public class WindowsHostsLinux : IPlatformSdk
     public AbsolutePath GetToolchainPath(INukeBuild self)
         => GetSdkPath(self) / "x86_64-unknown-linux-gnu";
 
-    public string GetXmakeArguments(INukeBuild self)
-        => $"--sdk=\"{GetToolchainPath(self)}\" --cross=x86_64-unknown-linux-gnu-";
+    public PlatformSdkXMakeData GetXMakeData(INukeBuild self)
+        => new($"--sdk=\"{GetToolchainPath(self)}\"");
 }

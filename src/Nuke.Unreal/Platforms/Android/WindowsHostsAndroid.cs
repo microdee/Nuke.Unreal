@@ -138,8 +138,8 @@ public class WindowsHostsAndroid : AndroidSdk
     public AbsolutePath GetToolchainPath(INukeBuild self)
         => GetNdkPath(self) / "toolchains/llvm/prebuilt/windows-x86_64";
 
-    public override string GetXmakeArguments(INukeBuild self)
-        => $"--ndk=\"{GetNdkPath(self)}\"";
+    public override PlatformSdkXMakeData GetXMakeData(INukeBuild self)
+        => new($"--ndk=\"{GetNdkPath(self)}\"");
 
     public override AbsolutePath GetPlatformToolsPath(INukeBuild self) => AndroidHome / "platform-tools";
 

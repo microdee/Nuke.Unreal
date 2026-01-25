@@ -59,7 +59,10 @@ public static partial class XRepoLibrary
     internal static IEnumerable<XRepoLibraryRecord> InstallXRepoLibrary(INukeBuild build, UnrealPlatform platform, LibrarySpec spec, string options, AbsolutePath targetPath, bool debug, string runtime = "MD")
     {
         var libraryFiles = targetPath / "LibraryFiles";
-        options = options.AppendNonEmpty(",") + $"runtimes='{runtime}'";
+        if (platform == UnrealPlatform.Win64)
+        {
+            options = options.AppendNonEmpty(",") + $"runtimes='{runtime}'";
+        }
         var xrepoPlatArch = platform.GetXRepoPlatformArch();
 
         var sdk = platform.GetSdk();
@@ -69,16 +72,18 @@ public static partial class XRepoLibrary
             sdk.Setup(build).Wait();
         }
 
+        var sdkXMakeData = sdk?.GetXMakeData(build);
+
         var extraArgs =
             $"""
-            -p {xrepoPlatArch.Platform}
+            -p {sdkXMakeData?.Platform ?? xrepoPlatArch.Platform.ToString()}
             -a {xrepoPlatArch.Arch.ToCorrectString()}
             -m {(debug ? "debug" : "release")}
             """.AsSingleLine()
         ;
-        if (sdk != null)
+        if (sdkXMakeData != null)
         {
-            extraArgs += " " + sdk.GetXmakeArguments(build);
+            extraArgs += " " + sdkXMakeData.Arguments;
         }
 
         XRepoTasks.Install(spec.Spec, options, extraArgs)("");
