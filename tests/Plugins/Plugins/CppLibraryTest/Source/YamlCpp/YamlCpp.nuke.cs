@@ -24,7 +24,7 @@ public interface IUseYamlCpp : INukeBuild
         .Executes(() =>
         {
             ((UnrealBuild) this).InstallXRepoLibrary(
-                "vcpkg::yaml-cpp", "", this.ScriptFolder()
+                "yaml-cpp 0.8.0", "", this.ScriptFolder()
             );
         });
 }
