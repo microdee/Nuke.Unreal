@@ -81,12 +81,13 @@ public static partial class XRepoLibrary
             -m {(debug ? "debug" : "release")}
             """.AsSingleLine()
         ;
+        var installExtraArgs = extraArgs;
         if (sdkXMakeData != null)
         {
-            extraArgs += " " + sdkXMakeData.Arguments;
+            installExtraArgs += " " + sdkXMakeData.Arguments;
         }
 
-        XRepoTasks.Install(spec.Spec, options, extraArgs)("");
+        XRepoTasks.Install(spec.Spec, options, installExtraArgs)("");
         
         string[] ProcessPaths(string? paths, AbsolutePath dstDir)
         {

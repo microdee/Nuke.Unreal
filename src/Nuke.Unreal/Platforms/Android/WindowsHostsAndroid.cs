@@ -6,6 +6,7 @@ using Nuke.Cola.Tooling;
 using Nuke.Common;
 using Nuke.Common.IO;
 using Nuke.Common.Tooling;
+using Nuke.Common.Utilities;
 using Serilog;
 
 namespace Nuke.Unreal.Platforms.Android;
@@ -31,9 +32,12 @@ public class WindowsHostsAndroid : AndroidSdk
         get
         {
             var androidHome = EnvironmentInfo.GetVariable("ANDROID_HOME")
+                ?? EnvironmentInfo.GetVariable("ANDROID_SDK_HOME")
+                ?? EnvironmentInfo.GetVariable("ANDROID_SDK_ROOT")
                 ?? EnvironmentInfo.SpecialFolder(SpecialFolders.LocalApplicationData)! / "Android/Sdk"
             ;
             Environment.SetEnvironmentVariable("ANDROID_HOME", androidHome, EnvironmentVariableTarget.Process);
+            Environment.SetEnvironmentVariable("ANDROID_SDK_HOME", androidHome, EnvironmentVariableTarget.Process);
             return AbsolutePath.Create(androidHome);
         }
     }
@@ -79,7 +83,7 @@ public class WindowsHostsAndroid : AndroidSdk
             {
                 var cmdlineToolsDownloadPath = NukeBuild.TemporaryDirectory / "AndroidCommandLineTools.zip";
                 var url = "https://dl.google.com/android/repository/commandlinetools-win-13114758_latest.zip";
-                Log.Debug("    Downloading JDK from {0} to {1}", url, cmdlineToolsDownloadPath);
+                Log.Debug("    Downloading Command line tools from {0} to {1}", url, cmdlineToolsDownloadPath);
                 await HttpTasks.HttpDownloadFileAsync(url, cmdlineToolsDownloadPath);
 
                 var extractTemp = NukeBuild.TemporaryDirectory / "AndroidCommandLineTools";
@@ -100,13 +104,16 @@ public class WindowsHostsAndroid : AndroidSdk
                 sdkVersions.Ndk.ToString(3)
             );
             Log.Debug("    Accepting licenses");
-            sdkManager.WithInput("yes").CloseInput()("--licenses");
+            sdkManager.WithInput(Enumerable.Repeat("y", 100)).CloseInput()("--licenses");
+
+            // TODO: read TargetSDKVersion from *Engine.ini
 
             sdkManager(
                 $"""
                 "platforms;android-{sdkVersions.Sdk}"
                 "build-tools;{sdkVersions.BuildTools.ToString(3)}"
                 "ndk;{sdkVersions.Ndk.ToString(3)}"
+                "cmake;{sdkVersions.CMake.ToStringAutoFieldCount()}"
                 "platform-tools"
                 """.AsSingleLine()
             );
@@ -114,6 +121,11 @@ public class WindowsHostsAndroid : AndroidSdk
 
         Environment.SetEnvironmentVariable("NDK_ROOT", GetNdkPath(self), EnvironmentVariableTarget.Process);
         Environment.SetEnvironmentVariable("NDKROOT", GetNdkPath(self), EnvironmentVariableTarget.Process);
+        var paths = EnvironmentInfo.Paths
+            .Append(GetPlatformToolsPath(self).ToString())
+            .Join(";")
+        ;
+        Environment.SetEnvironmentVariable("PATH", paths, EnvironmentVariableTarget.Process);
 
         Log.Information("Using Android SDK {0} at {1}", sdkVersions.Sdk, GetSdkPath(self));
         Log.Information("Using Android NDK toolchain {0} at {1}", sdkVersions.Ndk.ToString(3), GetToolchainPath(self));
