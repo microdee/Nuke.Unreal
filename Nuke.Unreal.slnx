@@ -32,4 +32,7 @@
   <Project Path="build/_build.csproj">
     <Build Project="false" />
   </Project>
+  <Folder Name="/external/">
+    <Project Path="../md.Nuke.Cola/md.Nuke.Cola/md.Nuke.Cola.csproj" />
+  </Folder>
 </Solution>
