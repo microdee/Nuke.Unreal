@@ -9,4 +9,7 @@ Invoke-WebRequest -Uri https://github.com/microdee/Nuke.Unreal/releases/download
 Expand-Archive -Path .\.nuke\temp\Fresh.zip -DestinationPath .
 
 "Installing Nuke global tool"
-dotnet tool install Nuke.GlobalTool --global
+dotnet tool install Nuke.GlobalTool --version 9.0.4 --global
+
+"Updating Nuke.Unreal"
+nuke :add-package md.Nuke.Unreal
