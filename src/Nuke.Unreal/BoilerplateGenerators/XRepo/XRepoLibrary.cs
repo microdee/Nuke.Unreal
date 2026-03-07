@@ -112,7 +112,7 @@ public static partial class XRepoLibrary
             .Select(i =>
             {
                 Log.Information("Handling library (dependency) {0} version {1}", i.InferredName!, i.Version);
-                dynamic manifest = i.GetManifest().NotNull("Libraries must have a manifest.txt file")!;
+                var manifest = i.GetManifest().NotNull("Libraries must have a manifest.txt file")!;
                 return new XRepoLibraryRecord(
                     Spec: new LibrarySpec(
                         i.InferredName! + " " + i.Version!,
