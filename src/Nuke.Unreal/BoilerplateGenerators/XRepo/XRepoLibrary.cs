@@ -75,15 +75,15 @@ public static partial class XRepoLibrary
 
         var sdkXMakeData = sdk?.GetXMakeData(build);
 
-        ArgumentStringHandlerEx extraArgs =
+        var extraArgs = ArgumentStringHandlerEx.Render(
             $"""
             -p {sdkXMakeData?.Platform ?? xrepoPlatArch.Platform.ToString()}
             -a {xrepoPlatArch.Arch.ToCorrectString()}
             -m {(debug ? "debug" : "release")}
             {sdkXMakeData?.Arguments ?? ""}
             """
-        ;
-        XRepoTasks.Install(spec.Spec, options, extraArgs.ToStringAndClear())();
+        );
+        XRepoTasks.Install(spec.Spec, options, extraArgs)();
 
         string[] HandlePaths(IEnumerable<AbsolutePath>? paths, AbsolutePath dstDir)
         {
@@ -106,7 +106,7 @@ public static partial class XRepoLibrary
             ;
         }
 
-        return XRepoTasks.Fetch(spec.Spec, options, extraArgs.ToStringAndClear())()!
+        return XRepoTasks.Fetch(spec.Spec, options, extraArgs)()!
             .ParseXRepoFetch().NotNull("Couldn't parse XRepo package from fetch output")!
             .Where(i => i.IsLibrary)
             .Select(i =>
