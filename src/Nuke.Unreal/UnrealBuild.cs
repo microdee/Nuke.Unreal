@@ -56,23 +56,26 @@ namespace Nuke.Unreal
         }
 
         /// <summary>
-        /// Most targets read the desired Unreal version from the project file.
+        /// <para>
+        /// **NUKE PARAMETER**
+        /// </para>
+        /// Specify the target Unreal Engine version. It's used only for the Switch target. Everything else should infer
+        /// engine version from the project file. Can be simple version name like `5.5`, a GUID associated with engine
+        /// location or an absolute path to engine root.
         /// </summary>
-        [Parameter(
-            """
-
-            Specify the target Unreal Engine version. It's used only
-            for the Switch target. Everything else should infer engine
-            version from the project file. Can be simple version name
-            like `5.5`, a GUID associated with engine location or an
-            absolute path to engine root.
-
-            """,
-            Name = "unreal"
-        )]
+        /// <remarks>
+        /// Most targets read the desired Unreal version from the project file.
+        /// </remarks>
+        [Parameter(Name = "unreal")]
         public virtual string? UnrealVersion { get; set; }
-        
-        [Parameter("Specify the output working directory for artifacts")]
+
+        /// <summary>
+        /// <para>
+        /// **NUKE PARAMETER**
+        /// </para>
+        /// Specify the output working directory for artifacts
+        /// </summary>
+        [Parameter]
         public AbsolutePath? Output;
 
         /// <summary>
@@ -81,19 +84,49 @@ namespace Nuke.Unreal
         /// </summary>
         public virtual AbsolutePath GetOutput() => Output ??= ProjectFolder / "Intermediate" / "Output";
 
-        [Parameter("Set platform for running targets")]
+        /// <summary>
+        /// <para>
+        /// **NUKE PARAMETER**
+        /// </para>
+        /// Set platform for running targets
+        /// </summary>
+        [Parameter]
         public virtual UnrealPlatform Platform { get; set; } = UnrealPlatform.FromFlag(Unreal.GetHostPlatformFlag());
 
-        [Parameter("The target configuration for building or packaging the project")]
+        /// <summary>
+        /// <para>
+        /// **NUKE PARAMETER**
+        /// </para>
+        /// The target configuration for building or packaging the project
+        /// </summary>
+        [Parameter]
         public virtual UnrealConfig[] Config { get; set; } = [UnrealConfig.Development];
 
-        [Parameter("The editor configuration to be used while building or packaging the project")]
+        /// <summary>
+        /// <para>
+        /// **NUKE PARAMETER**
+        /// </para>
+        /// The editor configuration to be used while building or packaging the project
+        /// </summary>
+        [Parameter]
         public virtual UnrealConfig[] EditorConfig { get; set; } = [UnrealConfig.Development];
 
-        [Parameter("The Unreal target type for building the project")]
+        /// <summary>
+        /// <para>
+        /// **NUKE PARAMETER**
+        /// </para>
+        /// The Unreal target type for building the project
+        /// </summary>
+        [Parameter]
         public virtual UnrealTargetType[] TargetType { get; set; } = [UnrealTargetType.Game];
 
-        [Parameter("Select texture compression mode for Android")]
+        /// <summary>
+        /// <para>
+        /// **NUKE PARAMETER**
+        /// </para>
+        /// Select texture compression mode for Android
+        /// </summary>
+        [Parameter]
         public virtual AndroidCookFlavor[] AndroidTextureMode { get; set; } = [ AndroidCookFlavor.Multi ];
         
         /// <summary>

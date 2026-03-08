@@ -37,8 +37,30 @@ namespace Nuke.Unreal
         /// </summary>
         UatConfig UatPackage(UatConfig _) => _.Prereqs();
 
+        /// <summary>
+        /// Same as running Package Project from Editor
+        /// <code>
+        ///     \--Config
+        ///     \--Platform
+        ///     \--AndroidTextureMode
+        ///     \-->ubt (args.)
+        ///     \-->uat (args.)
+        /// </code>
+        /// </summary>
         Target Package => _ => _
-            .Description("Same as running Package Project from Editor")
+            .Description(
+                """
+                |
+                    | Same as running Package Project from Editor
+                    |
+                    | --Config
+                    | --Platform
+                    | --AndroidTextureMode
+                    | -->ubt (args.)
+                    | -->uat (args.)
+                    
+                """
+            )
             .DependsOn<UnrealBuild>(
                 u => u.BuildEditor,
                 u => u.SetupPlatformSdk
