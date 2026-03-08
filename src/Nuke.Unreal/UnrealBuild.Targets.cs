@@ -210,7 +210,8 @@ namespace Nuke.Unreal
         /// **NUKE TARGET**
         /// </para>
         /// Generate project files for the default IDE of the current platform. You can specify further details with
-        /// `-->ubt` argument block
+        /// `-->ubt` argument block. It is equivalent to right clicking the uproject and selecting "Generate _IDE_
+        /// project files".
         /// <code>
         ///     \-->ubt (args.)
         /// </code>
@@ -220,7 +221,8 @@ namespace Nuke.Unreal
                 """
                 |
                     | Generate project files for the default IDE of the current platform.
-                    | You can specify further details with -->ubt argument block
+                    | You can specify further details with -->ubt argument block It is equivalent to
+                    | right clicking the uproject and selecting "Generate _IDE_ project files".
                     |
                     | -->ubt (args.)
                 
@@ -377,6 +379,7 @@ namespace Nuke.Unreal
         /// </para>
         /// Cook Unreal assets for standalone game execution
         /// <code>
+        ///     \--Config
         ///     \--Platform
         ///     \--AndroidTextureMode
         ///     \-->ubt (args.)
@@ -389,6 +392,7 @@ namespace Nuke.Unreal
                 |
                     | Cook Unreal assets for standalone game execution
                     |
+                    | --Config
                     | --Platform
                     | --AndroidTextureMode
                     | -->ubt (args.)
