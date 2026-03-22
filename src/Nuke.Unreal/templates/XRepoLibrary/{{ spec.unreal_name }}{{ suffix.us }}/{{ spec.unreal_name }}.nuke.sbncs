@@ -14,17 +14,17 @@ using System;
 
 [ImplicitBuildInterface]
 [ParameterPrefix("{{ spec.name }}")]
-public interface IUse{{ cap_name }} : INukeBuild
+public interface IUse{{ cap_name }} : IUnrealBuild
 {
     AbsolutePath {{ cap_name }}InputDir => this.ScriptFolder() / "{{ spec.name }}";
 
     string[] {{ cap_name }}Configs => [ "Release", "Debug" ];
 
     Target Prepare{{ cap_name }} => _ => _
-        .DependentFor<UnrealBuild>(b => b.Prepare)
+        .DependentFor(Prepare)
         .Executes(() =>
         {
-            ((UnrealBuild) this).InstallXRepoLibrary(
+            this.InstallXRepoLibrary(
                 "{{ spec.spec }}", "{{ spec.options }}", this.ScriptFolder(){{ if suffix.text }}, "{{ suffix.text }}"{{ end }}
             );
         });

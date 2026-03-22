@@ -18,7 +18,7 @@ public partial class {{ cap_name }}{{ suffix.us }} : ModuleRules
 		// This is the main module file for using {{ spec.name }} in Unreal Engine.
 		// Because each individual platform can carry different requirements for {{ spec.name }},
 		// includes and lib imports are expressed in platform specific partial classes. These are
-		// auto generated when the library is prepared on/for a specific platform.
+		// auto generated when the library is prepared.
 
 		Type = ModuleType.External;
 		IsDebug = Target.Configuration <= UnrealTargetConfiguration.DebugGame;
