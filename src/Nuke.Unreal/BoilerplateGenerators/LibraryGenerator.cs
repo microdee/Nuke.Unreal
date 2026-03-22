@@ -11,6 +11,7 @@ using System.Text.RegularExpressions;
 using Nuke.Unreal.BoilerplateGenerators.XRepo;
 using System.Collections.Generic;
 using Humanizer;
+using Nuke.Common.Utilities;
 
 namespace Nuke.Unreal.BoilerplateGenerators;
 
@@ -75,6 +76,10 @@ public class LibraryGenerator : BoilerplateGenerator
     {
         var project = new UnrealProject(build);
         var spec = libraryType.ParseSpec(fullSpec);
+        if (spec.Name.IsNullOrWhiteSpace())
+        {
+            throw new ArgumentException($"Library name was empty. Using spec '{fullSpec}'");
+        }
         Model = new(
             Spec: spec,
             Copyright: Unreal.ReadCopyrightFromProject(project.Folder!),
