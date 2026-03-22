@@ -102,3 +102,22 @@ These targets are used as a development aid for generating boilerplates. See [Us
     * After [CleanDeployment](@ref Nuke.Unreal.UnrealBuild.CleanDeployment)
     * After [Prepare](@ref Nuke.Unreal.UnrealBuild.Prepare)
     * After [Cook](@ref Nuke.Unreal.UnrealBuild.Cook)
+
+## Android (IAndroidTargets) {#targets-IAndroidTargets}
+
+* [CleanIntermediateAndroid](@ref Nuke.Unreal.Platforms.Android.IAndroidBuildTargets.CleanIntermediateAndroid)
+  * Only when Android platform is set
+  * Dependent for [Build](@ref Nuke.Unreal.UnrealBuild.Build)
+  * Dependent for [Package](@ref Nuke.Unreal.IPackageTargets.Package)
+* [SignApk](@ref Nuke.Unreal.Platforms.Android.IAndroidBuildTargets.SignApk)
+  * Only when Android platform is set
+  * Triggered by [Package](@ref Nuke.Unreal.IPackageTargets.Package)
+  * After [Build](@ref Nuke.Unreal.UnrealBuild.Build)
+* [InstallOnAndroid](@ref Nuke.Unreal.Platforms.Android.IAndroidDeployTargets.InstallOnAndroid)
+  * Only when Android platform is set
+  * [\--NoUninstall](@ref Nuke.Unreal.Platforms.Android.IAndroidDeployTargets.NoUninstall)
+  * After [Package](@ref Nuke.Unreal.IPackageTargets.Package)
+  * After [Build](@ref Nuke.Unreal.UnrealBuild.Build)
+* [DebugOnAndroid](@ref Nuke.Unreal.Platforms.Android.IAndroidDeployTargets.DebugOnAndroid)
+  * Only when Android platform is set
+  * After [InstallOnAndroid](@ref Nuke.Unreal.Platforms.Android.IAndroidDeployTargets.InstallOnAndroid)

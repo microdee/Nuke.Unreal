@@ -14,6 +14,9 @@ using Serilog;
 
 namespace Nuke.Unreal.Platforms.Android;
 
+/// <summary>
+/// Cumulative build component for working with Android
+/// </summary>
 public interface IAndroidTargets
     : IAndroidBuildTargets
     , IAndroidDeployTargets

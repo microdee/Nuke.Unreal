@@ -4,46 +4,95 @@ using Nuke.Common.Tooling;
 
 namespace Nuke.Unreal.Platforms.Android;
 
+/// <summary>
+/// Build component for common tasks related to building an Android app
+/// </summary>
 [ParameterPrefix("Android")]
-public interface IAndroidBuildTargets : INukeBuild
+public interface IAndroidBuildTargets : IUnrealBuild
 {
-    [Parameter("Specify the full qualified android app name")]
+    /// <summary>
+    /// <para>
+    /// **NUKE PARAMETER**
+    /// </para>
+    /// Specify the full qualified android app name
+    /// </summary>
+    [Parameter]
     string AppName => TryGetValue(() => AppName) ?? this.GetAppNameFromConfig();
 
+    /// <summary>
+    /// <para>
+    /// **NUKE PARAMETER**
+    /// </para>
+    /// Temporarily override the major JDK version used for Android tasks
+    /// </summary>
     [Parameter]
     int? Jdk => TryGetValue<int?>(() => Jdk);
 
+    /// <summary>
+    /// <para>
+    /// **NUKE PARAMETER**
+    /// </para>
+    /// Temporarily override the major Android SDK version used for Android tasks
+    /// </summary>
     [Parameter]
     int? Sdk => TryGetValue<int?>(() => Sdk);
-    
-    [Parameter("Processor architecture of your target hardware")]
+
+    /// <summary>
+    /// <para>
+    /// **NUKE PARAMETER**
+    /// </para>
+    /// Processor architecture of your target hardware
+    /// </summary>
+    [Parameter]
     AndroidProcessorArchitecture Cpu => TryGetValue(() => Cpu) ?? AndroidProcessorArchitecture.Arm64;
 
+    /// <summary>
+    /// <para>
+    /// **NUKE TARGET**
+    /// </para>
+    /// Clean up the Android folder inside Intermediate
+    /// </summary>
     Target CleanIntermediateAndroid => _ => _
-        .Description("Clean up the Android folder inside Intermediate")
+        .Description(
+            """
+            |
+                | Clean up the Android folder inside Intermediate
+            
+            """
+        )
         .OnlyWhenStatic(this.IsAndroidPlatform)
-        .DependentFor<UnrealBuild>(u => u.Build)
+        .DependentFor(Build)
         .DependentFor<IPackageTargets>(p => p.Package)
         .Executes(() =>
         {
-            var self = (UnrealBuild) this;
-            (self.ProjectFolder / "Intermediate" / "Android").DeleteDirectory();
+            (ProjectFolder / "Intermediate" / "Android").DeleteDirectory();
         });
 
+    /// <summary>
+    /// <para>
+    /// **NUKE TARGET**
+    /// </para>
+    /// Sign the output APK
+    /// </summary>
     Target SignApk => _ => _
-        .Description("Sign the output APK")
+        .Description(
+            """
+            |
+                | Sign the output APK
+            
+            """
+        )
         .OnlyWhenStatic(this.IsAndroidPlatform)
-        .DependsOn<UnrealBuild>(u => u.SetupPlatformSdk)
+        .DependsOn(SetupPlatformSdk)
         .TriggeredBy<IPackageTargets>(p => p.Package)
         // .Before(InstallOnAndroid, DebugOnAndroid)
-        .After<UnrealBuild>(u => u.Build)
+        .After(Build)
         .Executes(() =>
         {
-            var self = (UnrealBuild) this;
-            var androidRuntimeSettings = self.ReadIniHierarchy("Engine")?["/Script/AndroidRuntimeSettings.AndroidRuntimeSettings"];
+            var androidRuntimeSettings = ReadIniHierarchy("Engine")?["/Script/AndroidRuntimeSettings.AndroidRuntimeSettings"];
             var keyStore = androidRuntimeSettings?.GetFirst("KeyStore").Value;
             var password = androidRuntimeSettings?.GetFirst("KeyStorePassword").Value;
-            var keystorePath = self.ProjectFolder / "Build" / "Android" / keyStore;
+            var keystorePath = ProjectFolder / "Build" / "Android" / keyStore;
 
             Assert.False(string.IsNullOrWhiteSpace(keyStore), "There was no keystore specified");
             Assert.True(keystorePath.FileExists(), "Specified keystore was not found");
@@ -61,7 +110,7 @@ public interface IAndroidBuildTargets : INukeBuild
             }
             kspassFile.WriteAllText(password);
 
-            var sdk = self.GetAndroidSdk();
+            var sdk = this.GetAndroidSdk();
             sdk.GetApkSigner(this)(
                 $"sign --ks \"{keystorePath}\" --ks-pass \"file:{kspassFile}\" \"{this.GetApkFile()}\""
             );
