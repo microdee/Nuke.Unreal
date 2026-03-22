@@ -15,6 +15,19 @@ All of these steps are customizable and are done on-demand with sensible caching
 
 Under the hood, cross-compile platform SDK's are expressed as [`IPlatformSdk`](@ref Nuke.Unreal.Platforms.IPlatformSdk) implementations. Each implementation specifies how to cross compile on a host platform for a target platform. For example the above Android SDK management is implemented in [`WindowsHostsAndroid`](@ref Nuke.Unreal.Platforms.Android.WindowsHostsAndroid).
 
+Platform pairs already implemented in Nuke.Unreal:
+
+|         | Windows | Linux | Mac¹ |
+|--------:|:-------:|:-----:|:----:|
+| Windows |   ✔     |   ❌  |  ❌   |
+|   Linux |    ✔    |   ✔   |  ❌   |
+|   MacOS |    ❌    |   ❌  |  ??  |
+| Android |    ✔    |   ✔  |  ??  |
+|  Apple² |    ❌    |   ❌  |  ??  |
+
+1. Apple platforms are untested by Nuke.Unreal and I'm not eager to make it work either because of the walled-garden Apple is infamous for.
+2. IOS / TVOS / VisionOS
+
 ## NDA platforms
 
 For host-target combinations of platforms which are not imolemented in Nuke.Unreal yet, or game console NDA platforms, you can register your own implementation in your Nuke.Unreal build project:
