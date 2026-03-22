@@ -1,6 +1,0 @@
-link:
-  - file: Hidapi.tp.yml
-  - dir: LibraryFiles
-copy:
-  - { file: Hidapi.Build.cs, procContent: true }
-  - { file: Hidapi.*.Build.cs, procContent: true }

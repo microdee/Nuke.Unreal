@@ -1,6 +1,0 @@
-link:
-  - file: YamlCpp.tp.yml
-  - dir: LibraryFiles
-copy:
-  - { file: YamlCpp.Build.cs, procContent: true }
-  - { file: YamlCpp.*.Build.cs, procContent: true }
