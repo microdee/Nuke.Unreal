@@ -31,7 +31,7 @@ public static partial class XRepoLibrary
                 (?<FEATURES>[\w\-,]+)
             \])?
             (?:[\s\/-]
-                (?<VERSION>[0-9\.x#]+)
+                (?<VERSION>[\w\-\.#]+)
             )?
         )
         (?:\s(?<OPTIONS>[\w=,']+))?
@@ -83,7 +83,9 @@ public static partial class XRepoLibrary
             {sdkXMakeData?.Arguments ?? ""}
             """
         );
-        XRepoTasks.Install(spec.Spec, options, extraArgs)();
+        XRepoTasks.Install(spec.Spec, options, extraArgs)
+            .When(sdkXMakeData?.ToolSetup != null, sdkXMakeData?.ToolSetup)
+        ();
 
         string[] HandlePaths(IEnumerable<AbsolutePath>? paths, AbsolutePath dstDir)
         {
@@ -106,7 +108,9 @@ public static partial class XRepoLibrary
             ;
         }
 
-        return XRepoTasks.Fetch(spec.Spec, options, extraArgs)()!
+        return XRepoTasks.Fetch(spec.Spec, options, extraArgs)
+            .When(sdkXMakeData?.ToolSetup != null, sdkXMakeData?.ToolSetup)
+            ()!
             .ParseXRepoFetch().NotNull("Couldn't parse XRepo package from fetch output")!
             .Where(i => i.IsLibrary)
             .Select(i =>
