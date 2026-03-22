@@ -10,6 +10,15 @@ using Serilog;
 
 namespace Nuke.Unreal.Platforms.Android;
 
+/// <summary>
+/// Bouquet of SDK component versions used by specific Unreal version
+/// </summary>
+/// <param name="Jdk">Major JDK version</param>
+/// <param name="Sdk">Major Android SDK requirement</param>
+/// <param name="Target">Major target Android SDK</param>
+/// <param name="Ndk">Very specific NDK version</param>
+/// <param name="BuildTools">Very specific Build Tools version</param>
+/// <param name="CMake">Very specific CMake version</param>
 public record class AndroidSdkVersion(
     int Jdk,
     int Sdk,
@@ -19,6 +28,9 @@ public record class AndroidSdkVersion(
     Version CMake
 );
 
+/// <summary>
+/// Base class for managing Android SDK on any host platform
+/// </summary>
 public abstract class AndroidSdk : IPlatformSdk
 {
     public static AndroidSdkVersion? GetSdkVersions(string unrealVersion) => unrealVersion switch

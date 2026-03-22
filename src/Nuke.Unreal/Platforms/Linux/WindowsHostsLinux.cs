@@ -14,6 +14,8 @@ public class WindowsHostsLinux : IPlatformSdk
     public UnrealPlatform Host => UnrealPlatform.Win64;
     public UnrealPlatform Target => UnrealPlatform.Linux;
 
+    static WindowsHostsLinux() => PlatformSdkManager.Register(new WindowsHostsLinux());
+
     private static string? GetEpicToolchainName(string unrealVersion) => unrealVersion switch
     {
         "5.0" => "v20_clang-13.0.1-centos7",
