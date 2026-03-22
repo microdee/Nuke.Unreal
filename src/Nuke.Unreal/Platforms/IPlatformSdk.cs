@@ -2,12 +2,17 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Nuke.Cola.Tooling;
 using Nuke.Common;
 using Nuke.Common.IO;
 
 namespace Nuke.Unreal.Platforms;
 
-public record class PlatformSdkXMakeData(string Arguments, string? Platform = null);
+public record class PlatformSdkXMakeData(
+    string Arguments,
+    string? Platform = null,
+    Func<ToolEx, ToolEx>? ToolSetup = null
+);
 
 public interface IPlatformSdk
 {

@@ -59,5 +59,10 @@ public class WindowsHostsLinux : IPlatformSdk
         => GetSdkPath(self) / "x86_64-unknown-linux-gnu";
 
     public PlatformSdkXMakeData GetXMakeData(INukeBuild self)
-        => new($"--sdk=\"{GetToolchainPath(self)}\"");
+        => new(
+            $"""
+            --sdk="{GetToolchainPath(self)}"
+            """,
+            ToolSetup: _ => _.WithPathVar(GetToolchainPath(self) / "bin")
+        );
 }
