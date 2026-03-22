@@ -74,26 +74,26 @@ public abstract class AndroidSdk : IPlatformSdk
         _ => null
     };
 
-    public static AndroidSdkVersion? GetSdkVersions(INukeBuild self)
-        => GetSdkVersions(Unreal.Version((UnrealBuild)self).VersionMinor);
+    public static AndroidSdkVersion? GetSdkVersions(IUnrealBuild build)
+        => GetSdkVersions(Unreal.Version(build).VersionMinor);
 
-    public static AndroidSdkVersion GetSdkVersionsChecked(INukeBuild self)
-        => GetSdkVersions(self)
-            .NotNull($"Couldn't determine Android SDK/JDK/NDK versions for Unreal {Unreal.Version((UnrealBuild)self)} ")
+    public static AndroidSdkVersion GetSdkVersionsChecked(IUnrealBuild build)
+        => GetSdkVersions(build)
+            .NotNull($"Couldn't determine Android SDK/JDK/NDK versions for Unreal {Unreal.Version(build)} ")
         !;
 
     public abstract UnrealPlatform Host { get; }
     public abstract UnrealPlatform Target { get; }
-    public abstract Task Setup(INukeBuild self);
-    public abstract bool IsValid(INukeBuild self);
-    public abstract AbsolutePath GetSdkPath(INukeBuild self);
-    public abstract PlatformSdkXMakeData GetXMakeData(INukeBuild self);
+    public abstract Task Setup(IUnrealBuild build);
+    public abstract bool IsValid(IUnrealBuild build);
+    public abstract AbsolutePath GetSdkPath(IUnrealBuild build);
+    public abstract PlatformSdkXMakeData GetXMakeData(IUnrealBuild build);
 
-    public abstract AbsolutePath GetAndroidHome(INukeBuild self);
-    public abstract AbsolutePath GetNdkPath(INukeBuild self);
-    public abstract AbsolutePath GetBuildToolsPath(INukeBuild self);
-    public abstract AbsolutePath GetPlatformToolsPath(INukeBuild self);
+    public abstract AbsolutePath GetAndroidHome(IUnrealBuild build);
+    public abstract AbsolutePath GetNdkPath(IUnrealBuild build);
+    public abstract AbsolutePath GetBuildToolsPath(IUnrealBuild build);
+    public abstract AbsolutePath GetPlatformToolsPath(IUnrealBuild build);
 
-    public abstract Tool GetApkSigner(INukeBuild self);
-    public abstract Tool GetAdb(INukeBuild self);
+    public abstract Tool GetApkSigner(IUnrealBuild build);
+    public abstract Tool GetAdb(IUnrealBuild build);
 }

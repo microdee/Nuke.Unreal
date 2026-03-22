@@ -27,16 +27,16 @@ public class WindowsHostsLinux : IPlatformSdk
         _ => null
     };
 
-    public static string? GetEpicToolchainName(INukeBuild self)
-        => GetEpicToolchainName(Unreal.Version((UnrealBuild)self).VersionMinor);
+    public static string? GetEpicToolchainName(IUnrealBuild build)
+        => GetEpicToolchainName(Unreal.Version(build).VersionMinor);
 
-    public async Task Setup(INukeBuild self)
+    public async Task Setup(IUnrealBuild build)
     {
-        var epicToolchainName = GetEpicToolchainName(self);
-        var sdkPath = GetSdkPath(self);
+        var epicToolchainName = GetEpicToolchainName(build);
+        var sdkPath = GetSdkPath(build);
 
         Log.Information("Setting up Linux toolchain {0} at {1}", epicToolchainName, sdkPath);
-        if (!SelfPlatformSdk.Exists(self))
+        if (!SelfPlatformSdk.Exists(build))
         {
             var url = $"https://cdn.unrealengine.com/CrossToolchain_Linux/{epicToolchainName}.exe";
             var installerPath = NukeBuild.TemporaryDirectory / "LinuxSdkTemp" / (epicToolchainName + ".exe");
@@ -50,19 +50,19 @@ public class WindowsHostsLinux : IPlatformSdk
         Environment.SetEnvironmentVariable("LINUX_MULTIARCH_ROOT", sdkPath, EnvironmentVariableTarget.Process);
     }
 
-    public bool IsValid(INukeBuild self) => GetEpicToolchainName(self) != null;
+    public bool IsValid(IUnrealBuild build) => GetEpicToolchainName(build) != null;
 
-    public AbsolutePath GetSdkPath(INukeBuild self)
-        => SelfPlatformSdk.GetSdkVersionsPath(self) / GetEpicToolchainName(self);
+    public AbsolutePath GetSdkPath(IUnrealBuild build)
+        => SelfPlatformSdk.GetSdkVersionsPath(build) / GetEpicToolchainName(build);
 
-    public AbsolutePath GetToolchainPath(INukeBuild self)
-        => GetSdkPath(self) / "x86_64-unknown-linux-gnu";
+    public AbsolutePath GetToolchainPath(IUnrealBuild build)
+        => GetSdkPath(build) / "x86_64-unknown-linux-gnu";
 
-    public PlatformSdkXMakeData GetXMakeData(INukeBuild self)
+    public PlatformSdkXMakeData GetXMakeData(IUnrealBuild build)
         => new(
             $"""
-            --sdk="{GetToolchainPath(self)}"
+            --sdk="{GetToolchainPath(build)}"
             """,
-            ToolSetup: _ => _.WithPathVar(GetToolchainPath(self) / "bin")
+            ToolSetup: _ => _.WithPathVar(GetToolchainPath(build) / "bin")
         );
 }

@@ -13,7 +13,7 @@ namespace Nuke.Unreal
     /// <summary>
     /// High level representation of an Unreal Engine version
     /// </summary>
-    public partial class EngineVersion
+    public class EngineVersion
     {
         private Version GetEngineSemVersion()
         {

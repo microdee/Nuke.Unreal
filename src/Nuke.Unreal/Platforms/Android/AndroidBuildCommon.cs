@@ -7,9 +7,8 @@ namespace Nuke.Unreal.Platforms.Android;
 
 public static class AndroidBuildCommon
 {
-    public static string GetAppNameFromConfig(this INukeBuild self)
+    public static string GetAppNameFromConfig(this IUnrealBuild build)
     {
-        var build = (UnrealBuild)self;
         var packageNameCommands = build.ReadIniHierarchy("Engine")
             ?["/Script/AndroidRuntimeSettings.AndroidRuntimeSettings"]
             ?["PackageName"];
@@ -19,35 +18,32 @@ public static class AndroidBuildCommon
             : packageNameCommands.First().Value;
     }
 
-    public static bool IsAndroidPlatform(this INukeBuild self)
-        => ((UnrealBuild)self).Platform == UnrealPlatform.Android;
+    public static bool IsAndroidPlatform(this IUnrealBuild build)
+        => build.Platform == UnrealPlatform.Android;
 
-    public static string GetApkName(this INukeBuild self)
+    public static string GetApkName(this IUnrealBuild build)
     {
-        var build = (UnrealBuild) self;
-        var androidBuild = (IAndroidBuildTargets) self;
+        var androidBuild = (IAndroidBuildTargets) build;
         return build.Config[0] == UnrealConfig.Development
             ? $"{build.ProjectName}-{androidBuild.Cpu.ToString().ToLower()}"
             : $"{build.ProjectName}-Android-{build.Config[0]}-{androidBuild.Cpu.ToString().ToLower()}";
     }
 
-    public static string GetAppName(this INukeBuild self)
+    public static string GetAppName(this IUnrealBuild build)
     {
-        var androidBuild = (IAndroidBuildTargets) self;
+        var androidBuild = (IAndroidBuildTargets) build;
         return androidBuild.AppName;
     }
 
-    public static AbsolutePath GetApkFile(this INukeBuild self)
+    public static AbsolutePath GetApkFile(this IUnrealBuild build)
     {
-        var build = (UnrealBuild) self;
-        return build.ProjectFolder / "Binaries" / "Android" / (self.GetApkName() + ".apk");
+        return build.ProjectFolder / "Binaries" / "Android" / (build.GetApkName() + ".apk");
     }
 
-    public static AndroidSdk GetAndroidSdk(this INukeBuild self)
+    public static AndroidSdk GetAndroidSdk(this IUnrealBuild build)
     {
-        var build = (UnrealBuild) self;
         var sdk = build.Platform.GetSdk() as AndroidSdk;
-        Assert.True(sdk?.IsValid(self) ?? false, "Android SDK management was unavailable.");
+        Assert.True(sdk?.IsValid(build) ?? false, "Android SDK management was unavailable.");
         return sdk!;
     }
 }

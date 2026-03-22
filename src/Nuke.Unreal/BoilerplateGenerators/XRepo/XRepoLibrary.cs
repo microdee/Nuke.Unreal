@@ -57,7 +57,7 @@ public static partial class XRepoLibrary
         );
     }
 
-    internal static IEnumerable<XRepoLibraryRecord> InstallXRepoLibrary(INukeBuild build, UnrealPlatform platform, LibrarySpec spec, string options, AbsolutePath targetPath, bool debug, string runtime = "MD")
+    internal static IEnumerable<XRepoLibraryRecord> InstallXRepoLibrary(IUnrealBuild build, UnrealPlatform platform, LibrarySpec spec, string options, AbsolutePath targetPath, bool debug, string runtime = "MD")
     {
         var libraryFiles = targetPath / "LibraryFiles";
         if (platform == UnrealPlatform.Win64)
@@ -159,7 +159,7 @@ public static partial class XRepoLibrary
     /// <param name="suffix">Optional addition to the name of library name exposed to Unreal</param>
     /// <param name="releaseRuntime">Windows CRT linkage for release versions (default is MD)</param>
     /// <param name="debugRuntime">Windows CRT linkage for debug versions (default is MD)</param>
-    public static void InstallXRepoLibrary(this INukeBuild build, string specIn, string options, AbsolutePath targetPath, List<UnrealPlatform>? supportedPlatforms = null, string? suffix = null, string releaseRuntime = "MD", string debugRuntime = "MD")
+    public static void InstallXRepoLibrary(this IUnrealBuild build, string specIn, string options, AbsolutePath targetPath, List<UnrealPlatform>? supportedPlatforms = null, string? suffix = null, string releaseRuntime = "MD", string debugRuntime = "MD")
     {
         Log.Information("Installing library {0} via xrepo", specIn);
         var spec = ParseSpec(specIn) with { Options = options };

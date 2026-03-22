@@ -20,17 +20,17 @@ public interface IPlatformSdk
 
     UnrealPlatform Target { get; }
 
-    Task Setup(INukeBuild self);
+    Task Setup(IUnrealBuild build);
 
-    bool IsValid(INukeBuild self);
+    bool IsValid(IUnrealBuild build);
 
-    AbsolutePath GetSdkVersionsPath(INukeBuild self) => PlatformSdkManager.PlatformSdkRoot / Host / Target;
+    AbsolutePath GetSdkVersionsPath(IUnrealBuild build) => PlatformSdkManager.PlatformSdkRoot / Host / Target;
 
-    AbsolutePath GetSdkPath(INukeBuild self);
+    AbsolutePath GetSdkPath(IUnrealBuild build);
 
-    AbsolutePath GetToolchainPath(INukeBuild self) => GetSdkPath(self);
+    AbsolutePath GetToolchainPath(IUnrealBuild build) => GetSdkPath(build);
 
-    bool Exists(INukeBuild self) => IsValid(self) && GetSdkPath(self).DirectoryExists();
+    bool Exists(IUnrealBuild build) => IsValid(build) && GetSdkPath(build).DirectoryExists();
 
-    PlatformSdkXMakeData GetXMakeData(INukeBuild self);
+    PlatformSdkXMakeData GetXMakeData(IUnrealBuild build);
 }

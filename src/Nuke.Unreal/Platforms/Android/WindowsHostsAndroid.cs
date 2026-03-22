@@ -44,18 +44,18 @@ public class WindowsHostsAndroid : AndroidSdk
 
     private IPlatformSdk SelfPlatformSdk => this;
 
-    public AbsolutePath GetJdkVersionsPath(INukeBuild self) => SelfPlatformSdk.GetSdkVersionsPath(self) / "JDK";
-    public AbsolutePath GetCommandlineToolsPath(INukeBuild self) => AndroidHome / "cmdline-tools/latest";
+    public AbsolutePath GetJdkVersionsPath(IUnrealBuild build) => SelfPlatformSdk.GetSdkVersionsPath(build) / "JDK";
+    public AbsolutePath GetCommandlineToolsPath(IUnrealBuild build) => AndroidHome / "cmdline-tools/latest";
 
-    public AbsolutePath GetSdkManagerPath(INukeBuild self) => GetCommandlineToolsPath(self) / "bin/sdkmanager.bat";
+    public AbsolutePath GetSdkManagerPath(IUnrealBuild build) => GetCommandlineToolsPath(build) / "bin/sdkmanager.bat";
 
     public override UnrealPlatform Host => UnrealPlatform.Win64;
     public override UnrealPlatform Target => UnrealPlatform.Android;
 
-    public override async Task Setup(INukeBuild self)
+    public override async Task Setup(IUnrealBuild build)
     {
-        var sdkVersions = GetSdkVersionsChecked(self);
-        var jdkPath = GetJdkVersionsPath(self) / sdkVersions.Jdk.ToString();
+        var sdkVersions = GetSdkVersionsChecked(build);
+        var jdkPath = GetJdkVersionsPath(build) / sdkVersions.Jdk.ToString();
 
         Log.Information("Using JDK {0} at {1}", sdkVersions.Jdk, jdkPath);
         if (!jdkPath.DirectoryExists())
@@ -75,9 +75,9 @@ public class WindowsHostsAndroid : AndroidSdk
         }
         Environment.SetEnvironmentVariable("JAVA_HOME", jdkPath, EnvironmentVariableTarget.Process);
 
-        if (!SelfPlatformSdk.Exists(self))
+        if (!SelfPlatformSdk.Exists(build))
         {
-            var sdkManagerPath = GetSdkManagerPath(self);
+            var sdkManagerPath = GetSdkManagerPath(build);
             Log.Information("Using SDK Manager at {0}", sdkVersions.Jdk, sdkManagerPath);
             if (!sdkManagerPath.FileExists())
             {
@@ -91,7 +91,7 @@ public class WindowsHostsAndroid : AndroidSdk
                 cmdlineToolsDownloadPath.UnZipTo(extractTemp);
 
                 Log.Debug("    Moving");
-                (extractTemp / "cmdline-tools").Move(GetCommandlineToolsPath(self));
+                (extractTemp / "cmdline-tools").Move(GetCommandlineToolsPath(build));
                 Assert.FileExists(sdkManagerPath);
             }
 
@@ -119,41 +119,41 @@ public class WindowsHostsAndroid : AndroidSdk
             );
         }
 
-        Environment.SetEnvironmentVariable("NDK_ROOT", GetNdkPath(self), EnvironmentVariableTarget.Process);
-        Environment.SetEnvironmentVariable("NDKROOT", GetNdkPath(self), EnvironmentVariableTarget.Process);
+        Environment.SetEnvironmentVariable("NDK_ROOT", GetNdkPath(build), EnvironmentVariableTarget.Process);
+        Environment.SetEnvironmentVariable("NDKROOT", GetNdkPath(build), EnvironmentVariableTarget.Process);
         var paths = EnvironmentInfo.Paths
-            .Append(GetPlatformToolsPath(self).ToString())
+            .Append(GetPlatformToolsPath(build).ToString())
             .Join(";")
         ;
         Environment.SetEnvironmentVariable("PATH", paths, EnvironmentVariableTarget.Process);
 
-        Log.Information("Using Android SDK {0} at {1}", sdkVersions.Sdk, GetSdkPath(self));
-        Log.Information("Using Android NDK toolchain {0} at {1}", sdkVersions.Ndk.ToString(3), GetToolchainPath(self));
+        Log.Information("Using Android SDK {0} at {1}", sdkVersions.Sdk, GetSdkPath(build));
+        Log.Information("Using Android NDK toolchain {0} at {1}", sdkVersions.Ndk.ToString(3), GetToolchainPath(build));
     }
 
-    public override bool IsValid(INukeBuild self) => GetSdkVersions(self) != null;
+    public override bool IsValid(IUnrealBuild build) => GetSdkVersions(build) != null;
 
-    public override AbsolutePath GetSdkPath(INukeBuild self)
-        => AndroidHome / $"platforms/android-{GetSdkVersionsChecked(self).Sdk}";
+    public override AbsolutePath GetSdkPath(IUnrealBuild build)
+        => AndroidHome / $"platforms/android-{GetSdkVersionsChecked(build).Sdk}";
 
-    public override AbsolutePath GetAndroidHome(INukeBuild self) => AndroidHome;
+    public override AbsolutePath GetAndroidHome(IUnrealBuild build) => AndroidHome;
 
-    public override AbsolutePath GetNdkPath(INukeBuild self)
-        => AndroidHome / "ndk" / GetSdkVersionsChecked(self).Ndk.ToString(3);
+    public override AbsolutePath GetNdkPath(IUnrealBuild build)
+        => AndroidHome / "ndk" / GetSdkVersionsChecked(build).Ndk.ToString(3);
 
-    public override AbsolutePath GetBuildToolsPath(INukeBuild self)
-        => AndroidHome / "build-tools" / GetSdkVersionsChecked(self).BuildTools.ToString(3);
+    public override AbsolutePath GetBuildToolsPath(IUnrealBuild build)
+        => AndroidHome / "build-tools" / GetSdkVersionsChecked(build).BuildTools.ToString(3);
 
-    public override Tool GetApkSigner(INukeBuild self)
-        => ToolResolver.GetTool(GetBuildToolsPath(self) / "apksigner.bat");
+    public override Tool GetApkSigner(IUnrealBuild build)
+        => ToolResolver.GetTool(GetBuildToolsPath(build) / "apksigner.bat");
 
-    public AbsolutePath GetToolchainPath(INukeBuild self)
-        => GetNdkPath(self) / "toolchains/llvm/prebuilt/windows-x86_64";
+    public AbsolutePath GetToolchainPath(IUnrealBuild build)
+        => GetNdkPath(build) / "toolchains/llvm/prebuilt/windows-x86_64";
 
-    public override PlatformSdkXMakeData GetXMakeData(INukeBuild self)
-        => new($"--ndk=\"{GetNdkPath(self)}\"");
+    public override PlatformSdkXMakeData GetXMakeData(IUnrealBuild build)
+        => new($"--ndk=\"{GetNdkPath(build)}\"");
 
-    public override AbsolutePath GetPlatformToolsPath(INukeBuild self) => AndroidHome / "platform-tools";
+    public override AbsolutePath GetPlatformToolsPath(IUnrealBuild build) => AndroidHome / "platform-tools";
 
-    public override Tool GetAdb(INukeBuild self) => ToolResolver.GetTool(GetPlatformToolsPath(self) / "adb.exe");
+    public override Tool GetAdb(IUnrealBuild build) => ToolResolver.GetTool(GetPlatformToolsPath(build) / "adb.exe");
 }

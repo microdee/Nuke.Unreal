@@ -258,7 +258,7 @@ public class UnrealPlugin
     ///     Optional argument to get the output from. If another functionality has cached this
     ///     before, this is not needed.
     /// </param>
-    public AbsolutePath GetDistributionOutput(UnrealBuild build, PluginDistributionOptions? options = null)
+    public AbsolutePath GetDistributionOutput(IUnrealBuild build, PluginDistributionOptions? options = null)
     {
         options ??= _distributionOptionsCache;
         _distributionOptionsCache = options;
@@ -278,7 +278,7 @@ public class UnrealPlugin
     ///     Optional argument to get the output from. If another functionality has cached this
     ///     before, this is not needed.
     /// </param>
-    public AbsolutePath GetBuildOutput(UnrealBuild build, PluginBuildOptions? options = null)
+    public AbsolutePath GetBuildOutput(IUnrealBuild build, PluginBuildOptions? options = null)
     {
         options ??= _buildOptionsCache;
         _buildOptionsCache = options;
@@ -291,7 +291,7 @@ public class UnrealPlugin
     ///     Generate the `FilterPlugin.ini` file after all components have submitted their
     ///     explicit files.
     /// </summary>
-    public void GenerateFilterPluginIni(UnrealBuild build)
+    public void GenerateFilterPluginIni(IUnrealBuild build)
     {
         AddDefaultExplicitPluginFiles(build);
 
@@ -326,7 +326,7 @@ public class UnrealPlugin
         }
     };
 
-    private IEnumerable<AbsolutePath> GetDefaultExplicitPluginFiles(UnrealBuild build)
+    private IEnumerable<AbsolutePath> GetDefaultExplicitPluginFiles(IUnrealBuild build)
         => build.ImportFolder((Folder, Folder.Parent / "ShouldntExist", "PluginFiles.yml"), new(
                 Pretend: true,
                 UseSubfolder: false,
@@ -334,7 +334,7 @@ public class UnrealPlugin
                 AddToMain: [_filterExportManifest]
             )).WithFilesExpanded().Select(f => f.From);
 
-    private void AddDefaultExplicitPluginFiles(UnrealBuild build)
+    private void AddDefaultExplicitPluginFiles(IUnrealBuild build)
         => AddExplicitPluginFiles(GetDefaultExplicitPluginFiles(build));
 
     private bool InjectBinaryPlumbing(PluginDescriptor descriptor, out PluginDescriptor result)
@@ -408,7 +408,7 @@ public class UnrealPlugin
     ///     </list>
     /// </returns>
     public (IEnumerable<ImportedItem> result, AbsolutePath output) DistributeSource(
-        UnrealBuild build,
+        IUnrealBuild build,
         PluginDistributionOptions? options = null,
         bool pretend = false
     ) {
@@ -470,7 +470,7 @@ public class UnrealPlugin
     /// </summary>
     /// <param name="build"></param>
     /// <returns></returns>
-    IEnumerable<UnrealPlugin> GetProjectPluginDependencies(UnrealBuild build)
+    IEnumerable<UnrealPlugin> GetProjectPluginDependencies(IUnrealBuild build)
         => Descriptor.Plugins?
             .Where(p => p.Enabled ?? false)
             .Select(p =>
@@ -487,7 +487,7 @@ public class UnrealPlugin
 
     /// <summary>
     /// Make a prebuilt release of this plugin for end-users. Globally set UAT and UBT arguments
-    /// are used from the input UnrealBuild
+    /// are used from the input IUnrealBuild
     /// </summary>
     /// <param name="build"></param>
     /// <param name="uatConfig">Configurator for UAT</param>
@@ -497,7 +497,7 @@ public class UnrealPlugin
     /// <param name="dependencyHandler">Customize the build option for plugin dependencies</param>
     /// <returns>Output folder of the packaged plugin</returns>
     public AbsolutePath BuildPlugin(
-        UnrealBuild build,
+        IUnrealBuild build,
         Func<UatConfig, UatConfig>? uatConfig = null,
         Func<UbtConfig, UbtConfig>? ubtConfig = null,
         PluginBuildOptions? buildOptions = null,

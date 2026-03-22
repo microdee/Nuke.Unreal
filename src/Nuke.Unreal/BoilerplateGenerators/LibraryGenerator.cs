@@ -11,6 +11,7 @@ using System.Text.RegularExpressions;
 using Nuke.Unreal.BoilerplateGenerators.XRepo;
 using System.Collections.Generic;
 using Humanizer;
+using Nuke.Common;
 using Nuke.Common.Utilities;
 
 namespace Nuke.Unreal.BoilerplateGenerators;
@@ -72,7 +73,7 @@ public class LibraryGenerator : BoilerplateGenerator
 {
     protected LibraryModel? Model;
 
-    public void Generate(UnrealBuild build, AbsolutePath templatesPath, AbsolutePath currentFolder, string fullSpec, LibraryType libraryType, string? suffix)
+    public void Generate(IUnrealBuild build, AbsolutePath templatesPath, AbsolutePath currentFolder, string fullSpec, LibraryType libraryType, string? suffix)
     {
         var project = new UnrealProject(build);
         var spec = libraryType.ParseSpec(fullSpec);
