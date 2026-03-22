@@ -593,7 +593,7 @@ public class UnrealPlugin
             {
                 if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
                 {
-                    shortSource.DeleteDirectory();
+                    shortSource.AsLinkInfo()?.Delete();
                     shortOut.AsLinkInfo()?.Delete();
                 }
             }
@@ -677,11 +677,10 @@ public class UnrealPlugin
                 hostProjectDir.DeleteDirectory();
                 _buildOutput = outFolder;
             }
-            catch(Exception) { throw; }
             finally
             {
                 if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
-                    shortPluginDir.AsLinkInfo()?.Delete();
+                    shortHostProjectDir.AsLinkInfo()?.Delete();
                 
                 foreach (var dep in dependencies)
                 {
