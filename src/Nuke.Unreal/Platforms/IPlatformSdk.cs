@@ -45,6 +45,10 @@ public interface IPlatformSdk
     ///     here and point Unreal to it via setting process environment variables for example. Even if an SDK is
     ///     already downloaded and installed this Setup function would still need to connect Unreal to that.
     /// </para>
+    /// <para>
+    ///     This method can be called multiple times, not only at initialization. Implementations should tread
+    ///     accordingly.
+    /// </para>
     /// </summary>
     /// <param name="build">
     ///     Current Unreal project, set or get data from it, as that's necessary for this platform SDK

@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
+using Nuke.Cola.BuildPlugins;
 using Nuke.Common;
 using Nuke.Common.IO;
 using Nuke.Unreal.Platforms.Android;
@@ -35,8 +38,24 @@ public static class PlatformSdkManager
         => Sdks.TryGetValue((Unreal.GetHostPlatform(), platform), out var sdk) ? sdk : null
     ;
 
-    /// <summary>
-    /// Register a <see cref="IPlatformSdk"/> implementation for a host-target platform pair.
-    /// </summary>
-    public static void Register(IPlatformSdk sdk) => Sdks[(sdk.Host, sdk.Target)] = sdk;
+    internal static void RegisterSdks()
+    {
+        var platformSdks = new []
+            {
+                Assembly.GetEntryAssembly()!,
+                Assembly.GetExecutingAssembly()
+            }
+            .SelectMany(a => a.GetTypes())
+            .Distinct()
+            .Where(t =>
+                !t.IsAbstract
+                && t.GetInterfaces().Any(i => i.FullName == "Nuke.Unreal.Platforms.IPlatformSdk")
+            );
+        foreach (var platformSdkType in platformSdks)
+        {
+            var platformSdk = (IPlatformSdk) Activator.CreateInstance(platformSdkType)!;
+            Sdks[(platformSdk.Host, platformSdk.Target)] = platformSdk;
+            Console.WriteLine($"Registered SDK manager for {platformSdk.Target} on {platformSdk.Host} ({platformSdkType.Name})");
+        }
+    }
 }

@@ -13,8 +13,6 @@ namespace Nuke.Unreal.Platforms.Android;
 
 public class WindowsHostsAndroid : AndroidSdk
 {
-    static WindowsHostsAndroid() => PlatformSdkManager.Register(new WindowsHostsAndroid());
-
     public static string? GetJdkDownloadUrl(int jdk) => jdk switch
     {
         25 => "https://download.java.net/java/GA/jdk25.0.1/2fbf10d8c78e40bd87641c434705079d/8/GPL/openjdk-25.0.1_windows-x64_bin.zip",

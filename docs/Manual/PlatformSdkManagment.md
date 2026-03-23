@@ -30,7 +30,7 @@ Platform pairs already implemented in Nuke.Unreal:
 
 ## NDA platforms
 
-For host-target combinations of platforms which are not imolemented in Nuke.Unreal yet, or game console NDA platforms, you can register your own implementation in your Nuke.Unreal build project:
+For host-target combinations of platforms which are not imolemented in Nuke.Unreal yet, or game console NDA platforms, you can create your own non-abstract implementation in your Nuke.Unreal build project, and it will be picked up automatically:
 
 ```csharp
 // NintendoVirtualBoy.cs
@@ -50,8 +50,6 @@ public class WindowsHostsNintendoVirtualBoy : IPlatformSdk
     
     public UnrealPlatform Host => UnrealPlatform.Win64;
     public UnrealPlatform Target => NintendoVirtualBoy;
-    
-    static WindowsHostsNintendoVirtualBoy() => PlatformSdkManager.Register(new WindowsHostsNintendoVirtualBoy());
     
     public bool IsValid(IUnrealBuild build) => /* ... */;
     public async Task Setup(IUnrealBuild build) => /* ... */;

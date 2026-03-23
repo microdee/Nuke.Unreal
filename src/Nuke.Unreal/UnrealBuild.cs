@@ -8,6 +8,7 @@ using Nuke.Common.IO;
 using Nuke.Common.Utilities;
 using Nuke.Common.Utilities.Collections;
 using Nuke.Unreal.Ini;
+using Nuke.Unreal.Platforms;
 using Nuke.Unreal.Platforms.Android;
 using Nuke.Unreal.Tools;
 using Serilog;
@@ -32,6 +33,12 @@ public enum IniHierarchyLevel
 /// </summary>
 public abstract partial class UnrealBuild : NukeBuild, IUnrealBuild
 {
+    protected override void OnBuildCreated()
+    {
+        base.OnBuildCreated();
+        PlatformSdkManager.RegisterSdks();
+    }
+
     /// <summary>
     /// <para>
     /// **NUKE PARAMETER**

@@ -5,18 +5,17 @@ namespace Nuke.Unreal;
 public static class VersionExtensions
 {
     /// <summary>
-    /// Automatically prune version component if they're &lt;= 0 (or -1)
+    /// Automatically prune version component if they're &lt;= 0
     /// </summary>
     /// <param name="version"></param>
     /// <param name="allowZero"></param>
     /// <returns></returns>
-    public static string ToStringAutoFieldCount(this Version version, bool allowZero = false)
+    public static string ToStringAutoFieldCount(this Version version)
     {
-        var tolerance = allowZero ? 0 : -1;
         var fields = 4;
-        if (version.Revision <= tolerance) --fields;
-        if (version.Build <= tolerance) --fields;
-        if (version.Minor <= tolerance) --fields;
+        if (version.Revision <= 0) --fields;
+        if (version.Build <= 0) --fields;
+        if (version.Minor <= 0) --fields;
         return version.ToString(fields);
     }
 

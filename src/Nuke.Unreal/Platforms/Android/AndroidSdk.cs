@@ -63,25 +63,25 @@ public abstract class AndroidSdk : IPlatformSdk
             Jdk: 17, Sdk: 34, Target: 34,
             Ndk:        new(25, 1, 8937393),
             BuildTools: new(34, 0, 0),
-            CMake:      new(3, 22, 1, -1)
+            CMake:      new(3, 22, 1, 0)
         ),
         "5.5" => new(
             Jdk: 17, Sdk: 34, Target: 34,
             Ndk:        new(25, 1, 8937393),
             BuildTools: new(34, 0, 0),
-            CMake:      new(3, 22, 1, -1)
+            CMake:      new(3, 22, 1, 0)
         ),
         "5.6" => new(
             Jdk: 21, Sdk: 35, Target: 34,
             Ndk:        new(27, 2, 12479018),
             BuildTools: new(35, 0, 1),
-            CMake:      new(3, 22, 1, -1)
+            CMake:      new(3, 22, 1, 0)
         ),
         "5.7" => new(
             Jdk: 21, Sdk: 35, Target: 34,
             Ndk:        new(27, 2, 12479018),
             BuildTools: new(35, 0, 1),
-            CMake:      new(3, 22, 1, -1)
+            CMake:      new(3, 22, 1, 0)
         ),
         _ => null
     };
