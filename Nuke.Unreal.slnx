@@ -34,5 +34,6 @@
   </Project>
   <Folder Name="/external/">
     <Project Path="../md.Nuke.Cola/md.Nuke.Cola/md.Nuke.Cola.csproj" />
+    <Project Path="../md.Nuke.Cola/tests/TestBuild/TestBuild.csproj" />
   </Folder>
 </Solution>
