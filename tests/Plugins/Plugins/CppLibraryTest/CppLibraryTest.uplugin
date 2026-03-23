@@ -23,7 +23,6 @@
 	],
 	"SupportedTargetPlatforms": [
 		"Win64",
-		"Android",
-		"Linux"
+		"Android"
 	]
 }
