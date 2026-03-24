@@ -1,0 +1,252 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "definitions": {
+    "Host": {
+      "type": "string",
+      "enum": [
+        "AppVeyor",
+        "AzurePipelines",
+        "Bamboo",
+        "Bitbucket",
+        "Bitrise",
+        "GitHubActions",
+        "GitLab",
+        "Jenkins",
+        "Rider",
+        "SpaceAutomation",
+        "TeamCity",
+        "Terminal",
+        "TravisCI",
+        "VisualStudio",
+        "VSCode"
+      ]
+    },
+    "ExecutableTarget": {
+      "type": "string",
+      "enum": [
+        "AddCode",
+        "Build",
+        "BuildEditor",
+        "Clean",
+        "CleanDeployment",
+        "CleanPlugins",
+        "CleanProject",
+        "Cook",
+        "EnsureBuildPluginSupport",
+        "Generate",
+        "HelpNukeUnreal",
+        "Info",
+        "NewActor",
+        "NewInterface",
+        "NewModule",
+        "NewObject",
+        "NewPlugin",
+        "NewSpec",
+        "NewStruct",
+        "Package",
+        "Prepare",
+        "PrepareReflectCpp",
+        "Run",
+        "RunEditorCmd",
+        "RunShell",
+        "RunUat",
+        "RunUbt",
+        "SetupPlatformSdk",
+        "Switch",
+        "UseCMake",
+        "UseHeaderOnly",
+        "UseLibrary",
+        "UseXRepo"
+      ]
+    },
+    "Verbosity": {
+      "type": "string",
+      "description": "",
+      "enum": [
+        "Verbose",
+        "Normal",
+        "Minimal",
+        "Quiet"
+      ]
+    },
+    "NukeBuild": {
+      "properties": {
+        "Continue": {
+          "type": "boolean",
+          "description": "Indicates to continue a previously failed build attempt"
+        },
+        "Help": {
+          "type": "boolean",
+          "description": "Shows the help text for this build assembly"
+        },
+        "Host": {
+          "description": "Host for execution. Default is 'automatic'",
+          "$ref": "#/definitions/Host"
+        },
+        "NoLogo": {
+          "type": "boolean",
+          "description": "Disables displaying the NUKE logo"
+        },
+        "Partition": {
+          "type": "string",
+          "description": "Partition to use on CI"
+        },
+        "Plan": {
+          "type": "boolean",
+          "description": "Shows the execution plan (HTML)"
+        },
+        "Profile": {
+          "type": "array",
+          "description": "Defines the profiles to load",
+          "items": {
+            "type": "string"
+          }
+        },
+        "Root": {
+          "type": "string",
+          "description": "Root directory during build execution"
+        },
+        "Skip": {
+          "type": "array",
+          "description": "List of targets to be skipped. Empty list skips all dependencies",
+          "items": {
+            "$ref": "#/definitions/ExecutableTarget"
+          }
+        },
+        "Target": {
+          "type": "array",
+          "description": "List of targets to be invoked. Default is '{default_target}'",
+          "items": {
+            "$ref": "#/definitions/ExecutableTarget"
+          }
+        },
+        "Verbosity": {
+          "description": "Logging verbosity during build execution. Default is 'Normal'",
+          "$ref": "#/definitions/Verbosity"
+        }
+      }
+    }
+  },
+  "allOf": [
+    {
+      "properties": {
+        "AddToTarget": {
+          "type": "boolean"
+        },
+        "AndroidTextureMode": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "ASTC",
+              "DXT",
+              "ETC2",
+              "Multi"
+            ]
+          }
+        },
+        "Cmd": {
+          "type": "string"
+        },
+        "Config": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "Debug",
+              "DebugGame",
+              "Development",
+              "Shipping",
+              "Test"
+            ]
+          }
+        },
+        "EditorConfig": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "Debug",
+              "DebugGame",
+              "Development",
+              "Shipping",
+              "Test"
+            ]
+          }
+        },
+        "IgnoreGlobalArgs": {
+          "type": "boolean"
+        },
+        "LibraryType": {
+          "type": "string",
+          "enum": [
+            "CMake",
+            "Header",
+            "XRepo"
+          ]
+        },
+        "Name": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "Output": {
+          "type": "string"
+        },
+        "Platform": {
+          "type": "string",
+          "enum": [
+            "Android",
+            "DevelopmentPlatforms",
+            "HoloLens",
+            "Independent",
+            "IOS",
+            "Linux",
+            "LinuxArm64",
+            "Mac",
+            "Platforms",
+            "TVOS",
+            "VisionOS",
+            "Win32",
+            "Win64"
+          ]
+        },
+        "Spec": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "Suffix": {
+          "type": "string"
+        },
+        "TargetType": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "Client",
+              "Editor",
+              "Game",
+              "Program",
+              "Server"
+            ]
+          }
+        },
+        "TemplatesPath": {
+          "type": "string"
+        },
+        "Tool": {
+          "type": "string"
+        },
+        "unreal": {
+          "type": "string"
+        }
+      }
+    },
+    {
+      "$ref": "#/definitions/NukeBuild"
+    }
+  ]
+}

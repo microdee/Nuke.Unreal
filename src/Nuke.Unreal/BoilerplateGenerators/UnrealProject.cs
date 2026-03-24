@@ -1,4 +1,5 @@
 using System;
+using Nuke.Common;
 using Nuke.Common.IO;
 
 namespace Nuke.Unreal.BoilerplateGenerators
@@ -10,7 +11,7 @@ namespace Nuke.Unreal.BoilerplateGenerators
             string? throwIfNotFound = null
         ) : base(currentFolder, throwIfNotFound) {}
 
-        public UnrealProject(UnrealBuild build) : base(
+        public UnrealProject(IUnrealBuild build) : base(
             build.ProjectFolder,
             "Project folder couldn't be determined from build class"
         ) {}

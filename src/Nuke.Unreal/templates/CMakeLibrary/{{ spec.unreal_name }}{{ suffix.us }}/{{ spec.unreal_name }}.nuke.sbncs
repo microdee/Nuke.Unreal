@@ -13,41 +13,38 @@ using System;
 
 [ImplicitBuildInterface]
 [ParameterPrefix("{{ spec.name }}")]
-public interface IUse{{ cap_name }} : INukeBuild
+public interface IUse{{ cap_name }} : IUnrealBuild
 {
     AbsolutePath {{ cap_name }}InputDir => this.ScriptFolder() / "{{ spec.name }}";
 
     string[] {{ cap_name }}Configs => [ "Release", "Debug" ];
 
     Target Prepare{{ cap_name }} => _ => _
-        .DependentFor<UnrealBuild>(b => b.Prepare)
+        .DependentFor(Prepare)
         .Executes(() =>
         {
-            var cmake = ToolCola.Use("cmake").Get();
-            var platform = ((UnrealBuild)this).Platform;
-
+            var cmake = CMakeTasks.CMake;
             foreach(var config in {{ cap_name }}Configs)
             {
                 var architecture = "x64";
                 var cmakeOutput = this.ScriptFolder() / "CMake" / config;
                 cmakeOutput.CreateOrCleanDirectory();
 
-                Log.Information("Generating {0} {{ spec.name }} libraries for {1} ({2})", config, platform, architecture);
-
-                var args =
+                Log.Information("Generating {0} {{ spec.name }} libraries for {1} ({2})", config, Platform, architecture);
+                
+                cmake(
                     $"""
-                    -G "Visual Studio 17 2022" -A {architecture}
+                    -G Ninja -A {architecture}
                     -DCMAKE_BUILD_TYPE={config}
                     -DCMAKE_INSTALL_PREFIX="{cmakeOutput}"
                     "{ {{ cap_name }}InputDir }"
-                    """
-                    .AsSingleLine();
-                
-                cmake(arguments: $"{args:nq}", workingDirectory: cmakeOutput);
+                    """,
+                    workingDirectory: cmakeOutput
+                );
 
-                Log.Information("Building {0} {{ spec.name }} libraries for {1} ({2})", config, platform, architecture);
+                Log.Information("Building {0} {{ spec.name }} libraries for {1} ({2})", config, Platform, architecture);
                 cmake(
-                    arguments: $"--build . --target INSTALL --config {config}",
+                    $"--build . --target INSTALL --config {config}",
                     workingDirectory: cmakeOutput
                 );
 

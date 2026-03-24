@@ -80,9 +80,10 @@ using Nuke.Cola.BuildPlugins;
 using Nuke.Unreal;
 
 [ImplicitBuildInterface]
-public interface IMyPluginTargets : INukeBuild
+public interface IMyPluginTargets : IUnrealBuild
 {
     Target PrepareMyPlugin => _ => _
+        .DependentFor(Prepare)
         .Executes(() =>
         {
             this.PrepareRuntimeDependencies(
@@ -109,19 +110,18 @@ public interface IMyPluginTargets : INukeBuild
                         Platform = UnrealPlatform.Linux
                     },
                 ],
-                determineConfig: f =>
-                    f.ToString().Contains("rel")
-                    ? RuntimeDependencyConfig.Release
-                    : f.ToString().Contains("debug")
-                    ? RuntimeDependencyConfig.Debug
-                    : RuntimeDependencyConfig.All
-                ,
-                determinePlatform: f =>
-                    f.ToString().Contains("win_amd64")
-                    ? UnrealPlatform.Win64
-                    : f.ToString().Contains("linux_x86_64")
-                    ? UnrealPlatform.Linux
-                    : UnrealPlatform.Independent
+                determineConfig: f => f.ToString() switch
+                {
+                    var str when str.Contains("rel")   => RuntimeDependencyConfig.Release,
+                    var str when str.Contains("debug") => RuntimeDependencyConfig.Debug,
+                    _ => RuntimeDependencyConfig.All
+                },
+                determinePlatform: f => f.ToString() switch
+                {   
+                    var str when str.Contains("win_amd64")    => UnrealPlatform.Win64,
+                    var str when str.Contains("linux_x86_64") => UnrealPlatform.Linux,
+                    _ => UnrealPlatform.Independent
+                }
             );
         });
 }

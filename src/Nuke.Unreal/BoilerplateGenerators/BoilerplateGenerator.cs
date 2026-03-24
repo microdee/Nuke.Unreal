@@ -80,9 +80,7 @@ namespace Nuke.Unreal.BoilerplateGenerators
 
     public class ScribanParseException : Exception
     {
-        public ScribanParseException(Template template) : base(GetMessage(template))
-        {
-        }
+        public ScribanParseException(Template template) : base(GetMessage(template)) {}
 
         private static string GetMessage(Template template)
         {

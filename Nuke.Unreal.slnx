@@ -1,0 +1,42 @@
+<Solution>
+  <Configurations>
+    <Platform Name="Any CPU" />
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Folder Name="/install/" />
+  <Folder Name="/install/Fresh/">
+    <Project Path="install/Fresh/Nuke.Targets/Nuke.Targets.csproj" />
+  </Folder>
+  <Folder Name="/src/">
+    <Project Path="src/Nuke.Unreal.Ini/Nuke.Unreal.Ini.csproj" Type="9d252f19-40c8-48f0-86ba-18eb301f4902">
+      <Platform Project="AnyCPU" />
+    </Project>
+    <Project Path="src/Nuke.Unreal.Tests/Nuke.Unreal.Tests.csproj" Type="f075cd81-1e1a-41b1-8a75-2a813bd8c58e">
+      <Platform Project="AnyCPU" />
+    </Project>
+    <Project Path="src/Nuke.Unreal/Nuke.Unreal.csproj" Type="c191453f-42d6-4a89-9127-5d534a4a3bae">
+      <Platform Project="AnyCPU" />
+    </Project>
+  </Folder>
+  <Folder Name="/tests/" />
+  <Folder Name="/tests/AddCodeToProject/">
+    <Project Path="tests/AddCodeToProject/Nuke.Targets/Nuke.Targets.csproj" />
+  </Folder>
+  <Folder Name="/tests/Packaging/">
+    <Project Path="tests/Packaging/Nuke.Targets/Nuke.Targets.csproj" />
+  </Folder>
+  <Folder Name="/tests/Plugins/">
+    <Project Path="tests/Plugins/Nuke.Targets/Nuke.Targets.csproj" />
+  </Folder>
+  <Project Path="build/_build.csproj">
+    <Build Project="false" />
+  </Project>
+  <Folder Name="/external/">
+    <Project Path="../md.Nuke.Cola/md.Nuke.Cola/md.Nuke.Cola.csproj" />
+    <Project Path="../md.Nuke.Cola/tests/TestBuild/TestBuild.csproj" />
+    <Project Path="../md.Nuke.Cola/build/_build.csproj">
+      <Build Project="false" />
+    </Project>
+  </Folder>
+</Solution>

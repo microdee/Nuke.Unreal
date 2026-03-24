@@ -15,9 +15,6 @@ public partial class {{ cap_name }}{{ suffix.us }} : ModuleRules
 
 			Current options:
 				{{ library.options }}
-
-			Library options help:
-				{{ library.options_help }}
 		*/
 
 		{{- for incl in library.include_paths }}

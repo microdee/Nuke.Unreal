@@ -13,6 +13,7 @@ using Nuke.Common;
 using Nuke.Common.IO;
 using Nuke.Common.Utilities;
 using Nuke.Common.Utilities.Collections;
+using Nuke.Unreal.Platforms;
 using Nuke.Unreal.Tools;
 using Serilog;
 
@@ -92,7 +93,8 @@ public enum PluginBuildMethod
 ///     module rules, then set this to PluginBuildMethod.UBT.
 /// </param>
 /// <param name="Platforms">
-///     Extra platforms to build this plugin for. UnrealBuild.Platform is always added to this list.
+///     Extra platforms to build this plugin for. UnrealBuild.Platform and explicit SupportedTargetPlatforms
+///     is always added to this list.
 /// </param>
 public record class PluginBuildOptions(
     RelativePath? OutputSubfolder = null,
@@ -106,11 +108,11 @@ public record class PluginBuildOptions(
 /// Arguments for BuildPlugin
 /// </summary>
 public record class PluginBuildArguments(
-        Func<UatConfig, UatConfig>? UatConfig = null,
-        Func<UbtConfig, UbtConfig>? UbtConfig = null,
-        PluginBuildOptions? BuildOptions = null,
-        PluginDistributionOptions? DistOptions = null,
-        Func<UnrealPlugin, PluginBuildArguments, PluginBuildArguments?>? DependencyHandler = null
+    Func<UatConfig, UatConfig>? UatConfig = null,
+    Func<UbtConfig, UbtConfig>? UbtConfig = null,
+    PluginBuildOptions? BuildOptions = null,
+    PluginDistributionOptions? DistOptions = null,
+    Func<UnrealPlugin, PluginBuildArguments, PluginBuildArguments?>? DependencyHandler = null
 );
 
 /// <summary>
@@ -124,8 +126,8 @@ public class UnrealPlugin
 
     /// <summary>
     ///     <para>
-    ///         Get a `PluginInfo` instance from the path to its `.uplugin` file, or a file/folder
-    ///         belonging to that plugin (in its subtree of files and folders). If a PluginInfo
+    ///         Get a `UnrealPlugin` instance from the path to its `.uplugin` file, or a file/folder
+    ///         belonging to that plugin (in its subtree of files and folders). If a UnrealPlugin
     ///         doesn't exist yet, one will be created given that the associated plugin exists.
     ///     </para>
     ///     <para>
@@ -133,7 +135,7 @@ public class UnrealPlugin
     ///     </para>
     ///     <code>
     ///         // In a local `MyPlugin.nuke.cs`
-    ///         PluginInfo.Get(this.ScriptFolder()); // Gets or creates a `PluginInfo` about `MyPlugin.uplugin`
+    ///         UnrealPlugin.Get(this.ScriptFolder()); // Gets or creates an `UnrealPlugin` about `MyPlugin.uplugin`
     ///     </code>
     /// </summary>
     /// <remarks>
@@ -256,7 +258,7 @@ public class UnrealPlugin
     ///     Optional argument to get the output from. If another functionality has cached this
     ///     before, this is not needed.
     /// </param>
-    public AbsolutePath GetDistributionOutput(UnrealBuild build, PluginDistributionOptions? options = null)
+    public AbsolutePath GetDistributionOutput(IUnrealBuild build, PluginDistributionOptions? options = null)
     {
         options ??= _distributionOptionsCache;
         _distributionOptionsCache = options;
@@ -276,7 +278,7 @@ public class UnrealPlugin
     ///     Optional argument to get the output from. If another functionality has cached this
     ///     before, this is not needed.
     /// </param>
-    public AbsolutePath GetBuildOutput(UnrealBuild build, PluginBuildOptions? options = null)
+    public AbsolutePath GetBuildOutput(IUnrealBuild build, PluginBuildOptions? options = null)
     {
         options ??= _buildOptionsCache;
         _buildOptionsCache = options;
@@ -289,7 +291,7 @@ public class UnrealPlugin
     ///     Generate the `FilterPlugin.ini` file after all components have submitted their
     ///     explicit files.
     /// </summary>
-    public void GenerateFilterPluginIni(UnrealBuild build)
+    public void GenerateFilterPluginIni(IUnrealBuild build)
     {
         AddDefaultExplicitPluginFiles(build);
 
@@ -324,7 +326,7 @@ public class UnrealPlugin
         }
     };
 
-    private IEnumerable<AbsolutePath> GetDefaultExplicitPluginFiles(UnrealBuild build)
+    private IEnumerable<AbsolutePath> GetDefaultExplicitPluginFiles(IUnrealBuild build)
         => build.ImportFolder((Folder, Folder.Parent / "ShouldntExist", "PluginFiles.yml"), new(
                 Pretend: true,
                 UseSubfolder: false,
@@ -332,7 +334,7 @@ public class UnrealPlugin
                 AddToMain: [_filterExportManifest]
             )).WithFilesExpanded().Select(f => f.From);
 
-    private void AddDefaultExplicitPluginFiles(UnrealBuild build)
+    private void AddDefaultExplicitPluginFiles(IUnrealBuild build)
         => AddExplicitPluginFiles(GetDefaultExplicitPluginFiles(build));
 
     private bool InjectBinaryPlumbing(PluginDescriptor descriptor, out PluginDescriptor result)
@@ -406,7 +408,7 @@ public class UnrealPlugin
     ///     </list>
     /// </returns>
     public (IEnumerable<ImportedItem> result, AbsolutePath output) DistributeSource(
-        UnrealBuild build,
+        IUnrealBuild build,
         PluginDistributionOptions? options = null,
         bool pretend = false
     ) {
@@ -468,7 +470,7 @@ public class UnrealPlugin
     /// </summary>
     /// <param name="build"></param>
     /// <returns></returns>
-    IEnumerable<UnrealPlugin> GetProjectPluginDependencies(UnrealBuild build)
+    IEnumerable<UnrealPlugin> GetProjectPluginDependencies(IUnrealBuild build)
         => Descriptor.Plugins?
             .Where(p => p.Enabled ?? false)
             .Select(p =>
@@ -485,7 +487,7 @@ public class UnrealPlugin
 
     /// <summary>
     /// Make a prebuilt release of this plugin for end-users. Globally set UAT and UBT arguments
-    /// are used from the input UnrealBuild
+    /// are used from the input IUnrealBuild
     /// </summary>
     /// <param name="build"></param>
     /// <param name="uatConfig">Configurator for UAT</param>
@@ -495,7 +497,7 @@ public class UnrealPlugin
     /// <param name="dependencyHandler">Customize the build option for plugin dependencies</param>
     /// <returns>Output folder of the packaged plugin</returns>
     public AbsolutePath BuildPlugin(
-        UnrealBuild build,
+        IUnrealBuild build,
         Func<UatConfig, UatConfig>? uatConfig = null,
         Func<UbtConfig, UbtConfig>? ubtConfig = null,
         PluginBuildOptions? buildOptions = null,
@@ -518,7 +520,21 @@ public class UnrealPlugin
         outFolder.CreateOrCleanDirectory();
         hostProjectDir.ExistingDirectory()?.DeleteDirectory();
         
-        var platforms = (buildOptions.Platforms ?? []).Union([build.Platform]);
+        var platforms = (buildOptions.Platforms ?? [])
+            .Union([Unreal.GetHostPlatform()])
+            .Union(Descriptor.SupportedTargetPlatforms ?? [])
+            .ToList()
+        ;
+
+        foreach (var platform in platforms)
+        {
+            var sdk = platform.GetSdk();
+            if (sdk != null)
+            {
+                Assert.True(sdk.IsValid(build), $"Attempting to use a platform which is not set up for cross compiling ({Unreal.GetHostPlatform()} -> {platform})");
+                sdk.Setup(build).Wait();
+            }
+        }
         
         var dependencies = GetProjectPluginDependencies(build).ToList();
         var thisArgs = new PluginBuildArguments(
@@ -569,7 +585,7 @@ public class UnrealPlugin
                     )
                     .Apply(build.UatGlobal)
                     .Apply(uatConfig)
-                )("");
+                )();
                 _buildOutput = outFolder;
             }
             catch (Exception) { throw; }
@@ -577,12 +593,12 @@ public class UnrealPlugin
             {
                 if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
                 {
-                    shortSource.DeleteDirectory();
+                    shortSource.AsLinkInfo()?.Delete();
                     shortOut.AsLinkInfo()?.Delete();
                 }
             }
 
-        break;
+            break;
 
         case PluginBuildMethod.UBT:
 
@@ -630,14 +646,14 @@ public class UnrealPlugin
                             UnrealConfig.Shipping
                         ])
                         .Apply(CommonProject)
-                    )("");
+                    )();
                     if (platform.IsDevelopment)
                     {
                         Log.Information("Building UnrealEditor binaries for UProject {0} @ {1}", Name, platform);
                         Unreal.BuildTool(build, _ => _
                             .Target("UnrealEditor", platform, [UnrealConfig.Development])
                             .Apply(CommonProject)
-                        )("");
+                        )();
                     }
                     Log.Information("Building UnrealGame binaries from UPlugin for {0} @ {1}", Name, platform);
                     Unreal.BuildTool(build, _ => _
@@ -647,25 +663,24 @@ public class UnrealPlugin
                             UnrealConfig.Shipping
                         ])
                         .Apply(CommonPlugin)
-                    )("");
+                    )();
                     if (platform.IsDevelopment)
                     {
                         Log.Information("Building UnrealEditor binaries for UPlugin {0} @ {1}", Name, platform);
                         Unreal.BuildTool(build, _ => _
                             .Target("UnrealEditor", platform, [UnrealConfig.Development])
                             .Apply(CommonPlugin)
-                        )("");
+                        )();
                     }
                 }
                 hostPluginDir.Copy(outFolder, ExistsPolicy.MergeAndOverwrite);
                 hostProjectDir.DeleteDirectory();
                 _buildOutput = outFolder;
             }
-            catch(Exception) { throw; }
             finally
             {
                 if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
-                    shortPluginDir.AsLinkInfo()?.Delete();
+                    shortHostProjectDir.AsLinkInfo()?.Delete();
                 
                 foreach (var dep in dependencies)
                 {
@@ -673,7 +688,7 @@ public class UnrealPlugin
                     (enginePluginsDir / dep.Name).ExistingDirectory()?.DeleteDirectory();
                 }
             }
-        break;
+            break;
 
         }
 

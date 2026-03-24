@@ -137,7 +137,7 @@ public static class RuntimeDependenciesExtensions
     ///     of binaries. This wisdom has been bestowed upon us by the author of CefView
     ///     https://forums.unrealengine.com/t/copy-3rd-party-dlls-to-binaries-folder-does-not-work-for-engine-plugin-how-to-solve/738255/6
     /// </remarks>
-    /// <param name="self"></param>
+    /// <param name="build"></param>
     /// <param name="sourceFolder">
     ///     Required. The root folder of the third-party library. Ideally the same folder as the
     ///     external module representing the library for Unreal.
@@ -191,7 +191,7 @@ public static class RuntimeDependenciesExtensions
     ///     rule. Default is false.
     /// </param>
     public static IEnumerable<ImportedItem> PrepareRuntimeDependencies(
-        this UnrealBuild self,
+        this IUnrealBuild build,
         AbsolutePath sourceFolder,
         IEnumerable<RuntimeLibraryPath> runtimeLibraryPaths,
         Func<AbsolutePath, RuntimeDependencyConfig>? determineConfig = null,
@@ -231,8 +231,8 @@ public static class RuntimeDependenciesExtensions
         );
         var deps = (
                 customManifest == null
-                ? self.ImportFolder((sourceFolder, dstFolder, manifestFilePattern), options)
-                : self.ImportFolder((sourceFolder, dstFolder, customManifest, manifestFilePattern), options)
+                ? build.ImportFolder((sourceFolder, dstFolder, manifestFilePattern), options)
+                : build.ImportFolder((sourceFolder, dstFolder, customManifest, manifestFilePattern), options)
             ).WithFilesExpanded().ToList();
 
         if (setFilterPlugin)
@@ -243,7 +243,7 @@ public static class RuntimeDependenciesExtensions
             if (!pretend)
             {
                 Log.Debug("Generating FilterPlugin.ini for {0}", thisPlugin.Name);
-                thisPlugin.GenerateFilterPluginIni(self);
+                thisPlugin.GenerateFilterPluginIni(build);
             }
         }
 
@@ -260,7 +260,7 @@ public static class RuntimeDependenciesExtensions
             Log.Debug("For marketplace compatibility these binaries will be linked within the Source folder as well.");
             Log.Debug("Plugin distribution will ship these binaries in the Source folder, not in Binaries folder for Fab compatibility.");
             Log.Information("Binary-plumbing folder: {0}", binaryPlumbingTemporary);
-            self.ImportFolder((dstFolder / sourceFolder.Name, binaryPlumbingTemporary), new(UseSubfolder: false));
+            build.ImportFolder((dstFolder / sourceFolder.Name, binaryPlumbingTemporary), new(UseSubfolder: false));
         }
 
         var dllDeps = deps
@@ -297,7 +297,7 @@ public static class RuntimeDependenciesExtensions
         };
 
         if (!pretend)
-            new AutoRuntimeDependencyGenerator().Generate(self.TemplatesPath, moduleRuleOutput, model);
+            new AutoRuntimeDependencyGenerator().Generate(build.TemplatesPath, moduleRuleOutput, model);
         
         return deps;
     }

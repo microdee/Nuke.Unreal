@@ -45,13 +45,11 @@ using Nuke.Unreal;
 namespace Nuke.MyModule;
 
 [ImplicitBuildInterface]
-public interface IMyModuleTargets : INukeBuild
+public interface IMyModuleTargets : IUnrealBuild
 {
     Target PrepareMyModule => _ => _
         .Executes(() =>
         {
-            var self = (UnrealBuild)this;
-
             // This will automatically fetch the plugin which owns this particular script.
             // These plugin objects are shared among all targets and they can all manipulate their aspects
             var thisPlugin = UnrealPlugin.Get(this.ScriptFolder());
@@ -59,7 +57,7 @@ public interface IMyModuleTargets : INukeBuild
             // This module has some runtime dependencies which it needs to sort out
             // This function gets the plugin in itself, no need to use thisPlugin here
             // See exact usage of this in section "Semi-auto Runtime Dependencies"
-            self.PrepareRuntimeDependencies(this.ScriptFolder(), /* ... */);
+            this.PrepareRuntimeDependencies(this.ScriptFolder(), /* ... */);
         });
 }
 
@@ -71,10 +69,10 @@ using Nuke.Unreal;
 namespace Nuke.MyPlugin;
 
 [ImplicitBuildInterface]
-public interface IMyPluginTargets : INukeBuild
+public interface IMyPluginTargets : IUnrealBuild
 {
     Target PrepareMyPlugin => _ => _
-        .DependentFor<UnrealBuild>(u => u.Prepare)
+        .DependentFor(Prepare)
         .DependsOn<IMyModuleTargets>()
         .Executes(() =>
         {
@@ -92,7 +90,7 @@ public interface IMyPluginTargets : INukeBuild
             // Create a copy of this plugin which can be distributed to other developers or other tools
             // who shouldn't require extra non-unreal related steps to work with it.
             // You can upload the result of this to Fab.
-            var (files, outputDir) = UnrealPlugin.Get(this.ScriptFolder()).DistributeSource();
+            var (files, outputDir) = UnrealPlugin.Get(this.ScriptFolder()).DistributeSource(this);
 
             // Do something with the affected files or in the output directory...
         });
@@ -102,7 +100,7 @@ public interface IMyPluginTargets : INukeBuild
         .Executes(() =>
         {
             // Build this plugin with UAT for binary distribution
-            var outputDir = UnrealPlugin.Get(this.ScriptFolder()).BuildPlugin();
+            var outputDir = UnrealPlugin.Get(this.ScriptFolder()).BuildPlugin(this);
 
             // Do something in the output directory...
         });
@@ -112,9 +110,9 @@ public interface IMyPluginTargets : INukeBuild
 And call them later with
 
 ```
-> nuke prepare-my-plugin
-> nuke distribute-my-plugin
-> nuke build-my-plugin
+> nuke PrepareMyPlugin
+> nuke DistributeMyPlugin
+> nuke BuildMyPlugin
 ```
 
 You have absolute freedom to organize the task-dependency graph around handling your plugins. For example one target may manipulate multiple plugins even, from a dynamic set of folders. The above example is just a simple use-case.

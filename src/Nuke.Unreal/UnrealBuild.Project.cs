@@ -8,99 +8,67 @@ using Serilog;
 // Maximum line length of long parameter description:
 // ------------------------------------------------------------
 
-namespace Nuke.Unreal
+namespace Nuke.Unreal;
+
+public abstract partial class UnrealBuild : NukeBuild, IUnrealBuild
 {
-    public abstract partial class UnrealBuild : NukeBuild
+    private AbsolutePath? _projectCache = null;
+
+    /// <summary>
+    ///     <para>
+    ///         Optionally specify a path to a `.uproject` file.
+    ///     </para>
+    ///     <para>
+    ///         If not overridden Nuke.Unreal will traverse upwards on the directory tree,
+    ///         then sift through all subdirectories recursively (ignoring some known folders)
+    ///     </para>
+    /// </summary>
+    public virtual AbsolutePath ProjectPath
     {
-        private AbsolutePath? _projectCache = null;
-
-        /// <summary>
-        ///     <para>
-        ///         Optionally specify a path to a `.uproject` file.
-        ///     </para>
-        ///     <para>
-        ///         If not overridden Nuke.Unreal will traverse upwards on the directory tree,
-        ///         then sift through all subdirectories recursively (ignoring some known folders)
-        ///     </para>
-        /// </summary>
-        public virtual AbsolutePath ProjectPath
+        get
         {
-            get
+            if (_projectCache != null) return _projectCache;
+
+            var projectCachePath = TemporaryDirectory / "UProjectFile.txt";
+            if (projectCachePath.FileExists())
             {
-                if (_projectCache != null) return _projectCache;
-
-                var projectCachePath = TemporaryDirectory / "UProjectFile.txt";
-                if (projectCachePath.FileExists())
-                {
-                    _projectCache = AbsolutePath.Create(projectCachePath.ReadAllText().Trim());
-                }
-                if (!projectCachePath.FileExists() || !_projectCache.FileExists())
-                {
-                    Log.Information("Detecting Unreal project");
-                    if (BuildCommon.LookAroundFor(f => f.EndsWith(".uproject"), out var candidate))
-                    {
-                        projectCachePath.WriteAllText(candidate);
-                        _projectCache = candidate;
-                    }
-                }
-                Assert.NotNull(_projectCache, "This build doesn't seem to be an Unreal project.");
-                Log.Information($"Unreal project: {_projectCache}");
-                return _projectCache!;
+                _projectCache = AbsolutePath.Create(projectCachePath.ReadAllText().Trim());
             }
-        }
-
-        /// <summary>
-        /// Path to folder containing the `.project` file
-        /// </summary>
-        public AbsolutePath ProjectFolder => ProjectPath.Parent;
-        public AbsolutePath PluginsFolder => ProjectFolder / "Plugins";
-
-        /// <summary>
-        /// Short name of the project
-        /// </summary>
-        public string ProjectName => Path.GetFileNameWithoutExtension(ProjectPath);
-
-        private ProjectDescriptor? _projectDescriptor;
-
-        /// <summary>
-        /// "Immutable" C# representation of the `.uproject` contents
-        /// </summary>
-        public ProjectDescriptor ProjectDescriptor
-        {
-            get => _projectDescriptor
-                ??= ProjectPath.ReadJson<ProjectDescriptor>(Unreal.JsonReadSettings);
-            protected set => _projectDescriptor = value;
-        }
-
-        private bool? _isPerforceCache = null;
-
-        /// <summary>
-        /// Does this project reside in a Perforce workspace?
-        /// </summary>
-        public virtual bool IsPerforce {
-            get
+            if (!projectCachePath.FileExists() || !_projectCache.FileExists())
             {
-                if (_isPerforceCache != null) return _isPerforceCache ?? false;
-
-                var isP4CachePath = TemporaryDirectory / "IsP4.txt";
-                if (isP4CachePath.FileExists())
-                    _isPerforceCache = bool.Parse(isP4CachePath.ReadAllText().Trim());
-                else
+                Log.Information("Detecting Unreal project");
+                if (BuildCommon.LookAroundFor(f => f.EndsWith(".uproject"), out var candidate))
                 {
-                    Log.Information("Detecting Perforce workspace");
-                    var isP4 = BuildCommon.LookAroundFor(
-                        f => Path.GetFileName(f).EqualsOrdinalIgnoreCase("p4config.txt"),
-                        out _
-                    );
-                    isP4CachePath.WriteAllText(isP4.ToString());
-                    _isPerforceCache = isP4;
+                    projectCachePath.WriteAllText(candidate);
+                    _projectCache = candidate;
                 }
-                Log.Information(_isPerforceCache ?? false
-                    ? "Project is managed by Perforce"
-                    : "Project is not in a Perforce Workspace"
-                );
-                return _isPerforceCache ?? false;
             }
+            Assert.NotNull(_projectCache, "This build doesn't seem to be an Unreal project.");
+            Log.Information($"Unreal project: {_projectCache}");
+            return _projectCache!;
         }
+    }
+
+    /// <summary>
+    /// Path to folder containing the `.project` file
+    /// </summary>
+    public AbsolutePath ProjectFolder => ProjectPath.Parent;
+    public AbsolutePath PluginsFolder => ProjectFolder / "Plugins";
+
+    /// <summary>
+    /// Short name of the project
+    /// </summary>
+    public string ProjectName => Path.GetFileNameWithoutExtension(ProjectPath);
+
+    private ProjectDescriptor? _projectDescriptor;
+
+    /// <summary>
+    /// "Immutable" C# representation of the `.uproject` contents
+    /// </summary>
+    public ProjectDescriptor ProjectDescriptor
+    {
+        get => _projectDescriptor
+            ??= ProjectPath.ReadJson<ProjectDescriptor>(Unreal.JsonReadSettings);
+        protected set => _projectDescriptor = value;
     }
 }

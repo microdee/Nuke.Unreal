@@ -6,6 +6,23 @@
 
 **No.** Nuke.Unreal can look for your project file in the sub-directories of its parent folder, or any of the parent folders (except system root ofc).
 
+## Usage
+
+> What platforms Nuke.Unreal can be used on?
+
+Since I'm a Windows peasant Nuke.Unreal also works best on Windows. Currently features are only tested in Windows. As for working with target platforms ('guest' or 'cross-compiled') check the following table:
+
+|         | Windows | Linux | Mac¹ |
+|--------:|:-------:|:-----:|:----:|
+| Windows |   ✔     |   ❌  |  ❌   |
+|   Linux |    ✔    |   ✔   |  ❌   |
+|   MacOS |    ❌    |   ❌  |  ??  |
+| Android |    ✔    |   ✔  |  ??  |
+|  Apple² |    ❌    |   ❌  |  ??  |
+
+1. Apple platforms are untested by Nuke.Unreal and I'm not eager to make it work either because of the walled-garden Apple is infamous for.
+2. IOS / TVOS / VisionOS
+
 ## Plugins
 
 > Does Nuke.Unreal require all the non-sense that is written in [Setting up for plugin development](@ref PluginSetup)?

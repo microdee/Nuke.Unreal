@@ -12,85 +12,89 @@ using Nuke.Common.Utilities.Collections;
 using Nuke.Unreal.Tools;
 using Nuke.Cola;
 using Nuke.Common.Utilities;
+using Nuke.Unreal.Platforms.Android;
 
-using static Nuke.Common.IO.PathConstruction;
+namespace Nuke.Unreal;
 
-namespace Nuke.Unreal
+/// <summary>
+/// Target for packaging the current project we're working on
+/// </summary>
+public interface IPackageTargets : IUnrealBuild
 {
-    public class PackageTargets : NukeBuild, IPackageTargets
-    {
-        public static readonly IPackageTargets Default = new PackageTargets();
-    }
+    /// <summary>
+    /// UAT arguments to be applied every time UAT is called for Packaging.
+    /// Explicitly implement this function in your main build class if your project needs extra
+    /// intricacies for Packaging.
+    /// For example specifying maps explicitly.
+    /// </summary>
+    UatConfig UatPackage(UatConfig _) => _.Prereqs();
 
     /// <summary>
-    /// Target for packaging the current project we're working on
+    /// Same as running Package Project from Editor
+    /// <code>
+    ///     \--Config
+    ///     \--Platform
+    ///     \--AndroidTextureMode
+    ///     \-->ubt (args.)
+    ///     \-->uat (args.)
+    /// </code>
     /// </summary>
-    public interface IPackageTargets : INukeBuild
-    {
-        T Self<T>() where T : INukeBuild => (T)(object)this;
-        T? SelfAs<T>() where T : class, INukeBuild => (object)this as T;
-
-        /// <summary>
-        /// UAT arguments to be applied every time UAT is called for Packaging.
-        /// Explicitly implement this function in your main build class if your project needs extra
-        /// intricacies for Packaging.
-        /// For example specifying maps explicitly.
-        /// </summary>
-        UatConfig UatPackage(UatConfig _) => _.Prereqs();
-
-        Target Package => _ => _
-            .Description("Same as running Package Project from Editor")
-            .DependsOn<UnrealBuild>(u => u.BuildEditor)
-            .After<UnrealBuild>(
-                u => u.CleanDeployment,
-                u => u.Cook,
-                u => u.Prepare,
-                u => u.Switch
-            )
-            .Executes(() =>
+    Target Package => _ => _
+        .Description(
+            """
+            |
+                | Same as running Package Project from Editor
+                |
+                | --Config
+                | --Platform
+                | --AndroidTextureMode
+                | -->ubt (args.)
+                | -->uat (args.)
+                
+            """
+        )
+        .DependsOn(BuildEditor, SetupPlatformSdk)
+        .After(CleanDeployment, Cook, Prepare, Switch)
+        .Executes(() =>
+        {
+            var appLocalDir = UnrealEnginePath / "Engine" / "Binaries" / "ThirdParty" / "AppLocalDependencies";
+            Config.ForEach(config =>
             {
-                var self = Self<UnrealBuild>();
-                var androidTextureMode = SelfAs<IAndroidTargets>()?.TextureMode
-                    ?? [ AndroidCookFlavor.Multi ];
-
-                var isAndroidPlatform = self.Platform == UnrealPlatform.Android;
-                var appLocalDir = self.UnrealEnginePath / "Engine" / "Binaries" / "ThirdParty" / "AppLocalDependencies";
-                self.Config.ForEach(config =>
-                {
-                    Unreal.AutomationTool(self, _ => _
-                        .BuildCookRun(_ => _
-                            .Project(self.ProjectPath)
-                            .Target(self.ProjectName)
-                            .Clientconfig(self.Config)
-                            .Manifests()
-                            .AppLocalDirectory(appLocalDir)
-                            .If(self.ForDistribution(), _ => _
-                                .Distribution()
-                            )
+                Unreal.AutomationTool(this, _ => _
+                    .BuildCookRun(_ => _
+                        .Project(ProjectPath)
+                        .Target(ProjectName)
+                        .Clientconfig(Config)
+                        .Manifests()
+                        .AppLocalDirectory(appLocalDir)
+                        .If(ForDistribution(), _ => _
+                            .Distribution()
                         )
-                        .ScriptsForProject(self.ProjectPath)
-                        .Targetplatform(self.Platform)
-                        .Build()
-                        .Stage()
-                        .Package()
-                        .Archive()
-                        .Archivedirectory(self.GetOutput())
-                        .If(InvokedTargets.Contains(self.Cook),
-                            _ => _.Skipcook(),
-                            _ => _.Cook()
-                        )
-                        .If(!InvokedTargets.Contains(self.BuildEditor), _ => _
-                            .NoCompileEditor()
-                        )
-                        .If(isAndroidPlatform, _ => _
-                            .Cookflavor(androidTextureMode)
-                        )
-                        .Apply(self.UatGlobal)
-                        .Apply(self.UatCook)
-                        .Apply(UatPackage)
-                        .AppendRaw(self.GetArgumentBlock("uat"))
-                    )("", workingDirectory: self.UnrealEnginePath);
-                });
+                    )
+                    .ScriptsForProject(ProjectPath)
+                    .Targetplatform(Platform)
+                    .Build()
+                    .Stage()
+                    .Package()
+                    .Archive()
+                    .Archivedirectory(GetOutput())
+                    .If(InvokedTargets.Contains(Cook),
+                        _ => _.Skipcook(),
+                        _ => _.Cook()
+                    )
+                    .If(!InvokedTargets.Contains(BuildEditor), _ => _
+                        .NoCompileEditor()
+                    )
+                    .If(this.IsAndroidPlatform(), _ => _
+                        .Cookflavor(AndroidTextureMode)
+                    )
+                    .Apply(UatGlobal)
+                    .Apply(UatCook)
+                    .Apply(UatPackage)
+                    .AppendRaw(GetArgumentBlock("uat"))
+                )(
+                    workingDirectory: UnrealEnginePath
+                );
             });
-    }
+        });
 }

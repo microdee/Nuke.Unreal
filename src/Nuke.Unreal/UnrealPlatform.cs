@@ -15,7 +15,7 @@ namespace Nuke.Unreal
     /// Bit-field representation of Unreal platforms and platform-families
     /// </summary>
     [Flags]
-    public enum UnrealPlatformFlag : UInt16
+    public enum UnrealPlatformFlag : ushort
     {
         Win64 =       1 << 0,
         Win32 =       1 << 1,
