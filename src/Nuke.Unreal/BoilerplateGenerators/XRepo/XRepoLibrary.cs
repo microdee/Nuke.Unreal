@@ -135,7 +135,7 @@ public static partial class XRepoLibrary
                     SysLibs: i.SysLinks
                                  ?.Select(l => platform.IsWindows && !l.EndsWith(".lib") ? l + ".lib" : l)
                              ?? [],
-                    Defines: i.Defines
+                    Defines: i.Defines ?? []
                 );
             })
             .ToArray();

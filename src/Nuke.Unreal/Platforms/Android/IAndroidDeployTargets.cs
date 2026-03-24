@@ -73,7 +73,7 @@ public interface IAndroidDeployTargets : IUnrealBuild
             Log.Information("Installing {0}", apkFile);
             adb($"install {apkFile}");
 
-            var storagePath = adb("shell echo $EXTERNAL_STORAGE")
+            var storagePath = adb("shell echo $EXTERNAL_STORAGE")!
                 .FirstOrDefault(o => !string.IsNullOrWhiteSpace(o.Text))
                 .Text;
 

@@ -8,7 +8,6 @@ public static class VersionExtensions
     /// Automatically prune version component if they're &lt;= 0
     /// </summary>
     /// <param name="version"></param>
-    /// <param name="allowZero"></param>
     /// <returns></returns>
     public static string ToStringAutoFieldCount(this Version version)
     {
