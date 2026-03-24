@@ -31,6 +31,7 @@ public enum IniHierarchyLevel
 /// contains all base targets for use-cases which are relevant for 99% of Unreal project
 /// development tasks.
 /// </summary>
+[DisableDefaultOutput(DefaultOutput.ErrorsAndWarnings)]
 public abstract partial class UnrealBuild : NukeBuild, IUnrealBuild
 {
     protected override void OnBuildCreated()

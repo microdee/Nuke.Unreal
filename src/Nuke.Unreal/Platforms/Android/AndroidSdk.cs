@@ -106,6 +106,6 @@ public abstract class AndroidSdk : IPlatformSdk
     public abstract AbsolutePath GetBuildToolsPath(IUnrealBuild build);
     public abstract AbsolutePath GetPlatformToolsPath(IUnrealBuild build);
 
-    public abstract Tool GetApkSigner(IUnrealBuild build);
-    public abstract Tool GetAdb(IUnrealBuild build);
+    public abstract ToolEx GetApkSigner(IUnrealBuild build);
+    public abstract ToolEx GetAdb(IUnrealBuild build);
 }

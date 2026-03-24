@@ -144,8 +144,8 @@ public class WindowsHostsAndroid : AndroidSdk
     public override AbsolutePath GetBuildToolsPath(IUnrealBuild build)
         => AndroidHome / "build-tools" / GetSdkVersionsChecked(build).BuildTools.ToString(3);
 
-    public override Tool GetApkSigner(IUnrealBuild build)
-        => ToolResolver.GetTool(GetBuildToolsPath(build) / "apksigner.bat");
+    public override ToolEx GetApkSigner(IUnrealBuild build)
+        => ToolExResolver.GetTool(GetBuildToolsPath(build) / "apksigner.bat");
 
     public AbsolutePath GetToolchainPath(IUnrealBuild build)
         => GetNdkPath(build) / "toolchains/llvm/prebuilt/windows-x86_64";
@@ -155,5 +155,5 @@ public class WindowsHostsAndroid : AndroidSdk
 
     public override AbsolutePath GetPlatformToolsPath(IUnrealBuild build) => AndroidHome / "platform-tools";
 
-    public override Tool GetAdb(IUnrealBuild build) => ToolResolver.GetTool(GetPlatformToolsPath(build) / "adb.exe");
+    public override ToolEx GetAdb(IUnrealBuild build) => ToolExResolver.GetTool(GetPlatformToolsPath(build) / "adb.exe");
 }

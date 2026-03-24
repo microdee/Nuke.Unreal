@@ -585,7 +585,7 @@ public class UnrealPlugin
                     )
                     .Apply(build.UatGlobal)
                     .Apply(uatConfig)
-                )("");
+                )();
                 _buildOutput = outFolder;
             }
             catch (Exception) { throw; }
@@ -646,14 +646,14 @@ public class UnrealPlugin
                             UnrealConfig.Shipping
                         ])
                         .Apply(CommonProject)
-                    )("");
+                    )();
                     if (platform.IsDevelopment)
                     {
                         Log.Information("Building UnrealEditor binaries for UProject {0} @ {1}", Name, platform);
                         Unreal.BuildTool(build, _ => _
                             .Target("UnrealEditor", platform, [UnrealConfig.Development])
                             .Apply(CommonProject)
-                        )("");
+                        )();
                     }
                     Log.Information("Building UnrealGame binaries from UPlugin for {0} @ {1}", Name, platform);
                     Unreal.BuildTool(build, _ => _
@@ -663,14 +663,14 @@ public class UnrealPlugin
                             UnrealConfig.Shipping
                         ])
                         .Apply(CommonPlugin)
-                    )("");
+                    )();
                     if (platform.IsDevelopment)
                     {
                         Log.Information("Building UnrealEditor binaries for UPlugin {0} @ {1}", Name, platform);
                         Unreal.BuildTool(build, _ => _
                             .Target("UnrealEditor", platform, [UnrealConfig.Development])
                             .Apply(CommonPlugin)
-                        )("");
+                        )();
                     }
                 }
                 hostPluginDir.Copy(outFolder, ExistsPolicy.MergeAndOverwrite);

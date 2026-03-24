@@ -92,7 +92,9 @@ public interface IPackageTargets : IUnrealBuild
                     .Apply(UatCook)
                     .Apply(UatPackage)
                     .AppendRaw(GetArgumentBlock("uat"))
-                )("", workingDirectory: UnrealEnginePath);
+                )(
+                    workingDirectory: UnrealEnginePath
+                );
             });
         });
 }

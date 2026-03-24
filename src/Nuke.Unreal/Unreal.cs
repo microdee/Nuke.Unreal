@@ -219,15 +219,25 @@ public static class Unreal
     public static AbsolutePath MacRunMono(EngineVersion ofVersion) =>
         ofVersion.EnginePath / "Engine" / "Build" / "BatchFiles" / "Mac" / "RunMono.sh";
 
+    /// <summary>
+    /// Exit handler which throws an exception on error which doesn't include the entire process output, which tends
+    /// to be biblical amount in case of Unreal
+    /// </summary>
+    public static Action<IProcess> UnrealToolExitHandler(bool repeatErrorsOnFailure = false)
+        => p => p.AssertZeroExitCodeNoLog(repeatErrorsOnFailure);
+
     /// <summary>Prepare invocation for UBT</summary>
     /// <returns>A Tool delegate for UBT</returns>
-    public static Tool BuildTool(EngineVersion ofVersion)
+    public static ToolEx BuildTool(EngineVersion ofVersion)
     {
         var ubtPath = ofVersion.SemanticalVersion.Major >= 5
             ? ofVersion.EnginePath / "Engine" / "Binaries" / "DotNET" / "UnrealBuildTool" / "UnrealBuildTool.exe"
             : ofVersion.EnginePath / "Engine" / "Binaries" / "DotNET" / "UnrealBuildTool.exe";
 
-        return ToolResolver.GetTool(ubtPath).WithSemanticLogging();
+        return ToolExResolver.GetTool(ubtPath)
+            .WithSemanticLogging()
+            .With(exitHandler: UnrealToolExitHandler())
+        ;
 
         // TODO: MacOS: "sh", $"\"{MacRunMono(ofVersion)}\" \"{ubtPath}\" " + arguments
         // TODO: Linux: "mono", $"\"{ubtPath}\" " + arguments
@@ -241,10 +251,10 @@ public static class Unreal
     /// Auto-generated Configuration facilities mirroring UBT arguments
     /// </param>
     /// <returns>A Tool delegate for UBT</returns>
-    public static Tool BuildTool(EngineVersion ofVersion, Action<UbtConfig> config)
+    public static ToolEx BuildTool(EngineVersion ofVersion, Action<UbtConfig> config)
     {
         var toolConfig = new UbtConfig();
-        config?.Invoke(toolConfig);
+        config.Invoke(toolConfig);
         return BuildTool(ofVersion).With(
             arguments: toolConfig.Gather(ofVersion),
             workingDirectory: ofVersion.EnginePath / "Engine" / "Source",
@@ -254,7 +264,7 @@ public static class Unreal
 
     /// <summary>Prepare invocation for UBT</summary>
     /// <returns>A Tool delegate for UBT</returns>
-    public static Tool BuildTool(IUnrealBuild build) => BuildTool(Version(build));
+    public static ToolEx BuildTool(IUnrealBuild build) => BuildTool(Version(build));
 
     /// <summary>
     /// Prepare invocation for UBT with extra fluent-API configuration
@@ -264,17 +274,19 @@ public static class Unreal
     /// Auto-generated Configuration facilities mirroring UBT arguments
     /// </param>
     /// <returns>A Tool delegate for UBT</returns>
-    public static Tool BuildTool(IUnrealBuild build, Action<UbtConfig> config) => BuildTool(Version(build), config);
+    public static ToolEx BuildTool(IUnrealBuild build, Action<UbtConfig> config) => BuildTool(Version(build), config);
 
     /// <summary>Prepare invocation for UAT</summary>
     /// <returns>A Tool delegate for UAT</returns>
-    public static Tool AutomationTool(EngineVersion ofVersion)
+    public static ToolEx AutomationTool(EngineVersion ofVersion)
     {
         var scriptExt = RuntimeInformation.IsOSPlatform(OSPlatform.Windows) ? "bat" : "sh";
-        return ToolResolver.GetTool(ofVersion.EnginePath / "Engine" / "Build" / "BatchFiles" / $"RunUAT.{scriptExt}")
+        return ToolExResolver.GetTool(ofVersion.EnginePath / "Engine" / "Build" / "BatchFiles" / $"RunUAT.{scriptExt}")
             .WithSemanticLogging(filter: l =>
                 !(l.Contains("Reading chunk manifest") && l.Contains("which contains 0 entries"))
-            );
+            )
+            .With(exitHandler: UnrealToolExitHandler())
+        ;
     }
 
     /// <summary>
@@ -285,7 +297,7 @@ public static class Unreal
     /// Auto-generated Configuration facilities mirroring UAT arguments
     /// </param>
     /// <returns>A Tool delegate for UAT</returns>
-    public static Tool AutomationTool(EngineVersion ofVersion, Action<UatConfig> config)
+    public static ToolEx AutomationTool(EngineVersion ofVersion, Action<UatConfig> config)
     {
         var toolConfig = new UatConfig();
         config?.Invoke(toolConfig);
@@ -298,7 +310,7 @@ public static class Unreal
 
     /// <summary>Prepare invocation for UAT</summary>
     /// <returns>A Tool delegate for UAT</returns>
-    public static Tool AutomationTool(IUnrealBuild build) => AutomationTool(Version(build));
+    public static ToolEx AutomationTool(IUnrealBuild build) => AutomationTool(Version(build));
 
     /// <summary>
     /// Prepare invocation for UAT with extra fluent-API configuration
@@ -308,7 +320,7 @@ public static class Unreal
     /// Auto-generated Configuration facilities mirroring UAT arguments
     /// </param>
     /// <returns>A Tool delegate for UAT</returns>
-    public static Tool AutomationTool(IUnrealBuild build, Action<UatConfig> config) => AutomationTool(Version(build), config);
+    public static ToolEx AutomationTool(IUnrealBuild build, Action<UatConfig> config) => AutomationTool(Version(build), config);
 
     /// <summary>
     /// Clear intermediate folders of Unreal from a given folder
@@ -347,7 +359,7 @@ public static class Unreal
     /// <param name="build"></param>
     /// <param name="name">You can omit the `Unreal` part of the tool name.</param>
     /// <returns>A Tool delegate for selected Unreal tool</returns>
-    public static Tool GetTool(IUnrealBuild build, string name)
+    public static ToolEx GetTool(IUnrealBuild build, string name)
     {
         var binaries = GetEnginePath(build) / "Engine" / "Binaries" / GetHostPlatformFlag().ToString();
         var ext = RuntimeInformation.IsOSPlatform(OSPlatform.Windows) ? ".exe" : "";
@@ -357,6 +369,8 @@ public static class Unreal
             path = binaries / ("Unreal" + name + ext);
 
         Assert.FileExists(path, $"Requested tool {name} doesn't exist.");
-        return ToolResolver.GetTool(path);
+        return ToolExResolver.GetTool(path)
+            .With(exitHandler: UnrealToolExitHandler())
+        ;
     }
 }

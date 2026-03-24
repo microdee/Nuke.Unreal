@@ -240,7 +240,7 @@ public abstract partial class UnrealBuild : NukeBuild, IUnrealBuild
                 )
                 .Progress()
                 .AppendRaw(GetArgumentBlock("ubt"))
-            )("");
+            )();
         });
 
     public virtual Target SetupPlatformSdk => _ => _
@@ -305,7 +305,7 @@ public abstract partial class UnrealBuild : NukeBuild, IUnrealBuild
                 .FromMsBuild()
                 .Apply<UbtConfig, UbtConfig>(UbtGlobal)
                 .AppendRaw(GetArgumentBlock("ubt"))
-            )("");
+            )();
         });
 
     /// <summary>
@@ -349,7 +349,7 @@ public abstract partial class UnrealBuild : NukeBuild, IUnrealBuild
                 .Project(ProjectPath)
                 .Apply<UbtConfig, UbtConfig>(UbtGlobal)
                 .AppendRaw(GetArgumentBlock("ubt"))
-            )("");
+            )();
         });
 
 
@@ -429,7 +429,9 @@ public abstract partial class UnrealBuild : NukeBuild, IUnrealBuild
                     .Apply<UatConfig, UatConfig>(UatGlobal)
                     .Apply<UatConfig, UatConfig>(UatCook)
                     .AppendRaw(GetArgumentBlock("uat"))
-                )("", workingDirectory: UnrealEnginePath);
+                )(
+                    workingDirectory: UnrealEnginePath
+                );
             });
         });
 
@@ -517,7 +519,9 @@ public abstract partial class UnrealBuild : NukeBuild, IUnrealBuild
             Unreal.AutomationTool(this, _ => _
                 .AppendRaw(GetArgumentBlock())
                 .If(!IgnoreGlobalArgs, _ => _.Apply<UatConfig, UatConfig>(UatGlobal))
-            )("", workingDirectory: ProjectFolder);
+            )(
+                workingDirectory: ProjectFolder
+            );
         });
 
     /// <summary>
@@ -560,7 +564,9 @@ public abstract partial class UnrealBuild : NukeBuild, IUnrealBuild
             Unreal.BuildTool(this, _ => _
                 .AppendRaw(GetArgumentBlock())
                 .If(!IgnoreGlobalArgs, _ => _.Apply<UbtConfig, UbtConfig>(UbtGlobal))
-            )("", workingDirectory: ProjectFolder);
+            )(
+                workingDirectory: ProjectFolder
+            );
         });
 
     /// <summary>
@@ -586,7 +592,7 @@ public abstract partial class UnrealBuild : NukeBuild, IUnrealBuild
             var ushellDir = UnrealEnginePath / "Engine" / "Extras" / "ushell";
             var scriptExt = RuntimeInformation.IsOSPlatform(OSPlatform.Windows) ? "bat" : "sh";
             var ushellScript = ushellDir / ("ushell." + scriptExt);
-            Common.Tooling.ProcessTasks.StartShell(
+            ProcessTasks.StartShell(
                 ushellScript,
                 ProjectFolder
             );
@@ -659,7 +665,8 @@ public abstract partial class UnrealBuild : NukeBuild, IUnrealBuild
         .Requires(() => Tool)
         .Executes(() =>
         {
-            Unreal.GetTool(this, Tool!).WithSemanticLogging()(
+            Unreal.GetTool(this, Tool!).WithSemanticLogging()
+            (
                 GetArgumentBlock().JoinSpace(), ProjectFolder
             );
         });
@@ -710,7 +717,8 @@ public abstract partial class UnrealBuild : NukeBuild, IUnrealBuild
         .Requires(() => Cmd)
         .Executes(() =>
         {
-            Unreal.GetTool(this, "Editor-Cmd").WithSemanticLogging()(
+            Unreal.GetTool(this, "Editor-Cmd").WithSemanticLogging()
+            (
                 GetArgumentBlock()
                     .Prepend($"{ProjectPath} -run={Cmd}")
                     .JoinSpace()
