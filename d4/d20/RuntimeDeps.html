@@ -185,9 +185,10 @@ $(function(){initNavTree('d4/d20/RuntimeDeps.html','../../'); initResizable(true
 <div class="line"><span class="keyword">using </span><a class="code hl_namespace" href="../../d0/d55/namespaceNuke_1_1Unreal.html">Nuke.Unreal</a>;</div>
 <div class="line"> </div>
 <div class="line">[ImplicitBuildInterface]</div>
-<div class="line"><span class="keyword">public</span> <span class="keyword">interface </span>IMyPluginTargets : INukeBuild</div>
+<div class="line"><span class="keyword">public</span> <span class="keyword">interface </span>IMyPluginTargets : <a class="code hl_interface" href="../../d4/d7c/interfaceNuke_1_1Unreal_1_1IUnrealBuild.html">IUnrealBuild</a></div>
 <div class="line">{</div>
 <div class="line">    Target PrepareMyPlugin =&gt; _ =&gt; _</div>
+<div class="line">        .DependentFor(Prepare)</div>
 <div class="line">        .Executes(() =&gt;</div>
 <div class="line">        {</div>
 <div class="line">            this.PrepareRuntimeDependencies(</div>
@@ -214,26 +215,25 @@ $(function(){initNavTree('d4/d20/RuntimeDeps.html','../../'); initResizable(true
 <div class="line">                        Platform = <a class="code hl_class" href="../../d5/dc0/classNuke_1_1Unreal_1_1UnrealPlatform.html">UnrealPlatform</a>.Linux</div>
 <div class="line">                    },</div>
 <div class="line">                ],</div>
-<div class="line">                determineConfig: f =&gt;</div>
-<div class="line">                    f.ToString().Contains(<span class="stringliteral">&quot;rel&quot;</span>)</div>
-<div class="line">                    ? RuntimeDependencyConfig.Release</div>
-<div class="line">                    : f.ToString().Contains(<span class="stringliteral">&quot;debug&quot;</span>)</div>
-<div class="line">                    ? RuntimeDependencyConfig.Debug</div>
-<div class="line">                    : RuntimeDependencyConfig.All</div>
-<div class="line">                ,</div>
-<div class="line">                determinePlatform: f =&gt;</div>
-<div class="line">                    f.ToString().Contains(<span class="stringliteral">&quot;win_amd64&quot;</span>)</div>
-<div class="line">                    ? <a class="code hl_class" href="../../d5/dc0/classNuke_1_1Unreal_1_1UnrealPlatform.html">UnrealPlatform</a>.<a class="code hl_variable" href="../../d5/dc0/classNuke_1_1Unreal_1_1UnrealPlatform.html#a7efc8a5aa57793b93664a4cfd8ff7e23">Win64</a></div>
-<div class="line">                    : f.ToString().Contains(<span class="stringliteral">&quot;linux_x86_64&quot;</span>)</div>
-<div class="line">                    ? <a class="code hl_class" href="../../d5/dc0/classNuke_1_1Unreal_1_1UnrealPlatform.html">UnrealPlatform</a>.Linux</div>
-<div class="line">                    : <a class="code hl_class" href="../../d5/dc0/classNuke_1_1Unreal_1_1UnrealPlatform.html">UnrealPlatform</a>.<a class="code hl_variable" href="../../d5/dc0/classNuke_1_1Unreal_1_1UnrealPlatform.html#a92f1081bf965a1027af61db675e9e397">Independent</a></div>
+<div class="line">                determineConfig: f =&gt; f.ToString() <span class="keywordflow">switch</span></div>
+<div class="line">                {</div>
+<div class="line">                    var str when str.Contains(<span class="stringliteral">&quot;rel&quot;</span>)   =&gt; RuntimeDependencyConfig.Release,</div>
+<div class="line">                    var str when str.Contains(<span class="stringliteral">&quot;debug&quot;</span>) =&gt; RuntimeDependencyConfig.Debug,</div>
+<div class="line">                    _ =&gt; RuntimeDependencyConfig.All</div>
+<div class="line">                },</div>
+<div class="line">                determinePlatform: f =&gt; f.ToString() <span class="keywordflow">switch</span></div>
+<div class="line">                {   </div>
+<div class="line">                    var str when str.Contains(<span class="stringliteral">&quot;win_amd64&quot;</span>)    =&gt; <a class="code hl_class" href="../../d5/dc0/classNuke_1_1Unreal_1_1UnrealPlatform.html">UnrealPlatform</a>.<a class="code hl_variable" href="../../d5/dc0/classNuke_1_1Unreal_1_1UnrealPlatform.html#a7efc8a5aa57793b93664a4cfd8ff7e23">Win64</a>,</div>
+<div class="line">                    var str when str.Contains(<span class="stringliteral">&quot;linux_x86_64&quot;</span>) =&gt; <a class="code hl_class" href="../../d5/dc0/classNuke_1_1Unreal_1_1UnrealPlatform.html">UnrealPlatform</a>.Linux,</div>
+<div class="line">                    _ =&gt; UnrealPlatform.Independent</div>
+<div class="line">                }</div>
 <div class="line">            );</div>
 <div class="line">        });</div>
 <div class="line">}</div>
 <div class="ttc" id="aclassNuke_1_1Unreal_1_1UnrealPlatform_html"><div class="ttname"><a href="../../d5/dc0/classNuke_1_1Unreal_1_1UnrealPlatform.html">Nuke.Unreal.UnrealPlatform</a></div><div class="ttdoc">High level representation of common platforms supported by Unreal Engine (NDA ones excluded) and extr...</div><div class="ttdef"><b>Definition</b> <a href="../../d8/df1/UnrealPlatform_8cs_source.html#l00076">UnrealPlatform.cs:77</a></div></div>
 <div class="ttc" id="aclassNuke_1_1Unreal_1_1UnrealPlatform_html_a7efc8a5aa57793b93664a4cfd8ff7e23"><div class="ttname"><a href="../../d5/dc0/classNuke_1_1Unreal_1_1UnrealPlatform.html#a7efc8a5aa57793b93664a4cfd8ff7e23">Nuke.Unreal.UnrealPlatform.Win64</a></div><div class="ttdeci">static readonly UnrealPlatform Win64</div><div class="ttdoc">Any platform name containing 'Windows' is also mapped to this platform.</div><div class="ttdef"><b>Definition</b> <a href="../../d8/df1/UnrealPlatform_8cs_source.html#l00081">UnrealPlatform.cs:81</a></div></div>
-<div class="ttc" id="aclassNuke_1_1Unreal_1_1UnrealPlatform_html_a92f1081bf965a1027af61db675e9e397"><div class="ttname"><a href="../../d5/dc0/classNuke_1_1Unreal_1_1UnrealPlatform.html#a92f1081bf965a1027af61db675e9e397">Nuke.Unreal.UnrealPlatform.Independent</a></div><div class="ttdeci">static readonly UnrealPlatform Independent</div><div class="ttdoc">Meta-platform indicating that its context of operation is platform-independent or has (should have) t...</div><div class="ttdef"><b>Definition</b> <a href="../../d8/df1/UnrealPlatform_8cs_source.html#l00150">UnrealPlatform.cs:150</a></div></div>
-<div class="ttc" id="anamespaceNuke_1_1Unreal_html"><div class="ttname"><a href="../../d0/d55/namespaceNuke_1_1Unreal.html">Nuke.Unreal</a></div><div class="ttdef"><b>Definition</b> <a href="../../d9/d70/AndroidCookFlavor_8cs_source.html#l00007">AndroidCookFlavor.cs:8</a></div></div>
+<div class="ttc" id="ainterfaceNuke_1_1Unreal_1_1IUnrealBuild_html"><div class="ttname"><a href="../../d4/d7c/interfaceNuke_1_1Unreal_1_1IUnrealBuild.html">Nuke.Unreal.IUnrealBuild</a></div><div class="ttdoc">Base interface for build components which require an UnrealBuild main class.</div><div class="ttdef"><b>Definition</b> <a href="../../df/d40/IUnrealBuild_8cs_source.html#l00013">IUnrealBuild.cs:14</a></div></div>
+<div class="ttc" id="anamespaceNuke_1_1Unreal_html"><div class="ttname"><a href="../../d0/d55/namespaceNuke_1_1Unreal.html">Nuke.Unreal</a></div><div class="ttdef"><b>Definition</b> <a href="../../d6/d4f/ActorGenerator_8cs_source.html#l00001">ActorGenerator.cs:2</a></div></div>
 </div><!-- fragment --><details >
 <summary >
 Will generate a partial module rule file:</summary>

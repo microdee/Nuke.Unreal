@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['miscellaneous_20things_0',['Miscellaneous things',['../da/d19/Misc.html',1,'']]]
+  ['management_0',['Platform SDK management',['../da/d45/PlatformSdkManagment.html',1,'']]],
+  ['miscellaneous_20things_1',['Miscellaneous things',['../da/d19/Misc.html',1,'']]]
 ];

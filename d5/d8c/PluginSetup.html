@@ -151,13 +151,11 @@ $(function(){initNavTree('d5/d8c/PluginSetup.html','../../'); initResizable(true
 <div class="line"><span class="keyword">namespace </span>Nuke.MyModule;</div>
 <div class="line"> </div>
 <div class="line">[ImplicitBuildInterface]</div>
-<div class="line"><span class="keyword">public</span> <span class="keyword">interface </span>IMyModuleTargets : INukeBuild</div>
+<div class="line"><span class="keyword">public</span> <span class="keyword">interface </span>IMyModuleTargets : <a class="code hl_interface" href="../../d4/d7c/interfaceNuke_1_1Unreal_1_1IUnrealBuild.html">IUnrealBuild</a></div>
 <div class="line">{</div>
 <div class="line">    Target PrepareMyModule =&gt; _ =&gt; _</div>
 <div class="line">        .Executes(() =&gt;</div>
 <div class="line">        {</div>
-<div class="line">            var <span class="keyword">self</span> = (<a class="code hl_class" href="../../da/d58/classNuke_1_1Unreal_1_1UnrealBuild.html">UnrealBuild</a>)<span class="keyword">this</span>;</div>
-<div class="line"> </div>
 <div class="line">            <span class="comment">// This will automatically fetch the plugin which owns this particular script.</span></div>
 <div class="line">            <span class="comment">// These plugin objects are shared among all targets and they can all manipulate their aspects</span></div>
 <div class="line">            var thisPlugin = UnrealPlugin.Get(this.ScriptFolder());</div>
@@ -165,7 +163,7 @@ $(function(){initNavTree('d5/d8c/PluginSetup.html','../../'); initResizable(true
 <div class="line">            <span class="comment">// This module has some runtime dependencies which it needs to sort out</span></div>
 <div class="line">            <span class="comment">// This function gets the plugin in itself, no need to use thisPlugin here</span></div>
 <div class="line">            <span class="comment">// See exact usage of this in section &quot;Semi-auto Runtime Dependencies&quot;</span></div>
-<div class="line">            <span class="keyword">self</span>.PrepareRuntimeDependencies(this.ScriptFolder(), <span class="comment">/* ... */</span>);</div>
+<div class="line">            this.PrepareRuntimeDependencies(this.ScriptFolder(), <span class="comment">/* ... */</span>);</div>
 <div class="line">        });</div>
 <div class="line">}</div>
 <div class="line"> </div>
@@ -177,10 +175,10 @@ $(function(){initNavTree('d5/d8c/PluginSetup.html','../../'); initResizable(true
 <div class="line"><span class="keyword">namespace </span>Nuke.MyPlugin;</div>
 <div class="line"> </div>
 <div class="line">[ImplicitBuildInterface]</div>
-<div class="line"><span class="keyword">public</span> <span class="keyword">interface </span>IMyPluginTargets : INukeBuild</div>
+<div class="line"><span class="keyword">public</span> <span class="keyword">interface </span>IMyPluginTargets : <a class="code hl_interface" href="../../d4/d7c/interfaceNuke_1_1Unreal_1_1IUnrealBuild.html">IUnrealBuild</a></div>
 <div class="line">{</div>
 <div class="line">    Target PrepareMyPlugin =&gt; _ =&gt; _</div>
-<div class="line">        .DependentFor&lt;<a class="code hl_class" href="../../da/d58/classNuke_1_1Unreal_1_1UnrealBuild.html">UnrealBuild</a>&gt;(u =&gt; u.Prepare)</div>
+<div class="line">        .DependentFor(Prepare)</div>
 <div class="line">        .DependsOn&lt;IMyModuleTargets&gt;()</div>
 <div class="line">        .Executes(() =&gt;</div>
 <div class="line">        {</div>
@@ -198,7 +196,7 @@ $(function(){initNavTree('d5/d8c/PluginSetup.html','../../'); initResizable(true
 <div class="line">            <span class="comment">// Create a copy of this plugin which can be distributed to other developers or other tools</span></div>
 <div class="line">            <span class="comment">// who shouldn&#39;t require extra non-unreal related steps to work with it.</span></div>
 <div class="line">            <span class="comment">// You can upload the result of this to Fab.</span></div>
-<div class="line">            var (files, outputDir) = UnrealPlugin.Get(this.ScriptFolder()).DistributeSource();</div>
+<div class="line">            var (files, outputDir) = UnrealPlugin.Get(this.ScriptFolder()).DistributeSource(<span class="keyword">this</span>);</div>
 <div class="line"> </div>
 <div class="line">            <span class="comment">// Do something with the affected files or in the output directory...</span></div>
 <div class="line">        });</div>
@@ -208,17 +206,17 @@ $(function(){initNavTree('d5/d8c/PluginSetup.html','../../'); initResizable(true
 <div class="line">        .Executes(() =&gt;</div>
 <div class="line">        {</div>
 <div class="line">            <span class="comment">// Build this plugin with UAT for binary distribution</span></div>
-<div class="line">            var outputDir = UnrealPlugin.Get(this.ScriptFolder()).BuildPlugin();</div>
+<div class="line">            var outputDir = UnrealPlugin.Get(this.ScriptFolder()).BuildPlugin(<span class="keyword">this</span>);</div>
 <div class="line"> </div>
 <div class="line">            <span class="comment">// Do something in the output directory...</span></div>
 <div class="line">        });</div>
 <div class="line">}</div>
-<div class="ttc" id="aclassNuke_1_1Unreal_1_1UnrealBuild_html"><div class="ttname"><a href="../../da/d58/classNuke_1_1Unreal_1_1UnrealBuild.html">Nuke.Unreal.UnrealBuild</a></div><div class="ttdoc">The main build class Unreal projects using Nuke.Unreal should inherit from. This class contains all b...</div><div class="ttdef"><b>Definition</b> <a href="../../db/d1e/UnrealBuild_8Templating_8cs_source.html#l00013">UnrealBuild.Templating.cs:14</a></div></div>
-<div class="ttc" id="anamespaceNuke_1_1Unreal_html"><div class="ttname"><a href="../../d0/d55/namespaceNuke_1_1Unreal.html">Nuke.Unreal</a></div><div class="ttdef"><b>Definition</b> <a href="../../d9/d70/AndroidCookFlavor_8cs_source.html#l00007">AndroidCookFlavor.cs:8</a></div></div>
+<div class="ttc" id="ainterfaceNuke_1_1Unreal_1_1IUnrealBuild_html"><div class="ttname"><a href="../../d4/d7c/interfaceNuke_1_1Unreal_1_1IUnrealBuild.html">Nuke.Unreal.IUnrealBuild</a></div><div class="ttdoc">Base interface for build components which require an UnrealBuild main class.</div><div class="ttdef"><b>Definition</b> <a href="../../df/d40/IUnrealBuild_8cs_source.html#l00013">IUnrealBuild.cs:14</a></div></div>
+<div class="ttc" id="anamespaceNuke_1_1Unreal_html"><div class="ttname"><a href="../../d0/d55/namespaceNuke_1_1Unreal.html">Nuke.Unreal</a></div><div class="ttdef"><b>Definition</b> <a href="../../d6/d4f/ActorGenerator_8cs_source.html#l00001">ActorGenerator.cs:2</a></div></div>
 </div><!-- fragment --><p>And call them later with</p>
-<div class="fragment"><div class="line">&gt; nuke prepare-my-plugin</div>
-<div class="line">&gt; nuke distribute-my-plugin</div>
-<div class="line">&gt; nuke build-my-plugin</div>
+<div class="fragment"><div class="line">&gt; nuke PrepareMyPlugin</div>
+<div class="line">&gt; nuke DistributeMyPlugin</div>
+<div class="line">&gt; nuke BuildMyPlugin</div>
 </div><!-- fragment --><p>You have absolute freedom to organize the task-dependency graph around handling your plugins. For example one target may manipulate multiple plugins even, from a dynamic set of folders. The above example is just a simple use-case. </p>
 </div></div><!-- contents -->
 </div><!-- PageDoc -->

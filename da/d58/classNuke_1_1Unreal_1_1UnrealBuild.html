@@ -134,7 +134,11 @@ Inheritance diagram for Nuke.Unreal.UnrealBuild:</div>
  <div class="center">
   <img src="../../da/d58/classNuke_1_1Unreal_1_1UnrealBuild.png" usemap="#Nuke.Unreal.UnrealBuild_map" alt=""/>
   <map id="Nuke.Unreal.UnrealBuild_map" name="Nuke.Unreal.UnrealBuild_map">
-<area href="../../d0/d8d/classNuke_1_1Unreal_1_1UnrealBuildTest.html" title="Used only for testing purposes. It has no external use outside of Nuke.Unreal development." alt="Nuke.Unreal.UnrealBuildTest" shape="rect" coords="276,112,450,136"/>
+<area href="../../d4/d7c/interfaceNuke_1_1Unreal_1_1IUnrealBuild.html" title="Base interface for build components which require an UnrealBuild main class." alt="Nuke.Unreal.IUnrealBuild" shape="rect" coords="184,392,358,416"/>
+<area href="../../d4/d7c/interfaceNuke_1_1Unreal_1_1IUnrealBuild.html" title="Base interface for build components which require an UnrealBuild main class." alt="Nuke.Unreal.IUnrealBuild" shape="rect" coords="184,280,358,304"/>
+<area href="../../d4/d7c/interfaceNuke_1_1Unreal_1_1IUnrealBuild.html" title="Base interface for build components which require an UnrealBuild main class." alt="Nuke.Unreal.IUnrealBuild" shape="rect" coords="184,168,358,192"/>
+<area href="../../d4/d7c/interfaceNuke_1_1Unreal_1_1IUnrealBuild.html" title="Base interface for build components which require an UnrealBuild main class." alt="Nuke.Unreal.IUnrealBuild" shape="rect" coords="184,56,358,80"/>
+<area href="../../d0/d8d/classNuke_1_1Unreal_1_1UnrealBuildTest.html" title="Used only for testing purposes. It has no external use outside of Nuke.Unreal development." alt="Nuke.Unreal.UnrealBuildTest" shape="rect" coords="0,504,174,528"/>
   </map>
 </div></div>
 <table class="memberdecls">
@@ -150,7 +154,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:aeeb743b8b14270939925bcef32d3d0f2"><td class="mdescLeft">&#160;</td><td class="mdescRight">UAT arguments to be applied globally for all UAT invocations. Override this function in your main build class if your project needs extra intricacies for everything what UAT may do through <a class="el" href="../../d0/d55/namespaceNuke_1_1Unreal.html">Nuke.Unreal</a>.  <br /></td></tr>
 <tr class="separator:aeeb743b8b14270939925bcef32d3d0f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9b2eef1cd2fc888f52f71ddb4f01bd91" id="r_a9b2eef1cd2fc888f52f71ddb4f01bd91"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../db/d1d/classNuke_1_1Unreal_1_1EngineVersion.html">EngineVersion</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9b2eef1cd2fc888f52f71ddb4f01bd91">GetEngineVersionFromProject</a> ()</td></tr>
-<tr class="memdesc:a9b2eef1cd2fc888f52f71ddb4f01bd91"><td class="mdescLeft">&#160;</td><td class="mdescRight">Utility function to get the proper Engine version associated with current project. Rather use <code><a class="el" href="../../d3/d98/classNuke_1_1Unreal_1_1Unreal.html#abef4b366295dd71e1b51352628ca4dfb" title="Get high-level version of currently used Engine.">Unreal.Version</a></code> static function, that looks nicer.  <br /></td></tr>
+<tr class="memdesc:a9b2eef1cd2fc888f52f71ddb4f01bd91"><td class="mdescLeft">&#160;</td><td class="mdescRight">Utility function to get the proper Engine version associated with current project. Rather use <code><a class="el" href="../../d3/d98/classNuke_1_1Unreal_1_1Unreal.html#a2bab7bb455a356f8949e84bfddd9582b" title="Get high-level version of currently used Engine.">Unreal.Version</a></code> static function, that looks nicer.  <br /></td></tr>
 <tr class="separator:a9b2eef1cd2fc888f52f71ddb4f01bd91"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab6c27fbdf8bbc91c0a331d31513ccf47" id="r_ab6c27fbdf8bbc91c0a331d31513ccf47"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab6c27fbdf8bbc91c0a331d31513ccf47">PrintInfo</a> ()</td></tr>
 <tr class="memdesc:ab6c27fbdf8bbc91c0a331d31513ccf47"><td class="mdescLeft">&#160;</td><td class="mdescRight">Print some rudimentary information onto console about this project and it's environment. Override this function in your main build class if your project may have its own important info like this useful for debugging.  <br /></td></tr>
@@ -166,7 +170,7 @@ Public Member Functions</h2></td></tr>
 </ul>
  <br /></td></tr>
 <tr class="separator:a124f014cbb93ef218c5ee45d570c9272"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aaaed71d8c541ffe3c5b6881c83acaa4f" id="r_aaaed71d8c541ffe3c5b6881c83acaa4f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../da/ddb/classNuke_1_1Unreal_1_1Ini_1_1ConfigIni.html">ConfigIni</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aaaed71d8c541ffe3c5b6881c83acaa4f">ReadIniHierarchy</a> (string shortName, IniHierarchyLevel lowestLevel=IniHierarchyLevel.Base, IniHierarchyLevel highestLevel=IniHierarchyLevel.Saved, bool considerPlugins=true, IEnumerable&lt; string &gt;? extraConfigSubfolder=null)</td></tr>
+<tr class="memitem:aaaed71d8c541ffe3c5b6881c83acaa4f" id="r_aaaed71d8c541ffe3c5b6881c83acaa4f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../da/ddb/classNuke_1_1Unreal_1_1Ini_1_1ConfigIni.html">ConfigIni</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aaaed71d8c541ffe3c5b6881c83acaa4f">ReadIniHierarchy</a> (string shortName, <a class="el" href="../../d0/d55/namespaceNuke_1_1Unreal.html#a2b0aa5780ca61c75136831ebcbcdc8d9">IniHierarchyLevel</a> lowestLevel=IniHierarchyLevel.Base, <a class="el" href="../../d0/d55/namespaceNuke_1_1Unreal.html#a2b0aa5780ca61c75136831ebcbcdc8d9">IniHierarchyLevel</a> highestLevel=IniHierarchyLevel.Saved, bool considerPlugins=true, IEnumerable&lt; string &gt;? extraConfigSubfolder=null)</td></tr>
 <tr class="memdesc:aaaed71d8c541ffe3c5b6881c83acaa4f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read INI configuration emulating the same hierarchy of importance as <a class="el" href="../../d3/d98/classNuke_1_1Unreal_1_1Unreal.html" title="A collection of utilities around basic functions regarding the environment of the Engine we&#39;re workin...">Unreal</a> Engine also does.  <br /></td></tr>
 <tr class="separator:aaaed71d8c541ffe3c5b6881c83acaa4f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5de948ccbda57245165afd88604a6166" id="r_a5de948ccbda57245165afd88604a6166"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="../../d4/d4a/classNuke_1_1Unreal_1_1Tools_1_1UatConfig.html">UatConfig</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5de948ccbda57245165afd88604a6166">UatCook</a> (<a class="el" href="../../d4/d4a/classNuke_1_1Unreal_1_1Tools_1_1UatConfig.html">UatConfig</a> _)</td></tr>
@@ -175,6 +179,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a9fca4f940e8715abfd1cde5011086be1" id="r_a9fca4f940e8715abfd1cde5011086be1"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9fca4f940e8715abfd1cde5011086be1">ForDistribution</a> ()</td></tr>
 <tr class="memdesc:a9fca4f940e8715abfd1cde5011086be1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enforce packaging for distribution when that is set from <code>Game</code> ini files. Override this function in your main build class if you want a different logic set for flagging packages for distribution.  <br /></td></tr>
 <tr class="separator:a9fca4f940e8715abfd1cde5011086be1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_interfaceNuke_1_1Unreal_1_1IUnrealBuild"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_interfaceNuke_1_1Unreal_1_1IUnrealBuild')"><img src="../../closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="../../d4/d7c/interfaceNuke_1_1Unreal_1_1IUnrealBuild.html">Nuke.Unreal.IUnrealBuild</a></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
@@ -189,21 +194,14 @@ Public Attributes</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
-<tr class="memitem:afcb70b70177bd985ba95bfd3acdcdf61" id="r_afcb70b70177bd985ba95bfd3acdcdf61"><td class="memItemLeft" align="right" valign="top">T&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afcb70b70177bd985ba95bfd3acdcdf61">Self&lt; T &gt;</a> ()</td></tr>
-<tr class="memdesc:afcb70b70177bd985ba95bfd3acdcdf61"><td class="mdescLeft">&#160;</td><td class="mdescRight">Shortcut to casting <code>this</code> to another class.  <br /></td></tr>
-<tr class="separator:afcb70b70177bd985ba95bfd3acdcdf61"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a03d37da54c2d3d09452798f79181c139" id="r_a03d37da54c2d3d09452798f79181c139"><td class="memItemLeft" align="right" valign="top">T?&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a03d37da54c2d3d09452798f79181c139">SelfAs&lt; T &gt;</a> ()</td></tr>
-<tr class="memdesc:a03d37da54c2d3d09452798f79181c139"><td class="mdescLeft">&#160;</td><td class="mdescRight">Shortcut to casting <code>this</code> to another class.  <br /></td></tr>
-<tr class="separator:a03d37da54c2d3d09452798f79181c139"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae2a9954945daab3695920d6d3f34f3cb" id="r_ae2a9954945daab3695920d6d3f34f3cb"><td class="memItemLeft" align="right" valign="top">override void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae2a9954945daab3695920d6d3f34f3cb">OnBuildInitialized</a> ()</td></tr>
-<tr class="separator:ae2a9954945daab3695920d6d3f34f3cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae9862af08ab50a27eaa0ceeb75580525" id="r_ae9862af08ab50a27eaa0ceeb75580525"><td class="memItemLeft" align="right" valign="top">override void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae9862af08ab50a27eaa0ceeb75580525">OnBuildCreated</a> ()</td></tr>
+<tr class="separator:ae9862af08ab50a27eaa0ceeb75580525"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="properties" name="properties"></a>
 Properties</h2></td></tr>
 <tr class="memitem:a9f75ac400cfc814c4b0dfd1623b48b52" id="r_a9f75ac400cfc814c4b0dfd1623b48b52"><td class="memItemLeft" align="right" valign="top">virtual ? string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9f75ac400cfc814c4b0dfd1623b48b52">UnrealVersion</a><code> [get, set]</code></td></tr>
-<tr class="memdesc:a9f75ac400cfc814c4b0dfd1623b48b52"><td class="mdescLeft">&#160;</td><td class="mdescRight">Most targets read the desired <a class="el" href="../../d3/d98/classNuke_1_1Unreal_1_1Unreal.html" title="A collection of utilities around basic functions regarding the environment of the Engine we&#39;re workin...">Unreal</a> version from the project file.  <br /></td></tr>
 <tr class="separator:a9f75ac400cfc814c4b0dfd1623b48b52"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae70561b354f5df171a7f731d263bf2d5" id="r_ae70561b354f5df171a7f731d263bf2d5"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="../../d5/dc0/classNuke_1_1Unreal_1_1UnrealPlatform.html">UnrealPlatform</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae70561b354f5df171a7f731d263bf2d5">Platform</a> = <a class="el" href="../../d5/dc0/classNuke_1_1Unreal_1_1UnrealPlatform.html#afb8a37506213acac4d77900639481882">UnrealPlatform.FromFlag</a>(<a class="el" href="../../d3/d98/classNuke_1_1Unreal_1_1Unreal.html#ace87a29d11a8dcc4a9d0f220563146e2">Unreal.GetDefaultPlatform</a>())<code> [get, set]</code></td></tr>
+<tr class="memitem:ae70561b354f5df171a7f731d263bf2d5" id="r_ae70561b354f5df171a7f731d263bf2d5"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="../../d5/dc0/classNuke_1_1Unreal_1_1UnrealPlatform.html">UnrealPlatform</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae70561b354f5df171a7f731d263bf2d5">Platform</a> = <a class="el" href="../../d5/dc0/classNuke_1_1Unreal_1_1UnrealPlatform.html#afb8a37506213acac4d77900639481882">UnrealPlatform.FromFlag</a>(<a class="el" href="../../d3/d98/classNuke_1_1Unreal_1_1Unreal.html#a81c8f103db477166b6c36feb0b62119d">Unreal.GetHostPlatformFlag</a>())<code> [get, set]</code></td></tr>
 <tr class="separator:ae70561b354f5df171a7f731d263bf2d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a877307ca15a7c25cbdcdfe638f2cd8a3" id="r_a877307ca15a7c25cbdcdfe638f2cd8a3"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="../../d7/dd2/classNuke_1_1Unreal_1_1UnrealConfig.html">UnrealConfig</a>[]&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a877307ca15a7c25cbdcdfe638f2cd8a3">Config</a> = [UnrealConfig.Development]<code> [get, set]</code></td></tr>
 <tr class="separator:a877307ca15a7c25cbdcdfe638f2cd8a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -211,6 +209,8 @@ Properties</h2></td></tr>
 <tr class="separator:a891fe1907305c6641b447e4a7882bb20"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a32ab86bdd107018f3c48644f2dbf9198" id="r_a32ab86bdd107018f3c48644f2dbf9198"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="../../d7/dcc/classNuke_1_1Unreal_1_1UnrealTargetType.html">UnrealTargetType</a>[]&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a32ab86bdd107018f3c48644f2dbf9198">TargetType</a> = [<a class="el" href="../../d7/dcc/classNuke_1_1Unreal_1_1UnrealTargetType.html#aef7ff928a48081cfc4d7e76ec349cd2a">UnrealTargetType.Game</a>]<code> [get, set]</code></td></tr>
 <tr class="separator:a32ab86bdd107018f3c48644f2dbf9198"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adf3312bad8c31bac5d86e5de335c25eb" id="r_adf3312bad8c31bac5d86e5de335c25eb"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="../../d0/dd8/classNuke_1_1Unreal_1_1Platforms_1_1Android_1_1AndroidCookFlavor.html">AndroidCookFlavor</a>[]&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adf3312bad8c31bac5d86e5de335c25eb">AndroidTextureMode</a> = [ AndroidCookFlavor.Multi ]<code> [get, set]</code></td></tr>
+<tr class="separator:adf3312bad8c31bac5d86e5de335c25eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a51810206b2bb5af12777547d2bdc061c" id="r_a51810206b2bb5af12777547d2bdc061c"><td class="memItemLeft" align="right" valign="top">AbsolutePath&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a51810206b2bb5af12777547d2bdc061c">UnrealEnginePath</a><code> [get]</code></td></tr>
 <tr class="memdesc:a51810206b2bb5af12777547d2bdc061c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Path to the root of the associated <a class="el" href="../../d3/d98/classNuke_1_1Unreal_1_1Unreal.html" title="A collection of utilities around basic functions regarding the environment of the Engine we&#39;re workin...">Unreal</a> Engine installation/source.  <br /></td></tr>
 <tr class="separator:a51810206b2bb5af12777547d2bdc061c"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -220,6 +220,7 @@ Properties</h2></td></tr>
 <tr class="memdesc:a1192e7abfc432a9907996a58bb732e5e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Path to folder containing the <code>.project</code> file.  <br /></td></tr>
 <tr class="separator:a1192e7abfc432a9907996a58bb732e5e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa4f65257d8155088d589430395bf3188" id="r_aa4f65257d8155088d589430395bf3188"><td class="memItemLeft" align="right" valign="top">AbsolutePath&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa4f65257d8155088d589430395bf3188">PluginsFolder</a><code> [get]</code></td></tr>
+<tr class="memdesc:aa4f65257d8155088d589430395bf3188"><td class="mdescLeft">&#160;</td><td class="mdescRight">Path to the <a class="el" href="../../d3/d98/classNuke_1_1Unreal_1_1Unreal.html" title="A collection of utilities around basic functions regarding the environment of the Engine we&#39;re workin...">Unreal</a> plugins folder of this project.  <br /></td></tr>
 <tr class="separator:aa4f65257d8155088d589430395bf3188"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2c182c2b68eeef44d8d80a8e5f2fb719" id="r_a2c182c2b68eeef44d8d80a8e5f2fb719"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2c182c2b68eeef44d8d80a8e5f2fb719">ProjectName</a><code> [get]</code></td></tr>
 <tr class="memdesc:a2c182c2b68eeef44d8d80a8e5f2fb719"><td class="mdescLeft">&#160;</td><td class="mdescRight">Short name of the project.  <br /></td></tr>
@@ -227,9 +228,8 @@ Properties</h2></td></tr>
 <tr class="memitem:a378a09861f998fef79a5c531dc5cef72" id="r_a378a09861f998fef79a5c531dc5cef72"><td class="memItemLeft" align="right" valign="top">ProjectDescriptor&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a378a09861f998fef79a5c531dc5cef72">ProjectDescriptor</a><code> [get, protected set]</code></td></tr>
 <tr class="memdesc:a378a09861f998fef79a5c531dc5cef72"><td class="mdescLeft">&#160;</td><td class="mdescRight">"Immutable" C# representation of the <code>.uproject</code> contents  <br /></td></tr>
 <tr class="separator:a378a09861f998fef79a5c531dc5cef72"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a68c3aa378aaa87852ebcc5356e501f80" id="r_a68c3aa378aaa87852ebcc5356e501f80"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a68c3aa378aaa87852ebcc5356e501f80">IsPerforce</a><code> [get]</code></td></tr>
-<tr class="memdesc:a68c3aa378aaa87852ebcc5356e501f80"><td class="mdescLeft">&#160;</td><td class="mdescRight">Does this project reside in a Perforce workspace?  <br /></td></tr>
-<tr class="separator:a68c3aa378aaa87852ebcc5356e501f80"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a05089cfd1d8f24313905ba003823f911" id="r_a05089cfd1d8f24313905ba003823f911"><td class="memItemLeft" align="right" valign="top">virtual Target&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a05089cfd1d8f24313905ba003823f911">HelpNukeUnreal</a><code> [get]</code></td></tr>
+<tr class="separator:a05089cfd1d8f24313905ba003823f911"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aada99c3bcadd433d5734fa08d0811027" id="r_aada99c3bcadd433d5734fa08d0811027"><td class="memItemLeft" align="right" valign="top">virtual Target&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aada99c3bcadd433d5734fa08d0811027">Info</a><code> [get]</code></td></tr>
 <tr class="separator:aada99c3bcadd433d5734fa08d0811027"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a06637f03505c51de631cd72329ac022c" id="r_a06637f03505c51de631cd72329ac022c"><td class="memItemLeft" align="right" valign="top">virtual Target&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a06637f03505c51de631cd72329ac022c">CleanDeployment</a><code> [get]</code></td></tr>
@@ -246,6 +246,8 @@ Properties</h2></td></tr>
 <tr class="separator:a12ac3ee3a7e8084e989cd644b3cc3001"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab6a8642246cfb70413db238cb68ede4d" id="r_ab6a8642246cfb70413db238cb68ede4d"><td class="memItemLeft" align="right" valign="top">virtual Target&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab6a8642246cfb70413db238cb68ede4d">Generate</a><code> [get]</code></td></tr>
 <tr class="separator:ab6a8642246cfb70413db238cb68ede4d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af197e762270a8529b36d8422fa0e2247" id="r_af197e762270a8529b36d8422fa0e2247"><td class="memItemLeft" align="right" valign="top">virtual Target&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af197e762270a8529b36d8422fa0e2247">SetupPlatformSdk</a><code> [get]</code></td></tr>
+<tr class="separator:af197e762270a8529b36d8422fa0e2247"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a104f1d5903a888d52e10017bf6d2d429" id="r_a104f1d5903a888d52e10017bf6d2d429"><td class="memItemLeft" align="right" valign="top">virtual Target&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a104f1d5903a888d52e10017bf6d2d429">BuildEditor</a><code> [get]</code></td></tr>
 <tr class="separator:a104f1d5903a888d52e10017bf6d2d429"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7a87ac137cba3f1f8a03d73a007cf9cf" id="r_a7a87ac137cba3f1f8a03d73a007cf9cf"><td class="memItemLeft" align="right" valign="top">virtual Target&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7a87ac137cba3f1f8a03d73a007cf9cf">Build</a><code> [get]</code></td></tr>
@@ -300,6 +302,7 @@ Properties</h2></td></tr>
 <tr class="separator:a34dd737c0be9550f2bd82cf4ba529410"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af8623204b639d2c7b9854ce03928ee54" id="r_af8623204b639d2c7b9854ce03928ee54"><td class="memItemLeft" align="right" valign="top">Target&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af8623204b639d2c7b9854ce03928ee54">UseHeaderOnly</a><code> [get]</code></td></tr>
 <tr class="separator:af8623204b639d2c7b9854ce03928ee54"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header properties_interfaceNuke_1_1Unreal_1_1IUnrealBuild"><td colspan="2" onclick="javascript:dynsection.toggleInherit('properties_interfaceNuke_1_1Unreal_1_1IUnrealBuild')"><img src="../../closed.png" alt="-"/>&#160;Properties inherited from <a class="el" href="../../d4/d7c/interfaceNuke_1_1Unreal_1_1IUnrealBuild.html">Nuke.Unreal.IUnrealBuild</a></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
@@ -309,13 +312,11 @@ Private Attributes</h2></td></tr>
 <tr class="separator:a75afb0eb55fd6d6d7059f8acd8f328eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9eca1c80758e65b35df98515651215c7" id="r_a9eca1c80758e65b35df98515651215c7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#a378a09861f998fef79a5c531dc5cef72">ProjectDescriptor</a>?&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9eca1c80758e65b35df98515651215c7">_projectDescriptor</a></td></tr>
 <tr class="separator:a9eca1c80758e65b35df98515651215c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acc0c5fc8e70ec053b72fb10e3fd8fe09" id="r_acc0c5fc8e70ec053b72fb10e3fd8fe09"><td class="memItemLeft" align="right" valign="top">bool?&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acc0c5fc8e70ec053b72fb10e3fd8fe09">_isPerforceCache</a> = null</td></tr>
-<tr class="separator:acc0c5fc8e70ec053b72fb10e3fd8fe09"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>The main build class <a class="el" href="../../d3/d98/classNuke_1_1Unreal_1_1Unreal.html" title="A collection of utilities around basic functions regarding the environment of the Engine we&#39;re workin...">Unreal</a> projects using <a class="el" href="../../d0/d55/namespaceNuke_1_1Unreal.html">Nuke.Unreal</a> should inherit from. This class contains all base targets for use-cases which are relevant for 99% of <a class="el" href="../../d3/d98/classNuke_1_1Unreal_1_1Unreal.html" title="A collection of utilities around basic functions regarding the environment of the Engine we&#39;re workin...">Unreal</a> project development tasks. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../db/d1e/UnrealBuild_8Templating_8cs_source.html#l00013">13</a> of file <a class="el" href="../../db/d1e/UnrealBuild_8Templating_8cs_source.html">UnrealBuild.Templating.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../db/d1e/UnrealBuild_8Templating_8cs_source.html#l00010">10</a> of file <a class="el" href="../../db/d1e/UnrealBuild_8Templating_8cs_source.html">UnrealBuild.Templating.cs</a>.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="a9fca4f940e8715abfd1cde5011086be1" name="a9fca4f940e8715abfd1cde5011086be1"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a9fca4f940e8715abfd1cde5011086be1">&#9670;&#160;</a></span>ForDistribution()</h2>
@@ -342,7 +343,9 @@ Private Attributes</h2></td></tr>
 
 <p>Enforce packaging for distribution when that is set from <code>Game</code> ini files. Override this function in your main build class if you want a different logic set for flagging packages for distribution. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../d9/dd7/UnrealBuild_8Targets_8cs_source.html#l00184">184</a> of file <a class="el" href="../../d9/dd7/UnrealBuild_8Targets_8cs_source.html">UnrealBuild.Targets.cs</a>.</p>
+<p>Implements <a class="el" href="../../d4/d7c/interfaceNuke_1_1Unreal_1_1IUnrealBuild.html#af0612ec647e0e02de3df2ea4e92997b0">Nuke.Unreal.IUnrealBuild</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="../../d9/dd7/UnrealBuild_8Targets_8cs_source.html#l00368">368</a> of file <a class="el" href="../../d9/dd7/UnrealBuild_8Targets_8cs_source.html">UnrealBuild.Targets.cs</a>.</p>
 
 </div>
 </div>
@@ -379,6 +382,8 @@ Private Attributes</h2></td></tr>
 </ul>
 </p>
 
+<p>Implements <a class="el" href="../../d4/d7c/interfaceNuke_1_1Unreal_1_1IUnrealBuild.html#a4bc1475de3e58c270c837ad1a88a523a">Nuke.Unreal.IUnrealBuild</a>.</p>
+
 </div>
 </div>
 <a id="a9b2eef1cd2fc888f52f71ddb4f01bd91" name="a9b2eef1cd2fc888f52f71ddb4f01bd91"></a>
@@ -396,9 +401,11 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Utility function to get the proper Engine version associated with current project. Rather use <code><a class="el" href="../../d3/d98/classNuke_1_1Unreal_1_1Unreal.html#abef4b366295dd71e1b51352628ca4dfb" title="Get high-level version of currently used Engine.">Unreal.Version</a></code> static function, that looks nicer. </p>
+<p>Utility function to get the proper Engine version associated with current project. Rather use <code><a class="el" href="../../d3/d98/classNuke_1_1Unreal_1_1Unreal.html#a2bab7bb455a356f8949e84bfddd9582b" title="Get high-level version of currently used Engine.">Unreal.Version</a></code> static function, that looks nicer. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../dd/d9f/UnrealBuild_8cs_source.html#l00126">126</a> of file <a class="el" href="../../dd/d9f/UnrealBuild_8cs_source.html">UnrealBuild.cs</a>.</p>
+<p>Implements <a class="el" href="../../d4/d7c/interfaceNuke_1_1Unreal_1_1IUnrealBuild.html#afde13da3ad44a28c47dc5f8b9c96b148">Nuke.Unreal.IUnrealBuild</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="../../dd/d9f/UnrealBuild_8cs_source.html#l00148">148</a> of file <a class="el" href="../../dd/d9f/UnrealBuild_8cs_source.html">UnrealBuild.cs</a>.</p>
 
 </div>
 </div>
@@ -427,10 +434,12 @@ Private Attributes</h2></td></tr>
 
 <p>Get an output folder where the targets should store their artifacts. Override this function in your main build class to enforce your own. </p>
 
+<p>Implements <a class="el" href="../../d4/d7c/interfaceNuke_1_1Unreal_1_1IUnrealBuild.html#ad90a00a89cdff281b752540520ca412f">Nuke.Unreal.IUnrealBuild</a>.</p>
+
 </div>
 </div>
-<a id="ae2a9954945daab3695920d6d3f34f3cb" name="ae2a9954945daab3695920d6d3f34f3cb"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae2a9954945daab3695920d6d3f34f3cb">&#9670;&#160;</a></span>OnBuildInitialized()</h2>
+<a id="ae9862af08ab50a27eaa0ceeb75580525" name="ae9862af08ab50a27eaa0ceeb75580525"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae9862af08ab50a27eaa0ceeb75580525">&#9670;&#160;</a></span>OnBuildCreated()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -439,7 +448,7 @@ Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">override void Nuke.Unreal.UnrealBuild.OnBuildInitialized </td>
+          <td class="memname">override void Nuke.Unreal.UnrealBuild.OnBuildCreated </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
           <td></td>
@@ -452,7 +461,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../dd/d9f/UnrealBuild_8cs_source.html#l00047">47</a> of file <a class="el" href="../../dd/d9f/UnrealBuild_8cs_source.html">UnrealBuild.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../dd/d9f/UnrealBuild_8cs_source.html#l00037">37</a> of file <a class="el" href="../../dd/d9f/UnrealBuild_8cs_source.html">UnrealBuild.cs</a>.</p>
 
 </div>
 </div>
@@ -481,7 +490,7 @@ Private Attributes</h2></td></tr>
 
 <p>Print some rudimentary information onto console about this project and it's environment. Override this function in your main build class if your project may have its own important info like this useful for debugging. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../dd/d9f/UnrealBuild_8cs_source.html#l00147">147</a> of file <a class="el" href="../../dd/d9f/UnrealBuild_8cs_source.html">UnrealBuild.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../dd/d9f/UnrealBuild_8cs_source.html#l00169">169</a> of file <a class="el" href="../../dd/d9f/UnrealBuild_8cs_source.html">UnrealBuild.cs</a>.</p>
 
 </div>
 </div>
@@ -499,12 +508,12 @@ Private Attributes</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">IniHierarchyLevel</td>          <td class="paramname"><span class="paramname"><em>lowestLevel</em></span><span class="paramdefsep"> = </span><span class="paramdefval">IniHierarchyLevel::Base</span>, </td>
+          <td class="paramtype"><a class="el" href="../../d0/d55/namespaceNuke_1_1Unreal.html#a2b0aa5780ca61c75136831ebcbcdc8d9">IniHierarchyLevel</a></td>          <td class="paramname"><span class="paramname"><em>lowestLevel</em></span><span class="paramdefsep"> = </span><span class="paramdefval">IniHierarchyLevel::Base</span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">IniHierarchyLevel</td>          <td class="paramname"><span class="paramname"><em>highestLevel</em></span><span class="paramdefsep"> = </span><span class="paramdefval">IniHierarchyLevel::Saved</span>, </td>
+          <td class="paramtype"><a class="el" href="../../d0/d55/namespaceNuke_1_1Unreal.html#a2b0aa5780ca61c75136831ebcbcdc8d9">IniHierarchyLevel</a></td>          <td class="paramname"><span class="paramname"><em>highestLevel</em></span><span class="paramdefsep"> = </span><span class="paramdefval">IniHierarchyLevel::Saved</span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -532,78 +541,9 @@ Private Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The parsed contents of the indicated config name</dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../dd/d9f/UnrealBuild_8cs_source.html#l00197">197</a> of file <a class="el" href="../../dd/d9f/UnrealBuild_8cs_source.html">UnrealBuild.cs</a>.</p>
+<p>Implements <a class="el" href="../../d4/d7c/interfaceNuke_1_1Unreal_1_1IUnrealBuild.html#ac55ef8635b52f826af7e3788d4692072">Nuke.Unreal.IUnrealBuild</a>.</p>
 
-</div>
-</div>
-<a id="afcb70b70177bd985ba95bfd3acdcdf61" name="afcb70b70177bd985ba95bfd3acdcdf61"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afcb70b70177bd985ba95bfd3acdcdf61">&#9670;&#160;</a></span>Self&lt; T &gt;()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">T Nuke.Unreal.UnrealBuild.Self&lt; T &gt; </td>
-          <td>(</td>
-          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Shortcut to casting <code>this</code> to another class. </p>
-<div class="typeconstraint">
-<dl><dt><b>Type Constraints</b></dt><dd>
-<table border="0" cellspacing="2" cellpadding="0">
-<tr><td valign="top"><em>T</em></td><td>&#160;:</td><td valign="top"><em>INukeBuild</em></td><td>&#160;</td></tr>
-</table>
-</dd>
-</dl>
-</div>
-
-</div>
-</div>
-<a id="a03d37da54c2d3d09452798f79181c139" name="a03d37da54c2d3d09452798f79181c139"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a03d37da54c2d3d09452798f79181c139">&#9670;&#160;</a></span>SelfAs&lt; T &gt;()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">T? Nuke.Unreal.UnrealBuild.SelfAs&lt; T &gt; </td>
-          <td>(</td>
-          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Shortcut to casting <code>this</code> to another class. </p>
-<div class="typeconstraint">
-<dl><dt><b>Type Constraints</b></dt><dd>
-<table border="0" cellspacing="2" cellpadding="0">
-<tr><td valign="top"><em>T</em></td><td>&#160;:</td><td valign="top"><em>class</em></td><td>&#160;</td></tr>
-<tr><td valign="top"><em>T</em></td><td>&#160;:</td><td valign="top"><em>INukeBuild</em></td><td>&#160;</td></tr>
-</table>
-</dd>
-</dl>
-</div>
+<p class="definition">Definition at line <a class="el" href="../../dd/d9f/UnrealBuild_8cs_source.html#l00219">219</a> of file <a class="el" href="../../dd/d9f/UnrealBuild_8cs_source.html">UnrealBuild.cs</a>.</p>
 
 </div>
 </div>
@@ -632,6 +572,8 @@ Private Attributes</h2></td></tr>
 
 <p>UAT arguments to be applied every time UAT is called for Cooking. Override this function in your main build class if your project needs extra intricacies for Cooking. For example specifying maps explicitly. </p>
 
+<p>Implements <a class="el" href="../../d4/d7c/interfaceNuke_1_1Unreal_1_1IUnrealBuild.html#abcfc5e47931b4890a7791adb71d45245">Nuke.Unreal.IUnrealBuild</a>.</p>
+
 </div>
 </div>
 <a id="aeeb743b8b14270939925bcef32d3d0f2" name="aeeb743b8b14270939925bcef32d3d0f2"></a>
@@ -659,7 +601,9 @@ Private Attributes</h2></td></tr>
 
 <p>UAT arguments to be applied globally for all UAT invocations. Override this function in your main build class if your project needs extra intricacies for everything what UAT may do through <a class="el" href="../../d0/d55/namespaceNuke_1_1Unreal.html">Nuke.Unreal</a>. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../dd/d9f/UnrealBuild_8cs_source.html#l00110">110</a> of file <a class="el" href="../../dd/d9f/UnrealBuild_8cs_source.html">UnrealBuild.cs</a>.</p>
+<p>Implements <a class="el" href="../../d4/d7c/interfaceNuke_1_1Unreal_1_1IUnrealBuild.html#a099b8676e4d88595a38f1c04af245a2c">Nuke.Unreal.IUnrealBuild</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="../../dd/d9f/UnrealBuild_8cs_source.html#l00132">132</a> of file <a class="el" href="../../dd/d9f/UnrealBuild_8cs_source.html">UnrealBuild.cs</a>.</p>
 
 </div>
 </div>
@@ -689,6 +633,8 @@ Private Attributes</h2></td></tr>
 <p>UBT arguments to be applied globally for all UBT invocations. Override this function in your main build class if your project needs extra intricacies for everything what UBT may do through <a class="el" href="../../d0/d55/namespaceNuke_1_1Unreal.html">Nuke.Unreal</a>. </p>
 <p>These arguments are also propagated to all UAT invocations through its <code>-UbtArgs</code> </p>
 
+<p>Implements <a class="el" href="../../d4/d7c/interfaceNuke_1_1Unreal_1_1IUnrealBuild.html#a05f3cceb8f5ca88352e792f86807ddda">Nuke.Unreal.IUnrealBuild</a>.</p>
+
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
@@ -712,31 +658,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../dd/d9f/UnrealBuild_8cs_source.html#l00120">120</a> of file <a class="el" href="../../dd/d9f/UnrealBuild_8cs_source.html">UnrealBuild.cs</a>.</p>
-
-</div>
-</div>
-<a id="acc0c5fc8e70ec053b72fb10e3fd8fe09" name="acc0c5fc8e70ec053b72fb10e3fd8fe09"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acc0c5fc8e70ec053b72fb10e3fd8fe09">&#9670;&#160;</a></span>_isPerforceCache</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool? Nuke.Unreal.UnrealBuild._isPerforceCache = null</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="../../da/dc9/UnrealBuild_8Project_8cs_source.html#l00075">75</a> of file <a class="el" href="../../da/dc9/UnrealBuild_8Project_8cs_source.html">UnrealBuild.Project.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../dd/d9f/UnrealBuild_8cs_source.html#l00142">142</a> of file <a class="el" href="../../dd/d9f/UnrealBuild_8cs_source.html">UnrealBuild.cs</a>.</p>
 
 </div>
 </div>
@@ -799,8 +721,10 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p><b>NUKE PARAMETER</b> </p>
+<p>Name of the editor commandlet to run </p>
 
-<p class="definition">Definition at line <a class="el" href="../../d9/dd7/UnrealBuild_8Targets_8cs_source.html#l00338">338</a> of file <a class="el" href="../../d9/dd7/UnrealBuild_8Targets_8cs_source.html">UnrealBuild.Targets.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d9/dd7/UnrealBuild_8Targets_8cs_source.html#l00681">681</a> of file <a class="el" href="../../d9/dd7/UnrealBuild_8Targets_8cs_source.html">UnrealBuild.Targets.cs</a>.</p>
 
 </div>
 </div>
@@ -815,8 +739,10 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p><b>NUKE PARAMETER</b> </p>
+<p>Do not use globally applicable UBT/UAT arguments with run-uat/run-ubt </p>
 
-<p class="definition">Definition at line <a class="el" href="../../d9/dd7/UnrealBuild_8Targets_8cs_source.html#l00259">259</a> of file <a class="el" href="../../d9/dd7/UnrealBuild_8Targets_8cs_source.html">UnrealBuild.Targets.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d9/dd7/UnrealBuild_8Targets_8cs_source.html#l00480">480</a> of file <a class="el" href="../../d9/dd7/UnrealBuild_8Targets_8cs_source.html">UnrealBuild.Targets.cs</a>.</p>
 
 </div>
 </div>
@@ -831,8 +757,10 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p><b>NUKE PARAMETER</b> </p>
+<p>Specify the output working directory for artifacts </p>
 
-<p class="definition">Definition at line <a class="el" href="../../dd/d9f/UnrealBuild_8cs_source.html#l00075">75</a> of file <a class="el" href="../../dd/d9f/UnrealBuild_8cs_source.html">UnrealBuild.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../dd/d9f/UnrealBuild_8cs_source.html#l00064">64</a> of file <a class="el" href="../../dd/d9f/UnrealBuild_8cs_source.html">UnrealBuild.cs</a>.</p>
 
 </div>
 </div>
@@ -847,8 +775,11 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="../../d9/dd7/UnrealBuild_8Targets_8cs_source.html#l00312">312</a> of file <a class="el" href="../../d9/dd7/UnrealBuild_8Targets_8cs_source.html">UnrealBuild.Targets.cs</a>.</p>
+<p><b>NUKE PARAMETER</b> </p>
+<p>Name the <a class="el" href="../../d3/d98/classNuke_1_1Unreal_1_1Unreal.html" title="A collection of utilities around basic functions regarding the environment of the Engine we&#39;re workin...">Unreal</a> tool to be run, You can omit the <code><a class="el" href="../../d3/d98/classNuke_1_1Unreal_1_1Unreal.html" title="A collection of utilities around basic functions regarding the environment of the Engine we&#39;re workin...">Unreal</a></code> prefix and the extension. For example: </p><div class="fragment"><div class="line">nuke run --tool pak --&gt; ./Path/To/MyProject.pak -Extract <span class="stringliteral">&quot;D:/temp&quot;</span></div>
+<div class="line">nuke run --tool editor-cmd --&gt; ~p -run=MyCommandlet</div>
+</div><!-- fragment --> 
+<p class="definition">Definition at line <a class="el" href="../../d9/dd7/UnrealBuild_8Targets_8cs_source.html#l00612">612</a> of file <a class="el" href="../../d9/dd7/UnrealBuild_8Targets_8cs_source.html">UnrealBuild.Targets.cs</a>.</p>
 
 </div>
 </div>
@@ -872,8 +803,15 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p><b>NUKE TARGET</b> </p>
+<p>Add C++ code to a project which doesn't have one yet. </p><div class="fragment"><div class="line">--<a class="code hl_property" href="#a36173ca0b2c3afd277979d03cbd9da3d">Name</a> (req,)</div>
+<div class="line">--<a class="code hl_property" href="#a12f4982e5d324f9a6898b8bc5ee1cde7">TemplatesPath</a> (adv.)</div>
+<div class="ttc" id="aclassNuke_1_1Unreal_1_1UnrealBuild_html_a12f4982e5d324f9a6898b8bc5ee1cde7"><div class="ttname"><a href="#a12f4982e5d324f9a6898b8bc5ee1cde7">Nuke.Unreal.UnrealBuild.TemplatesPath</a></div><div class="ttdeci">virtual AbsolutePath TemplatesPath</div><div class="ttdef"><b>Definition</b> <a href="../../db/d1e/UnrealBuild_8Templating_8cs_source.html#l00021">UnrealBuild.Templating.cs:21</a></div></div>
+<div class="ttc" id="aclassNuke_1_1Unreal_1_1UnrealBuild_html_a36173ca0b2c3afd277979d03cbd9da3d"><div class="ttname"><a href="#a36173ca0b2c3afd277979d03cbd9da3d">Nuke.Unreal.UnrealBuild.Name</a></div><div class="ttdeci">string[] Name</div><div class="ttdef"><b>Definition</b> <a href="../../db/d1e/UnrealBuild_8Templating_8cs_source.html#l00030">UnrealBuild.Templating.cs:30</a></div></div>
+</div><!-- fragment --> 
+<p>Implements <a class="el" href="../../d4/d7c/interfaceNuke_1_1Unreal_1_1IUnrealBuild.html#a5390190f84efac5bb805bfa08c250e39">Nuke.Unreal.IUnrealBuild</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="../../db/d1e/UnrealBuild_8Templating_8cs_source.html#l00132">132</a> of file <a class="el" href="../../db/d1e/UnrealBuild_8Templating_8cs_source.html">UnrealBuild.Templating.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../db/d1e/UnrealBuild_8Templating_8cs_source.html#l00162">162</a> of file <a class="el" href="../../db/d1e/UnrealBuild_8Templating_8cs_source.html">UnrealBuild.Templating.cs</a>.</p>
 
 </div>
 </div>
@@ -896,8 +834,38 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p><b>NUKE PARAMETER</b> </p>
+<p>Explicitly add new module to project target </p>
 
-<p class="definition">Definition at line <a class="el" href="../../db/d1e/UnrealBuild_8Templating_8cs_source.html#l00108">108</a> of file <a class="el" href="../../db/d1e/UnrealBuild_8Templating_8cs_source.html">UnrealBuild.Templating.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../db/d1e/UnrealBuild_8Templating_8cs_source.html#l00112">112</a> of file <a class="el" href="../../db/d1e/UnrealBuild_8Templating_8cs_source.html">UnrealBuild.Templating.cs</a>.</p>
+
+</div>
+</div>
+<a id="adf3312bad8c31bac5d86e5de335c25eb" name="adf3312bad8c31bac5d86e5de335c25eb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adf3312bad8c31bac5d86e5de335c25eb">&#9670;&#160;</a></span>AndroidTextureMode</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual <a class="el" href="../../d0/dd8/classNuke_1_1Unreal_1_1Platforms_1_1Android_1_1AndroidCookFlavor.html">AndroidCookFlavor</a> [] Nuke.Unreal.UnrealBuild.AndroidTextureMode = [ AndroidCookFlavor.Multi ]</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p><b>NUKE PARAMETER</b> </p>
+<p>Select texture compression mode for Android </p>
+
+<p>Implements <a class="el" href="../../d4/d7c/interfaceNuke_1_1Unreal_1_1IUnrealBuild.html#a371f9a5a9abd68dfb32898f5b9c796d8">Nuke.Unreal.IUnrealBuild</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="../../dd/d9f/UnrealBuild_8cs_source.html#l00115">115</a> of file <a class="el" href="../../dd/d9f/UnrealBuild_8cs_source.html">UnrealBuild.cs</a>.</p>
 
 </div>
 </div>
@@ -920,8 +888,18 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p><b>NUKE TARGET</b> </p>
+<p>Build this project for execution </p><div class="fragment"><div class="line">--<a class="code hl_property" href="#a32ab86bdd107018f3c48644f2dbf9198">TargetType</a></div>
+<div class="line">--<a class="code hl_property" href="#a877307ca15a7c25cbdcdfe638f2cd8a3">Config</a></div>
+<div class="line">--<a class="code hl_property" href="#ae70561b354f5df171a7f731d263bf2d5">Platform</a></div>
+<div class="line">--&gt;ubt (args.)</div>
+<div class="ttc" id="aclassNuke_1_1Unreal_1_1UnrealBuild_html_a32ab86bdd107018f3c48644f2dbf9198"><div class="ttname"><a href="#a32ab86bdd107018f3c48644f2dbf9198">Nuke.Unreal.UnrealBuild.TargetType</a></div><div class="ttdeci">virtual UnrealTargetType[] TargetType</div><div class="ttdef"><b>Definition</b> <a href="../../dd/d9f/UnrealBuild_8cs_source.html#l00106">UnrealBuild.cs:106</a></div></div>
+<div class="ttc" id="aclassNuke_1_1Unreal_1_1UnrealBuild_html_a877307ca15a7c25cbdcdfe638f2cd8a3"><div class="ttname"><a href="#a877307ca15a7c25cbdcdfe638f2cd8a3">Nuke.Unreal.UnrealBuild.Config</a></div><div class="ttdeci">virtual UnrealConfig[] Config</div><div class="ttdef"><b>Definition</b> <a href="../../dd/d9f/UnrealBuild_8cs_source.html#l00088">UnrealBuild.cs:88</a></div></div>
+<div class="ttc" id="aclassNuke_1_1Unreal_1_1UnrealBuild_html_ae70561b354f5df171a7f731d263bf2d5"><div class="ttname"><a href="#ae70561b354f5df171a7f731d263bf2d5">Nuke.Unreal.UnrealBuild.Platform</a></div><div class="ttdeci">virtual UnrealPlatform Platform</div><div class="ttdef"><b>Definition</b> <a href="../../dd/d9f/UnrealBuild_8cs_source.html#l00079">UnrealBuild.cs:79</a></div></div>
+</div><!-- fragment --> 
+<p>Implements <a class="el" href="../../d4/d7c/interfaceNuke_1_1Unreal_1_1IUnrealBuild.html#a6e395776db423cca9fe085014e14b0db">Nuke.Unreal.IUnrealBuild</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="../../d9/dd7/UnrealBuild_8Targets_8cs_source.html#l00151">151</a> of file <a class="el" href="../../d9/dd7/UnrealBuild_8Targets_8cs_source.html">UnrealBuild.Targets.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d9/dd7/UnrealBuild_8Targets_8cs_source.html#l00323">323</a> of file <a class="el" href="../../d9/dd7/UnrealBuild_8Targets_8cs_source.html">UnrealBuild.Targets.cs</a>.</p>
 
 </div>
 </div>
@@ -944,8 +922,14 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p><b>NUKE TARGET</b> </p>
+<p>Build the editor binaries so this project can be opened properly in the <a class="el" href="../../d3/d98/classNuke_1_1Unreal_1_1Unreal.html" title="A collection of utilities around basic functions regarding the environment of the Engine we&#39;re workin...">Unreal</a> editor </p><div class="fragment"><div class="line">--<a class="code hl_property" href="#a891fe1907305c6641b447e4a7882bb20">EditorConfig</a></div>
+<div class="line">--&gt;ubt (args.)</div>
+<div class="ttc" id="aclassNuke_1_1Unreal_1_1UnrealBuild_html_a891fe1907305c6641b447e4a7882bb20"><div class="ttname"><a href="#a891fe1907305c6641b447e4a7882bb20">Nuke.Unreal.UnrealBuild.EditorConfig</a></div><div class="ttdeci">virtual UnrealConfig[] EditorConfig</div><div class="ttdef"><b>Definition</b> <a href="../../dd/d9f/UnrealBuild_8cs_source.html#l00097">UnrealBuild.cs:97</a></div></div>
+</div><!-- fragment --> 
+<p>Implements <a class="el" href="../../d4/d7c/interfaceNuke_1_1Unreal_1_1IUnrealBuild.html#a9cc31b504d5420ec6f74675f0d3d7883">Nuke.Unreal.IUnrealBuild</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="../../d9/dd7/UnrealBuild_8Targets_8cs_source.html#l00118">118</a> of file <a class="el" href="../../d9/dd7/UnrealBuild_8Targets_8cs_source.html">UnrealBuild.Targets.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d9/dd7/UnrealBuild_8Targets_8cs_source.html#l00275">275</a> of file <a class="el" href="../../d9/dd7/UnrealBuild_8Targets_8cs_source.html">UnrealBuild.Targets.cs</a>.</p>
 
 </div>
 </div>
@@ -968,8 +952,12 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p><b>NUKE TARGET</b> </p>
+<p>Removes auto generated folders of <a class="el" href="../../d3/d98/classNuke_1_1Unreal_1_1Unreal.html" title="A collection of utilities around basic functions regarding the environment of the Engine we&#39;re workin...">Unreal</a> Engine </p>
 
-<p class="definition">Definition at line <a class="el" href="../../d9/dd7/UnrealBuild_8Targets_8cs_source.html#l00063">63</a> of file <a class="el" href="../../d9/dd7/UnrealBuild_8Targets_8cs_source.html">UnrealBuild.Targets.cs</a>.</p>
+<p>Implements <a class="el" href="../../d4/d7c/interfaceNuke_1_1Unreal_1_1IUnrealBuild.html#a99f8bb04dc6c2bf78abe066bc63026dc">Nuke.Unreal.IUnrealBuild</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="../../d9/dd7/UnrealBuild_8Targets_8cs_source.html#l00144">144</a> of file <a class="el" href="../../d9/dd7/UnrealBuild_8Targets_8cs_source.html">UnrealBuild.Targets.cs</a>.</p>
 
 </div>
 </div>
@@ -992,8 +980,12 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p><b>NUKE TARGET</b> </p>
+<p>Removes previous deployment folder </p>
 
-<p class="definition">Definition at line <a class="el" href="../../d9/dd7/UnrealBuild_8Targets_8cs_source.html#l00028">28</a> of file <a class="el" href="../../d9/dd7/UnrealBuild_8Targets_8cs_source.html">UnrealBuild.Targets.cs</a>.</p>
+<p>Implements <a class="el" href="../../d4/d7c/interfaceNuke_1_1Unreal_1_1IUnrealBuild.html#afa9f2ce1310a4aed24c32b187b90795c">Nuke.Unreal.IUnrealBuild</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="../../d9/dd7/UnrealBuild_8Targets_8cs_source.html#l00073">73</a> of file <a class="el" href="../../d9/dd7/UnrealBuild_8Targets_8cs_source.html">UnrealBuild.Targets.cs</a>.</p>
 
 </div>
 </div>
@@ -1016,8 +1008,12 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p><b>NUKE TARGET</b> </p>
+<p>Removes auto generated folders of <a class="el" href="../../d3/d98/classNuke_1_1Unreal_1_1Unreal.html" title="A collection of utilities around basic functions regarding the environment of the Engine we&#39;re workin...">Unreal</a> Engine from the plugins </p>
 
-<p class="definition">Definition at line <a class="el" href="../../d9/dd7/UnrealBuild_8Targets_8cs_source.html#l00036">36</a> of file <a class="el" href="../../d9/dd7/UnrealBuild_8Targets_8cs_source.html">UnrealBuild.Targets.cs</a>.</p>
+<p>Implements <a class="el" href="../../d4/d7c/interfaceNuke_1_1Unreal_1_1IUnrealBuild.html#a4d57b421dd1ecd9669ebf7f634d41fcb">Nuke.Unreal.IUnrealBuild</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="../../d9/dd7/UnrealBuild_8Targets_8cs_source.html#l00105">105</a> of file <a class="el" href="../../d9/dd7/UnrealBuild_8Targets_8cs_source.html">UnrealBuild.Targets.cs</a>.</p>
 
 </div>
 </div>
@@ -1040,8 +1036,12 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p><b>NUKE TARGET</b> </p>
+<p>Removes auto generated folders of <a class="el" href="../../d3/d98/classNuke_1_1Unreal_1_1Unreal.html" title="A collection of utilities around basic functions regarding the environment of the Engine we&#39;re workin...">Unreal</a> Engine from the project </p>
 
-<p class="definition">Definition at line <a class="el" href="../../d9/dd7/UnrealBuild_8Targets_8cs_source.html#l00032">32</a> of file <a class="el" href="../../d9/dd7/UnrealBuild_8Targets_8cs_source.html">UnrealBuild.Targets.cs</a>.</p>
+<p>Implements <a class="el" href="../../d4/d7c/interfaceNuke_1_1Unreal_1_1IUnrealBuild.html#a39fdfce7c1ca940ec1963f09a93c08a5">Nuke.Unreal.IUnrealBuild</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="../../d9/dd7/UnrealBuild_8Targets_8cs_source.html#l00089">89</a> of file <a class="el" href="../../d9/dd7/UnrealBuild_8Targets_8cs_source.html">UnrealBuild.Targets.cs</a>.</p>
 
 </div>
 </div>
@@ -1064,8 +1064,12 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p><b>NUKE PARAMETER</b> </p>
+<p>The target configuration for building or packaging the project </p>
 
-<p class="definition">Definition at line <a class="el" href="../../dd/d9f/UnrealBuild_8cs_source.html#l00087">87</a> of file <a class="el" href="../../dd/d9f/UnrealBuild_8cs_source.html">UnrealBuild.cs</a>.</p>
+<p>Implements <a class="el" href="../../d4/d7c/interfaceNuke_1_1Unreal_1_1IUnrealBuild.html#aeeed248cea7edd0854e2e4452a00d6f6">Nuke.Unreal.IUnrealBuild</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="../../dd/d9f/UnrealBuild_8cs_source.html#l00088">88</a> of file <a class="el" href="../../dd/d9f/UnrealBuild_8cs_source.html">UnrealBuild.cs</a>.</p>
 
 </div>
 </div>
@@ -1088,8 +1092,17 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p><b>NUKE TARGET</b> </p>
+<p>Cook <a class="el" href="../../d3/d98/classNuke_1_1Unreal_1_1Unreal.html" title="A collection of utilities around basic functions regarding the environment of the Engine we&#39;re workin...">Unreal</a> assets for standalone game execution </p><div class="fragment"><div class="line">--<a class="code hl_property" href="#a877307ca15a7c25cbdcdfe638f2cd8a3">Config</a></div>
+<div class="line">--<a class="code hl_property" href="#ae70561b354f5df171a7f731d263bf2d5">Platform</a></div>
+<div class="line">--<a class="code hl_property" href="#adf3312bad8c31bac5d86e5de335c25eb">AndroidTextureMode</a></div>
+<div class="line">--&gt;ubt (args.)</div>
+<div class="line">--&gt;uat (args.)</div>
+<div class="ttc" id="aclassNuke_1_1Unreal_1_1UnrealBuild_html_adf3312bad8c31bac5d86e5de335c25eb"><div class="ttname"><a href="#adf3312bad8c31bac5d86e5de335c25eb">Nuke.Unreal.UnrealBuild.AndroidTextureMode</a></div><div class="ttdeci">virtual AndroidCookFlavor[] AndroidTextureMode</div><div class="ttdef"><b>Definition</b> <a href="../../dd/d9f/UnrealBuild_8cs_source.html#l00115">UnrealBuild.cs:115</a></div></div>
+</div><!-- fragment --> 
+<p>Implements <a class="el" href="../../d4/d7c/interfaceNuke_1_1Unreal_1_1IUnrealBuild.html#a9270b1cfe952bf572dac046c848a88c9">Nuke.Unreal.IUnrealBuild</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="../../d9/dd7/UnrealBuild_8Targets_8cs_source.html#l00192">192</a> of file <a class="el" href="../../d9/dd7/UnrealBuild_8Targets_8cs_source.html">UnrealBuild.Targets.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d9/dd7/UnrealBuild_8Targets_8cs_source.html#l00389">389</a> of file <a class="el" href="../../d9/dd7/UnrealBuild_8Targets_8cs_source.html">UnrealBuild.Targets.cs</a>.</p>
 
 </div>
 </div>
@@ -1112,8 +1125,12 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p><b>NUKE PARAMETER</b> </p>
+<p>The editor configuration to be used while building or packaging the project </p>
 
-<p class="definition">Definition at line <a class="el" href="../../dd/d9f/UnrealBuild_8cs_source.html#l00090">90</a> of file <a class="el" href="../../dd/d9f/UnrealBuild_8cs_source.html">UnrealBuild.cs</a>.</p>
+<p>Implements <a class="el" href="../../d4/d7c/interfaceNuke_1_1Unreal_1_1IUnrealBuild.html#add0827e929ac6ae4e4888f0d69981b50">Nuke.Unreal.IUnrealBuild</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="../../dd/d9f/UnrealBuild_8cs_source.html#l00097">97</a> of file <a class="el" href="../../dd/d9f/UnrealBuild_8cs_source.html">UnrealBuild.cs</a>.</p>
 
 </div>
 </div>
@@ -1136,8 +1153,12 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p><b>NUKE TARGET</b> </p>
+<p>Ensure support for plain C# build plugins without the need for CSX or dotnet projects. This only needs to be done once, you can check the results into source control. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../d9/dd7/UnrealBuild_8Targets_8cs_source.html#l00230">230</a> of file <a class="el" href="../../d9/dd7/UnrealBuild_8Targets_8cs_source.html">UnrealBuild.Targets.cs</a>.</p>
+<p>Implements <a class="el" href="../../d4/d7c/interfaceNuke_1_1Unreal_1_1IUnrealBuild.html#ad964d87445d83eab7e5d4e51cc37a42e">Nuke.Unreal.IUnrealBuild</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="../../d9/dd7/UnrealBuild_8Targets_8cs_source.html#l00445">445</a> of file <a class="el" href="../../d9/dd7/UnrealBuild_8Targets_8cs_source.html">UnrealBuild.Targets.cs</a>.</p>
 
 </div>
 </div>
@@ -1160,8 +1181,41 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p><b>NUKE TARGET</b> </p>
+<p>Generate project files for the default IDE of the current platform. You can specify further details with <code>--&gt;ubt</code> argument block. It is equivalent to right clicking the uproject and selecting "Generate _IDE_
+project files". </p><div class="fragment"><div class="line">--&gt;ubt (args.)</div>
+</div><!-- fragment --> 
+<p>Implements <a class="el" href="../../d4/d7c/interfaceNuke_1_1Unreal_1_1IUnrealBuild.html#ab77b4932b9247b3ed6d051261ab548e3">Nuke.Unreal.IUnrealBuild</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="../../d9/dd7/UnrealBuild_8Targets_8cs_source.html#l00094">94</a> of file <a class="el" href="../../d9/dd7/UnrealBuild_8Targets_8cs_source.html">UnrealBuild.Targets.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d9/dd7/UnrealBuild_8Targets_8cs_source.html#l00219">219</a> of file <a class="el" href="../../d9/dd7/UnrealBuild_8Targets_8cs_source.html">UnrealBuild.Targets.cs</a>.</p>
+
+</div>
+</div>
+<a id="a05089cfd1d8f24313905ba003823f911" name="a05089cfd1d8f24313905ba003823f911"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a05089cfd1d8f24313905ba003823f911">&#9670;&#160;</a></span>HelpNukeUnreal</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual Target Nuke.Unreal.UnrealBuild.HelpNukeUnreal</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p><b>NUKE TARGET</b> </p>
+<p>Opens the <a class="el" href="../../d0/d55/namespaceNuke_1_1Unreal.html">Nuke.Unreal</a> online documentation </p>
+
+<p>Implements <a class="el" href="../../d4/d7c/interfaceNuke_1_1Unreal_1_1IUnrealBuild.html#a472a3b2e062beab9e997fc719048b544">Nuke.Unreal.IUnrealBuild</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="../../d9/dd7/UnrealBuild_8Targets_8cs_source.html#l00034">34</a> of file <a class="el" href="../../d9/dd7/UnrealBuild_8Targets_8cs_source.html">UnrealBuild.Targets.cs</a>.</p>
 
 </div>
 </div>
@@ -1184,34 +1238,12 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p><b>NUKE TARGET</b> </p>
+<p>Prints curated information about project </p>
 
-<p class="definition">Definition at line <a class="el" href="../../d9/dd7/UnrealBuild_8Targets_8cs_source.html#l00024">24</a> of file <a class="el" href="../../d9/dd7/UnrealBuild_8Targets_8cs_source.html">UnrealBuild.Targets.cs</a>.</p>
+<p>Implements <a class="el" href="../../d4/d7c/interfaceNuke_1_1Unreal_1_1IUnrealBuild.html#ac8fc4e8864c92bce8db400d5d0794cc8">Nuke.Unreal.IUnrealBuild</a>.</p>
 
-</div>
-</div>
-<a id="a68c3aa378aaa87852ebcc5356e501f80" name="a68c3aa378aaa87852ebcc5356e501f80"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a68c3aa378aaa87852ebcc5356e501f80">&#9670;&#160;</a></span>IsPerforce</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">virtual bool Nuke.Unreal.UnrealBuild.IsPerforce</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">get</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Does this project reside in a Perforce workspace? </p>
-
-<p class="definition">Definition at line <a class="el" href="../../da/dc9/UnrealBuild_8Project_8cs_source.html#l00080">80</a> of file <a class="el" href="../../da/dc9/UnrealBuild_8Project_8cs_source.html">UnrealBuild.Project.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d9/dd7/UnrealBuild_8Targets_8cs_source.html#l00057">57</a> of file <a class="el" href="../../d9/dd7/UnrealBuild_8Targets_8cs_source.html">UnrealBuild.Targets.cs</a>.</p>
 
 </div>
 </div>
@@ -1234,8 +1266,16 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p><b>NUKE PARAMETER</b> </p>
+<p>Specify the type of the third-party library being imported: </p>
+<p><code>Header</code><br  />
+ header only C++ library which doesn't need extra preparation </p>
+<p><code>CMake</code><br  />
+ generates an extra nuke target which prepares the CMake library to be used and distributed in <a class="el" href="../../d3/d98/classNuke_1_1Unreal_1_1Unreal.html" title="A collection of utilities around basic functions regarding the environment of the Engine we&#39;re workin...">Unreal</a>. </p>
+<p><code>XRepo</code><br  />
+ generates an extra nuke target which then installs the library on preparation via the xrepo package manager. The library for a specific platform will be available when running Prepare&lt;library&gt;, Prepare or Generate targets. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../db/d1e/UnrealBuild_8Templating_8cs_source.html#l00105">105</a> of file <a class="el" href="../../db/d1e/UnrealBuild_8Templating_8cs_source.html">UnrealBuild.Templating.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../db/d1e/UnrealBuild_8Templating_8cs_source.html#l00103">103</a> of file <a class="el" href="../../db/d1e/UnrealBuild_8Templating_8cs_source.html">UnrealBuild.Templating.cs</a>.</p>
 
 </div>
 </div>
@@ -1258,8 +1298,12 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p><b>NUKE PARAMETER</b> </p>
+<p>Name parameter for boilerplate generators. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../db/d1e/UnrealBuild_8Templating_8cs_source.html#l00028">28</a> of file <a class="el" href="../../db/d1e/UnrealBuild_8Templating_8cs_source.html">UnrealBuild.Templating.cs</a>.</p>
+<p>Implements <a class="el" href="../../d4/d7c/interfaceNuke_1_1Unreal_1_1IUnrealBuild.html#ac9fd361fdbb14513d2928f0f2cd0f4fd">Nuke.Unreal.IUnrealBuild</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="../../db/d1e/UnrealBuild_8Templating_8cs_source.html#l00030">30</a> of file <a class="el" href="../../db/d1e/UnrealBuild_8Templating_8cs_source.html">UnrealBuild.Templating.cs</a>.</p>
 
 </div>
 </div>
@@ -1282,8 +1326,13 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p><b>NUKE TARGET</b> </p>
+<p>Create new <a class="el" href="../../d3/d98/classNuke_1_1Unreal_1_1Unreal.html" title="A collection of utilities around basic functions regarding the environment of the Engine we&#39;re workin...">Unreal</a> Actor in current directory </p><div class="fragment"><div class="line">--<a class="code hl_property" href="#a36173ca0b2c3afd277979d03cbd9da3d">Name</a> (req,)</div>
+<div class="line">--<a class="code hl_property" href="#a12f4982e5d324f9a6898b8bc5ee1cde7">TemplatesPath</a> (adv.)</div>
+</div><!-- fragment --> 
+<p>Implements <a class="el" href="../../d4/d7c/interfaceNuke_1_1Unreal_1_1IUnrealBuild.html#a2f99f61dfc0b3814da4b055c796d21a5">Nuke.Unreal.IUnrealBuild</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="../../db/d1e/UnrealBuild_8Templating_8cs_source.html#l00157">157</a> of file <a class="el" href="../../db/d1e/UnrealBuild_8Templating_8cs_source.html">UnrealBuild.Templating.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../db/d1e/UnrealBuild_8Templating_8cs_source.html#l00225">225</a> of file <a class="el" href="../../db/d1e/UnrealBuild_8Templating_8cs_source.html">UnrealBuild.Templating.cs</a>.</p>
 
 </div>
 </div>
@@ -1306,8 +1355,13 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p><b>NUKE TARGET</b> </p>
+<p>Create new <a class="el" href="../../d3/d98/classNuke_1_1Unreal_1_1Unreal.html" title="A collection of utilities around basic functions regarding the environment of the Engine we&#39;re workin...">Unreal</a> Interface in current directory </p><div class="fragment"><div class="line">--<a class="code hl_property" href="#a36173ca0b2c3afd277979d03cbd9da3d">Name</a> (req,)</div>
+<div class="line">--<a class="code hl_property" href="#a12f4982e5d324f9a6898b8bc5ee1cde7">TemplatesPath</a> (adv.)</div>
+</div><!-- fragment --> 
+<p>Implements <a class="el" href="../../d4/d7c/interfaceNuke_1_1Unreal_1_1IUnrealBuild.html#a224e1f96c2bde075b0ff310475d32d6b">Nuke.Unreal.IUnrealBuild</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="../../db/d1e/UnrealBuild_8Templating_8cs_source.html#l00171">171</a> of file <a class="el" href="../../db/d1e/UnrealBuild_8Templating_8cs_source.html">UnrealBuild.Templating.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../db/d1e/UnrealBuild_8Templating_8cs_source.html#l00258">258</a> of file <a class="el" href="../../db/d1e/UnrealBuild_8Templating_8cs_source.html">UnrealBuild.Templating.cs</a>.</p>
 
 </div>
 </div>
@@ -1330,8 +1384,15 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p><b>NUKE TARGET</b> </p>
+<p>Create new module in the owning project or plugin (depending on working directory) </p><div class="fragment"><div class="line">--<a class="code hl_property" href="#a36173ca0b2c3afd277979d03cbd9da3d">Name</a> (req,)</div>
+<div class="line">--<a class="code hl_property" href="#ab54062a64a8262c824d1ca95eeee1157">AddToTarget</a></div>
+<div class="line">--<a class="code hl_property" href="#a12f4982e5d324f9a6898b8bc5ee1cde7">TemplatesPath</a> (adv.)</div>
+<div class="ttc" id="aclassNuke_1_1Unreal_1_1UnrealBuild_html_ab54062a64a8262c824d1ca95eeee1157"><div class="ttname"><a href="#ab54062a64a8262c824d1ca95eeee1157">Nuke.Unreal.UnrealBuild.AddToTarget</a></div><div class="ttdeci">bool AddToTarget</div><div class="ttdef"><b>Definition</b> <a href="../../db/d1e/UnrealBuild_8Templating_8cs_source.html#l00112">UnrealBuild.Templating.cs:112</a></div></div>
+</div><!-- fragment --> 
+<p>Implements <a class="el" href="../../d4/d7c/interfaceNuke_1_1Unreal_1_1IUnrealBuild.html#affb32dbd33c0be115db96d1b97c8813b">Nuke.Unreal.IUnrealBuild</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="../../db/d1e/UnrealBuild_8Templating_8cs_source.html#l00110">110</a> of file <a class="el" href="../../db/d1e/UnrealBuild_8Templating_8cs_source.html">UnrealBuild.Templating.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../db/d1e/UnrealBuild_8Templating_8cs_source.html#l00125">125</a> of file <a class="el" href="../../db/d1e/UnrealBuild_8Templating_8cs_source.html">UnrealBuild.Templating.cs</a>.</p>
 
 </div>
 </div>
@@ -1354,8 +1415,13 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p><b>NUKE TARGET</b> </p>
+<p>Create new <a class="el" href="../../d3/d98/classNuke_1_1Unreal_1_1Unreal.html" title="A collection of utilities around basic functions regarding the environment of the Engine we&#39;re workin...">Unreal</a> Object in current directory </p><div class="fragment"><div class="line">--<a class="code hl_property" href="#a36173ca0b2c3afd277979d03cbd9da3d">Name</a> (req,)</div>
+<div class="line">--<a class="code hl_property" href="#a12f4982e5d324f9a6898b8bc5ee1cde7">TemplatesPath</a> (adv.)</div>
+</div><!-- fragment --> 
+<p>Implements <a class="el" href="../../d4/d7c/interfaceNuke_1_1Unreal_1_1IUnrealBuild.html#aef3ff290aa02e0903cd464a1592c4906">Nuke.Unreal.IUnrealBuild</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="../../db/d1e/UnrealBuild_8Templating_8cs_source.html#l00185">185</a> of file <a class="el" href="../../db/d1e/UnrealBuild_8Templating_8cs_source.html">UnrealBuild.Templating.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../db/d1e/UnrealBuild_8Templating_8cs_source.html#l00291">291</a> of file <a class="el" href="../../db/d1e/UnrealBuild_8Templating_8cs_source.html">UnrealBuild.Templating.cs</a>.</p>
 
 </div>
 </div>
@@ -1378,8 +1444,13 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p><b>NUKE TARGET</b> </p>
+<p>Create a new project plugin. </p><div class="fragment"><div class="line">--<a class="code hl_property" href="#a36173ca0b2c3afd277979d03cbd9da3d">Name</a> (req,)</div>
+<div class="line">--<a class="code hl_property" href="#a12f4982e5d324f9a6898b8bc5ee1cde7">TemplatesPath</a> (adv.)</div>
+</div><!-- fragment --> 
+<p>Implements <a class="el" href="../../d4/d7c/interfaceNuke_1_1Unreal_1_1IUnrealBuild.html#a67c7dab1e074a51128cc3a0adb21a8b6">Nuke.Unreal.IUnrealBuild</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="../../db/d1e/UnrealBuild_8Templating_8cs_source.html#l00143">143</a> of file <a class="el" href="../../db/d1e/UnrealBuild_8Templating_8cs_source.html">UnrealBuild.Templating.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../db/d1e/UnrealBuild_8Templating_8cs_source.html#l00192">192</a> of file <a class="el" href="../../db/d1e/UnrealBuild_8Templating_8cs_source.html">UnrealBuild.Templating.cs</a>.</p>
 
 </div>
 </div>
@@ -1402,8 +1473,13 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p><b>NUKE TARGET</b> </p>
+<p>Create new <a class="el" href="../../d3/d98/classNuke_1_1Unreal_1_1Unreal.html" title="A collection of utilities around basic functions regarding the environment of the Engine we&#39;re workin...">Unreal</a> Automation Spec in current directory </p><div class="fragment"><div class="line">--<a class="code hl_property" href="#a36173ca0b2c3afd277979d03cbd9da3d">Name</a> (req,)</div>
+<div class="line">--<a class="code hl_property" href="#a12f4982e5d324f9a6898b8bc5ee1cde7">TemplatesPath</a> (adv.)</div>
+</div><!-- fragment --> 
+<p>Implements <a class="el" href="../../d4/d7c/interfaceNuke_1_1Unreal_1_1IUnrealBuild.html#a31b4c6af010d6780079c7c815619340a">Nuke.Unreal.IUnrealBuild</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="../../db/d1e/UnrealBuild_8Templating_8cs_source.html#l00213">213</a> of file <a class="el" href="../../db/d1e/UnrealBuild_8Templating_8cs_source.html">UnrealBuild.Templating.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../db/d1e/UnrealBuild_8Templating_8cs_source.html#l00357">357</a> of file <a class="el" href="../../db/d1e/UnrealBuild_8Templating_8cs_source.html">UnrealBuild.Templating.cs</a>.</p>
 
 </div>
 </div>
@@ -1426,8 +1502,13 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p><b>NUKE TARGET</b> </p>
+<p>Create new <a class="el" href="../../d3/d98/classNuke_1_1Unreal_1_1Unreal.html" title="A collection of utilities around basic functions regarding the environment of the Engine we&#39;re workin...">Unreal</a> Struct in current directory </p><div class="fragment"><div class="line">--<a class="code hl_property" href="#a36173ca0b2c3afd277979d03cbd9da3d">Name</a> (req,)</div>
+<div class="line">--<a class="code hl_property" href="#a12f4982e5d324f9a6898b8bc5ee1cde7">TemplatesPath</a> (adv.)</div>
+</div><!-- fragment --> 
+<p>Implements <a class="el" href="../../d4/d7c/interfaceNuke_1_1Unreal_1_1IUnrealBuild.html#afccee39943d1920ee090e5cba50e51b2">Nuke.Unreal.IUnrealBuild</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="../../db/d1e/UnrealBuild_8Templating_8cs_source.html#l00199">199</a> of file <a class="el" href="../../db/d1e/UnrealBuild_8Templating_8cs_source.html">UnrealBuild.Templating.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../db/d1e/UnrealBuild_8Templating_8cs_source.html#l00324">324</a> of file <a class="el" href="../../db/d1e/UnrealBuild_8Templating_8cs_source.html">UnrealBuild.Templating.cs</a>.</p>
 
 </div>
 </div>
@@ -1441,7 +1522,7 @@ Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual <a class="el" href="../../d5/dc0/classNuke_1_1Unreal_1_1UnrealPlatform.html">UnrealPlatform</a> Nuke.Unreal.UnrealBuild.Platform = <a class="el" href="../../d5/dc0/classNuke_1_1Unreal_1_1UnrealPlatform.html#afb8a37506213acac4d77900639481882">UnrealPlatform.FromFlag</a>(<a class="el" href="../../d3/d98/classNuke_1_1Unreal_1_1Unreal.html#ace87a29d11a8dcc4a9d0f220563146e2">Unreal.GetDefaultPlatform</a>())</td>
+          <td class="memname">virtual <a class="el" href="../../d5/dc0/classNuke_1_1Unreal_1_1UnrealPlatform.html">UnrealPlatform</a> Nuke.Unreal.UnrealBuild.Platform = <a class="el" href="../../d5/dc0/classNuke_1_1Unreal_1_1UnrealPlatform.html#afb8a37506213acac4d77900639481882">UnrealPlatform.FromFlag</a>(<a class="el" href="../../d3/d98/classNuke_1_1Unreal_1_1Unreal.html#a81c8f103db477166b6c36feb0b62119d">Unreal.GetHostPlatformFlag</a>())</td>
         </tr>
       </table>
   </td>
@@ -1450,8 +1531,12 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p><b>NUKE PARAMETER</b> </p>
+<p>Set platform for running targets </p>
 
-<p class="definition">Definition at line <a class="el" href="../../dd/d9f/UnrealBuild_8cs_source.html#l00084">84</a> of file <a class="el" href="../../dd/d9f/UnrealBuild_8cs_source.html">UnrealBuild.cs</a>.</p>
+<p>Implements <a class="el" href="../../d4/d7c/interfaceNuke_1_1Unreal_1_1IUnrealBuild.html#a900850c0f73b9a7598177c8326e1e196">Nuke.Unreal.IUnrealBuild</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="../../dd/d9f/UnrealBuild_8cs_source.html#l00079">79</a> of file <a class="el" href="../../dd/d9f/UnrealBuild_8cs_source.html">UnrealBuild.cs</a>.</p>
 
 </div>
 </div>
@@ -1474,6 +1559,10 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Path to the <a class="el" href="../../d3/d98/classNuke_1_1Unreal_1_1Unreal.html" title="A collection of utilities around basic functions regarding the environment of the Engine we&#39;re workin...">Unreal</a> plugins folder of this project. </p>
+
+<p>Implements <a class="el" href="../../d4/d7c/interfaceNuke_1_1Unreal_1_1IUnrealBuild.html#a4ec99b88479f05fbb254ff0d3c36bcd7">Nuke.Unreal.IUnrealBuild</a>.</p>
 
 <p class="definition">Definition at line <a class="el" href="../../da/dc9/UnrealBuild_8Project_8cs_source.html#l00056">56</a> of file <a class="el" href="../../da/dc9/UnrealBuild_8Project_8cs_source.html">UnrealBuild.Project.cs</a>.</p>
 
@@ -1498,8 +1587,12 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p><b>NUKE TARGET</b> </p>
+<p>Run necessary preparations which needs to be done before <a class="el" href="../../d3/d98/classNuke_1_1Unreal_1_1Unreal.html" title="A collection of utilities around basic functions regarding the environment of the Engine we&#39;re workin...">Unreal</a> tools can handle the project. By default it is empty and the main build project may override it or other Targets can depend on it / hook into it. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../d9/dd7/UnrealBuild_8Targets_8cs_source.html#l00083">83</a> of file <a class="el" href="../../d9/dd7/UnrealBuild_8Targets_8cs_source.html">UnrealBuild.Targets.cs</a>.</p>
+<p>Implements <a class="el" href="../../d4/d7c/interfaceNuke_1_1Unreal_1_1IUnrealBuild.html#a62e60cfa97da9516327e56522adb5b43">Nuke.Unreal.IUnrealBuild</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="../../d9/dd7/UnrealBuild_8Targets_8cs_source.html#l00197">197</a> of file <a class="el" href="../../d9/dd7/UnrealBuild_8Targets_8cs_source.html">UnrealBuild.Targets.cs</a>.</p>
 
 </div>
 </div>
@@ -1524,6 +1617,8 @@ Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>"Immutable" C# representation of the <code>.uproject</code> contents </p>
+
+<p>Implements <a class="el" href="../../d4/d7c/interfaceNuke_1_1Unreal_1_1IUnrealBuild.html#acfa28a4c0f7ab3ec20e989f16cc75b18">Nuke.Unreal.IUnrealBuild</a>.</p>
 
 <p class="definition">Definition at line <a class="el" href="../../da/dc9/UnrealBuild_8Project_8cs_source.html#l00068">68</a> of file <a class="el" href="../../da/dc9/UnrealBuild_8Project_8cs_source.html">UnrealBuild.Project.cs</a>.</p>
 
@@ -1551,6 +1646,8 @@ Private Attributes</h2></td></tr>
 
 <p>Path to folder containing the <code>.project</code> file. </p>
 
+<p>Implements <a class="el" href="../../d4/d7c/interfaceNuke_1_1Unreal_1_1IUnrealBuild.html#a4b6b8148a203e394e7ea03f37f3a2180">Nuke.Unreal.IUnrealBuild</a>.</p>
+
 <p class="definition">Definition at line <a class="el" href="../../da/dc9/UnrealBuild_8Project_8cs_source.html#l00055">55</a> of file <a class="el" href="../../da/dc9/UnrealBuild_8Project_8cs_source.html">UnrealBuild.Project.cs</a>.</p>
 
 </div>
@@ -1576,6 +1673,8 @@ Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Short name of the project. </p>
+
+<p>Implements <a class="el" href="../../d4/d7c/interfaceNuke_1_1Unreal_1_1IUnrealBuild.html#a30115a7c16d57469586457f942946b12">Nuke.Unreal.IUnrealBuild</a>.</p>
 
 <p class="definition">Definition at line <a class="el" href="../../da/dc9/UnrealBuild_8Project_8cs_source.html#l00061">61</a> of file <a class="el" href="../../da/dc9/UnrealBuild_8Project_8cs_source.html">UnrealBuild.Project.cs</a>.</p>
 
@@ -1603,6 +1702,8 @@ Private Attributes</h2></td></tr>
 <p>Optionally specify a path to a <code>.uproject</code> file. </p>
 <p>If not overridden <a class="el" href="../../d0/d55/namespaceNuke_1_1Unreal.html">Nuke.Unreal</a> will traverse upwards on the directory tree, then sift through all subdirectories recursively (ignoring some known folders) </p>
 
+<p>Implements <a class="el" href="../../d4/d7c/interfaceNuke_1_1Unreal_1_1IUnrealBuild.html#a4f54443e51aad72943cf8e4660a3633d">Nuke.Unreal.IUnrealBuild</a>.</p>
+
 <p class="definition">Definition at line <a class="el" href="../../da/dc9/UnrealBuild_8Project_8cs_source.html#l00026">26</a> of file <a class="el" href="../../da/dc9/UnrealBuild_8Project_8cs_source.html">UnrealBuild.Project.cs</a>.</p>
 
 </div>
@@ -1626,8 +1727,23 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p><b>NUKE TARGET</b> </p>
+<p>Run an <a class="el" href="../../d3/d98/classNuke_1_1Unreal_1_1Unreal.html" title="A collection of utilities around basic functions regarding the environment of the Engine we&#39;re workin...">Unreal</a> tool from the engine binaries folder. You can omit the <code><a class="el" href="../../d3/d98/classNuke_1_1Unreal_1_1Unreal.html" title="A collection of utilities around basic functions regarding the environment of the Engine we&#39;re workin...">Unreal</a></code> prefix and the extension. For example: </p>
+<div class="fragment"><div class="line">nuke run --tool pak --&gt; ./Path/To/MyProject.pak -Extract <span class="stringliteral">&quot;D:/temp&quot;</span></div>
+<div class="line">nuke run --tool editor-cmd --&gt; ~p -run=MyCommandlet</div>
+</div><!-- fragment --> <p>Working directory is the project folder, regardless of actual working directory. </p>
+<p>The following symbols are replaced by <a class="el" href="../../d0/d55/namespaceNuke_1_1Unreal.html">Nuke.Unreal</a>: </p>
+<div class="fragment"><div class="line">~p    : Project file path</div>
+<div class="line">~pdir : Project folder</div>
+<div class="line">~ue   : <a class="code hl_class" href="../../d3/d98/classNuke_1_1Unreal_1_1Unreal.html">Unreal</a> Engine folder</div>
+<div class="ttc" id="aclassNuke_1_1Unreal_1_1Unreal_html"><div class="ttname"><a href="../../d3/d98/classNuke_1_1Unreal_1_1Unreal.html">Nuke.Unreal.Unreal</a></div><div class="ttdoc">A collection of utilities around basic functions regarding the environment of the Engine we're workin...</div><div class="ttdef"><b>Definition</b> <a href="../../d1/d1d/Unreal_8cs_source.html#l00023">Unreal.cs:24</a></div></div>
+</div><!-- fragment --> <div class="fragment"><div class="line">--<a class="code hl_variable" href="#aa47e8d95bc6761a50c0bd0f48241b497">Tool</a> (req.)</div>
+<div class="line">--&gt; (args.)</div>
+<div class="ttc" id="aclassNuke_1_1Unreal_1_1UnrealBuild_html_aa47e8d95bc6761a50c0bd0f48241b497"><div class="ttname"><a href="#aa47e8d95bc6761a50c0bd0f48241b497">Nuke.Unreal.UnrealBuild.Tool</a></div><div class="ttdeci">string? Tool</div><div class="ttdef"><b>Definition</b> <a href="../../d9/dd7/UnrealBuild_8Targets_8cs_source.html#l00612">UnrealBuild.Targets.cs:612</a></div></div>
+</div><!-- fragment --> 
+<p>Implements <a class="el" href="../../d4/d7c/interfaceNuke_1_1Unreal_1_1IUnrealBuild.html#aa47af66e2be62d96c62a567cd5f0bb6e">Nuke.Unreal.IUnrealBuild</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="../../d9/dd7/UnrealBuild_8Targets_8cs_source.html#l00314">314</a> of file <a class="el" href="../../d9/dd7/UnrealBuild_8Targets_8cs_source.html">UnrealBuild.Targets.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d9/dd7/UnrealBuild_8Targets_8cs_source.html#l00642">642</a> of file <a class="el" href="../../d9/dd7/UnrealBuild_8Targets_8cs_source.html">UnrealBuild.Targets.cs</a>.</p>
 
 </div>
 </div>
@@ -1650,8 +1766,19 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p><b>NUKE TARGET</b> </p>
+<p>Run an editor commandlet with arguments passed in after <code>--&gt;</code> </p>
+<p>The following symbols are replaced by <a class="el" href="../../d0/d55/namespaceNuke_1_1Unreal.html">Nuke.Unreal</a>: </p>
+<div class="fragment"><div class="line">~p    : Project file path</div>
+<div class="line">~pdir : Project folder</div>
+<div class="line">~ue   : <a class="code hl_class" href="../../d3/d98/classNuke_1_1Unreal_1_1Unreal.html">Unreal</a> Engine folder</div>
+</div><!-- fragment --> <div class="fragment"><div class="line">--<a class="code hl_variable" href="#ad875f29560130cf4694d11e9714a3d88">Cmd</a> (req.)</div>
+<div class="line">--&gt; (args.)</div>
+<div class="ttc" id="aclassNuke_1_1Unreal_1_1UnrealBuild_html_ad875f29560130cf4694d11e9714a3d88"><div class="ttname"><a href="#ad875f29560130cf4694d11e9714a3d88">Nuke.Unreal.UnrealBuild.Cmd</a></div><div class="ttdeci">string? Cmd</div><div class="ttdef"><b>Definition</b> <a href="../../d9/dd7/UnrealBuild_8Targets_8cs_source.html#l00681">UnrealBuild.Targets.cs:681</a></div></div>
+</div><!-- fragment --> 
+<p>Implements <a class="el" href="../../d4/d7c/interfaceNuke_1_1Unreal_1_1IUnrealBuild.html#af223f213a84e2cd499268c4bfeecd022">Nuke.Unreal.IUnrealBuild</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="../../d9/dd7/UnrealBuild_8Targets_8cs_source.html#l00340">340</a> of file <a class="el" href="../../d9/dd7/UnrealBuild_8Targets_8cs_source.html">UnrealBuild.Targets.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d9/dd7/UnrealBuild_8Targets_8cs_source.html#l00701">701</a> of file <a class="el" href="../../d9/dd7/UnrealBuild_8Targets_8cs_source.html">UnrealBuild.Targets.cs</a>.</p>
 
 </div>
 </div>
@@ -1674,8 +1801,12 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p><b>NUKE TARGET</b> </p>
+<p>Start a UShell session. This opens a new console window, and nuke will exit immadiately. Working directory is the project folder, regardless of actual working directory. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../d9/dd7/UnrealBuild_8Targets_8cs_source.html#l00281">281</a> of file <a class="el" href="../../d9/dd7/UnrealBuild_8Targets_8cs_source.html">UnrealBuild.Targets.cs</a>.</p>
+<p>Implements <a class="el" href="../../d4/d7c/interfaceNuke_1_1Unreal_1_1IUnrealBuild.html#ac5cf5efeab49651b8b1017940b3552cc">Nuke.Unreal.IUnrealBuild</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="../../d9/dd7/UnrealBuild_8Targets_8cs_source.html#l00579">579</a> of file <a class="el" href="../../d9/dd7/UnrealBuild_8Targets_8cs_source.html">UnrealBuild.Targets.cs</a>.</p>
 
 </div>
 </div>
@@ -1698,8 +1829,18 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p><b>NUKE TARGET</b> </p>
+<p>Simply run UAT with arguments passed after <code>--&gt;</code> </p><div class="fragment"><div class="line">--&gt; (args.)</div>
+<div class="line">--<a class="code hl_variable" href="#acc2e255f56a55c83366711a9c46671b1">IgnoreGlobalArgs</a> (adv.)</div>
+<div class="ttc" id="aclassNuke_1_1Unreal_1_1UnrealBuild_html_acc2e255f56a55c83366711a9c46671b1"><div class="ttname"><a href="#acc2e255f56a55c83366711a9c46671b1">Nuke.Unreal.UnrealBuild.IgnoreGlobalArgs</a></div><div class="ttdeci">bool IgnoreGlobalArgs</div><div class="ttdef"><b>Definition</b> <a href="../../d9/dd7/UnrealBuild_8Targets_8cs_source.html#l00480">UnrealBuild.Targets.cs:480</a></div></div>
+</div><!-- fragment --> <p>The following symbols are replaced by <a class="el" href="../../d0/d55/namespaceNuke_1_1Unreal.html">Nuke.Unreal</a>: </p>
+<div class="fragment"><div class="line">~p    : Project file path</div>
+<div class="line">~pdir : Project folder</div>
+<div class="line">~ue   : <a class="code hl_class" href="../../d3/d98/classNuke_1_1Unreal_1_1Unreal.html">Unreal</a> Engine folder</div>
+</div><!-- fragment --> 
+<p>Implements <a class="el" href="../../d4/d7c/interfaceNuke_1_1Unreal_1_1IUnrealBuild.html#a4489791a5975b2c1014fa29a0bb5177d">Nuke.Unreal.IUnrealBuild</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="../../d9/dd7/UnrealBuild_8Targets_8cs_source.html#l00261">261</a> of file <a class="el" href="../../d9/dd7/UnrealBuild_8Targets_8cs_source.html">UnrealBuild.Targets.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d9/dd7/UnrealBuild_8Targets_8cs_source.html#l00500">500</a> of file <a class="el" href="../../d9/dd7/UnrealBuild_8Targets_8cs_source.html">UnrealBuild.Targets.cs</a>.</p>
 
 </div>
 </div>
@@ -1722,8 +1863,43 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p><b>NUKE TARGET</b> </p>
+<p>Simply run UBT with arguments passed after <code>--&gt;</code> </p><div class="fragment"><div class="line">--&gt; (args.)</div>
+<div class="line">--<a class="code hl_variable" href="#acc2e255f56a55c83366711a9c46671b1">IgnoreGlobalArgs</a> (adv.)</div>
+</div><!-- fragment --> <p>The following symbols are replaced by <a class="el" href="../../d0/d55/namespaceNuke_1_1Unreal.html">Nuke.Unreal</a>: </p>
+<div class="fragment"><div class="line">~p    : Project file path</div>
+<div class="line">~pdir : Project folder</div>
+<div class="line">~ue   : <a class="code hl_class" href="../../d3/d98/classNuke_1_1Unreal_1_1Unreal.html">Unreal</a> Engine folder</div>
+</div><!-- fragment --> 
+<p>Implements <a class="el" href="../../d4/d7c/interfaceNuke_1_1Unreal_1_1IUnrealBuild.html#a83f7c9f07253e4327a042e94a5bc4410">Nuke.Unreal.IUnrealBuild</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="../../d9/dd7/UnrealBuild_8Targets_8cs_source.html#l00271">271</a> of file <a class="el" href="../../d9/dd7/UnrealBuild_8Targets_8cs_source.html">UnrealBuild.Targets.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d9/dd7/UnrealBuild_8Targets_8cs_source.html#l00545">545</a> of file <a class="el" href="../../d9/dd7/UnrealBuild_8Targets_8cs_source.html">UnrealBuild.Targets.cs</a>.</p>
+
+</div>
+</div>
+<a id="af197e762270a8529b36d8422fa0e2247" name="af197e762270a8529b36d8422fa0e2247"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af197e762270a8529b36d8422fa0e2247">&#9670;&#160;</a></span>SetupPlatformSdk</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual Target Nuke.Unreal.UnrealBuild.SetupPlatformSdk</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="../../d4/d7c/interfaceNuke_1_1Unreal_1_1IUnrealBuild.html">Nuke.Unreal.IUnrealBuild</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="../../d9/dd7/UnrealBuild_8Targets_8cs_source.html#l00246">246</a> of file <a class="el" href="../../d9/dd7/UnrealBuild_8Targets_8cs_source.html">UnrealBuild.Targets.cs</a>.</p>
 
 </div>
 </div>
@@ -1746,8 +1922,23 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p><b>NUKE PARAMETER</b> </p>
+<p>Specification(s) of the imported library(ies). This is used slightly differently based on which library type is being used: </p>
+<p>Header / CMake: It's only the name of the library (like <code>\--Spec spdlog</code>) </p>
+<p>XRepo: specify the xrepo package reference and its config separated by space. For example: </p>
+<div class="fragment"><div class="line">--<a class="code hl_property" href="#a4a59e5e5ebffdaf30c47a75683859873">Spec</a> <span class="stringliteral">&quot;zlib&quot;</span></div>
+<div class="line">--<a class="code hl_property" href="#a4a59e5e5ebffdaf30c47a75683859873">Spec</a> <span class="stringliteral">&quot;zlib 1.2.x&quot;</span></div>
+<div class="line">--<a class="code hl_property" href="#a4a59e5e5ebffdaf30c47a75683859873">Spec</a> <span class="stringliteral">&quot;boost regex=true,thread=true&quot;</span></div>
+<div class="line">--<a class="code hl_property" href="#a4a59e5e5ebffdaf30c47a75683859873">Spec</a> <span class="stringliteral">&quot;imgui 1.91.1 freetype=true&quot;</span></div>
+<div class="ttc" id="aclassNuke_1_1Unreal_1_1UnrealBuild_html_a4a59e5e5ebffdaf30c47a75683859873"><div class="ttname"><a href="#a4a59e5e5ebffdaf30c47a75683859873">Nuke.Unreal.UnrealBuild.Spec</a></div><div class="ttdeci">virtual string[] Spec</div><div class="ttdef"><b>Definition</b> <a href="../../db/d1e/UnrealBuild_8Templating_8cs_source.html#l00067">UnrealBuild.Templating.cs:67</a></div></div>
+</div><!-- fragment --> <p>Or multiple libraries at once </p>
+<div class="fragment"><div class="line">--<a class="code hl_property" href="#a4a59e5e5ebffdaf30c47a75683859873">Spec</a> <span class="stringliteral">&quot;zlib 1.2.x&quot;</span> <span class="stringliteral">&quot;boost regex=true,thread=true&quot;</span> <span class="stringliteral">&quot;imgui 1.91.1 freetype=true&quot;</span></div>
+</div><!-- fragment --> <p>More about xrepo: <a href="https://xrepo.xmake.io">https://xrepo.xmake.io</a> </p>
+<p>Since <a class="el" href="../../d3/d98/classNuke_1_1Unreal_1_1Unreal.html" title="A collection of utilities around basic functions regarding the environment of the Engine we&#39;re workin...">Unreal</a> uses MD runtime linkage &lsquo;runtimes='MD&rsquo;` config is always appended by <a class="el" href="../../d0/d55/namespaceNuke_1_1Unreal.html">Nuke.Unreal</a>, and the user must not specify it. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../db/d1e/UnrealBuild_8Templating_8cs_source.html#l00072">72</a> of file <a class="el" href="../../db/d1e/UnrealBuild_8Templating_8cs_source.html">UnrealBuild.Templating.cs</a>.</p>
+<p>Implements <a class="el" href="../../d4/d7c/interfaceNuke_1_1Unreal_1_1IUnrealBuild.html#aecaa23d981c826a806711c2525fa9fbe">Nuke.Unreal.IUnrealBuild</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="../../db/d1e/UnrealBuild_8Templating_8cs_source.html#l00067">67</a> of file <a class="el" href="../../db/d1e/UnrealBuild_8Templating_8cs_source.html">UnrealBuild.Templating.cs</a>.</p>
 
 </div>
 </div>
@@ -1770,8 +1961,10 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p><b>NUKE PARAMETER</b> </p>
+<p>Some boilerplate generators allows to define an extra suffix for names depending on their use case. For example <code>NewLibrary</code> can use the plain <code>Name</code> for library folder structure and <code>Name_MySuffix</code> for module names (when <code>Suffix</code> is set to <code>MySuffix</code>) </p>
 
-<p class="definition">Definition at line <a class="el" href="../../db/d1e/UnrealBuild_8Templating_8cs_source.html#l00085">85</a> of file <a class="el" href="../../db/d1e/UnrealBuild_8Templating_8cs_source.html">UnrealBuild.Templating.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../db/d1e/UnrealBuild_8Templating_8cs_source.html#l00078">78</a> of file <a class="el" href="../../db/d1e/UnrealBuild_8Templating_8cs_source.html">UnrealBuild.Templating.cs</a>.</p>
 
 </div>
 </div>
@@ -1794,8 +1987,12 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p><b>NUKE TARGET</b> </p>
+<p>Switch to an explicit Engine versionű </p><div class="fragment"><div class="line">--unreal (req.)</div>
+</div><!-- fragment --> 
+<p>Implements <a class="el" href="../../d4/d7c/interfaceNuke_1_1Unreal_1_1IUnrealBuild.html#aacd012bf2ca53cbafa16c9c9e4cd94fd">Nuke.Unreal.IUnrealBuild</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="../../d9/dd7/UnrealBuild_8Targets_8cs_source.html#l00068">68</a> of file <a class="el" href="../../d9/dd7/UnrealBuild_8Targets_8cs_source.html">UnrealBuild.Targets.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d9/dd7/UnrealBuild_8Targets_8cs_source.html#l00164">164</a> of file <a class="el" href="../../d9/dd7/UnrealBuild_8Targets_8cs_source.html">UnrealBuild.Targets.cs</a>.</p>
 
 </div>
 </div>
@@ -1818,8 +2015,12 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p><b>NUKE PARAMETER</b> </p>
+<p>The <a class="el" href="../../d3/d98/classNuke_1_1Unreal_1_1Unreal.html" title="A collection of utilities around basic functions regarding the environment of the Engine we&#39;re workin...">Unreal</a> target type for building the project </p>
 
-<p class="definition">Definition at line <a class="el" href="../../dd/d9f/UnrealBuild_8cs_source.html#l00093">93</a> of file <a class="el" href="../../dd/d9f/UnrealBuild_8cs_source.html">UnrealBuild.cs</a>.</p>
+<p>Implements <a class="el" href="../../d4/d7c/interfaceNuke_1_1Unreal_1_1IUnrealBuild.html#a0397694a53e6a442d47e729896de44e8">Nuke.Unreal.IUnrealBuild</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="../../dd/d9f/UnrealBuild_8cs_source.html#l00106">106</a> of file <a class="el" href="../../dd/d9f/UnrealBuild_8cs_source.html">UnrealBuild.cs</a>.</p>
 
 </div>
 </div>
@@ -1842,8 +2043,12 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p><b>NUKE PARAMETER</b> </p>
+<p>Specify a folder containing generator specific folders for Scriban scaffolding and templates. If left empty the templates coming with <a class="el" href="../../d0/d55/namespaceNuke_1_1Unreal.html">Nuke.Unreal</a> will be used. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../db/d1e/UnrealBuild_8Templating_8cs_source.html#l00025">25</a> of file <a class="el" href="../../db/d1e/UnrealBuild_8Templating_8cs_source.html">UnrealBuild.Templating.cs</a>.</p>
+<p>Implements <a class="el" href="../../d4/d7c/interfaceNuke_1_1Unreal_1_1IUnrealBuild.html#a72ce843186802ef8f434c310a40d24cd">Nuke.Unreal.IUnrealBuild</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="../../db/d1e/UnrealBuild_8Templating_8cs_source.html#l00021">21</a> of file <a class="el" href="../../db/d1e/UnrealBuild_8Templating_8cs_source.html">UnrealBuild.Templating.cs</a>.</p>
 
 </div>
 </div>
@@ -1869,7 +2074,9 @@ Private Attributes</h2></td></tr>
 
 <p>Path to the root of the associated <a class="el" href="../../d3/d98/classNuke_1_1Unreal_1_1Unreal.html" title="A collection of utilities around basic functions regarding the environment of the Engine we&#39;re workin...">Unreal</a> Engine installation/source. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../dd/d9f/UnrealBuild_8cs_source.html#l00140">140</a> of file <a class="el" href="../../dd/d9f/UnrealBuild_8cs_source.html">UnrealBuild.cs</a>.</p>
+<p>Implements <a class="el" href="../../d4/d7c/interfaceNuke_1_1Unreal_1_1IUnrealBuild.html#a01a62df7b085c74c236ade6e8bafbfee">Nuke.Unreal.IUnrealBuild</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="../../dd/d9f/UnrealBuild_8cs_source.html#l00162">162</a> of file <a class="el" href="../../dd/d9f/UnrealBuild_8cs_source.html">UnrealBuild.cs</a>.</p>
 
 </div>
 </div>
@@ -1892,10 +2099,11 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-
+<p><b>NUKE PARAMETER</b> </p>
+<p>Specify the target <a class="el" href="../../d3/d98/classNuke_1_1Unreal_1_1Unreal.html" title="A collection of utilities around basic functions regarding the environment of the Engine we&#39;re workin...">Unreal</a> Engine version. It's used only for the Switch target. Everything else should infer engine version from the project file. Can be simple version name like <code>5.5</code>, a GUID associated with engine location or an absolute path to engine root.</p>
 <p>Most targets read the desired <a class="el" href="../../d3/d98/classNuke_1_1Unreal_1_1Unreal.html" title="A collection of utilities around basic functions regarding the environment of the Engine we&#39;re workin...">Unreal</a> version from the project file. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../dd/d9f/UnrealBuild_8cs_source.html#l00072">72</a> of file <a class="el" href="../../dd/d9f/UnrealBuild_8cs_source.html">UnrealBuild.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../dd/d9f/UnrealBuild_8cs_source.html#l00055">55</a> of file <a class="el" href="../../dd/d9f/UnrealBuild_8cs_source.html">UnrealBuild.cs</a>.</p>
 
 </div>
 </div>
@@ -1918,8 +2126,11 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p><b>NUKE TARGET</b> </p>
 
-<p class="definition">Definition at line <a class="el" href="../../db/d1e/UnrealBuild_8Templating_8cs_source.html#l00314">314</a> of file <a class="el" href="../../db/d1e/UnrealBuild_8Templating_8cs_source.html">UnrealBuild.Templating.cs</a>.</p>
+<p>Implements <a class="el" href="../../d4/d7c/interfaceNuke_1_1Unreal_1_1IUnrealBuild.html#a15817b98dd43a88e299b410245974dbf">Nuke.Unreal.IUnrealBuild</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="../../db/d1e/UnrealBuild_8Templating_8cs_source.html#l00532">532</a> of file <a class="el" href="../../db/d1e/UnrealBuild_8Templating_8cs_source.html">UnrealBuild.Templating.cs</a>.</p>
 
 </div>
 </div>
@@ -1942,8 +2153,11 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p><b>NUKE TARGET</b> </p>
 
-<p class="definition">Definition at line <a class="el" href="../../db/d1e/UnrealBuild_8Templating_8cs_source.html#l00319">319</a> of file <a class="el" href="../../db/d1e/UnrealBuild_8Templating_8cs_source.html">UnrealBuild.Templating.cs</a>.</p>
+<p>Implements <a class="el" href="../../d4/d7c/interfaceNuke_1_1Unreal_1_1IUnrealBuild.html#aed5b0e81f3a2450bd2d119a26803a76f">Nuke.Unreal.IUnrealBuild</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="../../db/d1e/UnrealBuild_8Templating_8cs_source.html#l00542">542</a> of file <a class="el" href="../../db/d1e/UnrealBuild_8Templating_8cs_source.html">UnrealBuild.Templating.cs</a>.</p>
 
 </div>
 </div>
@@ -1966,8 +2180,22 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p><b>NUKE TARGET</b> </p>
+<p>Create boilerplate module for third-party C++ libraries. Specify the kind of library with <code>\--LibraryType Header|CMake|XRepo</code> The latter two will generate extra nuke targets preparing the library to be consumed by <a class="el" href="../../d3/d98/classNuke_1_1Unreal_1_1Unreal.html" title="A collection of utilities around basic functions regarding the environment of the Engine we&#39;re workin...">Unreal</a>. Fetching/storing the library is up to the developer (except of course with XRepo). </p>
+<p>Use type specific targets for more comfortable CLI experience, for example <br  />
+ <code>nuke use-xrepo \--Spec tracy</code> <br  />
+ instead of <br  />
+ <code>nuke UseLibrary --LibraryType xrepo --Spec tracy</code> </p>
+<p>This only needs to be done once, you can check the results into source control. </p>
+<div class="fragment"><div class="line">--<a class="code hl_property" href="#a4a59e5e5ebffdaf30c47a75683859873">Spec</a> (req,)</div>
+<div class="line">--<a class="code hl_class" href="../../d4/d9d/classNuke_1_1Unreal_1_1BoilerplateGenerators_1_1LibraryType.html">LibraryType</a></div>
+<div class="line">--<a class="code hl_property" href="#a23987a0d5e45588dcf817c68c8bf8abc">Suffix</a> (adv.)</div>
+<div class="ttc" id="aclassNuke_1_1Unreal_1_1BoilerplateGenerators_1_1LibraryType_html"><div class="ttname"><a href="../../d4/d9d/classNuke_1_1Unreal_1_1BoilerplateGenerators_1_1LibraryType.html">Nuke.Unreal.BoilerplateGenerators.LibraryType</a></div><div class="ttdef"><b>Definition</b> <a href="../../d1/d7a/LibraryGenerator_8cs_source.html#l00021">LibraryGenerator.cs:22</a></div></div>
+<div class="ttc" id="aclassNuke_1_1Unreal_1_1UnrealBuild_html_a23987a0d5e45588dcf817c68c8bf8abc"><div class="ttname"><a href="#a23987a0d5e45588dcf817c68c8bf8abc">Nuke.Unreal.UnrealBuild.Suffix</a></div><div class="ttdeci">string? Suffix</div><div class="ttdef"><b>Definition</b> <a href="../../db/d1e/UnrealBuild_8Templating_8cs_source.html#l00078">UnrealBuild.Templating.cs:78</a></div></div>
+</div><!-- fragment --> 
+<p>Implements <a class="el" href="../../d4/d7c/interfaceNuke_1_1Unreal_1_1IUnrealBuild.html#a8513b1d5d7d46b83b238d549e0041f42">Nuke.Unreal.IUnrealBuild</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="../../db/d1e/UnrealBuild_8Templating_8cs_source.html#l00227">227</a> of file <a class="el" href="../../db/d1e/UnrealBuild_8Templating_8cs_source.html">UnrealBuild.Templating.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../db/d1e/UnrealBuild_8Templating_8cs_source.html#l00406">406</a> of file <a class="el" href="../../db/d1e/UnrealBuild_8Templating_8cs_source.html">UnrealBuild.Templating.cs</a>.</p>
 
 </div>
 </div>
@@ -1990,8 +2218,24 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p><b>NUKE TARGET</b> </p>
+<p>Use libraries from the xrepo package manager. This target only configures another target which will eventually fetch the input libraries. To make them available to <a class="el" href="../../d3/d98/classNuke_1_1Unreal_1_1Unreal.html" title="A collection of utilities around basic functions regarding the environment of the Engine we&#39;re workin...">Unreal</a> run <code>Prepare</code> or <code>Generate</code> targets. </p>
+<p>Specify the xrepo package reference and its config separated by space. For example: </p>
+<div class="fragment"><div class="line">nuke <a class="code hl_property" href="#a96466f1f37bec013e63d3e8d9f7f22af">UseXRepo</a> --<a class="code hl_property" href="#a4a59e5e5ebffdaf30c47a75683859873">Spec</a> <span class="stringliteral">&quot;zlib&quot;</span></div>
+<div class="line">nuke <a class="code hl_property" href="#a96466f1f37bec013e63d3e8d9f7f22af">UseXRepo</a> --<a class="code hl_property" href="#a4a59e5e5ebffdaf30c47a75683859873">Spec</a> <span class="stringliteral">&quot;zlib 1.2.x&quot;</span></div>
+<div class="line">nuke <a class="code hl_property" href="#a96466f1f37bec013e63d3e8d9f7f22af">UseXRepo</a> --<a class="code hl_property" href="#a4a59e5e5ebffdaf30c47a75683859873">Spec</a> <span class="stringliteral">&quot;boost regex=true,thread=true&quot;</span></div>
+<div class="line">nuke <a class="code hl_property" href="#a96466f1f37bec013e63d3e8d9f7f22af">UseXRepo</a> --<a class="code hl_property" href="#a4a59e5e5ebffdaf30c47a75683859873">Spec</a> <span class="stringliteral">&quot;imgui 1.91.1 freetype=true&quot;</span></div>
+<div class="ttc" id="aclassNuke_1_1Unreal_1_1UnrealBuild_html_a96466f1f37bec013e63d3e8d9f7f22af"><div class="ttname"><a href="#a96466f1f37bec013e63d3e8d9f7f22af">Nuke.Unreal.UnrealBuild.UseXRepo</a></div><div class="ttdeci">Target UseXRepo</div><div class="ttdef"><b>Definition</b> <a href="../../db/d1e/UnrealBuild_8Templating_8cs_source.html#l00488">UnrealBuild.Templating.cs:488</a></div></div>
+</div><!-- fragment --> <p>Or multiple libraries at once </p>
+<div class="fragment"><div class="line">nuke <a class="code hl_property" href="#a96466f1f37bec013e63d3e8d9f7f22af">UseXRepo</a> --<a class="code hl_property" href="#a4a59e5e5ebffdaf30c47a75683859873">Spec</a> <span class="stringliteral">&quot;zlib 1.2.x&quot;</span> <span class="stringliteral">&quot;boost regex=true,thread=true&quot;</span> <span class="stringliteral">&quot;imgui 1.91.1 freetype=true&quot;</span></div>
+</div><!-- fragment --> <p>More about xrepo: <a href="https://xrepo.xmake.io">https://xrepo.xmake.io</a> </p>
+<div class="fragment"><div class="line">--<a class="code hl_property" href="#a4a59e5e5ebffdaf30c47a75683859873">Spec</a> (req,)</div>
+<div class="line">--<a class="code hl_property" href="#a23987a0d5e45588dcf817c68c8bf8abc">Suffix</a> (adv.)</div>
+</div><!-- fragment --><p>Since <a class="el" href="../../d3/d98/classNuke_1_1Unreal_1_1Unreal.html" title="A collection of utilities around basic functions regarding the environment of the Engine we&#39;re workin...">Unreal</a> uses MD runtime linkage &lsquo;runtimes='MD&rsquo;` config is always appended by <a class="el" href="../../d0/d55/namespaceNuke_1_1Unreal.html">Nuke.Unreal</a>, and the user must not specify it. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../db/d1e/UnrealBuild_8Templating_8cs_source.html#l00269">269</a> of file <a class="el" href="../../db/d1e/UnrealBuild_8Templating_8cs_source.html">UnrealBuild.Templating.cs</a>.</p>
+<p>Implements <a class="el" href="../../d4/d7c/interfaceNuke_1_1Unreal_1_1IUnrealBuild.html#a9b820bf8431d2b29d634eaa368c75294">Nuke.Unreal.IUnrealBuild</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="../../db/d1e/UnrealBuild_8Templating_8cs_source.html#l00488">488</a> of file <a class="el" href="../../db/d1e/UnrealBuild_8Templating_8cs_source.html">UnrealBuild.Templating.cs</a>.</p>
 
 </div>
 </div>

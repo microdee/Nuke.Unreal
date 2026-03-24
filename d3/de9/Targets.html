@@ -121,426 +121,191 @@ $(function(){initNavTree('d3/de9/Targets.html','../../'); initResizable(true); }
 <div class="toc"><h3>Table of Contents</h3>
 <ul>
   <li class="level1">
-    <a href="#autotoc_md11">Global targets (UnrealBuild)</a>
-    <ul>
-      <li class="level2">
-        <a href="#target-info">info</a>
-      </li>
-      <li class="level2">
-        <a href="#target-switch">switch</a>
-      </li>
-      <li class="level2">
-        <a href="#target-prepare">prepare</a>
-      </li>
-      <li class="level2">
-        <a href="#target-generate">generate</a>
-      </li>
-      <li class="level2">
-        <a href="#target-build-editor">build-editor</a>
-      </li>
-      <li class="level2">
-        <a href="#target-build">build</a>
-      </li>
-      <li class="level2">
-        <a href="#target-cook">cook</a>
-      </li>
-      <li class="level2">
-        <a href="#target-clean">clean</a>
-      </li>
-      <li class="level2">
-        <a href="#target-run">run</a>
-      </li>
-      <li class="level2">
-        <a href="#target-run-uat">run-uat</a>
-      </li>
-      <li class="level2">
-        <a href="#target-run-ubt">run-ubt</a>
-      </li>
-      <li class="level2">
-        <a href="#target-run-shell">run-shell</a>
-      </li>
-      <li class="level2">
-        <a href="#target-run-editor-cmd">run-editor-cmd</a>
-      </li>
-      <li class="level2">
-        <a href="#target-ensure-build-plugin-support">ensure-build-plugin-support</a>
-      </li>
-    </ul>
+    <a href="#autotoc_md15">Global targets (UnrealBuild)</a>
   </li>
   <li class="level1">
-    <a href="#autotoc_md12">UnrealBuild.Templating</a>
+    <a href="#autotoc_md16">UnrealBuild.Templating</a>
   </li>
   <li class="level1">
     <a href="#targets-IPackageTargets">Packaging (IPackageTargets)</a>
-    <ul>
-      <li class="level2">
-        <a href="#target-package">package</a>
-      </li>
-    </ul>
   </li>
   <li class="level1">
-    <a href="#autotoc_md13">Targeting Android (IAndroidTargets)</a>
-    <ul>
-      <li class="level2">
-        <a href="#target-apply-sdk-user-settings">apply-sdk-user-settings</a>
-      </li>
-      <li class="level2">
-        <a href="#target-clean-intermediate-android">clean-intermediate-android</a>
-      </li>
-      <li class="level2">
-        <a href="#target-sign-apk">sign-apk</a>
-      </li>
-      <li class="level2">
-        <a href="#target-install-on-android">install-on-android</a>
-      </li>
-      <li class="level2">
-        <a href="#target-debug-on-android">debug-on-android</a>
-      </li>
-      <li class="level2">
-        <a href="#target-java-development-service">java-development-service</a>
-      </li>
-    </ul>
+    <a href="#targets-IAndroidTargets">Android (IAndroidTargets)</a>
   </li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_Manual_2Targets"></a></p>
-<p>In <a class="el" href="../../df/da7/namespaceNuke.html">Nuke</a> (and consequently in <a class="el" href="../../d0/d55/namespaceNuke_1_1Unreal.html">Nuke.Unreal</a>) a target is a delegate which can build a dependency execution graph with other targets. <a class="el" href="../../df/da7/namespaceNuke.html">Nuke</a>'s main selling point is how these targets allow complex build compositions and how that can be controlled via command line or profile files.</p>
+<p>In <a class="el" href="../../df/da7/namespaceNuke.html">Nuke</a> (and consequently in <a class="el" href="../../d0/d55/namespaceNuke_1_1Unreal.html">Nuke.Unreal</a>) a target is a delegate which can build a dependency execution graph with other targets. <a class="el" href="../../df/da7/namespaceNuke.html">Nuke</a>'s main selling point is how these targets allow complex build compositions and how that can be controlled via command line, environment variables (<code>NUKE_</code> prefix) or parameter profile files (<code>parameters.json</code> / <code>parameters-myProfile.json</code>).</p>
 <div class="image">
 <img src="../../plan.png" alt=""/>
 </div>
-    <p><a class="el" href="../../d0/d55/namespaceNuke_1_1Unreal.html">Nuke.Unreal</a> provides couple of universally useful targets associated with regular chores regarding Unreal Engine development. The above figure shows all convenience targets available and their relationship to each other. This also includes optional targets (coming from <code>IPackageTargets</code>, <code>IPluginTargets</code> and <code>IAndroidTargets</code>)</p>
-<dl class="section note"><dt>Note</dt><dd>All parameters specified here are optional and have a "sensible" default, unless they're marked required.</dd></dl>
-<h1><a class="anchor" id="autotoc_md11"></a>
+    <p><a class="el" href="../../d0/d55/namespaceNuke_1_1Unreal.html">Nuke.Unreal</a> provides couple of universally useful targets associated with regular chores regarding Unreal Engine development. The above figure shows all convenience targets available and their relationship to each other. This also includes optional targets (coming from <code>IPackageTargets</code> and <code>IAndroidTargets</code>)</p>
+<dl class="section note"><dt>Note</dt><dd>All parameters are optional and have a "sensible" default, unless they're marked required <code>(req.)</code>.</dd></dl>
+<h1><a class="anchor" id="autotoc_md15"></a>
 Global targets (UnrealBuild)</h1>
 <p>They're available for all project types just from using <code>UnrealBuild</code> as base class (<code><a class="el" href="../../d9/dd7/UnrealBuild_8Targets_8cs_source.html">UnrealBuild.Targets.cs</a></code> or <code><a class="el" href="../../db/d1e/UnrealBuild_8Templating_8cs_source.html">UnrealBuild.Templating.cs</a></code>).</p>
-<h2><a class="anchor" id="target-info"></a>
-info</h2>
-<p>Prints curated information about project.</p>
-<h2><a class="anchor" id="target-switch"></a>
-switch</h2>
-<p>Switch to the specified Unreal Engine version and platform. A CI/CD can call nuke with this target multiple times to deploy plugins for multiple engine versions for example.</p>
 <ul>
-<li>Parameters:<ul>
-<li><code>--unreal</code> <b>REQUIRED</b><ul>
-<li>Can be simple version name like <code>5.5</code>, a GUID associated with engine location or an absolute path to engine root.</li>
+<li><a class="el" href="../../da/d58/classNuke_1_1Unreal_1_1UnrealBuild.html#aada99c3bcadd433d5734fa08d0811027">Info</a></li>
+<li><a class="el" href="../../da/d58/classNuke_1_1Unreal_1_1UnrealBuild.html#a04a165632e3b9bfeab7eef5d09f7b7ef">Switch</a><ul>
+<li><a class="el" href="../../da/d58/classNuke_1_1Unreal_1_1UnrealBuild.html#a9f75ac400cfc814c4b0dfd1623b48b52">--unreal</a></li>
+<li>Depends on <a class="el" href="../../da/d58/classNuke_1_1Unreal_1_1UnrealBuild.html#ae62ec2e1cb823aa78da80046913028ff">Clean</a></li>
+<li>Before <a class="el" href="../../da/d58/classNuke_1_1Unreal_1_1UnrealBuild.html#a12ac3ee3a7e8084e989cd644b3cc3001">Prepare</a></li>
+<li>Before <a class="el" href="../../da/d58/classNuke_1_1Unreal_1_1UnrealBuild.html#ab6a8642246cfb70413db238cb68ede4d">Generate</a></li>
+<li>Before <a class="el" href="../../da/d58/classNuke_1_1Unreal_1_1UnrealBuild.html#a104f1d5903a888d52e10017bf6d2d429">BuildEditor</a></li>
+<li>Before <a class="el" href="../../da/d58/classNuke_1_1Unreal_1_1UnrealBuild.html#a7a87ac137cba3f1f8a03d73a007cf9cf">Build</a></li>
+<li>Before <a class="el" href="../../da/d58/classNuke_1_1Unreal_1_1UnrealBuild.html#a3bd3c40093b3149d07a913819258b2ad">Cook</a></li>
 </ul>
 </li>
+<li><a class="el" href="../../da/d58/classNuke_1_1Unreal_1_1UnrealBuild.html#a12ac3ee3a7e8084e989cd644b3cc3001">Prepare</a></li>
+<li><a class="el" href="../../da/d58/classNuke_1_1Unreal_1_1UnrealBuild.html#ab6a8642246cfb70413db238cb68ede4d">Generate</a><ul>
+<li>Depends on <a class="el" href="../../da/d58/classNuke_1_1Unreal_1_1UnrealBuild.html#a12ac3ee3a7e8084e989cd644b3cc3001">Prepare</a></li>
 </ul>
 </li>
-<li>Graph:<ul>
-<li>Depends on <a class="el" href="#target-clean">clean</a></li>
-<li>Before <a class="el" href="#target-prepare">prepare</a></li>
-<li>Before <a class="el" href="#target-generate">generate</a></li>
-<li>Before <a class="el" href="#target-build-editor">buildEditor</a></li>
-<li>Before <a class="el" href="#target-build">build</a></li>
-<li>Before <a class="el" href="#target-cook">cook</a></li>
+<li><a class="el" href="../../da/d58/classNuke_1_1Unreal_1_1UnrealBuild.html#a104f1d5903a888d52e10017bf6d2d429">BuildEditor</a><ul>
+<li><a class="el" href="../../da/d58/classNuke_1_1Unreal_1_1UnrealBuild.html#a891fe1907305c6641b447e4a7882bb20">--EditorConfig</a></li>
+<li>--&gt;ubt</li>
+<li>After <a class="el" href="../../da/d58/classNuke_1_1Unreal_1_1UnrealBuild.html#a12ac3ee3a7e8084e989cd644b3cc3001">Prepare</a></li>
 </ul>
 </li>
-</ul>
-<h2><a class="anchor" id="target-prepare"></a>
-prepare</h2>
-<p>Run necessary preparations which needs to be done before Unreal tools can handle the project. By default it is empty and the main build project may override it or other Targets can depend on it / hook into it. For example the generated <a class="el" href="../../df/da7/namespaceNuke.html">Nuke</a> targets made by <code>use-cmake</code> or <code>use-xrepo</code> are dependent for <code>prepare</code></p>
-<h2><a class="anchor" id="target-generate"></a>
-generate</h2>
-<p>Generate project files for the default IDE of the current platform (i.e.: Visual Studio or XCode). It is equivalent to right clicking the uproject and selecting "Generate _IDE_ project files".</p>
-<ul>
-<li>Graph:<ul>
-<li>Depends on <a class="el" href="#target-prepare">prepare</a></li>
+<li><a class="el" href="../../da/d58/classNuke_1_1Unreal_1_1UnrealBuild.html#a7a87ac137cba3f1f8a03d73a007cf9cf">Build</a><ul>
+<li><a class="el" href="../../da/d58/classNuke_1_1Unreal_1_1UnrealBuild.html#a32ab86bdd107018f3c48644f2dbf9198">--TargetType</a></li>
+<li><a class="el" href="../../da/d58/classNuke_1_1Unreal_1_1UnrealBuild.html#a877307ca15a7c25cbdcdfe638f2cd8a3">--Config</a></li>
+<li><a class="el" href="../../da/d58/classNuke_1_1Unreal_1_1UnrealBuild.html#ae70561b354f5df171a7f731d263bf2d5">--Platform</a></li>
+<li>--&gt;ubt</li>
+<li>After <a class="el" href="../../da/d58/classNuke_1_1Unreal_1_1UnrealBuild.html#a3bd3c40093b3149d07a913819258b2ad">Cook</a></li>
+<li>After <a class="el" href="../../da/d58/classNuke_1_1Unreal_1_1UnrealBuild.html#a12ac3ee3a7e8084e989cd644b3cc3001">Prepare</a></li>
 </ul>
 </li>
-<li>Plans:<ul>
-<li>[ ] TODO: Provide more arguments for how the project is generated</li>
+<li><a class="el" href="../../da/d58/classNuke_1_1Unreal_1_1UnrealBuild.html#a3bd3c40093b3149d07a913819258b2ad">Cook</a><ul>
+<li><a class="el" href="../../da/d58/classNuke_1_1Unreal_1_1UnrealBuild.html#a877307ca15a7c25cbdcdfe638f2cd8a3">--Config</a></li>
+<li><a class="el" href="../../da/d58/classNuke_1_1Unreal_1_1UnrealBuild.html#ae70561b354f5df171a7f731d263bf2d5">--Platform</a></li>
+<li><a class="el" href="../../da/d58/classNuke_1_1Unreal_1_1UnrealBuild.html#adf3312bad8c31bac5d86e5de335c25eb">--AndroidTextureMode</a></li>
+<li>--&gt;ubt</li>
+<li>--&gt;uat</li>
+<li>Depends on <a class="el" href="../../da/d58/classNuke_1_1Unreal_1_1UnrealBuild.html#a104f1d5903a888d52e10017bf6d2d429">BuildEditor</a></li>
 </ul>
 </li>
-</ul>
-<h2><a class="anchor" id="target-build-editor"></a>
-build-editor</h2>
-<p>Shorthand for building the editor for current platform.</p>
-<ul>
-<li>Parameters:<ul>
-<li><code>--editor-config</code> default is <code>developnment</code></li>
-</ul>
-</li>
-<li>Graph:<ul>
-<li>After <a class="el" href="#target-prepare">prepare</a></li>
-</ul>
-</li>
-</ul>
-<h2><a class="anchor" id="target-build"></a>
-build</h2>
-<p>Uses UBT to build one of the main project targets (Game, Editor, Client, Server).</p>
-<ul>
-<li>Parameters:<ul>
-<li><code>--config</code> default is <code>development</code></li>
-<li><code>--target-type</code> default is <code>game</code></li>
-<li><code>--platform</code> default is current development platform</li>
-</ul>
-</li>
-<li>Argument blocks:<ul>
-<li><code>--&gt;ubt</code> see Custom UBT or UAT arguments</li>
-</ul>
-</li>
-<li>Graph:<ul>
-<li>After <a class="el" href="#target-cook">cook</a></li>
-<li>After <a class="el" href="#target-prepare">prepare</a></li>
-</ul>
-</li>
-</ul>
-<h2><a class="anchor" id="target-cook"></a>
-cook</h2>
-<p>Cook Unreal assets for standalone game execution with UAT.</p>
-<ul>
-<li>Parameters:<ul>
-<li><code>--config</code> default is <code>development</code></li>
-<li><code>--platform</code> default is current development platform</li>
-<li>from `IAndroidTargets`<ul>
-<li><code>--android-texture-mode</code> default is <code>multi</code></li>
-</ul>
-</li>
-</ul>
-</li>
-<li>Argument blocks:<ul>
-<li><code>--&gt;uat</code> see Custom UBT or UAT arguments</li>
-</ul>
-</li>
-<li>Graph:<ul>
-<li>Depends on <a class="el" href="#target-build-editor">build-editor</a></li>
-</ul>
-</li>
-</ul>
-<h2><a class="anchor" id="target-clean"></a>
-clean</h2>
-<p>Removes auto generated folders of Unreal Engine</p>
-<ul>
-<li>Graph:<ul>
-<li>Depends on:<ul>
-<li><code>clean-project</code></li>
-<li><code>clean-plugins</code></li>
-</ul>
-</li>
-<li>Related to <code>clean-deployment</code></li>
-</ul>
-</li>
-<li>Plans:<ul>
+<li><a class="el" href="../../da/d58/classNuke_1_1Unreal_1_1UnrealBuild.html#ae62ec2e1cb823aa78da80046913028ff">Clean</a><ul>
+<li>Depends on <a class="el" href="../../da/d58/classNuke_1_1Unreal_1_1UnrealBuild.html#a5c6a845b6adab5805d7a8af56ebea2a2">CleanProject</a></li>
+<li>Depends on <a class="el" href="../../da/d58/classNuke_1_1Unreal_1_1UnrealBuild.html#a8fb6a5703309d2c9616cf86658fa1197">CleanPlugins</a></li>
 <li>[ ] TODO: it may be too aggressive, use rather UAT?</li>
 </ul>
 </li>
-</ul>
-<h2><a class="anchor" id="target-run"></a>
-run</h2>
-<p>Run an Unreal tool from the engine binaries folder. You can omit the <code>Unreal</code> prefix and the extension. For example:</p>
-<div class="fragment"><div class="line">&gt; nuke run --tool pak --&gt; ./Path/To/MyProject.pak -Extract &quot;D:/temp&quot;</div>
-<div class="line">&gt; nuke run --tool editor-cmd --&gt; ~p -run=MyCommandlet</div>
-</div><!-- fragment --><p>Working directory is the project folder, regardless of actual working directory.</p>
-<ul>
-<li>Parameters:<ul>
-<li><code>--tool</code></li>
+<li><a class="el" href="../../da/d58/classNuke_1_1Unreal_1_1UnrealBuild.html#a9e87d75d08d393dc93692fedc5b43df4">Run</a><ul>
+<li><a class="el" href="../../da/d58/classNuke_1_1Unreal_1_1UnrealBuild.html#aa47e8d95bc6761a50c0bd0f48241b497">--Tool</a></li>
+<li>--&gt;</li>
 </ul>
 </li>
-<li>Argument blocks:<ul>
-<li><code>--&gt;</code> see Passing command line arguments to Unreal tools</li>
+<li><a class="el" href="../../da/d58/classNuke_1_1Unreal_1_1UnrealBuild.html#a81736e53e202cd26d9f7dcec7cd86c7c">RunUat</a><ul>
+<li><a class="el" href="../../da/d58/classNuke_1_1Unreal_1_1UnrealBuild.html#acc2e255f56a55c83366711a9c46671b1">--IgnoreGlobalArgs</a></li>
+<li>--&gt;</li>
 </ul>
 </li>
-</ul>
-<h2><a class="anchor" id="target-run-uat"></a>
-run-uat</h2>
-<p>Simply run UAT with arguments passed after <code>--&gt;</code></p>
-<ul>
-<li>Parameters:<ul>
-<li><code>--ignore-global-args</code></li>
+<li><a class="el" href="../../da/d58/classNuke_1_1Unreal_1_1UnrealBuild.html#ad7febd0b3b59ef449c98f2a3d95c5dee">RunUbt</a><ul>
+<li><a class="el" href="../../da/d58/classNuke_1_1Unreal_1_1UnrealBuild.html#acc2e255f56a55c83366711a9c46671b1">--IgnoreGlobalArgs</a></li>
+<li>--&gt;</li>
 </ul>
 </li>
-<li>Argument blocks:<ul>
-<li><code>--&gt;</code> see Passing command line arguments to Unreal tools</li>
+<li><a class="el" href="../../da/d58/classNuke_1_1Unreal_1_1UnrealBuild.html#afe3f59401e6e6a481f9826915396b5c4">RunShell</a></li>
+<li><a class="el" href="../../da/d58/classNuke_1_1Unreal_1_1UnrealBuild.html#a173de1baf737e69f9071d3d0f95f6bb8">RunEditorCmd</a><ul>
+<li><a class="el" href="../../da/d58/classNuke_1_1Unreal_1_1UnrealBuild.html#ad875f29560130cf4694d11e9714a3d88">--Cmd</a></li>
+<li>--&gt;</li>
 </ul>
 </li>
 </ul>
-<h2><a class="anchor" id="target-run-ubt"></a>
-run-ubt</h2>
-<p>Simply run UBT with arguments passed after <code>--&gt;</code></p>
-<ul>
-<li>Parameters:<ul>
-<li><code>--ignore-global-args</code></li>
-</ul>
-</li>
-<li>Argument blocks:<ul>
-<li><code>--&gt;</code> see Passing command line arguments to Unreal tools</li>
-</ul>
-</li>
-</ul>
-<h2><a class="anchor" id="target-run-shell"></a>
-run-shell</h2>
-<p>Create console window with a <a href="https://dev.epicgames.com/documentation/en-us/unreal-engine/how-to-use-ushell-for-unreal-engine">UShell</a> session. Only fully supported after UE 5.5</p>
-<h2><a class="anchor" id="target-run-editor-cmd"></a>
-run-editor-cmd</h2>
-<p>Run an editor commandlet with arguments passed in after <code>--&gt;</code></p>
-<ul>
-<li>Parameters:<ul>
-<li><code>--cmd</code></li>
-</ul>
-</li>
-<li>Argument blocks:<ul>
-<li><code>--&gt;</code> see Passing command line arguments to Unreal tools</li>
-</ul>
-</li>
-</ul>
-<h2><a class="anchor" id="target-ensure-build-plugin-support"></a>
-ensure-build-plugin-support</h2>
-<p>Ensure support for plain C# build plugins without the need for CSX or dotnet projects. This only needs to be done once and you can check the results into source control. It will modify the main <a class="el" href="../../df/da7/namespaceNuke.html">Nuke</a> project itself, see Setting up for plugin development or <a href="https://mcro.de/md.Nuke.Cola/de/d4b/BuildPlugins.html#autotoc_md0"><code>[ImplicitBuildInterface]</code> plugins of Nuke.Cola</a></p>
-<p>If you used the remote script install method then you don't need to run this target as it's already configured for you.</p>
-<h1><a class="anchor" id="autotoc_md12"></a>
+<h1><a class="anchor" id="autotoc_md16"></a>
 UnrealBuild.Templating</h1>
-<p>These targets are used as a development aid for generating boilerplates. See Using third-party C++ libraries and Unreal boilerplate templates for full explanation. Because those sections explain in detail how to use boilerplate generator targets, they will be only listed here:</p>
-<div class="fragment"><div class="line">new-module      --name ...</div>
-<div class="line">add-code        --name ...</div>
-<div class="line">new-plugin      --name ...</div>
-<div class="line">new-actor       --name ...</div>
-<div class="line">new-interface   --name ...</div>
-<div class="line">new-object      --name ...</div>
-<div class="line">new-struct      --name ...</div>
-<div class="line">new-spec        --name ...</div>
-<div class="line">use-library     --spec ... --library-type ...</div>
-<div class="line">use-xrepo       --spec ...</div>
-<div class="line">use-cmake       --spec ...</div>
-<div class="line">use-header-only --spec ...</div>
-</div><!-- fragment --><p>Only special mention is <code>use-library</code> which is not recommended to be used manually, use either one of <code>use-xrepo</code>, <code>use-cmake</code> or <code>use-header-only</code>. <code>use-library</code> expects an extra <code>--library-type</code> which the former targets already fill in.</p>
+<p>These targets are used as a development aid for generating boilerplates. See Using third-party C++ libraries and Unreal boilerplate templates for full explanation.</p>
+<ul>
+<li><a class="el" href="../../da/d58/classNuke_1_1Unreal_1_1UnrealBuild.html#aea66186737ca34cbc229a6dddfe6e9cc">NewModule</a><ul>
+<li><a class="el" href="../../da/d58/classNuke_1_1Unreal_1_1UnrealBuild.html#a36173ca0b2c3afd277979d03cbd9da3d">--Name</a></li>
+</ul>
+</li>
+<li><a class="el" href="../../da/d58/classNuke_1_1Unreal_1_1UnrealBuild.html#a5928bd01df63b3773ced65305bd9bd40">AddCode</a><ul>
+<li><a class="el" href="../../da/d58/classNuke_1_1Unreal_1_1UnrealBuild.html#a36173ca0b2c3afd277979d03cbd9da3d">--Name</a></li>
+</ul>
+</li>
+<li><a class="el" href="../../da/d58/classNuke_1_1Unreal_1_1UnrealBuild.html#a0c02639d5c230185db07a12c8d572363">NewPlugin</a><ul>
+<li><a class="el" href="../../da/d58/classNuke_1_1Unreal_1_1UnrealBuild.html#a36173ca0b2c3afd277979d03cbd9da3d">--Name</a></li>
+</ul>
+</li>
+<li><a class="el" href="../../da/d58/classNuke_1_1Unreal_1_1UnrealBuild.html#ab8e472456bf619cfc4fef93afdba94c2">NewActor</a><ul>
+<li><a class="el" href="../../da/d58/classNuke_1_1Unreal_1_1UnrealBuild.html#a36173ca0b2c3afd277979d03cbd9da3d">--Name</a></li>
+</ul>
+</li>
+<li><a class="el" href="../../da/d58/classNuke_1_1Unreal_1_1UnrealBuild.html#a13247cb73b2c56bb9bf2b6aacff0b592">NewInterface</a><ul>
+<li><a class="el" href="../../da/d58/classNuke_1_1Unreal_1_1UnrealBuild.html#a36173ca0b2c3afd277979d03cbd9da3d">--Name</a></li>
+</ul>
+</li>
+<li><a class="el" href="../../da/d58/classNuke_1_1Unreal_1_1UnrealBuild.html#afa43d0b39b71dc1715d5d75804a402dd">NewObject</a><ul>
+<li><a class="el" href="../../da/d58/classNuke_1_1Unreal_1_1UnrealBuild.html#a36173ca0b2c3afd277979d03cbd9da3d">--Name</a></li>
+</ul>
+</li>
+<li><a class="el" href="../../da/d58/classNuke_1_1Unreal_1_1UnrealBuild.html#a2aefa99228464c4549ba20da3fc1f4b4">NewStruct</a><ul>
+<li><a class="el" href="../../da/d58/classNuke_1_1Unreal_1_1UnrealBuild.html#a36173ca0b2c3afd277979d03cbd9da3d">--Name</a></li>
+</ul>
+</li>
+<li><a class="el" href="../../da/d58/classNuke_1_1Unreal_1_1UnrealBuild.html#acb50f20d2d4911b08b0396feb5edb772">NewSpec</a><ul>
+<li><a class="el" href="../../da/d58/classNuke_1_1Unreal_1_1UnrealBuild.html#a36173ca0b2c3afd277979d03cbd9da3d">--Name</a></li>
+</ul>
+</li>
+<li><a class="el" href="../../da/d58/classNuke_1_1Unreal_1_1UnrealBuild.html#a96466f1f37bec013e63d3e8d9f7f22af">UseXRepo</a><ul>
+<li><a class="el" href="../../da/d58/classNuke_1_1Unreal_1_1UnrealBuild.html#a4a59e5e5ebffdaf30c47a75683859873">--Spec</a></li>
+</ul>
+</li>
+<li><a class="el" href="../../da/d58/classNuke_1_1Unreal_1_1UnrealBuild.html#a34dd737c0be9550f2bd82cf4ba529410">UseCMake</a><ul>
+<li><a class="el" href="../../da/d58/classNuke_1_1Unreal_1_1UnrealBuild.html#a4a59e5e5ebffdaf30c47a75683859873">--Spec</a></li>
+</ul>
+</li>
+<li><a class="el" href="../../da/d58/classNuke_1_1Unreal_1_1UnrealBuild.html#af8623204b639d2c7b9854ce03928ee54">UseHeaderOnly</a><ul>
+<li><a class="el" href="../../da/d58/classNuke_1_1Unreal_1_1UnrealBuild.html#a4a59e5e5ebffdaf30c47a75683859873">--Spec</a></li>
+</ul>
+</li>
+</ul>
 <h1><a class="anchor" id="targets-IPackageTargets"></a>
 Packaging (IPackageTargets)</h1>
-<h2><a class="anchor" id="target-package"></a>
-package</h2>
-<p>Package the project for distribution. Same as packaging the project from the editor.</p>
 <ul>
-<li>Parameters:<ul>
-<li><code>--config</code> default is <code>development</code></li>
-<li><code>--editor-config</code> default is <code>development</code></li>
-<li><code>--platform</code> default is current development platform</li>
-<li><code>--output</code> default is <code>&lt;project root&gt;/Intermediate/Output</code>(#custom-ubt-or-uat-arguments)</li>
-<li>from `IAndroidTargets`<ul>
-<li><code>--android-texture-mode</code> default is <code>multi</code></li>
+<li><a class="el" href="../../d4/d62/interfaceNuke_1_1Unreal_1_1IPackageTargets.html#ade78138840ca91c1dbe1621905b3d93b">Package</a><ul>
+<li><a class="el" href="../../da/d58/classNuke_1_1Unreal_1_1UnrealBuild.html#a877307ca15a7c25cbdcdfe638f2cd8a3">--Config</a></li>
+<li><a class="el" href="../../da/d58/classNuke_1_1Unreal_1_1UnrealBuild.html#ae70561b354f5df171a7f731d263bf2d5">--Platform</a></li>
+<li><a class="el" href="../../da/d58/classNuke_1_1Unreal_1_1UnrealBuild.html#adf3312bad8c31bac5d86e5de335c25eb">--AndroidTextureMode</a></li>
+<li>--&gt;ubt</li>
+<li>--&gt;uat</li>
+<li>Depends on <a class="el" href="../../da/d58/classNuke_1_1Unreal_1_1UnrealBuild.html#a104f1d5903a888d52e10017bf6d2d429">BuildEditor</a></li>
+<li>After <a class="el" href="../../da/d58/classNuke_1_1Unreal_1_1UnrealBuild.html#a06637f03505c51de631cd72329ac022c">CleanDeployment</a></li>
+<li>After <a class="el" href="../../da/d58/classNuke_1_1Unreal_1_1UnrealBuild.html#a12ac3ee3a7e8084e989cd644b3cc3001">Prepare</a></li>
+<li>After <a class="el" href="../../da/d58/classNuke_1_1Unreal_1_1UnrealBuild.html#a3bd3c40093b3149d07a913819258b2ad">Cook</a></li>
 </ul>
 </li>
 </ul>
-</li>
-<li>Argument blocks:<ul>
-<li><code>--&gt;uat</code> see Custom UBT or UAT arguments</li>
-</ul>
-</li>
-<li>Graph:<ul>
-<li>Depends on <a class="el" href="#target-build-editor">build-editor</a></li>
-<li>After<ul>
-<li>clean-deployment</li>
-<li><a class="el" href="#target-cook">cook</a></li>
-<li><a class="el" href="#target-prepare">prepare</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h1><a class="anchor" id="autotoc_md13"></a>
-Targeting Android (IAndroidTargets)</h1>
+<h1><a class="anchor" id="targets-IAndroidTargets"></a>
+Android (IAndroidTargets)</h1>
 <ul>
-<li>Plans<ul>
-<li>[ ] TODO: Android targets require some tidy-up and "nicer" interaction with SDK managers (both from the Android SDK Manager and Epic's AutoSDK). Some of the targets are still experimental and probably won't lose that status in the forseeable future</li>
+<li><a class="el" href="../../d5/d74/interfaceNuke_1_1Unreal_1_1Platforms_1_1Android_1_1IAndroidBuildTargets.html#a50fb2e935f7cfcfcca2ea3cd04c67b18">CleanIntermediateAndroid</a><ul>
+<li>Only when Android platform is set</li>
+<li>Dependent for <a class="el" href="../../da/d58/classNuke_1_1Unreal_1_1UnrealBuild.html#a7a87ac137cba3f1f8a03d73a007cf9cf">Build</a></li>
+<li>Dependent for <a class="el" href="../../d4/d62/interfaceNuke_1_1Unreal_1_1IPackageTargets.html#ade78138840ca91c1dbe1621905b3d93b">Package</a></li>
+</ul>
+</li>
+<li><a class="el" href="../../d5/d74/interfaceNuke_1_1Unreal_1_1Platforms_1_1Android_1_1IAndroidBuildTargets.html#a45ffb66cf3bb75683cdca87d15ce7c44">SignApk</a><ul>
+<li>Only when Android platform is set</li>
+<li>Triggered by <a class="el" href="../../d4/d62/interfaceNuke_1_1Unreal_1_1IPackageTargets.html#ade78138840ca91c1dbe1621905b3d93b">Package</a></li>
+<li>After <a class="el" href="../../da/d58/classNuke_1_1Unreal_1_1UnrealBuild.html#a7a87ac137cba3f1f8a03d73a007cf9cf">Build</a></li>
+</ul>
+</li>
+<li><a class="el" href="../../d6/d07/interfaceNuke_1_1Unreal_1_1Platforms_1_1Android_1_1IAndroidDeployTargets.html#aec3da468b4989fb7143022823cdfaa5c">InstallOnAndroid</a><ul>
+<li>Only when Android platform is set</li>
+<li><a class="el" href="../../d6/d07/interfaceNuke_1_1Unreal_1_1Platforms_1_1Android_1_1IAndroidDeployTargets.html#a9e4f5e7ec39300672a6212d4acd9e769">--NoUninstall</a></li>
+<li>After <a class="el" href="../../d4/d62/interfaceNuke_1_1Unreal_1_1IPackageTargets.html#ade78138840ca91c1dbe1621905b3d93b">Package</a></li>
+<li>After <a class="el" href="../../da/d58/classNuke_1_1Unreal_1_1UnrealBuild.html#a7a87ac137cba3f1f8a03d73a007cf9cf">Build</a></li>
+</ul>
+</li>
+<li><a class="el" href="../../d6/d07/interfaceNuke_1_1Unreal_1_1Platforms_1_1Android_1_1IAndroidDeployTargets.html#a53d7b3c7a95f00f52006c529866b9b32">DebugOnAndroid</a><ul>
+<li>Only when Android platform is set</li>
+<li>After <a class="el" href="../../d6/d07/interfaceNuke_1_1Unreal_1_1Platforms_1_1Android_1_1IAndroidDeployTargets.html#aec3da468b4989fb7143022823cdfaa5c">InstallOnAndroid</a> </li>
 </ul>
 </li>
 </ul>
-<h2><a class="anchor" id="target-apply-sdk-user-settings"></a>
-apply-sdk-user-settings</h2>
-<p>Epic in their infinite wisdom decided to store crucial project breaking build settings in a user scoped shared location (AppData/Local on Windows). This target attempts to make it less shared info, so one project compilation doesn't break the other one if they use different Engine versions and if these settings are not solidified in <code>*Engine.ini</code>.</p>
-<ul>
-<li>Parameters:<ul>
-<li>the default for all of these are determined from engine version and the current user configuration. SDK and NDK versions and API levels can be simple numbers.</li>
-<li><code>--android-build-tool-version</code></li>
-<li><code>--android-sdk-path</code></li>
-<li><code>--android-ndk-version</code></li>
-<li><code>--android-java-path</code></li>
-<li><code>--adnroid-sdk-api-level</code></li>
-<li><code>--adnroid-ndk-api-level</code></li>
-</ul>
-</li>
-<li>Graph:<ul>
-<li>Dependent for<ul>
-<li><a class="el" href="#target-build">build</a></li>
-<li><a class="el" href="#target-cook">cook</a></li>
-<li>from <a class="el" href="#targets-IPackageTargets">IPackageTargets</a><ul>
-<li><a class="el" href="#target-package">package</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h2><a class="anchor" id="target-clean-intermediate-android"></a>
-clean-intermediate-android</h2>
-<p>During Android development workflows involving debugging Unreal programs with the generated Gradle project in Android Studio, or developing Java files, Android Studio may modify the generated Gradle project caches in a way that is unexpected for Unreal tools and which may fail in consequent builds. This target clears only the intermediate files generated for Android tooling to avoid such scenario.</p>
-<p>This target hooks itself into package and build targets so it's very rare that it has to be executed manually.</p>
-<ul>
-<li>Graph:<ul>
-<li>Dependent for<ul>
-<li><a class="el" href="#target-build">build</a></li>
-<li>from <a class="el" href="#targets-IPackageTargets">IPackageTargets</a><ul>
-<li><a class="el" href="#target-package">package</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h2><a class="anchor" id="target-sign-apk"></a>
-sign-apk</h2>
-<p>In some cases UAT or UBT fails to sign the generated APK with the data provided from <code>[/Script/AndroidRuntimeSettings.AndroidRuntimeSettings]</code> @ <code>*Engine.ini</code>, so this target does that manually directly using the Android tooling.</p>
-<ul>
-<li>Parameters:<ul>
-<li>the default for all of these are determined from engine version and the current user configuration. SDK and NDK versions and API levels can be simple numbers.</li>
-<li><code>--android-build-tool-version</code></li>
-</ul>
-</li>
-<li>Graph:<ul>
-<li>Triggered by <a class="el" href="#target-package">package</a></li>
-<li>After <a class="el" href="#target-build">build</a></li>
-<li>Before<ul>
-<li><a class="el" href="#target-install-on-android">install-on-android</a></li>
-<li><a class="el" href="#target-debug-on-android">debug-on-android</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h2><a class="anchor" id="target-install-on-android"></a>
-install-on-android</h2>
-<p>Install the result of packaging or build on a connected android device, same as the "install APK" generated batch files, but more robust. This may provide an alternative to "Launch on device" feature available in Editor but for cases when for some cursed reason that is not supported by the project, or for cases when a bug only happens in distributed or almost distributed builds.</p>
-<dl class="section warning"><dt>Warning</dt><dd>Assumes ADB is in PATH</dd></dl>
-<ul>
-<li>Parameters:<ul>
-<li>the default for all of these are determined from engine version and the current user configuration. SDK and NDK versions and API levels can be simple numbers.</li>
-<li><code>--android-build-tool-version</code></li>
-</ul>
-</li>
-<li>Graph:<ul>
-<li>After<ul>
-<li><a class="el" href="#target-package">package</a></li>
-<li><a class="el" href="#target-build">build</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h2><a class="anchor" id="target-debug-on-android"></a>
-debug-on-android</h2>
-<p>Run this project on a connected Android device from the result of packaging or build with the ActivityManager. This may provide an alternative to "Launch on device" feature available in Editor but for cases when for some cursed reason that is not supported by the project, or for cases when a bug only happens in distributed or almost distributed builds.</p>
-<dl class="section warning"><dt>Warning</dt><dd>Assumes ADB is in PATH</dd></dl>
-<ul>
-<li>Graph:<ul>
-<li>After <a class="el" href="#target-install-on-android">install-on-android</a></li>
-</ul>
-</li>
-</ul>
-<h2><a class="anchor" id="target-java-development-service"></a>
-java-development-service</h2>
-<dl class="section attention"><dt>Attention</dt><dd>This is highly experimental and only developed for specific cases, but with ambitious intents.</dd></dl>
-<p>This was an attempt to sync Java files copied into the generated Gradle project back to their original source whenever they're changed. At the moment this is very experimental, may not cover all edge cases, and if I ever return to this problem, I'll rewrite this to use symlinks instead which is set up by another target which needs to be run only once (instead of this acting as a file-system watcher service). </p>
 </div></div><!-- contents -->
 </div><!-- PageDoc -->
 </div><!-- doc-content -->

@@ -6,6 +6,7 @@ var namespaceNuke_1_1Unreal_1_1Tools =
     [ "UatConfigGenerated", "d8/d1a/classNuke_1_1Unreal_1_1Tools_1_1UatConfigGenerated.html", "d8/d1a/classNuke_1_1Unreal_1_1Tools_1_1UatConfigGenerated" ],
     [ "UbtConfig", "d9/dbc/classNuke_1_1Unreal_1_1Tools_1_1UbtConfig.html", "d9/dbc/classNuke_1_1Unreal_1_1Tools_1_1UbtConfig" ],
     [ "UbtConfigGenerated", "d7/d0d/classNuke_1_1Unreal_1_1Tools_1_1UbtConfigGenerated.html", "d7/d0d/classNuke_1_1Unreal_1_1Tools_1_1UbtConfigGenerated" ],
+    [ "UnrealProcessAssert", "dc/d09/classNuke_1_1Unreal_1_1Tools_1_1UnrealProcessAssert.html", null ],
     [ "Arm64TargetCpuType", "d1/d0f/namespaceNuke_1_1Unreal_1_1Tools.html#ac1386e60f09fb6be2a0ca1eb96a438cf", [
       [ "Default", "d1/d0f/namespaceNuke_1_1Unreal_1_1Tools.html#ac1386e60f09fb6be2a0ca1eb96a438cfa7a1920d61156abc05a60135aefe8bc67", null ],
       [ "Graviton2", "d1/d0f/namespaceNuke_1_1Unreal_1_1Tools.html#ac1386e60f09fb6be2a0ca1eb96a438cfa2ae80aa71a31b1348f738e94b99ad074", null ],
@@ -144,6 +145,7 @@ var namespaceNuke_1_1Unreal_1_1Tools =
       [ "Text", "d1/d0f/namespaceNuke_1_1Unreal_1_1Tools.html#a00633c4d83af73d934b873ff3c51a950a9dffbf69ffba8bc38bc4e01abf4b1675", null ],
       [ "Html", "d1/d0f/namespaceNuke_1_1Unreal_1_1Tools.html#a00633c4d83af73d934b873ff3c51a950a3135f4019bee015e2d1ae7f77f9f3f64", null ]
     ] ],
+    [ "UnrealProcessException", "d1/d0f/namespaceNuke_1_1Unreal_1_1Tools.html#a6276a2add404250dd52b4ec464419c74", null ],
     [ "UnrealToolArgument", "d1/d0f/namespaceNuke_1_1Unreal_1_1Tools.html#ab9904046568abecdd8ba4c1a6f1de2b0", null ],
     [ "UnrealToolArgumentMeta", "d1/d0f/namespaceNuke_1_1Unreal_1_1Tools.html#ad9cdceab443ecbcac4c9361b3573a639", null ]
 ];

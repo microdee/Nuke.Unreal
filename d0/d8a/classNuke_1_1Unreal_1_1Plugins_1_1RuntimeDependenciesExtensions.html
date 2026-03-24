@@ -124,15 +124,15 @@ $(function(){initNavTree('d0/d8a/classNuke_1_1Unreal_1_1Plugins_1_1RuntimeDepend
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:a21f645a8ef86ec067dc0a83e8edd08c9" id="r_a21f645a8ef86ec067dc0a83e8edd08c9"><td class="memItemLeft" align="right" valign="top">static IEnumerable&lt; ImportedItem &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a21f645a8ef86ec067dc0a83e8edd08c9">PrepareRuntimeDependencies</a> (this <a class="el" href="../../da/d58/classNuke_1_1Unreal_1_1UnrealBuild.html">UnrealBuild</a> self, AbsolutePath sourceFolder, IEnumerable&lt; <a class="el" href="../../d1/d6a/classNuke_1_1Unreal_1_1Plugins_1_1RuntimeLibraryPath.html">RuntimeLibraryPath</a> &gt; runtimeLibraryPaths, Func&lt; AbsolutePath, RuntimeDependencyConfig &gt;? determineConfig=null, Func&lt; AbsolutePath, <a class="el" href="../../d5/dc0/classNuke_1_1Unreal_1_1UnrealPlatform.html">UnrealPlatform</a> &gt;? determinePlatform=null, string? moduleName=null, AbsolutePath? pluginFolder=null, ExportManifest? customManifest=null, string manifestFilePattern=&quot;RuntimeDeps.y*ml&quot;, string binariesSubfolder=&quot;ThirdParty&quot;, AbsolutePath? moduleRuleOutput=null, bool setFilterPlugin=true, bool pretend=false)</td></tr>
-<tr class="separator:a21f645a8ef86ec067dc0a83e8edd08c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2542d78aaa936f2ccbe24e5d74b08239" id="r_a2542d78aaa936f2ccbe24e5d74b08239"><td class="memItemLeft" align="right" valign="top">static IEnumerable&lt; ImportedItem &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2542d78aaa936f2ccbe24e5d74b08239">PrepareRuntimeDependencies</a> (this <a class="el" href="../../d4/d7c/interfaceNuke_1_1Unreal_1_1IUnrealBuild.html">IUnrealBuild</a> build, AbsolutePath sourceFolder, IEnumerable&lt; <a class="el" href="../../d1/d6a/classNuke_1_1Unreal_1_1Plugins_1_1RuntimeLibraryPath.html">RuntimeLibraryPath</a> &gt; runtimeLibraryPaths, Func&lt; AbsolutePath, RuntimeDependencyConfig &gt;? determineConfig=null, Func&lt; AbsolutePath, <a class="el" href="../../d5/dc0/classNuke_1_1Unreal_1_1UnrealPlatform.html">UnrealPlatform</a> &gt;? determinePlatform=null, string? moduleName=null, AbsolutePath? pluginFolder=null, ExportManifest? customManifest=null, string manifestFilePattern=&quot;RuntimeDeps.y*ml&quot;, string binariesSubfolder=&quot;ThirdParty&quot;, AbsolutePath? moduleRuleOutput=null, bool setFilterPlugin=true, bool pretend=false)</td></tr>
+<tr class="separator:a2542d78aaa936f2ccbe24e5d74b08239"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock">
 <p class="definition">Definition at line <a class="el" href="../../d9/db5/AutoRuntimeDependencies_8cs_source.html#l00061">61</a> of file <a class="el" href="../../d9/db5/AutoRuntimeDependencies_8cs_source.html">AutoRuntimeDependencies.cs</a>.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
-<a id="a21f645a8ef86ec067dc0a83e8edd08c9" name="a21f645a8ef86ec067dc0a83e8edd08c9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a21f645a8ef86ec067dc0a83e8edd08c9">&#9670;&#160;</a></span>PrepareRuntimeDependencies()</h2>
+<a id="a2542d78aaa936f2ccbe24e5d74b08239" name="a2542d78aaa936f2ccbe24e5d74b08239"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2542d78aaa936f2ccbe24e5d74b08239">&#9670;&#160;</a></span>PrepareRuntimeDependencies()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -143,7 +143,7 @@ Static Public Member Functions</h2></td></tr>
         <tr>
           <td class="memname">static IEnumerable&lt; ImportedItem &gt; Nuke.Unreal.Plugins.RuntimeDependenciesExtensions.PrepareRuntimeDependencies </td>
           <td>(</td>
-          <td class="paramtype">this <a class="el" href="../../da/d58/classNuke_1_1Unreal_1_1UnrealBuild.html">UnrealBuild</a></td>          <td class="paramname"><span class="paramname"><em>self</em></span>, </td>
+          <td class="paramtype">this <a class="el" href="../../d4/d7c/interfaceNuke_1_1Unreal_1_1IUnrealBuild.html">IUnrealBuild</a></td>          <td class="paramname"><span class="paramname"><em>build</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -257,7 +257,7 @@ If no such manifest is available one can be passed directly in C#  </li>
 </div><!-- fragment --><p>This will create a "copy" of the binaries subfolder in Plugin sources, so Fab compatibility can be ensured. This "copy" is just done with symlinks, not actual copies of binaries. This wisdom has been bestowed upon us by the author of CefView <a href="https://forums.unrealengine.com/t/copy-3rd-party-dlls-to-binaries-folder-does-not-work-for-engine-plugin-how-to-solve/738255/6">https://forums.unrealengine.com/t/copy-3rd-party-dlls-to-binaries-folder-does-not-work-for-engine-plugin-how-to-solve/738255/6</a> </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">self</td><td></td></tr>
+    <tr><td class="paramname">build</td><td></td></tr>
     <tr><td class="paramname">sourceFolder</td><td>Required. The root folder of the third-party library. Ideally the same folder as the external module representing the library for <a class="el" href="../../d3/d98/classNuke_1_1Unreal_1_1Unreal.html" title="A collection of utilities around basic functions regarding the environment of the Engine we&#39;re workin...">Unreal</a>. </td></tr>
     <tr><td class="paramname">runtimeLibraryPaths</td><td>Required. A a set of locations in runtime, relative to the destination folder serving as runtime library paths (ideally one for each supported platforms). This may be used as base folders to load DLL's from. </td></tr>
     <tr><td class="paramname">determineConfig</td><td>Optional. Determin a configuration (either debug or release) from a given runtime dependency file. If the file is needed in all configurations return <code>RuntimeDependencyConfig.All</code>. This predicate is also applied to DLL's, there are no assumptions about them, solely based on their file paths. By default every file is assumed for all configurations. </td></tr>

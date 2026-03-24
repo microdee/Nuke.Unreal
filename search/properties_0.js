@@ -1,7 +1,7 @@
 var searchData=
 [
-  ['cliname_0',['CliName',['../db/d40/classNuke_1_1Unreal_1_1Tools_1_1ToolConfig.html#a7fc33733ec364a22205200be8cc560d5',1,'Nuke::Unreal::Tools::ToolConfig']]],
-  ['commands_1',['Commands',['../da/d73/classNuke_1_1Unreal_1_1Ini_1_1ConfigSection.html#a7493af14717f51649d1c0151f666387c',1,'Nuke::Unreal::Ini::ConfigSection']]],
-  ['commenttext_2',['CommentText',['../db/ded/structNuke_1_1Unreal_1_1Ini_1_1ConfigCommand.html#ac4ba488f6676edc41d8630607798814b',1,'Nuke::Unreal::Ini::ConfigCommand']]],
-  ['compatibility_3',['Compatibility',['../db/d1d/classNuke_1_1Unreal_1_1EngineVersion.html#a8c4a00bc51fe0372fa9a5e30efc947e2',1,'Nuke.Unreal.EngineVersion.Compatibility'],['../db/d40/classNuke_1_1Unreal_1_1Tools_1_1ToolConfig.html#a24329cb8d307079c40e190f44d35cba7',1,'Nuke.Unreal.Tools.ToolConfig.Compatibility'],['../d5/dc0/classNuke_1_1Unreal_1_1UnrealPlatform.html#aa5a151c99bb89c7c181f28ec94e7f09d',1,'Nuke.Unreal.UnrealPlatform.Compatibility']]]
+  ['addcode_0',['AddCode',['../d4/d7c/interfaceNuke_1_1Unreal_1_1IUnrealBuild.html#a5390190f84efac5bb805bfa08c250e39',1,'Nuke.Unreal.IUnrealBuild.AddCode'],['../da/d58/classNuke_1_1Unreal_1_1UnrealBuild.html#a5928bd01df63b3773ced65305bd9bd40',1,'Nuke.Unreal.UnrealBuild.AddCode']]],
+  ['addtotarget_1',['AddToTarget',['../da/d58/classNuke_1_1Unreal_1_1UnrealBuild.html#ab54062a64a8262c824d1ca95eeee1157',1,'Nuke::Unreal::UnrealBuild']]],
+  ['androidtexturemode_2',['AndroidTextureMode',['../d4/d7c/interfaceNuke_1_1Unreal_1_1IUnrealBuild.html#a371f9a5a9abd68dfb32898f5b9c796d8',1,'Nuke.Unreal.IUnrealBuild.AndroidTextureMode'],['../da/d58/classNuke_1_1Unreal_1_1UnrealBuild.html#adf3312bad8c31bac5d86e5de335c25eb',1,'Nuke.Unreal.UnrealBuild.AndroidTextureMode']]],
+  ['appname_3',['AppName',['../d5/d74/interfaceNuke_1_1Unreal_1_1Platforms_1_1Android_1_1IAndroidBuildTargets.html#aa5f56aad6b4516a68e9f93ee83b87fff',1,'Nuke::Unreal::Platforms::Android::IAndroidBuildTargets']]]
 ];

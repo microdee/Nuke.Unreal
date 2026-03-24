@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['descriptor_0',['Descriptor',['../d0/ded/classNuke_1_1Unreal_1_1Plugins_1_1UnrealPlugin.html#a774884bd1f8a7c57f5cdaed4c8f4e049',1,'Nuke::Unreal::Plugins::UnrealPlugin']]],
-  ['dllextension_1',['DllExtension',['../d5/dc0/classNuke_1_1Unreal_1_1UnrealPlatform.html#a1b5bdbc79aab9f8340a77b1e9d0fbced',1,'Nuke::Unreal::UnrealPlatform']]]
+  ['build_0',['Build',['../d4/d7c/interfaceNuke_1_1Unreal_1_1IUnrealBuild.html#a6e395776db423cca9fe085014e14b0db',1,'Nuke.Unreal.IUnrealBuild.Build'],['../da/d58/classNuke_1_1Unreal_1_1UnrealBuild.html#a7a87ac137cba3f1f8a03d73a007cf9cf',1,'Nuke.Unreal.UnrealBuild.Build']]],
+  ['buildeditor_1',['BuildEditor',['../d4/d7c/interfaceNuke_1_1Unreal_1_1IUnrealBuild.html#a9cc31b504d5420ec6f74675f0d3d7883',1,'Nuke.Unreal.IUnrealBuild.BuildEditor'],['../da/d58/classNuke_1_1Unreal_1_1UnrealBuild.html#a104f1d5903a888d52e10017bf6d2d429',1,'Nuke.Unreal.UnrealBuild.BuildEditor']]]
 ];

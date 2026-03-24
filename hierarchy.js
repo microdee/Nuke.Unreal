@@ -1,5 +1,6 @@
 var hierarchy =
 [
+    [ "Nuke.Unreal.Platforms.Android.AndroidBuildCommon", "d0/de4/classNuke_1_1Unreal_1_1Platforms_1_1Android_1_1AndroidBuildCommon.html", null ],
     [ "Nuke.Unreal.BoilerplateGenerators.BoilerplateGenerator", "df/d35/classNuke_1_1Unreal_1_1BoilerplateGenerators_1_1BoilerplateGenerator.html", [
       [ "Nuke.Unreal.BoilerplateGenerators.LibraryGenerator", "d6/d9f/classNuke_1_1Unreal_1_1BoilerplateGenerators_1_1LibraryGenerator.html", null ],
       [ "Nuke.Unreal.BoilerplateGenerators.ModuleGenerator", "d9/d33/classNuke_1_1Unreal_1_1BoilerplateGenerators_1_1ModuleGenerator.html", null ],
@@ -22,10 +23,9 @@ var hierarchy =
     [ "Nuke.Unreal.Ini.ConfigSection", "da/d73/classNuke_1_1Unreal_1_1Ini_1_1ConfigSection.html", null ],
     [ "Nuke.Unreal.EngineVersion", "db/d1d/classNuke_1_1Unreal_1_1EngineVersion.html", null ],
     [ "Enumeration", null, [
-      [ "Nuke.Unreal.AndroidCookFlavor", "d0/dca/classNuke_1_1Unreal_1_1AndroidCookFlavor.html", null ],
-      [ "Nuke.Unreal.AndroidDebuggerBackend", "d3/ded/classNuke_1_1Unreal_1_1AndroidDebuggerBackend.html", null ],
-      [ "Nuke.Unreal.AndroidProcessorArchitecture", "d6/d93/classNuke_1_1Unreal_1_1AndroidProcessorArchitecture.html", null ],
       [ "Nuke.Unreal.BoilerplateGenerators.LibraryType", "d4/d9d/classNuke_1_1Unreal_1_1BoilerplateGenerators_1_1LibraryType.html", null ],
+      [ "Nuke.Unreal.Platforms.Android.AndroidCookFlavor", "d0/dd8/classNuke_1_1Unreal_1_1Platforms_1_1Android_1_1AndroidCookFlavor.html", null ],
+      [ "Nuke.Unreal.Platforms.Android.AndroidProcessorArchitecture", "dd/d58/classNuke_1_1Unreal_1_1Platforms_1_1Android_1_1AndroidProcessorArchitecture.html", null ],
       [ "Nuke.Unreal.UnrealConfig", "d7/dd2/classNuke_1_1Unreal_1_1UnrealConfig.html", null ],
       [ "Nuke.Unreal.UnrealPlatform", "d5/dc0/classNuke_1_1Unreal_1_1UnrealPlatform.html", null ],
       [ "Nuke.Unreal.UnrealTargetType", "d7/dcc/classNuke_1_1Unreal_1_1UnrealTargetType.html", null ]
@@ -33,17 +33,27 @@ var hierarchy =
     [ "Exception", null, [
       [ "Nuke.Unreal.BoilerplateGenerators.ScribanParseException", "d1/db8/classNuke_1_1Unreal_1_1BoilerplateGenerators_1_1ScribanParseException.html", null ]
     ] ],
-    [ "Nuke.Unreal.FLASHWINFO", "df/d03/structNuke_1_1Unreal_1_1FLASHWINFO.html", null ],
     [ "ICloneable", null, [
       [ "Nuke.Unreal.UnrealPlatform", "d5/dc0/classNuke_1_1Unreal_1_1UnrealPlatform.html", null ]
     ] ],
     [ "INukeBuild", null, [
-      [ "Nuke.Unreal.IAndroidTargets", "d9/d9f/interfaceNuke_1_1Unreal_1_1IAndroidTargets.html", [
-        [ "Nuke.Unreal.AndroidTargets", "dd/d3f/classNuke_1_1Unreal_1_1AndroidTargets.html", null ]
-      ] ],
-      [ "Nuke.Unreal.IPackageTargets", "d4/d62/interfaceNuke_1_1Unreal_1_1IPackageTargets.html", [
-        [ "Nuke.Unreal.PackageTargets", "d7/d68/classNuke_1_1Unreal_1_1PackageTargets.html", null ]
+      [ "Nuke.Unreal.IUnrealBuild", "d4/d7c/interfaceNuke_1_1Unreal_1_1IUnrealBuild.html", [
+        [ "Nuke.Unreal.IPackageTargets", "d4/d62/interfaceNuke_1_1Unreal_1_1IPackageTargets.html", null ],
+        [ "Nuke.Unreal.Platforms.Android.IAndroidBuildTargets", "d5/d74/interfaceNuke_1_1Unreal_1_1Platforms_1_1Android_1_1IAndroidBuildTargets.html", null ],
+        [ "Nuke.Unreal.Platforms.Android.IAndroidDeployTargets", "d6/d07/interfaceNuke_1_1Unreal_1_1Platforms_1_1Android_1_1IAndroidDeployTargets.html", null ],
+        [ "Nuke.Unreal.UnrealBuild", "da/d58/classNuke_1_1Unreal_1_1UnrealBuild.html", [
+          [ "Nuke.Unreal.UnrealBuildTest", "d0/d8d/classNuke_1_1Unreal_1_1UnrealBuildTest.html", null ]
+        ] ],
+        [ "Nuke.Unreal.UnrealBuild", "da/d58/classNuke_1_1Unreal_1_1UnrealBuild.html", null ],
+        [ "Nuke.Unreal.UnrealBuild", "da/d58/classNuke_1_1Unreal_1_1UnrealBuild.html", null ],
+        [ "Nuke.Unreal.UnrealBuild", "da/d58/classNuke_1_1Unreal_1_1UnrealBuild.html", null ]
       ] ]
+    ] ],
+    [ "Nuke.Unreal.Platforms.IPlatformSdk", "dd/d12/interfaceNuke_1_1Unreal_1_1Platforms_1_1IPlatformSdk.html", [
+      [ "Nuke.Unreal.Platforms.Android.AndroidSdk", "d7/d21/classNuke_1_1Unreal_1_1Platforms_1_1Android_1_1AndroidSdk.html", [
+        [ "Nuke.Unreal.Platforms.Android.WindowsHostsAndroid", "de/da1/classNuke_1_1Unreal_1_1Platforms_1_1Android_1_1WindowsHostsAndroid.html", null ]
+      ] ],
+      [ "Nuke.Unreal.Platforms.Linux.WindowsHostsLinux", "dd/d3a/classNuke_1_1Unreal_1_1Platforms_1_1Linux_1_1WindowsHostsLinux.html", null ]
     ] ],
     [ "Nuke.Unreal.IUnrealLocator", "db/d85/interfaceNuke_1_1Unreal_1_1IUnrealLocator.html", [
       [ "Nuke.Unreal.GenericUnrealLocator", "de/d5d/classNuke_1_1Unreal_1_1GenericUnrealLocator.html", null ],
@@ -54,11 +64,7 @@ var hierarchy =
       [ "Nuke.Unreal.UnrealPlatformJsonConverter", "d9/d92/classNuke_1_1Unreal_1_1UnrealPlatformJsonConverter.html", null ]
     ] ],
     [ "NukeBuild", null, [
-      [ "Nuke.Unreal.AndroidTargets", "dd/d3f/classNuke_1_1Unreal_1_1AndroidTargets.html", null ],
-      [ "Nuke.Unreal.PackageTargets", "d7/d68/classNuke_1_1Unreal_1_1PackageTargets.html", null ],
-      [ "Nuke.Unreal.UnrealBuild", "da/d58/classNuke_1_1Unreal_1_1UnrealBuild.html", [
-        [ "Nuke.Unreal.UnrealBuildTest", "d0/d8d/classNuke_1_1Unreal_1_1UnrealBuildTest.html", null ]
-      ] ],
+      [ "Nuke.Unreal.UnrealBuild", "da/d58/classNuke_1_1Unreal_1_1UnrealBuild.html", null ],
       [ "Nuke.Unreal.UnrealBuild", "da/d58/classNuke_1_1Unreal_1_1UnrealBuild.html", null ],
       [ "Nuke.Unreal.UnrealBuild", "da/d58/classNuke_1_1Unreal_1_1UnrealBuild.html", null ],
       [ "Nuke.Unreal.UnrealBuild", "da/d58/classNuke_1_1Unreal_1_1UnrealBuild.html", null ]
@@ -319,20 +325,24 @@ var hierarchy =
         [ "Nuke.Unreal.Tools.UbtConfigGenerated.WriteMetadataConfig", "d6/d18/classNuke_1_1Unreal_1_1Tools_1_1UbtConfigGenerated_1_1WriteMetadataConfig.html", null ]
       ] ]
     ] ],
+    [ "Nuke.Unreal.Platforms.PlatformSdkManager", "da/d04/classNuke_1_1Unreal_1_1Platforms_1_1PlatformSdkManager.html", null ],
     [ "Nuke.Unreal.Plugins.RuntimeDependencies", "d0/d02/classNuke_1_1Unreal_1_1Plugins_1_1RuntimeDependencies.html", null ],
     [ "Nuke.Unreal.Plugins.RuntimeDependenciesExtensions", "d0/d8a/classNuke_1_1Unreal_1_1Plugins_1_1RuntimeDependenciesExtensions.html", null ],
     [ "Nuke.Unreal.Plugins.RuntimeDependency", "d6/d7e/classNuke_1_1Unreal_1_1Plugins_1_1RuntimeDependency.html", null ],
     [ "Nuke.Unreal.Plugins.RuntimeLibraryPath", "d1/d6a/classNuke_1_1Unreal_1_1Plugins_1_1RuntimeLibraryPath.html", null ],
+    [ "Nuke.Unreal.SevenZip", "d8/d11/classNuke_1_1Unreal_1_1SevenZip.html", null ],
     [ "Nuke.Unreal.Tools.ToolConfigExtensions", "d3/d4d/classNuke_1_1Unreal_1_1Tools_1_1ToolConfigExtensions.html", null ],
     [ "Nuke.Unreal.Unreal", "d3/d98/classNuke_1_1Unreal_1_1Unreal.html", null ],
     [ "Nuke.Unreal.UnrealLocator", "de/dbf/classNuke_1_1Unreal_1_1UnrealLocator.html", null ],
     [ "Nuke.Unreal.Plugins.UnrealPlugin", "d0/ded/classNuke_1_1Unreal_1_1Plugins_1_1UnrealPlugin.html", null ],
     [ "Nuke.Unreal.Plugins.UnrealPluginExtensions", "d9/d96/classNuke_1_1Unreal_1_1Plugins_1_1UnrealPluginExtensions.html", null ],
+    [ "Nuke.Unreal.Tools.UnrealProcessAssert", "dc/d09/classNuke_1_1Unreal_1_1Tools_1_1UnrealProcessAssert.html", null ],
     [ "Nuke.Unreal.BoilerplateGenerators.UnrealSourceUnit", "dc/d48/classNuke_1_1Unreal_1_1BoilerplateGenerators_1_1UnrealSourceUnit.html", [
       [ "Nuke.Unreal.BoilerplateGenerators.UnrealModule", "d8/d13/classNuke_1_1Unreal_1_1BoilerplateGenerators_1_1UnrealModule.html", null ],
       [ "Nuke.Unreal.BoilerplateGenerators.UnrealPlugin", "d0/dde/classNuke_1_1Unreal_1_1BoilerplateGenerators_1_1UnrealPlugin.html", null ],
       [ "Nuke.Unreal.BoilerplateGenerators.UnrealProject", "d4/d8a/classNuke_1_1Unreal_1_1BoilerplateGenerators_1_1UnrealProject.html", null ]
     ] ],
+    [ "Nuke.Unreal.VersionExtensions", "d0/d92/classNuke_1_1Unreal_1_1VersionExtensions.html", null ],
     [ "Nuke.Unreal.BoilerplateGenerators.XRepo.XRepoLibrary", "df/d60/classNuke_1_1Unreal_1_1BoilerplateGenerators_1_1XRepo_1_1XRepoLibrary.html", null ],
     [ "Nuke.Unreal.BoilerplateGenerators.XRepo.XRepoUtils", "de/da4/classNuke_1_1Unreal_1_1BoilerplateGenerators_1_1XRepo_1_1XRepoUtils.html", null ]
 ];

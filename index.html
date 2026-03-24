@@ -120,7 +120,7 @@ $(function(){initNavTree('index.html',''); initResizable(true); });
 <div class="contents">
 <div class="textblock"><p><a class="anchor" id="mainpage"></a></p>
 <div align="center"></div><div align="center"><img src="nu.full.onLight.svg" alt="light-mode" style="pointer-events: none;" width="540px" class="inline"/> <img src="nu.full.onDark.svg" alt="dark-mode" style="pointer-events: none;" width="540px" class="inline"/></div><div align="center"><img src="https://badgen.net/nuget/v/md.Nuke.Unreal" alt="" class="inline"/></div><div align="center">&#160;</div><div align="center"><b><a href="https://github.com/microdee/Nuke.Unreal">Source code</a></b></div><div align="center"></div><p>Elegant workflow for automating Unreal Engine project tasks embracing <a href="https://nuke.build">Nuke</a>, providing a consistent way to use UE4/5 tools and reducing chores they come with.</p>
-<h1><a class="anchor" id="autotoc_md8"></a>
+<h1><a class="anchor" id="autotoc_md10"></a>
 Features:</h1>
 <ul>
 <li>All what the great <a href="https://nuke.build">Nuke</a> can offer</li>
@@ -137,7 +137,7 @@ Features:</h1>
 <div class="line">&gt; nuke run-shell</div>
 <div class="line">&gt; nuke run --tool editor-cmd --&gt; &lt;args...&gt;</div>
 </div><!-- fragment --></li>
-<li>Install C++ libraries (using <a href="https://xrepo.xmake.io">xrepo</a>) <div class="fragment"><div class="line">&gt; nuke use-xrepo --spec &quot;imgui 1.91.1 freetype=true&quot; &quot;vcpkg::ryml[dbg]&quot; &quot;conan::zlib/1.2.11&quot;</div>
+<li>Install C++ libraries (using <a href="https://xrepo.xmake.io">xrepo</a>) <div class="fragment"><div class="line">&gt; nuke use-xrepo --spec &quot;imgui 1.91.1 freetype=true&quot; &quot;yaml-cpp&quot; &quot;zlib 1.2.11&quot;</div>
 <div class="line">&gt; nuke generate</div>
 </div><!-- fragment --></li>
 <li>Generate boilerplate code and scaffolding from <a href="https://github.com/scriban/scriban">Scriban</a> templates so no editor needs to be opened <div class="fragment"><div class="line">&gt; nuke new-actor --name MyActor</div>

@@ -119,13 +119,37 @@ $(function(){initNavTree('da/dc1/FAQ.html','../../'); initResizable(true); });
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><p><a class="anchor" id="md_Manual_2FAQ"></a></p>
-<h1><a class="anchor" id="autotoc_md4"></a>
+<h1><a class="anchor" id="autotoc_md5"></a>
 Installation</h1>
 <blockquote class="doxtable">
 <p>&zwj;Do I need to install <a class="el" href="../../d0/d55/namespaceNuke_1_1Unreal.html">Nuke.Unreal</a> (and so the Nuke.Targets folder) directly next to my <code>.uproject</code> file? </p>
 </blockquote>
 <p><b>No.</b> <a class="el" href="../../d0/d55/namespaceNuke_1_1Unreal.html">Nuke.Unreal</a> can look for your project file in the sub-directories of its parent folder, or any of the parent folders (except system root ofc).</p>
-<h1><a class="anchor" id="autotoc_md5"></a>
+<h1><a class="anchor" id="autotoc_md6"></a>
+Usage</h1>
+<blockquote class="doxtable">
+<p>&zwj;What platforms <a class="el" href="../../d0/d55/namespaceNuke_1_1Unreal.html">Nuke.Unreal</a> can be used on? </p>
+</blockquote>
+<p>Since I'm a Windows peasant <a class="el" href="../../d0/d55/namespaceNuke_1_1Unreal.html">Nuke.Unreal</a> also works best on Windows. Currently features are only tested in Windows. As for working with target platforms ('guest' or 'cross-compiled') check the following table:</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadRight"></th><th class="markdownTableHeadCenter">Windows   </th><th class="markdownTableHeadCenter">Linux   </th><th class="markdownTableHeadCenter">Mac¹    </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyRight">Windows   </td><td class="markdownTableBodyCenter">✔   </td><td class="markdownTableBodyCenter">❌   </td><td class="markdownTableBodyCenter">❌    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyRight">Linux   </td><td class="markdownTableBodyCenter">✔   </td><td class="markdownTableBodyCenter">✔   </td><td class="markdownTableBodyCenter">❌    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyRight">MacOS   </td><td class="markdownTableBodyCenter">❌   </td><td class="markdownTableBodyCenter">❌   </td><td class="markdownTableBodyCenter">??    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyRight">Android   </td><td class="markdownTableBodyCenter">✔   </td><td class="markdownTableBodyCenter">✔   </td><td class="markdownTableBodyCenter">??    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyRight">Apple²   </td><td class="markdownTableBodyCenter">❌   </td><td class="markdownTableBodyCenter">❌   </td><td class="markdownTableBodyCenter">??   </td></tr>
+</table>
+<ol type="1">
+<li>Apple platforms are untested by <a class="el" href="../../d0/d55/namespaceNuke_1_1Unreal.html">Nuke.Unreal</a> and I'm not eager to make it work either because of the walled-garden Apple is infamous for.</li>
+<li>IOS / TVOS / VisionOS</li>
+</ol>
+<h1><a class="anchor" id="autotoc_md7"></a>
 Plugins</h1>
 <blockquote class="doxtable">
 <p>&zwj;Does <a class="el" href="../../d0/d55/namespaceNuke_1_1Unreal.html">Nuke.Unreal</a> require all the non-sense that is written in <a class="el" href="../../d5/d8c/PluginSetup.html">Setting up for plugin development</a>? </p>

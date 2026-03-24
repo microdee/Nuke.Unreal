@@ -32,6 +32,22 @@ var annotated_dup =
           [ "ConfigIni", "da/ddb/classNuke_1_1Unreal_1_1Ini_1_1ConfigIni.html", "da/ddb/classNuke_1_1Unreal_1_1Ini_1_1ConfigIni" ],
           [ "ConfigSection", "da/d73/classNuke_1_1Unreal_1_1Ini_1_1ConfigSection.html", "da/d73/classNuke_1_1Unreal_1_1Ini_1_1ConfigSection" ]
         ] ],
+        [ "Platforms", "da/dfa/namespaceNuke_1_1Unreal_1_1Platforms.html", [
+          [ "Android", "db/de7/namespaceNuke_1_1Unreal_1_1Platforms_1_1Android.html", [
+            [ "AndroidBuildCommon", "d0/de4/classNuke_1_1Unreal_1_1Platforms_1_1Android_1_1AndroidBuildCommon.html", null ],
+            [ "AndroidCookFlavor", "d0/dd8/classNuke_1_1Unreal_1_1Platforms_1_1Android_1_1AndroidCookFlavor.html", null ],
+            [ "AndroidProcessorArchitecture", "dd/d58/classNuke_1_1Unreal_1_1Platforms_1_1Android_1_1AndroidProcessorArchitecture.html", null ],
+            [ "AndroidSdk", "d7/d21/classNuke_1_1Unreal_1_1Platforms_1_1Android_1_1AndroidSdk.html", "d7/d21/classNuke_1_1Unreal_1_1Platforms_1_1Android_1_1AndroidSdk" ],
+            [ "IAndroidBuildTargets", "d5/d74/interfaceNuke_1_1Unreal_1_1Platforms_1_1Android_1_1IAndroidBuildTargets.html", "d5/d74/interfaceNuke_1_1Unreal_1_1Platforms_1_1Android_1_1IAndroidBuildTargets" ],
+            [ "IAndroidDeployTargets", "d6/d07/interfaceNuke_1_1Unreal_1_1Platforms_1_1Android_1_1IAndroidDeployTargets.html", "d6/d07/interfaceNuke_1_1Unreal_1_1Platforms_1_1Android_1_1IAndroidDeployTargets" ],
+            [ "WindowsHostsAndroid", "de/da1/classNuke_1_1Unreal_1_1Platforms_1_1Android_1_1WindowsHostsAndroid.html", "de/da1/classNuke_1_1Unreal_1_1Platforms_1_1Android_1_1WindowsHostsAndroid" ]
+          ] ],
+          [ "Linux", "d6/d23/namespaceNuke_1_1Unreal_1_1Platforms_1_1Linux.html", [
+            [ "WindowsHostsLinux", "dd/d3a/classNuke_1_1Unreal_1_1Platforms_1_1Linux_1_1WindowsHostsLinux.html", "dd/d3a/classNuke_1_1Unreal_1_1Platforms_1_1Linux_1_1WindowsHostsLinux" ]
+          ] ],
+          [ "IPlatformSdk", "dd/d12/interfaceNuke_1_1Unreal_1_1Platforms_1_1IPlatformSdk.html", "dd/d12/interfaceNuke_1_1Unreal_1_1Platforms_1_1IPlatformSdk" ],
+          [ "PlatformSdkManager", "da/d04/classNuke_1_1Unreal_1_1Platforms_1_1PlatformSdkManager.html", "da/d04/classNuke_1_1Unreal_1_1Platforms_1_1PlatformSdkManager" ]
+        ] ],
         [ "Plugins", "dd/d1b/namespaceNuke_1_1Unreal_1_1Plugins.html", [
           [ "AutoRuntimeDependencyGenerator", "dc/df5/classNuke_1_1Unreal_1_1Plugins_1_1AutoRuntimeDependencyGenerator.html", null ],
           [ "RuntimeDependencies", "d0/d02/classNuke_1_1Unreal_1_1Plugins_1_1RuntimeDependencies.html", null ],
@@ -47,21 +63,17 @@ var annotated_dup =
           [ "UatConfig", "d4/d4a/classNuke_1_1Unreal_1_1Tools_1_1UatConfig.html", "d4/d4a/classNuke_1_1Unreal_1_1Tools_1_1UatConfig" ],
           [ "UatConfigGenerated", "d8/d1a/classNuke_1_1Unreal_1_1Tools_1_1UatConfigGenerated.html", "d8/d1a/classNuke_1_1Unreal_1_1Tools_1_1UatConfigGenerated" ],
           [ "UbtConfig", "d9/dbc/classNuke_1_1Unreal_1_1Tools_1_1UbtConfig.html", "d9/dbc/classNuke_1_1Unreal_1_1Tools_1_1UbtConfig" ],
-          [ "UbtConfigGenerated", "d7/d0d/classNuke_1_1Unreal_1_1Tools_1_1UbtConfigGenerated.html", "d7/d0d/classNuke_1_1Unreal_1_1Tools_1_1UbtConfigGenerated" ]
+          [ "UbtConfigGenerated", "d7/d0d/classNuke_1_1Unreal_1_1Tools_1_1UbtConfigGenerated.html", "d7/d0d/classNuke_1_1Unreal_1_1Tools_1_1UbtConfigGenerated" ],
+          [ "UnrealProcessAssert", "dc/d09/classNuke_1_1Unreal_1_1Tools_1_1UnrealProcessAssert.html", null ]
         ] ],
-        [ "AndroidCookFlavor", "d0/dca/classNuke_1_1Unreal_1_1AndroidCookFlavor.html", null ],
-        [ "AndroidDebuggerBackend", "d3/ded/classNuke_1_1Unreal_1_1AndroidDebuggerBackend.html", null ],
-        [ "AndroidProcessorArchitecture", "d6/d93/classNuke_1_1Unreal_1_1AndroidProcessorArchitecture.html", null ],
-        [ "AndroidTargets", "dd/d3f/classNuke_1_1Unreal_1_1AndroidTargets.html", null ],
         [ "BuildCommon", "d3/d16/classNuke_1_1Unreal_1_1BuildCommon.html", "d3/d16/classNuke_1_1Unreal_1_1BuildCommon" ],
         [ "EngineVersion", "db/d1d/classNuke_1_1Unreal_1_1EngineVersion.html", "db/d1d/classNuke_1_1Unreal_1_1EngineVersion" ],
         [ "EnumerationJsonConverter", "d0/d13/classNuke_1_1Unreal_1_1EnumerationJsonConverter.html", null ],
-        [ "FLASHWINFO", "df/d03/structNuke_1_1Unreal_1_1FLASHWINFO.html", null ],
         [ "GenericUnrealLocator", "de/d5d/classNuke_1_1Unreal_1_1GenericUnrealLocator.html", "de/d5d/classNuke_1_1Unreal_1_1GenericUnrealLocator" ],
-        [ "IAndroidTargets", "d9/d9f/interfaceNuke_1_1Unreal_1_1IAndroidTargets.html", null ],
         [ "IPackageTargets", "d4/d62/interfaceNuke_1_1Unreal_1_1IPackageTargets.html", "d4/d62/interfaceNuke_1_1Unreal_1_1IPackageTargets" ],
+        [ "IUnrealBuild", "d4/d7c/interfaceNuke_1_1Unreal_1_1IUnrealBuild.html", "d4/d7c/interfaceNuke_1_1Unreal_1_1IUnrealBuild" ],
         [ "IUnrealLocator", "db/d85/interfaceNuke_1_1Unreal_1_1IUnrealLocator.html", "db/d85/interfaceNuke_1_1Unreal_1_1IUnrealLocator" ],
-        [ "PackageTargets", "d7/d68/classNuke_1_1Unreal_1_1PackageTargets.html", null ],
+        [ "SevenZip", "d8/d11/classNuke_1_1Unreal_1_1SevenZip.html", null ],
         [ "Unreal", "d3/d98/classNuke_1_1Unreal_1_1Unreal.html", "d3/d98/classNuke_1_1Unreal_1_1Unreal" ],
         [ "UnrealBuild", "da/d58/classNuke_1_1Unreal_1_1UnrealBuild.html", "da/d58/classNuke_1_1Unreal_1_1UnrealBuild" ],
         [ "UnrealBuildTest", "d0/d8d/classNuke_1_1Unreal_1_1UnrealBuildTest.html", null ],
@@ -70,6 +82,7 @@ var annotated_dup =
         [ "UnrealPlatform", "d5/dc0/classNuke_1_1Unreal_1_1UnrealPlatform.html", "d5/dc0/classNuke_1_1Unreal_1_1UnrealPlatform" ],
         [ "UnrealPlatformJsonConverter", "d9/d92/classNuke_1_1Unreal_1_1UnrealPlatformJsonConverter.html", null ],
         [ "UnrealTargetType", "d7/dcc/classNuke_1_1Unreal_1_1UnrealTargetType.html", "d7/dcc/classNuke_1_1Unreal_1_1UnrealTargetType" ],
+        [ "VersionExtensions", "d0/d92/classNuke_1_1Unreal_1_1VersionExtensions.html", "d0/d92/classNuke_1_1Unreal_1_1VersionExtensions" ],
         [ "WindowsUnrealLocator", "d4/d62/classNuke_1_1Unreal_1_1WindowsUnrealLocator.html", "d4/d62/classNuke_1_1Unreal_1_1WindowsUnrealLocator" ]
       ] ]
     ] ]

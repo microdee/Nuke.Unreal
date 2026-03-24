@@ -2,9 +2,9 @@ var searchData=
 [
   ['p4environmentconfig_0',['P4EnvironmentConfig',['../d1/d85/classNuke_1_1Unreal_1_1Tools_1_1UatConfigGenerated_1_1P4EnvironmentConfig.html',1,'Nuke::Unreal::Tools::UatConfigGenerated']]],
   ['p4writeconfigconfig_1',['P4WriteConfigConfig',['../d9/df6/classNuke_1_1Unreal_1_1Tools_1_1UatConfigGenerated_1_1P4WriteConfigConfig.html',1,'Nuke::Unreal::Tools::UatConfigGenerated']]],
-  ['packagetargets_2',['PackageTargets',['../d7/d68/classNuke_1_1Unreal_1_1PackageTargets.html',1,'Nuke::Unreal']]],
-  ['parsemsvctiminginfoconfig_3',['ParseMsvcTimingInfoConfig',['../d9/d60/classNuke_1_1Unreal_1_1Tools_1_1UatConfigGenerated_1_1ParseMsvcTimingInfoConfig.html',1,'Nuke.Unreal.Tools.UatConfigGenerated.ParseMsvcTimingInfoConfig'],['../dc/d15/classNuke_1_1Unreal_1_1Tools_1_1UbtConfigGenerated_1_1ParseMsvcTimingInfoConfig.html',1,'Nuke.Unreal.Tools.UbtConfigGenerated.ParseMsvcTimingInfoConfig']]],
-  ['pipinstallconfig_4',['PipInstallConfig',['../d2/d1d/classNuke_1_1Unreal_1_1Tools_1_1UbtConfigGenerated_1_1PipInstallConfig.html',1,'Nuke::Unreal::Tools::UbtConfigGenerated']]],
+  ['parsemsvctiminginfoconfig_2',['ParseMsvcTimingInfoConfig',['../d9/d60/classNuke_1_1Unreal_1_1Tools_1_1UatConfigGenerated_1_1ParseMsvcTimingInfoConfig.html',1,'Nuke.Unreal.Tools.UatConfigGenerated.ParseMsvcTimingInfoConfig'],['../dc/d15/classNuke_1_1Unreal_1_1Tools_1_1UbtConfigGenerated_1_1ParseMsvcTimingInfoConfig.html',1,'Nuke.Unreal.Tools.UbtConfigGenerated.ParseMsvcTimingInfoConfig']]],
+  ['pipinstallconfig_3',['PipInstallConfig',['../d2/d1d/classNuke_1_1Unreal_1_1Tools_1_1UbtConfigGenerated_1_1PipInstallConfig.html',1,'Nuke::Unreal::Tools::UbtConfigGenerated']]],
+  ['platformsdkmanager_4',['PlatformSdkManager',['../da/d04/classNuke_1_1Unreal_1_1Platforms_1_1PlatformSdkManager.html',1,'Nuke::Unreal::Platforms']]],
   ['plugingenerator_5',['PluginGenerator',['../dd/d8e/classNuke_1_1Unreal_1_1BoilerplateGenerators_1_1PluginGenerator.html',1,'Nuke::Unreal::BoilerplateGenerators']]],
   ['printbuildgraphinfoconfig_6',['PrintBuildGraphInfoConfig',['../d8/dc5/classNuke_1_1Unreal_1_1Tools_1_1UbtConfigGenerated_1_1PrintBuildGraphInfoConfig.html',1,'Nuke::Unreal::Tools::UbtConfigGenerated']]],
   ['profileunitysizesconfig_7',['ProfileUnitySizesConfig',['../dd/d2f/classNuke_1_1Unreal_1_1Tools_1_1UbtConfigGenerated_1_1ProfileUnitySizesConfig.html',1,'Nuke::Unreal::Tools::UbtConfigGenerated']]],

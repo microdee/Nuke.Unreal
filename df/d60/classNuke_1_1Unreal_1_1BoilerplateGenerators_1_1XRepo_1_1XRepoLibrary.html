@@ -132,14 +132,14 @@ Static Public Member Functions</h2></td></tr>
 <tr class="memitem:a408bb2184b40b3ed31d40d0f01ee6c69" id="r_a408bb2184b40b3ed31d40d0f01ee6c69"><td class="memItemLeft" align="right" valign="top">static LibrarySpec&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a408bb2184b40b3ed31d40d0f01ee6c69">ParseSpec</a> (string spec)</td></tr>
 <tr class="memdesc:a408bb2184b40b3ed31d40d0f01ee6c69"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parses an input library spec string as a record.  <br /></td></tr>
 <tr class="separator:a408bb2184b40b3ed31d40d0f01ee6c69"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a49614c5384b27c2f90785ce05b8e0f1a" id="r_a49614c5384b27c2f90785ce05b8e0f1a"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a49614c5384b27c2f90785ce05b8e0f1a">InstallXRepoLibrary</a> (this <a class="el" href="../../da/d58/classNuke_1_1Unreal_1_1UnrealBuild.html">UnrealBuild</a> self, string specIn, string options, AbsolutePath targetPath, string? suffix=null, string releaseRuntime=&quot;MD&quot;, string debugRuntime=&quot;MD&quot;)</td></tr>
-<tr class="memdesc:a49614c5384b27c2f90785ce05b8e0f1a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prepare a third-party library from an <a class="el" href="../../d4/d58/namespaceNuke_1_1Unreal_1_1BoilerplateGenerators_1_1XRepo.html">XRepo</a> library spec for <a class="el" href="../../d3/d98/classNuke_1_1Unreal_1_1Unreal.html" title="A collection of utilities around basic functions regarding the environment of the Engine we&#39;re workin...">Unreal</a> engine's consumption.  <br /></td></tr>
-<tr class="separator:a49614c5384b27c2f90785ce05b8e0f1a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a086ca7502df3858c451198b5ea70db1c" id="r_a086ca7502df3858c451198b5ea70db1c"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a086ca7502df3858c451198b5ea70db1c">InstallXRepoLibrary</a> (this <a class="el" href="../../d4/d7c/interfaceNuke_1_1Unreal_1_1IUnrealBuild.html">IUnrealBuild</a> build, string specIn, string options, AbsolutePath targetPath, List&lt; <a class="el" href="../../d5/dc0/classNuke_1_1Unreal_1_1UnrealPlatform.html">UnrealPlatform</a> &gt;? supportedPlatforms=null, string? suffix=null, string releaseRuntime=&quot;MD&quot;, string debugRuntime=&quot;MD&quot;)</td></tr>
+<tr class="memdesc:a086ca7502df3858c451198b5ea70db1c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prepare a third-party library from an <a class="el" href="../../d4/d58/namespaceNuke_1_1Unreal_1_1BoilerplateGenerators_1_1XRepo.html">XRepo</a> library spec for <a class="el" href="../../d3/d98/classNuke_1_1Unreal_1_1Unreal.html" title="A collection of utilities around basic functions regarding the environment of the Engine we&#39;re workin...">Unreal</a> engine's consumption. Each platforms will be considered which is listed under SupportedTargetPlatforms of the owning UPlugin. If it's empty only consider the host platform.  <br /></td></tr>
+<tr class="separator:a086ca7502df3858c451198b5ea70db1c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pac-static-methods" name="pac-static-methods"></a>
 Static Package Functions</h2></td></tr>
-<tr class="memitem:a33513d3a738a251992eb751738f47773" id="r_a33513d3a738a251992eb751738f47773"><td class="memItemLeft" align="right" valign="top">static IEnumerable&lt; XRepoLibraryRecord &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a33513d3a738a251992eb751738f47773">InstallXRepoLibrary</a> (<a class="el" href="../../da/d58/classNuke_1_1Unreal_1_1UnrealBuild.html">UnrealBuild</a> self, LibrarySpec spec, string options, AbsolutePath targetPath, bool debug, string runtime=&quot;MD&quot;)</td></tr>
-<tr class="separator:a33513d3a738a251992eb751738f47773"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeff70f9ab1ea8f5dc9fbe1f74ff38be8" id="r_aeff70f9ab1ea8f5dc9fbe1f74ff38be8"><td class="memItemLeft" align="right" valign="top">static IEnumerable&lt; XRepoLibraryRecord &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aeff70f9ab1ea8f5dc9fbe1f74ff38be8">InstallXRepoLibrary</a> (<a class="el" href="../../d4/d7c/interfaceNuke_1_1Unreal_1_1IUnrealBuild.html">IUnrealBuild</a> build, <a class="el" href="../../d5/dc0/classNuke_1_1Unreal_1_1UnrealPlatform.html">UnrealPlatform</a> platform, LibrarySpec spec, string options, AbsolutePath targetPath, bool debug, string runtime=&quot;MD&quot;)</td></tr>
+<tr class="separator:aeff70f9ab1ea8f5dc9fbe1f74ff38be8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-static-methods" name="pri-static-methods"></a>
 Static Private Member Functions</h2></td></tr>
@@ -150,80 +150,10 @@ static partial Regex&#160;</td><td class="memItemRight" valign="bottom"><b>SpecR
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Utility classes for working with <a class="el" href="../../d4/d58/namespaceNuke_1_1Unreal_1_1BoilerplateGenerators_1_1XRepo.html">XRepo</a> (or XMake) packages. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../d7/df2/XRepoLibrary_8cs_source.html#l00018">18</a> of file <a class="el" href="../../d7/df2/XRepoLibrary_8cs_source.html">XRepoLibrary.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d7/df2/XRepoLibrary_8cs_source.html#l00022">22</a> of file <a class="el" href="../../d7/df2/XRepoLibrary_8cs_source.html">XRepoLibrary.cs</a>.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
-<a id="a49614c5384b27c2f90785ce05b8e0f1a" name="a49614c5384b27c2f90785ce05b8e0f1a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a49614c5384b27c2f90785ce05b8e0f1a">&#9670;&#160;</a></span>InstallXRepoLibrary() <span class="overload">[1/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">static void Nuke.Unreal.BoilerplateGenerators.XRepo.XRepoLibrary.InstallXRepoLibrary </td>
-          <td>(</td>
-          <td class="paramtype">this <a class="el" href="../../da/d58/classNuke_1_1Unreal_1_1UnrealBuild.html">UnrealBuild</a></td>          <td class="paramname"><span class="paramname"><em>self</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">string</td>          <td class="paramname"><span class="paramname"><em>specIn</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">string</td>          <td class="paramname"><span class="paramname"><em>options</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">AbsolutePath</td>          <td class="paramname"><span class="paramname"><em>targetPath</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">string?</td>          <td class="paramname"><span class="paramname"><em>suffix</em></span><span class="paramdefsep"> = </span><span class="paramdefval">null</span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">string</td>          <td class="paramname"><span class="paramname"><em>releaseRuntime</em></span><span class="paramdefsep"> = </span><span class="paramdefval">&quot;MD&quot;</span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">string</td>          <td class="paramname"><span class="paramname"><em>debugRuntime</em></span><span class="paramdefsep"> = </span><span class="paramdefval">&quot;MD&quot;</span>&#160;)</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Prepare a third-party library from an <a class="el" href="../../d4/d58/namespaceNuke_1_1Unreal_1_1BoilerplateGenerators_1_1XRepo.html">XRepo</a> library spec for <a class="el" href="../../d3/d98/classNuke_1_1Unreal_1_1Unreal.html" title="A collection of utilities around basic functions regarding the environment of the Engine we&#39;re workin...">Unreal</a> engine's consumption. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">self</td><td>The build context</td></tr>
-    <tr><td class="paramname">specIn</td><td>The library spec specified here (without the options) <a href="https://mcro.de/Nuke.Unreal/d2/d84/CppLibraries.html">https://mcro.de/Nuke.Unreal/d2/d84/CppLibraries.html</a></td></tr>
-    <tr><td class="paramname">options</td><td>Comma separated '=' delimited key-value pairs. Space is not allowed around commas</td></tr>
-    <tr><td class="paramname">targetPath</td><td>Where library files should be organized</td></tr>
-    <tr><td class="paramname">suffix</td><td>Optional addition to the name of library name exposed to <a class="el" href="../../d3/d98/classNuke_1_1Unreal_1_1Unreal.html" title="A collection of utilities around basic functions regarding the environment of the Engine we&#39;re workin...">Unreal</a></td></tr>
-    <tr><td class="paramname">releaseRuntime</td><td>Windows CRT linkage for release versions (default is MD)</td></tr>
-    <tr><td class="paramname">debugRuntime</td><td>Windows CRT linkage for debug versions (default is MD)</td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p class="definition">Definition at line <a class="el" href="../../d7/df2/XRepoLibrary_8cs_source.html#l00152">152</a> of file <a class="el" href="../../d7/df2/XRepoLibrary_8cs_source.html">XRepoLibrary.cs</a>.</p>
-
-</div>
-</div>
-<a id="a33513d3a738a251992eb751738f47773" name="a33513d3a738a251992eb751738f47773"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a33513d3a738a251992eb751738f47773">&#9670;&#160;</a></span>InstallXRepoLibrary() <span class="overload">[2/2]</span></h2>
+<a id="aeff70f9ab1ea8f5dc9fbe1f74ff38be8" name="aeff70f9ab1ea8f5dc9fbe1f74ff38be8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeff70f9ab1ea8f5dc9fbe1f74ff38be8">&#9670;&#160;</a></span>InstallXRepoLibrary() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -234,7 +164,12 @@ static partial Regex&#160;</td><td class="memItemRight" valign="bottom"><b>SpecR
         <tr>
           <td class="memname">static IEnumerable&lt; XRepoLibraryRecord &gt; Nuke.Unreal.BoilerplateGenerators.XRepo.XRepoLibrary.InstallXRepoLibrary </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="../../da/d58/classNuke_1_1Unreal_1_1UnrealBuild.html">UnrealBuild</a></td>          <td class="paramname"><span class="paramname"><em>self</em></span>, </td>
+          <td class="paramtype"><a class="el" href="../../d4/d7c/interfaceNuke_1_1Unreal_1_1IUnrealBuild.html">IUnrealBuild</a></td>          <td class="paramname"><span class="paramname"><em>build</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../d5/dc0/classNuke_1_1Unreal_1_1UnrealPlatform.html">UnrealPlatform</a></td>          <td class="paramname"><span class="paramname"><em>platform</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -269,7 +204,83 @@ static partial Regex&#160;</td><td class="memItemRight" valign="bottom"><b>SpecR
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d7/df2/XRepoLibrary_8cs_source.html#l00056">56</a> of file <a class="el" href="../../d7/df2/XRepoLibrary_8cs_source.html">XRepoLibrary.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d7/df2/XRepoLibrary_8cs_source.html#l00060">60</a> of file <a class="el" href="../../d7/df2/XRepoLibrary_8cs_source.html">XRepoLibrary.cs</a>.</p>
+
+</div>
+</div>
+<a id="a086ca7502df3858c451198b5ea70db1c" name="a086ca7502df3858c451198b5ea70db1c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a086ca7502df3858c451198b5ea70db1c">&#9670;&#160;</a></span>InstallXRepoLibrary() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void Nuke.Unreal.BoilerplateGenerators.XRepo.XRepoLibrary.InstallXRepoLibrary </td>
+          <td>(</td>
+          <td class="paramtype">this <a class="el" href="../../d4/d7c/interfaceNuke_1_1Unreal_1_1IUnrealBuild.html">IUnrealBuild</a></td>          <td class="paramname"><span class="paramname"><em>build</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string</td>          <td class="paramname"><span class="paramname"><em>specIn</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string</td>          <td class="paramname"><span class="paramname"><em>options</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">AbsolutePath</td>          <td class="paramname"><span class="paramname"><em>targetPath</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">List&lt; <a class="el" href="../../d5/dc0/classNuke_1_1Unreal_1_1UnrealPlatform.html">UnrealPlatform</a> &gt;?</td>          <td class="paramname"><span class="paramname"><em>supportedPlatforms</em></span><span class="paramdefsep"> = </span><span class="paramdefval">null</span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string?</td>          <td class="paramname"><span class="paramname"><em>suffix</em></span><span class="paramdefsep"> = </span><span class="paramdefval">null</span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string</td>          <td class="paramname"><span class="paramname"><em>releaseRuntime</em></span><span class="paramdefsep"> = </span><span class="paramdefval">&quot;MD&quot;</span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string</td>          <td class="paramname"><span class="paramname"><em>debugRuntime</em></span><span class="paramdefsep"> = </span><span class="paramdefval">&quot;MD&quot;</span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Prepare a third-party library from an <a class="el" href="../../d4/d58/namespaceNuke_1_1Unreal_1_1BoilerplateGenerators_1_1XRepo.html">XRepo</a> library spec for <a class="el" href="../../d3/d98/classNuke_1_1Unreal_1_1Unreal.html" title="A collection of utilities around basic functions regarding the environment of the Engine we&#39;re workin...">Unreal</a> engine's consumption. Each platforms will be considered which is listed under SupportedTargetPlatforms of the owning UPlugin. If it's empty only consider the host platform. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">build</td><td>The build context</td></tr>
+    <tr><td class="paramname">specIn</td><td>The library spec specified here (without the options) <a href="https://mcro.de/Nuke.Unreal/d2/d84/CppLibraries.html">https://mcro.de/Nuke.Unreal/d2/d84/CppLibraries.html</a> </td></tr>
+    <tr><td class="paramname">options</td><td>Comma separated '=' delimited key-value pairs. Space is not allowed around commas</td></tr>
+    <tr><td class="paramname">targetPath</td><td>Where library files should be organized</td></tr>
+    <tr><td class="paramname">supportedPlatforms</td><td>Optionally limit the platforms considered for this library, if it shouldn't be compiled with all what's listed in its UPlugin. </td></tr>
+    <tr><td class="paramname">suffix</td><td>Optional addition to the name of library name exposed to <a class="el" href="../../d3/d98/classNuke_1_1Unreal_1_1Unreal.html" title="A collection of utilities around basic functions regarding the environment of the Engine we&#39;re workin...">Unreal</a></td></tr>
+    <tr><td class="paramname">releaseRuntime</td><td>Windows CRT linkage for release versions (default is MD)</td></tr>
+    <tr><td class="paramname">debugRuntime</td><td>Windows CRT linkage for debug versions (default is MD)</td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="../../d7/df2/XRepoLibrary_8cs_source.html#l00162">162</a> of file <a class="el" href="../../d7/df2/XRepoLibrary_8cs_source.html">XRepoLibrary.cs</a>.</p>
 
 </div>
 </div>
@@ -298,7 +309,7 @@ static partial Regex&#160;</td><td class="memItemRight" valign="bottom"><b>SpecR
 
 <p>Parses an input library spec string as a record. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../d7/df2/XRepoLibrary_8cs_source.html#l00043">43</a> of file <a class="el" href="../../d7/df2/XRepoLibrary_8cs_source.html">XRepoLibrary.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d7/df2/XRepoLibrary_8cs_source.html#l00047">47</a> of file <a class="el" href="../../d7/df2/XRepoLibrary_8cs_source.html">XRepoLibrary.cs</a>.</p>
 
 </div>
 </div>

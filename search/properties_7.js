@@ -1,9 +1,5 @@
 var searchData=
 [
-  ['platformtext_0',['PlatformText',['../d5/dc0/classNuke_1_1Unreal_1_1UnrealPlatform.html#acb65711e65555d8d36f0de0d720c5c15',1,'Nuke::Unreal::UnrealPlatform']]],
-  ['pluginpath_1',['PluginPath',['../d0/ded/classNuke_1_1Unreal_1_1Plugins_1_1UnrealPlugin.html#ab6c11dd97a9f52f75f3453bd8653e9fb',1,'Nuke::Unreal::Plugins::UnrealPlugin']]],
-  ['projectdescriptor_2',['ProjectDescriptor',['../da/d58/classNuke_1_1Unreal_1_1UnrealBuild.html#a378a09861f998fef79a5c531dc5cef72',1,'Nuke::Unreal::UnrealBuild']]],
-  ['projectfolder_3',['ProjectFolder',['../da/d58/classNuke_1_1Unreal_1_1UnrealBuild.html#a1192e7abfc432a9907996a58bb732e5e',1,'Nuke::Unreal::UnrealBuild']]],
-  ['projectname_4',['ProjectName',['../da/d58/classNuke_1_1Unreal_1_1UnrealBuild.html#a2c182c2b68eeef44d8d80a8e5f2fb719',1,'Nuke::Unreal::UnrealBuild']]],
-  ['projectpath_5',['ProjectPath',['../da/d58/classNuke_1_1Unreal_1_1UnrealBuild.html#a1df3ce249d6e6dc6548063865925998e',1,'Nuke::Unreal::UnrealBuild']]]
+  ['helpnukeunreal_0',['HelpNukeUnreal',['../d4/d7c/interfaceNuke_1_1Unreal_1_1IUnrealBuild.html#a472a3b2e062beab9e997fc719048b544',1,'Nuke.Unreal.IUnrealBuild.HelpNukeUnreal'],['../da/d58/classNuke_1_1Unreal_1_1UnrealBuild.html#a05089cfd1d8f24313905ba003823f911',1,'Nuke.Unreal.UnrealBuild.HelpNukeUnreal']]],
+  ['host_1',['Host',['../d7/d21/classNuke_1_1Unreal_1_1Platforms_1_1Android_1_1AndroidSdk.html#a9e8e8fae814310323a097a9ffd2f4597',1,'Nuke.Unreal.Platforms.Android.AndroidSdk.Host'],['../de/da1/classNuke_1_1Unreal_1_1Platforms_1_1Android_1_1WindowsHostsAndroid.html#a664c462ce7a8b67faf93cd441aebd955',1,'Nuke.Unreal.Platforms.Android.WindowsHostsAndroid.Host'],['../dd/d12/interfaceNuke_1_1Unreal_1_1Platforms_1_1IPlatformSdk.html#a530d5a1183f174f07f730701ca84fb71',1,'Nuke.Unreal.Platforms.IPlatformSdk.Host'],['../dd/d3a/classNuke_1_1Unreal_1_1Platforms_1_1Linux_1_1WindowsHostsLinux.html#a3bb7577a148ceb799c347f6cd677b45c',1,'Nuke.Unreal.Platforms.Linux.WindowsHostsLinux.Host']]]
 ];

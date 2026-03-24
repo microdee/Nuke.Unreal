@@ -120,12 +120,12 @@ $(function(){initNavTree('d8/d51/GettingStarted.html','../../'); initResizable(t
 <div class="contents">
 <div class="textblock"><p><a class="anchor" id="md_Manual_2GettingStarted"></a></p>
 <dl class="section warning"><dt>Warning</dt><dd>.NET SDK 10 is required to be installed first.</dd></dl>
-<h1><a class="anchor" id="autotoc_md6"></a>
+<h1><a class="anchor" id="autotoc_md8"></a>
 Install via remote script</h1>
 <p>Navigate to your project with powershell and execute this:</p>
 <div class="fragment"><div class="line">Set-ExecutionPolicy Unrestricted -Scope Process -Force; iex (iwr &#39;https://raw.githubusercontent.com/microdee/Nuke.Unreal/refs/heads/main/install/install.ps1&#39;).ToString()</div>
 </div><!-- fragment --><dl class="section warning"><dt>Warning</dt><dd>Very important that the directory this is executed in is your Unreal project root. Otherwise you will install <a class="el" href="../../d0/d55/namespaceNuke_1_1Unreal.html">Nuke.Unreal</a> to some random place and it may not find your project.</dd></dl>
-<h1><a class="anchor" id="autotoc_md7"></a>
+<h1><a class="anchor" id="autotoc_md9"></a>
 Install manually</h1>
 <p><a class="el" href="../../d0/d55/namespaceNuke_1_1Unreal.html">Nuke.Unreal</a> is available as a Nuget package and you can just add it to your build project as usual (package ID is <code>md.Nuke.Unreal</code>)</p>
 <ol type="1">
@@ -159,8 +159,8 @@ Install Nuke for an Unreal project</summary>
 <div class="line">{</div>
 <div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keywordtype">int</span> Main () =&gt; Plugins.Execute&lt;Build&gt;(Execute);</div>
 <div class="line">}</div>
-<div class="ttc" id="aclassNuke_1_1Unreal_1_1UnrealBuild_html"><div class="ttname"><a href="../../da/d58/classNuke_1_1Unreal_1_1UnrealBuild.html">Nuke.Unreal.UnrealBuild</a></div><div class="ttdoc">The main build class Unreal projects using Nuke.Unreal should inherit from. This class contains all b...</div><div class="ttdef"><b>Definition</b> <a href="../../db/d1e/UnrealBuild_8Templating_8cs_source.html#l00013">UnrealBuild.Templating.cs:14</a></div></div>
-<div class="ttc" id="anamespaceNuke_1_1Unreal_html"><div class="ttname"><a href="../../d0/d55/namespaceNuke_1_1Unreal.html">Nuke.Unreal</a></div><div class="ttdef"><b>Definition</b> <a href="../../d9/d70/AndroidCookFlavor_8cs_source.html#l00007">AndroidCookFlavor.cs:8</a></div></div>
+<div class="ttc" id="aclassNuke_1_1Unreal_1_1UnrealBuild_html"><div class="ttname"><a href="../../da/d58/classNuke_1_1Unreal_1_1UnrealBuild.html">Nuke.Unreal.UnrealBuild</a></div><div class="ttdoc">The main build class Unreal projects using Nuke.Unreal should inherit from. This class contains all b...</div><div class="ttdef"><b>Definition</b> <a href="../../db/d1e/UnrealBuild_8Templating_8cs_source.html#l00010">UnrealBuild.Templating.cs:11</a></div></div>
+<div class="ttc" id="anamespaceNuke_1_1Unreal_html"><div class="ttname"><a href="../../d0/d55/namespaceNuke_1_1Unreal.html">Nuke.Unreal</a></div><div class="ttdef"><b>Definition</b> <a href="../../d6/d4f/ActorGenerator_8cs_source.html#l00001">ActorGenerator.cs:2</a></div></div>
 </div><!-- fragment --><p>It is also recommended to set up auto-completion for your shell</p>
 <div class="tabbed"></div><div class="tabbed"><ul>
 <li>

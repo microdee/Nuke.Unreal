@@ -1,9 +1,6 @@
 var searchData=
 [
-  ['instances_0',['Instances',['../db/d85/interfaceNuke_1_1Unreal_1_1IUnrealLocator.html#a75fb049db8fd12e73655085d9da488e6',1,'Nuke.Unreal.IUnrealLocator.Instances'],['../de/d5d/classNuke_1_1Unreal_1_1GenericUnrealLocator.html#a25566a445360a3001491d782b1e0c727',1,'Nuke.Unreal.GenericUnrealLocator.Instances'],['../d4/d62/classNuke_1_1Unreal_1_1WindowsUnrealLocator.html#a891eb292f74dff76c55ae21b0cecdefe',1,'Nuke.Unreal.WindowsUnrealLocator.Instances']]],
-  ['isdesktop_1',['IsDesktop',['../d5/dc0/classNuke_1_1Unreal_1_1UnrealPlatform.html#abaf0b086790ff6120f88d5d54e0fb544',1,'Nuke::Unreal::UnrealPlatform']]],
-  ['isdevelopment_2',['IsDevelopment',['../d5/dc0/classNuke_1_1Unreal_1_1UnrealPlatform.html#a8f251cc134d92c9628be3d55cb74c03e',1,'Nuke::Unreal::UnrealPlatform']]],
-  ['ishost_3',['IsHost',['../d5/dc0/classNuke_1_1Unreal_1_1UnrealPlatform.html#aab2f4aae9327c59c65aa000028f207ad',1,'Nuke::Unreal::UnrealPlatform']]],
-  ['ismobile_4',['IsMobile',['../d5/dc0/classNuke_1_1Unreal_1_1UnrealPlatform.html#a30dc33fdd457ccad8ebe1b11fc5e4082',1,'Nuke::Unreal::UnrealPlatform']]],
-  ['isperforce_5',['IsPerforce',['../da/d58/classNuke_1_1Unreal_1_1UnrealBuild.html#a68c3aa378aaa87852ebcc5356e501f80',1,'Nuke::Unreal::UnrealBuild']]]
+  ['editorconfig_0',['EditorConfig',['../d4/d7c/interfaceNuke_1_1Unreal_1_1IUnrealBuild.html#add0827e929ac6ae4e4888f0d69981b50',1,'Nuke.Unreal.IUnrealBuild.EditorConfig'],['../da/d58/classNuke_1_1Unreal_1_1UnrealBuild.html#a891fe1907305c6641b447e4a7882bb20',1,'Nuke.Unreal.UnrealBuild.EditorConfig']]],
+  ['ensurebuildpluginsupport_1',['EnsureBuildPluginSupport',['../d4/d7c/interfaceNuke_1_1Unreal_1_1IUnrealBuild.html#ad964d87445d83eab7e5d4e51cc37a42e',1,'Nuke.Unreal.IUnrealBuild.EnsureBuildPluginSupport'],['../da/d58/classNuke_1_1Unreal_1_1UnrealBuild.html#addff80042e2bb40d0c8bd02be2423592',1,'Nuke.Unreal.UnrealBuild.EnsureBuildPluginSupport']]],
+  ['explicitpluginfiles_2',['ExplicitPluginFiles',['../d0/ded/classNuke_1_1Unreal_1_1Plugins_1_1UnrealPlugin.html#ad68cd64d440a5d26372315e236285cf3',1,'Nuke::Unreal::Plugins::UnrealPlugin']]]
 ];

@@ -121,25 +121,25 @@ $(function(){initNavTree('d2/d94/UnrealTools.html','../../'); initResizable(true
 <div class="toc"><h3>Table of Contents</h3>
 <ul>
   <li class="level1">
-    <a href="#autotoc_md15">Passing command line arguments to Unreal tools</a>
+    <a href="#autotoc_md18">Passing command line arguments to Unreal tools</a>
     <ul>
       <li class="level2">
-        <a href="#autotoc_md16">Custom UBT or UAT arguments</a>
+        <a href="#autotoc_md19">Custom UBT or UAT arguments</a>
       </li>
     </ul>
   </li>
   <li class="level1">
-    <a href="#autotoc_md17">C# Tool API</a>
+    <a href="#autotoc_md20">C# Tool API</a>
     <ul>
       <li class="level2">
-        <a href="#autotoc_md18">Handling multiple egnine versions</a>
+        <a href="#autotoc_md21">Handling multiple egnine versions</a>
       </li>
     </ul>
   </li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_Manual_2UnrealTools"></a></p>
-<h1><a class="anchor" id="autotoc_md15"></a>
+<h1><a class="anchor" id="autotoc_md18"></a>
 Passing command line arguments to Unreal tools</h1>
 <p>In some targets <a class="el" href="../../d0/d55/namespaceNuke_1_1Unreal.html">Nuke.Unreal</a> allows to pass custom command line arguments for Unreal tools. This is only necessary for advanced use cases, and for prototyping. In almost all cases once a workflow is developed with these custom arguments it is recommended to solidify them into a custom target, or use the plathera of customization and modularization points <a class="el" href="../../d0/d55/namespaceNuke_1_1Unreal.html">Nuke.Unreal</a> offers.</p>
 <p>Command line arguments are passed with the <code>--&gt;</code> sequence, anything after such sequence will be passed directly to tools. This is dubbed as "argument blocks". The precise usage of them depends on the specific target being used. Multiple argument blocks can be named and used by targets. A block ends when another one starts or when it's the end of the command line input.</p>
@@ -150,13 +150,13 @@ Passing command line arguments to Unreal tools</h1>
 </div><!-- fragment --><p>For example</p>
 <div class="fragment"><div class="line">&gt; nuke run --tool editor-cmd --&gt; ~p -run=MyCommandlet</div>
 <div class="line">UnrealEditor-Cmd.exe C:\Projects\Personal\MyProject\MyProject.uproject -run=MyCommandlet</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md16"></a>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md19"></a>
 Custom UBT or UAT arguments</h2>
 <p>When invoking common tasks <a class="el" href="../../d0/d55/namespaceNuke_1_1Unreal.html">Nuke.Unreal</a> supports passing extra custom arguments to UBT or UAT via <code>--&gt;ubt</code> or <code>--&gt;uat</code>. Anything passed behind these or in-between these will be passed to their respective tool.</p>
 <p>This is especially useful for doing temporary debugging with UBT and the compiler: (not an actual usecase) </p><div class="fragment"><div class="line">&gt; nuke build ... --&gt;ubt -CompilerArguments=&quot;/diagnostics:caret /P /C&quot; -DisableUnity</div>
 <div class="line">&gt; nuke build ... --&gt;ubt -LinkerArguments=/VERBOSE</div>
 <div class="line">&gt; nuke build ... --&gt;ubt -Preprocess</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md17"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md20"></a>
 C# Tool API</h1>
 <p><a class="el" href="../../d0/d55/namespaceNuke_1_1Unreal.html">Nuke.Unreal</a> provides builder/fluent pattern Unreal tool configurators in C# which yield command line arguments for the specified tool. TLDR: the syntax looks like this:</p>
 <div class="fragment"><div class="line"><span class="comment">// For UBT:</span></div>
@@ -184,7 +184,7 @@ C# Tool API</h1>
 </div>
     <p>This introduces a greater discoverability to the vast functionality of both UAT and UBT which simply was not there before unless the developer followed some trails inside the source code of these tools. Both configurators are generated from the actual source code using static code analysis and relying on semantical heuristics as the command line interpretation of UAT is very procedural.</p>
 <p>UBT on the other hand had a more disciplined and consistent approach for interpreting the command line, that allowed to rely on purely reflection while gathering arguments with the added feature of typed parameter value input (like numbers, strings and enums). As of time of writing detecting parameter types in a reliable and meaningful way is not possible for UAT.</p>
-<h2><a class="anchor" id="autotoc_md18"></a>
+<h2><a class="anchor" id="autotoc_md21"></a>
 Handling multiple egnine versions</h2>
 <p>You might notice that the documentation for auto-generated bindings above strangely repeats itself. This happens because <a class="el" href="../../d0/d55/namespaceNuke_1_1Unreal.html">Nuke.Unreal</a> scapes the source of Unreal tools for multiple engine versions, and in this particular case it joins together documentation if that's different between engine versions. This is also a perfect segue to how this syntax deals with differences of the command line interface of different engine versions.</p>
 <p>Unfortunately if one parameter or one sub-tool is renamed from one version to the next one, there's no algorithmically sound, 100% accurate way to map these renames automatically. With one exception of course when Unreal Engine 5 came out all mentions of <code>UE4</code> in the codebase has been renamed to <code>Unreal</code>. <a class="el" href="../../d0/d55/namespaceNuke_1_1Unreal.html">Nuke.Unreal</a> can deal with that particular case, so all <code>Unreal*</code> parameters are renamed to <code>UE4</code> at invocation for Unreal Engine 4 (and where <code>UE4</code> was actually used in Unreal Engine 4).</p>
