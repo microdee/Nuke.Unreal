@@ -33,7 +33,7 @@ Elegant workflow for automating Unreal Engine project tasks embracing [Nuke](htt
   ```
 * Install C++ libraries (using [xrepo](https://xrepo.xmake.io))
   ```
-  > nuke use-xrepo --spec "imgui 1.91.1 freetype=true" "vcpkg::ryml[dbg]" "conan::zlib/1.2.11"
+  > nuke use-xrepo --spec "imgui 1.91.1 freetype=true" "yaml-cpp" "zlib 1.2.11"
   > nuke generate
   ```
 * Generate boilerplate code and scaffolding from [Scriban](https://github.com/scriban/scriban) templates so no editor needs to be opened

@@ -28,11 +28,11 @@
 
   <ItemGroup>
     <ProjectReference Include="../Nuke.Unreal.Ini/Nuke.Unreal.Ini.csproj" />
-    <ProjectReference Include="../../../md.Nuke.Cola/md.Nuke.Cola/md.Nuke.Cola.csproj" />
+    <!-- <ProjectReference Include="../../../md.Nuke.Cola/md.Nuke.Cola/md.Nuke.Cola.csproj" /> -->
   </ItemGroup>
 
   <ItemGroup>
-    <!-- <PackageReference Include="md.Nuke.Cola" Version="2.3.0" /> -->
+    <PackageReference Include="md.Nuke.Cola" Version="2.4.4" />
     <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="5.0.0-2.final" />
     <PackageReference Include="Nuke.Common" Version="10.1.0" />
     <PackageReference Include="Humanizer.Core" Version="2.14.1" />
