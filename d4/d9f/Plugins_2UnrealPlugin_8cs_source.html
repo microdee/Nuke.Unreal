@@ -766,104 +766,105 @@ $(function(){initNavTree('d4/d9f/Plugins_2UnrealPlugin_8cs_source.html','../../'
 <div class="line"><a id="l00632" name="l00632"></a><span class="lineno">  632</span>                    .Apply(Common)</div>
 <div class="line"><a id="l00633" name="l00633"></a><span class="lineno">  633</span>                ;</div>
 <div class="line"><a id="l00634" name="l00634"></a><span class="lineno">  634</span>                <a class="code hl_class" href="../../d9/dbc/classNuke_1_1Unreal_1_1Tools_1_1UbtConfig.html">UbtConfig</a> CommonPlugin(<a class="code hl_class" href="../../d9/dbc/classNuke_1_1Unreal_1_1Tools_1_1UbtConfig.html">UbtConfig</a> _) =&gt; _</div>
-<div class="line"><a id="l00635" name="l00635"></a><span class="lineno">  635</span>                    .<a class="code hl_function" href="../../d7/d0d/classNuke_1_1Unreal_1_1Tools_1_1UbtConfigGenerated.html#acb8bb01b179750d82a964a2c078534c9">Plugin</a>(shortPluginDir / <a class="code hl_property" href="../../d0/ded/classNuke_1_1Unreal_1_1Plugins_1_1UnrealPlugin.html#ab6c11dd97a9f52f75f3453bd8653e9fb">PluginPath</a>.Name)</div>
-<div class="line"><a id="l00636" name="l00636"></a><span class="lineno">  636</span>                    .Apply(Common)</div>
-<div class="line"><a id="l00637" name="l00637"></a><span class="lineno">  637</span>                ;</div>
-<div class="line"><a id="l00638" name="l00638"></a><span class="lineno">  638</span> </div>
-<div class="line"><a id="l00639" name="l00639"></a><span class="lineno">  639</span>                <span class="keywordflow">foreach</span>(var platform <span class="keywordflow">in</span> platforms)</div>
-<div class="line"><a id="l00640" name="l00640"></a><span class="lineno">  640</span>                {</div>
-<div class="line"><a id="l00641" name="l00641"></a><span class="lineno">  641</span>                    Log.Information(<span class="stringliteral">&quot;Building UnrealGame binaries from UProject for {0} @ {1}&quot;</span>, <a class="code hl_property" href="../../d0/ded/classNuke_1_1Unreal_1_1Plugins_1_1UnrealPlugin.html#ad309fd0849ced6ca20e5d5ffbc8e6d9a">Name</a>, platform);</div>
-<div class="line"><a id="l00642" name="l00642"></a><span class="lineno">  642</span>                    <a class="code hl_class" href="../../d3/d98/classNuke_1_1Unreal_1_1Unreal.html">Unreal</a>.<a class="code hl_function" href="../../d3/d98/classNuke_1_1Unreal_1_1Unreal.html#a84633d7da86f4f4db1095f8ca7180d46">BuildTool</a>(build, _ =&gt; _</div>
-<div class="line"><a id="l00643" name="l00643"></a><span class="lineno">  643</span>                        .Target(<span class="stringliteral">&quot;UnrealGame&quot;</span>, platform,</div>
-<div class="line"><a id="l00644" name="l00644"></a><span class="lineno">  644</span>                        [</div>
-<div class="line"><a id="l00645" name="l00645"></a><span class="lineno">  645</span>                            <a class="code hl_class" href="../../d7/dd2/classNuke_1_1Unreal_1_1UnrealConfig.html">UnrealConfig</a>.Development,</div>
-<div class="line"><a id="l00646" name="l00646"></a><span class="lineno">  646</span>                            <a class="code hl_class" href="../../d7/dd2/classNuke_1_1Unreal_1_1UnrealConfig.html">UnrealConfig</a>.Shipping</div>
-<div class="line"><a id="l00647" name="l00647"></a><span class="lineno">  647</span>                        ])</div>
-<div class="line"><a id="l00648" name="l00648"></a><span class="lineno">  648</span>                        .Apply(CommonProject)</div>
-<div class="line"><a id="l00649" name="l00649"></a><span class="lineno">  649</span>                    )();</div>
-<div class="line"><a id="l00650" name="l00650"></a><span class="lineno">  650</span>                    <span class="keywordflow">if</span> (platform.IsDevelopment)</div>
-<div class="line"><a id="l00651" name="l00651"></a><span class="lineno">  651</span>                    {</div>
-<div class="line"><a id="l00652" name="l00652"></a><span class="lineno">  652</span>                        Log.Information(<span class="stringliteral">&quot;Building UnrealEditor binaries for UProject {0} @ {1}&quot;</span>, <a class="code hl_property" href="../../d0/ded/classNuke_1_1Unreal_1_1Plugins_1_1UnrealPlugin.html#ad309fd0849ced6ca20e5d5ffbc8e6d9a">Name</a>, platform);</div>
-<div class="line"><a id="l00653" name="l00653"></a><span class="lineno">  653</span>                        <a class="code hl_class" href="../../d3/d98/classNuke_1_1Unreal_1_1Unreal.html">Unreal</a>.<a class="code hl_function" href="../../d3/d98/classNuke_1_1Unreal_1_1Unreal.html#a84633d7da86f4f4db1095f8ca7180d46">BuildTool</a>(build, _ =&gt; _</div>
-<div class="line"><a id="l00654" name="l00654"></a><span class="lineno">  654</span>                            .Target(<span class="stringliteral">&quot;UnrealEditor&quot;</span>, platform, [<a class="code hl_class" href="../../d7/dd2/classNuke_1_1Unreal_1_1UnrealConfig.html">UnrealConfig</a>.Development])</div>
-<div class="line"><a id="l00655" name="l00655"></a><span class="lineno">  655</span>                            .Apply(CommonProject)</div>
-<div class="line"><a id="l00656" name="l00656"></a><span class="lineno">  656</span>                        )();</div>
-<div class="line"><a id="l00657" name="l00657"></a><span class="lineno">  657</span>                    }</div>
-<div class="line"><a id="l00658" name="l00658"></a><span class="lineno">  658</span>                    Log.Information(<span class="stringliteral">&quot;Building UnrealGame binaries from UPlugin for {0} @ {1}&quot;</span>, <a class="code hl_property" href="../../d0/ded/classNuke_1_1Unreal_1_1Plugins_1_1UnrealPlugin.html#ad309fd0849ced6ca20e5d5ffbc8e6d9a">Name</a>, platform);</div>
-<div class="line"><a id="l00659" name="l00659"></a><span class="lineno">  659</span>                    <a class="code hl_class" href="../../d3/d98/classNuke_1_1Unreal_1_1Unreal.html">Unreal</a>.<a class="code hl_function" href="../../d3/d98/classNuke_1_1Unreal_1_1Unreal.html#a84633d7da86f4f4db1095f8ca7180d46">BuildTool</a>(build, _ =&gt; _</div>
-<div class="line"><a id="l00660" name="l00660"></a><span class="lineno">  660</span>                        .Target(<span class="stringliteral">&quot;UnrealGame&quot;</span>, platform,</div>
-<div class="line"><a id="l00661" name="l00661"></a><span class="lineno">  661</span>                        [</div>
-<div class="line"><a id="l00662" name="l00662"></a><span class="lineno">  662</span>                            <a class="code hl_class" href="../../d7/dd2/classNuke_1_1Unreal_1_1UnrealConfig.html">UnrealConfig</a>.Development,</div>
-<div class="line"><a id="l00663" name="l00663"></a><span class="lineno">  663</span>                            <a class="code hl_class" href="../../d7/dd2/classNuke_1_1Unreal_1_1UnrealConfig.html">UnrealConfig</a>.Shipping</div>
-<div class="line"><a id="l00664" name="l00664"></a><span class="lineno">  664</span>                        ])</div>
-<div class="line"><a id="l00665" name="l00665"></a><span class="lineno">  665</span>                        .Apply(CommonPlugin)</div>
-<div class="line"><a id="l00666" name="l00666"></a><span class="lineno">  666</span>                    )();</div>
-<div class="line"><a id="l00667" name="l00667"></a><span class="lineno">  667</span>                    <span class="keywordflow">if</span> (platform.IsDevelopment)</div>
-<div class="line"><a id="l00668" name="l00668"></a><span class="lineno">  668</span>                    {</div>
-<div class="line"><a id="l00669" name="l00669"></a><span class="lineno">  669</span>                        Log.Information(<span class="stringliteral">&quot;Building UnrealEditor binaries for UPlugin {0} @ {1}&quot;</span>, <a class="code hl_property" href="../../d0/ded/classNuke_1_1Unreal_1_1Plugins_1_1UnrealPlugin.html#ad309fd0849ced6ca20e5d5ffbc8e6d9a">Name</a>, platform);</div>
-<div class="line"><a id="l00670" name="l00670"></a><span class="lineno">  670</span>                        <a class="code hl_class" href="../../d3/d98/classNuke_1_1Unreal_1_1Unreal.html">Unreal</a>.<a class="code hl_function" href="../../d3/d98/classNuke_1_1Unreal_1_1Unreal.html#a84633d7da86f4f4db1095f8ca7180d46">BuildTool</a>(build, _ =&gt; _</div>
-<div class="line"><a id="l00671" name="l00671"></a><span class="lineno">  671</span>                            .Target(<span class="stringliteral">&quot;UnrealEditor&quot;</span>, platform, [<a class="code hl_class" href="../../d7/dd2/classNuke_1_1Unreal_1_1UnrealConfig.html">UnrealConfig</a>.Development])</div>
-<div class="line"><a id="l00672" name="l00672"></a><span class="lineno">  672</span>                            .Apply(CommonPlugin)</div>
-<div class="line"><a id="l00673" name="l00673"></a><span class="lineno">  673</span>                        )();</div>
-<div class="line"><a id="l00674" name="l00674"></a><span class="lineno">  674</span>                    }</div>
-<div class="line"><a id="l00675" name="l00675"></a><span class="lineno">  675</span>                }</div>
-<div class="line"><a id="l00676" name="l00676"></a><span class="lineno">  676</span>                hostPluginDir.Copy(outFolder, ExistsPolicy.MergeAndOverwrite);</div>
-<div class="line"><a id="l00677" name="l00677"></a><span class="lineno">  677</span>                hostProjectDir.DeleteDirectory();</div>
-<div class="line"><a id="l00678" name="l00678"></a><span class="lineno">  678</span>                _buildOutput = outFolder;</div>
-<div class="line"><a id="l00679" name="l00679"></a><span class="lineno">  679</span>            }</div>
-<div class="line"><a id="l00680" name="l00680"></a><span class="lineno">  680</span>            <span class="keywordflow">finally</span></div>
-<div class="line"><a id="l00681" name="l00681"></a><span class="lineno">  681</span>            {</div>
-<div class="line"><a id="l00682" name="l00682"></a><span class="lineno">  682</span>                <span class="keywordflow">if</span> (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))</div>
-<div class="line"><a id="l00683" name="l00683"></a><span class="lineno">  683</span>                    shortHostProjectDir.AsLinkInfo()?.Delete();</div>
-<div class="line"><a id="l00684" name="l00684"></a><span class="lineno">  684</span>                </div>
-<div class="line"><a id="l00685" name="l00685"></a><span class="lineno">  685</span>                <span class="keywordflow">foreach</span> (var dep <span class="keywordflow">in</span> dependencies)</div>
-<div class="line"><a id="l00686" name="l00686"></a><span class="lineno">  686</span>                {</div>
-<div class="line"><a id="l00687" name="l00687"></a><span class="lineno">  687</span>                    Log.Debug(<span class="stringliteral">&quot;Deleting temporary installed plugin {0}&quot;</span>, enginePluginsDir / dep.Name);</div>
-<div class="line"><a id="l00688" name="l00688"></a><span class="lineno">  688</span>                    (enginePluginsDir / dep.Name).ExistingDirectory()?.DeleteDirectory();</div>
-<div class="line"><a id="l00689" name="l00689"></a><span class="lineno">  689</span>                }</div>
-<div class="line"><a id="l00690" name="l00690"></a><span class="lineno">  690</span>            }</div>
-<div class="line"><a id="l00691" name="l00691"></a><span class="lineno">  691</span>            <span class="keywordflow">break</span>;</div>
-<div class="line"><a id="l00692" name="l00692"></a><span class="lineno">  692</span> </div>
-<div class="line"><a id="l00693" name="l00693"></a><span class="lineno">  693</span>        }</div>
-<div class="line"><a id="l00694" name="l00694"></a><span class="lineno">  694</span> </div>
-<div class="line"><a id="l00695" name="l00695"></a><span class="lineno">  695</span>        <span class="keywordflow">return</span> outFolder;</div>
-<div class="line"><a id="l00696" name="l00696"></a><span class="lineno">  696</span>    }</div>
+<div class="line"><a id="l00635" name="l00635"></a><span class="lineno">  635</span>                    .<a class="code hl_function" href="../../d9/dbc/classNuke_1_1Unreal_1_1Tools_1_1UbtConfig.html#a59a46d5815800d583b102571d03f4cd8">Project</a>(shortHostProjectDir / <span class="stringliteral">&quot;HostProject.uproject&quot;</span>)</div>
+<div class="line"><a id="l00636" name="l00636"></a><span class="lineno">  636</span>                    .<a class="code hl_function" href="../../d7/d0d/classNuke_1_1Unreal_1_1Tools_1_1UbtConfigGenerated.html#acb8bb01b179750d82a964a2c078534c9">Plugin</a>(shortPluginDir / <a class="code hl_property" href="../../d0/ded/classNuke_1_1Unreal_1_1Plugins_1_1UnrealPlugin.html#ab6c11dd97a9f52f75f3453bd8653e9fb">PluginPath</a>.Name)</div>
+<div class="line"><a id="l00637" name="l00637"></a><span class="lineno">  637</span>                    .Apply(Common)</div>
+<div class="line"><a id="l00638" name="l00638"></a><span class="lineno">  638</span>                ;</div>
+<div class="line"><a id="l00639" name="l00639"></a><span class="lineno">  639</span> </div>
+<div class="line"><a id="l00640" name="l00640"></a><span class="lineno">  640</span>                <span class="keywordflow">foreach</span>(var platform <span class="keywordflow">in</span> platforms)</div>
+<div class="line"><a id="l00641" name="l00641"></a><span class="lineno">  641</span>                {</div>
+<div class="line"><a id="l00642" name="l00642"></a><span class="lineno">  642</span>                    Log.Information(<span class="stringliteral">&quot;Building UnrealGame binaries from UProject for {0} @ {1}&quot;</span>, <a class="code hl_property" href="../../d0/ded/classNuke_1_1Unreal_1_1Plugins_1_1UnrealPlugin.html#ad309fd0849ced6ca20e5d5ffbc8e6d9a">Name</a>, platform);</div>
+<div class="line"><a id="l00643" name="l00643"></a><span class="lineno">  643</span>                    <a class="code hl_class" href="../../d3/d98/classNuke_1_1Unreal_1_1Unreal.html">Unreal</a>.<a class="code hl_function" href="../../d3/d98/classNuke_1_1Unreal_1_1Unreal.html#a84633d7da86f4f4db1095f8ca7180d46">BuildTool</a>(build, _ =&gt; _</div>
+<div class="line"><a id="l00644" name="l00644"></a><span class="lineno">  644</span>                        .Target(<span class="stringliteral">&quot;UnrealGame&quot;</span>, platform,</div>
+<div class="line"><a id="l00645" name="l00645"></a><span class="lineno">  645</span>                        [</div>
+<div class="line"><a id="l00646" name="l00646"></a><span class="lineno">  646</span>                            <a class="code hl_class" href="../../d7/dd2/classNuke_1_1Unreal_1_1UnrealConfig.html">UnrealConfig</a>.Development,</div>
+<div class="line"><a id="l00647" name="l00647"></a><span class="lineno">  647</span>                            <a class="code hl_class" href="../../d7/dd2/classNuke_1_1Unreal_1_1UnrealConfig.html">UnrealConfig</a>.Shipping</div>
+<div class="line"><a id="l00648" name="l00648"></a><span class="lineno">  648</span>                        ])</div>
+<div class="line"><a id="l00649" name="l00649"></a><span class="lineno">  649</span>                        .Apply(CommonProject)</div>
+<div class="line"><a id="l00650" name="l00650"></a><span class="lineno">  650</span>                    )();</div>
+<div class="line"><a id="l00651" name="l00651"></a><span class="lineno">  651</span>                    <span class="keywordflow">if</span> (platform.IsDevelopment)</div>
+<div class="line"><a id="l00652" name="l00652"></a><span class="lineno">  652</span>                    {</div>
+<div class="line"><a id="l00653" name="l00653"></a><span class="lineno">  653</span>                        Log.Information(<span class="stringliteral">&quot;Building UnrealEditor binaries for UProject {0} @ {1}&quot;</span>, <a class="code hl_property" href="../../d0/ded/classNuke_1_1Unreal_1_1Plugins_1_1UnrealPlugin.html#ad309fd0849ced6ca20e5d5ffbc8e6d9a">Name</a>, platform);</div>
+<div class="line"><a id="l00654" name="l00654"></a><span class="lineno">  654</span>                        <a class="code hl_class" href="../../d3/d98/classNuke_1_1Unreal_1_1Unreal.html">Unreal</a>.<a class="code hl_function" href="../../d3/d98/classNuke_1_1Unreal_1_1Unreal.html#a84633d7da86f4f4db1095f8ca7180d46">BuildTool</a>(build, _ =&gt; _</div>
+<div class="line"><a id="l00655" name="l00655"></a><span class="lineno">  655</span>                            .Target(<span class="stringliteral">&quot;UnrealEditor&quot;</span>, platform, [<a class="code hl_class" href="../../d7/dd2/classNuke_1_1Unreal_1_1UnrealConfig.html">UnrealConfig</a>.Development])</div>
+<div class="line"><a id="l00656" name="l00656"></a><span class="lineno">  656</span>                            .Apply(CommonProject)</div>
+<div class="line"><a id="l00657" name="l00657"></a><span class="lineno">  657</span>                        )();</div>
+<div class="line"><a id="l00658" name="l00658"></a><span class="lineno">  658</span>                    }</div>
+<div class="line"><a id="l00659" name="l00659"></a><span class="lineno">  659</span>                    Log.Information(<span class="stringliteral">&quot;Building UnrealGame binaries from UPlugin for {0} @ {1}&quot;</span>, <a class="code hl_property" href="../../d0/ded/classNuke_1_1Unreal_1_1Plugins_1_1UnrealPlugin.html#ad309fd0849ced6ca20e5d5ffbc8e6d9a">Name</a>, platform);</div>
+<div class="line"><a id="l00660" name="l00660"></a><span class="lineno">  660</span>                    <a class="code hl_class" href="../../d3/d98/classNuke_1_1Unreal_1_1Unreal.html">Unreal</a>.<a class="code hl_function" href="../../d3/d98/classNuke_1_1Unreal_1_1Unreal.html#a84633d7da86f4f4db1095f8ca7180d46">BuildTool</a>(build, _ =&gt; _</div>
+<div class="line"><a id="l00661" name="l00661"></a><span class="lineno">  661</span>                        .Target(<span class="stringliteral">&quot;UnrealGame&quot;</span>, platform,</div>
+<div class="line"><a id="l00662" name="l00662"></a><span class="lineno">  662</span>                        [</div>
+<div class="line"><a id="l00663" name="l00663"></a><span class="lineno">  663</span>                            <a class="code hl_class" href="../../d7/dd2/classNuke_1_1Unreal_1_1UnrealConfig.html">UnrealConfig</a>.Development,</div>
+<div class="line"><a id="l00664" name="l00664"></a><span class="lineno">  664</span>                            <a class="code hl_class" href="../../d7/dd2/classNuke_1_1Unreal_1_1UnrealConfig.html">UnrealConfig</a>.Shipping</div>
+<div class="line"><a id="l00665" name="l00665"></a><span class="lineno">  665</span>                        ])</div>
+<div class="line"><a id="l00666" name="l00666"></a><span class="lineno">  666</span>                        .Apply(CommonPlugin)</div>
+<div class="line"><a id="l00667" name="l00667"></a><span class="lineno">  667</span>                    )();</div>
+<div class="line"><a id="l00668" name="l00668"></a><span class="lineno">  668</span>                    <span class="keywordflow">if</span> (platform.IsDevelopment)</div>
+<div class="line"><a id="l00669" name="l00669"></a><span class="lineno">  669</span>                    {</div>
+<div class="line"><a id="l00670" name="l00670"></a><span class="lineno">  670</span>                        Log.Information(<span class="stringliteral">&quot;Building UnrealEditor binaries for UPlugin {0} @ {1}&quot;</span>, <a class="code hl_property" href="../../d0/ded/classNuke_1_1Unreal_1_1Plugins_1_1UnrealPlugin.html#ad309fd0849ced6ca20e5d5ffbc8e6d9a">Name</a>, platform);</div>
+<div class="line"><a id="l00671" name="l00671"></a><span class="lineno">  671</span>                        <a class="code hl_class" href="../../d3/d98/classNuke_1_1Unreal_1_1Unreal.html">Unreal</a>.<a class="code hl_function" href="../../d3/d98/classNuke_1_1Unreal_1_1Unreal.html#a84633d7da86f4f4db1095f8ca7180d46">BuildTool</a>(build, _ =&gt; _</div>
+<div class="line"><a id="l00672" name="l00672"></a><span class="lineno">  672</span>                            .Target(<span class="stringliteral">&quot;UnrealEditor&quot;</span>, platform, [<a class="code hl_class" href="../../d7/dd2/classNuke_1_1Unreal_1_1UnrealConfig.html">UnrealConfig</a>.Development])</div>
+<div class="line"><a id="l00673" name="l00673"></a><span class="lineno">  673</span>                            .Apply(CommonPlugin)</div>
+<div class="line"><a id="l00674" name="l00674"></a><span class="lineno">  674</span>                        )();</div>
+<div class="line"><a id="l00675" name="l00675"></a><span class="lineno">  675</span>                    }</div>
+<div class="line"><a id="l00676" name="l00676"></a><span class="lineno">  676</span>                }</div>
+<div class="line"><a id="l00677" name="l00677"></a><span class="lineno">  677</span>                hostPluginDir.Copy(outFolder, ExistsPolicy.MergeAndOverwrite);</div>
+<div class="line"><a id="l00678" name="l00678"></a><span class="lineno">  678</span>                hostProjectDir.DeleteDirectory();</div>
+<div class="line"><a id="l00679" name="l00679"></a><span class="lineno">  679</span>                _buildOutput = outFolder;</div>
+<div class="line"><a id="l00680" name="l00680"></a><span class="lineno">  680</span>            }</div>
+<div class="line"><a id="l00681" name="l00681"></a><span class="lineno">  681</span>            <span class="keywordflow">finally</span></div>
+<div class="line"><a id="l00682" name="l00682"></a><span class="lineno">  682</span>            {</div>
+<div class="line"><a id="l00683" name="l00683"></a><span class="lineno">  683</span>                <span class="keywordflow">if</span> (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))</div>
+<div class="line"><a id="l00684" name="l00684"></a><span class="lineno">  684</span>                    shortHostProjectDir.AsLinkInfo()?.Delete();</div>
+<div class="line"><a id="l00685" name="l00685"></a><span class="lineno">  685</span>                </div>
+<div class="line"><a id="l00686" name="l00686"></a><span class="lineno">  686</span>                <span class="keywordflow">foreach</span> (var dep <span class="keywordflow">in</span> dependencies)</div>
+<div class="line"><a id="l00687" name="l00687"></a><span class="lineno">  687</span>                {</div>
+<div class="line"><a id="l00688" name="l00688"></a><span class="lineno">  688</span>                    Log.Debug(<span class="stringliteral">&quot;Deleting temporary installed plugin {0}&quot;</span>, enginePluginsDir / dep.Name);</div>
+<div class="line"><a id="l00689" name="l00689"></a><span class="lineno">  689</span>                    (enginePluginsDir / dep.Name).ExistingDirectory()?.DeleteDirectory();</div>
+<div class="line"><a id="l00690" name="l00690"></a><span class="lineno">  690</span>                }</div>
+<div class="line"><a id="l00691" name="l00691"></a><span class="lineno">  691</span>            }</div>
+<div class="line"><a id="l00692" name="l00692"></a><span class="lineno">  692</span>            <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00693" name="l00693"></a><span class="lineno">  693</span> </div>
+<div class="line"><a id="l00694" name="l00694"></a><span class="lineno">  694</span>        }</div>
+<div class="line"><a id="l00695" name="l00695"></a><span class="lineno">  695</span> </div>
+<div class="line"><a id="l00696" name="l00696"></a><span class="lineno">  696</span>        <span class="keywordflow">return</span> outFolder;</div>
+<div class="line"><a id="l00697" name="l00697"></a><span class="lineno">  697</span>    }</div>
 </div>
-<div class="line"><a id="l00697" name="l00697"></a><span class="lineno">  697</span>}</div>
+<div class="line"><a id="l00698" name="l00698"></a><span class="lineno">  698</span>}</div>
 </div>
-<div class="line"><a id="l00698" name="l00698"></a><span class="lineno">  698</span> </div>
-<div class="foldopen" id="foldopen00699" data-start="{" data-end="};">
-<div class="line"><a id="l00699" name="l00699"></a><span class="lineno"><a class="line" href="../../d9/d96/classNuke_1_1Unreal_1_1Plugins_1_1UnrealPluginExtensions.html">  699</a></span><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">class </span><a class="code hl_class" href="../../d9/d96/classNuke_1_1Unreal_1_1Plugins_1_1UnrealPluginExtensions.html">UnrealPluginExtensions</a></div>
-<div class="line"><a id="l00700" name="l00700"></a><span class="lineno">  700</span>{</div>
-<div class="line"><a id="l00701" name="l00701"></a><span class="lineno">  701</span>    <span class="keyword">internal</span> <span class="keyword">static</span> IEnumerable&lt;string&gt; FilterBuildStepBlock(<span class="keyword">this</span> IEnumerable&lt;string&gt; <span class="keyword">self</span>, <span class="keywordtype">string</span> name)</div>
-<div class="line"><a id="l00702" name="l00702"></a><span class="lineno">  702</span>        =&gt; <span class="keyword">self</span></div>
-<div class="line"><a id="l00703" name="l00703"></a><span class="lineno">  703</span>            .TakeUntil(a =&gt; a == <span class="stringliteral">&quot;echo GENERATED BUILD STEPS&quot;</span>.AppendNonEmpty(name))</div>
-<div class="line"><a id="l00704" name="l00704"></a><span class="lineno">  704</span>            .Concat(</div>
-<div class="line"><a id="l00705" name="l00705"></a><span class="lineno">  705</span>                <span class="keyword">self</span>.SkipUntil(a =&gt; a == <span class="stringliteral">&quot;echo GENERATED BUILD STEPS&quot;</span>.AppendNonEmpty(name))</div>
-<div class="line"><a id="l00706" name="l00706"></a><span class="lineno">  706</span>                .Skip(1)</div>
-<div class="line"><a id="l00707" name="l00707"></a><span class="lineno">  707</span>                .SkipUntil(a =&gt; a.StartsWith(<span class="stringliteral">&quot;echo GENERATED BUILD STEPS&quot;</span>))</div>
-<div class="line"><a id="l00708" name="l00708"></a><span class="lineno">  708</span>            );</div>
-<div class="line"><a id="l00709" name="l00709"></a><span class="lineno">  709</span>    </div>
-<div class="line"><a id="l00710" name="l00710"></a><span class="lineno">  710</span>    <span class="keyword">internal</span> <span class="keyword">static</span> IEnumerable&lt;string&gt; StartBuildStepBlock(<span class="keyword">this</span> IEnumerable&lt;string&gt; <span class="keyword">self</span>, <span class="keywordtype">string</span> name)</div>
-<div class="line"><a id="l00711" name="l00711"></a><span class="lineno">  711</span>        =&gt; <span class="keyword">self</span>.Append(<span class="stringliteral">&quot;echo GENERATED BUILD STEPS&quot;</span>.AppendNonEmpty(name));</div>
-<div class="line"><a id="l00712" name="l00712"></a><span class="lineno">  712</span> </div>
-<div class="line"><a id="l00713" name="l00713"></a><span class="lineno">  713</span>    <span class="keyword">internal</span> <span class="keyword">static</span> <span class="keywordtype">void</span> EnsureDevelopmentPlatforms(<span class="keyword">this</span> Dictionary&lt;<a class="code hl_class" href="../../d5/dc0/classNuke_1_1Unreal_1_1UnrealPlatform.html">UnrealPlatform</a>, List&lt;string&gt;&gt; <span class="keyword">self</span>)</div>
-<div class="line"><a id="l00714" name="l00714"></a><span class="lineno">  714</span>    {</div>
-<div class="line"><a id="l00715" name="l00715"></a><span class="lineno">  715</span>        <span class="keywordflow">foreach</span> (var platform <span class="keywordflow">in</span> <a class="code hl_class" href="../../d5/dc0/classNuke_1_1Unreal_1_1UnrealPlatform.html">UnrealPlatform</a>.<a class="code hl_variable" href="../../d5/dc0/classNuke_1_1Unreal_1_1UnrealPlatform.html#af4081f4c30b6c4d488a2a4a4a6b1b374">DevelopmentPlatforms</a>)</div>
-<div class="line"><a id="l00716" name="l00716"></a><span class="lineno">  716</span>        {</div>
-<div class="line"><a id="l00717" name="l00717"></a><span class="lineno">  717</span>            <span class="keywordflow">if</span> (!<span class="keyword">self</span>.ContainsKey(platform)) <span class="keyword">self</span>.Add(platform, []);</div>
-<div class="line"><a id="l00718" name="l00718"></a><span class="lineno">  718</span>        }</div>
-<div class="line"><a id="l00719" name="l00719"></a><span class="lineno">  719</span>    }</div>
-<div class="line"><a id="l00720" name="l00720"></a><span class="lineno">  720</span> </div>
-<div class="line"><a id="l00721" name="l00721"></a><span class="lineno">  721</span>    <span class="keyword">public</span> <span class="keyword">static</span> <a class="code hl_class" href="../../d9/dbc/classNuke_1_1Unreal_1_1Tools_1_1UbtConfig.html">UbtConfig</a> StrictIncludes(<span class="keyword">this</span> <a class="code hl_class" href="../../d9/dbc/classNuke_1_1Unreal_1_1Tools_1_1UbtConfig.html">UbtConfig</a> _) =&gt; _</div>
-<div class="line"><a id="l00722" name="l00722"></a><span class="lineno">  722</span>        .<a class="code hl_function" href="../../d7/d0d/classNuke_1_1Unreal_1_1Tools_1_1UbtConfigGenerated.html#adf7d821271d90dc5865d0f6fe180f575">NoPCH</a>()</div>
-<div class="line"><a id="l00723" name="l00723"></a><span class="lineno">  723</span>        .<a class="code hl_function" href="../../d7/d0d/classNuke_1_1Unreal_1_1Tools_1_1UbtConfigGenerated.html#a0999edc7e9dda71f2913b0e1168acd15">NoSharedPCH</a>()</div>
-<div class="line"><a id="l00724" name="l00724"></a><span class="lineno">  724</span>        .<a class="code hl_function" href="../../d7/d0d/classNuke_1_1Unreal_1_1Tools_1_1UbtConfigGenerated.html#a6a21b98e6352395670ad3698d9275424">DisableUnity</a>();</div>
-<div class="line"><a id="l00725" name="l00725"></a><span class="lineno">  725</span>}</div>
+<div class="line"><a id="l00699" name="l00699"></a><span class="lineno">  699</span> </div>
+<div class="foldopen" id="foldopen00700" data-start="{" data-end="};">
+<div class="line"><a id="l00700" name="l00700"></a><span class="lineno"><a class="line" href="../../d9/d96/classNuke_1_1Unreal_1_1Plugins_1_1UnrealPluginExtensions.html">  700</a></span><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">class </span><a class="code hl_class" href="../../d9/d96/classNuke_1_1Unreal_1_1Plugins_1_1UnrealPluginExtensions.html">UnrealPluginExtensions</a></div>
+<div class="line"><a id="l00701" name="l00701"></a><span class="lineno">  701</span>{</div>
+<div class="line"><a id="l00702" name="l00702"></a><span class="lineno">  702</span>    <span class="keyword">internal</span> <span class="keyword">static</span> IEnumerable&lt;string&gt; FilterBuildStepBlock(<span class="keyword">this</span> IEnumerable&lt;string&gt; <span class="keyword">self</span>, <span class="keywordtype">string</span> name)</div>
+<div class="line"><a id="l00703" name="l00703"></a><span class="lineno">  703</span>        =&gt; <span class="keyword">self</span></div>
+<div class="line"><a id="l00704" name="l00704"></a><span class="lineno">  704</span>            .TakeUntil(a =&gt; a == <span class="stringliteral">&quot;echo GENERATED BUILD STEPS&quot;</span>.AppendNonEmpty(name))</div>
+<div class="line"><a id="l00705" name="l00705"></a><span class="lineno">  705</span>            .Concat(</div>
+<div class="line"><a id="l00706" name="l00706"></a><span class="lineno">  706</span>                <span class="keyword">self</span>.SkipUntil(a =&gt; a == <span class="stringliteral">&quot;echo GENERATED BUILD STEPS&quot;</span>.AppendNonEmpty(name))</div>
+<div class="line"><a id="l00707" name="l00707"></a><span class="lineno">  707</span>                .Skip(1)</div>
+<div class="line"><a id="l00708" name="l00708"></a><span class="lineno">  708</span>                .SkipUntil(a =&gt; a.StartsWith(<span class="stringliteral">&quot;echo GENERATED BUILD STEPS&quot;</span>))</div>
+<div class="line"><a id="l00709" name="l00709"></a><span class="lineno">  709</span>            );</div>
+<div class="line"><a id="l00710" name="l00710"></a><span class="lineno">  710</span>    </div>
+<div class="line"><a id="l00711" name="l00711"></a><span class="lineno">  711</span>    <span class="keyword">internal</span> <span class="keyword">static</span> IEnumerable&lt;string&gt; StartBuildStepBlock(<span class="keyword">this</span> IEnumerable&lt;string&gt; <span class="keyword">self</span>, <span class="keywordtype">string</span> name)</div>
+<div class="line"><a id="l00712" name="l00712"></a><span class="lineno">  712</span>        =&gt; <span class="keyword">self</span>.Append(<span class="stringliteral">&quot;echo GENERATED BUILD STEPS&quot;</span>.AppendNonEmpty(name));</div>
+<div class="line"><a id="l00713" name="l00713"></a><span class="lineno">  713</span> </div>
+<div class="line"><a id="l00714" name="l00714"></a><span class="lineno">  714</span>    <span class="keyword">internal</span> <span class="keyword">static</span> <span class="keywordtype">void</span> EnsureDevelopmentPlatforms(<span class="keyword">this</span> Dictionary&lt;<a class="code hl_class" href="../../d5/dc0/classNuke_1_1Unreal_1_1UnrealPlatform.html">UnrealPlatform</a>, List&lt;string&gt;&gt; <span class="keyword">self</span>)</div>
+<div class="line"><a id="l00715" name="l00715"></a><span class="lineno">  715</span>    {</div>
+<div class="line"><a id="l00716" name="l00716"></a><span class="lineno">  716</span>        <span class="keywordflow">foreach</span> (var platform <span class="keywordflow">in</span> <a class="code hl_class" href="../../d5/dc0/classNuke_1_1Unreal_1_1UnrealPlatform.html">UnrealPlatform</a>.<a class="code hl_variable" href="../../d5/dc0/classNuke_1_1Unreal_1_1UnrealPlatform.html#af4081f4c30b6c4d488a2a4a4a6b1b374">DevelopmentPlatforms</a>)</div>
+<div class="line"><a id="l00717" name="l00717"></a><span class="lineno">  717</span>        {</div>
+<div class="line"><a id="l00718" name="l00718"></a><span class="lineno">  718</span>            <span class="keywordflow">if</span> (!<span class="keyword">self</span>.ContainsKey(platform)) <span class="keyword">self</span>.Add(platform, []);</div>
+<div class="line"><a id="l00719" name="l00719"></a><span class="lineno">  719</span>        }</div>
+<div class="line"><a id="l00720" name="l00720"></a><span class="lineno">  720</span>    }</div>
+<div class="line"><a id="l00721" name="l00721"></a><span class="lineno">  721</span> </div>
+<div class="line"><a id="l00722" name="l00722"></a><span class="lineno">  722</span>    <span class="keyword">public</span> <span class="keyword">static</span> <a class="code hl_class" href="../../d9/dbc/classNuke_1_1Unreal_1_1Tools_1_1UbtConfig.html">UbtConfig</a> StrictIncludes(<span class="keyword">this</span> <a class="code hl_class" href="../../d9/dbc/classNuke_1_1Unreal_1_1Tools_1_1UbtConfig.html">UbtConfig</a> _) =&gt; _</div>
+<div class="line"><a id="l00723" name="l00723"></a><span class="lineno">  723</span>        .<a class="code hl_function" href="../../d7/d0d/classNuke_1_1Unreal_1_1Tools_1_1UbtConfigGenerated.html#adf7d821271d90dc5865d0f6fe180f575">NoPCH</a>()</div>
+<div class="line"><a id="l00724" name="l00724"></a><span class="lineno">  724</span>        .<a class="code hl_function" href="../../d7/d0d/classNuke_1_1Unreal_1_1Tools_1_1UbtConfigGenerated.html#a0999edc7e9dda71f2913b0e1168acd15">NoSharedPCH</a>()</div>
+<div class="line"><a id="l00725" name="l00725"></a><span class="lineno">  725</span>        .<a class="code hl_function" href="../../d7/d0d/classNuke_1_1Unreal_1_1Tools_1_1UbtConfigGenerated.html#a6a21b98e6352395670ad3698d9275424">DisableUnity</a>();</div>
+<div class="line"><a id="l00726" name="l00726"></a><span class="lineno">  726</span>}</div>
 </div>
 <div class="ttc" id="aclassNuke_1_1Unreal_1_1EngineVersion_html"><div class="ttname"><a href="../../db/d1d/classNuke_1_1Unreal_1_1EngineVersion.html">Nuke.Unreal.EngineVersion</a></div><div class="ttdoc">High level representation of an Unreal Engine version.</div><div class="ttdef"><b>Definition</b> <a href="../../db/df0/EngineVersion_8cs_source.html#l00016">EngineVersion.cs:17</a></div></div>
 <div class="ttc" id="aclassNuke_1_1Unreal_1_1EngineVersion_html_a07302985ee7f658d872a39bc3e52f9af"><div class="ttname"><a href="../../db/d1d/classNuke_1_1Unreal_1_1EngineVersion.html#a07302985ee7f658d872a39bc3e52f9af">Nuke.Unreal.EngineVersion.VersionMinor</a></div><div class="ttdeci">string VersionMinor</div><div class="ttdoc">Only the Major.Minor version components, with extra information trimmed.</div><div class="ttdef"><b>Definition</b> <a href="../../db/df0/EngineVersion_8cs_source.html#l00055">EngineVersion.cs:55</a></div></div>
-<div class="ttc" id="aclassNuke_1_1Unreal_1_1Plugins_1_1UnrealPluginExtensions_html"><div class="ttname"><a href="../../d9/d96/classNuke_1_1Unreal_1_1Plugins_1_1UnrealPluginExtensions.html">Nuke.Unreal.Plugins.UnrealPluginExtensions</a></div><div class="ttdef"><b>Definition</b> <a href="#l00699">UnrealPlugin.cs:700</a></div></div>
+<div class="ttc" id="aclassNuke_1_1Unreal_1_1Plugins_1_1UnrealPluginExtensions_html"><div class="ttname"><a href="../../d9/d96/classNuke_1_1Unreal_1_1Plugins_1_1UnrealPluginExtensions.html">Nuke.Unreal.Plugins.UnrealPluginExtensions</a></div><div class="ttdef"><b>Definition</b> <a href="#l00700">UnrealPlugin.cs:701</a></div></div>
 <div class="ttc" id="aclassNuke_1_1Unreal_1_1Plugins_1_1UnrealPlugin_html"><div class="ttname"><a href="../../d0/ded/classNuke_1_1Unreal_1_1Plugins_1_1UnrealPlugin.html">Nuke.Unreal.Plugins.UnrealPlugin</a></div><div class="ttdoc">A class encapsulating information and tasks around one Unreal plugin.</div><div class="ttdef"><b>Definition</b> <a href="#l00121">UnrealPlugin.cs:122</a></div></div>
 <div class="ttc" id="aclassNuke_1_1Unreal_1_1Plugins_1_1UnrealPlugin_html_a163e16868ebee4b0924862404a2af80b"><div class="ttname"><a href="../../d0/ded/classNuke_1_1Unreal_1_1Plugins_1_1UnrealPlugin.html#a163e16868ebee4b0924862404a2af80b">Nuke.Unreal.Plugins.UnrealPlugin.GetBuildOutput</a></div><div class="ttdeci">AbsolutePath GetBuildOutput(IUnrealBuild build, PluginBuildOptions? options=null)</div><div class="ttdoc">Gets the output folder for packaging this plugin.</div><div class="ttdef"><b>Definition</b> <a href="#l00281">UnrealPlugin.cs:281</a></div></div>
 <div class="ttc" id="aclassNuke_1_1Unreal_1_1Plugins_1_1UnrealPlugin_html_a22c2b2475699570d86f4cce1e9ae8f05"><div class="ttname"><a href="../../d0/ded/classNuke_1_1Unreal_1_1Plugins_1_1UnrealPlugin.html#a22c2b2475699570d86f4cce1e9ae8f05">Nuke.Unreal.Plugins.UnrealPlugin.GenerateFilterPluginIni</a></div><div class="ttdeci">void GenerateFilterPluginIni(IUnrealBuild build)</div><div class="ttdoc">Generate the FilterPlugin.ini file after all components have submitted their explicit files.</div><div class="ttdef"><b>Definition</b> <a href="#l00294">UnrealPlugin.cs:294</a></div></div>
