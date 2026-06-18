@@ -632,6 +632,7 @@ public class UnrealPlugin
                     .Apply(Common)
                 ;
                 UbtConfig CommonPlugin(UbtConfig _) => _
+                    .Project(shortHostProjectDir / "HostProject.uproject")
                     .Plugin(shortPluginDir / PluginPath.Name)
                     .Apply(Common)
                 ;
