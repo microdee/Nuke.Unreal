@@ -4,6 +4,7 @@ using Nuke.Common.IO;
 using Microsoft.Win32;
 using System.Runtime.InteropServices;
 using System;
+using System.IO;
 using Nuke.Common;
 using System.Linq;
 using Nuke.Common.Utilities;
@@ -18,6 +19,34 @@ internal class WindowsUnrealLocator : IUnrealLocator
         {
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
             {
+                var discovered = new HashSet<AbsolutePath>();
+                var launcherDatRelative = "UnrealEngineLauncher/LauncherInstalled.dat";
+                var centralLauncherDat = EnvironmentInfo.SpecialFolder(SpecialFolders.CommonApplicationData) / "Epic" / launcherDatRelative;
+                var userLauncherDat = EnvironmentInfo.SpecialFolder(SpecialFolders.LocalApplicationData) / launcherDatRelative;
+
+                foreach (var instance in LauncherInstalledList.FromFile(centralLauncherDat))
+                {
+                    if (discovered.Add(instance.Path))
+                        yield return instance;
+                }
+                foreach (var instance in LauncherInstalledList.FromFile(userLauncherDat))
+                {
+                    if (discovered.Add(instance.Path))
+                        yield return instance;
+                }
+
+                // Engines installed into program files may not be submitted in registry automatically, pure speculation tho
+                // var epicGamesProgramFiles = EnvironmentInfo.SpecialFolder(SpecialFolders.ProgramFiles) / "Epic Games";
+                // foreach (var engineCandidate in epicGamesProgramFiles.GlobDirectories("UE_*"))
+                // {
+                //     if ((engineCandidate / "Engine/Build/Build.version").FileExists())
+                //     {
+                //         var name = engineCandidate.Name.Replace("UE_", "");
+                //
+                //         if (discovered.Add(engineCandidate))
+                //             yield return new (name, engineCandidate);
+                //     }
+                // }
                 using (var installed = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\EpicGames\Unreal Engine"))
                 {
                     if (installed != null)
@@ -30,7 +59,9 @@ internal class WindowsUnrealLocator : IUnrealLocator
 
                             var path = AbsolutePath.Create(candidate);
                             if (!path.DirectoryExists()) continue;
-                            yield return new(subKeyName, path);
+
+                            if (discovered.Add(path))
+                                yield return new(subKeyName, path);
                         }
                     }
                 }
@@ -45,7 +76,9 @@ internal class WindowsUnrealLocator : IUnrealLocator
 
                             var path = AbsolutePath.Create(candidate);
                             if (!path.DirectoryExists()) continue;
-                            yield return new(valueName, path);
+
+                            if (discovered.Add(path))
+                                yield return new(valueName, path);
                         }
                     }
                 }

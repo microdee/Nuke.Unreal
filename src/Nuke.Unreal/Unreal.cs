@@ -117,9 +117,7 @@ public static class Unreal
     {
         if (!ignoreCache && EnginePathCache != null) return EnginePathCache;
 
-        IUnrealLocator locator = RuntimeInformation.IsOSPlatform(OSPlatform.Windows)
-            ? new WindowsUnrealLocator()
-            : new GenericUnrealLocator();
+        IUnrealLocator locator = UnrealLocator.Make();
 
         Log.Debug("Looking for Unreal Engine installation {0}", engineAssociation);
 

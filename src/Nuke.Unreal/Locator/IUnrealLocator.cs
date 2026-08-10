@@ -1,6 +1,7 @@
 
 using System.Collections.Generic;
 using System.IO;
+using System.Runtime.InteropServices;
 using Nuke.Common.IO;
 
 namespace Nuke.Unreal;
@@ -35,6 +36,14 @@ public interface IUnrealLocator
 /// </summary>
 public static class UnrealLocator
 {
+    /// <summary>
+    /// Get the current platform implementation of an Unreal Locator
+    /// </summary>
+    public static IUnrealLocator Make() => RuntimeInformation.IsOSPlatform(OSPlatform.Windows)
+        ? new WindowsUnrealLocator()
+        : new GenericUnrealLocator()
+    ;
+
     /// <summary>
     /// Extend input path (presumably to an Unreal Engine installation) to its location of Build.version
     /// </summary>
