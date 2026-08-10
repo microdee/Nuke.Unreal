@@ -309,6 +309,12 @@ Functions</h2></td></tr>
 <tr class="memitem:a1cbd57a1cff54846282e3c67b754792e" id="r_a1cbd57a1cff54846282e3c67b754792e"><td class="memItemLeft" align="right" valign="top">record class&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1cbd57a1cff54846282e3c67b754792e">UnrealInstance</a> (string Name, AbsolutePath Path)</td></tr>
 <tr class="memdesc:a1cbd57a1cff54846282e3c67b754792e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Group an <a class="el" href="../../d3/d98/classNuke_1_1Unreal_1_1Unreal.html" title="A collection of utilities around basic functions regarding the environment of the Engine we&#39;re workin...">Unreal</a> association with its actual path.  <br /></td></tr>
 <tr class="separator:a1cbd57a1cff54846282e3c67b754792e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afd85e43b19427a9af51d5093caae23dc" id="r_afd85e43b19427a9af51d5093caae23dc"><td class="memItemLeft" align="right" valign="top">record class&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afd85e43b19427a9af51d5093caae23dc">LauncherInstalledItem</a> (string InstallLocation, string NamespaceId, string ItemId, string ArtifactId, string AppVersion, string AppName)</td></tr>
+<tr class="memdesc:afd85e43b19427a9af51d5093caae23dc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Represents an item in the LauncherInstalled file.  <br /></td></tr>
+<tr class="separator:afd85e43b19427a9af51d5093caae23dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abc8a5deb852264ce7384e1cf339343ff" id="r_abc8a5deb852264ce7384e1cf339343ff"><td class="memItemLeft" align="right" valign="top">record class&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abc8a5deb852264ce7384e1cf339343ff">LauncherInstalledList</a> (List&lt; <a class="el" href="#afd85e43b19427a9af51d5093caae23dc">LauncherInstalledItem</a> &gt; InstallationList)</td></tr>
+<tr class="memdesc:abc8a5deb852264ce7384e1cf339343ff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Represents the whole LauncherInstalled file.  <br /></td></tr>
+<tr class="separator:abc8a5deb852264ce7384e1cf339343ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aaeaf7b58e3faeeefea0f275f53008a86" id="r_aaeaf7b58e3faeeefea0f275f53008a86"><td class="memItemLeft" align="right" valign="top">record class&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aaeaf7b58e3faeeefea0f275f53008a86">ProjectDescriptor</a> (int FileVersion=3, string? EngineAssociation=null, string? Category=null, string? Description=null, List&lt; ModuleDescriptor &gt;? Modules=null, List&lt; PluginReferenceDescriptor &gt;? Plugins=null, List&lt; string &gt;? AdditionalRootDirectories=null, List&lt; string &gt;? AdditionalPluginDirectories=null, List&lt; <a class="el" href="../../d5/dc0/classNuke_1_1Unreal_1_1UnrealPlatform.html">UnrealPlatform</a> &gt;? TargetPlatforms=null, uint? EpicSampleNameHash=null, Dictionary&lt; <a class="el" href="../../d5/dc0/classNuke_1_1Unreal_1_1UnrealPlatform.html">UnrealPlatform</a>, List&lt; string &gt; &gt;? InitSteps=null, Dictionary&lt; <a class="el" href="../../d5/dc0/classNuke_1_1Unreal_1_1UnrealPlatform.html">UnrealPlatform</a>, List&lt; string &gt; &gt;? PreBuildSteps=null, Dictionary&lt; <a class="el" href="../../d5/dc0/classNuke_1_1Unreal_1_1UnrealPlatform.html">UnrealPlatform</a>, List&lt; string &gt; &gt;? PostBuildSteps=null, bool? IsEnterpriseProject=null, bool? DisableEnginePluginsByDefault=null)</td></tr>
 <tr class="memdesc:aaeaf7b58e3faeeefea0f275f53008a86"><td class="mdescLeft">&#160;</td><td class="mdescRight">In-memory representation of a .uproject file.  <br /></td></tr>
 <tr class="separator:aaeaf7b58e3faeeefea0f275f53008a86"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -413,6 +419,70 @@ Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Function Documentation</h2>
+<a id="afd85e43b19427a9af51d5093caae23dc" name="afd85e43b19427a9af51d5093caae23dc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afd85e43b19427a9af51d5093caae23dc">&#9670;&#160;</a></span>LauncherInstalledItem()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">record class Nuke.Unreal.LauncherInstalledItem </td>
+          <td>(</td>
+          <td class="paramtype">string</td>          <td class="paramname"><span class="paramname"><em>InstallLocation</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string</td>          <td class="paramname"><span class="paramname"><em>NamespaceId</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string</td>          <td class="paramname"><span class="paramname"><em>ItemId</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string</td>          <td class="paramname"><span class="paramname"><em>ArtifactId</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string</td>          <td class="paramname"><span class="paramname"><em>AppVersion</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string</td>          <td class="paramname"><span class="paramname"><em>AppName</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Represents an item in the LauncherInstalled file. </p>
+
+</div>
+</div>
+<a id="abc8a5deb852264ce7384e1cf339343ff" name="abc8a5deb852264ce7384e1cf339343ff"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abc8a5deb852264ce7384e1cf339343ff">&#9670;&#160;</a></span>LauncherInstalledList()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">record class Nuke.Unreal.LauncherInstalledList </td>
+          <td>(</td>
+          <td class="paramtype">List&lt; <a class="el" href="#afd85e43b19427a9af51d5093caae23dc">LauncherInstalledItem</a> &gt;</td>          <td class="paramname"><span class="paramname"><em>InstallationList</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Represents the whole LauncherInstalled file. </p>
+
+<p class="definition">Definition at line <a class="el" href="../../d9/d62/LauncherInstalled_8cs_source.html#l00023">23</a> of file <a class="el" href="../../d9/d62/LauncherInstalled_8cs_source.html">LauncherInstalled.cs</a>.</p>
+
+</div>
+</div>
 <a id="aaeaf7b58e3faeeefea0f275f53008a86" name="aaeaf7b58e3faeeefea0f275f53008a86"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aaeaf7b58e3faeeefea0f275f53008a86">&#9670;&#160;</a></span>ProjectDescriptor()</h2>
 

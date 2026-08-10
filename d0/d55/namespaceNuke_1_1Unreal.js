@@ -119,6 +119,8 @@ var namespaceNuke_1_1Unreal =
       [ "AllDesktop", "d0/d55/namespaceNuke_1_1Unreal.html#a824dc99fa91b86e7b82a9973058e0dd5af6aa306b5741d6ddfa01105f9d371b39", null ],
       [ "Independent", "d0/d55/namespaceNuke_1_1Unreal.html#a824dc99fa91b86e7b82a9973058e0dd5ae9e003c325eec6946ed1d23c6ac90a21", null ]
     ] ],
+    [ "LauncherInstalledItem", "d0/d55/namespaceNuke_1_1Unreal.html#afd85e43b19427a9af51d5093caae23dc", null ],
+    [ "LauncherInstalledList", "d0/d55/namespaceNuke_1_1Unreal.html#abc8a5deb852264ce7384e1cf339343ff", null ],
     [ "ProjectDescriptor", "d0/d55/namespaceNuke_1_1Unreal.html#aaeaf7b58e3faeeefea0f275f53008a86", null ],
     [ "UnrealInstance", "d0/d55/namespaceNuke_1_1Unreal.html#a1cbd57a1cff54846282e3c67b754792e", null ]
 ];
