@@ -152,6 +152,9 @@ Static Public Member Functions</h2></td></tr>
 <tr class="memitem:acfd8f1bf497ee882987bcadaeae87dbd" id="r_acfd8f1bf497ee882987bcadaeae87dbd"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acfd8f1bf497ee882987bcadaeae87dbd">IsInstalled</a> (AbsolutePath enginePath)</td></tr>
 <tr class="memdesc:acfd8f1bf497ee882987bcadaeae87dbd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Is given path a vanilla engine most probably installed via the Marketplace?  <br /></td></tr>
 <tr class="separator:acfd8f1bf497ee882987bcadaeae87dbd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a655a4e915ce98960704ddfac16af26da" id="r_a655a4e915ce98960704ddfac16af26da"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="../../d0/d55/namespaceNuke_1_1Unreal.html#afe907e2badea8da4ea321c0becddcf69">UnrealBuildVersion</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a655a4e915ce98960704ddfac16af26da">GetBuildVersion</a> (AbsolutePath enginePath)</td></tr>
+<tr class="memdesc:a655a4e915ce98960704ddfac16af26da"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the parsed content of Build.version file of an engine instance.  <br /></td></tr>
+<tr class="separator:a655a4e915ce98960704ddfac16af26da"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad762ca9bbb2d044bb8877164247d322b" id="r_ad762ca9bbb2d044bb8877164247d322b"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad762ca9bbb2d044bb8877164247d322b">IsInstalled</a> (<a class="el" href="../../db/d1d/classNuke_1_1Unreal_1_1EngineVersion.html">EngineVersion</a> ofVersion)</td></tr>
 <tr class="memdesc:ad762ca9bbb2d044bb8877164247d322b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Are we working with a vanilla engine most probably installed via the Marketplace?  <br /></td></tr>
 <tr class="separator:ad762ca9bbb2d044bb8877164247d322b"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -314,7 +317,7 @@ Static Public Attributes</h2></td></tr>
 <p>Prepare invocation for UAT. </p>
 <dl class="section return"><dt>Returns</dt><dd>A Tool delegate for UAT</dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../d1/d1d/Unreal_8cs_source.html#l00279">279</a> of file <a class="el" href="../../d1/d1d/Unreal_8cs_source.html">Unreal.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d1/d1d/Unreal_8cs_source.html#l00289">289</a> of file <a class="el" href="../../d1/d1d/Unreal_8cs_source.html">Unreal.cs</a>.</p>
 
 </div>
 </div>
@@ -355,7 +358,7 @@ Static Public Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A Tool delegate for UAT</dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../d1/d1d/Unreal_8cs_source.html#l00298">298</a> of file <a class="el" href="../../d1/d1d/Unreal_8cs_source.html">Unreal.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d1/d1d/Unreal_8cs_source.html#l00308">308</a> of file <a class="el" href="../../d1/d1d/Unreal_8cs_source.html">Unreal.cs</a>.</p>
 
 </div>
 </div>
@@ -452,7 +455,7 @@ Static Public Attributes</h2></td></tr>
 <p>Prepare invocation for UBT. </p>
 <dl class="section return"><dt>Returns</dt><dd>A Tool delegate for UBT</dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../d1/d1d/Unreal_8cs_source.html#l00229">229</a> of file <a class="el" href="../../d1/d1d/Unreal_8cs_source.html">Unreal.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d1/d1d/Unreal_8cs_source.html#l00239">239</a> of file <a class="el" href="../../d1/d1d/Unreal_8cs_source.html">Unreal.cs</a>.</p>
 
 </div>
 </div>
@@ -493,7 +496,7 @@ Static Public Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A Tool delegate for UBT</dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../d1/d1d/Unreal_8cs_source.html#l00252">252</a> of file <a class="el" href="../../d1/d1d/Unreal_8cs_source.html">Unreal.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d1/d1d/Unreal_8cs_source.html#l00262">262</a> of file <a class="el" href="../../d1/d1d/Unreal_8cs_source.html">Unreal.cs</a>.</p>
 
 </div>
 </div>
@@ -589,7 +592,36 @@ Static Public Attributes</h2></td></tr>
 
 <p>Clear intermediate folders of <a class="el" href="../../d3/d98/classNuke_1_1Unreal_1_1Unreal.html" title="A collection of utilities around basic functions regarding the environment of the Engine we&#39;re workin...">Unreal</a> from a given folder. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../d1/d1d/Unreal_8cs_source.html#l00326">326</a> of file <a class="el" href="../../d1/d1d/Unreal_8cs_source.html">Unreal.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d1/d1d/Unreal_8cs_source.html#l00336">336</a> of file <a class="el" href="../../d1/d1d/Unreal_8cs_source.html">Unreal.cs</a>.</p>
+
+</div>
+</div>
+<a id="a655a4e915ce98960704ddfac16af26da" name="a655a4e915ce98960704ddfac16af26da"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a655a4e915ce98960704ddfac16af26da">&#9670;&#160;</a></span>GetBuildVersion()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="../../d0/d55/namespaceNuke_1_1Unreal.html#afe907e2badea8da4ea321c0becddcf69">UnrealBuildVersion</a> Nuke.Unreal.Unreal.GetBuildVersion </td>
+          <td>(</td>
+          <td class="paramtype">AbsolutePath</td>          <td class="paramname"><span class="paramname"><em>enginePath</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets the parsed content of Build.version file of an engine instance. </p>
+
+<p class="definition">Definition at line <a class="el" href="../../d1/d1d/Unreal_8cs_source.html#l00162">162</a> of file <a class="el" href="../../d1/d1d/Unreal_8cs_source.html">Unreal.cs</a>.</p>
 
 </div>
 </div>
@@ -678,7 +710,7 @@ Static Public Attributes</h2></td></tr>
 
 <p>Get the current development platform flag <a class="el" href="../../d0/d55/namespaceNuke_1_1Unreal.html">Nuke.Unreal</a> is ran on. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../d1/d1d/Unreal_8cs_source.html#l00195">195</a> of file <a class="el" href="../../d1/d1d/Unreal_8cs_source.html">Unreal.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d1/d1d/Unreal_8cs_source.html#l00205">205</a> of file <a class="el" href="../../d1/d1d/Unreal_8cs_source.html">Unreal.cs</a>.</p>
 
 </div>
 </div>
@@ -719,7 +751,7 @@ Static Public Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A Tool delegate for selected <a class="el" href="../../d3/d98/classNuke_1_1Unreal_1_1Unreal.html" title="A collection of utilities around basic functions regarding the environment of the Engine we&#39;re workin...">Unreal</a> tool</dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../d1/d1d/Unreal_8cs_source.html#l00360">360</a> of file <a class="el" href="../../d1/d1d/Unreal_8cs_source.html">Unreal.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d1/d1d/Unreal_8cs_source.html#l00370">370</a> of file <a class="el" href="../../d1/d1d/Unreal_8cs_source.html">Unreal.cs</a>.</p>
 
 </div>
 </div>
@@ -1018,7 +1050,7 @@ Static Public Attributes</h2></td></tr>
 
 <p>Read copyright info from the project's <code>DefaultGame.ini</code> </p>
 
-<p class="definition">Definition at line <a class="el" href="../../d1/d1d/Unreal_8cs_source.html#l00336">336</a> of file <a class="el" href="../../d1/d1d/Unreal_8cs_source.html">Unreal.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d1/d1d/Unreal_8cs_source.html#l00346">346</a> of file <a class="el" href="../../d1/d1d/Unreal_8cs_source.html">Unreal.cs</a>.</p>
 
 </div>
 </div>

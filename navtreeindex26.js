@@ -1,5 +1,9 @@
 var NAVTREEINDEX26 =
 {
+"de/da1/classNuke_1_1Unreal_1_1Platforms_1_1Android_1_1WindowsHostsAndroid.html#a664c462ce7a8b67faf93cd441aebd955":[14,0,0,0,2,0,6,5],
+"de/da1/classNuke_1_1Unreal_1_1Platforms_1_1Android_1_1WindowsHostsAndroid.html#a747e7aacdd2e8b541bfba1670443e23e":[13,0,0,0,2,0,6,4],
+"de/da1/classNuke_1_1Unreal_1_1Platforms_1_1Android_1_1WindowsHostsAndroid.html#a747e7aacdd2e8b541bfba1670443e23e":[14,0,0,0,2,0,6,4],
+"de/da4/classNuke_1_1Unreal_1_1BoilerplateGenerators_1_1XRepo_1_1XRepoUtils.html":[13,0,0,0,0,0,2],
 "de/da4/classNuke_1_1Unreal_1_1BoilerplateGenerators_1_1XRepo_1_1XRepoUtils.html":[14,0,0,0,0,0,2],
 "de/dbf/classNuke_1_1Unreal_1_1UnrealLocator.html":[13,0,0,0,17],
 "de/dbf/classNuke_1_1Unreal_1_1UnrealLocator.html":[14,0,0,0,17],
@@ -54,7 +58,7 @@ var NAVTREEINDEX26 =
 "de/ddd/classNuke_1_1Unreal_1_1Tools_1_1UbtConfigGenerated_1_1VSCodeProjectFileGeneratorConfig.html#a8d9c6a318092fe52d17fc6a41d7660b2":[14,0,0,0,4,5,51,0],
 "de/ddd/classNuke_1_1Unreal_1_1Tools_1_1UbtConfigGenerated_1_1VSCodeProjectFileGeneratorConfig.html#af094c03bbd5c138e33e7f724096bb6d0":[13,0,0,0,4,5,51,1],
 "de/ddd/classNuke_1_1Unreal_1_1Tools_1_1UbtConfigGenerated_1_1VSCodeProjectFileGeneratorConfig.html#af094c03bbd5c138e33e7f724096bb6d0":[14,0,0,0,4,5,51,1],
-"de/dfd/VersionExtensions_8cs_source.html":[15,0,0,0,22],
+"de/dfd/VersionExtensions_8cs_source.html":[15,0,0,0,23],
 "df/d03/classNuke_1_1Unreal_1_1Tools_1_1UatConfigGenerated_1_1CheckBalancedMacrosConfig.html":[13,0,0,0,4,3,31],
 "df/d03/classNuke_1_1Unreal_1_1Tools_1_1UatConfigGenerated_1_1CheckBalancedMacrosConfig.html":[14,0,0,0,4,3,31],
 "df/d03/classNuke_1_1Unreal_1_1Tools_1_1UatConfigGenerated_1_1CheckBalancedMacrosConfig.html#a6e308eb9575dd7db1d4a6c0b027a0cf9":[13,0,0,0,4,3,31,0],
@@ -245,9 +249,5 @@ var NAVTREEINDEX26 =
 "df/ddc/classNuke_1_1Unreal_1_1Tools_1_1UatConfigGenerated_1_1MakefileTargetPlatform__LinuxConfig.html#a23a3d5fe41dddf9c7d7b1866187e7736":[14,0,0,0,4,3,83,0],
 "df/ddc/classNuke_1_1Unreal_1_1Tools_1_1UatConfigGenerated_1_1MakefileTargetPlatform__LinuxConfig.html#a4761eb9f6cb4111d85db3e20bad74068":[13,0,0,0,4,3,83,6],
 "df/ddc/classNuke_1_1Unreal_1_1Tools_1_1UatConfigGenerated_1_1MakefileTargetPlatform__LinuxConfig.html#a4761eb9f6cb4111d85db3e20bad74068":[14,0,0,0,4,3,83,6],
-"df/ddc/classNuke_1_1Unreal_1_1Tools_1_1UatConfigGenerated_1_1MakefileTargetPlatform__LinuxConfig.html#a4c7df199d42784ab4d22187cd4e3d46c":[13,0,0,0,4,3,83,2],
-"df/ddc/classNuke_1_1Unreal_1_1Tools_1_1UatConfigGenerated_1_1MakefileTargetPlatform__LinuxConfig.html#a4c7df199d42784ab4d22187cd4e3d46c":[14,0,0,0,4,3,83,2],
-"df/ddc/classNuke_1_1Unreal_1_1Tools_1_1UatConfigGenerated_1_1MakefileTargetPlatform__LinuxConfig.html#a503eaca37aba91e0f346aad5a0162d11":[13,0,0,0,4,3,83,9],
-"df/ddc/classNuke_1_1Unreal_1_1Tools_1_1UatConfigGenerated_1_1MakefileTargetPlatform__LinuxConfig.html#a503eaca37aba91e0f346aad5a0162d11":[14,0,0,0,4,3,83,9],
-"df/ddc/classNuke_1_1Unreal_1_1Tools_1_1UatConfigGenerated_1_1MakefileTargetPlatform__LinuxConfig.html#a684e42e8d94c10a2de903bc695aa3f81":[13,0,0,0,4,3,83,4]
+"df/ddc/classNuke_1_1Unreal_1_1Tools_1_1UatConfigGenerated_1_1MakefileTargetPlatform__LinuxConfig.html#a4c7df199d42784ab4d22187cd4e3d46c":[13,0,0,0,4,3,83,2]
 };

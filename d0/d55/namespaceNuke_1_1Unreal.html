@@ -318,6 +318,9 @@ Functions</h2></td></tr>
 <tr class="memitem:aaeaf7b58e3faeeefea0f275f53008a86" id="r_aaeaf7b58e3faeeefea0f275f53008a86"><td class="memItemLeft" align="right" valign="top">record class&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aaeaf7b58e3faeeefea0f275f53008a86">ProjectDescriptor</a> (int FileVersion=3, string? EngineAssociation=null, string? Category=null, string? Description=null, List&lt; ModuleDescriptor &gt;? Modules=null, List&lt; PluginReferenceDescriptor &gt;? Plugins=null, List&lt; string &gt;? AdditionalRootDirectories=null, List&lt; string &gt;? AdditionalPluginDirectories=null, List&lt; <a class="el" href="../../d5/dc0/classNuke_1_1Unreal_1_1UnrealPlatform.html">UnrealPlatform</a> &gt;? TargetPlatforms=null, uint? EpicSampleNameHash=null, Dictionary&lt; <a class="el" href="../../d5/dc0/classNuke_1_1Unreal_1_1UnrealPlatform.html">UnrealPlatform</a>, List&lt; string &gt; &gt;? InitSteps=null, Dictionary&lt; <a class="el" href="../../d5/dc0/classNuke_1_1Unreal_1_1UnrealPlatform.html">UnrealPlatform</a>, List&lt; string &gt; &gt;? PreBuildSteps=null, Dictionary&lt; <a class="el" href="../../d5/dc0/classNuke_1_1Unreal_1_1UnrealPlatform.html">UnrealPlatform</a>, List&lt; string &gt; &gt;? PostBuildSteps=null, bool? IsEnterpriseProject=null, bool? DisableEnginePluginsByDefault=null)</td></tr>
 <tr class="memdesc:aaeaf7b58e3faeeefea0f275f53008a86"><td class="mdescLeft">&#160;</td><td class="mdescRight">In-memory representation of a .uproject file.  <br /></td></tr>
 <tr class="separator:aaeaf7b58e3faeeefea0f275f53008a86"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afe907e2badea8da4ea321c0becddcf69" id="r_afe907e2badea8da4ea321c0becddcf69"><td class="memItemLeft" align="right" valign="top">record class&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afe907e2badea8da4ea321c0becddcf69">UnrealBuildVersion</a> (int MajorVersion, int MinorVersion, int PatchVersion, ulong? Changelist, ulong? CompatibleChangelist, int? IsLicenseeVersion, int? IsPromotedBuild, string? BranchName)</td></tr>
+<tr class="memdesc:afe907e2badea8da4ea321c0becddcf69"><td class="mdescLeft">&#160;</td><td class="mdescRight">Represents a Build.version file in an engine instance.  <br /></td></tr>
+<tr class="separator:afe907e2badea8da4ea321c0becddcf69"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Enumeration Type Documentation</h2>
 <a id="a2b0aa5780ca61c75136831ebcbcdc8d9" name="a2b0aa5780ca61c75136831ebcbcdc8d9"></a>
@@ -588,6 +591,59 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a id="afe907e2badea8da4ea321c0becddcf69" name="afe907e2badea8da4ea321c0becddcf69"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afe907e2badea8da4ea321c0becddcf69">&#9670;&#160;</a></span>UnrealBuildVersion()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">record class Nuke.Unreal.UnrealBuildVersion </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>MajorVersion</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>MinorVersion</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>PatchVersion</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">ulong?</td>          <td class="paramname"><span class="paramname"><em>Changelist</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">ulong?</td>          <td class="paramname"><span class="paramname"><em>CompatibleChangelist</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int?</td>          <td class="paramname"><span class="paramname"><em>IsLicenseeVersion</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int?</td>          <td class="paramname"><span class="paramname"><em>IsPromotedBuild</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string?</td>          <td class="paramname"><span class="paramname"><em>BranchName</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Represents a Build.version file in an engine instance. </p>
 
 </div>
 </div>

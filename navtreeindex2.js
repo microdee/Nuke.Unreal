@@ -1,5 +1,6 @@
 var NAVTREEINDEX2 =
 {
+"d1/d0f/namespaceNuke_1_1Unreal_1_1Tools.html#a952cb0d59736817894f6f417f0c616f7":[13,0,0,0,4,17],
 "d1/d0f/namespaceNuke_1_1Unreal_1_1Tools.html#a952cb0d59736817894f6f417f0c616f7a12587c1bbf5e00c99fe1af4a3edf1632":[13,0,0,0,4,17,10],
 "d1/d0f/namespaceNuke_1_1Unreal_1_1Tools.html#a952cb0d59736817894f6f417f0c616f7a146184a44f3817cc13c5409a527283ae":[13,0,0,0,4,17,12],
 "d1/d0f/namespaceNuke_1_1Unreal_1_1Tools.html#a952cb0d59736817894f6f417f0c616f7a174bcb6178ef626987f938fe29c2a303":[13,0,0,0,4,17,5],
@@ -199,7 +200,7 @@ var NAVTREEINDEX2 =
 "d1/d67/classNuke_1_1Unreal_1_1Tools_1_1UatConfigGenerated_1_1UBTConfig.html#ad8ebd3560cba59b2912db78fe85514ae":[14,0,0,0,4,3,168,1],
 "d1/d6a/classNuke_1_1Unreal_1_1Plugins_1_1RuntimeLibraryPath.html":[13,0,0,0,3,4],
 "d1/d6a/classNuke_1_1Unreal_1_1Plugins_1_1RuntimeLibraryPath.html":[14,0,0,0,3,4],
-"d1/d6e/UnrealConfig_8cs_source.html":[15,0,0,0,19],
+"d1/d6e/UnrealConfig_8cs_source.html":[15,0,0,0,20],
 "d1/d73/classNuke_1_1Unreal_1_1Tools_1_1UbtConfigGenerated_1_1HoloLensTargetRulesConfig.html":[13,0,0,0,4,5,18],
 "d1/d73/classNuke_1_1Unreal_1_1Tools_1_1UbtConfigGenerated_1_1HoloLensTargetRulesConfig.html":[14,0,0,0,4,5,18],
 "d1/d73/classNuke_1_1Unreal_1_1Tools_1_1UbtConfigGenerated_1_1HoloLensTargetRulesConfig.html#a63c6e8ef95f518e287190d3956d82808":[13,0,0,0,4,5,18,0],
@@ -248,6 +249,5 @@ var NAVTREEINDEX2 =
 "d1/d93/classNuke_1_1Unreal_1_1Tools_1_1UatConfigGenerated_1_1BuildGraphConfig.html#a8856741101c116a4de5901d7cf8c3217":[13,0,0,0,4,3,15,7],
 "d1/d93/classNuke_1_1Unreal_1_1Tools_1_1UatConfigGenerated_1_1BuildGraphConfig.html#a8856741101c116a4de5901d7cf8c3217":[14,0,0,0,4,3,15,7],
 "d1/d93/classNuke_1_1Unreal_1_1Tools_1_1UatConfigGenerated_1_1BuildGraphConfig.html#a93851d497770b0ce0e18e6994c71c022":[13,0,0,0,4,3,15,16],
-"d1/d93/classNuke_1_1Unreal_1_1Tools_1_1UatConfigGenerated_1_1BuildGraphConfig.html#a93851d497770b0ce0e18e6994c71c022":[14,0,0,0,4,3,15,16],
-"d1/d93/classNuke_1_1Unreal_1_1Tools_1_1UatConfigGenerated_1_1BuildGraphConfig.html#a97c43276cdd2a62c7c89cffcfb14bf25":[13,0,0,0,4,3,15,15]
+"d1/d93/classNuke_1_1Unreal_1_1Tools_1_1UatConfigGenerated_1_1BuildGraphConfig.html#a93851d497770b0ce0e18e6994c71c022":[14,0,0,0,4,3,15,16]
 };

@@ -10,6 +10,7 @@ var classNuke_1_1Unreal_1_1Unreal =
     [ "BuildTool", "d3/d98/classNuke_1_1Unreal_1_1Unreal.html#aaa19b83bfb3978ac86b3537dca26b926", null ],
     [ "BuildTool", "d3/d98/classNuke_1_1Unreal_1_1Unreal.html#af4a467edf8763dd992f2f19a7fdb83bc", null ],
     [ "ClearFolder", "d3/d98/classNuke_1_1Unreal_1_1Unreal.html#adcde8327169fb39fc5863e285537120b", null ],
+    [ "GetBuildVersion", "d3/d98/classNuke_1_1Unreal_1_1Unreal.html#a655a4e915ce98960704ddfac16af26da", null ],
     [ "GetEnginePath", "d3/d98/classNuke_1_1Unreal_1_1Unreal.html#ae608d7ff0ec0540d0a28f64b995dc5cf", null ],
     [ "GetHostPlatform", "d3/d98/classNuke_1_1Unreal_1_1Unreal.html#a5d748be1635a0059be7c4a2d80ae1721", null ],
     [ "GetHostPlatformFlag", "d3/d98/classNuke_1_1Unreal_1_1Unreal.html#a81c8f103db477166b6c36feb0b62119d", null ],

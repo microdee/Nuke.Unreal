@@ -18,6 +18,7 @@ var dir_bdc1b92e16af06f2337ea41ed80d7e39 =
     [ "UnrealBuild.Targets.cs", "d9/dd7/UnrealBuild_8Targets_8cs_source.html", null ],
     [ "UnrealBuild.Templating.cs", "db/d1e/UnrealBuild_8Templating_8cs_source.html", null ],
     [ "UnrealBuildTest.cs", "d5/d33/UnrealBuildTest_8cs_source.html", null ],
+    [ "UnrealBuildVersion.cs", "d6/de3/UnrealBuildVersion_8cs_source.html", null ],
     [ "UnrealCompatibility.cs", "d1/dc0/UnrealCompatibility_8cs_source.html", null ],
     [ "UnrealConfig.cs", "d1/d6e/UnrealConfig_8cs_source.html", null ],
     [ "UnrealPlatform.cs", "d8/df1/UnrealPlatform_8cs_source.html", null ],
