@@ -17,14 +17,11 @@ public class EngineVersion
 {
     private Version GetEngineSemVersion()
     {
-        var buildVersionPath = EnginePath / "Engine" / "Build" / "Build.version";
-        Assert.FileExists(buildVersionPath, $"Specified path was not an Unreal Engine instance ({buildVersionPath})");
-
-        var buildVersion = JObject.Parse(File.ReadAllText(buildVersionPath));
+        var buildVersion = Unreal.GetBuildVersion(EnginePath);
         return new(
-            buildVersion.GetPropertyValue<int>("MajorVersion"),
-            buildVersion.GetPropertyValue<int>("MinorVersion"),
-            buildVersion.GetPropertyValue<int>("PatchVersion")
+            buildVersion.MajorVersion,
+            buildVersion.MinorVersion,
+            buildVersion.PatchVersion
         );
     }
 

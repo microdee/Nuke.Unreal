@@ -35,7 +35,7 @@ public record class LauncherInstalledList(List<LauncherInstalledItem> Installati
     /// </summary>
     /// <param name="datFile">Can be not existing, in which case an empty enumerable is returned</param>
     public static IEnumerable<UnrealInstance> FromFile(AbsolutePath datFile) => datFile.ExistingFile()
-        ?.ReadJson<LauncherInstalledList>()
+        ?.ReadJson<LauncherInstalledList>(Unreal.JsonReadSettings)
         ?.GetInstances()
         ?? []
     ;

@@ -157,6 +157,16 @@ public static class Unreal
         => (enginePath / "Engine" / "Build" / "InstalledBuild.txt").FileExists();
 
     /// <summary>
+    /// Gets the parsed content of Build.version file of an engine instance
+    /// </summary>
+    public static UnrealBuildVersion GetBuildVersion(AbsolutePath enginePath)
+    {
+        var buildVersionPath = enginePath / "Engine" / "Build" / "Build.version";
+        Assert.FileExists(buildVersionPath, $"Specified path was not an Unreal Engine instance ({buildVersionPath})");
+        return buildVersionPath.ReadJson<UnrealBuildVersion>(JsonReadSettings);
+    }
+
+    /// <summary>
     /// Are we working with a vanilla engine most probably installed via the Marketplace?
     /// </summary>
     public static bool IsInstalled(EngineVersion ofVersion)

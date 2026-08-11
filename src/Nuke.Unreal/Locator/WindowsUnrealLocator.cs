@@ -77,8 +77,15 @@ internal class WindowsUnrealLocator : IUnrealLocator
                             var path = AbsolutePath.Create(candidate);
                             if (!path.DirectoryExists()) continue;
 
+                            var instanceName = valueName;
+                            if (Unreal.IsInstalled(path))
+                            {
+                                var buildVersion = Unreal.GetBuildVersion(path);
+                                instanceName = $"{buildVersion.MajorVersion}.{buildVersion.MinorVersion}";
+                            }
+
                             if (discovered.Add(path))
-                                yield return new(valueName, path);
+                                yield return new(instanceName, path);
                         }
                     }
                 }
